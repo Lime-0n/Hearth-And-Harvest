@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_spool": {
+    "has_cocoa_bean_bag": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:spool"
+            "items": "hearthandharvest:cocoa_bean_bag"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:string"
+        "recipe": "hearthandharvest:cocoa_bean_from_bag"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_spool"
+      "has_cocoa_bean_bag"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:string"
+      "hearthandharvest:cocoa_bean_from_bag"
     ]
   }
 }

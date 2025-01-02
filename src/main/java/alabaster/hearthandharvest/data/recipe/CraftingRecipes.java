@@ -1,9 +1,12 @@
 package alabaster.hearthandharvest.data.recipe;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.ModItems;
+import net.minecraft.ResourceLocationException;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
@@ -228,15 +231,15 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.APPLE, 9)
                 .requires(ModItems.APPLE_CRATE.get())
                 .unlockedBy("has_apple_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.APPLE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.GOLDEN_APPLE.getDefaultInstance().getItem(), 9)
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "apple_from_crate"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GOLDEN_APPLE, 9)
                 .requires(ModItems.GOLDEN_APPLE_CRATE.get())
                 .unlockedBy("has_golden_apple_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GOLDEN_APPLE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.GOLDEN_CARROT.getDefaultInstance().getItem(), 9)
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "golden_apple_from_crate"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GOLDEN_CARROT, 9)
                 .requires(ModItems.GOLDEN_CARROT_CRATE.get())
                 .unlockedBy("has_golden_carrot_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GOLDEN_CARROT_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "golden_carrot_from_crate"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COTTON.get(), 9)
                 .requires(ModItems.COTTON_BALE.get())
@@ -245,7 +248,7 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.STRING, 9)
                 .requires(ModItems.SPOOL.get())
                 .unlockedBy("has_spool", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SPOOL.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "string_from_spool"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.SALT.get(), 9)
                 .requires(ModItems.SALT_BAG.get())
@@ -254,24 +257,24 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.SUGAR, 9)
                 .requires(ModItems.SUGAR_BAG.get())
                 .unlockedBy("has_sugar_bag", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SUGAR_BAG.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sugar_from_bag"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.COCOA_BEANS, 9)
                 .requires(ModItems.COCOA_BEAN_BAG.get())
                 .unlockedBy("has_cocoa_bean_bag", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.COCOA_BEAN_BAG.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cocoa_bean_from_bag"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.GUNPOWDER, 9)
                 .requires(ModItems.GUNPOWDER_BAG.get())
                 .unlockedBy("has_gunpowder_bag", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GUNPOWDER_BAG.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "gunpowder_from_bag"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.EGG, 9)
                 .requires(ModItems.EGG_CRATE.get())
                 .unlockedBy("has_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.EGG_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "egg_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.TURTLE_EGG, 9)
                 .requires(ModItems.TURTLE_EGG_CRATE.get())
                 .unlockedBy("has_turtle_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TURTLE_EGG_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "turtle_egg_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get(), 9)
                 .requires(ModItems.MILK_CRATE.get())
                 .unlockedBy("has_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MILK_CRATE.get()))
@@ -295,23 +298,23 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.HONEY_BOTTLE, 9)
                 .requires(ModItems.HONEY_CRATE.get())
                 .unlockedBy("has_honey_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.HONEY_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "honey_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.BROWN_MUSHROOM, 9)
                 .requires(ModItems.BROWN_MUSHROOM_CRATE.get())
                 .unlockedBy("has_brown_mushroom_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BROWN_MUSHROOM_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "brown_mushroom_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.RED_MUSHROOM, 9)
                 .requires(ModItems.RED_MUSHROOM_CRATE.get())
                 .unlockedBy("has_red_mushroom_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RED_MUSHROOM_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "red_mushroom_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.CRIMSON_FUNGUS, 9)
                 .requires(ModItems.CRIMSON_FUNGUS_CRATE.get())
                 .unlockedBy("has_crimson_fungus_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CRIMSON_FUNGUS_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crimson_fungus_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.WARPED_FUNGUS, 9)
                 .requires(ModItems.WARPED_FUNGUS_CRATE.get())
                 .unlockedBy("has_warped_fungus_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WARPED_FUNGUS_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_fungus_from_crate"));
     }
 
     private static void recipesFoodstuffs(RecipeOutput output) {

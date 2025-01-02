@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_apple_crate": {
+    "has_spool": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:apple_crate"
+            "items": "hearthandharvest:spool"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:apple"
+        "recipe": "hearthandharvest:string_from_spool"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_apple_crate"
+      "has_spool"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:apple"
+      "hearthandharvest:string_from_spool"
     ]
   }
 }
