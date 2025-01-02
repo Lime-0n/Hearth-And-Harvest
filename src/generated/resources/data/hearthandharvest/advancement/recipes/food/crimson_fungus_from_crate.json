@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_red_mushroom_crate": {
+    "has_crimson_fungus_crate": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:red_mushroom_crate"
+            "items": "hearthandharvest:crimson_fungus_crate"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:red_mushroom"
+        "recipe": "hearthandharvest:crimson_fungus_from_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_red_mushroom_crate"
+      "has_crimson_fungus_crate"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:red_mushroom"
+      "hearthandharvest:crimson_fungus_from_crate"
     ]
   }
 }

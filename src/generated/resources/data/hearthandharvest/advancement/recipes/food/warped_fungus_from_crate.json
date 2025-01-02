@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:warped_fungus"
+        "recipe": "hearthandharvest:warped_fungus_from_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:warped_fungus"
+      "hearthandharvest:warped_fungus_from_crate"
     ]
   }
 }
