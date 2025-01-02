@@ -12,12 +12,22 @@
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.grape_crate": "Grape Crate",
   "block.hearthandharvest.peanut_crate": "Peanut Crate",
-  "block.hearthandharvest.cotton_bale": "Cotton Bale",
+  "block.hearthandharvest.apple_crate": "Apple Crate",
+  "block.hearthandharvest.golden_apple_crate": "Golden Apple Crate",
+  "block.hearthandharvest.golden_carrot_crate": "Golden Carrot Crate",
+
   "block.hearthandharvest.salt_bag": "Salt Bag",
+  "block.hearthandharvest.sugar_bag": "Sugar Bag",
+  "block.hearthandharvest.cocoa_bean_bag": "Cocoa Bean Bag",
+  "block.hearthandharvest.gunpowder_bag": "Gunpowder Bag",
+
+  "block.hearthandharvest.cotton_bale": "Cotton Bale",
   "block.hearthandharvest.spool": "Spool",
+
   "block.hearthandharvest.egg_crate": "Egg Crate",
+  "block.hearthandharvest.turtle_egg_crate": "Turtle Egg Crate",
   "block.hearthandharvest.milk_crate": "Milk Crate",
-  "block.hearthandharvest.goat_milk_crate": "Goat_Milk Crate",
+  "block.hearthandharvest.goat_milk_crate": "Goat Milk Crate",
   "block.hearthandharvest.mead_crate": "Mead Crate",
   "block.hearthandharvest.wine_crate": "Wine Crate",
   "block.hearthandharvest.water_crate": "Water Bottle Crate",
@@ -84,6 +94,6 @@
 
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",
   "item.hearthandharvest.mashed_potatoes": "Mashed Potatoes",
-  "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Peanut Butter and Jelly Sandwich",
+  "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Peanut Butter & Jelly",
   "item.hearthandharvest.waffle": "Waffle"
 }

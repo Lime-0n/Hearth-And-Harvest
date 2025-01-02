@@ -35,6 +35,9 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");
         items.remove(ModItems.EGG_CRATE.get());
 
+        blockBasedModel(ModItems.TURTLE_EGG_CRATE.get(), "_bottom");
+        items.remove(ModItems.TURTLE_EGG_CRATE.get());
+
         blockBasedModel(ModItems.MILK_CRATE.get(), "_bottom");
         items.remove(ModItems.MILK_CRATE.get());
 

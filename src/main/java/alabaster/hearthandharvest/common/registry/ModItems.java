@@ -55,14 +55,34 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.GRAPE_CRATE.get(), basicItem()));
     public static final Supplier<Item> PEANUT_CRATE = registerWithTab("peanut_crate",
             () -> new BlockItem(ModBlocks.PEANUT_CRATE.get(), basicItem()));
+    public static final Supplier<Item> APPLE_CRATE = registerWithTab("apple_crate",
+            () -> new BlockItem(ModBlocks.APPLE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> GOLDEN_APPLE_CRATE = registerWithTab("golden_apple_crate",
+            () -> new BlockItem(ModBlocks.GOLDEN_APPLE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> GOLDEN_CARROT_CRATE = registerWithTab("golden_carrot_crate",
+            () -> new BlockItem(ModBlocks.GOLDEN_CARROT_CRATE.get(), basicItem()));
+    
+    // Bags
     public static final Supplier<Item> SALT_BAG = registerWithTab("salt_bag",
             () -> new BlockItem(ModBlocks.SALT_BAG.get(), basicItem()));
+    public static final Supplier<Item> SUGAR_BAG = registerWithTab("sugar_bag",
+            () -> new BlockItem(ModBlocks.SUGAR_BAG.get(), basicItem()));
+    public static final Supplier<Item> COCOA_BEAN_BAG = registerWithTab("cocoa_bean_bag",
+            () -> new BlockItem(ModBlocks.COCOA_BEAN_BAG.get(), basicItem()));
+    public static final Supplier<Item> GUNPOWDER_BAG = registerWithTab("gunpowder_bag",
+            () -> new BlockItem(ModBlocks.GUNPOWDER_BAG.get(), basicItem()));
+    
+    // Misc
     public static final Supplier<Item> COTTON_BALE = registerWithTab("cotton_bale",
             () -> new BlockItem(ModBlocks.COTTON_BALE.get(), basicItem()));
     public static final Supplier<Item> SPOOL = registerWithTab("spool",
             () -> new BlockItem(ModBlocks.SPOOL.get(), basicItem()));
+    
+    // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithTab("egg_crate",
             () -> new BlockItem(ModBlocks.EGG_CRATE.get(), basicItem()));
+    public static final Supplier<Item> TURTLE_EGG_CRATE = registerWithTab("turtle_egg_crate",
+            () -> new BlockItem(ModBlocks.TURTLE_EGG_CRATE.get(), basicItem()));
     public static final Supplier<Item> MILK_CRATE = registerWithTab("milk_crate",
             () -> new BlockItem(ModBlocks.MILK_CRATE.get(), basicItem()));
     public static final Supplier<Item> GOAT_MILK_CRATE = registerWithTab("goat_milk_crate",

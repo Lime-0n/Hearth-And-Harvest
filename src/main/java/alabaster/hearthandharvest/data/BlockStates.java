@@ -60,6 +60,10 @@ public class BlockStates extends BlockStateProvider
         this.crateBlock(ModBlocks.GRAPE_CRATE.get(), "grape");
         this.crateBlock(ModBlocks.PEANUT_CRATE.get(), "peanut");
 
+        this.crateBlock(ModBlocks.APPLE_CRATE.get(), "apple");
+        this.crateBlock(ModBlocks.GOLDEN_APPLE_CRATE.get(), "golden_apple");
+        this.crateBlock(ModBlocks.GOLDEN_CARROT_CRATE.get(), "golden_carrot");
+
         this.pieBlock(ModBlocks.RASPBERRY_PIE.get());
         this.pieBlock(ModBlocks.BLUEBERRY_PIE.get());
         this.pieBlock(ModBlocks.GRAPE_PIE.get());
@@ -70,16 +74,10 @@ public class BlockStates extends BlockStateProvider
         this.axisBlock((RotatedPillarBlock) ModBlocks.COTTON_BALE.get());
         this.axisBlock((RotatedPillarBlock) ModBlocks.SPOOL.get());
 
-        String saltBag = blockName(ModBlocks.SALT_BAG.get());
-        this.simpleBlock(ModBlocks.SALT_BAG.get(), models().withExistingParent(saltBag, "cube")
-                .texture("particle", resourceBlock(saltBag + "_top"))
-                .texture("down", resourceBlock(saltBag + "_bottom"))
-                .texture("up", resourceBlock(saltBag + "_top"))
-                .texture("north", resourceBlock(saltBag + "_side_tied"))
-                .texture("south", resourceBlock(saltBag + "_side_tied"))
-                .texture("east", resourceBlock(saltBag + "_side"))
-                .texture("west", resourceBlock(saltBag + "_side"))
-        );
+        this.bagBlock(ModBlocks.SALT_BAG.get(), "salt");
+        this.bagBlock(ModBlocks.SUGAR_BAG.get(), "sugar");
+        this.bagBlock(ModBlocks.COCOA_BEAN_BAG.get(), "cocoa_bean");
+        this.bagBlock(ModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
 
     }
 
@@ -147,7 +145,23 @@ public class BlockStates extends BlockStateProvider
 
     public void crateBlock(Block block, String cropName) {
         this.simpleBlock(block,
-                models().cubeBottomTop(blockName(block), resourceBlock(cropName + "_crate_side"), resourceBlock("crate_bottom"), resourceBlock(cropName + "_crate_top")));
+                models().cubeBottomTop(blockName(block),
+                        resourceBlock(cropName + "_crate_side"),
+                        resourceBlock("crate_bottom"),
+                        resourceBlock(cropName + "_crate_top")));
+    }
+
+    public void bagBlock(Block block, String cropName) {
+        this.simpleBlock(block,
+                models().cube(blockName(block),
+                        resourceBlock("bag_bottom"),
+                        resourceBlock(cropName + "_bag_top"),
+                        resourceBlock("bag_side_tied"),
+                        resourceBlock("bag_side_tied"),
+                        resourceBlock("bag_side"),
+                        resourceBlock("bag_side"))
+                        .texture("particle", resourceBlock(cropName + "_bag_top")
+                ));
     }
 
     public void pieBlock(Block block) {

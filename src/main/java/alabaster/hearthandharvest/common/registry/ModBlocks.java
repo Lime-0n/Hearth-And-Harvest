@@ -17,7 +17,7 @@ public class ModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
 
 
-    // Crop Storage
+    // Crates
     public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> BLUEBERRY_CRATE = BLOCKS.register("blueberry_crate",
@@ -26,8 +26,24 @@ public class ModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> PEANUT_CRATE = BLOCKS.register("peanut_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> APPLE_CRATE = BLOCKS.register("apple_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> GOLDEN_APPLE_CRATE = BLOCKS.register("golden_apple_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> GOLDEN_CARROT_CRATE = BLOCKS.register("golden_carrot_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    
+    // Bags
     public static final Supplier<Block> SALT_BAG = BLOCKS.register("salt_bag",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final Supplier<Block> SUGAR_BAG = BLOCKS.register("sugar_bag",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final Supplier<Block> COCOA_BEAN_BAG = BLOCKS.register("cocoa_bean_bag",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final Supplier<Block> GUNPOWDER_BAG = BLOCKS.register("gunpowder_bag",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+    
+    // Misc
     public static final Supplier<Block> COTTON_BALE = BLOCKS.register("cotton_bale",
             () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> SPOOL = BLOCKS.register("spool",
@@ -35,6 +51,8 @@ public class ModBlocks {
 
     // Half-Slab Crates
     public static final Supplier<Block> EGG_CRATE = BLOCKS.register("egg_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> TURTLE_EGG_CRATE = BLOCKS.register("turtle_egg_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> MILK_CRATE = BLOCKS.register("milk_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
