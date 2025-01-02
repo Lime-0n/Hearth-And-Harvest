@@ -171,9 +171,9 @@ public class CraftingRecipes
                 .unlockedBy("has_honey_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HONEY_BOTTLE))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.WATER_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
+                .pattern("   ")
+                .pattern(" # ")
+                .pattern("   ")
                 .define('#', WATER_BOTTLE)
                 .unlockedBy("has_water_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POTION))
                 .save(output);
