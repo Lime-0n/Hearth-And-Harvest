@@ -82,6 +82,16 @@ public class ItemModels extends ItemModelProvider
         );
         takeAll(items, spriteBlockItems.toArray(new Item[0])).forEach(item -> withExistingParent(itemName(item), GENERATED).texture("layer0", resourceItem(itemName(item))));
 
+        // Handheld items
+        Set<Item> handheldItems = Sets.newHashSet(
+                ModItems.FLINT_CLEAVER.get(),
+                ModItems.IRON_CLEAVER.get(),
+                ModItems.DIAMOND_CLEAVER.get(),
+                ModItems.GOLDEN_CLEAVER.get(),
+                ModItems.NETHERITE_CLEAVER.get()
+        );
+        takeAll(items, handheldItems.toArray(new Item[0])).forEach(item -> itemHandheldModel(item, resourceItem(itemName(item))));
+
         // Generated items
         items.forEach(item -> itemGeneratedModel(item, resourceItem(itemName(item))));
     }

@@ -1,6 +1,12 @@
 {
   "itemGroup.hearthandharvest": "Hearth and Harvest",
 
+  "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
+  "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
+  "item.hearthandharvest.golden_cleaver": "Golden Cleaver",
+  "item.hearthandharvest.diamond_cleaver": "Diamond Cleaver",
+  "item.hearthandharvest.netherite_cleaver": "Netherite Cleaver",
+
   "item.hearthandharvest.raspberry": "Raspberry",
   "item.hearthandharvest.blueberries": "Blueberries",
   "item.hearthandharvest.grapes": "Grapes",

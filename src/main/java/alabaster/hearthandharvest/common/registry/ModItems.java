@@ -5,7 +5,11 @@ import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.item.KnifeItem;
+import vectorwing.farmersdelight.common.registry.ModMaterials;
 
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
@@ -25,6 +29,22 @@ public class ModItems {
     public static Item.Properties basicItem() {
         return (new Item.Properties());
     }
+
+    public static Item.Properties cleaverItem(Tier tier) {
+        return new Item.Properties().attributes(KnifeItem.createAttributes(tier, 2.0F, -3.0F));
+    }
+
+    // Tools
+    public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
+            () -> new KnifeItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
+    public static final Supplier<Item> IRON_CLEAVER = registerWithTab("iron_cleaver",
+            () -> new KnifeItem(Tiers.IRON, cleaverItem(Tiers.IRON)));
+    public static final Supplier<Item> DIAMOND_CLEAVER = registerWithTab("diamond_cleaver",
+            () -> new KnifeItem(Tiers.DIAMOND, cleaverItem(Tiers.DIAMOND)));
+    public static final Supplier<Item> NETHERITE_CLEAVER = registerWithTab("netherite_cleaver",
+            () -> new KnifeItem(Tiers.NETHERITE, cleaverItem(Tiers.NETHERITE).fireResistant()));
+    public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
+            () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
 
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",
