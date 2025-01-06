@@ -205,6 +205,10 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.CHICKEN_POT_PIE.get(), basicItem()));
     public static final Supplier<Item> CHICKEN_POT_PIE_SLICE = registerWithTab("chicken_pot_pie_slice",
             () -> new Item(basicItem()));
+    public static final Supplier<Item> CARROT_CAKE = registerWithTab("carrot_cake",
+            () -> new BlockItem(ModBlocks.CARROT_CAKE.get(), basicItem()));
+    public static final Supplier<Item> CARROT_CAKE_SLICE = registerWithTab("carrot_cake_slice",
+            () -> new Item(basicItem()));
 
 
     // Ingredients
