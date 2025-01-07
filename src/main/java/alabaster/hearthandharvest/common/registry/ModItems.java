@@ -240,6 +240,8 @@ public class ModItems {
             () -> new Item(basicItem()));
 
     // Meals
+    public static final Supplier<Item> ONION_SOUP = registerWithTab("onion_soup",
+            () -> new Item(basicItem()));
     public static final Supplier<Item> MACARONI_AND_CHEESE = registerWithTab("macaroni_and_cheese",
             () -> new Item(basicItem()));
     public static final Supplier<Item> MASHED_POTATOES = registerWithTab("mashed_potatoes",

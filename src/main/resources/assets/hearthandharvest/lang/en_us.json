@@ -1,6 +1,8 @@
 {
   "itemGroup.hearthandharvest": "Hearth and Harvest",
 
+  "block.hearthandharvest.tree_tapper": "Tree Tapper",
+
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
   "item.hearthandharvest.golden_cleaver": "Golden Cleaver",
@@ -100,6 +102,7 @@
   "item.hearthandharvest.raisins": "Raisins",
   "item.hearthandharvest.sunflower_seeds": "Sunflower Seeds",
 
+  "item.hearthandharvest.onion_soup": "Onion Soup",
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",
   "item.hearthandharvest.mashed_potatoes": "Mashed Potatoes",
   "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Peanut Butter & Jelly",

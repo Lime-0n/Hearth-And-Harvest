@@ -1,9 +1,9 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.block.CarrotCakeBlock;
+import alabaster.hearthandharvest.common.block.SliceableCakeBlock;
+import alabaster.hearthandharvest.common.block.TreeTapperBlock;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.PieBlock;
@@ -16,7 +16,7 @@ public class ModBlocks {
 
     // Workstations
     public static final Supplier<Block> TREE_TAPPER = BLOCKS.register("tree_tapper",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
+            () -> new TreeTapperBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
 
 
     // Crates
@@ -87,7 +87,7 @@ public class ModBlocks {
     public static final Supplier<Block> CHICKEN_POT_PIE = BLOCKS.register("chicken_pot_pie",
             () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.CHICKEN_POT_PIE_SLICE));
     public static final Supplier<Block> CARROT_CAKE = BLOCKS.register("carrot_cake",
-            () -> new CarrotCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  ModItems.CARROT_CAKE_SLICE));
+            () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  ModItems.CARROT_CAKE_SLICE));
 
     // Cheese
     public static final Supplier<Block> CHEESE_WHEEL = BLOCKS.register("cheese_wheel",
