@@ -1,12 +1,11 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.FoodValues;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.registry.ModMaterials;
@@ -34,6 +33,19 @@ public class ModItems {
         return new Item.Properties().attributes(KnifeItem.createAttributes(tier, 2.0F, -3.0F));
     }
 
+    public static Item.Properties foodItem(FoodProperties food) {
+        return new Item.Properties().food(food);
+    }
+
+    public static Item.Properties bowlFoodItem(FoodProperties food) {
+        return new Item.Properties().food(food).craftRemainder(Items.BOWL).stacksTo(16);
+    }
+
+    public static Item.Properties drinkItem() {
+        return new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
+    }
+
+
     // Tools
     public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
             () -> new KnifeItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
@@ -52,19 +64,20 @@ public class ModItems {
 
     // Crops
     public static final Supplier<Item> RASPBERRY = registerWithTab("raspberry",
-            () -> new Item(basicItem()));
+            () -> new ItemNameBlockItem(ModBlocks.RASPBERRY_BUSH.get(), foodItem(FoodValues.RASPBERRY)));
     public static final Supplier<Item> BLUEBERRIES = registerWithTab("blueberries",
-            () -> new Item(basicItem()));
+            () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_BUSH.get(), foodItem(FoodValues.BLUEBERRIES)));
     public static final Supplier<Item> GRAPES = registerWithTab("grapes",
-            () -> new Item(basicItem()));
+            () -> new ItemNameBlockItem(ModBlocks.BUDDING_GRAPE_CROP.get(), foodItem(FoodValues.PEANUT)));
     public static final Supplier<Item> PEANUT = registerWithTab("peanut",
-            () -> new Item(basicItem()));
+            () -> new ItemNameBlockItem(ModBlocks.PEANUT_CROP.get(), foodItem(FoodValues.PEANUT)));
     public static final Supplier<Item> COTTON_SEEDS = registerWithTab("cotton_seeds",
-            () -> new Item(basicItem()));
+            () -> new ItemNameBlockItem(ModBlocks.COTTON_CROP.get(), basicItem()));
     public static final Supplier<Item> COTTON = registerWithTab("cotton",
             () -> new Item(basicItem()));
     
     // Storage Blocks
+
 
     // Crates
     public static final Supplier<Item> RASPBERRY_CRATE = registerWithTab("raspberry_crate",

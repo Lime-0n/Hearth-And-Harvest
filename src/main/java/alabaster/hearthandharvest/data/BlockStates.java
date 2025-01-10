@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.registry.ModBlocks;
 import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
@@ -8,9 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -63,6 +62,12 @@ public class BlockStates extends BlockStateProvider
         this.crateBlock(ModBlocks.APPLE_CRATE.get(), "apple");
         this.crateBlock(ModBlocks.GOLDEN_APPLE_CRATE.get(), "golden_apple");
         this.crateBlock(ModBlocks.GOLDEN_CARROT_CRATE.get(), "golden_carrot");
+
+        this.customStageBlock(ModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(ModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(ModBlocks.BUDDING_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(ModBlocks.PEANUT_CROP.get(), mcLoc("crop"), "crop", PeanutBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
+        this.customStageBlock(ModBlocks.COTTON_CROP.get(), resourceBlock("crop_cross"), "cross", CottonBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
 
         this.pieBlock(ModBlocks.RASPBERRY_PIE.get());
         this.pieBlock(ModBlocks.BLUEBERRY_PIE.get());

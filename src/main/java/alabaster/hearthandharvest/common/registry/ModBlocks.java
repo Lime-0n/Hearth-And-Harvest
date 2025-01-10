@@ -1,10 +1,11 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.block.SliceableCakeBlock;
-import alabaster.hearthandharvest.common.block.TreeTapperBlock;
+import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
@@ -18,6 +19,19 @@ public class ModBlocks {
     public static final Supplier<Block> TREE_TAPPER = BLOCKS.register("tree_tapper",
             () -> new TreeTapperBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD)));
 
+    // Crops
+    public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
+            () -> new RaspberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+    public static final Supplier<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush",
+            () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+    public static final Supplier<Block> BUDDING_GRAPE_CROP = BLOCKS.register("budding_grapes",
+            () -> new BuddingGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> GRAPE_CROP = BLOCKS.register("grapes",
+            () -> new GrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
+            () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> COTTON_CROP = BLOCKS.register("cotton",
+            () -> new CottonBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
 
     // Crates
     public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",

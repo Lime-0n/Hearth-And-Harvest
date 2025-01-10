@@ -48,7 +48,8 @@ public class TreeTapperBlock extends Block {
                         return Block.box(0.0D, 2.0D, 5.0D, 6.0D, 13.0D, 11.0D);
                 }
                 return null;
-        }
+        };
+
         @Override
         public BlockState getStateForPlacement(BlockPlaceContext context) {
                 Level level = context.getLevel();

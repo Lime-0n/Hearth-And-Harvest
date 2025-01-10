@@ -68,11 +68,13 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.WARPED_FUNGUS_CRATE.get(), "_bottom");
         items.remove(ModItems.WARPED_FUNGUS_CRATE.get());
 
-        // Blocks whose items look alike
-        takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
-
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
+                ModItems.RASPBERRY.get(),
+                ModItems.BLUEBERRIES.get(),
+                ModItems.GRAPES.get(),
+                ModItems.PEANUT.get(),
+                ModItems.COTTON_SEEDS.get(),
                 ModItems.RASPBERRY_PIE.get(),
                 ModItems.BLUEBERRY_PIE.get(),
                 ModItems.GRAPE_PIE.get(),
@@ -82,6 +84,10 @@ public class ItemModels extends ItemModelProvider
                 ModItems.CARROT_CAKE.get()
         );
         takeAll(items, spriteBlockItems.toArray(new Item[0])).forEach(item -> withExistingParent(itemName(item), GENERATED).texture("layer0", resourceItem(itemName(item))));
+
+
+        // Blocks whose items look alike
+        takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
 
         // Handheld items
         Set<Item> handheldItems = Sets.newHashSet(
