@@ -2,6 +2,6 @@
   "parent": "hearthandharvest:block/crop_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "hearthandharvest:block/grapes_stage2"
+    "cross": "hearthandharvest:block/grape_stage2"
   }
 }
