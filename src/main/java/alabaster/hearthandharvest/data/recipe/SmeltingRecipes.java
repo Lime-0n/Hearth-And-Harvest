@@ -17,10 +17,10 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 public class SmeltingRecipes
 {
-    public static final Ingredient WATER_BOTTLE = new Ingredient(DataComponentIngredient.of(false, DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION).getCustomIngredient());
 
     public static void register(RecipeOutput output) {
         foodSmeltingRecipes("cooked_sausage", ModItems.RAW_SAUSAGE.get(), ModItems.COOKED_SAUSAGE.get(), 0.35F, output);
+        foodSmeltingRecipes("raisins", ModItems.GRAPES.get(), ModItems.RAISINS.get(), 0.35F, output);
     }
 
     private static void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience, RecipeOutput output) {

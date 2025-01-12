@@ -208,7 +208,38 @@ public class CraftingRecipes
     }
 
     private static void recipesTools(RecipeOutput output) {
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_CLEAVER.get(), 1)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("S  ")
+                .define('#', Items.FLINT)
+                .define('S', Items.STICK)
+                .unlockedBy("has_flint", InventoryChangeTrigger.TriggerInstance.hasItems(Items.FLINT))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.IRON_CLEAVER.get(), 1)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("S  ")
+                .define('#', Items.IRON_INGOT)
+                .define('S', Items.STICK)
+                .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.GOLDEN_CLEAVER.get(), 1)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("S  ")
+                .define('#', Items.GOLD_INGOT)
+                .define('S', Items.STICK)
+                .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.DIAMOND_CLEAVER.get(), 1)
+                .pattern("  #")
+                .pattern(" # ")
+                .pattern("S  ")
+                .define('#', Items.DIAMOND)
+                .define('S', Items.STICK)
+                .unlockedBy("has_diamond", InventoryChangeTrigger.TriggerInstance.hasItems(Items.DIAMOND))
+                .save(output);
     }
 
     private static void recipesMaterials(RecipeOutput output) {
@@ -318,7 +349,33 @@ public class CraftingRecipes
     }
 
     private static void recipesFoodstuffs(RecipeOutput output) {
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.COTTON_CANDY.get(), 1)
+                .pattern(" P ")
+                .pattern("#C#")
+                .pattern(" S ")
+                .define('#', Items.SUGAR)
+                .define('S', Items.STICK)
+                .define('P', Items.PINK_DYE)
+                .define('C', ModItems.COTTON.get())
+                .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.COTTON.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PEANUT_BUTTER_COOKIE.get(), 8)
+                .pattern("   ")
+                .pattern("WPW")
+                .pattern("   ")
+                .define('W', Items.WHEAT)
+                .define('P', ModItems.PEANUT_BUTTER.get())
+                .unlockedBy("has_peanut_butter", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.PEANUT_BUTTER.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BLUEBERRY_MUFFIN.get(), 1)
+                .pattern(" B  ")
+                .pattern("BSB")
+                .pattern(" W ")
+                .define('W', Items.WHEAT)
+                .define('S', Items.SUGAR)
+                .define('B', ModItems.BLUEBERRIES.get())
+                .unlockedBy("has_blueberries", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRIES.get()))
+                .save(output);
     }
 
     private static void recipesFoodBlocks(RecipeOutput output) {

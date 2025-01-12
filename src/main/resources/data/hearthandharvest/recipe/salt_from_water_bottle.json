@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "type": "neoforge:components",
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:water"
+      }
+    },
+    "items": "minecraft:potion"
+  },
+  "result": {
+    "count": 4,
+    "id": "hearthandharvest:salt"
+  }
+}

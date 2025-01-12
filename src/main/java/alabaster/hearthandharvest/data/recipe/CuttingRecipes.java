@@ -11,9 +11,15 @@ import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredien
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
+
 public class CuttingRecipes {
     public static void register(RecipeOutput output) {
+        // Knife
 
     }
 
+    private static void cuttingAnimalItems(RecipeOutput output) {
+        // CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.BEEF), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.MINCED_BEEF.get(), 2)
+        //       .build(output);
+    }
 }

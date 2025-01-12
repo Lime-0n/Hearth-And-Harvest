@@ -26,7 +26,7 @@ public class Recipes extends RecipeProvider
     protected void buildRecipes(RecipeOutput output) {
         CraftingRecipes.register(output);
         SmeltingRecipes.register(output);
-        //CookingRecipes.register(output);
-        //CuttingRecipes.register(output);
+        CookingRecipes.register(output);
+        CuttingRecipes.register(output);
     }
 }

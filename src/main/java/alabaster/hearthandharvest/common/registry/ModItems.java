@@ -78,7 +78,6 @@ public class ModItems {
     
     // Storage Blocks
 
-
     // Crates
     public static final Supplier<Item> RASPBERRY_CRATE = registerWithTab("raspberry_crate",
             () -> new BlockItem(ModBlocks.RASPBERRY_CRATE.get(), basicItem()));
@@ -140,6 +139,8 @@ public class ModItems {
     // Tools
     public static final Supplier<Item> WOODEN_BUCKET = registerWithTab("wooden_bucket",
             () -> new Item(basicItem()));
+    public static final Supplier<Item> JAR = registerWithTab("jar",
+            () -> new Item(basicItem()));
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
@@ -185,6 +186,8 @@ public class ModItems {
 
     // Sweets
     public static final Supplier<Item> CARAMEL = registerWithTab("caramel",
+            () -> new Item(basicItem()));
+    public static final Supplier<Item> CARAMEL_APPLE = registerWithTab("caramel_apple",
             () -> new Item(basicItem()));
     public static final Supplier<Item> CHOCOLATE_BAR = registerWithTab("chocolate_bar",
             () -> new Item(basicItem()));
