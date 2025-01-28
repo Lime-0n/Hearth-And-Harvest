@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.common.registry.*;
+import alabaster.hearthandharvest.common.utilities.PigLitters;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -23,6 +24,7 @@ public class HearthAndHarvest
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(new PigLitters());
     }
 
     @SubscribeEvent

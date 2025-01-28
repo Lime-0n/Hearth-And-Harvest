@@ -68,7 +68,7 @@ public class ModItems {
     public static final Supplier<Item> BLUEBERRIES = registerWithTab("blueberries",
             () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_BUSH.get(), foodItem(FoodValues.BLUEBERRIES)));
     public static final Supplier<Item> GRAPES = registerWithTab("grapes",
-            () -> new ItemNameBlockItem(ModBlocks.BUDDING_GRAPE_CROP.get(), foodItem(FoodValues.PEANUT)));
+            () -> new ItemNameBlockItem(ModBlocks.BUDDING_GRAPE_CROP.get(), foodItem(FoodValues.GRAPES)));
     public static final Supplier<Item> PEANUT = registerWithTab("peanut",
             () -> new ItemNameBlockItem(ModBlocks.PEANUT_CROP.get(), foodItem(FoodValues.PEANUT)));
     public static final Supplier<Item> COTTON_SEEDS = registerWithTab("cotton_seeds",
