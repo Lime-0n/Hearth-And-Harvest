@@ -61,6 +61,8 @@ public class ModItems {
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",
             () -> new BlockItem(ModBlocks.TREE_TAPPER.get(), basicItem()));
+    public static final Supplier<Item> CASK = registerWithTab("cask",
+            () -> new BlockItem(ModBlocks.CASK.get(), basicItem()));
 
     // Crops
     public static final Supplier<Item> RASPBERRY = registerWithTab("raspberry",
