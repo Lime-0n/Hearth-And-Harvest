@@ -368,7 +368,7 @@ public class CraftingRecipes
                 .unlockedBy("has_peanut_butter", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.PEANUT_BUTTER.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.BLUEBERRY_MUFFIN.get(), 1)
-                .pattern(" B  ")
+                .pattern(" B ")
                 .pattern("BSB")
                 .pattern(" W ")
                 .define('W', Items.WHEAT)

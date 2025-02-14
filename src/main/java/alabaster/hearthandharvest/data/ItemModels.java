@@ -30,6 +30,11 @@ public class ItemModels extends ItemModelProvider
                 .collect(Collectors.toSet());
 
         // Workstations
+        blockBasedModel(ModItems.TREE_TAPPER.get(),"");
+        items.remove(ModItems.TREE_TAPPER.get());
+
+        blockBasedModel(ModItems.CASK.get(),"");
+        items.remove(ModItems.CASK.get());
 
         // Slab Crates
         blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");

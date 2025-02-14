@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "hearthandharvest:block/tree_tapper"
+		"1": "hearthandharvest:block/tree_tapper",
+		"particle": "hearthandharvest:block/tree_tapper"
 	},
 	"elements": [
 		{

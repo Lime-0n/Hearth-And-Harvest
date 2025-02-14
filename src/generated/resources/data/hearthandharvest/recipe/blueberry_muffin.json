@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hearthandharvest:blueberries"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BSB",
+    " W "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:blueberry_muffin"
+  }
+}
