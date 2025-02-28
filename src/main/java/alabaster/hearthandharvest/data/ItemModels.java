@@ -36,6 +36,12 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.CASK.get(),"");
         items.remove(ModItems.CASK.get());
 
+        blockBasedModel(ModItems.JUG.get(),"");
+        items.remove(ModItems.JUG.get());
+
+        blockBasedModel(ModItems.JAR.get(),"_1");
+        items.remove(ModItems.JAR.get());
+
         // Slab Crates
         blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");
         items.remove(ModItems.EGG_CRATE.get());

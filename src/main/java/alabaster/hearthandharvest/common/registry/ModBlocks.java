@@ -20,6 +20,11 @@ public class ModBlocks {
             () -> new TreeTapperBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));
     public static final Supplier<Block> CASK = BLOCKS.register("cask",
             () -> new CaskBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));
+    public static final Supplier<Block> JUG = BLOCKS.register("jug",
+            () -> new JugBlock(Block.Properties.ofFullCopy(Blocks.IRON_BARS).strength(2.0F, 3.0F).sound(SoundType.METAL)));
+    public static final Supplier<Block> JAR = BLOCKS.register("jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
+
 
     // Crops
     public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",

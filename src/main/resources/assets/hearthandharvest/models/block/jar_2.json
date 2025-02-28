@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/cube_all",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "hearthandharvest:block/jar_bottom",
 		"1": "hearthandharvest:block/jar_lid",
@@ -36,20 +37,6 @@
 			}
 		},
 		{
-			"from": [2, 1, 6],
-			"to": [6, 8, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6.25, 8]},
-			"color": 5,
-			"faces": {
-				"north": {"uv": [4, 8, 8, 15], "texture": "#missing"},
-				"east": {"uv": [0, 8, 4, 15], "texture": "#missing"},
-				"south": {"uv": [12, 8, 16, 15], "texture": "#missing"},
-				"west": {"uv": [8, 8, 12, 15], "texture": "#missing"},
-				"up": {"uv": [8, 8, 4, 4], "texture": "#missing"},
-				"down": {"uv": [12, 4, 8, 8], "texture": "#missing"}
-			}
-		},
-		{
 			"from": [1, 0, 5],
 			"to": [7, 8, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6.25, 8]},
@@ -73,20 +60,6 @@
 				"west": {"uv": [6, 10, 10, 11], "texture": "#1"},
 				"up": {"uv": [6, 5, 10, 9], "rotation": 270, "texture": "#1", "cullface": "up"},
 				"down": {"uv": [6, 5, 10, 9], "rotation": 90, "texture": "#1"}
-			}
-		},
-		{
-			"from": [10, 1, 6],
-			"to": [14, 8, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6.25, 8]},
-			"color": 5,
-			"faces": {
-				"north": {"uv": [4, 8, 8, 15], "texture": "#missing"},
-				"east": {"uv": [0, 8, 4, 15], "texture": "#missing"},
-				"south": {"uv": [12, 8, 16, 15], "texture": "#missing"},
-				"west": {"uv": [8, 8, 12, 15], "texture": "#missing"},
-				"up": {"uv": [8, 8, 4, 4], "texture": "#missing"},
-				"down": {"uv": [12, 4, 8, 8], "texture": "#missing"}
 			}
 		}
 	]

@@ -1,0 +1,72 @@
+{
+  "variants": {
+    "jars=1": [
+      {
+        "model": "minecraft:block/jar_1"
+      },
+      {
+        "model": "minecraft:block/jar_1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/jar_1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/jar_1",
+        "y": 270
+      }
+    ],
+    "jars=2": [
+      {
+        "model": "minecraft:block/jar_2"
+      },
+      {
+        "model": "minecraft:block/jar_2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/jar_2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/jar_2",
+        "y": 270
+      }
+    ],
+    "jars=3": [
+      {
+        "model": "minecraft:block/jar_3"
+      },
+      {
+        "model": "minecraft:block/jar_3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/jar_3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/jar_3",
+        "y": 270
+      }
+    ],
+    "jars=4": [
+      {
+        "model": "minecraft:block/jar_4"
+      },
+      {
+        "model": "minecraft:block/jar_4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/jar_4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/jar_4",
+        "y": 270
+      }
+    ]
+  }
+}

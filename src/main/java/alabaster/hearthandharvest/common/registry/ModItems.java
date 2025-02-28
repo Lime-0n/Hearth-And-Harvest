@@ -63,6 +63,10 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.TREE_TAPPER.get(), basicItem()));
     public static final Supplier<Item> CASK = registerWithTab("cask",
             () -> new BlockItem(ModBlocks.CASK.get(), basicItem()));
+    public static final Supplier<Item> JUG = registerWithTab("jug",
+            () -> new BlockItem(ModBlocks.JUG.get(), basicItem()));
+    public static final Supplier<Item> JAR = registerWithTab("jar",
+            () -> new BlockItem(ModBlocks.JAR.get(), basicItem()));
 
     // Crops
     public static final Supplier<Item> RASPBERRY = registerWithTab("raspberry",
@@ -140,8 +144,6 @@ public class ModItems {
 
     // Tools
     public static final Supplier<Item> WOODEN_BUCKET = registerWithTab("wooden_bucket",
-            () -> new Item(basicItem()));
-    public static final Supplier<Item> JAR = registerWithTab("jar",
             () -> new Item(basicItem()));
 
     // Drinks

@@ -20,6 +20,8 @@ public class HHBlockLoot extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.TREE_TAPPER.get());
+        dropSelf(ModBlocks.CASK.get());
+        dropSelf(ModBlocks.JUG.get());
         dropSelf(ModBlocks.RASPBERRY_CRATE.get());
         dropSelf(ModBlocks.BLUEBERRY_CRATE.get());
         dropSelf(ModBlocks.GRAPE_CRATE.get());

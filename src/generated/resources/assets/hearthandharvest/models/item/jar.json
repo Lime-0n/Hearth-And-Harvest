@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "hearthandharvest:item/jar"
-  }
+  "parent": "hearthandharvest:block/jar_1"
 }

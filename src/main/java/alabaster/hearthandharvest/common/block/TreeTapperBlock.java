@@ -87,7 +87,7 @@ public class TreeTapperBlock extends Block {
                         if (direction.getAxis().isHorizontal()) {
                                 blockState = blockState.setValue(FACING, direction);
                                 if (blockState.canSurvive(levelReader, blockPos)) {
-                                        return blockState.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);w
+                                        return blockState.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
                                 }
                         }
                 }
