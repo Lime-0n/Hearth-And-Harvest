@@ -39,9 +39,6 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.JUG.get(),"");
         items.remove(ModItems.JUG.get());
 
-        blockBasedModel(ModItems.JAR.get(),"_1");
-        items.remove(ModItems.JAR.get());
-
         // Slab Crates
         blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");
         items.remove(ModItems.EGG_CRATE.get());
@@ -81,6 +78,7 @@ public class ItemModels extends ItemModelProvider
 
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
+                ModItems.JAR.get(),
                 ModItems.RASPBERRY.get(),
                 ModItems.BLUEBERRIES.get(),
                 ModItems.GRAPES.get(),

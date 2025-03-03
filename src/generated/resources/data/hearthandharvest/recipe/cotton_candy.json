@@ -8,15 +8,15 @@
     "C": {
       "item": "hearthandharvest:cotton"
     },
-    "P": {
-      "item": "minecraft:pink_dye"
-    },
     "S": {
       "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "minecraft:wind_charge"
     }
   },
   "pattern": [
-    " P ",
+    " W ",
     "#C#",
     " S "
   ],

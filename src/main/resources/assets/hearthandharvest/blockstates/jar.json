@@ -1,72 +1,160 @@
 {
-  "variants": {
-    "jars=1": [
-      {
-        "model": "minecraft:block/jar_1"
+  "multipart": [
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_1"
       },
-      {
-        "model": "minecraft:block/jar_1",
+      "when": {
+        "facing": "north",
+        "jars": "1|2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_1",
         "y": 90
       },
-      {
-        "model": "minecraft:block/jar_1",
+      "when": {
+        "facing": "east",
+        "jars": "1|2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_1",
         "y": 180
       },
-      {
-        "model": "minecraft:block/jar_1",
-        "y": 270
+      "when": {
+        "facing": "south",
+        "jars": "1|2|3|4"
       }
-    ],
-    "jars=2": [
-      {
-        "model": "minecraft:block/jar_2"
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_1",
+        "y": 270
       },
-      {
-        "model": "minecraft:block/jar_2",
+      "when": {
+        "facing": "west",
+        "jars": "1|2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_2"
+      },
+      "when": {
+        "facing": "north",
+        "jars": "2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_2",
         "y": 90
       },
-      {
-        "model": "minecraft:block/jar_2",
+      "when": {
+        "facing": "east",
+        "jars": "2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_2",
         "y": 180
       },
-      {
-        "model": "minecraft:block/jar_2",
-        "y": 270
+      "when": {
+        "facing": "south",
+        "jars": "2|3|4"
       }
-    ],
-    "jars=3": [
-      {
-        "model": "minecraft:block/jar_3"
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_2",
+        "y": 270
       },
-      {
-        "model": "minecraft:block/jar_3",
+      "when": {
+        "facing": "west",
+        "jars": "2|3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_3"
+      },
+      "when": {
+        "facing": "north",
+        "jars": "3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_3",
         "y": 90
       },
-      {
-        "model": "minecraft:block/jar_3",
+      "when": {
+        "facing": "east",
+        "jars": "3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_3",
         "y": 180
       },
-      {
-        "model": "minecraft:block/jar_3",
-        "y": 270
+      "when": {
+        "facing": "south",
+        "jars": "3|4"
       }
-    ],
-    "jars=4": [
-      {
-        "model": "minecraft:block/jar_4"
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_3",
+        "y": 270
       },
-      {
-        "model": "minecraft:block/jar_4",
+      "when": {
+        "facing": "west",
+        "jars": "3|4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_4"
+      },
+      "when": {
+        "facing": "north",
+        "jars": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_4",
         "y": 90
       },
-      {
-        "model": "minecraft:block/jar_4",
+      "when": {
+        "facing": "east",
+        "jars": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_4",
         "y": 180
       },
-      {
-        "model": "minecraft:block/jar_4",
-        "y": 270
+      "when": {
+        "facing": "south",
+        "jars": "4"
       }
-    ]
-  }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/jar_4",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "jars": "4"
+      }
+    }
+  ]
 }

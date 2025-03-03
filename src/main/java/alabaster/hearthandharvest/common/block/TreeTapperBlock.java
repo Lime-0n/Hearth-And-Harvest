@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -133,7 +134,7 @@ public class TreeTapperBlock extends Block {
 
                 int sapLevel = state.getValue(SAP);
 
-                if (sapLevel == 4 && player.getItemInHand(hand).getItem() == ModItems.WOODEN_BUCKET.get()) {
+                if (sapLevel == 4 && player.getItemInHand(hand).getItem() == Items.BUCKET) {
                         ItemStack sapBucket = new ItemStack(ModItems.SAP_BUCKET.get());
                         player.setItemInHand(hand, sapBucket);
 

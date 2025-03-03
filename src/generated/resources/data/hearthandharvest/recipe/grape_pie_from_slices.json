@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "grape_pie",
+  "key": {
+    "#": {
+      "item": "hearthandharvest:grape_pie_slice"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:grape_pie"
+  }
+}

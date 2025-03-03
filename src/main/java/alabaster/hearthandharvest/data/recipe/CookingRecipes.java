@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.tag.ModTags;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
 import java.util.stream.Stream;
@@ -187,6 +189,98 @@ public class CookingRecipes
                 .addIngredient(Items.APPLE)
                 .unlockedByItems("has_caramel", ModItems.CARAMEL.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.MEAD.get(), 1, SLOW_COOKING, LARGE_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_honey", Items.HONEY_BOTTLE)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.WINE.get(), 1, SLOW_COOKING, LARGE_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(ModItems.GRAPES.get())
+                .addIngredient(ModItems.GRAPES.get())
+                .addIngredient(ModItems.GRAPES.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_grapes", ModItems.GRAPES.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.GRAPE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(ModItems.GRAPES.get())
+                .addIngredient(ModItems.GRAPES.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_grapes", ModItems.GRAPES.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.BLUEBERRY_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(ModItems.BLUEBERRIES.get())
+                .addIngredient(ModItems.BLUEBERRIES.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_blueberries", ModItems.BLUEBERRIES.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.RASPBERRY_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(ModItems.RASPBERRY.get())
+                .addIngredient(ModItems.RASPBERRY.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_raspberry", ModItems.RASPBERRY.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.SYRUP_BOTTLE.get(), 3, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(ModItems.SAP_BUCKET.get())
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_sap_bucket", ModItems.SAP_BUCKET.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(ModItems.SALT.get())
+                .unlockedByItems("has_milk_bottle", vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.GOAT_CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
+                .addIngredient(ModItems.GOAT_MILK_BOTTLE.get())
+                .addIngredient(ModItems.GOAT_MILK_BOTTLE.get())
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(ModItems.SALT.get())
+                .unlockedByItems("has_goat_milk_bottle", ModItems.GOAT_MILK_BOTTLE.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.MASHED_POTATOES.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(Items.POTATO)
+                .addIngredient(Items.POTATO)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(CommonTags.FOODS_MILK)
+                .unlockedByItems("has_potato", Items.POTATO)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.MACARONI_AND_CHEESE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.RAW_PASTA.get())
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(CommonTags.FOODS_MILK)
+                .addIngredient(ModTags.CHEESE_SLICES)
+                .unlockedByItems("has_pasta", vectorwing.farmersdelight.common.registry.ModItems.RAW_PASTA.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.ONION_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .addIngredient(CommonTags.FOODS_MILK)
+                .addIngredient(ModTags.CHEESE_SLICES)
+                .unlockedByItems("has_onion", vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.WAFFLE.get(), 1, FAST_COOKING, SMALL_EXP)
+                .addIngredient(ModItems.BATTER.get())
+                .addIngredient(ModItems.SYRUP_BOTTLE.get())
+                .unlockedByItems("has_batter", ModItems.BATTER.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
     }
 }

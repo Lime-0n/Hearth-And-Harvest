@@ -3,6 +3,8 @@
 
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
   "block.hearthandharvest.cask": "Cask",
+  "block.hearthandharvest.jar": "Jar",
+  "block.hearthandharvest.jug": "Jug",
 
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
