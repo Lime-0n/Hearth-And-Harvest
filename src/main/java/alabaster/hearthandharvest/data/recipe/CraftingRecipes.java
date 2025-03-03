@@ -467,6 +467,18 @@ public class CraftingRecipes
                 .group("grape_pie")
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "grape_pie_from_slices"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CARROT_CAKE.get())
+                .pattern("CMC")
+                .pattern("SES")
+                .pattern("WWW")
+                .define('C', Items.CARROT)
+                .define('S', Items.SUGAR)
+                .define('W', Items.SUGAR)
+                .define('E', Items.EGG)
+                .define('M', CommonTags.FOODS_MILK)
+                .unlockedBy("has_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GRAPES.get()))
+                .save(output);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CARROT_CAKE.get())
                 .requires(ModItems.CARROT_CAKE_SLICE.get())
                 .requires(ModItems.CARROT_CAKE_SLICE.get())

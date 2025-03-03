@@ -13,7 +13,10 @@ public class Config {
     public static ModConfigSpec COMMON_CONFIG;
     private static final Map<String, ModConfigSpec.BooleanValue> ITEMS = new HashMap<>();
 
+    public static ModConfigSpec.BooleanValue WANDERING_TRADER_CROPS;
+
     public Config() {
+
     }
 
     @SubscribeEvent
@@ -22,6 +25,10 @@ public class Config {
 
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
+
+        WANDERING_TRADER_CROPS = COMMON_BUILDER.comment("Should the Wandering Trader sell the mods crops?")
+                .define("wanderingTraderCrops", true);
+
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
 
