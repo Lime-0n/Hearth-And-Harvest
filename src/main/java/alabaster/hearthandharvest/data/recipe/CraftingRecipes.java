@@ -466,6 +466,26 @@ public class CraftingRecipes
                 .unlockedBy("has_grape_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GRAPE_PIE_SLICE.get()))
                 .group("grape_pie")
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "grape_pie_from_slices"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHICKEN_POT_PIE.get(), 1)
+                .pattern(" C ")
+                .pattern("TVO")
+                .pattern("MPS")
+                .define('T', Items.POTATO)
+                .define('V', Items.CARROT)
+                .define('S', ModItems.SALT.get())
+                .define('M', CommonTags.FOODS_MILK)
+                .define('C', vectorwing.farmersdelight.common.registry.ModItems.COOKED_CHICKEN_CUTS.get())
+                .define('O', vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
+                .unlockedBy("has_chicken_cuts", InventoryChangeTrigger.TriggerInstance.hasItems(vectorwing.farmersdelight.common.registry.ModItems.COOKED_CHICKEN_CUTS.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CHICKEN_POT_PIE.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModItems.CHICKEN_POT_PIE_SLICE.get())
+                .unlockedBy("has_grape_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GRAPE_PIE_SLICE.get()))
+                .group("grape_pie")
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "chicken_pot_pie_from_slices"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.CARROT_CAKE.get())
                 .pattern("CMC")

@@ -115,14 +115,18 @@ public class TreeTapperBlock extends Block {
         public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
                 if (level.isClientSide) return;
 
+                Direction direction = state.getValue(FACING);
+
                 float chance = 0.0F;
 
-                for (BlockPos neighborPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
-                        BlockState neighborState = level.getBlockState(neighborPos);
+                // Check only the four directly adjacent blocks (north, south, east, west)
+                if (direction.getAxis().isHorizontal()) {
+                        BlockState neighborState = level.getBlockState(pos.relative(direction));
                         if (neighborState.is(ModTags.TAPPABLE)) {
                                 chance += 0.02F;
                         }
                 }
+
                 if (level.getRandom().nextFloat() <= chance) {
                         if (state.getValue(SAP) != this.getMaxSap()) {
                                 level.setBlock(pos, state.setValue(SAP, state.getValue(SAP) + 1), 3);

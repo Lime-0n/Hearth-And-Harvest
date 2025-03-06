@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "farmersdelight:cooked_chicken_cuts"
+    },
+    "M": {
+      "tag": "c:foods/milk"
+    },
+    "O": {
+      "item": "farmersdelight:onion"
+    },
+    "P": {
+      "item": "farmersdelight:pie_crust"
+    },
+    "S": {
+      "item": "hearthandharvest:salt"
+    },
+    "T": {
+      "item": "minecraft:potato"
+    },
+    "V": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "pattern": [
+    " C ",
+    "TVO",
+    "MPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:chicken_pot_pie"
+  }
+}
