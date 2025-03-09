@@ -3,22 +3,50 @@ package alabaster.hearthandharvest.common.block.entity;
 import alabaster.hearthandharvest.common.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.common.util.Lazy;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
 
-public class JugBlockEntity extends SyncedBlockEntity {
+public class JugBlockEntity extends BlockEntity {
 
     private final FluidTank fluidTank;
-    private final Lazy<FluidTank> fluidTankHandler;
 
     public JugBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.JUG.get(), pos, state);
         this.fluidTank = createFluidTank();
-        this.fluidTankHandler = Lazy.of(() -> fluidTank);
+    }
+
+    @Override
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.loadAdditional(compound, provider);
+        fluidTank.readFromNBT(provider, compound);
+    }
+
+    public FluidStack getOutput() {
+        return fluidTank.getFluid();
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        compound.put("FluidTank", fluidTank.writeToNBT(provider, compound));
+    }
+
+    private CompoundTag writeUpdateTag(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        compound.put("FluidTank", fluidTank.writeToNBT(provider, compound));
+        return compound;
+    }
+
+    public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
+        return fluidTank.fill(resource, action);
+    }
+
+    public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
+        return fluidTank.drain(maxDrain, action);
     }
 
     private FluidTank createFluidTank() {
@@ -31,38 +59,8 @@ public class JugBlockEntity extends SyncedBlockEntity {
         };
     }
 
-    public FluidStack getOutput() {
-        return fluidTank.getFluid();
-    }
-
-    @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.loadAdditional(compound, provider);
-        readFromNbt(compound.getCompound("FluidTank"), provider);
-    }
-
-    @Override
-    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
-        compound.put("FluidTank", writeToNbt(provider));
-    }
-
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         return writeUpdateTag(new CompoundTag(), provider);
-    }
-
-    private CompoundTag writeUpdateTag(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
-        compound.put("FluidTank", writeToNbt(provider));
-        return compound;
-    }
-
-    public void readFromNbt(CompoundTag tag, HolderLookup.Provider provider) {
-        fluidTank.readFromNBT(provider, tag);
-    }
-
-    public CompoundTag writeToNbt(HolderLookup.Provider provider) {
-        return fluidTank.writeToNBT(provider, new CompoundTag());
     }
 }

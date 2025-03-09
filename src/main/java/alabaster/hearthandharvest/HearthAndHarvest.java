@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.common.registry.*;
-import alabaster.hearthandharvest.common.utilities.PigLitters;
+import alabaster.hearthandharvest.common.event.PigLitters;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -21,6 +21,7 @@ public class HearthAndHarvest
     public HearthAndHarvest(IEventBus modEventBus, ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         ModBlocks.BLOCKS.register(modEventBus);
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);

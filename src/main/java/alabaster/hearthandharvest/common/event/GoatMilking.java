@@ -1,4 +1,4 @@
-package alabaster.hearthandharvest.common.utilities;
+package alabaster.hearthandharvest.common.event;
 
 import alabaster.hearthandharvest.common.registry.ModItems;
 import net.minecraft.world.InteractionHand;
@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 @EventBusSubscriber
-public class GoatMilkHandler {
+public class GoatMilking {
 
     @SubscribeEvent
     public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {

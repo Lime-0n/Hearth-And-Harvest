@@ -1,4 +1,4 @@
-package alabaster.hearthandharvest.common.utilities;
+package alabaster.hearthandharvest.common.event;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;

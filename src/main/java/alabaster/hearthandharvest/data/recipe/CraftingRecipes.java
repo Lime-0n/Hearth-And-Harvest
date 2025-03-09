@@ -385,9 +385,21 @@ public class CraftingRecipes
                 .requires(ModItems.COTTON.get())
                 .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.COTTON.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "string_from_cotton"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.CHARCOAL, 1)
+                .requires(ModItems.CHARRED_MARSHMALLOW_STICK.get())
+                .unlockedBy("has_charred_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHARRED_MARSHMALLOW_STICK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_charred_marshmallow"));
     }
 
     private static void recipesFoodstuffs(RecipeOutput output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.MARSHMALLOW_STICK.get(), 1)
+                .pattern(" #")
+                .pattern("S ")
+                .define('#', Items.SUGAR)
+                .define('S', Items.STICK)
+                .unlockedBy("has_sugar", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SUGAR))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.COTTON_CANDY.get(), 1)
                 .pattern(" W ")
                 .pattern("#C#")

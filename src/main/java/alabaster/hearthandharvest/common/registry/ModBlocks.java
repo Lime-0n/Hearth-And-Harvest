@@ -25,7 +25,6 @@ public class ModBlocks {
     public static final Supplier<Block> JAR = BLOCKS.register("jar",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
 
-
     // Crops
     public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
             () -> new RaspberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));

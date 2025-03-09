@@ -1,7 +1,9 @@
 package alabaster.hearthandharvest.data.recipe;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.tag.ModTags;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -43,14 +45,14 @@ public class CuttingRecipes {
 
     private static void choppingAnimalItems(RecipeOutput output) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.BEEF), Ingredient.of(ModTags.CLEAVERS), ModItems.RAW_SAUSAGE.get(), 3)
-                .build(output);
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_beef"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.PORKCHOP), Ingredient.of(ModTags.CLEAVERS), ModItems.RAW_SAUSAGE.get(), 2)
-                .build(output);
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID,"sausage_from_porkchop"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.MUTTON), Ingredient.of(ModTags.CLEAVERS), ModItems.RAW_SAUSAGE.get(), 3)
-                .build(output);
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_mutton"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.CHICKEN), Ingredient.of(ModTags.CLEAVERS), ModItems.RAW_SAUSAGE.get(), 1)
-                .build(output);
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_chicken"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.RABBIT), Ingredient.of(ModTags.CLEAVERS), ModItems.RAW_SAUSAGE.get(), 1)
-                .build(output);
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_rabbit"));
     }
 }

@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.FoodValues;
+import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
@@ -143,8 +144,6 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.WARPED_FUNGUS_CRATE.get(), basicItem()));
 
     // Tools
-    //public static final Supplier<Item> WOODEN_BUCKET = registerWithTab("wooden_bucket",
-    //        () -> new Item(basicItem()));
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
@@ -201,6 +200,13 @@ public class ModItems {
             () -> new Item(foodItem(FoodValues.BLUEBERRY_MUFFIN)));
     public static final Supplier<Item> PEANUT_BUTTER_COOKIE = registerWithTab("peanut_butter_cookie",
             () -> new Item(foodItem(FoodValues.PEANUT_BUTTER_COOKIE)));
+
+    public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
+            () -> new MarshmallowStickItem(basicItem()));
+    public static final Supplier<Item> ROASTED_MARSHMALLOW_STICK = registerWithTab("roasted_marshmallow_stick",
+            () -> new Item(foodItem(FoodValues.PEANUT_BUTTER_COOKIE)));
+    public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
+            () -> new Item(basicItem()));
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",

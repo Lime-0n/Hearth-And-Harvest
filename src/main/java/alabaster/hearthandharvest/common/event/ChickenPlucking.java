@@ -1,4 +1,4 @@
-package alabaster.hearthandharvest.common.utilities;
+package alabaster.hearthandharvest.common.event;
 
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
