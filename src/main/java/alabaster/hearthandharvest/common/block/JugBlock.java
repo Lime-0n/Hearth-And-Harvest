@@ -5,8 +5,11 @@ import alabaster.hearthandharvest.common.registry.ModBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -80,16 +83,16 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.isClientSide()) {
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
         ItemStack heldItem = player.getItemInHand(hand);
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
         if (!(blockEntity instanceof JugBlockEntity jugBlockEntity)) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.SUCCESS;
         }
 
         // Handle empty bucket: extract fluid from the jug
@@ -101,9 +104,10 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                     player.drop(filledBucket, false);
                 }
                 heldItem.shrink(1);
-                return InteractionResult.CONSUME;
+                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
+                return ItemInteractionResult.CONSUME;
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.SUCCESS;
         }
 
         // Handle filled bucket: insert fluid into the jug
@@ -115,13 +119,14 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                 int filled = jugBlockEntity.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
                 if (filled == FluidType.BUCKET_VOLUME) {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-                    return InteractionResult.CONSUME;
+                    level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
+                    return ItemInteractionResult.CONSUME;
                 }
-                return InteractionResult.PASS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Nullable
