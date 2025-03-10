@@ -18,6 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -29,6 +30,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -37,6 +40,8 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<JugBlock> CODEC = simpleCodec(JugBlock::new);
@@ -83,6 +88,30 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+        if (builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY) instanceof JugBlockEntity tile) {
+            ItemStack itemstack = saveTileToItem(tile);
+            return Collections.singletonList(itemstack);
+        }
+        return super.getDrops(state, builder);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        if (level.getBlockEntity(pos) instanceof JugBlockEntity tile) {
+            return saveTileToItem(tile);
+        }
+        return super.getCloneItemStack(level, pos, state);
+    }
+
+    public static ItemStack saveTileToItem(BlockEntity tile) {
+        Block block = tile.getBlockState().getBlock();
+        ItemStack stack = new ItemStack(block.asItem());
+        tile.saveToItem(stack, tile.getLevel().registryAccess());
+        return stack;
+    }
+
     public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.isClientSide()) {
             return ItemInteractionResult.SUCCESS;
@@ -103,7 +132,7 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                 if (!player.getInventory().add(filledBucket)) {
                     player.drop(filledBucket, false);
                 }
-                heldItem.shrink(1);
+                player.setItemInHand(hand, filledBucket);
                 level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
                 return ItemInteractionResult.CONSUME;
             }
@@ -119,7 +148,7 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                 int filled = jugBlockEntity.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
                 if (filled == FluidType.BUCKET_VOLUME) {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-                    level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
+                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1, 1);
                     return ItemInteractionResult.CONSUME;
                 }
                 return ItemInteractionResult.SUCCESS;

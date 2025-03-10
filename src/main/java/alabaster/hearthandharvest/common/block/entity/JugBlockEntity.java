@@ -19,25 +19,29 @@ public class JugBlockEntity extends BlockEntity {
         this.fluidTank = createFluidTank();
     }
 
+    public FluidStack getOutput() {
+        return fluidTank.getFluid();
+    }
+
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
         super.loadAdditional(compound, provider);
         fluidTank.readFromNBT(provider, compound);
     }
 
-    public FluidStack getOutput() {
-        return fluidTank.getFluid();
-    }
-
     @Override
     public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
         super.saveAdditional(compound, provider);
-        compound.put("FluidTank", fluidTank.writeToNBT(provider, compound));
+        CompoundTag tankTag = new CompoundTag();
+        fluidTank.writeToNBT(provider, tankTag);
+        compound.put("FluidTank", tankTag);
     }
 
     private CompoundTag writeUpdateTag(CompoundTag compound, HolderLookup.Provider provider) {
         super.saveAdditional(compound, provider);
-        compound.put("FluidTank", fluidTank.writeToNBT(provider, compound));
+        CompoundTag tankTag = new CompoundTag();
+        fluidTank.writeToNBT(provider, tankTag);
+        compound.put("FluidTank", tankTag);
         return compound;
     }
 

@@ -33,11 +33,6 @@ repositories {
     maven {
         url "https://maven.ryanliptak.com/"
     }
-    maven {
-        // GeckoLib
-        name = 'GeckoLib'
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-    }
 }
 
 base {
@@ -136,6 +131,9 @@ dependencies {
     // Farmers Delight
     implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
     implementation "curse.maven:brewin-and-chewin-637808:${brewinandchewin_version}"
+
+    // Moonlight
+    implementation "curse.maven:selene-499980:${moonlight_version}"
 
     // JEI
     compileOnly "mezz.jei:jei-${jei_minecraft}-common-api:${jei_version}"
