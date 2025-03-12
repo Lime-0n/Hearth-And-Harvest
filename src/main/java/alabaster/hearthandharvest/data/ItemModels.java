@@ -39,6 +39,11 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.JUG.get(),"");
         items.remove(ModItems.JUG.get());
 
+        // Campfire Roastables
+        items.remove(ModItems.MARSHMALLOW_STICK.get());
+        items.remove(ModItems.ROASTED_MARSHMALLOW_STICK.get());
+        items.remove(ModItems.CHARRED_MARSHMALLOW_STICK.get());
+
         // Slab Crates
         blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");
         items.remove(ModItems.EGG_CRATE.get());

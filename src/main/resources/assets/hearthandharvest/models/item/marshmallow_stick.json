@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "hearthandharvest:item/3d_marshmallow"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "hearthandharvest:item/2d_marshmallow_stick"
+    },
+    "ground": {
+      "parent": "hearthandharvest:item/2d_marshmallow_stick"
+    },
+    "fixed": {
+      "parent": "hearthandharvest:item/2d_marshmallow_stick"
+    }
+  }
+}

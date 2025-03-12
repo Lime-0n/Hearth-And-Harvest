@@ -21,10 +21,10 @@ public class HearthAndHarvest
     public HearthAndHarvest(IEventBus modEventBus, ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         ModBlocks.BLOCKS.register(modEventBus);
-        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
     }
