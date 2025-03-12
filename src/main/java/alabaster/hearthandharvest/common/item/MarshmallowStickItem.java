@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.common.registry.ModDataComponents;
 import alabaster.hearthandharvest.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -18,12 +17,6 @@ public class MarshmallowStickItem extends Item {
     public MarshmallowStickItem(Properties properties) {
         super(properties.component(ModDataComponents.COOK_TIME.get(), 0));
     }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return InteractionResultHolder.pass(player.getItemInHand(hand));
-    }
-
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean isSelected) {

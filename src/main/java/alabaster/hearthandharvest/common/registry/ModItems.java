@@ -202,11 +202,11 @@ public class ModItems {
             () -> new Item(foodItem(FoodValues.PEANUT_BUTTER_COOKIE)));
 
     public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(FoodValues.PEANUT_BUTTER_COOKIE).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(FoodValues.MARSHMALLOW_STICK).stacksTo(1)));
     public static final Supplier<Item> ROASTED_MARSHMALLOW_STICK = registerWithTab("roasted_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(FoodValues.PEANUT_BUTTER_COOKIE).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(FoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1)));
     public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(FoodValues.PEANUT_BUTTER_COOKIE).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(FoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1)));
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",

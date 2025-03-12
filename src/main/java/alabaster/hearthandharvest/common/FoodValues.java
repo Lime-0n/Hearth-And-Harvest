@@ -1,6 +1,10 @@
 package alabaster.hearthandharvest.common;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Items;
+import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class FoodValues {
 
@@ -69,6 +73,15 @@ public class FoodValues {
             .nutrition(6).saturationModifier(0.3f).build();
     public static final FoodProperties PEANUT_BUTTER_COOKIE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).fast().build();
+
+    public static final FoodProperties MARSHMALLOW_STICK = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(0.3f).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+    public static final FoodProperties ROASTED_MARSHMALLOW_STICK = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.6f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, SHORT_DURATION, 0), 1.0F).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+    public static final FoodProperties CHARRED_MARSHMALLOW_STICK = (new FoodProperties.Builder())
+            .nutrition(1).saturationModifier(0.1f)
+            .effect(() -> new MobEffectInstance(MobEffects.POISON, 200, 0), 1.0F).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
 
     public static final FoodProperties RASPBERRY_PIE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();

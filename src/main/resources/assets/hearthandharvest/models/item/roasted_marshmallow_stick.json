@@ -1,5 +1,8 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "particle": "hearthandharvest:item/roasted_marshmallow_stick"
+  },
   "loader": "neoforge:separate_transforms",
   "base": {
     "parent": "hearthandharvest:item/3d_roasted_marshmallow"

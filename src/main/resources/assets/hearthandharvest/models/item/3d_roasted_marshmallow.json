@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "hearthandharvest:item/3d_roasted_marshmallow_stick",
-		"particle": "hearthandharvest:item/3d_roasted_marshmallow_stick"
+		"particle": "hearthandharvest:item/roasted_marshmallow_stick"
 	},
 	"elements": [
 		{
