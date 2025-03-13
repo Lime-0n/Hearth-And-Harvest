@@ -109,10 +109,7 @@ public class ItemModels extends ItemModelProvider
                 ModItems.IRON_CLEAVER.get(),
                 ModItems.DIAMOND_CLEAVER.get(),
                 ModItems.GOLDEN_CLEAVER.get(),
-                ModItems.NETHERITE_CLEAVER.get(),
-                ModItems.MARSHMALLOW_STICK.get(),
-                ModItems.ROASTED_MARSHMALLOW_STICK.get(),
-                ModItems.CHARRED_MARSHMALLOW_STICK.get()
+                ModItems.NETHERITE_CLEAVER.get()
         );
         takeAll(items, handheldItems.toArray(new Item[0])).forEach(item -> itemHandheldModel(item, resourceItem(itemName(item))));
 
