@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.FoodValues;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
+import alabaster.hearthandharvest.common.item.WateringCanItem;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
@@ -58,6 +59,9 @@ public class ModItems {
             () -> new KnifeItem(Tiers.NETHERITE, cleaverItem(Tiers.NETHERITE).fireResistant()));
     public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
             () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
+
+    public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
+            () -> new WateringCanItem(basicItem()));
 
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",

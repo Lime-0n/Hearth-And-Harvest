@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest;
 
+import alabaster.hearthandharvest.common.block.entity.container.CaskScreen;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import net.neoforged.bus.api.IEventBus;
@@ -7,6 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
@@ -25,8 +27,13 @@ public class HearthAndHarvest
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+        ModMenuTypes.MENUS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
+    }
+
+    public void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.CASK_MENU.get(), CaskScreen::new);
     }
 
     @SubscribeEvent

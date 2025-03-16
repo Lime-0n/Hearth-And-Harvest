@@ -5,13 +5,20 @@
     "#": {
       "item": "minecraft:sugar"
     },
+    "C": {
+      "item": "hearthandharvest:cotton"
+    },
     "S": {
       "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "minecraft:wind_charge"
     }
   },
   "pattern": [
-    " #",
-    "S "
+    " W ",
+    "#C#",
+    " S "
   ],
   "result": {
     "count": 1,

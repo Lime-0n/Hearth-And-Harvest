@@ -14,4 +14,7 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<JugBlockEntity>> JUG = BLOCK_ENTITY_TYPES.register("jug_tile",
             () -> BlockEntityType.Builder.of(JugBlockEntity::new, ModBlocks.JUG.get()).build(null));
+
+    public static final Supplier<BlockEntityType<JugBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
+            () -> BlockEntityType.Builder.of(JugBlockEntity::new, ModBlocks.CASK.get()).build(null));
 }

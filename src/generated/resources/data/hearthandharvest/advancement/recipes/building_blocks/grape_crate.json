@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:grapes.json"
+            "items": "hearthandharvest:grapes"
           }
         ]
       },
