@@ -5,7 +5,6 @@ import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
@@ -69,7 +68,9 @@ public class ModBlocks {
     public static final Supplier<Block> COTTON_BALE = BLOCKS.register("cotton_bale",
             () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> SPOOL = BLOCKS.register("spool",
-            () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
+            () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL).strength(2.0F, 3.0F).sound(SoundType.WOOL)));
+    public static final Supplier<Block> ROPE_COIL = BLOCKS.register("rope_coil",
+            () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL).strength(2.0F, 3.0F).sound(SoundType.WOOL)));
 
     // Half-Slab Crates
     public static final Supplier<Block> EGG_CRATE = BLOCKS.register("egg_crate",

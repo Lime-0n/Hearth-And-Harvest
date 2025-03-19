@@ -3,16 +3,13 @@ package alabaster.hearthandharvest.data;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.registry.ModBlocks;
-import com.google.common.collect.Sets;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -22,10 +19,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
 
 public class BlockStates extends BlockStateProvider
@@ -76,6 +71,7 @@ public class BlockStates extends BlockStateProvider
         this.pieBlock(ModBlocks.CHEESE_WHEEL.get());
         this.pieBlock(ModBlocks.GOAT_CHEESE_WHEEL.get());
 
+        this.axisBlock((RotatedPillarBlock) ModBlocks.ROPE_COIL.get());
         this.axisBlock((RotatedPillarBlock) ModBlocks.COTTON_BALE.get());
         this.axisBlock((RotatedPillarBlock) ModBlocks.SPOOL.get());
 

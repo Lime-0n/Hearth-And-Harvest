@@ -104,8 +104,8 @@ public class CaskBlockEntity extends BlockEntity implements MenuProvider {
         super.loadAdditional(pTag, pRegistries);
 
         itemHandler.deserializeNBT(pRegistries, pTag.getCompound("inventory"));
-        progress = pTag.getInt("growth_chamber.progress");
-        maxProgress = pTag.getInt("growth_chamber.max_progress");
+        progress = pTag.getInt("cask.progress");
+        maxProgress = pTag.getInt("cask.max_progress");
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {

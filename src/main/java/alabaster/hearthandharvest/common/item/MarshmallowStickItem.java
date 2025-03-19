@@ -2,14 +2,20 @@ package alabaster.hearthandharvest.common.item;
 
 import alabaster.hearthandharvest.common.registry.ModDataComponents;
 import alabaster.hearthandharvest.common.registry.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.List;
 
 public class MarshmallowStickItem extends Item {
     private static final int MAX_COOK_TIME = 10;
@@ -71,5 +77,19 @@ public class MarshmallowStickItem extends Item {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return slotChanged;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (stack.getItem() == ModItems.MARSHMALLOW_STICK.get()) {
+            tooltipComponents.add(Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY));
+        }
+        if (stack.getItem() == ModItems.ROASTED_MARSHMALLOW_STICK.get()) {
+            tooltipComponents.add(Component.literal("Perfectly roasted!").withStyle(ChatFormatting.GOLD));
+        }
+        if (stack.getItem() == ModItems.CHARRED_MARSHMALLOW_STICK.get()) {
+            tooltipComponents.add(Component.literal("Oh, it's burnt...").withStyle(ChatFormatting.DARK_GRAY));
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }

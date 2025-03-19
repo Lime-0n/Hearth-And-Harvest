@@ -39,7 +39,8 @@ public class CuttingRecipes {
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CHICKEN_POT_PIE.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.CHICKEN_POT_PIE_SLICE.get(), 4)
                 .build(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.SUNFLOWER), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.SUNFLOWER_SEEDS.get(), 6)
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.SUNFLOWER), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.SUNFLOWER_SEEDS.get(), 2)
+                .addResultWithChance(ModItems.SUNFLOWER_SEEDS.get(), 0.5F, 2)
                 .build(output);
     }
 

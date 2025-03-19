@@ -8,7 +8,14 @@
   "result": [
     {
       "item": {
-        "count": 6,
+        "count": 2,
+        "id": "hearthandharvest:sunflower_seeds"
+      }
+    },
+    {
+      "chance": 0.5,
+      "item": {
+        "count": 2,
         "id": "hearthandharvest:sunflower_seeds"
       }
     }

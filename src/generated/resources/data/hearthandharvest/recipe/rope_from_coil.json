@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:rope_coil"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "farmersdelight:rope"
+  }
+}

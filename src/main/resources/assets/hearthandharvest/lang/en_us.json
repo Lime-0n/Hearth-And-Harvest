@@ -34,6 +34,7 @@
 
   "block.hearthandharvest.cotton_bale": "Cotton Bale",
   "block.hearthandharvest.spool": "Spool",
+  "block.hearthandharvest.rope_coil": "Rope Coil",
 
   "block.hearthandharvest.egg_crate": "Egg Crate",
   "block.hearthandharvest.turtle_egg_crate": "Turtle Egg Crate",
@@ -50,6 +51,8 @@
 
   "item.hearthandharvest.wooden_bucket": "Wooden Bucket",
   "item.hearthandharvest.jar": "Jar",
+  "item.hearthandharvest.watering_can": "Watering Can",
+  "item.hearthandharvest.universal_feed": "Animal Feed",
 
   "item.hearthandharvest.mead": "Mead",
   "item.hearthandharvest.wine": "Wine",

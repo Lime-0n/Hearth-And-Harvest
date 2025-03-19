@@ -65,6 +65,26 @@ public class CraftingRecipes
                 .define('B', Items.BUCKET)
                 .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.UNIVERSAL_FEED.get(), 8)
+                .pattern("   ")
+                .pattern("HCF")
+                .pattern("ABS")
+                .define('H', Items.HAY_BLOCK)
+                .define('C', Items.CARROT)
+                .define('A', Items.APPLE)
+                .define('B', Items.BONE)
+                .define('F', Items.SALMON)
+                .define('S', Items.SWEET_BERRIES)
+                .unlockedBy("has_hay_bale", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HAY_BLOCK))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.WATERING_CAN.get(), 1)
+                .pattern("C  ")
+                .pattern("CBC")
+                .pattern("CC ")
+                .define('C', Items.COPPER_INGOT)
+                .define('B', Items.BUCKET)
+                .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
+                .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.BLUEBERRY_CRATE.get(), 1)
                 .pattern("###")
@@ -122,6 +142,13 @@ public class CraftingRecipes
                 .pattern("###")
                 .define('#', Items.STRING)
                 .unlockedBy("has_string", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STRING))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.ROPE_COIL.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', vectorwing.farmersdelight.common.registry.ModItems.ROPE.get())
+                .unlockedBy("has_rope", InventoryChangeTrigger.TriggerInstance.hasItems(vectorwing.farmersdelight.common.registry.ModItems.ROPE.get()))
                 .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.SALT_BAG.get(), 1)
@@ -312,6 +339,10 @@ public class CraftingRecipes
                 .requires(ModItems.SPOOL.get())
                 .unlockedBy("has_spool", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SPOOL.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "string_from_spool"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, vectorwing.farmersdelight.common.registry.ModItems.ROPE.get(), 9)
+                .requires(ModItems.ROPE_COIL.get())
+                .unlockedBy("has_rope_coil", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ROPE_COIL.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "rope_from_coil"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.SALT.get(), 9)
                 .requires(ModItems.SALT_BAG.get())

@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.FoodValues;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
+import alabaster.hearthandharvest.common.item.UniversalFeedItem;
 import alabaster.hearthandharvest.common.item.WateringCanItem;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
@@ -60,8 +61,10 @@ public class ModItems {
     public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
             () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
 
-    public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
-            () -> new WateringCanItem(basicItem()));
+    //public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
+    //        () -> new WateringCanItem(basicItem()));
+    public static final Supplier<Item> UNIVERSAL_FEED = registerWithTab("universal_feed",
+            () -> new UniversalFeedItem(basicItem()));
 
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",
@@ -120,7 +123,9 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.COTTON_BALE.get(), basicItem()));
     public static final Supplier<Item> SPOOL = registerWithTab("spool",
             () -> new BlockItem(ModBlocks.SPOOL.get(), basicItem()));
-    
+    public static final Supplier<Item> ROPE_COIL = registerWithTab("rope_coil",
+            () -> new BlockItem(ModBlocks.ROPE_COIL.get(), basicItem()));
+
     // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithTab("egg_crate",
             () -> new BlockItem(ModBlocks.EGG_CRATE.get(), basicItem()));

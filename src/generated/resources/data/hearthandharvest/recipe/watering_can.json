@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    "C  ",
+    "CBC",
+    "CC "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:watering_can"
+  }
+}

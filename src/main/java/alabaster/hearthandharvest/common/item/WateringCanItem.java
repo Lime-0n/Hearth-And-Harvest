@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import alabaster.hearthandharvest.common.registry.ModDataComponents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -134,10 +135,10 @@ public class WateringCanItem extends Item {
         int waterLevel = getWaterCharge(stack);
         int boneMealLevel = getBoneMealCharge(stack);
 
-        tooltipComponents.add(Component.literal("Water Level: " + waterLevel + " / " + MAX_WATER));
-        tooltipComponents.add(Component.literal("Bone Meal Level: " + boneMealLevel + " / " + MAX_BONEMEAL));
+        tooltipComponents.add(Component.literal("Water Level: " + waterLevel + " / " + MAX_WATER).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
+        tooltipComponents.add(Component.literal("Bone Meal Level: " + boneMealLevel + " / " + MAX_BONEMEAL).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        tooltipComponents.add(Component.literal("NOT YET FUNCTIONAL").withStyle(ChatFormatting.RED, ChatFormatting.BOLD));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }
-
