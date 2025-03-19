@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "hearthandharvest:turtle_egg_crate"
+          "name": "hearthandharvest:rope_coil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "hearthandharvest:blocks/turtle_egg_crate"
+  "random_sequence": "hearthandharvest:blocks/rope_coil"
 }

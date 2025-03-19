@@ -61,8 +61,8 @@ public class ModItems {
     public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
             () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
 
-    //public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
-    //        () -> new WateringCanItem(basicItem()));
+    public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
+            () -> new WateringCanItem(basicItem()));
     public static final Supplier<Item> UNIVERSAL_FEED = registerWithTab("universal_feed",
             () -> new UniversalFeedItem(basicItem()));
 

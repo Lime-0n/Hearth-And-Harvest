@@ -1,0 +1,25 @@
+{
+  "values": [
+    "hearthandharvest:tree_tapper",
+    "hearthandharvest:cask",
+    "hearthandharvest:raspberry_crate",
+    "hearthandharvest:blueberry_crate",
+    "hearthandharvest:grape_crate",
+    "hearthandharvest:peanut_crate",
+    "hearthandharvest:apple_crate",
+    "hearthandharvest:golden_apple_crate",
+    "hearthandharvest:golden_carrot_crate",
+    "hearthandharvest:egg_crate",
+    "hearthandharvest:turtle_egg_crate",
+    "hearthandharvest:milk_crate",
+    "hearthandharvest:goat_milk_crate",
+    "hearthandharvest:brown_mushroom_crate",
+    "hearthandharvest:red_mushroom_crate",
+    "hearthandharvest:warped_fungus_crate",
+    "hearthandharvest:crimson_fungus_crate",
+    "hearthandharvest:mead_crate",
+    "hearthandharvest:wine_crate",
+    "hearthandharvest:water_crate",
+    "hearthandharvest:honey_crate"
+  ]
+}
