@@ -93,6 +93,13 @@ public class CraftingRecipes
                 .define('#', ModItems.BLUEBERRIES.get())
                 .unlockedBy("has_blueberry", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRIES.get()))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RASPBERRY_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.RASPBERRY.get())
+                .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RASPBERRY.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.GRAPE_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")

@@ -93,7 +93,9 @@ public class ItemModels extends ItemModelProvider
                 ModItems.BLUEBERRY_PIE.get(),
                 ModItems.GRAPE_PIE.get(),
                 ModItems.CHICKEN_POT_PIE.get(),
-                ModItems.CHEESE_WHEEL.get(),
+                ModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(),
+                ModItems.CHEDDAR_CHEESE_WHEEL.get(),
+                ModItems.UNRIPE_GOAT_CHEESE_WHEEL.get(),
                 ModItems.GOAT_CHEESE_WHEEL.get(),
                 ModItems.CARROT_CAKE.get()
         );

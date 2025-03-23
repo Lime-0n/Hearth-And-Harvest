@@ -30,6 +30,6 @@ public class ItemTags extends ItemTagsProvider {
         tag(ModTags.CLEAVERS).add(ModItems.FLINT_CLEAVER.get(), ModItems.IRON_CLEAVER.get(), ModItems.DIAMOND_CLEAVER.get(), ModItems.GOLDEN_CLEAVER.get(), ModItems.NETHERITE_CLEAVER.get());
         tag(ModTags.JAMS).add(ModItems.GRAPE_JAM.get(), ModItems.RASPBERRY_JAM.get(), ModItems.BLUEBERRY_JAM.get(), ModItems.APPLE_JAM.get(), ModItems.GLOW_BERRY_JAM.get(), ModItems.SWEET_BERRY_JAM.get(), ModItems.MELON_JAM.get());
         tag(CommonTags.FOODS_MILK).add(ModItems.GOAT_MILK_BOTTLE.get());
-        tag(ModTags.CHEESE_SLICES).add(ModItems.CHEESE_SLICE.get(), ModItems.GOAT_CHEESE_SLICE.get());
+        tag(ModTags.CHEESE_SLICES).add(ModItems.CHEDDAR_CHEESE_SLICE.get(), ModItems.GOAT_CHEESE_SLICE.get());
     }
 }

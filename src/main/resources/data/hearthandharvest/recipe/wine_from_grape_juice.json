@@ -1,0 +1,9 @@
+{
+  "type": "hearthandharvest:aging",
+  "ingredient": {
+    "item": "hearthandharvest:grape_juice"
+  },
+  "result": {
+    "id": "hearthandharvest:wine"
+  }
+}

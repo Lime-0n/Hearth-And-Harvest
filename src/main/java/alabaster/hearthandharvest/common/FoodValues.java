@@ -96,7 +96,7 @@ public class FoodValues {
 
     public static final FoodProperties PEANUT_BUTTER = (new FoodProperties.Builder())
             .nutrition(5).saturationModifier(0.3f).build();
-    public static final FoodProperties CHEESE_SLICE = (new FoodProperties.Builder())
+    public static final FoodProperties CHEDDAR_CHEESE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties GOAT_CHEESE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();

@@ -1,8 +1,11 @@
 package alabaster.hearthandharvest.common.block.entity;
 
 import alabaster.hearthandharvest.common.block.entity.container.CaskMenu;
+import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import alabaster.hearthandharvest.common.crafting.CaskRecipeInput;
 import alabaster.hearthandharvest.common.registry.ModBlockEntities;
 import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -18,12 +21,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class CaskBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
@@ -41,7 +46,7 @@ public class CaskBlockEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 720;
 
     public CaskBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CASK.get(), pos, blockState);
@@ -123,7 +128,8 @@ public class CaskBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(ModItems.CHEESE_WHEEL.get(), 8);
+        Optional<RecipeHolder<CaskRecipe>> recipe = getCurrentRecipe();
+        ItemStack output = recipe.get().value().output();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
         itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(),
@@ -132,7 +138,7 @@ public class CaskBlockEntity extends BlockEntity implements MenuProvider {
 
     private void resetProgress() {
         progress = 0;
-        maxProgress = 72;
+        maxProgress = 720;
     }
 
     private boolean hasCraftingFinished() {
@@ -144,10 +150,18 @@ public class CaskBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        ItemStack output = new ItemStack(ModItems.CHEESE_WHEEL.get(), 8);
+        Optional<RecipeHolder<CaskRecipe>> recipe = getCurrentRecipe();
+        if(recipe.isEmpty()) {
+            return false;
+        }
 
-        return itemHandler.getStackInSlot(INPUT_SLOT).is(ModItems.GOAT_MILK_BOTTLE.get()) &&
-                canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+        ItemStack output = recipe.get().value().output();
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    }
+
+    private Optional<RecipeHolder<CaskRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager()
+                .getRecipeFor(ModRecipeTypes.AGING.get(), new CaskRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

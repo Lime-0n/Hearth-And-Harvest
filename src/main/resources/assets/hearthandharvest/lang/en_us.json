@@ -57,6 +57,7 @@
   "item.hearthandharvest.mead": "Mead",
   "item.hearthandharvest.wine": "Wine",
   "item.hearthandharvest.goat_milk_bottle": "Goat Milk Bottle",
+  "farmersdelight.tooltip.goat_milk_bottle": "Clears 1 Effect",
   "item.hearthandharvest.raspberry_juice": "Raspberry Juice",
   "item.hearthandharvest.blueberry_juice": "Blueberry Juice",
   "item.hearthandharvest.grape_juice": "Grape Juice",
@@ -101,10 +102,14 @@
   "item.hearthandharvest.syrup_bottle": "Syrup Bottle",
 
   "item.hearthandharvest.peanut_butter": "Peanut Butter",
-  "block.hearthandharvest.cheese_wheel": "Cheese Wheel",
-  "item.hearthandharvest.cheese_slice": "Cheese Slice",
+
+  "block.hearthandharvest.unripe_cheddar_cheese_wheel": "Unripe Cheddar Cheese Wheel",
+  "block.hearthandharvest.cheddar_cheese_wheel": "Cheddar Cheese Wheel",
+  "item.hearthandharvest.cheddar_cheese_slice": "Cheddar Cheese Slice",
+  "block.hearthandharvest.unripe_goat_cheese_wheel": "Unripe Goat Cheese Wheel",
   "block.hearthandharvest.goat_cheese_wheel": "Goat Cheese Wheel",
   "item.hearthandharvest.goat_cheese_slice": "Goat Cheese Slice",
+
   "item.hearthandharvest.raw_sausage": "Raw Sausage",
   "item.hearthandharvest.cooked_sausage": "Cooked Sausage",
   "item.hearthandharvest.skewered_sausage": "Skewered Sausage",

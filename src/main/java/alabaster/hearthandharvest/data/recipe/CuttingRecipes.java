@@ -33,7 +33,7 @@ public class CuttingRecipes {
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.GOAT_CHEESE_WHEEL.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.GOAT_CHEESE_SLICE.get(), 4)
                 .build(output);
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CHEESE_WHEEL.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.CHEESE_SLICE.get(), 4)
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CHEDDAR_CHEESE_WHEEL.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.CHEDDAR_CHEESE_SLICE.get(), 4)
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CARROT_CAKE.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), ModItems.CARROT_CAKE_SLICE.get(), 7)
                 .build(output);

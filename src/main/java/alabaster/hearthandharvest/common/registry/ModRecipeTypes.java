@@ -1,0 +1,26 @@
+package alabaster.hearthandharvest.common.registry;
+
+import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
+public class ModRecipeTypes
+{
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, HearthAndHarvest.MODID);
+
+    public static final Supplier<RecipeType<CaskRecipe>> AGING = RECIPE_TYPES.register("aging", () -> registerRecipeType("aging"));
+
+    public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String identifier) {
+        return new RecipeType<>()
+        {
+            public String toString() {
+                return HearthAndHarvest.MODID + ":" + identifier;
+            }
+        };
+    }
+}

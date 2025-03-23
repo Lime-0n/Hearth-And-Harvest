@@ -235,7 +235,7 @@ public class CookingRecipes
                 .unlockedByItems("has_sap_bucket", ModItems.SAP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(output);
-        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
                 .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
                 .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
                 .addIngredient(ModItems.SALT.get())
@@ -243,7 +243,7 @@ public class CookingRecipes
                 .unlockedByItems("has_milk_bottle", vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
-        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.GOAT_CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
+        CookingPotRecipeBuilder.cookingPotRecipe(ModItems.UNRIPE_GOAT_CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
                 .addIngredient(ModItems.GOAT_MILK_BOTTLE.get())
                 .addIngredient(ModItems.GOAT_MILK_BOTTLE.get())
                 .addIngredient(ModItems.SALT.get())

@@ -1,9 +1,11 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -15,6 +17,6 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<JugBlockEntity>> JUG = BLOCK_ENTITY_TYPES.register("jug_tile",
             () -> BlockEntityType.Builder.of(JugBlockEntity::new, ModBlocks.JUG.get()).build(null));
 
-    public static final Supplier<BlockEntityType<JugBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
-            () -> BlockEntityType.Builder.of(JugBlockEntity::new, ModBlocks.CASK.get()).build(null));
+    public static final Supplier<BlockEntityType<CaskBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
+            () -> BlockEntityType.Builder.of(CaskBlockEntity::new, ModBlocks.CASK.get()).build(null));
 }

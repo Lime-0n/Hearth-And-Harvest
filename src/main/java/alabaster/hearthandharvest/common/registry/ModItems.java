@@ -10,7 +10,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.KnifeItem;
+import vectorwing.farmersdelight.common.item.MilkBottleItem;
 import vectorwing.farmersdelight.common.registry.ModMaterials;
 
 import java.util.LinkedHashSet;
@@ -47,6 +49,11 @@ public class ModItems {
     public static Item.Properties drinkItem() {
         return new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
     }
+
+    public static Item.Properties jarItem(FoodProperties food) {
+        return new Item.Properties().food(food).craftRemainder(ModItems.JAR.get()).stacksTo(16);
+    }
+
 
 
     // Tools
@@ -156,45 +163,45 @@ public class ModItems {
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
-            () -> new Item(foodItem(FoodValues.MEAD)));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), true, false));
     public static final Supplier<Item> WINE = registerWithTab("wine",
-            () -> new Item(foodItem(FoodValues.WINE)));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), true, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
-            () -> new Item(foodItem(FoodValues.GOAT_MILK_BOTTLE)));
+            () -> new MilkBottleItem(drinkItem().food(FoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
-            () -> new Item(foodItem(FoodValues.RASPBERRY_JUICE)));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.RASPBERRY_JUICE), true, false));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
-            () -> new Item(foodItem(FoodValues.BLUEBERRY_JUICE)));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.BLUEBERRY_JUICE), true, false));
     public static final Supplier<Item> GRAPE_JUICE = registerWithTab("grape_juice",
-            () -> new Item(foodItem(FoodValues.GRAPE_JUICE)));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.GRAPE_JUICE), true, false));
 
     // Jams
     public static final Supplier<Item> RASPBERRY_JAM = registerWithTab("raspberry_jam",
-            () -> new Item(foodItem(FoodValues.RASPBERRY_JAM)));
+            () -> new Item(jarItem(FoodValues.RASPBERRY_JAM)));
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
-            () -> new Item(foodItem(FoodValues.BLUEBERRY_JAM)));
+            () -> new Item(jarItem(FoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> GRAPE_JAM = registerWithTab("grape_jam",
-            () -> new Item(foodItem(FoodValues.GRAPE_JAM)));
+            () -> new Item(jarItem(FoodValues.GRAPE_JAM)));
     public static final Supplier<Item> APPLE_JAM = registerWithTab("apple_jam",
-            () -> new Item(foodItem(FoodValues.APPLE_JAM)));
+            () -> new Item(jarItem(FoodValues.APPLE_JAM)));
     public static final Supplier<Item> SWEET_BERRY_JAM = registerWithTab("sweet_berry_jam",
-            () -> new Item(foodItem(FoodValues.SWEET_BERRY_JAM)));
+            () -> new Item(jarItem(FoodValues.SWEET_BERRY_JAM)));
     public static final Supplier<Item> GLOW_BERRY_JAM = registerWithTab("glow_berry_jam",
-            () -> new Item(foodItem(FoodValues.GLOW_BERRY_JAM)));
+            () -> new Item(jarItem(FoodValues.GLOW_BERRY_JAM)));
     public static final Supplier<Item> MELON_JAM = registerWithTab("melon_jam",
-            () -> new Item(foodItem(FoodValues.MELON_JAM)));
+            () -> new Item(jarItem(FoodValues.MELON_JAM)));
 
     // Pickled Vegetables
     public static final Supplier<Item> PICKLED_BEETROOTS = registerWithTab("pickled_beetroots",
-            () -> new Item(foodItem(FoodValues.PICKLED_BEETROOTS)));
+            () -> new Item(jarItem(FoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_CABBAGE = registerWithTab("pickled_cabbage",
-            () -> new Item(foodItem(FoodValues.PICKLED_CABBAGE)));
+            () -> new Item(jarItem(FoodValues.PICKLED_CABBAGE)));
     public static final Supplier<Item> PICKLED_CARROTS = registerWithTab("pickled_carrots",
-            () -> new Item(foodItem(FoodValues.PICKLED_CARROTS)));
+            () -> new Item(jarItem(FoodValues.PICKLED_CARROTS)));
     public static final Supplier<Item> PICKLED_ONIONS = registerWithTab("pickled_onions",
-            () -> new Item(foodItem(FoodValues.PICKLED_ONIONS)));
+            () -> new Item(jarItem(FoodValues.PICKLED_ONIONS)));
     public static final Supplier<Item> PICKLED_POTATOES = registerWithTab("pickled_potatoes",
-            () -> new Item(foodItem(FoodValues.PICKLED_POTATOES)));
+            () -> new Item(jarItem(FoodValues.PICKLED_POTATOES)));
 
     // Sweets
     public static final Supplier<Item> CARAMEL = registerWithTab("caramel",
@@ -248,15 +255,22 @@ public class ModItems {
 
     // Ingredients
     public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
-            () -> new Item(foodItem(FoodValues.PEANUT_BUTTER)));
-    public static final Supplier<Item> CHEESE_WHEEL = registerWithTab("cheese_wheel",
-            () -> new BlockItem(ModBlocks.CHEESE_WHEEL.get(), basicItem()));
-    public static final Supplier<Item> CHEESE_SLICE = registerWithTab("cheese_slice",
-            () -> new Item(foodItem(FoodValues.CHEESE_SLICE)));
+            () -> new Item(jarItem(FoodValues.PEANUT_BUTTER)));
+
+    public static final Supplier<Item> UNRIPE_CHEDDAR_CHEESE_WHEEL = registerWithTab("unripe_cheddar_cheese_wheel",
+            () -> new BlockItem(ModBlocks.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(), basicItem()));
+    public static final Supplier<Item> CHEDDAR_CHEESE_WHEEL = registerWithTab("cheddar_cheese_wheel",
+            () -> new BlockItem(ModBlocks.CHEDDAR_CHEESE_WHEEL.get(), basicItem()));
+    public static final Supplier<Item> CHEDDAR_CHEESE_SLICE = registerWithTab("cheddar_cheese_slice",
+            () -> new Item(foodItem(FoodValues.CHEDDAR_CHEESE_SLICE)));
+
+    public static final Supplier<Item> UNRIPE_GOAT_CHEESE_WHEEL = registerWithTab("unripe_goat_cheese_wheel",
+            () -> new BlockItem(ModBlocks.UNRIPE_GOAT_CHEESE_WHEEL.get(), basicItem()));
     public static final Supplier<Item> GOAT_CHEESE_WHEEL = registerWithTab("goat_cheese_wheel",
             () -> new BlockItem(ModBlocks.GOAT_CHEESE_WHEEL.get(), basicItem()));
     public static final Supplier<Item> GOAT_CHEESE_SLICE = registerWithTab("goat_cheese_slice",
             () -> new Item(foodItem(FoodValues.GOAT_CHEESE_SLICE)));
+
     public static final Supplier<Item> RAW_SAUSAGE = registerWithTab("raw_sausage",
             () -> new Item(foodItem(FoodValues.RAW_SAUSAGE)));
     public static final Supplier<Item> COOKED_SAUSAGE = registerWithTab("cooked_sausage",

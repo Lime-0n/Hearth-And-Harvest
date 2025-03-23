@@ -111,8 +111,13 @@ public class ModBlocks {
             () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  ModItems.CARROT_CAKE_SLICE));
 
     // Cheese
-    public static final Supplier<Block> CHEESE_WHEEL = BLOCKS.register("cheese_wheel",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.CHEESE_SLICE));
+    public static final Supplier<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",
+            () -> new UnripeCheeseWheelBlock(ModBlocks.CHEDDAR_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
+    public static final Supplier<Block> CHEDDAR_CHEESE_WHEEL = BLOCKS.register("cheddar_cheese_wheel",
+            () -> new CheeseWheelBlock(ModItems.CHEDDAR_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
+
+    public static final Supplier<Block> UNRIPE_GOAT_CHEESE_WHEEL = BLOCKS.register("unripe_goat_cheese_wheel",
+            () -> new UnripeCheeseWheelBlock(ModBlocks.GOAT_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> GOAT_CHEESE_WHEEL = BLOCKS.register("goat_cheese_wheel",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.GOAT_CHEESE_SLICE));
+            () -> new CheeseWheelBlock(ModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
 }

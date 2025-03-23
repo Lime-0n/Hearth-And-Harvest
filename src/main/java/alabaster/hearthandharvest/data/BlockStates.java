@@ -68,8 +68,6 @@ public class BlockStates extends BlockStateProvider
         this.pieBlock(ModBlocks.BLUEBERRY_PIE.get());
         this.pieBlock(ModBlocks.GRAPE_PIE.get());
         this.pieBlock(ModBlocks.CHICKEN_POT_PIE.get());
-        this.pieBlock(ModBlocks.CHEESE_WHEEL.get());
-        this.pieBlock(ModBlocks.GOAT_CHEESE_WHEEL.get());
 
         this.axisBlock((RotatedPillarBlock) ModBlocks.ROPE_COIL.get());
         this.axisBlock((RotatedPillarBlock) ModBlocks.COTTON_BALE.get());
