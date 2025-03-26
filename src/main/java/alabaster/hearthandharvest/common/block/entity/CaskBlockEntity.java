@@ -58,8 +58,8 @@ import java.util.Optional;
 public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder
 {
     public static final int MEAL_DISPLAY_SLOT = 4;
-    public static final int OUTPUT_SLOT = 5;
-    public static final int INVENTORY_SIZE = 6;
+    public static final int OUTPUT_SLOT = 4;
+    public static final int INVENTORY_SIZE = 5;
 
     private final ItemStackHandler inventory;
     private final IItemHandler inputHandler;

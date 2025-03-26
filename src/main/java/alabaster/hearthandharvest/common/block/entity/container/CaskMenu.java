@@ -1,15 +1,10 @@
 package alabaster.hearthandharvest.common.block.entity.container;
 
-import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import alabaster.hearthandharvest.common.registry.ModBlocks;
 import alabaster.hearthandharvest.common.registry.ModMenuTypes;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -21,7 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
-import vectorwing.farmersdelight.common.block.entity.container.CookingPotMealSlot;
 
 import java.util.Objects;
 
@@ -45,22 +39,22 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
         this.level = playerInventory.player.level();
         this.canInteractWithCallable = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
 
-        // Ingredient Slots - 2 Rows x 3 Columns
+        // Ingredient Slots - 2 Rows x 2 Columns
         int startX = 8;
         int startY = 18;
-        int inputStartX = 30;
-        int inputStartY = 17;
+        int inputStartX = 39;
+        int inputStartY = 20;
         int borderSlotSize = 18;
         for (int row = 0; row < 2; ++row) {
-            for (int column = 0; column < 3; ++column) {
-                this.addSlot(new SlotItemHandler(inventory, (row * 3) + column,
+            for (int column = 0; column < 2; ++column) {
+                this.addSlot(new SlotItemHandler(inventory, (row * 2) + column,
                         inputStartX + (column * borderSlotSize),
                         inputStartY + (row * borderSlotSize)));
             }
         }
 
-        // Meal Display
-        this.addSlot(new CookingPotMealSlot(inventory, 6, 124, 26));
+        // Output
+        this.addSlot(new CaskResultSlot(playerInventory.player, blockEntity, inventory,  4, 124, 29));
 
         // Main Player Inventory
         int startPlayerInvY = startY * 4 + 12;
@@ -96,9 +90,8 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
-        int indexMealDisplay = 6;
-        int indexContainerInput = 7;
-        int indexOutput = 8;
+        int indexMealDisplay = 4;
+        int indexOutput = 5;
         int startPlayerInv = indexOutput + 1;
         int endPlayerInv = startPlayerInv + 36;
         ItemStack slotStackCopy = ItemStack.EMPTY;
@@ -111,11 +104,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
                     return ItemStack.EMPTY;
                 }
             } else if (index > indexOutput) {
-                if (!this.moveItemStackTo(slotStack, indexContainerInput, indexContainerInput + 1, false)) {
-                    return ItemStack.EMPTY;
-                } else if (!this.moveItemStackTo(slotStack, 0, indexMealDisplay, false)) {
-                    return ItemStack.EMPTY;
-                } else if (!this.moveItemStackTo(slotStack, indexContainerInput, indexOutput, false)) {
+                if (!this.moveItemStackTo(slotStack, 0, indexMealDisplay, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, false)) {

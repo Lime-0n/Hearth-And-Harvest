@@ -12,11 +12,19 @@ import net.minecraft.world.entity.player.Inventory;
 import java.awt.*;
 
 public class CaskGUI extends AbstractContainerScreen<CaskMenu> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/gui/cask.png");
-    private static final Rectangle PROGRESS_ARROW = new Rectangle(80, 25, 0, 18);
+    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/gui/cask_gui.png");
+    private static final Rectangle PROGRESS_ARROW = new Rectangle(81, 29, 0, 18);
+
+    private boolean widthTooNarrow;
 
     public CaskGUI(CaskMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        this.widthTooNarrow = this.width < 379;
     }
 
     @Override
@@ -30,12 +38,18 @@ public class CaskGUI extends AbstractContainerScreen<CaskMenu> {
 
         // Render progress arrow
         int l = this.menu.getCookProgressionScaled();
-        gui.blit(BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 15, l + 1, PROGRESS_ARROW.height);
+        gui.blit(BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 4, l + 1, PROGRESS_ARROW.height);
     }
 
     @Override
     public void render(GuiGraphics gui, final int mouseX, final int mouseY, float partialTicks) {
         super.render(gui, mouseX, mouseY, partialTicks);
+        this.renderTooltip(gui, mouseX, mouseY);
+    }
+
+    @Override
+    protected boolean isHovering(int x, int y, int width, int height, double mouseX, double mouseY) {
+        return (!this.widthTooNarrow && super.isHovering(x, y, width, height, mouseX, mouseY));
     }
 
     @Override

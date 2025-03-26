@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 public class CaskItemHandler implements IItemHandler
 {
     private static final int SLOTS_INPUT = 4;
-    private static final int SLOT_MEAL_OUTPUT = 6;
+    private static final int SLOT_MEAL_OUTPUT = 5;
     private final IItemHandler itemHandler;
     private final Direction side;
 
