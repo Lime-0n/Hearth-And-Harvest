@@ -1,9 +1,6 @@
 package alabaster.hearthandharvest.data;
 
-import alabaster.hearthandharvest.data.recipe.CookingRecipes;
-import alabaster.hearthandharvest.data.recipe.CraftingRecipes;
-import alabaster.hearthandharvest.data.recipe.CuttingRecipes;
-import alabaster.hearthandharvest.data.recipe.SmeltingRecipes;
+import alabaster.hearthandharvest.data.recipe.*;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -28,5 +25,6 @@ public class Recipes extends RecipeProvider
         SmeltingRecipes.register(output);
         CookingRecipes.register(output);
         CuttingRecipes.register(output);
+        AgingRecipes.register(output);
     }
 }

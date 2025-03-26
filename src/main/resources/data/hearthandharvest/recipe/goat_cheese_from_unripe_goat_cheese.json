@@ -1,9 +1,0 @@
-{
-  "type": "hearthandharvest:aging",
-  "ingredient": {
-    "item": "hearthandharvest:unripe_goat_cheese_wheel"
-  },
-  "result": {
-    "id": "hearthandharvest:goat_cheese_wheel"
-  }
-}

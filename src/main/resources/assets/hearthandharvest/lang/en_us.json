@@ -56,6 +56,9 @@
 
   "item.hearthandharvest.mead": "Mead",
   "item.hearthandharvest.wine": "Wine",
+  "item.hearthandharvest.red_grape_wine": "Red Grape Wine",
+  "item.hearthandharvest.blueberry_wine": "Blueberry Wine",
+  "item.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "item.hearthandharvest.goat_milk_bottle": "Goat Milk Bottle",
   "farmersdelight.tooltip.goat_milk_bottle": "Clears 1 Effect",
   "item.hearthandharvest.raspberry_juice": "Raspberry Juice",

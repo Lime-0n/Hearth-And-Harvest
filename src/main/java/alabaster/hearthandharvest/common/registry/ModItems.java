@@ -163,17 +163,23 @@ public class ModItems {
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), true, false));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), false, false));
     public static final Supplier<Item> WINE = registerWithTab("wine",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), true, false));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
+    public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
+    public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
+    public static final Supplier<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(FoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.RASPBERRY_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.RASPBERRY_JUICE), false, false));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.BLUEBERRY_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.BLUEBERRY_JUICE), false, false));
     public static final Supplier<Item> GRAPE_JUICE = registerWithTab("grape_juice",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.GRAPE_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(FoodValues.GRAPE_JUICE), false, false));
 
     // Jams
     public static final Supplier<Item> RASPBERRY_JAM = registerWithTab("raspberry_jam",

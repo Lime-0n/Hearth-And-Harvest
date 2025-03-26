@@ -1,7 +1,9 @@
 package alabaster.hearthandharvest.common.crafting;
 
+import alabaster.hearthandharvest.common.registry.ModItems;
 import alabaster.hearthandharvest.common.registry.ModRecipeSerializers;
 import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -14,38 +16,70 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.util.RecipeMatcher;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
-public record CaskRecipe(Ingredient inputItem, ItemStack output) implements Recipe<CaskRecipeInput> {
+public class CaskRecipe implements Recipe<RecipeWrapper>
+{
+    public static final int INPUT_SLOTS = 4;
+
+    private final NonNullList<Ingredient> inputItems;
+    private final ItemStack output;
+    private final float experience;
+    private final int cookTime;
+
+    public CaskRecipe(NonNullList<Ingredient> inputItems, ItemStack output, float experience, int cookTime) {
+        this.inputItems = inputItems;
+        this.output = output;
+        this.experience = experience;
+        this.cookTime = cookTime;
+    }
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> list = NonNullList.create();
-        list.add(inputItem);
-        return list;
+        return this.inputItems;
     }
 
-    @Override
-    public boolean matches(CaskRecipeInput caskRecipeInput, Level level) {
-        if (level.isClientSide()) {
-            return false;
-        }
-
-        return inputItem.test(caskRecipeInput.getItem(0));
-    }
-
-    @Override
-    public ItemStack assemble(CaskRecipeInput caskRecipeInput, HolderLookup.Provider provider) {
-        return output.copy();
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int i, int i1) {
-        return true;
+    public ItemStack getOutput() {
+        return output;
     }
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return output;
+        return this.output;
+    }
+
+    @Override
+    public ItemStack assemble(RecipeWrapper inv, HolderLookup.Provider provider) {
+        return this.output.copy();
+    }
+
+    public float getExperience() {
+        return this.experience;
+    }
+
+    public int getCookTime() {
+        return this.cookTime;
+    }
+
+    @Override
+    public boolean matches(RecipeWrapper inv, Level level) {
+        java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
+        int i = 0;
+
+        for (int j = 0; j < INPUT_SLOTS; ++j) {
+            ItemStack itemstack = inv.getItem(j);
+            if (!itemstack.isEmpty()) {
+                ++i;
+                inputs.add(itemstack);
+            }
+        }
+        return i == this.inputItems.size() && RecipeMatcher.findMatches(inputs, this.inputItems) != null;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
+        return width * height >= this.inputItems.size();
     }
 
     @Override
@@ -58,17 +92,52 @@ public record CaskRecipe(Ingredient inputItem, ItemStack output) implements Reci
         return ModRecipeTypes.AGING.get();
     }
 
-    public static class Serializer implements RecipeSerializer<CaskRecipe> {
-        public static final MapCodec<CaskRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(CaskRecipe::inputItem),
-                ItemStack.CODEC.fieldOf("result").forGetter(CaskRecipe::output)
+    @Override
+    public ItemStack getToastSymbol() {
+        return new ItemStack(ModItems.CASK.get());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CaskRecipe that = (CaskRecipe) o;
+
+        if (Float.compare(that.getExperience(), getExperience()) != 0) return false;
+        if (getCookTime() != that.getCookTime()) return false;
+        if (!inputItems.equals(that.inputItems)) return false;
+        if (!output.equals(that.output)) return false;
+        else return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getGroup().hashCode();
+        result = 31 * result + inputItems.hashCode();
+        result = 31 * result + output.hashCode();
+        result = 31 * result + (getExperience() != 0.0f ? Float.floatToIntBits(getExperience()) : 0);
+        result = 31 * result + getCookTime();
+        return result;
+    }
+
+    public static class Serializer implements RecipeSerializer<CaskRecipe>
+    {
+        private static final MapCodec<CaskRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").xmap(ingredients -> {
+                    NonNullList<Ingredient> nonNullList = NonNullList.create();
+                    nonNullList.addAll(ingredients);
+                    return nonNullList;
+                }, ingredients -> ingredients).forGetter(CaskRecipe::getIngredients),
+                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(r -> r.output),
+                Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(CaskRecipe::getExperience),
+                Codec.INT.optionalFieldOf("cookingtime", 200).forGetter(CaskRecipe::getCookTime)
         ).apply(inst, CaskRecipe::new));
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, CaskRecipe> STREAM_CODEC =
-                StreamCodec.composite(
-                        Ingredient.CONTENTS_STREAM_CODEC, CaskRecipe::inputItem,
-                        ItemStack.STREAM_CODEC, CaskRecipe::output,
-                        CaskRecipe::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, CaskRecipe> STREAM_CODEC = StreamCodec.of(CaskRecipe.Serializer::toNetwork, CaskRecipe.Serializer::fromNetwork);
+
+        public Serializer() {
+        }
 
         @Override
         public MapCodec<CaskRecipe> codec() {
@@ -78,6 +147,26 @@ public record CaskRecipe(Ingredient inputItem, ItemStack output) implements Reci
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, CaskRecipe> streamCodec() {
             return STREAM_CODEC;
+        }
+
+        private static CaskRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            int i = buffer.readVarInt();
+            NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
+            inputItemsIn.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
+            ItemStack outputIn = ItemStack.STREAM_CODEC.decode(buffer);
+            float experienceIn = buffer.readFloat();
+            int cookTimeIn = buffer.readVarInt();
+            return new CaskRecipe(inputItemsIn, outputIn, experienceIn, cookTimeIn);
+        }
+
+        private static void toNetwork(RegistryFriendlyByteBuf buffer, CaskRecipe recipe) {
+            buffer.writeVarInt(recipe.inputItems.size());
+            for (Ingredient ingredient : recipe.inputItems) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
+            }
+            ItemStack.STREAM_CODEC.encode(buffer, recipe.output);
+            buffer.writeFloat(recipe.experience);
+            buffer.writeVarInt(recipe.cookTime);
         }
     }
 }

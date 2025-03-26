@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -51,23 +53,25 @@ public class CaskBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof CaskBlockEntity caskBlockEntity) {
-                caskBlockEntity.drops();
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
+            if (tileEntity instanceof CaskBlockEntity cookingPotEntity) {
+                Containers.dropContents(level, pos, cookingPotEntity.getDroppableInventory());
+                cookingPotEntity.getUsedRecipesAndPopExperience(level, Vec3.atCenterOf(pos));
+                level.updateNeighbourForOutputSignal(pos, this);
             }
-        }
 
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+            super.onRemove(state, level, pos, newState, isMoving);
+        }
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level pLevel, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            BlockEntity entity = pLevel.getBlockEntity(pos);
             if(entity instanceof CaskBlockEntity caskBlockEntity) {
-                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(caskBlockEntity, Component.literal("Cask")), pPos);
+                (player).openMenu(new SimpleMenuProvider(caskBlockEntity, Component.literal("Cask")), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -100,13 +104,7 @@ public class CaskBlock extends BaseEntityBlock {
     }
 
     @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if(level.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(blockEntityType, ModBlockEntities.CASK.get(),
-                (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
+        return createTickerHelper(blockEntity, ModBlockEntities.CASK.get(), CaskBlockEntity::cookingTick);
     }
 }
