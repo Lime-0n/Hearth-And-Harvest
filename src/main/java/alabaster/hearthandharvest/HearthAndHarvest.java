@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest;
 
-import alabaster.hearthandharvest.client.CaskGUI;
+import alabaster.hearthandharvest.client.gui.CaskGUI;
+import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import net.neoforged.bus.api.IEventBus;
@@ -10,11 +11,11 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import vectorwing.farmersdelight.client.event.ClientSetupEvents;
 
 @Mod(HearthAndHarvest.MODID)
 public class HearthAndHarvest {
@@ -25,6 +26,7 @@ public class HearthAndHarvest {
 
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(this::registerScreens);
+            modEventBus.addListener(this::registerRecipeBookCategories);
         }
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
@@ -42,6 +44,10 @@ public class HearthAndHarvest {
 
     public void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.CASK_MENU.get(), CaskGUI::new);
+    }
+
+    public void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
+        RecipeCategories.init(event);
     }
 
     @SubscribeEvent

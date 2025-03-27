@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.data.recipe;
 
+import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
 import alabaster.hearthandharvest.common.registry.ModItems;
 import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -24,11 +25,13 @@ public class AgingRecipes {
         CaskRecipeBuilder.caskRecipe(ModItems.CHEDDAR_CHEESE_WHEEL.get(), 1, SLOW_AGING, MEDIUM_EXP)
                 .addIngredient(ModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get())
                 .unlockedByAnyIngredient(ModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get())
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(ModItems.GOAT_CHEESE_WHEEL.get(), 1, SLOW_AGING, MEDIUM_EXP)
                 .addIngredient(ModItems.UNRIPE_GOAT_CHEESE_WHEEL.get())
                 .unlockedByAnyIngredient(ModItems.UNRIPE_GOAT_CHEESE_WHEEL.get())
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output);
     }
 
@@ -37,18 +40,21 @@ public class AgingRecipes {
                 .addIngredient(ModItems.GRAPE_JUICE.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(ModItems.GRAPE_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(ModItems.BLUEBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(ModItems.BLUEBERRY_JUICE.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(ModItems.BLUEBERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(ModItems.RASPBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(ModItems.RASPBERRY_JUICE.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(ModItems.RASPBERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(ModItems.MEAD.get(), 1, NORMAL_AGING, SMALL_EXP)
@@ -56,6 +62,7 @@ public class AgingRecipes {
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.HONEY_BOTTLE)
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
     }
 

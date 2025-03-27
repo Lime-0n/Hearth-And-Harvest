@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data.builder;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 public class CaskRecipeBuilder implements RecipeBuilder
 {
+    private CaskRecipeBookTab tab;
     private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final Item result;
     private final ItemStack resultStack;
@@ -41,6 +43,7 @@ public class CaskRecipeBuilder implements RecipeBuilder
         this.resultStack = resultIn;
         this.agingTime = agingTime;
         this.experience = experience;
+        this.tab = null;
     }
 
     public static CaskRecipeBuilder caskRecipe(ItemLike mainResult, int count, int agingTime, float experience) {
@@ -75,6 +78,11 @@ public class CaskRecipeBuilder implements RecipeBuilder
 
     @Override
     public RecipeBuilder group(@org.jetbrains.annotations.Nullable String p_176495_) {
+        return this;
+    }
+
+    public CaskRecipeBuilder setRecipeBookTab(CaskRecipeBookTab tab) {
+        this.tab = tab;
         return this;
     }
 
@@ -121,6 +129,7 @@ public class CaskRecipeBuilder implements RecipeBuilder
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancementBuilder::addCriterion);
         CaskRecipe recipe = new CaskRecipe(
+                this.tab,
                 this.ingredients,
                 this.resultStack,
                 this.experience,

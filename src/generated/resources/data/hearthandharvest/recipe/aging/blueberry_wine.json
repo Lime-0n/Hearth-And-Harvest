@@ -1,7 +1,7 @@
 {
   "type": "hearthandharvest:aging",
-  "cookingtime": 1200,
-  "experience": 1.0,
+  "cookingtime": 600,
+  "experience": 0.35,
   "ingredients": [
     {
       "item": "hearthandharvest:blueberry_juice"
@@ -10,6 +10,7 @@
       "item": "minecraft:sugar"
     }
   ],
+  "recipe_book_tab": "drinks",
   "result": {
     "count": 1,
     "id": "hearthandharvest:blueberry_wine"

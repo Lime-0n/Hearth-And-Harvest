@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.crafting;
 
+import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
 import alabaster.hearthandharvest.common.registry.ModItems;
 import alabaster.hearthandharvest.common.registry.ModRecipeSerializers;
 import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
@@ -19,20 +20,30 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
+import javax.annotation.Nullable;
+import java.util.Optional;
+
 public class CaskRecipe implements Recipe<RecipeWrapper>
 {
     public static final int INPUT_SLOTS = 4;
 
+    private final CaskRecipeBookTab tab;
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
     private final float experience;
     private final int cookTime;
 
-    public CaskRecipe(NonNullList<Ingredient> inputItems, ItemStack output, float experience, int cookTime) {
+    public CaskRecipe(@Nullable CaskRecipeBookTab tab, NonNullList<Ingredient> inputItems, ItemStack output, float experience, int cookTime) {
+        this.tab = tab;
         this.inputItems = inputItems;
         this.output = output;
         this.experience = experience;
         this.cookTime = cookTime;
+    }
+
+    @Nullable
+    public CaskRecipeBookTab getRecipeBookTab() {
+        return this.tab;
     }
 
     @Override
@@ -106,6 +117,7 @@ public class CaskRecipe implements Recipe<RecipeWrapper>
 
         if (Float.compare(that.getExperience(), getExperience()) != 0) return false;
         if (getCookTime() != that.getCookTime()) return false;
+        if (tab != that.tab) return false;
         if (!inputItems.equals(that.inputItems)) return false;
         if (!output.equals(that.output)) return false;
         else return true;
@@ -114,6 +126,7 @@ public class CaskRecipe implements Recipe<RecipeWrapper>
     @Override
     public int hashCode() {
         int result = getGroup().hashCode();
+        result = 31 * result + (getRecipeBookTab() != null ? getRecipeBookTab().hashCode() : 0);
         result = 31 * result + inputItems.hashCode();
         result = 31 * result + output.hashCode();
         result = 31 * result + (getExperience() != 0.0f ? Float.floatToIntBits(getExperience()) : 0);
@@ -124,6 +137,7 @@ public class CaskRecipe implements Recipe<RecipeWrapper>
     public static class Serializer implements RecipeSerializer<CaskRecipe>
     {
         private static final MapCodec<CaskRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                CaskRecipeBookTab.CODEC.optionalFieldOf("recipe_book_tab").xmap(optional -> optional.orElse(null), Optional::of).forGetter(CaskRecipe::getRecipeBookTab),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").xmap(ingredients -> {
                     NonNullList<Ingredient> nonNullList = NonNullList.create();
                     nonNullList.addAll(ingredients);
@@ -150,16 +164,18 @@ public class CaskRecipe implements Recipe<RecipeWrapper>
         }
 
         private static CaskRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            CaskRecipeBookTab tabIn = CaskRecipeBookTab.findByName(buffer.readUtf());
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
             inputItemsIn.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
             ItemStack outputIn = ItemStack.STREAM_CODEC.decode(buffer);
             float experienceIn = buffer.readFloat();
             int cookTimeIn = buffer.readVarInt();
-            return new CaskRecipe(inputItemsIn, outputIn, experienceIn, cookTimeIn);
+            return new CaskRecipe(tabIn, inputItemsIn, outputIn, experienceIn, cookTimeIn);
         }
 
         private static void toNetwork(RegistryFriendlyByteBuf buffer, CaskRecipe recipe) {
+            buffer.writeUtf(recipe.tab != null ? recipe.tab.toString() : "");
             buffer.writeVarInt(recipe.inputItems.size());
             for (Ingredient ingredient : recipe.inputItems) {
                 Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
