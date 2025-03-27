@@ -4,11 +4,14 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:unripe_cheddar_cheese_wheel"
+      "item": "hearthandharvest:raspberry_juice"
+    },
+    {
+      "item": "minecraft:sugar"
     }
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:cheddar_cheese_wheel"
+    "id": "hearthandharvest:raspberry_wine"
   }
 }

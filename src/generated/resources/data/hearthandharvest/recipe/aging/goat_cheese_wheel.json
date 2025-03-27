@@ -4,11 +4,11 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:unripe_cheddar_cheese_wheel"
+      "item": "hearthandharvest:unripe_goat_cheese_wheel"
     }
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:cheddar_cheese_wheel"
+    "id": "hearthandharvest:goat_cheese_wheel"
   }
 }

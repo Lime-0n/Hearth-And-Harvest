@@ -8,6 +8,7 @@ import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import alabaster.hearthandharvest.common.registry.ModItems;
 import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
 import alabaster.hearthandharvest.common.registry.ModBlockEntities;
+import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -34,6 +35,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -98,24 +100,6 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         );
     }
 
-    public static ItemStack getMealFromItem(ItemStack cookingPotStack) {
-        if (!cookingPotStack.is(ModItems.CASK.get())) {
-            return ItemStack.EMPTY;
-        }
-
-        return cookingPotStack.getOrDefault(ModDataComponents.MEAL, ItemStackWrapper.EMPTY).getStack();
-    }
-
-    public static void takeServingFromItem(ItemStack cookingPotStack) {
-        if (!cookingPotStack.is(ModItems.CASK.get())) {
-            return;
-        }
-
-        ItemStack mealStack = cookingPotStack.getOrDefault(ModDataComponents.MEAL, ItemStackWrapper.EMPTY).getStack();
-        mealStack.shrink(1);
-        cookingPotStack.set(ModDataComponents.MEAL, new ItemStackWrapper(mealStack));
-    }
-
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
         super.loadAdditional(compound, registries);
@@ -149,26 +133,6 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         super.saveAdditional(compound, registries);
         compound.put("Inventory", inventory.serializeNBT(registries));
         return compound;
-    }
-
-    public CompoundTag writeMeal(CompoundTag compound, HolderLookup.Provider registries) {
-        if (getMeal().isEmpty()) return compound;
-
-        ItemStackHandler drops = new ItemStackHandler(INVENTORY_SIZE);
-        for (int i = 0; i < INVENTORY_SIZE; ++i) {
-            drops.setStackInSlot(i, i == MEAL_DISPLAY_SLOT ? inventory.getStackInSlot(i) : ItemStack.EMPTY);
-        }
-        if (customName != null) {
-            compound.putString("CustomName", Component.Serializer.toJson(customName, registries));
-        }
-        compound.put("Inventory", drops.serializeNBT(registries));
-        return compound;
-    }
-
-    public ItemStack getAsItem() {
-        ItemStack stack = new ItemStack(ModItems.CASK.get());
-        stack.applyComponents(collectComponents());
-        return stack;
     }
 
     public static void cookingTick(Level level, BlockPos pos, BlockState state, CaskBlockEntity caskBlock) {
@@ -230,12 +194,32 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         }
     }
 
-    private boolean processCooking(RecipeHolder<CaskRecipe> recipe, CaskBlockEntity cookingPot) {
+    public boolean isProcessingRecipe() {
+        return ageTime > 0 && hasInput();
+    }
+
+    public int getCurrentLightLevel() {
+        return level != null ? level.getBrightness(LightLayer.SKY, worldPosition) : 7;
+    }
+
+    public boolean processCooking(RecipeHolder<CaskRecipe> recipe, CaskBlockEntity cask) {
         if (level == null) return false;
 
+        int baseCookTime = recipe.value().getCookTime();
+        int lightLevel = getCurrentLightLevel();
+        float effectiveMultiplier;
+        if (lightLevel <= 5) {
+            effectiveMultiplier = 0.5f;
+        } else if (lightLevel <= 10) {
+            effectiveMultiplier = 1.0f;
+        } else {
+            effectiveMultiplier = 2.0f;
+        }
+        int effectiveCookTime = Math.max(1, (int)(baseCookTime * effectiveMultiplier));
+
         ++ageTime;
-        ageTimeTotal = recipe.value().getCookTime();
-        if (ageTime < ageTimeTotal) {
+        ageTimeTotal = baseCookTime; // for UI/display, if needed.
+        if (ageTime < effectiveCookTime) {
             return false;
         }
 
@@ -247,7 +231,7 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         } else if (ItemStack.isSameItem(storedMealStack, resultStack)) {
             storedMealStack.grow(resultStack.getCount());
         }
-        cookingPot.setRecipeUsed(recipe);
+        cask.setRecipeUsed(recipe);
 
         for (int i = 0; i < MEAL_DISPLAY_SLOT; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);

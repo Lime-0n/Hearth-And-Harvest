@@ -127,9 +127,24 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
     }
 
     public int getCookProgressionScaled() {
-        int i = this.caskData.get(0);
-        int j = this.caskData.get(1);
-        return j != 0 && i != 0 ? i * 24 / j : 0;
+        int currentAgeTime = this.caskData.get(0); // current progress
+        int baseCookTime = this.caskData.get(1);    // original cook time from recipe
+        if (baseCookTime == 0) return 0;
+        int lightLevel = blockEntity.getCurrentLightLevel();
+        float effectiveMultiplier;
+        if (lightLevel <= 5) {
+            effectiveMultiplier = 0.5f;
+        } else if (lightLevel <= 10) {
+            effectiveMultiplier = 1.0f;
+        } else {
+            effectiveMultiplier = 2.0f;
+        }
+        int effectiveCookTime = Math.max(1, (int)(baseCookTime * effectiveMultiplier));
+        return currentAgeTime * 24 / effectiveCookTime;
+    }
+
+    public float getProgression() {
+        return this.caskData.get(0);
     }
 
     @Override

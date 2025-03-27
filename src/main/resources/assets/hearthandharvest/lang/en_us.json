@@ -2,7 +2,13 @@
   "itemGroup.hearthandharvest": "Hearth and Harvest",
 
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
+
   "block.hearthandharvest.cask": "Cask",
+  "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
+  "hearthandharvest.container.cask.medium": "Surrounding light is well lit, speed is 1x",
+  "hearthandharvest.container.cask.bright": "Surrounding light is bright, speed is 0.5x",
+  "hearthandharvest.container.cask.default": "Surrounding light level not detected",
+
   "block.hearthandharvest.jar": "Jar",
   "block.hearthandharvest.jug": "Jug",
 

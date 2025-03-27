@@ -1,0 +1,17 @@
+{
+  "type": "hearthandharvest:aging",
+  "cookingtime": 600,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "hearthandharvest:grape_juice"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:red_grape_wine"
+  }
+}
