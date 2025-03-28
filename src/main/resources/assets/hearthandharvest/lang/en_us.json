@@ -8,6 +8,7 @@
   "hearthandharvest.container.cask.medium": "Surrounding light is well lit, speed is 1x",
   "hearthandharvest.container.cask.bright": "Surrounding light is bright, speed is 0.5x",
   "hearthandharvest.container.cask.default": "Surrounding light level not detected",
+  "hearthandharvest.container.recipe_book.ageable": "Showing Ageables",
 
   "block.hearthandharvest.jar": "Jar",
   "block.hearthandharvest.jug": "Jug",

@@ -235,9 +235,6 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
 
         for (int i = 0; i < MEAL_DISPLAY_SLOT; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);
-            if (slotStack.hasCraftingRemainingItem()) {
-                ejectIngredientRemainder(slotStack.getCraftingRemainingItem());
-            }
             if (!slotStack.isEmpty())
                 slotStack.shrink(1);
         }

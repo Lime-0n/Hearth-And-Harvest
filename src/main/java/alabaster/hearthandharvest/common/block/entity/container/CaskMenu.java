@@ -91,7 +91,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
         int indexMealDisplay = 4;
-        int indexOutput = 5;
+        int indexOutput = 4;
         int startPlayerInv = indexOutput + 1;
         int endPlayerInv = startPlayerInv + 36;
         ItemStack slotStackCopy = ItemStack.EMPTY;

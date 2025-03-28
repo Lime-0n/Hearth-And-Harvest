@@ -5,7 +5,6 @@ import alabaster.hearthandharvest.common.registry.ModItems;
 import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
-import umpaz.brewinandchewin.common.registry.BnCItems;
 
 public class AgingRecipes {
     public static final int FAST_AGING = 300;      // 1.25 minutes
@@ -19,6 +18,7 @@ public class AgingRecipes {
     public static void register(RecipeOutput output) {
         ageCheese(output);
         ageDrinks(output);
+        agePickles(output);
     }
 
     private static void ageCheese(RecipeOutput output) {
@@ -66,4 +66,50 @@ public class AgingRecipes {
                 .build(output);
     }
 
+    private static void agePickles(RecipeOutput output) {
+        CaskRecipeBuilder.caskRecipe(ModItems.PICKLED_CARROTS.get(), 1, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(Items.CARROT)
+                .addIngredient(Items.CARROT)
+                .addIngredient(ModItems.JAR.get())
+                .unlockedByAnyIngredient(Items.CARROT)
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(ModItems.PICKLED_POTATOES.get(), 1, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(Items.POTATO)
+                .addIngredient(Items.POTATO)
+                .addIngredient(ModItems.JAR.get())
+                .unlockedByAnyIngredient(Items.POTATO)
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(ModItems.PICKLED_ONIONS.get(), 1, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .addIngredient(ModItems.JAR.get())
+                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(ModItems.PICKLED_CABBAGE.get(), 1, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
+                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
+                .addIngredient(ModItems.JAR.get())
+                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(ModItems.PICKLED_BEETROOTS.get(), 1, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(ModItems.SALT.get())
+                .addIngredient(Items.BEETROOT)
+                .addIngredient(Items.BEETROOT)
+                .addIngredient(ModItems.JAR.get())
+                .unlockedByAnyIngredient(Items.BEETROOT)
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+    }
 }
