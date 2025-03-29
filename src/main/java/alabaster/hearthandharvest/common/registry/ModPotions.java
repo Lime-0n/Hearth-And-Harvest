@@ -18,11 +18,16 @@ public class ModPotions {
 
     // Pungent Potion
     public static final DeferredHolder<Potion, Potion> PUNGENT_POTION = POTIONS.register("pungent_potion", () -> new Potion(new MobEffectInstance(ModEffects.PUNGENT, 3600, 0)));
-
     // Long Pungent Potion
     public static final DeferredHolder<Potion, Potion> LONG_PUNGENT_POTION = POTIONS.register("long_pungent_potion", () -> new Potion(new MobEffectInstance(ModEffects.PUNGENT, 9600, 0)));
-
     // Strong Pungent Potion
     public static final DeferredHolder<Potion, Potion> STRONG_PUNGENT_POTION = POTIONS.register("strong_pungent_potion", () -> new Potion(new MobEffectInstance(ModEffects.PUNGENT, 1800, 1)));
+
+    // Tempting Potion
+    public static final DeferredHolder<Potion, Potion> TEMPTING_POTION = POTIONS.register("tempting_potion", () -> new Potion(new MobEffectInstance(ModEffects.TEMPTING, 3600, 0)));
+    // Long Tempting Potion
+    public static final DeferredHolder<Potion, Potion> LONG_TEMPTING_POTION = POTIONS.register("long_tempting_potion", () -> new Potion(new MobEffectInstance(ModEffects.TEMPTING, 9600, 0)));
+    // Strong Tempting Potion
+    public static final DeferredHolder<Potion, Potion> STRONG_TEMPTING_POTION = POTIONS.register("strong_tempting_potion", () -> new Potion(new MobEffectInstance(ModEffects.TEMPTING, 1800, 1)));
 
 }

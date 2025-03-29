@@ -10,14 +10,14 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.phys.Vec3;
 
-public class FleePungentEffectGoal extends Goal {
+public class PungentEffectGoal extends Goal {
     private final Mob mob;
     private LivingEntity pungentSource;
     private final double farSpeed;
     private final double nearSpeed;
     private final double baseRadius;
 
-    public FleePungentEffectGoal(Mob mob, double farSpeed, double nearSpeed, double baseRadius) {
+    public PungentEffectGoal(Mob mob, double farSpeed, double nearSpeed, double baseRadius) {
         this.mob = mob;
         this.farSpeed = farSpeed;
         this.nearSpeed = nearSpeed;

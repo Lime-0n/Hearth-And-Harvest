@@ -16,9 +16,15 @@ public class PotionBrewingRecipesEvent {
     public static void onBrewingRecipeRegister(RegisterBrewingRecipesEvent event) {
         PotionBrewing.Builder builder = event.getBuilder();
 
+        // Pungent
         builder.addMix(Potions.AWKWARD, Items.POISONOUS_POTATO, ModPotions.PUNGENT_POTION);
         builder.addMix(ModPotions.PUNGENT_POTION, Items.REDSTONE, ModPotions.STRONG_PUNGENT_POTION);
-        builder.addMix(ModPotions.PUNGENT_POTION, Items.GLOWSTONE, ModPotions.LONG_PUNGENT_POTION);
+        builder.addMix(ModPotions.PUNGENT_POTION, Items.GLOWSTONE_DUST, ModPotions.LONG_PUNGENT_POTION);
+
+        // Tempting
+        builder.addMix(ModPotions.PUNGENT_POTION, Items.FERMENTED_SPIDER_EYE, ModPotions.TEMPTING_POTION);
+        builder.addMix(ModPotions.TEMPTING_POTION, Items.REDSTONE, ModPotions.STRONG_TEMPTING_POTION);
+        builder.addMix(ModPotions.TEMPTING_POTION, Items.GLOWSTONE_DUST, ModPotions.LONG_TEMPTING_POTION);
     }
 }
 

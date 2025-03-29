@@ -2,7 +2,8 @@ package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
-import alabaster.hearthandharvest.common.entity.goal.FleePungentEffectGoal;
+import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
+import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import net.minecraft.world.entity.Mob;
@@ -58,8 +59,10 @@ public class HearthAndHarvest {
     @SubscribeEvent
     public void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof Mob mob) {
-            // Add the goal with an appropriate priority (here, 1 is high priority, adjust as needed).
-            mob.goalSelector.addGoal(1, new FleePungentEffectGoal(mob, 1.0D, 1.5D, 8.0D));
+            mob.goalSelector.addGoal(1, new PungentEffectGoal(mob, 1.0D, 1.5D, 8.0D));
+        }
+        if (event.getEntity() instanceof Mob mob) {
+            mob.goalSelector.addGoal(1, new TemptingEffectGoal(mob, 1.0D, 1.25D, 8.0D));
         }
     }
 
