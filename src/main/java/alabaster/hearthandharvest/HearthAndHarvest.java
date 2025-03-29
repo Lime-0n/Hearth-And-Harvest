@@ -2,8 +2,10 @@ package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
+import alabaster.hearthandharvest.common.entity.goal.FleePungentEffectGoal;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
+import net.minecraft.world.entity.Mob;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -13,6 +15,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +35,8 @@ public class HearthAndHarvest {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModEffects.EFFECTS.register(modEventBus);
+        ModPotions.POTIONS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModDataComponents.DATA_COMPONENTS.register(modEventBus);
@@ -48,6 +53,14 @@ public class HearthAndHarvest {
 
     public void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
         RecipeCategories.init(event);
+    }
+
+    @SubscribeEvent
+    public void onEntityJoin(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof Mob mob) {
+            // Add the goal with an appropriate priority (here, 1 is high priority, adjust as needed).
+            mob.goalSelector.addGoal(1, new FleePungentEffectGoal(mob, 1.0D, 1.5D, 8.0D));
+        }
     }
 
     @SubscribeEvent

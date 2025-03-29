@@ -46,6 +46,7 @@ public class BlockTags extends BlockTagsProvider {
                 ModBlocks.APPLE_CRATE.get(),
                 ModBlocks.GOLDEN_APPLE_CRATE.get(),
                 ModBlocks.GOLDEN_CARROT_CRATE.get(),
+                ModBlocks.POISONOUS_POTATO_CRATE.get(),
                 ModBlocks.EGG_CRATE.get(),
                 ModBlocks.TURTLE_EGG_CRATE.get(),
                 ModBlocks.MILK_CRATE.get(),
@@ -55,7 +56,6 @@ public class BlockTags extends BlockTagsProvider {
                 ModBlocks.WARPED_FUNGUS_CRATE.get(),
                 ModBlocks.CRIMSON_FUNGUS_CRATE.get(),
                 ModBlocks.MEAD_CRATE.get(),
-                ModBlocks.WINE_CRATE.get(),
                 ModBlocks.WATER_CRATE.get(),
                 ModBlocks.HONEY_CRATE.get()
         );

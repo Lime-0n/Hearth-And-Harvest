@@ -60,9 +60,6 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.MEAD_CRATE.get(), "_bottom");
         items.remove(ModItems.MEAD_CRATE.get());
 
-        blockBasedModel(ModItems.WINE_CRATE.get(), "_bottom");
-        items.remove(ModItems.WINE_CRATE.get());
-
         blockBasedModel(ModItems.WATER_CRATE.get(), "_bottom");
         items.remove(ModItems.WATER_CRATE.get());
 

@@ -135,6 +135,13 @@ public class CraftingRecipes
                 .define('#', Items.GOLDEN_CARROT)
                 .unlockedBy("has_golden_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLDEN_CARROT))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.POISONOUS_POTATO_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', Items.POISONOUS_POTATO)
+                .unlockedBy("has_poisonous_potato", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POISONOUS_POTATO))
+                .save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.COTTON_BALE.get(), 1)
                 .pattern("###")
@@ -221,13 +228,6 @@ public class CraftingRecipes
                 .pattern("###")
                 .define('#', ModItems.MEAD.get())
                 .unlockedBy("has_mead", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MEAD.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', ModItems.WINE.get())
-                .unlockedBy("has_wine", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WINE.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.HONEY_CRATE.get(), 1)
                 .pattern("###")
@@ -337,6 +337,10 @@ public class CraftingRecipes
                 .requires(ModItems.GOLDEN_CARROT_CRATE.get())
                 .unlockedBy("has_golden_carrot_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GOLDEN_CARROT_CRATE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "golden_carrot_from_crate"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.POISONOUS_POTATO, 9)
+                .requires(ModItems.POISONOUS_POTATO_CRATE.get())
+                .unlockedBy("has_poisonous_potato_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.POISONOUS_POTATO_CRATE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "poisonous_potato_from_crate"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COTTON.get(), 9)
                 .requires(ModItems.COTTON_BALE.get())
@@ -388,14 +392,6 @@ public class CraftingRecipes
                 .requires(ModItems.MEAD_CRATE.get())
                 .unlockedBy("has_mead_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MEAD_CRATE.get()))
                 .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.WINE.get(), 9)
-                .requires(ModItems.WINE_CRATE.get())
-                .unlockedBy("has_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WINE_CRATE.get()))
-                .save(output);
-        //ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD,, 9)
-        //        .requires(ModItems.WATER_CRATE.get())
-        //        .unlockedBy("has_water_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WATER_CRATE.get()))
-        //        .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.HONEY_BOTTLE, 9)
                 .requires(ModItems.HONEY_CRATE.get())
                 .unlockedBy("has_honey_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.HONEY_CRATE.get()))

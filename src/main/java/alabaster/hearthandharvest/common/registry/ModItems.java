@@ -114,6 +114,8 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.GOLDEN_APPLE_CRATE.get(), basicItem()));
     public static final Supplier<Item> GOLDEN_CARROT_CRATE = registerWithTab("golden_carrot_crate",
             () -> new BlockItem(ModBlocks.GOLDEN_CARROT_CRATE.get(), basicItem()));
+    public static final Supplier<Item> POISONOUS_POTATO_CRATE = registerWithTab("poisonous_potato_crate",
+            () -> new BlockItem(ModBlocks.POISONOUS_POTATO_CRATE.get(), basicItem()));
     
     // Bags
     public static final Supplier<Item> SALT_BAG = registerWithTab("salt_bag",
@@ -144,8 +146,6 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
     public static final Supplier<Item> MEAD_CRATE = registerWithTab("mead_crate",
             () -> new BlockItem(ModBlocks.MEAD_CRATE.get(), basicItem()));
-    public static final Supplier<Item> WINE_CRATE = registerWithTab("wine_crate",
-            () -> new BlockItem(ModBlocks.WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> WATER_CRATE = registerWithTab("water_crate",
             () -> new BlockItem(ModBlocks.WATER_CRATE.get(), basicItem()));
     public static final Supplier<Item> HONEY_CRATE = registerWithTab("honey_crate",
@@ -164,8 +164,6 @@ public class ModItems {
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
             () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), false, false));
-    public static final Supplier<Item> WINE = registerWithTab("wine",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
             () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",

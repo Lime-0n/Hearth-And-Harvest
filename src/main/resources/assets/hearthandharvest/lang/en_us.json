@@ -33,6 +33,7 @@
   "block.hearthandharvest.apple_crate": "Apple Crate",
   "block.hearthandharvest.golden_apple_crate": "Golden Apple Crate",
   "block.hearthandharvest.golden_carrot_crate": "Golden Carrot Crate",
+  "block.hearthandharvest.poisonous_potato_crate": "Poisonous Potato Crate",
 
   "block.hearthandharvest.salt_bag": "Salt Bag",
   "block.hearthandharvest.sugar_bag": "Sugar Bag",
@@ -133,5 +134,23 @@
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",
   "item.hearthandharvest.mashed_potatoes": "Mashed Potatoes",
   "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Peanut Butter & Jelly",
-  "item.hearthandharvest.waffle": "Waffle"
+  "item.hearthandharvest.waffle": "Waffle",
+
+  "effect.hearthandharvest.pungent": "Pungent",
+  "effect.hearthandharvest.pungent.0.desc": "Causes nearby mobs to avoid you due to your nasty odor",
+
+  "item.minecraft.potion.effect.pungent_potion": "Potion of Pungence",
+  "item.minecraft.splash_potion.effect.pungent_potion": "Splash Potion of Pungence",
+  "item.minecraft.lingering_potion.effect.pungent_potion": "Lingering Potion of Pungence",
+  "item.minecraft.tipped_arrow.effect.pungent_potion": "Arrow of Pungence",
+
+  "item.minecraft.potion.effect.long_pungent_potion": "Potion of Pungence",
+  "item.minecraft.splash_potion.effect.long_pungent_potion": "Splash Potion of Pungence",
+  "item.minecraft.lingering_potion.effect.long_pungent_potion": "Lingering Potion of Pungence",
+  "item.minecraft.tipped_arrow.effect.long_pungent_potion": "Arrow of Pungence",
+
+  "item.minecraft.potion.effect.strong_pungent_potion": "Potion of Pungence",
+  "item.minecraft.splash_potion.effect.strong_pungent_potion": "Splash Potion of Pungence",
+  "item.minecraft.lingering_potion.effect.strong_pungent_potion": "Lingering Potion of Pungence",
+  "item.minecraft.tipped_arrow.effect.strong_pungent_potion": "Arrow of Pungence"
 }

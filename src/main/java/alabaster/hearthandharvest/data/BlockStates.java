@@ -57,6 +57,7 @@ public class BlockStates extends BlockStateProvider
         this.crateBlock(ModBlocks.APPLE_CRATE.get(), "apple");
         this.crateBlock(ModBlocks.GOLDEN_APPLE_CRATE.get(), "golden_apple");
         this.crateBlock(ModBlocks.GOLDEN_CARROT_CRATE.get(), "golden_carrot");
+        this.crateBlock(ModBlocks.POISONOUS_POTATO_CRATE.get(), "poisonous_potato");
 
         this.customStageBlock(ModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
         this.customStageBlock(ModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));

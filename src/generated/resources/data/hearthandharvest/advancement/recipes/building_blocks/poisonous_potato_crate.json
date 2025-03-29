@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_potato": {
+    "has_poisonous_potato": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:potato"
+            "items": "minecraft:poisonous_potato"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:cooking/pickled_potatoes"
+        "recipe": "hearthandharvest:poisonous_potato_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_potato"
+      "has_poisonous_potato"
     ]
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:cooking/pickled_potatoes"
+      "hearthandharvest:poisonous_potato_crate"
     ]
   }
 }
