@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_red_grape_crate": {
+    "has_raspberry_wine": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:red_grape_crate"
+            "items": "hearthandharvest:raspberry_wine"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:grapes"
+        "recipe": "hearthandharvest:raspberry_wine_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_red_grape_crate"
+      "has_raspberry_wine"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:grapes"
+      "hearthandharvest:raspberry_wine_crate"
     ]
   }
 }

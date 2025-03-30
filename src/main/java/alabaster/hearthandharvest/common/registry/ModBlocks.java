@@ -39,11 +39,14 @@ public class ModBlocks {
             () -> new CottonBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
 
     // Crates
-    public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+
     public static final Supplier<Block> BLUEBERRY_CRATE = BLOCKS.register("blueberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Supplier<Block> GRAPE_CRATE = BLOCKS.register("grape_crate",
+    public static final Supplier<Block> CHERRY_CRATE = BLOCKS.register("cherry_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> RED_GRAPE_CRATE = BLOCKS.register("red_grape_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> PEANUT_CRATE = BLOCKS.register("peanut_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -82,6 +85,14 @@ public class ModBlocks {
     public static final Supplier<Block> MILK_CRATE = BLOCKS.register("milk_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> GOAT_MILK_CRATE = BLOCKS.register("goat_milk_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> RED_GRAPE_WINE_CRATE = BLOCKS.register("red_grape_wine_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> RASPBERRY_WINE_CRATE = BLOCKS.register("raspberry_wine_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> BLUEBERRY_WINE_CRATE = BLOCKS.register("blueberry_wine_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> CHERRY_WINE_CRATE = BLOCKS.register("cherry_wine_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> MEAD_CRATE = BLOCKS.register("mead_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

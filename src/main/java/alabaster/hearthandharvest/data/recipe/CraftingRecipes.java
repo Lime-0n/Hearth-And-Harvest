@@ -93,6 +93,13 @@ public class CraftingRecipes
                 .define('#', ModItems.BLUEBERRIES.get())
                 .unlockedBy("has_blueberry", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRIES.get()))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.CHERRY_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.CHERRY.get())
+                .unlockedBy("has_cherry", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHERRY.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RASPBERRY_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -100,7 +107,7 @@ public class CraftingRecipes
                 .define('#', ModItems.RASPBERRY.get())
                 .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RASPBERRY.get()))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.GRAPE_CRATE.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RED_GRAPE_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
@@ -222,6 +229,34 @@ public class CraftingRecipes
                 .define('#', ModItems.GOAT_MILK_BOTTLE.get())
                 .unlockedBy("has_goat_milk_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GOAT_MILK_BOTTLE.get()))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.BLUEBERRY_WINE_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.BLUEBERRY_WINE.get())
+                .unlockedBy("has_blueberry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRY_WINE.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.CHERRY_WINE_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.CHERRY_WINE.get())
+                .unlockedBy("has_cherry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHERRY_WINE.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RASPBERRY_WINE_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.RASPBERRY_WINE.get())
+                .unlockedBy("has_raspberry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RASPBERRY_WINE.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RED_GRAPE_WINE_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.RED_GRAPE_WINE.get())
+                .unlockedBy("has_red_grape_wine", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RED_GRAPE_WINE.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.MEAD_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -318,8 +353,8 @@ public class CraftingRecipes
                 .unlockedBy("has_blueberry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRY_CRATE.get()))
                 .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.GRAPES.get(), 9)
-                .requires(ModItems.GRAPE_CRATE.get())
-                .unlockedBy("has_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GRAPE_CRATE.get()))
+                .requires(ModItems.RED_GRAPE_CRATE.get())
+                .unlockedBy("has_red_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RED_GRAPE_CRATE.get()))
                 .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.PEANUT.get(), 9)
                 .requires(ModItems.PEANUT_CRATE.get())
@@ -387,6 +422,22 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.GOAT_MILK_BOTTLE.get(), 9)
                 .requires(ModItems.GOAT_MILK_CRATE.get())
                 .unlockedBy("has_goat_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.GOAT_MILK_CRATE.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.BLUEBERRY_WINE.get(), 9)
+                .requires(ModItems.BLUEBERRY_WINE_CRATE.get())
+                .unlockedBy("has_blueberry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BLUEBERRY_WINE_CRATE.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.CHERRY_WINE.get(), 9)
+                .requires(ModItems.CHERRY_WINE_CRATE.get())
+                .unlockedBy("has_cherry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHERRY_WINE_CRATE.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.RASPBERRY_WINE.get(), 9)
+                .requires(ModItems.RASPBERRY_WINE_CRATE.get())
+                .unlockedBy("has_raspberry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RASPBERRY_WINE_CRATE.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.RED_GRAPE_WINE.get(), 9)
+                .requires(ModItems.RED_GRAPE_WINE_CRATE.get())
+                .unlockedBy("has_red_grape_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.RED_GRAPE_WINE_CRATE.get()))
                 .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.MEAD.get(), 9)
                 .requires(ModItems.MEAD_CRATE.get())

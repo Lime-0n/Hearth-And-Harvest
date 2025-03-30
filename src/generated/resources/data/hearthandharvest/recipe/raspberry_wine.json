@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "hearthandharvest:red_grape_crate"
+      "item": "hearthandharvest:raspberry_wine_crate"
     }
   ],
   "result": {
     "count": 9,
-    "id": "hearthandharvest:grapes"
+    "id": "hearthandharvest:raspberry_wine"
   }
 }

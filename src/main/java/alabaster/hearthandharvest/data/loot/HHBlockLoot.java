@@ -25,7 +25,7 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(ModBlocks.JUG.get());
         dropSelf(ModBlocks.RASPBERRY_CRATE.get());
         dropSelf(ModBlocks.BLUEBERRY_CRATE.get());
-        dropSelf(ModBlocks.GRAPE_CRATE.get());
+        dropSelf(ModBlocks.RED_GRAPE_CRATE.get());
         dropSelf(ModBlocks.PEANUT_CRATE.get());
         dropSelf(ModBlocks.APPLE_CRATE.get());
         dropSelf(ModBlocks.GOLDEN_APPLE_CRATE.get());

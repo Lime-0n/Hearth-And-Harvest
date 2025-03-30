@@ -55,7 +55,6 @@ public class ModItems {
     }
 
 
-
     // Tools
     public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
             () -> new KnifeItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
@@ -90,6 +89,8 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_BUSH.get(), foodItem(FoodValues.BLUEBERRIES)));
     public static final Supplier<Item> GRAPES = registerWithTab("grapes",
             () -> new ItemNameBlockItem(ModBlocks.BUDDING_GRAPE_CROP.get(), foodItem(FoodValues.GRAPES)));
+    public static final Supplier<Item> CHERRY = registerWithTab("cherry",
+            () -> new Item(foodItem(FoodValues.GRAPES)));
     public static final Supplier<Item> PEANUT = registerWithTab("peanut",
             () -> new ItemNameBlockItem(ModBlocks.PEANUT_CROP.get(), foodItem(FoodValues.PEANUT)));
     public static final Supplier<Item> COTTON_SEEDS = registerWithTab("cotton_seeds",
@@ -100,12 +101,14 @@ public class ModItems {
     // Storage Blocks
 
     // Crates
-    public static final Supplier<Item> RASPBERRY_CRATE = registerWithTab("raspberry_crate",
-            () -> new BlockItem(ModBlocks.RASPBERRY_CRATE.get(), basicItem()));
     public static final Supplier<Item> BLUEBERRY_CRATE = registerWithTab("blueberry_crate",
             () -> new BlockItem(ModBlocks.BLUEBERRY_CRATE.get(), basicItem()));
-    public static final Supplier<Item> GRAPE_CRATE = registerWithTab("grape_crate",
-            () -> new BlockItem(ModBlocks.GRAPE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> CHERRY_CRATE = registerWithTab("cherry_crate",
+            () -> new BlockItem(ModBlocks.CHERRY_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RASPBERRY_CRATE = registerWithTab("raspberry_crate",
+            () -> new BlockItem(ModBlocks.RASPBERRY_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RED_GRAPE_CRATE = registerWithTab("red_grape_crate",
+            () -> new BlockItem(ModBlocks.RED_GRAPE_CRATE.get(), basicItem()));
     public static final Supplier<Item> PEANUT_CRATE = registerWithTab("peanut_crate",
             () -> new BlockItem(ModBlocks.PEANUT_CRATE.get(), basicItem()));
     public static final Supplier<Item> APPLE_CRATE = registerWithTab("apple_crate",
@@ -144,6 +147,14 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.MILK_CRATE.get(), basicItem()));
     public static final Supplier<Item> GOAT_MILK_CRATE = registerWithTab("goat_milk_crate",
             () -> new BlockItem(ModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
+            () -> new BlockItem(ModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
+            () -> new BlockItem(ModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> BLUEBERRY_WINE_CRATE = registerWithTab("blueberry_wine_crate",
+            () -> new BlockItem(ModBlocks.BLUEBERRY_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> CHERRY_WINE_CRATE = registerWithTab("cherry_wine_crate",
+            () -> new BlockItem(ModBlocks.CHERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> MEAD_CRATE = registerWithTab("mead_crate",
             () -> new BlockItem(ModBlocks.MEAD_CRATE.get(), basicItem()));
     public static final Supplier<Item> WATER_CRATE = registerWithTab("water_crate",
@@ -159,16 +170,16 @@ public class ModItems {
     public static final Supplier<Item> WARPED_FUNGUS_CRATE = registerWithTab("warped_fungus_crate",
             () -> new BlockItem(ModBlocks.WARPED_FUNGUS_CRATE.get(), basicItem()));
 
-    // Tools
-
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
             () -> new DrinkableItem(drinkItem().food(FoodValues.MEAD), false, false));
-    public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
-            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
             () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
+    public static final Supplier<Item> CHERRY_WINE = registerWithTab("cherry_wine",
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
+            () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
+    public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
             () -> new DrinkableItem(drinkItem().food(FoodValues.WINE), false, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(FoodValues.GOAT_MILK_BOTTLE)));

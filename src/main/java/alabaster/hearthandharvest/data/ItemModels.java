@@ -57,6 +57,18 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(ModItems.GOAT_MILK_CRATE.get(), "_bottom");
         items.remove(ModItems.GOAT_MILK_CRATE.get());
 
+        blockBasedModel(ModItems.BLUEBERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(ModItems.BLUEBERRY_WINE_CRATE.get());
+
+        blockBasedModel(ModItems.CHERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(ModItems.CHERRY_WINE_CRATE.get());
+
+        blockBasedModel(ModItems.RASPBERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(ModItems.RASPBERRY_WINE_CRATE.get());
+
+        blockBasedModel(ModItems.RED_GRAPE_WINE_CRATE.get(), "_bottom");
+        items.remove(ModItems.RED_GRAPE_WINE_CRATE.get());
+
         blockBasedModel(ModItems.MEAD_CRATE.get(), "_bottom");
         items.remove(ModItems.MEAD_CRATE.get());
 

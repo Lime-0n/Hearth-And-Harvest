@@ -2,7 +2,7 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "hearthandharvest:block/crate_bottom",
-    "side": "hearthandharvest:block/grape_crate_side",
-    "top": "hearthandharvest:block/grape_crate_top"
+    "side": "hearthandharvest:block/cherry_crate_side",
+    "top": "hearthandharvest:block/cherry_crate_top"
   }
 }

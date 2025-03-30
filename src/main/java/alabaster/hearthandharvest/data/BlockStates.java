@@ -49,9 +49,10 @@ public class BlockStates extends BlockStateProvider
 
     @Override
     protected void registerStatesAndModels() {
-        this.crateBlock(ModBlocks.RASPBERRY_CRATE.get(), "raspberry");
+        this.crateBlock(ModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(ModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
-        this.crateBlock(ModBlocks.GRAPE_CRATE.get(), "grape");
+        this.crateBlock(ModBlocks.RASPBERRY_CRATE.get(), "raspberry");
+        this.crateBlock(ModBlocks.RED_GRAPE_CRATE.get(), "red_grape");
         this.crateBlock(ModBlocks.PEANUT_CRATE.get(), "peanut");
 
         this.crateBlock(ModBlocks.APPLE_CRATE.get(), "apple");
