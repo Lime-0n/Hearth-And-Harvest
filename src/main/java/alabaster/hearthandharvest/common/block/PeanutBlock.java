@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -30,7 +30,7 @@ public class PeanutBlock extends CropBlock
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.PEANUT.get();
+        return HHModItems.PEANUT.get();
     }
 
     @Override

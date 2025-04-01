@@ -2,7 +2,7 @@ package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
-import alabaster.hearthandharvest.common.registry.ModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -49,36 +49,38 @@ public class BlockStates extends BlockStateProvider
 
     @Override
     protected void registerStatesAndModels() {
-        this.crateBlock(ModBlocks.CHERRY_CRATE.get(), "cherry");
-        this.crateBlock(ModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
-        this.crateBlock(ModBlocks.RASPBERRY_CRATE.get(), "raspberry");
-        this.crateBlock(ModBlocks.RED_GRAPE_CRATE.get(), "red_grape");
-        this.crateBlock(ModBlocks.PEANUT_CRATE.get(), "peanut");
+        this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
+        this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
+        this.crateBlock(HHModBlocks.RASPBERRY_CRATE.get(), "raspberry");
+        this.crateBlock(HHModBlocks.RED_GRAPE_CRATE.get(), "red_grape");
+        this.crateBlock(HHModBlocks.PEANUT_CRATE.get(), "peanut");
 
-        this.crateBlock(ModBlocks.APPLE_CRATE.get(), "apple");
-        this.crateBlock(ModBlocks.GOLDEN_APPLE_CRATE.get(), "golden_apple");
-        this.crateBlock(ModBlocks.GOLDEN_CARROT_CRATE.get(), "golden_carrot");
-        this.crateBlock(ModBlocks.POISONOUS_POTATO_CRATE.get(), "poisonous_potato");
+        this.crateBlock(HHModBlocks.APPLE_CRATE.get(), "apple");
+        this.crateBlock(HHModBlocks.GOLDEN_APPLE_CRATE.get(), "golden_apple");
+        this.crateBlock(HHModBlocks.GOLDEN_CARROT_CRATE.get(), "golden_carrot");
+        this.crateBlock(HHModBlocks.POISONOUS_POTATO_CRATE.get(), "poisonous_potato");
+        this.crateBlock(HHModBlocks.GLOW_BERRY_CRATE.get(), "glow_berry");
+        this.crateBlock(HHModBlocks.SWEET_BERRY_CRATE.get(), "sweet_berry");
 
-        this.customStageBlock(ModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(ModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(ModBlocks.BUDDING_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(ModBlocks.PEANUT_CROP.get(), mcLoc("crop"), "crop", PeanutBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
-        this.customStageBlock(ModBlocks.COTTON_CROP.get(), resourceBlock("crop_cross"), "cross", CottonBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
+        this.customStageBlock(HHModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(HHModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(HHModBlocks.BUDDING_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(HHModBlocks.PEANUT_CROP.get(), mcLoc("crop"), "crop", PeanutBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
+        this.customStageBlock(HHModBlocks.COTTON_CROP.get(), resourceBlock("crop_cross"), "cross", CottonBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
 
-        this.pieBlock(ModBlocks.RASPBERRY_PIE.get());
-        this.pieBlock(ModBlocks.BLUEBERRY_PIE.get());
-        this.pieBlock(ModBlocks.GRAPE_PIE.get());
-        this.pieBlock(ModBlocks.CHICKEN_POT_PIE.get());
+        this.pieBlock(HHModBlocks.RASPBERRY_PIE.get());
+        this.pieBlock(HHModBlocks.BLUEBERRY_PIE.get());
+        this.pieBlock(HHModBlocks.GRAPE_PIE.get());
+        this.pieBlock(HHModBlocks.CHICKEN_POT_PIE.get());
 
-        this.axisBlock((RotatedPillarBlock) ModBlocks.ROPE_COIL.get());
-        this.axisBlock((RotatedPillarBlock) ModBlocks.COTTON_BALE.get());
-        this.axisBlock((RotatedPillarBlock) ModBlocks.SPOOL.get());
+        this.axisBlock((RotatedPillarBlock) HHModBlocks.ROPE_COIL.get());
+        this.axisBlock((RotatedPillarBlock) HHModBlocks.COTTON_BALE.get());
+        this.axisBlock((RotatedPillarBlock) HHModBlocks.SPOOL.get());
 
-        this.bagBlock(ModBlocks.SALT_BAG.get(), "salt");
-        this.bagBlock(ModBlocks.SUGAR_BAG.get(), "sugar");
-        this.bagBlock(ModBlocks.COCOA_BEAN_BAG.get(), "cocoa_bean");
-        this.bagBlock(ModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
+        this.bagBlock(HHModBlocks.SALT_BAG.get(), "salt");
+        this.bagBlock(HHModBlocks.SUGAR_BAG.get(), "sugar");
+        this.bagBlock(HHModBlocks.COCOA_BEAN_BAG.get(), "cocoa_bean");
+        this.bagBlock(HHModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
 
     }
 

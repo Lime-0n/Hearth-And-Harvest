@@ -3,7 +3,7 @@ package alabaster.hearthandharvest.common.entity.goal;
 import java.util.Comparator;
 import java.util.List;
 
-import alabaster.hearthandharvest.common.registry.ModEffects;
+import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -26,8 +26,8 @@ public class PungentEffectGoal extends Goal {
 
     // Computes the effective radius using the amplifier of the Pungent effect.
     private double getEffectiveRadius() {
-        if (pungentSource != null && pungentSource.hasEffect(ModEffects.PUNGENT)) {
-            int amplifier = pungentSource.getEffect(ModEffects.PUNGENT).getAmplifier();
+        if (pungentSource != null && pungentSource.hasEffect(HHModEffects.PUNGENT)) {
+            int amplifier = pungentSource.getEffect(HHModEffects.PUNGENT).getAmplifier();
             return baseRadius * (1.0 + 0.5 * amplifier);
         }
         return baseRadius;
@@ -39,7 +39,7 @@ public class PungentEffectGoal extends Goal {
         List<LivingEntity> candidates = mob.level().getEntitiesOfClass(
                 LivingEntity.class,
                 mob.getBoundingBox().inflate(baseRadius),
-                entity -> entity != mob && entity.hasEffect(ModEffects.PUNGENT)
+                entity -> entity != mob && entity.hasEffect(HHModEffects.PUNGENT)
         );
         if (!candidates.isEmpty()) {
             // Pick the nearest one.

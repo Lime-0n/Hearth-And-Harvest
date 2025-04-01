@@ -1,11 +1,10 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModItems;
-import alabaster.hearthandharvest.common.tag.ModTags;
+import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -122,7 +120,7 @@ public class TreeTapperBlock extends Block {
                 // Check only the four directly adjacent blocks (north, south, east, west)
                 if (direction.getAxis().isHorizontal()) {
                         BlockState neighborState = level.getBlockState(pos.relative(direction));
-                        if (neighborState.is(ModTags.TAPPABLE)) {
+                        if (neighborState.is(HHModTags.TAPPABLE)) {
                                 chance += 0.02F;
                         }
                 }
@@ -139,7 +137,7 @@ public class TreeTapperBlock extends Block {
                 int sapLevel = state.getValue(SAP);
 
                 if (sapLevel == 4 && player.getItemInHand(hand).getItem() == Items.BUCKET) {
-                        ItemStack sapBucket = new ItemStack(ModItems.SAP_BUCKET.get());
+                        ItemStack sapBucket = new ItemStack(HHModItems.SAP_BUCKET.get());
                         player.setItemInHand(hand, sapBucket);
 
                         level.setBlock(pos, state.setValue(SAP, 0), 2);

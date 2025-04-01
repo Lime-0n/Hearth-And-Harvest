@@ -9,14 +9,14 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class ModCreativeTabs
+public class HHModCreativeTabs
 {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HearthAndHarvest.MODID);
 
     public static final Supplier<CreativeModeTab> TAB_HEARTH_AND_HARVEST = CREATIVE_TABS.register(HearthAndHarvest.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.hearthandharvest"))
-                    .icon(() -> new ItemStack(ModItems.RASPBERRY.get()))
-                    .displayItems((parameters, output) -> ModItems.CREATIVE_TAB_ITEMS.forEach((item) -> output.accept(item.get())))
+                    .icon(() -> new ItemStack(HHModItems.RASPBERRY.get()))
+                    .displayItems((parameters, output) -> HHModItems.CREATIVE_TAB_ITEMS.forEach((item) -> output.accept(item.get())))
                     .build());
 }

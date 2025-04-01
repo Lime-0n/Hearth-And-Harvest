@@ -1,12 +1,11 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
-import alabaster.hearthandharvest.common.registry.ModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -105,6 +104,6 @@ public class CaskBlock extends BaseEntityBlock {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
-        return createTickerHelper(blockEntity, ModBlockEntities.CASK.get(), CaskBlockEntity::cookingTick);
+        return createTickerHelper(blockEntity, HHModBlockEntities.CASK.get(), CaskBlockEntity::cookingTick);
     }
 }

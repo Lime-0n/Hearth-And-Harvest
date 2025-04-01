@@ -1,14 +1,13 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
-import alabaster.hearthandharvest.common.registry.ModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
@@ -161,6 +160,6 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntities.JUG.get().create(pos, state);
+        return HHModBlockEntities.JUG.get().create(pos, state);
     }
 }

@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModBlocks;
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -60,7 +60,7 @@ public class GrapeVineBlock extends CropBlock
         boolean isMature = age == getMaxAge();
         if (isMature) {
             int quantity = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItems.GRAPES.get(), quantity));
+            popResource(level, pos, new ItemStack(HHModItems.GRAPES.get(), quantity));
 
             level.playSound(null, pos, ModSounds.ITEM_TOMATO_PICK_FROM_BUSH.get(), SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(getAgeProperty(), 0), 2);
@@ -129,7 +129,7 @@ public class GrapeVineBlock extends CropBlock
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.GRAPES.get();
+        return HHModItems.GRAPES.get();
     }
 
     @Override
@@ -165,7 +165,7 @@ public class GrapeVineBlock extends CropBlock
         BlockState belowState = level.getBlockState(belowPos);
 
         if (state.getValue(GrapeVineBlock.ROPELOGGED)) {
-            return belowState.is(ModBlocks.GRAPE_CROP.get()) && hasGoodCropConditions(level, pos);
+            return belowState.is(HHModBlocks.GRAPE_CROP.get()) && hasGoodCropConditions(level, pos);
         }
 
         return super.canSurvive(state, level, pos);

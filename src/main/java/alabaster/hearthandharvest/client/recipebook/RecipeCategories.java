@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.client.recipebook;
 
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
-import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.world.inventory.RecipeBookType;
@@ -17,7 +17,7 @@ public class RecipeCategories
     public static void init(RegisterRecipeBookCategoriesEvent event) {
         event.registerBookCategories(RecipeBookType.valueOf("HEARTHANDHARVEST_AGING"), ImmutableList.of(AGING_SEARCH, AGING_MEALS, AGING_DRINKS, AGING_MISC));
         event.registerAggregateCategory(AGING_SEARCH, ImmutableList.of(AGING_MEALS, AGING_DRINKS, AGING_MISC));
-        event.registerRecipeCategoryFinder(ModRecipeTypes.AGING.get(), recipe ->
+        event.registerRecipeCategoryFinder(HHModRecipeTypes.AGING.get(), recipe ->
         {
             if (recipe.value() instanceof CaskRecipe caskRecipe) {
                 CaskRecipeBookTab tab = caskRecipe.getRecipeBookTab();

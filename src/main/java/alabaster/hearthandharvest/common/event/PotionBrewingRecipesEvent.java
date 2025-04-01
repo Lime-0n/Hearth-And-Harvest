@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.common.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.ModPotions;
+import alabaster.hearthandharvest.common.registry.HHModPotions;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
@@ -17,14 +17,14 @@ public class PotionBrewingRecipesEvent {
         PotionBrewing.Builder builder = event.getBuilder();
 
         // Pungent
-        builder.addMix(Potions.AWKWARD, Items.POISONOUS_POTATO, ModPotions.PUNGENT_POTION);
-        builder.addMix(ModPotions.PUNGENT_POTION, Items.REDSTONE, ModPotions.STRONG_PUNGENT_POTION);
-        builder.addMix(ModPotions.PUNGENT_POTION, Items.GLOWSTONE_DUST, ModPotions.LONG_PUNGENT_POTION);
+        builder.addMix(Potions.AWKWARD, Items.POISONOUS_POTATO, HHModPotions.PUNGENT_POTION);
+        builder.addMix(HHModPotions.PUNGENT_POTION, Items.REDSTONE, HHModPotions.STRONG_PUNGENT_POTION);
+        builder.addMix(HHModPotions.PUNGENT_POTION, Items.GLOWSTONE_DUST, HHModPotions.LONG_PUNGENT_POTION);
 
         // Tempting
-        builder.addMix(ModPotions.PUNGENT_POTION, Items.FERMENTED_SPIDER_EYE, ModPotions.TEMPTING_POTION);
-        builder.addMix(ModPotions.TEMPTING_POTION, Items.REDSTONE, ModPotions.STRONG_TEMPTING_POTION);
-        builder.addMix(ModPotions.TEMPTING_POTION, Items.GLOWSTONE_DUST, ModPotions.LONG_TEMPTING_POTION);
+        builder.addMix(HHModPotions.PUNGENT_POTION, Items.FERMENTED_SPIDER_EYE, HHModPotions.TEMPTING_POTION);
+        builder.addMix(HHModPotions.TEMPTING_POTION, Items.REDSTONE, HHModPotions.STRONG_TEMPTING_POTION);
+        builder.addMix(HHModPotions.TEMPTING_POTION, Items.GLOWSTONE_DUST, HHModPotions.LONG_TEMPTING_POTION);
     }
 }
 

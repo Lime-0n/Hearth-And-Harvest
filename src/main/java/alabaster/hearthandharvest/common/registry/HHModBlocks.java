@@ -10,7 +10,7 @@ import vectorwing.farmersdelight.common.block.PieBlock;
 
 import java.util.function.Supplier;
 
-public class ModBlocks {
+public class HHModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, HearthAndHarvest.MODID);
 
@@ -57,6 +57,10 @@ public class ModBlocks {
     public static final Supplier<Block> GOLDEN_CARROT_CRATE = BLOCKS.register("golden_carrot_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> POISONOUS_POTATO_CRATE = BLOCKS.register("poisonous_potato_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> GLOW_BERRY_CRATE = BLOCKS.register("glow_berry_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD).lightLevel(state -> 10)));
+    public static final Supplier<Block> SWEET_BERRY_CRATE = BLOCKS.register("sweet_berry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     
     // Bags
@@ -111,24 +115,24 @@ public class ModBlocks {
 
     // Pies
     public static final Supplier<Block> RASPBERRY_PIE = BLOCKS.register("raspberry_pie",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.RASPBERRY_PIE_SLICE));
+            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), HHModItems.RASPBERRY_PIE_SLICE));
     public static final Supplier<Block> BLUEBERRY_PIE = BLOCKS.register("blueberry_pie",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.BLUEBERRY_PIE_SLICE));
+            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), HHModItems.BLUEBERRY_PIE_SLICE));
     public static final Supplier<Block> GRAPE_PIE = BLOCKS.register("grape_pie",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.GRAPE_PIE_SLICE));
+            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), HHModItems.GRAPE_PIE_SLICE));
     public static final Supplier<Block> CHICKEN_POT_PIE = BLOCKS.register("chicken_pot_pie",
-            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), ModItems.CHICKEN_POT_PIE_SLICE));
+            () -> new PieBlock(Block.Properties.ofFullCopy(Blocks.CAKE), HHModItems.CHICKEN_POT_PIE_SLICE));
     public static final Supplier<Block> CARROT_CAKE = BLOCKS.register("carrot_cake",
-            () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  ModItems.CARROT_CAKE_SLICE));
+            () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  HHModItems.CARROT_CAKE_SLICE));
 
     // Cheese
     public static final Supplier<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",
-            () -> new UnripeCheeseWheelBlock(ModBlocks.CHEDDAR_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
+            () -> new UnripeCheeseWheelBlock(HHModBlocks.CHEDDAR_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> CHEDDAR_CHEESE_WHEEL = BLOCKS.register("cheddar_cheese_wheel",
-            () -> new CheeseWheelBlock(ModItems.CHEDDAR_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
+            () -> new CheeseWheelBlock(HHModItems.CHEDDAR_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
 
     public static final Supplier<Block> UNRIPE_GOAT_CHEESE_WHEEL = BLOCKS.register("unripe_goat_cheese_wheel",
-            () -> new UnripeCheeseWheelBlock(ModBlocks.GOAT_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
+            () -> new UnripeCheeseWheelBlock(HHModBlocks.GOAT_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> GOAT_CHEESE_WHEEL = BLOCKS.register("goat_cheese_wheel",
-            () -> new CheeseWheelBlock(ModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
+            () -> new CheeseWheelBlock(HHModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
 }

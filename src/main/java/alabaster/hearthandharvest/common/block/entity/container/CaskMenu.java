@@ -2,8 +2,8 @@ package alabaster.hearthandharvest.common.block.entity.container;
 
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
-import alabaster.hearthandharvest.common.registry.ModBlocks;
-import alabaster.hearthandharvest.common.registry.ModMenuTypes;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -32,7 +32,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
     }
 
     public CaskMenu(final int windowId, final Inventory playerInventory, final CaskBlockEntity blockEntity, ContainerData caskDataIn) {
-        super(ModMenuTypes.CASK_MENU.get(), windowId);
+        super(HHModMenuTypes.CASK_MENU.get(), windowId);
         this.blockEntity = blockEntity;
         this.inventory = blockEntity.getInventory();
         this.caskData = caskDataIn;
@@ -85,7 +85,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
 
     @Override
     public boolean stillValid(Player playerIn) {
-        return stillValid(canInteractWithCallable, playerIn, ModBlocks.CASK.get());
+        return stillValid(canInteractWithCallable, playerIn, HHModBlocks.CASK.get());
     }
 
     @Override

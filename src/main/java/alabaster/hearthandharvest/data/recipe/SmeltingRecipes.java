@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -14,17 +14,17 @@ public class SmeltingRecipes
 {
 
     public static void register(RecipeOutput output) {
-        foodSmeltingRecipes("cooked_sausage", ModItems.RAW_SAUSAGE.get(), ModItems.COOKED_SAUSAGE.get(), 0.35F, output);
-        foodSmeltingRecipes("raisins", ModItems.GRAPES.get(), ModItems.RAISINS.get(), 0.35F, output);
+        foodSmeltingRecipes("cooked_sausage", HHModItems.RAW_SAUSAGE.get(), HHModItems.COOKED_SAUSAGE.get(), 0.35F, output);
+        foodSmeltingRecipes("raisins", HHModItems.GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, output);
 
         // Marshmallows have only a campfire recipe
-        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
-                        ModItems.ROASTED_MARSHMALLOW_STICK.get(), 0.35F, 200)
-                .unlockedBy("has_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MARSHMALLOW_STICK.get()))
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
+                        HHModItems.ROASTED_MARSHMALLOW_STICK.get(), 0.35F, 200)
+                .unlockedBy("has_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MARSHMALLOW_STICK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "roasted_marshmallow").toString() + "_from_campfire");
-        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ModItems.ROASTED_MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
-                        ModItems.CHARRED_MARSHMALLOW_STICK.get(), 0.35F, 200)
-                .unlockedBy("has_roasted_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ROASTED_MARSHMALLOW_STICK.get()))
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.ROASTED_MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
+                        HHModItems.CHARRED_MARSHMALLOW_STICK.get(), 0.35F, 200)
+                .unlockedBy("has_roasted_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_MARSHMALLOW_STICK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charred_marshmallow").toString() + "_from_campfire");
     }
 

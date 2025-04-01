@@ -1,9 +1,9 @@
 package alabaster.hearthandharvest.common.crafting;
 
 import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
-import alabaster.hearthandharvest.common.registry.ModItems;
-import alabaster.hearthandharvest.common.registry.ModRecipeSerializers;
-import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.registry.HHModRecipeSerializers;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -95,17 +95,17 @@ public class CaskRecipe implements Recipe<RecipeWrapper>
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ModRecipeSerializers.AGING.get();
+        return HHModRecipeSerializers.AGING.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipeTypes.AGING.get();
+        return HHModRecipeTypes.AGING.get();
     }
 
     @Override
     public ItemStack getToastSymbol() {
-        return new ItemStack(ModItems.CASK.get());
+        return new ItemStack(HHModItems.CASK.get());
     }
 
     @Override

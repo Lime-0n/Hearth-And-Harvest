@@ -34,22 +34,22 @@ public class HearthAndHarvest {
         }
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
-        ModBlocks.BLOCKS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
-        ModEffects.EFFECTS.register(modEventBus);
-        ModPotions.POTIONS.register(modEventBus);
-        ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
-        ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
-        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
-        ModMenuTypes.MENUS.register(modEventBus);
-        ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
-        ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        HHModBlocks.BLOCKS.register(modEventBus);
+        HHModItems.ITEMS.register(modEventBus);
+        HHModEffects.EFFECTS.register(modEventBus);
+        HHModPotions.POTIONS.register(modEventBus);
+        HHModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        HHModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        HHModDataComponents.DATA_COMPONENTS.register(modEventBus);
+        HHModMenuTypes.MENUS.register(modEventBus);
+        HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
     }
 
     public void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(ModMenuTypes.CASK_MENU.get(), CaskGUI::new);
+        event.register(HHModMenuTypes.CASK_MENU.get(), CaskGUI::new);
     }
 
     public void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {

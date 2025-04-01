@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,7 +25,7 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItems.BLUEBERRIES.get());
+        return new ItemStack(HHModItems.BLUEBERRIES.get());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
         boolean flag = i == 3;
         if (i > 2) {
             int j = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItems.BLUEBERRIES.get(), j + (flag ? 1 : 0)));
+            popResource(level, pos, new ItemStack(HHModItems.BLUEBERRIES.get(), j + (flag ? 1 : 0)));
             level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             BlockState blockstate = state.setValue(AGE, 1);
             level.setBlock(pos, blockstate, 2);

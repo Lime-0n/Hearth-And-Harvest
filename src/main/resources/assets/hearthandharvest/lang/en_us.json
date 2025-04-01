@@ -27,7 +27,6 @@
   "item.hearthandharvest.cotton_seeds": "Cotton Seeds",
   "item.hearthandharvest.cotton": "Cotton",
 
-
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",
   "block.hearthandharvest.raspberry_crate": "Raspberry Crate",
@@ -37,6 +36,8 @@
   "block.hearthandharvest.golden_apple_crate": "Golden Apple Crate",
   "block.hearthandharvest.golden_carrot_crate": "Golden Carrot Crate",
   "block.hearthandharvest.poisonous_potato_crate": "Poisonous Potato Crate",
+  "block.hearthandharvest.glow_berry_crate": "Glow Berry Crate",
+  "block.hearthandharvest.sweet_berry_crate": "Sweet Berry Crate",
 
   "block.hearthandharvest.salt_bag": "Salt Bag",
   "block.hearthandharvest.sugar_bag": "Sugar Bag",
@@ -69,13 +70,13 @@
   "item.hearthandharvest.universal_feed": "Animal Feed",
 
   "item.hearthandharvest.mead": "Mead",
-  "item.hearthandharvest.wine": "Wine",
   "item.hearthandharvest.red_grape_wine": "Red Grape Wine",
   "item.hearthandharvest.blueberry_wine": "Blueberry Wine",
   "item.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "item.hearthandharvest.cherry_wine": "Cherry Wine",
   "item.hearthandharvest.goat_milk_bottle": "Goat Milk Bottle",
   "farmersdelight.tooltip.goat_milk_bottle": "Clears 1 Effect",
+  "item.hearthandharvest.cherry_juice": "Cherry Juice",
   "item.hearthandharvest.raspberry_juice": "Raspberry Juice",
   "item.hearthandharvest.blueberry_juice": "Blueberry Juice",
   "item.hearthandharvest.grape_juice": "Grape Juice",
@@ -100,6 +101,7 @@
   "item.hearthandharvest.cotton_candy": "Cotton Candy",
   "item.hearthandharvest.blueberry_muffin": "Blueberry Muffin",
   "item.hearthandharvest.peanut_butter_cookie": "Peanut Butter Cookie",
+  "item.hearthandharvest.trail_mix": "Trail Mix",
 
   "item.hearthandharvest.marshmallow_stick": "Marshmallow",
   "item.hearthandharvest.roasted_marshmallow_stick": "Roasted Marshmallow",

@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.entity.goal;
 
-import alabaster.hearthandharvest.common.registry.ModEffects;
+import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -28,8 +28,8 @@ public class TemptingEffectGoal extends Goal {
 
     // Helper method to compute the effective radius based on the amplifier of the Tempting effect.
     private double getEffectiveRadius() {
-        if (attractSource != null && attractSource.hasEffect(ModEffects.TEMPTING)) {
-            int amplifier = attractSource.getEffect(ModEffects.TEMPTING).getAmplifier();
+        if (attractSource != null && attractSource.hasEffect(HHModEffects.TEMPTING)) {
+            int amplifier = attractSource.getEffect(HHModEffects.TEMPTING).getAmplifier();
             return baseRadius * (1.0 + 0.5 * amplifier);
         }
         return baseRadius;
@@ -46,7 +46,7 @@ public class TemptingEffectGoal extends Goal {
         List<LivingEntity> candidates = mob.level().getEntitiesOfClass(
                 LivingEntity.class,
                 mob.getBoundingBox().inflate(baseRadius),
-                entity -> entity != mob && entity.hasEffect(ModEffects.TEMPTING)
+                entity -> entity != mob && entity.hasEffect(HHModEffects.TEMPTING)
         );
         if (!candidates.isEmpty()) {
             // Pick the nearest one as the attract source.

@@ -1,8 +1,8 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.ModBlocks;
-import alabaster.hearthandharvest.common.tag.ModTags;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
@@ -24,12 +24,12 @@ public class BlockTags extends BlockTagsProvider {
 
     protected void registerMinecraftTags() {
         tag(net.minecraft.tags.BlockTags.CROPS).add(
-                ModBlocks.GRAPE_CROP.get(),
-                ModBlocks.BUDDING_GRAPE_CROP.get(),
-                ModBlocks.COTTON_CROP.get(),
-                ModBlocks.PEANUT_CROP.get());
+                HHModBlocks.GRAPE_CROP.get(),
+                HHModBlocks.BUDDING_GRAPE_CROP.get(),
+                HHModBlocks.COTTON_CROP.get(),
+                HHModBlocks.PEANUT_CROP.get());
 
-        tag(ModTags.TAPPABLE).add(
+        tag(HHModTags.TAPPABLE).add(
                 Blocks.SPRUCE_LOG,
                 Blocks.DARK_OAK_LOG
         );
@@ -37,37 +37,39 @@ public class BlockTags extends BlockTagsProvider {
 
     protected void registerBlockMineables() {
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).add(
-                ModBlocks.TREE_TAPPER.get(),
-                ModBlocks.CASK.get(),
-                ModBlocks.RASPBERRY_CRATE.get(),
-                ModBlocks.BLUEBERRY_CRATE.get(),
-                ModBlocks.RED_GRAPE_CRATE.get(),
-                ModBlocks.CHERRY_CRATE.get(),
-                ModBlocks.PEANUT_CRATE.get(),
-                ModBlocks.APPLE_CRATE.get(),
-                ModBlocks.GOLDEN_APPLE_CRATE.get(),
-                ModBlocks.GOLDEN_CARROT_CRATE.get(),
-                ModBlocks.POISONOUS_POTATO_CRATE.get(),
-                ModBlocks.EGG_CRATE.get(),
-                ModBlocks.TURTLE_EGG_CRATE.get(),
-                ModBlocks.MILK_CRATE.get(),
-                ModBlocks.GOAT_MILK_CRATE.get(),
-                ModBlocks.BROWN_MUSHROOM_CRATE.get(),
-                ModBlocks.RED_MUSHROOM_CRATE.get(),
-                ModBlocks.WARPED_FUNGUS_CRATE.get(),
-                ModBlocks.CRIMSON_FUNGUS_CRATE.get(),
-                ModBlocks.BLUEBERRY_WINE_CRATE.get(),
-                ModBlocks.CHERRY_WINE_CRATE.get(),
-                ModBlocks.RASPBERRY_WINE_CRATE.get(),
-                ModBlocks.RED_GRAPE_WINE_CRATE.get(),
-                ModBlocks.MEAD_CRATE.get(),
-                ModBlocks.WATER_CRATE.get(),
-                ModBlocks.HONEY_CRATE.get()
+                HHModBlocks.TREE_TAPPER.get(),
+                HHModBlocks.CASK.get(),
+                HHModBlocks.RASPBERRY_CRATE.get(),
+                HHModBlocks.BLUEBERRY_CRATE.get(),
+                HHModBlocks.RED_GRAPE_CRATE.get(),
+                HHModBlocks.CHERRY_CRATE.get(),
+                HHModBlocks.PEANUT_CRATE.get(),
+                HHModBlocks.APPLE_CRATE.get(),
+                HHModBlocks.GOLDEN_APPLE_CRATE.get(),
+                HHModBlocks.GOLDEN_CARROT_CRATE.get(),
+                HHModBlocks.POISONOUS_POTATO_CRATE.get(),
+                HHModBlocks.GLOW_BERRY_CRATE.get(),
+                HHModBlocks.SWEET_BERRY_CRATE.get(),
+                HHModBlocks.EGG_CRATE.get(),
+                HHModBlocks.TURTLE_EGG_CRATE.get(),
+                HHModBlocks.MILK_CRATE.get(),
+                HHModBlocks.GOAT_MILK_CRATE.get(),
+                HHModBlocks.BROWN_MUSHROOM_CRATE.get(),
+                HHModBlocks.RED_MUSHROOM_CRATE.get(),
+                HHModBlocks.WARPED_FUNGUS_CRATE.get(),
+                HHModBlocks.CRIMSON_FUNGUS_CRATE.get(),
+                HHModBlocks.BLUEBERRY_WINE_CRATE.get(),
+                HHModBlocks.CHERRY_WINE_CRATE.get(),
+                HHModBlocks.RASPBERRY_WINE_CRATE.get(),
+                HHModBlocks.RED_GRAPE_WINE_CRATE.get(),
+                HHModBlocks.MEAD_CRATE.get(),
+                HHModBlocks.WATER_CRATE.get(),
+                HHModBlocks.HONEY_CRATE.get()
         );
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlocks.JUG.get(),
-                ModBlocks.JAR.get()
+                HHModBlocks.JUG.get(),
+                HHModBlocks.JAR.get()
         );
     }
 }

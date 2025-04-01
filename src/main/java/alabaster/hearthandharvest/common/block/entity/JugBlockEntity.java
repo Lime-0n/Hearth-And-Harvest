@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.block.entity;
 
-import alabaster.hearthandharvest.common.registry.ModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +15,7 @@ public class JugBlockEntity extends BlockEntity {
     private final FluidTank fluidTank;
 
     public JugBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.JUG.get(), pos, state);
+        super(HHModBlockEntities.JUG.get(), pos, state);
         this.fluidTank = createFluidTank();
     }
 

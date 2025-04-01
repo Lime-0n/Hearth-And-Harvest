@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_carrot_cake_slice": {
+    "has_raisins": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:carrot_cake_slice"
+            "items": "hearthandharvest:raisins"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_carrot_cake_slice"
+      "has_raisins"
     ]
   ],
   "rewards": {

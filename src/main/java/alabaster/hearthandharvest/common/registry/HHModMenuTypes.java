@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModMenuTypes {
+public class HHModMenuTypes {
 
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, HearthAndHarvest.MODID);
     public static final DeferredHolder<MenuType<?>, MenuType<CaskMenu>> CASK_MENU = registerMenuType("cask_menu", CaskMenu::new);

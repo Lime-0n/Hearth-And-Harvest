@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,7 +27,7 @@ public class GoatMilking {
             if (!level.isClientSide) {
                 heldItem.shrink(1);
                 goat.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-                ItemStack goatMilk = new ItemStack(ModItems.GOAT_MILK_BOTTLE.get());
+                ItemStack goatMilk = new ItemStack(HHModItems.GOAT_MILK_BOTTLE.get());
                 boolean added = player.addItem(goatMilk);
                 if (!added) {
                     player.drop(goatMilk, false);

@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -30,83 +30,83 @@ public class ItemModels extends ItemModelProvider
                 .collect(Collectors.toSet());
 
         // Workstations
-        blockBasedModel(ModItems.TREE_TAPPER.get(),"");
-        items.remove(ModItems.TREE_TAPPER.get());
+        blockBasedModel(HHModItems.TREE_TAPPER.get(),"");
+        items.remove(HHModItems.TREE_TAPPER.get());
 
-        blockBasedModel(ModItems.CASK.get(),"");
-        items.remove(ModItems.CASK.get());
+        blockBasedModel(HHModItems.CASK.get(),"");
+        items.remove(HHModItems.CASK.get());
 
-        blockBasedModel(ModItems.JUG.get(),"");
-        items.remove(ModItems.JUG.get());
+        blockBasedModel(HHModItems.JUG.get(),"");
+        items.remove(HHModItems.JUG.get());
 
         // Campfire Roastables
-        items.remove(ModItems.MARSHMALLOW_STICK.get());
-        items.remove(ModItems.ROASTED_MARSHMALLOW_STICK.get());
-        items.remove(ModItems.CHARRED_MARSHMALLOW_STICK.get());
+        items.remove(HHModItems.MARSHMALLOW_STICK.get());
+        items.remove(HHModItems.ROASTED_MARSHMALLOW_STICK.get());
+        items.remove(HHModItems.CHARRED_MARSHMALLOW_STICK.get());
 
         // Slab Crates
-        blockBasedModel(ModItems.EGG_CRATE.get(), "_bottom");
-        items.remove(ModItems.EGG_CRATE.get());
+        blockBasedModel(HHModItems.EGG_CRATE.get(), "_bottom");
+        items.remove(HHModItems.EGG_CRATE.get());
 
-        blockBasedModel(ModItems.TURTLE_EGG_CRATE.get(), "_bottom");
-        items.remove(ModItems.TURTLE_EGG_CRATE.get());
+        blockBasedModel(HHModItems.TURTLE_EGG_CRATE.get(), "_bottom");
+        items.remove(HHModItems.TURTLE_EGG_CRATE.get());
 
-        blockBasedModel(ModItems.MILK_CRATE.get(), "_bottom");
-        items.remove(ModItems.MILK_CRATE.get());
+        blockBasedModel(HHModItems.MILK_CRATE.get(), "_bottom");
+        items.remove(HHModItems.MILK_CRATE.get());
 
-        blockBasedModel(ModItems.GOAT_MILK_CRATE.get(), "_bottom");
-        items.remove(ModItems.GOAT_MILK_CRATE.get());
+        blockBasedModel(HHModItems.GOAT_MILK_CRATE.get(), "_bottom");
+        items.remove(HHModItems.GOAT_MILK_CRATE.get());
 
-        blockBasedModel(ModItems.BLUEBERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(ModItems.BLUEBERRY_WINE_CRATE.get());
+        blockBasedModel(HHModItems.BLUEBERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(HHModItems.BLUEBERRY_WINE_CRATE.get());
 
-        blockBasedModel(ModItems.CHERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(ModItems.CHERRY_WINE_CRATE.get());
+        blockBasedModel(HHModItems.CHERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(HHModItems.CHERRY_WINE_CRATE.get());
 
-        blockBasedModel(ModItems.RASPBERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(ModItems.RASPBERRY_WINE_CRATE.get());
+        blockBasedModel(HHModItems.RASPBERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(HHModItems.RASPBERRY_WINE_CRATE.get());
 
-        blockBasedModel(ModItems.RED_GRAPE_WINE_CRATE.get(), "_bottom");
-        items.remove(ModItems.RED_GRAPE_WINE_CRATE.get());
+        blockBasedModel(HHModItems.RED_GRAPE_WINE_CRATE.get(), "_bottom");
+        items.remove(HHModItems.RED_GRAPE_WINE_CRATE.get());
 
-        blockBasedModel(ModItems.MEAD_CRATE.get(), "_bottom");
-        items.remove(ModItems.MEAD_CRATE.get());
+        blockBasedModel(HHModItems.MEAD_CRATE.get(), "_bottom");
+        items.remove(HHModItems.MEAD_CRATE.get());
 
-        blockBasedModel(ModItems.WATER_CRATE.get(), "_bottom");
-        items.remove(ModItems.WATER_CRATE.get());
+        blockBasedModel(HHModItems.WATER_CRATE.get(), "_bottom");
+        items.remove(HHModItems.WATER_CRATE.get());
 
-        blockBasedModel(ModItems.HONEY_CRATE.get(), "_bottom");
-        items.remove(ModItems.HONEY_CRATE.get());
+        blockBasedModel(HHModItems.HONEY_CRATE.get(), "_bottom");
+        items.remove(HHModItems.HONEY_CRATE.get());
 
-        blockBasedModel(ModItems.BROWN_MUSHROOM_CRATE.get(), "_bottom");
-        items.remove(ModItems.BROWN_MUSHROOM_CRATE.get());
+        blockBasedModel(HHModItems.BROWN_MUSHROOM_CRATE.get(), "_bottom");
+        items.remove(HHModItems.BROWN_MUSHROOM_CRATE.get());
 
-        blockBasedModel(ModItems.RED_MUSHROOM_CRATE.get(), "_bottom");
-        items.remove(ModItems.RED_MUSHROOM_CRATE.get());
+        blockBasedModel(HHModItems.RED_MUSHROOM_CRATE.get(), "_bottom");
+        items.remove(HHModItems.RED_MUSHROOM_CRATE.get());
 
-        blockBasedModel(ModItems.CRIMSON_FUNGUS_CRATE.get(), "_bottom");
-        items.remove(ModItems.CRIMSON_FUNGUS_CRATE.get());
+        blockBasedModel(HHModItems.CRIMSON_FUNGUS_CRATE.get(), "_bottom");
+        items.remove(HHModItems.CRIMSON_FUNGUS_CRATE.get());
 
-        blockBasedModel(ModItems.WARPED_FUNGUS_CRATE.get(), "_bottom");
-        items.remove(ModItems.WARPED_FUNGUS_CRATE.get());
+        blockBasedModel(HHModItems.WARPED_FUNGUS_CRATE.get(), "_bottom");
+        items.remove(HHModItems.WARPED_FUNGUS_CRATE.get());
 
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
-                ModItems.JAR.get(),
-                ModItems.RASPBERRY.get(),
-                ModItems.BLUEBERRIES.get(),
-                ModItems.GRAPES.get(),
-                ModItems.PEANUT.get(),
-                ModItems.COTTON_SEEDS.get(),
-                ModItems.RASPBERRY_PIE.get(),
-                ModItems.BLUEBERRY_PIE.get(),
-                ModItems.GRAPE_PIE.get(),
-                ModItems.CHICKEN_POT_PIE.get(),
-                ModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(),
-                ModItems.CHEDDAR_CHEESE_WHEEL.get(),
-                ModItems.UNRIPE_GOAT_CHEESE_WHEEL.get(),
-                ModItems.GOAT_CHEESE_WHEEL.get(),
-                ModItems.CARROT_CAKE.get()
+                HHModItems.JAR.get(),
+                HHModItems.RASPBERRY.get(),
+                HHModItems.BLUEBERRIES.get(),
+                HHModItems.GRAPES.get(),
+                HHModItems.PEANUT.get(),
+                HHModItems.COTTON_SEEDS.get(),
+                HHModItems.RASPBERRY_PIE.get(),
+                HHModItems.BLUEBERRY_PIE.get(),
+                HHModItems.GRAPE_PIE.get(),
+                HHModItems.CHICKEN_POT_PIE.get(),
+                HHModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(),
+                HHModItems.CHEDDAR_CHEESE_WHEEL.get(),
+                HHModItems.UNRIPE_GOAT_CHEESE_WHEEL.get(),
+                HHModItems.GOAT_CHEESE_WHEEL.get(),
+                HHModItems.CARROT_CAKE.get()
         );
         takeAll(items, spriteBlockItems.toArray(new Item[0])).forEach(item -> withExistingParent(itemName(item), GENERATED).texture("layer0", resourceItem(itemName(item))));
 
@@ -116,11 +116,11 @@ public class ItemModels extends ItemModelProvider
 
         // Handheld items
         Set<Item> handheldItems = Sets.newHashSet(
-                ModItems.FLINT_CLEAVER.get(),
-                ModItems.IRON_CLEAVER.get(),
-                ModItems.DIAMOND_CLEAVER.get(),
-                ModItems.GOLDEN_CLEAVER.get(),
-                ModItems.NETHERITE_CLEAVER.get()
+                HHModItems.FLINT_CLEAVER.get(),
+                HHModItems.IRON_CLEAVER.get(),
+                HHModItems.DIAMOND_CLEAVER.get(),
+                HHModItems.GOLDEN_CLEAVER.get(),
+                HHModItems.NETHERITE_CLEAVER.get()
         );
         takeAll(items, handheldItems.toArray(new Item[0])).forEach(item -> itemHandheldModel(item, resourceItem(itemName(item))));
 

@@ -8,7 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-public class ModTags {
+public class HHModTags {
 
     // Blocks that can produce sap
     public static final TagKey<Block> TAPPABLE = modBlockTag("tappable");

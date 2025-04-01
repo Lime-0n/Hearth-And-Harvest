@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -29,7 +29,7 @@ public class BuddingGrapeBlock extends BuddingBushBlock implements BonemealableB
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if (state.getValue(BuddingBushBlock.AGE) == 4) {
-            level.setBlock(currentPos, ModBlocks.GRAPE_CROP.get().defaultBlockState(), 3);
+            level.setBlock(currentPos, HHModBlocks.GRAPE_CROP.get().defaultBlockState(), 3);
         }
         return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
@@ -41,7 +41,7 @@ public class BuddingGrapeBlock extends BuddingBushBlock implements BonemealableB
 
     @Override
     public void growPastMaxAge(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        level.setBlockAndUpdate(pos, ModBlocks.GRAPE_CROP.get().defaultBlockState());
+        level.setBlockAndUpdate(pos, HHModBlocks.GRAPE_CROP.get().defaultBlockState());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class BuddingGrapeBlock extends BuddingBushBlock implements BonemealableB
             level.setBlockAndUpdate(pos, state.setValue(AGE, ageGrowth));
         } else {
             int remainingGrowth = ageGrowth - maxAge - 1;
-            level.setBlockAndUpdate(pos, ModBlocks.GRAPE_CROP.get().defaultBlockState().setValue(GrapeVineBlock.VINE_AGE, remainingGrowth));
+            level.setBlockAndUpdate(pos, HHModBlocks.GRAPE_CROP.get().defaultBlockState().setValue(GrapeVineBlock.VINE_AGE, remainingGrowth));
         }
     }
 }

@@ -1,36 +1,41 @@
 package alabaster.hearthandharvest.common;
 
+import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Items;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
-public class FoodValues {
+public class HHFoodValues {
 
     public static final int BRIEF_DURATION = 600;    // 30 seconds
     public static final int SHORT_DURATION = 1200;    // 1 minute
     public static final int MEDIUM_DURATION = 3600;    // 3 minutes
     public static final int LONG_DURATION = 6000;    // 5 minutes
 
-    public static final FoodProperties RASPBERRY = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.4f).build();
     public static final FoodProperties BLUEBERRIES = (new FoodProperties.Builder())
             .nutrition(1).saturationModifier(0.3f).build();
+    public static final FoodProperties CHERRY = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.5f).build();
+    public static final FoodProperties RASPBERRY = (new FoodProperties.Builder())
+            .nutrition(2).saturationModifier(0.4f).build();
     public static final FoodProperties GRAPES = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.3f).build();
+            .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties PEANUT = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.3f).build();
+            .nutrition(2).saturationModifier(0.3f).build();
 
     public static final FoodProperties MEAD = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(7).saturationModifier(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties WINE = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(7).saturationModifier(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties GOAT_MILK_BOTTLE = (new FoodProperties.Builder())
             .nutrition(2).saturationModifier(0.3f).build();
-    public static final FoodProperties RASPBERRY_JUICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties BLUEBERRY_JUICE = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.3f).build();
+    public static final FoodProperties CHERRY_JUICE = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.3f).build();
+    public static final FoodProperties RASPBERRY_JUICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();
@@ -51,15 +56,15 @@ public class FoodValues {
             .nutrition(5).saturationModifier(0.3f).build();
 
     public static final FoodProperties PICKLED_BEETROOTS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_CABBAGE = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_CARROTS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_ONIONS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_POTATOES = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
 
     public static final FoodProperties CARAMEL = (new FoodProperties.Builder())
             .nutrition(1).saturationModifier(0.3f).build();
@@ -73,6 +78,11 @@ public class FoodValues {
             .nutrition(6).saturationModifier(0.3f).build();
     public static final FoodProperties PEANUT_BUTTER_COOKIE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).fast().build();
+    public static final FoodProperties TRAIL_MIX = (new FoodProperties.Builder())
+            .nutrition(3).saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, MEDIUM_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, SHORT_DURATION, 0), 1.0F)
+            .fast().build();
 
     public static final FoodProperties MARSHMALLOW_STICK = (new FoodProperties.Builder())
             .nutrition(2).saturationModifier(0.3f).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
@@ -114,7 +124,7 @@ public class FoodValues {
             .nutrition(1).saturationModifier(0.3f).fast().build();
 
     public static final FoodProperties ONION_SOUP = (new FoodProperties.Builder())
-            .nutrition(10).saturationModifier(0.3f).build();
+            .nutrition(10).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties MACARONI_AND_CHEESE = (new FoodProperties.Builder())
             .nutrition(11).saturationModifier(0.3f).build();
     public static final FoodProperties MASHED_POTATOES = (new FoodProperties.Builder())

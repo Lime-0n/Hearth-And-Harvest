@@ -5,10 +5,8 @@ import alabaster.hearthandharvest.common.block.CaskBlock;
 import alabaster.hearthandharvest.common.block.entity.container.CaskMenu;
 import alabaster.hearthandharvest.common.block.entity.inventory.CaskItemHandler;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
-import alabaster.hearthandharvest.common.registry.ModItems;
-import alabaster.hearthandharvest.common.registry.ModRecipeTypes;
-import alabaster.hearthandharvest.common.registry.ModBlockEntities;
-import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -77,20 +75,20 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     private final RecipeManager.CachedCheck<RecipeWrapper, CaskRecipe> quickCheck;
 
     public CaskBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CASK.get(), pos, state);
+        super(HHModBlockEntities.CASK.get(), pos, state);
         this.inventory = createHandler();
         this.inputHandler = new CaskItemHandler(inventory, Direction.UP);
         this.outputHandler = new CaskItemHandler(inventory, Direction.DOWN);
         this.cookingPotData = createIntArray();
         this.usedRecipeTracker = new Object2IntOpenHashMap<>();
-        this.quickCheck = RecipeManager.createCheck(ModRecipeTypes.AGING.get());
+        this.quickCheck = RecipeManager.createCheck(HHModRecipeTypes.AGING.get());
     }
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.CASK.get(),
+                HHModBlockEntities.CASK.get(),
                 (be, context) -> {
                     if (context == Direction.UP) {
                         return be.inputHandler;

@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.ModItems;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -37,7 +37,7 @@ public class CottonBlock extends CropBlock
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.COTTON_SEEDS.get();
+        return HHModItems.COTTON_SEEDS.get();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CottonBlock extends CropBlock
         boolean isMature = age == getMaxAge();
         if (isMature) {
             int quantity = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItems.COTTON.get(), quantity));
+            popResource(level, pos, new ItemStack(HHModItems.COTTON.get(), quantity));
 
             level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(getAgeProperty(), 5), 2);

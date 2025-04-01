@@ -3,7 +3,7 @@ package alabaster.hearthandharvest.common.item;
 import java.util.List;
 import javax.annotation.Nullable;
 
-import alabaster.hearthandharvest.common.registry.ModDataComponents;
+import alabaster.hearthandharvest.common.registry.HHModDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -29,7 +29,7 @@ public class WateringCanItem extends Item {
     private static final int MAX_BONEMEAL = 16;
 
     public WateringCanItem(Properties properties) {
-        super(properties.component(ModDataComponents.WATER_LEVEL, 0).component(ModDataComponents.BONEMEAL_LEVEL, 0).stacksTo(1));
+        super(properties.component(HHModDataComponents.WATER_LEVEL, 0).component(HHModDataComponents.BONEMEAL_LEVEL, 0).stacksTo(1));
     }
 
     @Override
@@ -75,34 +75,34 @@ public class WateringCanItem extends Item {
 
     // Consume only water charge unless Infinity is applied.
     private void consumeWater(ItemStack stack) {
-        int water = stack.get(ModDataComponents.WATER_LEVEL);
-        stack.update(ModDataComponents.WATER_LEVEL, 0, oldValue -> water - 1);
+        int water = stack.get(HHModDataComponents.WATER_LEVEL);
+        stack.update(HHModDataComponents.WATER_LEVEL, 0, oldValue -> water - 1);
     }
 
     // Consume both water (if not infinite) and bone meal.
     private void consumeBoth(ItemStack stack) {
-        int water = stack.get(ModDataComponents.WATER_LEVEL);
-        int boneMeal = stack.get(ModDataComponents.BONEMEAL_LEVEL);
-        stack.update(ModDataComponents.WATER_LEVEL, 0, oldValue -> water - 1);
-        stack.update(ModDataComponents.BONEMEAL_LEVEL, 0, oldValue -> boneMeal - 1);
+        int water = stack.get(HHModDataComponents.WATER_LEVEL);
+        int boneMeal = stack.get(HHModDataComponents.BONEMEAL_LEVEL);
+        stack.update(HHModDataComponents.WATER_LEVEL, 0, oldValue -> water - 1);
+        stack.update(HHModDataComponents.BONEMEAL_LEVEL, 0, oldValue -> boneMeal - 1);
     }
 
     // Getters and setters for water charge.
     private int getWaterCharge(ItemStack stack) {
-        return stack.get(ModDataComponents.WATER_LEVEL);
+        return stack.get(HHModDataComponents.WATER_LEVEL);
     }
 
     private void setWaterCharge(ItemStack stack, int value) {
-        stack.set(ModDataComponents.WATER_LEVEL, value);
+        stack.set(HHModDataComponents.WATER_LEVEL, value);
     }
 
     // Getters and setters for bone meal charge.
     private int getBoneMealCharge(ItemStack stack) {
-        return stack.get(ModDataComponents.BONEMEAL_LEVEL);
+        return stack.get(HHModDataComponents.BONEMEAL_LEVEL);
     }
 
     private void setBoneMealCharge(ItemStack stack, int value) {
-        stack.set(ModDataComponents.BONEMEAL_LEVEL, value);
+        stack.set(HHModDataComponents.BONEMEAL_LEVEL, value);
     }
 
     // Checks if the given block state is a crop.
