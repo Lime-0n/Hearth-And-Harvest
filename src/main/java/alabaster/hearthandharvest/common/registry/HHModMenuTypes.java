@@ -5,22 +5,21 @@ import alabaster.hearthandharvest.common.block.entity.container.CaskMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
-import net.neoforged.neoforge.network.IContainerFactory;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.network.IContainerFactory;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class HHModMenuTypes {
 
-    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, HearthAndHarvest.MODID);
-    public static final DeferredHolder<MenuType<?>, MenuType<CaskMenu>> CASK_MENU = registerMenuType("cask_menu", CaskMenu::new);
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, HearthAndHarvest.MODID);
 
-    private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
-        return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
-    }
+    public static final RegistryObject<MenuType<CaskMenu>> CASK = MENU_TYPES
+            .register("cask", () -> IForgeMenuType.create(CaskMenu::new));
 
     public static void register(IEventBus eventBus) {
-        MENUS.register(eventBus);
+        MENU_TYPES.register(eventBus);
     }
 }
