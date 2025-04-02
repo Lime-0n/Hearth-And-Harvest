@@ -13,8 +13,8 @@ import java.util.Set;
 public class HHBlockLoot extends BlockLootSubProvider {
     private final Set<Block> generatedLootTables = new HashSet<>();
 
-    public HHBlockLoot(HolderLookup.Provider holder) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), holder);
+    public HHBlockLoot() {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
     @Override

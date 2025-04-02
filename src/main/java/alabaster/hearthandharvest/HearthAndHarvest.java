@@ -6,6 +6,7 @@ import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +41,6 @@ public class HearthAndHarvest {
         HHModPotions.POTIONS.register(modEventBus);
         HHModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         HHModCreativeTabs.CREATIVE_TABS.register(modEventBus);
-        HHModDataComponents.DATA_COMPONENTS.register(modEventBus);
         HHModMenuTypes.MENU_TYPES.register(modEventBus);
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
@@ -47,8 +48,8 @@ public class HearthAndHarvest {
         MinecraftForge.EVENT_BUS.register(new PigLitters());
     }
 
-    public void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(HHModMenuTypes.CASK_MENU.get(), CaskGUI::new);
+    public void registerScreens(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> MenuScreens.register(HHModMenuTypes.CASK.get(), CaskGUI::new));
     }
 
     public static final RecipeBookType RECIPE_TYPE_COOKING = RecipeBookType.create("AGING");

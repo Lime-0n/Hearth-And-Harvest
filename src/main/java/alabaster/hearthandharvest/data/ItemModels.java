@@ -145,11 +145,11 @@ public class ItemModels extends ItemModelProvider
     }
 
     public ResourceLocation resourceBlock(String path) {
-        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/" + path);
+        return new ResourceLocation(HearthAndHarvest.MODID, "block/" + path);
     }
 
     public ResourceLocation resourceItem(String path) {
-        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "item/" + path);
+        return new ResourceLocation(HearthAndHarvest.MODID, "item/" + path);
     }
 
     @SafeVarargs

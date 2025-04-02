@@ -41,22 +41,6 @@ public class CottonBlock extends CropBlock
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        int age = state.getValue(getAgeProperty());
-        boolean isMature = age == getMaxAge();
-        if (isMature) {
-            int quantity = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(HHModItems.COTTON.get(), quantity));
-
-            level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
-            level.setBlock(pos, state.setValue(getAgeProperty(), 5), 2);
-            return InteractionResult.SUCCESS;
-        } else {
-            return super.useWithoutItem(state, level, pos, player, hit);
-        }
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
     }

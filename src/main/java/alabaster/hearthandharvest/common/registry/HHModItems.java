@@ -11,7 +11,9 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
+import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.item.MilkBottleItem;
+import vectorwing.farmersdelight.common.registry.ModMaterials;
 
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
@@ -32,11 +34,6 @@ public class HHModItems {
         return (new Item.Properties());
     }
 
-    //public static Item.Properties cleaverItem(Tier tier) {
-        //return new Item.Properties().attributes(KnifeItem.createAttributes(tier, 2.0F, -3.0F));
-        //return new Item.Properties().(KnifeItem.createAttributes(tier, 2.0F, -3.0F));
-    //}
-
     public static Item.Properties foodItem(FoodProperties food) {
         return new Item.Properties().food(food);
     }
@@ -55,16 +52,16 @@ public class HHModItems {
 
 
     // Tools
-    //public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
-    //        () -> new KnifeItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
-    //public static final Supplier<Item> IRON_CLEAVER = registerWithTab("iron_cleaver",
-    //        () -> new KnifeItem(Tiers.IRON, cleaverItem(Tiers.IRON)));
-    //public static final Supplier<Item> DIAMOND_CLEAVER = registerWithTab("diamond_cleaver",
-    //        () -> new KnifeItem(Tiers.DIAMOND, cleaverItem(Tiers.DIAMOND)));
-    //public static final Supplier<Item> NETHERITE_CLEAVER = registerWithTab("netherite_cleaver",
-    //        () -> new KnifeItem(Tiers.NETHERITE, cleaverItem(Tiers.NETHERITE).fireResistant()));
-    //public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
-    //        () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
+    public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
+            () -> new KnifeItem(ModMaterials.FLINT, 2.0F, -3.0F, basicItem()));
+    public static final Supplier<Item> IRON_CLEAVER = registerWithTab("iron_cleaver",
+            () -> new KnifeItem(Tiers.IRON, 2.0F, -3.0F, basicItem()));
+    public static final Supplier<Item> DIAMOND_CLEAVER = registerWithTab("diamond_cleaver",
+            () -> new KnifeItem(Tiers.DIAMOND, 2.0F, -3.0F, basicItem()));
+    public static final Supplier<Item> NETHERITE_CLEAVER = registerWithTab("netherite_cleaver",
+            () -> new KnifeItem(Tiers.NETHERITE, 2.0F, -3.0F, basicItem().fireResistant()));
+    public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
+            () -> new KnifeItem(Tiers.GOLD, 2.0F, -3.0F, basicItem()));
 
     public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
             () -> new WateringCanItem(basicItem()));
@@ -240,11 +237,11 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.TRAIL_MIX)));
 
     public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).craftRemainder(Items.STICK).stacksTo(1)));
     public static final Supplier<Item> ROASTED_MARSHMALLOW_STICK = registerWithTab("roasted_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).craftRemainder(Items.STICK).stacksTo(1)));
     public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new MarshmallowStickItem(foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).craftRemainder(Items.STICK).stacksTo(1)));
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",

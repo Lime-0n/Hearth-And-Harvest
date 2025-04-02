@@ -17,17 +17,17 @@ public class HHModPotions {
     }
 
     // Pungent Potion
-    public static final RegistryObject<Potion> PUNGENT_POTION = POTIONS.register("pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT, 3600, 0)));
+    public static final RegistryObject<Potion> PUNGENT_POTION = POTIONS.register("pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT.get(), 3600, 0)));
     // Long Pungent Potion
-    public static final RegistryObject<Potion> LONG_PUNGENT_POTION = POTIONS.register("long_pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT, 9600, 0)));
+    public static final RegistryObject<Potion> LONG_PUNGENT_POTION = POTIONS.register("long_pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT.get(), 9600, 0)));
     // Strong Pungent Potion
-    public static final RegistryObject<Potion> STRONG_PUNGENT_POTION = POTIONS.register("strong_pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT, 1800, 1)));
+    public static final RegistryObject<Potion> STRONG_PUNGENT_POTION = POTIONS.register("strong_pungent_potion", () -> new Potion(new MobEffectInstance(HHModEffects.PUNGENT.get(), 1800, 1)));
 
     // Tempting Potion
-    public static final RegistryObject<Potion> TEMPTING_POTION = POTIONS.register("tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING, 3600, 0)));
+    public static final RegistryObject<Potion> TEMPTING_POTION = POTIONS.register("tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING.get(), 3600, 0)));
     // Long Tempting Potion
-    public static final RegistryObject<Potion> LONG_TEMPTING_POTION = POTIONS.register("long_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING, 9600, 0)));
+    public static final RegistryObject<Potion> LONG_TEMPTING_POTION = POTIONS.register("long_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING.get(), 9600, 0)));
     // Strong Tempting Potion
-    public static final RegistryObject<Potion> STRONG_TEMPTING_POTION = POTIONS.register("strong_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING, 1800, 1)));
+    public static final RegistryObject<Potion> STRONG_TEMPTING_POTION = POTIONS.register("strong_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING.get(), 1800, 1)));
 
 }

@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Items;
 import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class HHFoodValues {
@@ -15,122 +14,122 @@ public class HHFoodValues {
     public static final int LONG_DURATION = 6000;    // 5 minutes
 
     public static final FoodProperties BLUEBERRIES = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.3f).build();
+            .nutrition(1).saturationMod(0.3f).build();
     public static final FoodProperties CHERRY = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.5f).build();
+            .nutrition(3).saturationMod(0.5f).build();
     public static final FoodProperties RASPBERRY = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.4f).build();
+            .nutrition(2).saturationMod(0.4f).build();
     public static final FoodProperties GRAPES = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties PEANUT = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).build();
+            .nutrition(2).saturationMod(0.3f).build();
 
     public static final FoodProperties MEAD = (new FoodProperties.Builder())
-            .nutrition(7).saturationModifier(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+            .nutrition(7).saturationMod(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties WINE = (new FoodProperties.Builder())
-            .nutrition(7).saturationModifier(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+            .nutrition(7).saturationMod(0.5f).effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties GOAT_MILK_BOTTLE = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).build();
+            .nutrition(2).saturationMod(0.3f).build();
     public static final FoodProperties BLUEBERRY_JUICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties CHERRY_JUICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties RASPBERRY_JUICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
 
     public static final FoodProperties RASPBERRY_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties BLUEBERRY_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties GRAPE_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties APPLE_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties SWEET_BERRY_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties GLOW_BERRY_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties MELON_JAM = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
 
     public static final FoodProperties PICKLED_BEETROOTS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(5).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_CABBAGE = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(5).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_CARROTS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(5).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_ONIONS = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(5).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties PICKLED_POTATOES = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(5).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
 
     public static final FoodProperties CARAMEL = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.3f).build();
+            .nutrition(1).saturationMod(0.3f).build();
     public static final FoodProperties CARAMEL_APPLE = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(4).saturationMod(0.3f).build();
     public static final FoodProperties CHOCOLATE_BAR = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties COTTON_CANDY = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).build();
+            .nutrition(2).saturationMod(0.3f).build();
     public static final FoodProperties BLUEBERRY_MUFFIN = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.3f).build();
+            .nutrition(6).saturationMod(0.3f).build();
     public static final FoodProperties PEANUT_BUTTER_COOKIE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).fast().build();
+            .nutrition(3).saturationMod(0.3f).fast().build();
     public static final FoodProperties TRAIL_MIX = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f)
+            .nutrition(3).saturationMod(0.3f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, MEDIUM_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, SHORT_DURATION, 0), 1.0F)
             .fast().build();
 
     public static final FoodProperties MARSHMALLOW_STICK = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+            .nutrition(2).saturationMod(0.3f).alwaysEat().fast().build();
     public static final FoodProperties ROASTED_MARSHMALLOW_STICK = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.6f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, SHORT_DURATION, 0), 1.0F).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+            .nutrition(4).saturationMod(0.6f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), SHORT_DURATION, 0), 1.0F).alwaysEat().fast().build();
     public static final FoodProperties CHARRED_MARSHMALLOW_STICK = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.1f)
-            .effect(() -> new MobEffectInstance(MobEffects.POISON, 200, 0), 1.0F).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+            .nutrition(1).saturationMod(0.1f)
+            .effect(() -> new MobEffectInstance(MobEffects.POISON, 200, 0), 1.0F).alwaysEat().fast().build();
 
     public static final FoodProperties RASPBERRY_PIE_SLICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties BLUEBERRY_PIE_SLICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties GRAPE_PIE_SLICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties CHICKEN_POT_PIE_SLICE = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties CARROT_CAKE_SLICE = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(4).saturationMod(0.3f).build();
 
     public static final FoodProperties PEANUT_BUTTER = (new FoodProperties.Builder())
-            .nutrition(5).saturationModifier(0.3f).build();
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties CHEDDAR_CHEESE_SLICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties GOAT_CHEESE_SLICE = (new FoodProperties.Builder())
-            .nutrition(3).saturationModifier(0.3f).build();
+            .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties RAW_SAUSAGE = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).build();
+            .nutrition(2).saturationMod(0.3f).build();
     public static final FoodProperties COOKED_SAUSAGE = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(4).saturationMod(0.3f).build();
     public static final FoodProperties SKEWERED_SAUSAGE = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.3f).build();
+            .nutrition(6).saturationMod(0.3f).build();
     public static final FoodProperties JERKY = (new FoodProperties.Builder())
-            .nutrition(4).saturationModifier(0.3f).build();
+            .nutrition(4).saturationMod(0.3f).build();
     public static final FoodProperties RAISINS = (new FoodProperties.Builder())
-            .nutrition(2).saturationModifier(0.3f).fast().build();
+            .nutrition(2).saturationMod(0.3f).fast().build();
     public static final FoodProperties SUNFLOWER_SEEDS = (new FoodProperties.Builder())
-            .nutrition(1).saturationModifier(0.3f).fast().build();
+            .nutrition(1).saturationMod(0.3f).fast().build();
 
     public static final FoodProperties ONION_SOUP = (new FoodProperties.Builder())
-            .nutrition(10).saturationModifier(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
+            .nutrition(10).saturationMod(0.3f).effect(() -> new MobEffectInstance(HHModEffects.PUNGENT.get(), MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties MACARONI_AND_CHEESE = (new FoodProperties.Builder())
-            .nutrition(11).saturationModifier(0.3f).build();
+            .nutrition(11).saturationMod(0.3f).build();
     public static final FoodProperties MASHED_POTATOES = (new FoodProperties.Builder())
-            .nutrition(8).saturationModifier(0.3f).build();
+            .nutrition(8).saturationMod(0.3f).build();
     public static final FoodProperties PEANUT_BUTTER_AND_JELLY_SANDWICH = (new FoodProperties.Builder())
-            .nutrition(8).saturationModifier(0.3f).build();
+            .nutrition(8).saturationMod(0.3f).build();
     public static final FoodProperties WAFFLE = (new FoodProperties.Builder())
-            .nutrition(6).saturationModifier(0.3f).build();
+            .nutrition(6).saturationMod(0.3f).build();
 }

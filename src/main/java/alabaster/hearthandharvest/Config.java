@@ -1,19 +1,19 @@
 package alabaster.hearthandharvest;
 
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
-    public static ModConfigSpec COMMON_CONFIG;
-    private static final Map<String, ModConfigSpec.BooleanValue> ITEMS = new HashMap<>();
+    public static ForgeConfigSpec COMMON_CONFIG;
+    private static final Map<String, ForgeConfigSpec.BooleanValue> ITEMS = new HashMap<>();
 
-    public static ModConfigSpec.BooleanValue WANDERING_TRADER_CROPS;
+    public static ForgeConfigSpec.BooleanValue WANDERING_TRADER_CROPS;
 
     public Config() {
 
@@ -24,7 +24,7 @@ public class Config {
     }
 
     static {
-        ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 
         WANDERING_TRADER_CROPS = COMMON_BUILDER.comment("Should the Wandering Trader sell the mods crops?")
                 .define("wanderingTraderCrops", true);
@@ -32,7 +32,7 @@ public class Config {
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
 
-    private static void put(ModConfigSpec.Builder builder, String name) {
+    private static void put(ForgeConfigSpec.Builder builder, String name) {
         ITEMS.put(name, builder.define(name, true));
     }
 

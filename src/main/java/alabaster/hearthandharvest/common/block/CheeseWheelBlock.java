@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -61,9 +61,10 @@ public class CheeseWheelBlock extends Block {
     }
 
     @Override
-    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         int servings = state.getValue(SERVINGS);
-        if (stack.is(ModTags.KNIVES)) {
+        ItemStack heldStack = player.getItemInHand(handIn);
+        if (heldStack.is(ModTags.KNIVES)) {
             level.playSound(null, pos, SoundEvents.WOOL_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
             popResource(level, pos, new ItemStack(cheeseWedgeType.get(), 1));
             if (servings > 0) {
@@ -71,9 +72,9 @@ public class CheeseWheelBlock extends Block {
             } else if (servings == 0) {
                 level.destroyBlock(pos, false);
             }
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
     @Override

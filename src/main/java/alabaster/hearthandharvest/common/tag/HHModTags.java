@@ -17,12 +17,12 @@ public class HHModTags {
     public static final TagKey<Item> CHEESE_SLICES = modItemTag("cheese_slices");
 
     private static TagKey<Block> modBlockTag(String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
+        return BlockTags.create(new ResourceLocation(HearthAndHarvest.MODID, path));
     }
 
 
     private static TagKey<Item> modItemTag(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
+        return ItemTags.create(new ResourceLocation(HearthAndHarvest.MODID, path));
     }
 
 }

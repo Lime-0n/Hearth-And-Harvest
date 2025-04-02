@@ -5,7 +5,7 @@ import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.world.inventory.RecipeBookType;
-import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
+import net.minecraftforge.client.event.RegisterRecipeBookCategoriesEvent;
 
 public class RecipeCategories
 {
@@ -19,7 +19,7 @@ public class RecipeCategories
         event.registerAggregateCategory(AGING_SEARCH, ImmutableList.of(AGING_MEALS, AGING_DRINKS, AGING_MISC));
         event.registerRecipeCategoryFinder(HHModRecipeTypes.AGING.get(), recipe ->
         {
-            if (recipe.value() instanceof CaskRecipe caskRecipe) {
+            if (recipe instanceof CaskRecipe caskRecipe) {
                 CaskRecipeBookTab tab = caskRecipe.getRecipeBookTab();
                 if (tab != null) {
                     return switch (tab) {

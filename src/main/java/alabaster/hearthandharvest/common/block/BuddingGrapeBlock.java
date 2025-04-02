@@ -45,7 +45,7 @@ public class BuddingGrapeBlock extends BuddingBushBlock implements BonemealableB
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 

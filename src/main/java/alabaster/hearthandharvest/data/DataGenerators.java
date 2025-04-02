@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.data;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.data.loot.HHBlockLoot;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -15,13 +16,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(
-        modid = "hearthandharvest",
-        bus = Mod.EventBusSubscriber.Bus.MOD
-)
-public class DataGenerators {
-    public DataGenerators() {
-    }
+@SuppressWarnings("unused")
+@Mod.EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class DataGenerators
+{
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
@@ -36,7 +34,7 @@ public class DataGenerators {
         //generator.addProvider(event.includeServer(), new Advancements(output, lookupProvider, helper));
         generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(), List.of(
                 new LootTableProvider.SubProviderEntry(HHBlockLoot::new, LootContextParamSets.BLOCK)
-        ), lookupProvider));
+        )));
         BlockStates blockStates = new BlockStates(output, helper);
         generator.addProvider(event.includeClient(), blockStates);
         generator.addProvider(event.includeClient(), new ItemModels(output, blockStates.models().existingFileHelper));

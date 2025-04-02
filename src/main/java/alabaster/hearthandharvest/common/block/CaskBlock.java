@@ -2,16 +2,12 @@ package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -34,8 +30,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class CaskBlock extends BaseEntityBlock {
-    public static final MapCodec<CaskBlock> CODEC = simpleCodec(CaskBlock::new);
-
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
@@ -47,35 +41,29 @@ public class CaskBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof CaskBlockEntity cookingPotEntity) {
-                Containers.dropContents(level, pos, cookingPotEntity.getDroppableInventory());
-                cookingPotEntity.getUsedRecipesAndPopExperience(level, Vec3.atCenterOf(pos));
+            if (tileEntity instanceof CaskBlockEntity caskBlockEntity) {
+                Containers.dropContents(level, pos, caskBlockEntity.getDroppableInventory());
+                caskBlockEntity.getUsedRecipesAndPopExperience(level, Vec3.atCenterOf(pos));
                 level.updateNeighbourForOutputSignal(pos, this);
             }
-
             super.onRemove(state, level, pos, newState, isMoving);
         }
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level pLevel, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pos);
-            if(entity instanceof CaskBlockEntity caskBlockEntity) {
-                (player).openMenu(new SimpleMenuProvider(caskBlockEntity, Component.literal("Cask")), pos);
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!level.isClientSide()) {
+            BlockEntity entity = level.getBlockEntity(pos);
+            if (entity instanceof CaskBlockEntity caskBlockEntity) {
+                player.openMenu(caskBlockEntity);
             } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+                throw new IllegalStateException("CaskBlockEntity is missing!");
             }
         }
-        return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
+        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 
     @Override
@@ -84,11 +72,13 @@ public class CaskBlock extends BaseEntityBlock {
                 .setValue(FACING, context.getHorizontalDirection());
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
-    public RenderShape getRenderShape(BlockState pState) {
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
@@ -98,12 +88,15 @@ public class CaskBlock extends BaseEntityBlock {
     }
 
     @Nullable
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CaskBlockEntity(blockPos, blockState);
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new CaskBlockEntity(pos, state);
     }
 
     @Nullable
+    @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
-        return createTickerHelper(blockEntity, HHModBlockEntities.CASK.get(), CaskBlockEntity::cookingTick);
+        return createTickerHelper(blockEntity, HHModBlockEntities.CASK.get(), CaskBlockEntity::tick);
     }
 }
+

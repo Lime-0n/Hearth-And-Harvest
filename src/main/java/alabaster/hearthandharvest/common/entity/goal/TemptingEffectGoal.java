@@ -28,8 +28,8 @@ public class TemptingEffectGoal extends Goal {
 
     // Helper method to compute the effective radius based on the amplifier of the Tempting effect.
     private double getEffectiveRadius() {
-        if (attractSource != null && attractSource.hasEffect(HHModEffects.TEMPTING)) {
-            int amplifier = attractSource.getEffect(HHModEffects.TEMPTING).getAmplifier();
+        if (attractSource != null && attractSource.hasEffect(HHModEffects.TEMPTING.get())) {
+            int amplifier = attractSource.getEffect(HHModEffects.TEMPTING.get()).getAmplifier();
             return baseRadius * (1.0 + 0.5 * amplifier);
         }
         return baseRadius;
@@ -46,7 +46,7 @@ public class TemptingEffectGoal extends Goal {
         List<LivingEntity> candidates = mob.level().getEntitiesOfClass(
                 LivingEntity.class,
                 mob.getBoundingBox().inflate(baseRadius),
-                entity -> entity != mob && entity.hasEffect(HHModEffects.TEMPTING)
+                entity -> entity != mob && entity.hasEffect(HHModEffects.TEMPTING.get())
         );
         if (!candidates.isEmpty()) {
             // Pick the nearest one as the attract source.

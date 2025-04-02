@@ -23,12 +23,10 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
         super(properties);
     }
 
-    @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         return new ItemStack(HHModItems.BLUEBERRIES.get());
     }
 
-    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         int i = state.getValue(AGE);
         boolean flag = i == 3;
@@ -45,7 +43,7 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
         }
     }
 
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75F, 0.8F));
         }

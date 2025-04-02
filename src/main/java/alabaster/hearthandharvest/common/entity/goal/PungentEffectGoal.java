@@ -26,8 +26,8 @@ public class PungentEffectGoal extends Goal {
 
     // Computes the effective radius using the amplifier of the Pungent effect.
     private double getEffectiveRadius() {
-        if (pungentSource != null && pungentSource.hasEffect(HHModEffects.PUNGENT)) {
-            int amplifier = pungentSource.getEffect(HHModEffects.PUNGENT).getAmplifier();
+        if (pungentSource != null && pungentSource.hasEffect(HHModEffects.PUNGENT.get())) {
+            int amplifier = pungentSource.getEffect(HHModEffects.PUNGENT.get()).getAmplifier();
             return baseRadius * (1.0 + 0.5 * amplifier);
         }
         return baseRadius;
@@ -39,7 +39,7 @@ public class PungentEffectGoal extends Goal {
         List<LivingEntity> candidates = mob.level().getEntitiesOfClass(
                 LivingEntity.class,
                 mob.getBoundingBox().inflate(baseRadius),
-                entity -> entity != mob && entity.hasEffect(HHModEffects.PUNGENT)
+                entity -> entity != mob && entity.hasEffect(HHModEffects.PUNGENT.get())
         );
         if (!candidates.isEmpty()) {
             // Pick the nearest one.

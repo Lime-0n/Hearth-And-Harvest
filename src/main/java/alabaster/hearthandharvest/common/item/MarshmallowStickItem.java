@@ -1,6 +1,5 @@
 package alabaster.hearthandharvest.common.item;
 
-import alabaster.hearthandharvest.common.registry.HHModDataComponents;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;

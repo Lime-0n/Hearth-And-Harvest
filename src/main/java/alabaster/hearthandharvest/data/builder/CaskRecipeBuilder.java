@@ -2,45 +2,42 @@ package alabaster.hearthandharvest.data.builder;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
-import alabaster.hearthandharvest.common.crafting.CaskRecipe;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.Criterion;
+import alabaster.hearthandharvest.common.registry.HHModRecipeSerializers;
+import com.google.common.collect.Lists;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.function.Consumer;
 
-public class CaskRecipeBuilder implements RecipeBuilder
+public class CaskRecipeBuilder
 {
     private CaskRecipeBookTab tab;
-    private final NonNullList<Ingredient> ingredients = NonNullList.create();
+    private final List<Ingredient> ingredients = Lists.newArrayList();
     private final Item result;
-    private final ItemStack resultStack;
+    private final int count;
     private final int agingTime;
     private final float experience;
-    private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+    private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public CaskRecipeBuilder(ItemLike result, int count, int agingTime, float experience) {
-        this(new ItemStack(result, count), agingTime, experience);
-    }
-
-    public CaskRecipeBuilder(ItemStack resultIn, int agingTime, float experience) {
-        this.result = resultIn.getItem();
-        this.resultStack = resultIn;
+    public CaskRecipeBuilder(ItemLike resultIn, int count, int agingTime, float experience) {
+        this.result = resultIn.asItem();
+        this.count = count;
         this.agingTime = agingTime;
         this.experience = experience;
         this.tab = null;
@@ -76,24 +73,17 @@ public class CaskRecipeBuilder implements RecipeBuilder
         return this;
     }
 
-    @Override
-    public RecipeBuilder group(@org.jetbrains.annotations.Nullable String p_176495_) {
-        return this;
-    }
-
     public CaskRecipeBuilder setRecipeBookTab(CaskRecipeBookTab tab) {
         this.tab = tab;
         return this;
     }
 
-    @Override
     public Item getResult() {
         return this.result;
     }
 
-    @Override
-    public CaskRecipeBuilder unlockedBy(String criterionName, Criterion<?> criterionTrigger) {
-        this.criteria.put(criterionName, criterionTrigger);
+    public CaskRecipeBuilder unlockedBy(String criterionName, CriterionTriggerInstance criterionTrigger) {
+        advancement.addCriterion(criterionName, criterionTrigger);
         return this;
     }
 
@@ -102,39 +92,110 @@ public class CaskRecipeBuilder implements RecipeBuilder
     }
 
     public CaskRecipeBuilder unlockedByAnyIngredient(ItemLike... items) {
-        this.criteria.put("has_any_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items).build()));
+        advancement.addCriterion("has_any_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items).build()));
         return this;
     }
 
-    public void build(RecipeOutput output) {
-        ResourceLocation location = BuiltInRegistries.ITEM.getKey(result);
-        save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, location.getPath()));
+    public void build(Consumer<FinishedRecipe> consumerIn) {
+        ResourceLocation location = ForgeRegistries.ITEMS.getKey(result);
+        build(consumerIn, HearthAndHarvest.MODID + ":aging/" + location.getPath());
     }
 
-    public void build(RecipeOutput outputIn, String save) {
-        ResourceLocation resourcelocation = BuiltInRegistries.ITEM.getKey(result);
-        if ((ResourceLocation.parse(save)).equals(resourcelocation)) {
+    public void build(Consumer<FinishedRecipe> consumerIn, String save) {
+        ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(result);
+        if ((new ResourceLocation(save)).equals(resourcelocation)) {
             throw new IllegalStateException("Aging Recipe " + save + " should remove its 'save' argument");
         } else {
-            save(outputIn, ResourceLocation.parse(save));
+            build(consumerIn, new ResourceLocation(save));
         }
     }
 
-    @Override
-    public void save(RecipeOutput output, ResourceLocation id) {
-        ResourceLocation recipeId = id.withPrefix("aging/");
-        Advancement.Builder advancementBuilder = output.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeId))
-                .rewards(AdvancementRewards.Builder.recipe(recipeId))
-                .requirements(AdvancementRequirements.Strategy.OR);
-        this.criteria.forEach(advancementBuilder::addCriterion);
-        CaskRecipe recipe = new CaskRecipe(
-                this.tab,
-                this.ingredients,
-                this.resultStack,
-                this.experience,
-                this.agingTime
-        );
-        output.accept(recipeId, recipe, advancementBuilder.build(id.withPrefix("recipes/aging/")));
+    public void build(Consumer<FinishedRecipe> consumerIn, ResourceLocation id) {
+        if (!advancement.getCriteria().isEmpty()) {
+            advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
+                    .rewards(AdvancementRewards.Builder.recipe(id))
+                    .requirements(RequirementsStrategy.OR);
+            ResourceLocation advancementId = new ResourceLocation(id.getNamespace(), "recipes/" + id.getPath());
+            consumerIn.accept(new CaskRecipeBuilder.Result(id, result, count, ingredients, agingTime, experience, tab, advancement, advancementId));
+        } else {
+            consumerIn.accept(new CaskRecipeBuilder.Result(id, result, count, ingredients, agingTime, experience, tab));
+        }
+    }
+
+    public static class Result implements FinishedRecipe
+    {
+        private final ResourceLocation id;
+        private final CaskRecipeBookTab tab;
+        private final List<Ingredient> ingredients;
+        private final Item result;
+        private final int count;
+        private final int agingTime;
+        private final float experience;
+        private final Advancement.Builder advancement;
+        private final ResourceLocation advancementId;
+
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int agingTimeIn, float experienceIn, @Nullable CaskRecipeBookTab tabIn, @Nullable Advancement.Builder advancement, @Nullable ResourceLocation advancementId) {
+            this.id = idIn;
+            this.tab = tabIn;
+            this.ingredients = ingredientsIn;
+            this.result = resultIn;
+            this.count = countIn;
+            this.agingTime = agingTimeIn;
+            this.experience = experienceIn;
+            this.advancement = advancement;
+            this.advancementId = advancementId;
+        }
+
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int cookingTimeIn, float experienceIn, @Nullable CaskRecipeBookTab tabIn) {
+            this(idIn, resultIn, countIn, ingredientsIn, cookingTimeIn, experienceIn, tabIn, null, null);
+        }
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            if (tab != null) {
+                json.addProperty("recipe_book_tab", tab.toString());
+            }
+
+            JsonArray arrayIngredients = new JsonArray();
+
+            for (Ingredient ingredient : ingredients) {
+                arrayIngredients.add(ingredient.toJson());
+            }
+            json.add("ingredients", arrayIngredients);
+
+            JsonObject objectResult = new JsonObject();
+            objectResult.addProperty("item", ForgeRegistries.ITEMS.getKey(result).toString());
+            if (count > 1) {
+                objectResult.addProperty("count", count);
+            }
+            json.add("result", objectResult);
+
+            if (experience > 0) {
+                json.addProperty("experience", experience);
+            }
+            json.addProperty("cookingtime", agingTime);
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return id;
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            return HHModRecipeSerializers.AGING.get();
+        }
+
+        @Nullable
+        @Override
+        public JsonObject serializeAdvancement() {
+            return advancement != null ? advancement.serializeToJson() : null;
+        }
+
+        @Nullable
+        @Override
+        public ResourceLocation getAdvancementId() {
+            return advancementId;
+        }
     }
 }

@@ -6,7 +6,6 @@ import alabaster.hearthandharvest.common.utilities.HHTextUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
@@ -20,9 +19,9 @@ import javax.annotation.Nonnull;
 import java.awt.*;
 
 public class CaskGUI extends AbstractContainerScreen<CaskMenu> implements RecipeUpdateListener {
-    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/gui/cask_gui.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(HearthAndHarvest.MODID, "textures/gui/cask_gui.png");
 
-    private static final WidgetSprites RECIPE_BUTTON = new WidgetSprites(ResourceLocation.withDefaultNamespace("recipe_book/button"), ResourceLocation.withDefaultNamespace("recipe_book/button"));
+    private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
 
     private static final Rectangle PROGRESS_ARROW = new Rectangle(81, 29, 0, 18);
 
@@ -47,11 +46,11 @@ public class CaskGUI extends AbstractContainerScreen<CaskMenu> implements Recipe
         this.titleLabelX = 28;
         this.recipeBookComponent.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.menu);
         this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-        this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - 49, 20, 18, RECIPE_BUTTON, (button) ->
+        this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_LOCATION, (button) ->
         {
             this.recipeBookComponent.toggleVisibility();
             this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-            button.setPosition(this.leftPos + 5, this.height / 2 - 49);
+            (button).setPosition(this.leftPos + 5, this.height / 2 - 49);
         }));
         this.addWidget(this.recipeBookComponent);
         this.setInitialFocus(this.recipeBookComponent);
@@ -111,7 +110,7 @@ public class CaskGUI extends AbstractContainerScreen<CaskMenu> implements Recipe
         @Override
     public void render(GuiGraphics gui, final int mouseX, final int mouseY, float partialTicks) {
         if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-            this.renderBackground(gui, mouseX, mouseY, partialTicks);
+            this.renderBackground(gui);
             this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
         } else {
             super.render(gui, mouseX, mouseY, partialTicks);

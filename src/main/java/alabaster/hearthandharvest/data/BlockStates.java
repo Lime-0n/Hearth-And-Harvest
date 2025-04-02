@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -12,10 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
 import javax.annotation.Nullable;
@@ -32,11 +32,11 @@ public class BlockStates extends BlockStateProvider
     }
 
     private String blockName(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block).getPath();
+        return ForgeRegistries.BLOCKS.getKey(block).getPath();
     }
 
     public ResourceLocation resourceBlock(String path) {
-        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/" + path);
+        return new ResourceLocation(HearthAndHarvest.MODID, "block/" + path);
     }
 
     public ModelFile existingModel(Block block) {
@@ -179,5 +179,4 @@ public class BlockStates extends BlockStateProvider
                         }
                 );
     }
-
 }

@@ -3,7 +3,6 @@ package alabaster.hearthandharvest.common.item;
 import java.util.List;
 import javax.annotation.Nullable;
 
-import alabaster.hearthandharvest.common.registry.HHModDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

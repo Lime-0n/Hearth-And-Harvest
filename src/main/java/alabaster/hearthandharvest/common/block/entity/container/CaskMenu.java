@@ -10,16 +10,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import java.util.Objects;
 
-public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
+public class CaskMenu extends RecipeBookMenu<RecipeWrapper> {
 
     public final CaskBlockEntity blockEntity;
     public final ItemStackHandler inventory;
@@ -32,7 +32,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
     }
 
     public CaskMenu(final int windowId, final Inventory playerInventory, final CaskBlockEntity blockEntity, ContainerData caskDataIn) {
-        super(HHModMenuTypes.CASK_MENU.get(), windowId);
+        super(HHModMenuTypes.CASK.get(), windowId);
         this.blockEntity = blockEntity;
         this.inventory = blockEntity.getInventory();
         this.caskData = caskDataIn;
@@ -162,8 +162,8 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
     }
 
     @Override
-    public boolean recipeMatches(RecipeHolder<CaskRecipe> recipe) {
-        return recipe.value().matches(new RecipeWrapper(inventory), level);
+    public boolean recipeMatches(Recipe<? super RecipeWrapper> recipe) {
+        return recipe.matches(new RecipeWrapper(inventory), level);
     }
 
     @Override

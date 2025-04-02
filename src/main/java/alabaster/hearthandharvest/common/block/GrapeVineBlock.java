@@ -12,7 +12,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -29,8 +28,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.CommonHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 import vectorwing.farmersdelight.common.Configuration;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
@@ -48,25 +48,20 @@ public class GrapeVineBlock extends CropBlock
         registerDefaultState(stateDefinition.any().setValue(getAgeProperty(), 0).setValue(ROPELOGGED, false));
     }
 
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        int age = state.getValue(getAgeProperty());
-        boolean isMature = age == getMaxAge();
-        return !isMature && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
-    }
-
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int age = state.getValue(getAgeProperty());
         boolean isMature = age == getMaxAge();
-        if (isMature) {
+        if (!isMature && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
+            return InteractionResult.PASS;
+        } else if (isMature) {
             int quantity = 1 + level.random.nextInt(2);
             popResource(level, pos, new ItemStack(HHModItems.GRAPES.get(), quantity));
-
             level.playSound(null, pos, ModSounds.ITEM_TOMATO_PICK_FROM_BUSH.get(), SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(getAgeProperty(), 0), 2);
             return InteractionResult.SUCCESS;
         } else {
-            return super.useWithoutItem(state, level, pos, player, hit);
+            return super.use(state, level, pos, player, hand, hit);
         }
     }
 
@@ -80,10 +75,10 @@ public class GrapeVineBlock extends CropBlock
         if (level.getRawBrightness(pos, 0) >= 9) {
             int age = this.getAge(state);
             if (age < this.getMaxAge()) {
-                float speed = getGrowthSpeed(state, level, pos);
-                if (CommonHooks.canCropGrow(level, pos, state, random.nextInt((int) (25.0F / speed) + 1) == 0)) {
+                float speed = getGrowthSpeed(this, level, pos);
+                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt((int) (25.0F / speed) + 1) == 0)) {
                     level.setBlock(pos, state.setValue(getAgeProperty(), age + 1), 2);
-                    CommonHooks.fireCropGrowPost(level, pos, state);
+                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
                 }
             }
             attemptRopeClimb(level, pos, random);
@@ -195,8 +190,9 @@ public class GrapeVineBlock extends CropBlock
     }
 
     public static void destroyAndPlaceRope(Level level, BlockPos pos) {
-        Block configuredRopeBlock = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(Configuration.DEFAULT_TOMATO_VINE_ROPE.get()));
-        Block finalRopeBlock = configuredRopeBlock != null ? configuredRopeBlock : vectorwing.farmersdelight.common.registry.ModBlocks.ROPE.get();
+        Block configuredRopeBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Configuration.DEFAULT_TOMATO_VINE_ROPE.get()));
+        Block finalRopeBlock = configuredRopeBlock != null ? configuredRopeBlock : ModBlocks.ROPE.get();
+
         level.setBlockAndUpdate(pos, finalRopeBlock.defaultBlockState());
     }
 

@@ -7,7 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -132,18 +132,23 @@ public class TreeTapperBlock extends Block {
                 }
         }
 
-        public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-
+        public InteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
                 int sapLevel = state.getValue(SAP);
 
-                if (sapLevel == 4 && player.getItemInHand(hand).getItem() == Items.BUCKET) {
+                if (sapLevel == 4 && player.getItemInHand(hand).is(Items.BUCKET)) {
+                        if (!player.getAbilities().instabuild) { // Check if player is in creative mode
+                                player.getItemInHand(hand).shrink(1); // Remove the empty bucket
+                        }
+
                         ItemStack sapBucket = new ItemStack(HHModItems.SAP_BUCKET.get());
-                        player.setItemInHand(hand, sapBucket);
+                        player.addItem(sapBucket); // Give the player the sap bucket
 
                         level.setBlock(pos, state.setValue(SAP, 0), 2);
 
+                        return InteractionResult.SUCCESS;
                 }
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+                return InteractionResult.PASS;
         }
 
         @Override

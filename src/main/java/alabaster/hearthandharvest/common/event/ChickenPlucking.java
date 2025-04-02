@@ -7,11 +7,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class ChickenPlucking {
 
     @SubscribeEvent
@@ -29,7 +29,7 @@ public class ChickenPlucking {
 
             // If using shears, do not damage the chicken, but damage the shears
             if (heldItem.is(Items.SHEARS)) {
-                heldItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                heldItem.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
                 chicken.hurt(chicken.damageSources().playerAttack(player), 0.0F);
             } else {
                 // 25% chance to do 1/2 heart (1 damage) to the chicken
