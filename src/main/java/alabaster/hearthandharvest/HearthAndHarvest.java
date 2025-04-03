@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.client.ClientSetup;
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
+import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import com.google.gson.Gson;
@@ -55,6 +56,7 @@ public class HearthAndHarvest {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new PigLitters());
+        MinecraftForge.EVENT_BUS.register(new RabbitLitters());
     }
 
     @SubscribeEvent
