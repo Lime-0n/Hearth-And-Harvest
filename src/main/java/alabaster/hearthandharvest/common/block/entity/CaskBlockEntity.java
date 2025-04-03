@@ -131,7 +131,7 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         return compound;
     }
 
-    public static void cookingTick(Level level, BlockPos pos, BlockState state, CaskBlockEntity caskBlock) {
+    public static void tick(Level level, BlockPos pos, BlockState state, CaskBlockEntity caskBlock) {
         boolean didInventoryChange = false;
 
         if (caskBlock.hasInput()) {

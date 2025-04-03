@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.nbt.CompoundTag;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MarshmallowStickItem extends Item {
     private static final int MAX_COOK_TIME = 10;
 
     public MarshmallowStickItem(Properties properties) {
-        super(properties.component(HHModDataComponents.COOK_TIME.get(), 0));
+        super(properties);
     }
 
     @Override
@@ -27,28 +28,27 @@ public class MarshmallowStickItem extends Item {
         if (!level.isClientSide && entity instanceof Player player) {
             if (isPlayerNearHeatSource(player, level)) {
                 if (level.getGameTime() % 20 == 0) {
-                    int cookTime = stack.get(HHModDataComponents.COOK_TIME.get());
+                    CompoundTag tag = stack.getOrCreateTag();
+                    int cookTime = tag.getInt("CookTime");
+
                     if (cookTime < MAX_COOK_TIME) {
-                        cookTime++;
-                        int finalCookTime = cookTime;
-                        stack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> finalCookTime);
+                        tag.putInt("CookTime", ++cookTime);
                     }
 
                     if (stack.getItem() == HHModItems.MARSHMALLOW_STICK.get() && cookTime >= 5) {
-                        ItemStack newStack = HHModItems.ROASTED_MARSHMALLOW_STICK.get().getDefaultInstance();
-                        int finalCookTime1 = cookTime;
-                        newStack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> finalCookTime1);
-                        replaceItemInHand(player, stack, newStack);
-                    }
-                    else if (stack.getItem() == HHModItems.ROASTED_MARSHMALLOW_STICK.get() && cookTime >= MAX_COOK_TIME) {
-                        ItemStack newStack = HHModItems.CHARRED_MARSHMALLOW_STICK.get().getDefaultInstance();
-                        int finalCookTime2 = cookTime;
-                        newStack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> finalCookTime2);
-                        replaceItemInHand(player, stack, newStack);
+                        replaceItemInHand(player, stack, createCookedItem(HHModItems.ROASTED_MARSHMALLOW_STICK.get(), cookTime));
+                    } else if (stack.getItem() == HHModItems.ROASTED_MARSHMALLOW_STICK.get() && cookTime >= MAX_COOK_TIME) {
+                        replaceItemInHand(player, stack, createCookedItem(HHModItems.CHARRED_MARSHMALLOW_STICK.get(), cookTime));
                     }
                 }
             }
         }
+    }
+
+    private ItemStack createCookedItem(Item cookedItem, int cookTime) {
+        ItemStack newStack = new ItemStack(cookedItem);
+        newStack.getOrCreateTag().putInt("CookTime", cookTime);
+        return newStack;
     }
 
     private void replaceItemInHand(Player player, ItemStack oldStack, ItemStack newStack) {
@@ -78,7 +78,7 @@ public class MarshmallowStickItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (stack.getItem() == HHModItems.MARSHMALLOW_STICK.get()) {
             tooltipComponents.add(Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY));
         }
@@ -88,6 +88,6 @@ public class MarshmallowStickItem extends Item {
         if (stack.getItem() == HHModItems.CHARRED_MARSHMALLOW_STICK.get()) {
             tooltipComponents.add(Component.literal("Oh, it's burnt...").withStyle(ChatFormatting.DARK_GRAY));
         }
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        super.appendHoverText(stack, level, tooltipComponents, tooltipFlag);
     }
 }

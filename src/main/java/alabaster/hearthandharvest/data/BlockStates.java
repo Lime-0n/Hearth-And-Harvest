@@ -6,12 +6,13 @@ import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -23,8 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-public class BlockStates extends BlockStateProvider
-{
+public class BlockStates extends BlockStateProvider {
     private static final int DEFAULT_ANGLE_OFFSET = 180;
 
     public BlockStates(PackOutput output, ExistingFileHelper existingFileHelper) {

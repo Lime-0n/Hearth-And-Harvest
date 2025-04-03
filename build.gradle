@@ -48,7 +48,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                crabbersdelight {
+                hearthandharvest {
                     source sourceSets.main
                 }
             }
@@ -64,7 +64,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                crabbersdelight {
+                hearthandharvest {
                     source sourceSets.main
                 }
             }

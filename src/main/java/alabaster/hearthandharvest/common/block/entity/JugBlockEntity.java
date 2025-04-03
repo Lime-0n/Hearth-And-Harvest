@@ -2,7 +2,6 @@ package alabaster.hearthandharvest.common.block.entity;
 
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,25 +23,17 @@ public class JugBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.loadAdditional(compound, provider);
-        fluidTank.readFromNBT(provider, compound);
+    public void load(CompoundTag compound) {
+        super.load(compound);
+        fluidTank.readFromNBT(compound.getCompound("FluidTank"));
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
+    protected void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
         CompoundTag tankTag = new CompoundTag();
-        fluidTank.writeToNBT(provider, tankTag);
+        fluidTank.writeToNBT(tankTag);
         compound.put("FluidTank", tankTag);
-    }
-
-    private CompoundTag writeUpdateTag(CompoundTag compound, HolderLookup.Provider provider) {
-        super.saveAdditional(compound, provider);
-        CompoundTag tankTag = new CompoundTag();
-        fluidTank.writeToNBT(provider, tankTag);
-        compound.put("FluidTank", tankTag);
-        return compound;
     }
 
     public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
@@ -64,7 +55,9 @@ public class JugBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
-        return writeUpdateTag(new CompoundTag(), provider);
+    public CompoundTag getUpdateTag() {
+        CompoundTag compound = new CompoundTag();
+        saveAdditional(compound);
+        return compound;
     }
 }

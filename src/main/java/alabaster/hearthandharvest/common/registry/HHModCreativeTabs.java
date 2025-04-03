@@ -6,14 +6,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
+import net.minecraftforge.registries.RegistryObject;
 
 public class HHModCreativeTabs
 {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HearthAndHarvest.MODID);
 
-    public static final Supplier<CreativeModeTab> TAB_HEARTH_AND_HARVEST = CREATIVE_TABS.register(HearthAndHarvest.MODID,
+    public static final RegistryObject<CreativeModeTab> TAB_HEARTH_AND_HARVEST = CREATIVE_TABS.register(HearthAndHarvest.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.hearthandharvest"))
                     .icon(() -> new ItemStack(HHModItems.RASPBERRY.get()))
