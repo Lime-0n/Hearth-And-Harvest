@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:sugar"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " #",
+    "S "
+  ],
+  "result": {
+    "item": "hearthandharvest:marshmallow_stick"
+  },
+  "show_notification": true
+}

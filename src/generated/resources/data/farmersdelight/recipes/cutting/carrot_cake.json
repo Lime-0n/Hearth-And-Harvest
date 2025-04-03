@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:carrot_cake"
+    }
+  ],
+  "result": [
+    {
+      "count": 7,
+      "item": "hearthandharvest:carrot_cake_slice"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}

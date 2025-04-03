@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    }
+  ],
+  "result": [
+    {
+      "count": 3,
+      "item": "hearthandharvest:raw_sausage"
+    }
+  ],
+  "tool": {
+    "tag": "hearthandharvest:cleavers"
+  }
+}

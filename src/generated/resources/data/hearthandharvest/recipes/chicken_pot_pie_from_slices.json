@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "grape_pie",
+  "key": {
+    "#": {
+      "item": "hearthandharvest:chicken_pot_pie_slice"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "hearthandharvest:chicken_pot_pie"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hearthandharvest:raisins"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "raisins": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hearthandharvest:grapes"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "raisins",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hearthandharvest:raisins"
+    ]
+  },
+  "sends_telemetry_event": false
+}

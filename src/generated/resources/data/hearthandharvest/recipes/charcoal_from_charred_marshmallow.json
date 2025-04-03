@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:charred_marshmallow_stick"
+    }
+  ],
+  "result": {
+    "item": "minecraft:charcoal"
+  }
+}

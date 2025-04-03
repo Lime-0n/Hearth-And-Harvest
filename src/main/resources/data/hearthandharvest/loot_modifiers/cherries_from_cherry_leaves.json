@@ -2,19 +2,12 @@
   "type": "farmersdelight:add_item",
   "conditions": [
     {
-      "condition": "minecraft:match_tool",
-      "predicate": {
-        "tag": "minecraft:shears",
-        "inverted": true
-      }
-    },
-    {
-      "condition": "minecraft:match_block",
-      "block": "minecraft:cherry_leaves"
-    },
-    {
       "condition": "minecraft:random_chance",
-      "chance": 0.005
+      "chance": 0.01
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:cherry_leaves"
     }
   ],
   "item": "hearthandharvest:cherry"

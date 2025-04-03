@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:goat_cheese_wheel"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "hearthandharvest:goat_cheese_slice"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}

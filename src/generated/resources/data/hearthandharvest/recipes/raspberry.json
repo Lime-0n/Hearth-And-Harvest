@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:raspberry_crate"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "hearthandharvest:raspberry"
+  }
+}

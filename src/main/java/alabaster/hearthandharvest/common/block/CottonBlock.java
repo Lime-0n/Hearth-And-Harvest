@@ -1,19 +1,13 @@
 package alabaster.hearthandharvest.common.block;
 
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -33,6 +27,11 @@ public class CottonBlock extends CropBlock
 
     public CottonBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public BlockState getPlant(BlockGetter world, BlockPos pos) {
+        return HHModBlocks.COTTON_CROP.get().defaultBlockState();
     }
 
     @Override

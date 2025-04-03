@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[46,)"
+license="MIT License"
+
+[[mods]]
+modId = "hearthandharvest"
+version = "1.0.1"
+displayName = "Hearth and Harvest"
+logoFile="logo.png"
+authors="AlabasterLeking"
+description='''A homesteading addon for Farmer's Delight!'''
+
+[[dependencies.hearthandharvest]]
+modId="forge"
+mandatory=true
+versionRange="[47.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.hearthandharvest]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.hearthandharvest]]
+modId = "farmersdelight"
+mandatory = true
+versionRange = "[1.2.3,)"
+ordering = "NONE"
+side = "BOTH"

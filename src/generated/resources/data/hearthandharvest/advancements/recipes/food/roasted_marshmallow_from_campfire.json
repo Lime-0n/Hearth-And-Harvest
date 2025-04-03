@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_marshmallow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hearthandharvest:marshmallow_stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hearthandharvest:roasted_marshmallow_from_campfire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_marshmallow",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hearthandharvest:roasted_marshmallow_from_campfire"
+    ]
+  },
+  "sends_telemetry_event": false
+}

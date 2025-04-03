@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:blueberry_pie"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "hearthandharvest:blueberry_pie_slice"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}

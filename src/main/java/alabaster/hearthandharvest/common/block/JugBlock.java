@@ -88,11 +88,12 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         return super.getDrops(state, builder);
     }
 
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        if (level.getBlockEntity(pos) instanceof JugBlockEntity tile) {
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
+        if (blockGetter.getBlockEntity(blockPos) instanceof JugBlockEntity tile) {
             return saveTileToItem(tile);
         }
-        return super.getCloneItemStack(level, pos, state);
+        return super.getCloneItemStack(blockGetter, blockPos, blockState);
     }
 
     public static ItemStack saveTileToItem(BlockEntity tile) {

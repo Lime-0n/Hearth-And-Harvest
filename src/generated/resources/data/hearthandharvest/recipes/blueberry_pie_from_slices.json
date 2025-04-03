@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "blueberry_pie",
+  "key": {
+    "#": {
+      "item": "hearthandharvest:blueberry_pie_slice"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "hearthandharvest:blueberry_pie"
+  },
+  "show_notification": true
+}

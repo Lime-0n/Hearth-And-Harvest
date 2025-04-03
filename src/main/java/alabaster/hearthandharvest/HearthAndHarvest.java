@@ -51,6 +51,7 @@ public class HearthAndHarvest {
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 
+
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new PigLitters());
     }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "hearthandharvest:cotton"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#C#",
+    " S "
+  ],
+  "result": {
+    "item": "hearthandharvest:cotton_candy"
+  },
+  "show_notification": true
+}
