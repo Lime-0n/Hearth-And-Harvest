@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.block.entity.container;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
@@ -188,9 +189,8 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper> {
 
     @Override
     public RecipeBookType getRecipeBookType() {
-        return RecipeBookType.valueOf("HEARTHANDHARVEST_AGING");
+        return HearthAndHarvest.RECIPE_TYPE_AGING;
     }
-
     @Override
     public boolean shouldMoveToInventory(int slot) {
         return slot < (getGridWidth() * getGridHeight());

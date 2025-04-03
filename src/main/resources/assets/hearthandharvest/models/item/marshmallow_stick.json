@@ -3,7 +3,7 @@
   "textures": {
     "particle": "hearthandharvest:item/marshmallow_stick"
   },
-  "loader": "neoforge:separate_transforms",
+  "loader": "forge:separate_transforms",
   "base": {
     "parent": "hearthandharvest:item/3d_marshmallow"
   },

@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest;
 
+import alabaster.hearthandharvest.client.ClientSetup;
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
@@ -30,13 +31,13 @@ public class HearthAndHarvest {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    public static final RecipeBookType RECIPE_TYPE_COOKING = RecipeBookType.create("AGING");
+    public static final RecipeBookType RECIPE_TYPE_AGING = RecipeBookType.create("AGING");
 
     public HearthAndHarvest() {
     final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         if (FMLEnvironment.dist.isClient()) {
-            modEventBus.addListener(this::registerScreens);
+            modEventBus.addListener(ClientSetup::init);
         }
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
@@ -54,10 +55,6 @@ public class HearthAndHarvest {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new PigLitters());
-    }
-
-    public void registerScreens(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> MenuScreens.register(HHModMenuTypes.CASK.get(), CaskGUI::new));
     }
 
     @SubscribeEvent
