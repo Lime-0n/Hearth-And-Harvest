@@ -170,10 +170,10 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GREEN_GRAPE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
-                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
-                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .addIngredient(HHModItems.GREEN_GRAPES.get())
+                .addIngredient(HHModItems.GREEN_GRAPES.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByItems("has_green_grapes", HHModItems.GREEN_GRAPE_JUICE.get())
+                .unlockedByItems("has_green_grapes", HHModItems.GREEN_GRAPES.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(output);
 

@@ -19,6 +19,7 @@ public class AgingRecipes {
         ageCheese(output);
         ageDrinks(output);
         agePickles(output);
+        ageMisc(output);
     }
 
     private static void ageCheese(RecipeOutput output) {
@@ -122,6 +123,17 @@ public class AgingRecipes {
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(HHModItems.JAR.get())
                 .unlockedByAnyIngredient(Items.BEETROOT)
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output);
+    }
+
+    private static void ageMisc(RecipeOutput output) {
+        CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .unlockedByAnyIngredient(Items.ROTTEN_FLESH)
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output);
     }

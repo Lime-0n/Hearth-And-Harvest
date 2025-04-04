@@ -21,16 +21,21 @@
 
   "item.hearthandharvest.raspberry": "Raspberry",
   "item.hearthandharvest.blueberries": "Blueberries",
-  "item.hearthandharvest.grapes": "Grapes",
+  "item.hearthandharvest.red_grapes": "Red Grapes",
+  "item.hearthandharvest.green_grapes": "Green Grapes",
   "item.hearthandharvest.cherry": "Cherry",
   "item.hearthandharvest.peanut": "Peanut",
   "item.hearthandharvest.cotton_seeds": "Cotton Seeds",
   "item.hearthandharvest.cotton": "Cotton",
 
+  "block.hearthandharvest.wild_red_grapes": "Wild Red Grapes",
+  "block.hearthandharvest.wild_green_grapes": "Wild Green Grapes",
+
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",
   "block.hearthandharvest.raspberry_crate": "Raspberry Crate",
   "block.hearthandharvest.red_grape_crate": "Red Grape Crate",
+  "block.hearthandharvest.green_grape_crate": "Green Grape Crate",
   "block.hearthandharvest.peanut_crate": "Peanut Crate",
   "block.hearthandharvest.apple_crate": "Apple Crate",
   "block.hearthandharvest.golden_apple_crate": "Golden Apple Crate",
@@ -56,6 +61,7 @@
   "block.hearthandharvest.cherry_wine_crate": "Cherry Wine Crate",
   "block.hearthandharvest.raspberry_wine_crate": "Raspberry Wine Crate",
   "block.hearthandharvest.red_grape_wine_crate": "Red Grape Wine Crate",
+  "block.hearthandharvest.green_grape_wine_crate": "Green Grape Wine Crate",
   "block.hearthandharvest.mead_crate": "Mead Crate",
   "block.hearthandharvest.water_crate": "Water Bottle Crate",
   "block.hearthandharvest.honey_crate": "Honey Bottle Crate",
@@ -71,6 +77,7 @@
 
   "item.hearthandharvest.mead": "Mead",
   "item.hearthandharvest.red_grape_wine": "Red Grape Wine",
+  "item.hearthandharvest.green_grape_wine": "Green Grape Wine",
   "item.hearthandharvest.blueberry_wine": "Blueberry Wine",
   "item.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "item.hearthandharvest.cherry_wine": "Cherry Wine",
@@ -79,7 +86,8 @@
   "item.hearthandharvest.cherry_juice": "Cherry Juice",
   "item.hearthandharvest.raspberry_juice": "Raspberry Juice",
   "item.hearthandharvest.blueberry_juice": "Blueberry Juice",
-  "item.hearthandharvest.grape_juice": "Grape Juice",
+  "item.hearthandharvest.red_grape_juice": "Red Grape Juice",
+  "item.hearthandharvest.green_grape_juice": "Green Grape Juice",
 
   "item.hearthandharvest.raspberry_jam": "Raspberry Jam",
   "item.hearthandharvest.blueberry_jam": "Blueberry Jam",
