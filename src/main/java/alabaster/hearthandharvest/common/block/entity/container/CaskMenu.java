@@ -156,7 +156,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
 
     @Override
     public void clearCraftingContent() {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 4; i++) {
             this.inventory.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
@@ -168,7 +168,7 @@ public class CaskMenu extends RecipeBookMenu<RecipeWrapper, CaskRecipe> {
 
     @Override
     public int getResultSlotIndex() {
-        return 6;
+        return 4;
     }
 
     @Override

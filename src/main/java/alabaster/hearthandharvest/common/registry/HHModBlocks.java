@@ -3,10 +3,12 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.PieBlock;
+import vectorwing.farmersdelight.common.block.WildCropBlock;
 
 import java.util.function.Supplier;
 
@@ -24,15 +26,25 @@ public class HHModBlocks {
     public static final Supplier<Block> JAR = BLOCKS.register("jar",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
 
+    // Wild Crops
+    public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+    public static final Supplier<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
     // Crops
     public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
             () -> new RaspberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
     public static final Supplier<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush",
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
-    public static final Supplier<Block> BUDDING_GRAPE_CROP = BLOCKS.register("budding_grapes",
-            () -> new BuddingGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
-    public static final Supplier<Block> GRAPE_CROP = BLOCKS.register("grapes",
-            () -> new GrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
+            () -> new BuddingRedGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
+            () -> new RedGrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
+            () -> new BuddingGreenGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
+            () -> new GreenGrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final Supplier<Block> COTTON_CROP = BLOCKS.register("cotton",
@@ -45,6 +57,8 @@ public class HHModBlocks {
     public static final Supplier<Block> CHERRY_CRATE = BLOCKS.register("cherry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> RED_GRAPE_CRATE = BLOCKS.register("red_grape_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> GREEN_GRAPE_CRATE = BLOCKS.register("green_grape_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -91,6 +105,8 @@ public class HHModBlocks {
     public static final Supplier<Block> GOAT_MILK_CRATE = BLOCKS.register("goat_milk_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> RED_GRAPE_WINE_CRATE = BLOCKS.register("red_grape_wine_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> GREEN_GRAPE_WINE_CRATE = BLOCKS.register("green_grape_wine_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> RASPBERRY_WINE_CRATE = BLOCKS.register("raspberry_wine_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

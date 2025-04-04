@@ -58,9 +58,15 @@ public class AgingRecipes {
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.RED_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.GRAPE_JUICE.get())
+                .addIngredient(HHModItems.RED_GRAPE_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RED_GRAPE_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+        CaskRecipeBuilder.caskRecipe(HHModItems.GREEN_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
+                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 

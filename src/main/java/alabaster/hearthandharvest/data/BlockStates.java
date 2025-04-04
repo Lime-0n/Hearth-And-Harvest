@@ -53,6 +53,7 @@ public class BlockStates extends BlockStateProvider
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
         this.crateBlock(HHModBlocks.RASPBERRY_CRATE.get(), "raspberry");
         this.crateBlock(HHModBlocks.RED_GRAPE_CRATE.get(), "red_grape");
+        this.crateBlock(HHModBlocks.GREEN_GRAPE_CRATE.get(), "green_grape");
         this.crateBlock(HHModBlocks.PEANUT_CRATE.get(), "peanut");
 
         this.crateBlock(HHModBlocks.APPLE_CRATE.get(), "apple");
@@ -64,7 +65,8 @@ public class BlockStates extends BlockStateProvider
 
         this.customStageBlock(HHModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
         this.customStageBlock(HHModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(HHModBlocks.BUDDING_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(HHModBlocks.BUDDING_RED_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingRedGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
+        this.customStageBlock(HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingRedGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
         this.customStageBlock(HHModBlocks.PEANUT_CROP.get(), mcLoc("crop"), "crop", PeanutBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
         this.customStageBlock(HHModBlocks.COTTON_CROP.get(), resourceBlock("crop_cross"), "cross", CottonBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
 
@@ -81,6 +83,9 @@ public class BlockStates extends BlockStateProvider
         this.bagBlock(HHModBlocks.SUGAR_BAG.get(), "sugar");
         this.bagBlock(HHModBlocks.COCOA_BEAN_BAG.get(), "cocoa_bean");
         this.bagBlock(HHModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
+
+        this.wildCropBlock(HHModBlocks.WILD_RED_GRAPES.get());
+        this.wildCropBlock(HHModBlocks.WILD_GREEN_GRAPES.get());
 
     }
 

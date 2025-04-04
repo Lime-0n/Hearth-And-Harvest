@@ -89,14 +89,22 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.CHERRY)));
     public static final Supplier<Item> RASPBERRY = registerWithTab("raspberry",
             () -> new ItemNameBlockItem(HHModBlocks.RASPBERRY_BUSH.get(), foodItem(HHFoodValues.RASPBERRY)));
-    public static final Supplier<Item> GRAPES = registerWithTab("grapes",
-            () -> new ItemNameBlockItem(HHModBlocks.BUDDING_GRAPE_CROP.get(), foodItem(HHFoodValues.GRAPES)));
+    public static final Supplier<Item> RED_GRAPES = registerWithTab("red_grapes",
+            () -> new ItemNameBlockItem(HHModBlocks.BUDDING_RED_GRAPE_CROP.get(), foodItem(HHFoodValues.GRAPES)));
+    public static final Supplier<Item> GREEN_GRAPES = registerWithTab("green_grapes",
+            () -> new ItemNameBlockItem(HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(), foodItem(HHFoodValues.GRAPES)));
     public static final Supplier<Item> PEANUT = registerWithTab("peanut",
             () -> new ItemNameBlockItem(HHModBlocks.PEANUT_CROP.get(), foodItem(HHFoodValues.PEANUT)));
     public static final Supplier<Item> COTTON_SEEDS = registerWithTab("cotton_seeds",
             () -> new ItemNameBlockItem(HHModBlocks.COTTON_CROP.get(), basicItem()));
     public static final Supplier<Item> COTTON = registerWithTab("cotton",
             () -> new Item(basicItem()));
+
+    // Wild Crops
+    public static final Supplier<Item> WILD_RED_GRAPES = registerWithTab("wild_red_grapes",
+            () -> new BlockItem(HHModBlocks.WILD_RED_GRAPES.get(), basicItem()));
+    public static final Supplier<Item> WILD_GREEN_GRAPES = registerWithTab("wild_green_grapes",
+            () -> new BlockItem(HHModBlocks.WILD_GREEN_GRAPES.get(), basicItem()));
     
     // Storage Blocks
 
@@ -109,6 +117,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.RASPBERRY_CRATE.get(), basicItem()));
     public static final Supplier<Item> RED_GRAPE_CRATE = registerWithTab("red_grape_crate",
             () -> new BlockItem(HHModBlocks.RED_GRAPE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> GREEN_GRAPE_CRATE = registerWithTab("green_grape_crate",
+            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_CRATE.get(), basicItem()));
     public static final Supplier<Item> PEANUT_CRATE = registerWithTab("peanut_crate",
             () -> new BlockItem(HHModBlocks.PEANUT_CRATE.get(), basicItem()));
     public static final Supplier<Item> APPLE_CRATE = registerWithTab("apple_crate",
@@ -153,6 +163,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
     public static final Supplier<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
             () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> GREEN_GRAPE_WINE_CRATE = registerWithTab("green_grape_wine_crate",
+            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
             () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> BLUEBERRY_WINE_CRATE = registerWithTab("blueberry_wine_crate",
@@ -185,6 +197,8 @@ public class HHModItems {
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
     public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+    public static final Supplier<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
@@ -193,7 +207,9 @@ public class HHModItems {
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.CHERRY_JUICE), false, false));
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), false, false));
-    public static final Supplier<Item> GRAPE_JUICE = registerWithTab("grape_juice",
+    public static final Supplier<Item> RED_GRAPE_JUICE = registerWithTab("red_grape_juice",
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+    public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
 
     // Jams

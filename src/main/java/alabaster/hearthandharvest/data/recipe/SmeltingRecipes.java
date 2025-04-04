@@ -15,7 +15,7 @@ public class SmeltingRecipes
 
     public static void register(RecipeOutput output) {
         foodSmeltingRecipes("cooked_sausage", HHModItems.RAW_SAUSAGE.get(), HHModItems.COOKED_SAUSAGE.get(), 0.35F, output);
-        foodSmeltingRecipes("raisins", HHModItems.GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, output);
+        foodSmeltingRecipes("raisins", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, output);
 
         // Marshmallows have only a campfire recipe
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,

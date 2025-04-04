@@ -8,6 +8,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import vectorwing.farmersdelight.common.tag.ModTags;
+
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,13 +21,16 @@ public class BlockTags extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.registerMinecraftTags();
+        this.registerFDTags();
         this.registerBlockMineables();
     }
 
     protected void registerMinecraftTags() {
         tag(net.minecraft.tags.BlockTags.CROPS).add(
-                HHModBlocks.GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_GRAPE_CROP.get(),
+                HHModBlocks.RED_GRAPE_CROP.get(),
+                HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
+                HHModBlocks.GREEN_GRAPE_CROP.get(),
+                HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get());
 
@@ -33,6 +38,13 @@ public class BlockTags extends BlockTagsProvider {
                 Blocks.SPRUCE_LOG,
                 Blocks.DARK_OAK_LOG
         );
+    }
+
+    protected void registerFDTags() {
+        tag(ModTags.WILD_CROPS).add(
+                HHModBlocks.WILD_RED_GRAPES.get(),
+                HHModBlocks.WILD_GREEN_GRAPES.get()
+                );
     }
 
     protected void registerBlockMineables() {

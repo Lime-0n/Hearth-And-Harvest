@@ -1,22 +1,32 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "carrot_cake",
   "ingredients": [
     {
-      "item": "hearthandharvest:peanut"
+      "item": "hearthandharvest:carrot_cake_slice"
     },
     {
-      "item": "hearthandharvest:raisins"
+      "item": "hearthandharvest:carrot_cake_slice"
     },
     {
-      "item": "minecraft:cocoa_beans"
+      "item": "hearthandharvest:carrot_cake_slice"
     },
     {
-      "tag": "c:seeds"
+      "item": "hearthandharvest:carrot_cake_slice"
+    },
+    {
+      "item": "hearthandharvest:carrot_cake_slice"
+    },
+    {
+      "item": "hearthandharvest:carrot_cake_slice"
+    },
+    {
+      "item": "hearthandharvest:carrot_cake_slice"
     }
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:trail_mix"
+    "id": "hearthandharvest:carrot_cake"
   }
 }

@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
+import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import net.minecraft.world.entity.Mob;
@@ -44,8 +45,10 @@ public class HearthAndHarvest {
         HHModMenuTypes.MENUS.register(modEventBus);
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
+        NeoForge.EVENT_BUS.register(new RabbitLitters());
     }
 
     public void registerScreens(RegisterMenuScreensEvent event) {
