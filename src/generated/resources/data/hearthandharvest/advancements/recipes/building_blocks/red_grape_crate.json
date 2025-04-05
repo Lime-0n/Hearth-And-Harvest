@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_grape": {
+    "has_red_grape": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:grapes"
+              "hearthandharvest:red_grapes"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_grape",
+      "has_red_grape",
       "has_the_recipe"
     ]
   ],

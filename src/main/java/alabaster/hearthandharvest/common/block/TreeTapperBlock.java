@@ -132,7 +132,7 @@ public class TreeTapperBlock extends Block {
                 }
         }
 
-        public InteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
                 int sapLevel = state.getValue(SAP);
 
                 if (sapLevel == 4 && player.getItemInHand(hand).is(Items.BUCKET)) {
@@ -148,7 +148,7 @@ public class TreeTapperBlock extends Block {
                         return InteractionResult.SUCCESS;
                 }
 
-                return InteractionResult.PASS;
+                return InteractionResult.SUCCESS;
         }
 
         @Override

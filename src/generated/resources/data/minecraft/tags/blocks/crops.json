@@ -1,7 +1,9 @@
 {
   "values": [
-    "hearthandharvest:grapes",
-    "hearthandharvest:budding_grapes",
+    "hearthandharvest:red_grapes",
+    "hearthandharvest:budding_red_grapes",
+    "hearthandharvest:green_grapes",
+    "hearthandharvest:budding_green_grapes",
     "hearthandharvest:cotton",
     "hearthandharvest:peanuts"
   ]

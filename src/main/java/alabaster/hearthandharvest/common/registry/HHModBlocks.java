@@ -3,11 +3,13 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.block.PieBlock;
+import vectorwing.farmersdelight.common.block.WildCropBlock;
 
 public class HHModBlocks {
 
@@ -28,14 +30,24 @@ public class HHModBlocks {
             () -> new RaspberryBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH)));
     public static final RegistryObject<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush",
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH)));
-    public static final RegistryObject<Block> BUDDING_GRAPE_CROP = BLOCKS.register("budding_grapes",
-            () -> new BuddingGrapeBlock(Block.Properties.copy(Blocks.WHEAT)));
-    public static final RegistryObject<Block> GRAPE_CROP = BLOCKS.register("grapes",
-            () -> new GrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
+            () -> new BuddingRedGrapeBlock(Block.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
+            () -> new RedGrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
+            () -> new BuddingRedGrapeBlock(Block.Properties.copy(Blocks.WHEAT)));
+    public static final RegistryObject<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
+            () -> new RedGrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton",
             () -> new CottonBlock(Block.Properties.copy(Blocks.WHEAT)));
+
+    // Wild Crops
+    public static final RegistryObject<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
+    public static final RegistryObject<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
 
     // Crates
 
@@ -44,6 +56,8 @@ public class HHModBlocks {
     public static final RegistryObject<Block> CHERRY_CRATE = BLOCKS.register("cherry_crate",
             () -> new Block(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> RED_GRAPE_CRATE = BLOCKS.register("red_grape_crate",
+            () -> new Block(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> GREEN_GRAPE_CRATE = BLOCKS.register("green_grape_crate",
             () -> new Block(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
             () -> new Block(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -90,6 +104,8 @@ public class HHModBlocks {
     public static final RegistryObject<Block> GOAT_MILK_CRATE = BLOCKS.register("goat_milk_crate",
             () -> new SlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> RED_GRAPE_WINE_CRATE = BLOCKS.register("red_grape_wine_crate",
+            () -> new SlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> GREEN_GRAPE_WINE_CRATE = BLOCKS.register("green_grape_wine_crate",
             () -> new SlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> RASPBERRY_WINE_CRATE = BLOCKS.register("raspberry_wine_crate",
             () -> new SlabBlock(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

@@ -2,8 +2,13 @@ package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
@@ -20,6 +25,8 @@ public class CookingRecipes
     public static final float SMALL_EXP = 0.35F;
     public static final float MEDIUM_EXP = 1.0F;
     public static final float LARGE_EXP = 2.0F;
+
+    public static final Ingredient WATER_BOTTLE = Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER));
 
     public static void register(Consumer<FinishedRecipe> consumer) {
         jarFoods(consumer);
@@ -48,13 +55,13 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GRAPE_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
-                .addIngredient(HHModItems.GRAPES.get())
-                .addIngredient(HHModItems.GRAPES.get())
+                .addIngredient(HHModItems.RED_GRAPES.get())
+                .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(HHModItems.BLUEBERRIES.get())
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
-                .unlockedByItems("has_grapes", HHModItems.GRAPES.get())
+                .unlockedByItems("has_red_grapes", HHModItems.RED_GRAPES.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.APPLE_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
@@ -156,14 +163,22 @@ public class CookingRecipes
                 .unlockedByItems("has_raspberry", HHModItems.RASPBERRY.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
-        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GRAPE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
-                .addIngredient(HHModItems.GRAPES.get())
-                .addIngredient(HHModItems.GRAPES.get())
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.RED_GRAPE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(HHModItems.RED_GRAPES.get())
+                .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByItems("has_grapes", HHModItems.GRAPES.get())
+                .unlockedByItems("has_red_grapes", HHModItems.RED_GRAPES.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
-        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SYRUP_BOTTLE.get(), 3, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GREEN_GRAPE_JUICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                .addIngredient(HHModItems.GREEN_GRAPES.get())
+                .addIngredient(HHModItems.GREEN_GRAPES.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_green_grapes", HHModItems.GREEN_GRAPES.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(consumer);
+
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SYRUP_BOTTLE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
                 .addIngredient(HHModItems.SAP_BUCKET.get())
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
@@ -171,6 +186,17 @@ public class CookingRecipes
                 .unlockedByItems("has_sap_bucket", HHModItems.SAP_BUCKET.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SALT.get(), 8, FAST_COOKING, SMALL_EXP)
+                .addIngredient(Items.WATER_BUCKET)
+                .unlockedByItems("has_water_bucket", Items.WATER_BUCKET)
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(consumer, "salt_from_bucket");
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SALT.get(), 2, FAST_COOKING, SMALL_EXP)
+                .addIngredient(WATER_BOTTLE)
+                .unlockedBy("has_water_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POTION))
+                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
+                .build(consumer, "salt_from_bottle");
+
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(), 1, SLOW_COOKING, LARGE_EXP)
                 .addIngredient(ModItems.MILK_BOTTLE.get())
                 .addIngredient(ModItems.MILK_BOTTLE.get())

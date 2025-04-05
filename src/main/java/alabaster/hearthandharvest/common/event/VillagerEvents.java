@@ -32,7 +32,7 @@ public class VillagerEvents
         ResourceLocation professionKey = BuiltInRegistries.VILLAGER_PROFESSION.getKey(profession);
         if (professionKey == null) return;
         if (professionKey.getPath().equals("farmer")) {
-            trades.get(1).add(itemForEmeraldTrade(HHModItems.GRAPES.get(), 1, 12));
+            trades.get(1).add(itemForEmeraldTrade(HHModItems.RED_GRAPES.get(), 1, 12));
             trades.get(1).add(itemForEmeraldTrade(HHModItems.BLUEBERRIES.get(), 1, 12));
             trades.get(1).add(itemForEmeraldTrade(HHModItems.RASPBERRY.get(), 1, 12));
             trades.get(2).add(itemForEmeraldTrade(HHModItems.PEANUT.get(), 1, 12));
@@ -43,7 +43,7 @@ public class VillagerEvents
     @SubscribeEvent
     public static void onWandererTrades(WandererTradesEvent event) {
             List<VillagerTrades.ItemListing> trades = event.getGenericTrades();
-            trades.add(itemForEmeraldTrade(HHModItems.GRAPES.get(), 1, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.RED_GRAPES.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.BLUEBERRIES.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.RASPBERRY.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.PEANUT.get(), 1, 12));

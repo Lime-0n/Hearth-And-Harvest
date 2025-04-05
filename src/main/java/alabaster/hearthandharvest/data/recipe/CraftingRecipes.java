@@ -108,8 +108,15 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.GRAPES.get())
-                .unlockedBy("has_grape", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GRAPES.get()))
+                .define('#', HHModItems.RED_GRAPES.get())
+                .unlockedBy("has_red_grape", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPES.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.GREEN_GRAPE_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.GREEN_GRAPES.get())
+                .unlockedBy("has_green_grape", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GREEN_GRAPES.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.PEANUT_CRATE.get(), 1)
                 .pattern("###")
@@ -363,9 +370,13 @@ public class CraftingRecipes
                 .requires(HHModItems.BLUEBERRY_CRATE.get())
                 .unlockedBy("has_blueberry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRY_CRATE.get()))
                 .save(consumer);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.GRAPES.get(), 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RED_GRAPES.get(), 9)
                 .requires(HHModItems.RED_GRAPE_CRATE.get())
                 .unlockedBy("has_red_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPE_CRATE.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.GREEN_GRAPES.get(), 9)
+                .requires(HHModItems.GREEN_GRAPE_CRATE.get())
+                .unlockedBy("has_green_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GREEN_GRAPE_CRATE.get()))
                 .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.PEANUT.get(), 9)
                 .requires(HHModItems.PEANUT_CRATE.get())
@@ -556,9 +567,9 @@ public class CraftingRecipes
                 .pattern("SPS")
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
-                .define('F', HHModItems.GRAPES.get())
+                .define('F', HHModItems.RED_GRAPES.get())
                 .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
-                .unlockedBy("has_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GRAPES.get()))
+                .unlockedBy("has_red_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPES.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_PIE.get(), 1)
                 .pattern("##")
@@ -611,7 +622,7 @@ public class CraftingRecipes
                 .define('W', Items.SUGAR)
                 .define('E', Items.EGG)
                 .define('M', ForgeTags.MILK_BOTTLE)
-                .unlockedBy("has_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GRAPES.get()))
+                .unlockedBy("has_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CARROT))
                 .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TRAIL_MIX.get())
@@ -633,14 +644,6 @@ public class CraftingRecipes
                 .unlockedBy("has_carrot_cake_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CARROT_CAKE_SLICE.get()))
                 .group("carrot_cake")
                 .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "carrot_cake_from_slices"));
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.JERKY.get(), 3)
-                .requires(HHModItems.SALT.get())
-                .requires(Items.ROTTEN_FLESH)
-                .requires(Items.ROTTEN_FLESH)
-                .requires(Items.ROTTEN_FLESH)
-                .unlockedBy("has_rotten_flesh", InventoryChangeTrigger.TriggerInstance.hasItems(Items.ROTTEN_FLESH))
-                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "jerky"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SKEWERED_SAUSAGE.get(), 1)
                 .requires(HHModItems.COOKED_SAUSAGE.get())

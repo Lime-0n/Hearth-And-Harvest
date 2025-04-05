@@ -21,6 +21,7 @@ public class AgingRecipes {
         ageCheese(consumer);
         ageDrinks(consumer);
         agePickles(consumer);
+        ageMisc(consumer);
     }
 
     private static void ageCheese(Consumer<FinishedRecipe> consumer) {
@@ -60,9 +61,16 @@ public class AgingRecipes {
                 .build(consumer);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.RED_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.GRAPE_JUICE.get())
+                .addIngredient(HHModItems.RED_GRAPE_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RED_GRAPE_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(consumer);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.GREEN_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
+                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
@@ -118,6 +126,18 @@ public class AgingRecipes {
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(HHModItems.JAR.get())
                 .unlockedByAnyIngredient(Items.BEETROOT)
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(consumer);
+    }
+
+
+    private static void ageMisc(Consumer<FinishedRecipe> consumer) {
+        CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .addIngredient(Items.ROTTEN_FLESH)
+                .unlockedByAnyIngredient(Items.ROTTEN_FLESH)
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(consumer);
     }

@@ -95,7 +95,8 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.JAR.get(),
                 HHModItems.RASPBERRY.get(),
                 HHModItems.BLUEBERRIES.get(),
-                HHModItems.GRAPES.get(),
+                HHModItems.RED_GRAPES.get(),
+                HHModItems.GREEN_GRAPES.get(),
                 HHModItems.PEANUT.get(),
                 HHModItems.COTTON_SEEDS.get(),
                 HHModItems.RASPBERRY_PIE.get(),
@@ -110,6 +111,12 @@ public class ItemModels extends ItemModelProvider
         );
         takeAll(items, spriteBlockItems.toArray(new Item[0])).forEach(item -> withExistingParent(itemName(item), GENERATED).texture("layer0", resourceItem(itemName(item))));
 
+        // Blocks with flat block textures for their items
+        Set<Item> flatBlockItems = Sets.newHashSet(
+                HHModItems.WILD_RED_GRAPES.get(),
+                HHModItems.WILD_GREEN_GRAPES.get()
+        );
+        takeAll(items, flatBlockItems.toArray(new Item[0])).forEach(item -> itemGeneratedModel(item, resourceBlock(itemName(item))));
 
         // Blocks whose items look alike
         takeAll(items, i -> i instanceof BlockItem).forEach(item -> blockBasedModel(item, ""));
