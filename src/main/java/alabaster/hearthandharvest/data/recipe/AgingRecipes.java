@@ -42,35 +42,35 @@ public class AgingRecipes {
         CaskRecipeBuilder.caskRecipe(HHModItems.BLUEBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(HHModItems.BLUEBERRY_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.BLUEBERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.CHERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(HHModItems.CHERRY_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.CHERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.CHERRY.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.RASPBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(HHModItems.RASPBERRY_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.RASPBERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RASPBERRY.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.RED_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(HHModItems.RED_GRAPE_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.RED_GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RED_GRAPES.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.GREEN_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
                 .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(consumer);
 
