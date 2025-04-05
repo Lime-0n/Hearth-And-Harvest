@@ -35,9 +35,9 @@ public class HHModBlocks {
     public static final RegistryObject<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
             () -> new RedGrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
-            () -> new BuddingRedGrapeBlock(Block.Properties.copy(Blocks.WHEAT)));
+            () -> new BuddingGreenGrapeBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
-            () -> new RedGrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
+            () -> new GreenGrapeVineBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.copy(Blocks.WHEAT)));
     public static final RegistryObject<Block> COTTON_CROP = BLOCKS.register("cotton",
