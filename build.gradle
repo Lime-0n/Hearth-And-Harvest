@@ -132,9 +132,6 @@ dependencies {
     implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
     implementation "curse.maven:brewin-and-chewin-637808:${brewinandchewin_version}"
 
-    // Moonlight
-    implementation "curse.maven:selene-499980:${moonlight_version}"
-
     // JEI
     compileOnly "mezz.jei:jei-${jei_minecraft}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${jei_minecraft}-neoforge-api:${jei_version}"
