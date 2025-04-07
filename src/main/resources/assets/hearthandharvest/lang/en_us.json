@@ -173,7 +173,7 @@
   "item.minecraft.tipped_arrow.effect.strong_pungent_potion": "Arrow of Pungence",
 
   "effect.hearthandharvest.tempting": "Tempting",
-  "effect.hearthandharvest.tempting.0.desc": "Causes nearby mobs to avoid you due to your nasty odor",
+  "effect.hearthandharvest.tempting.0.desc": "Causes nearby animals to be drawn to your sweet aroma",
 
   "item.minecraft.potion.effect.tempting_potion": "Potion of Tempting",
   "item.minecraft.splash_potion.effect.tempting_potion": "Splash Potion of Tempting",
@@ -188,5 +188,7 @@
   "item.minecraft.potion.effect.strong_tempting_potion": "Potion of Tempting",
   "item.minecraft.splash_potion.effect.strong_tempting_potion": "Splash Potion of Tempting",
   "item.minecraft.lingering_potion.effect.strong_tempting_potion": "Lingering Potion of Tempting",
-  "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Arrow of Tempting"
+  "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Arrow of Tempting",
+
+  "hearthandharvest.jei.aging": "Aging"
 }
