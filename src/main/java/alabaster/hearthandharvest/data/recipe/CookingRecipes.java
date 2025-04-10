@@ -56,7 +56,7 @@ public class CookingRecipes
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GRAPE_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
                 .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(HHModItems.RED_GRAPES.get())
-                .addIngredient(HHModItems.BLUEBERRIES.get())
+                .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
