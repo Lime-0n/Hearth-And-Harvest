@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:syrup_crate"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "hearthandharvest:syrup_bottle"
+  }
+}

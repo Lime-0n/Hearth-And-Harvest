@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "sap_level=1": {
+      "model": "hearthandharvest:block/sap_cauldron_level1"
+    },
+    "sap_level=2": {
+      "model": "hearthandharvest:block/sap_cauldron_level2"
+    },
+    "sap_level=3": {
+      "model": "hearthandharvest:block/sap_cauldron"
+    }
+  }
+}

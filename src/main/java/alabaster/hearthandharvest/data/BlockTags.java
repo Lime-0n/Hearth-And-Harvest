@@ -54,6 +54,7 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.RASPBERRY_CRATE.get(),
                 HHModBlocks.BLUEBERRY_CRATE.get(),
                 HHModBlocks.RED_GRAPE_CRATE.get(),
+                HHModBlocks.GREEN_GRAPE_CRATE.get(),
                 HHModBlocks.CHERRY_CRATE.get(),
                 HHModBlocks.PEANUT_CRATE.get(),
                 HHModBlocks.APPLE_CRATE.get(),
@@ -74,14 +75,17 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.CHERRY_WINE_CRATE.get(),
                 HHModBlocks.RASPBERRY_WINE_CRATE.get(),
                 HHModBlocks.RED_GRAPE_WINE_CRATE.get(),
+                HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(),
                 HHModBlocks.MEAD_CRATE.get(),
                 HHModBlocks.WATER_CRATE.get(),
-                HHModBlocks.HONEY_CRATE.get()
+                HHModBlocks.HONEY_CRATE.get(),
+                HHModBlocks.SYRUP_CRATE.get()
         );
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
                 HHModBlocks.JUG.get(),
-                HHModBlocks.JAR.get()
+                HHModBlocks.JAR.get(),
+                HHModBlocks.SAP_CAULDRON.get()
         );
     }
 }

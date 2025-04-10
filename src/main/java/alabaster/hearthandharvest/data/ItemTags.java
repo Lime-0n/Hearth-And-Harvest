@@ -10,6 +10,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.internal.NeoForgeItemTagsProvider;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 

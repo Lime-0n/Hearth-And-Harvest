@@ -5,6 +5,7 @@
     "hearthandharvest:raspberry_crate",
     "hearthandharvest:blueberry_crate",
     "hearthandharvest:red_grape_crate",
+    "hearthandharvest:green_grape_crate",
     "hearthandharvest:cherry_crate",
     "hearthandharvest:peanut_crate",
     "hearthandharvest:apple_crate",
@@ -25,8 +26,10 @@
     "hearthandharvest:cherry_wine_crate",
     "hearthandharvest:raspberry_wine_crate",
     "hearthandharvest:red_grape_wine_crate",
+    "hearthandharvest:green_grape_wine_crate",
     "hearthandharvest:mead_crate",
     "hearthandharvest:water_crate",
-    "hearthandharvest:honey_crate"
+    "hearthandharvest:honey_crate",
+    "hearthandharvest:syrup_crate"
   ]
 }

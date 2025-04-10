@@ -65,6 +65,7 @@
   "block.hearthandharvest.mead_crate": "Mead Crate",
   "block.hearthandharvest.water_crate": "Water Bottle Crate",
   "block.hearthandharvest.honey_crate": "Honey Bottle Crate",
+  "block.hearthandharvest.syrup_crate": "Syrup Bottle Crate",
   "block.hearthandharvest.brown_mushroom_crate": "Brown Mushroom Crate",
   "block.hearthandharvest.red_mushroom_crate": "Red Mushroom Crate",
   "block.hearthandharvest.crimson_fungus_crate": "Crimson Fungus Crate",
@@ -189,5 +190,10 @@
   "item.minecraft.lingering_potion.effect.strong_tempting_potion": "Lingering Potion of Tempting",
   "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Arrow of Tempting",
 
-  "hearthandharvest.jei.aging": "Aging"
+  "hearthandharvest.jei.aging": "Aging",
+
+  "hearthandharvest.jei.info.watering_can": "Watering cans can be charged with bone meal by holding some in the off hand and clicking, and charged with water by clicking on a water source block. The watering can is used to apply a bone meal effect to a 3x3 area when clicked. It can also be used to extinguish fire and lit blocks.",
+  "hearthandharvest.jei.info.tree_tapper": "Tree tappers can be placed on Spruce and Dark Oak trees to collect sap over time. Collect the sap with a bucket when full.",
+  "hearthandharvest.jei.info.sap_bucket": "Sap buckets can be put into a cauldron, and when over fire will slowly boil down into syrup. This syrup can be collected using bottles.",
+  "hearthandharvest.jei.info.wild_grapes": "Grapes can be commonly found as a wild plant in temperate lands, such as plains and forests."
 }

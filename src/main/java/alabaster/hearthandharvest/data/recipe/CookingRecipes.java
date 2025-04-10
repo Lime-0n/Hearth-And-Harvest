@@ -177,14 +177,6 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
                 .build(output);
 
-        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SYRUP_BOTTLE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
-                .addIngredient(HHModItems.SAP_BUCKET.get())
-                .addIngredient(Items.SUGAR)
-                .addIngredient(Items.SUGAR)
-                .addIngredient(Items.SUGAR)
-                .unlockedByItems("has_sap_bucket", HHModItems.SAP_BUCKET.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
-                .build(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SALT.get(), 8, FAST_COOKING, SMALL_EXP)
                 .addIngredient(Items.WATER_BUCKET)
                 .unlockedByItems("has_water_bucket", Items.WATER_BUCKET)

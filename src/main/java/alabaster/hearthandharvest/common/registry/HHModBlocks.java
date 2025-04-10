@@ -26,6 +26,9 @@ public class HHModBlocks {
     public static final Supplier<Block> JAR = BLOCKS.register("jar",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
 
+    public static final Supplier<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
+            () -> new SapCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL).randomTicks()));
+
     // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
@@ -119,6 +122,8 @@ public class HHModBlocks {
     public static final Supplier<Block> WATER_CRATE = BLOCKS.register("water_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> HONEY_CRATE = BLOCKS.register("honey_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> SYRUP_CRATE = BLOCKS.register("syrup_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> BROWN_MUSHROOM_CRATE = BLOCKS.register("brown_mushroom_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

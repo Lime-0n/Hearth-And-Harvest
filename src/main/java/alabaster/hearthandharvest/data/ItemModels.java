@@ -81,6 +81,9 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.HONEY_CRATE.get(), "_bottom");
         items.remove(HHModItems.HONEY_CRATE.get());
 
+        blockBasedModel(HHModItems.SYRUP_CRATE.get(), "_bottom");
+        items.remove(HHModItems.SYRUP_CRATE.get());
+
         blockBasedModel(HHModItems.BROWN_MUSHROOM_CRATE.get(), "_bottom");
         items.remove(HHModItems.BROWN_MUSHROOM_CRATE.get());
 

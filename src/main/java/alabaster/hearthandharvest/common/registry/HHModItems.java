@@ -29,6 +29,11 @@ public class HHModItems {
         return block;
     }
 
+    public static Supplier<Item> registerNoTab(String name, Supplier<Item> supplier) {
+        Supplier<Item> block = ITEMS.register(name, supplier);
+        return block;
+    }
+
     // Helper methods
     public static Item.Properties basicItem() {
         return (new Item.Properties());
@@ -177,6 +182,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WATER_CRATE.get(), basicItem()));
     public static final Supplier<Item> HONEY_CRATE = registerWithTab("honey_crate",
             () -> new BlockItem(HHModBlocks.HONEY_CRATE.get(), basicItem()));
+    public static final Supplier<Item> SYRUP_CRATE = registerWithTab("syrup_crate",
+            () -> new BlockItem(HHModBlocks.SYRUP_CRATE.get(), basicItem()));
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));
     public static final Supplier<Item> RED_MUSHROOM_CRATE = registerWithTab("red_mushroom_crate",
@@ -265,7 +272,7 @@ public class HHModItems {
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",
-            () -> new Item(basicItem()));
+            () -> new Item(basicItem().stacksTo(1)));
     public static final Supplier<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
             () -> new Item(basicItem()));
 
