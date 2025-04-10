@@ -289,6 +289,13 @@ public class CraftingRecipes
                 .define('#', Items.HONEY_BOTTLE)
                 .unlockedBy("has_honey_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HONEY_BOTTLE))
                 .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SYRUP_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.SYRUP_BOTTLE.get())
+                .unlockedBy("has_syrup_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.WATER_CRATE.get(), 1)
                 .pattern("   ")
                 .pattern(" # ")
@@ -477,6 +484,10 @@ public class CraftingRecipes
                 .requires(HHModItems.HONEY_CRATE.get())
                 .unlockedBy("has_honey_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.HONEY_CRATE.get()))
                 .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "honey_from_crate"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SYRUP_BOTTLE.get(), 9)
+                .requires(HHModItems.SYRUP_CRATE.get())
+                .unlockedBy("has_syrup_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_CRATE.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "syrup_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.BROWN_MUSHROOM, 9)
                 .requires(HHModItems.BROWN_MUSHROOM_CRATE.get())
                 .unlockedBy("has_brown_mushroom_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BROWN_MUSHROOM_CRATE.get()))

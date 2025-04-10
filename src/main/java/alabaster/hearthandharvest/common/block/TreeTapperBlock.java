@@ -5,6 +5,8 @@ import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -51,16 +53,16 @@ public class TreeTapperBlock extends Block {
         public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
                 Direction direction = state.getValue(FACING);
                 if (direction == Direction.NORTH) {
-                        return Block.box(5.0D, 2.0D, 0.0D, 11.0D, 13.0D, 6.0D);
+                        return Block.box(3.0D, 0.0D, 0.0D, 13.0D, 16.0D, 10.0D);
                 }
                 if (direction == Direction.EAST) {
-                        return Block.box(10.0D, 2.0D, 5.0D, 16.0D, 13.0D, 11.0D);
+                        return Block.box(6.0D, 0.0D, 3.0D, 16.0D, 16.0D, 13.0D);
                 }
                 if (direction == Direction.SOUTH) {
-                        return Block.box(5.0D, 2.0D, 10.0D, 11.0D, 13.0D, 16.0D);
+                        return Block.box(3.0D, 0.0D, 6.0D, 13.0D, 16.0D, 16.0D);
                 }
                 if (direction == Direction.WEST) {
-                        return Block.box(0.0D, 2.0D, 5.0D, 6.0D, 13.0D, 11.0D);
+                        return Block.box(0.0D, 0.0D, 3.0D, 10.0D, 16.0D, 13.0D);
                 }
                 return null;
         }
@@ -136,12 +138,13 @@ public class TreeTapperBlock extends Block {
                 int sapLevel = state.getValue(SAP);
 
                 if (sapLevel == 4 && player.getItemInHand(hand).is(Items.BUCKET)) {
-                        if (!player.getAbilities().instabuild) { // Check if player is in creative mode
-                                player.getItemInHand(hand).shrink(1); // Remove the empty bucket
+                        if (!player.getAbilities().instabuild) {
+                                player.getItemInHand(hand).shrink(1);
                         }
-
+                        player.swing(hand);
+                        level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                         ItemStack sapBucket = new ItemStack(HHModItems.SAP_BUCKET.get());
-                        player.addItem(sapBucket); // Give the player the sap bucket
+                        player.addItem(sapBucket);
 
                         level.setBlock(pos, state.setValue(SAP, 0), 2);
 

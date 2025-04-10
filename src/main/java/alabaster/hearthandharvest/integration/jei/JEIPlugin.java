@@ -5,15 +5,18 @@ import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.common.block.entity.container.CaskMenu;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.registry.HHModMenuTypes;
+import alabaster.hearthandharvest.common.utilities.HHTextUtils;
 import alabaster.hearthandharvest.integration.jei.category.AgingRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.*;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 @JeiPlugin
 @ParametersAreNonnullByDefault
@@ -32,6 +35,11 @@ public class JEIPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration) {
         HHRecipes modRecipes = new HHRecipes();
         registration.addRecipes(HHRecipeTypes.AGING, modRecipes.getCaskRecipes());
+
+        registration.addIngredientInfo(new ItemStack(HHModItems.WATERING_CAN.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.watering_can"));
+        registration.addIngredientInfo(new ItemStack(HHModItems.TREE_TAPPER.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.tree_tapper"));
+        registration.addIngredientInfo(new ItemStack(HHModItems.SAP_BUCKET.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.sap_bucket"));
+        registration.addIngredientInfo(List.of(new ItemStack(HHModItems.WILD_RED_GRAPES.get()), new ItemStack(HHModItems.RED_GRAPES.get()), new ItemStack(HHModItems.WILD_GREEN_GRAPES.get()), new ItemStack(HHModItems.GREEN_GRAPES.get())), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.wild_grapes"));
     }
 
     @Override

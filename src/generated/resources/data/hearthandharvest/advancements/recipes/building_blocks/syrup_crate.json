@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sap_bucket": {
+    "has_syrup_bottle": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:sap_bucket"
+              "hearthandharvest:syrup_bottle"
             ]
           }
         ]
@@ -15,21 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:cooking/syrup_bottle"
+        "recipe": "hearthandharvest:syrup_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_sap_bucket",
+      "has_syrup_bottle",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:cooking/syrup_bottle"
+      "hearthandharvest:syrup_crate"
     ]
   },
-  "sends_telemetry_event": true
+  "sends_telemetry_event": false
 }

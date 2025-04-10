@@ -160,6 +160,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
             () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
+    public static final RegistryObject<Item> GREEN_GRAPE_WINE_CRATE = registerWithTab("green_grape_wine_crate",
+            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
             () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> BLUEBERRY_WINE_CRATE = registerWithTab("blueberry_wine_crate",
@@ -172,6 +174,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WATER_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> HONEY_CRATE = registerWithTab("honey_crate",
             () -> new BlockItem(HHModBlocks.HONEY_CRATE.get(), basicItem()));
+    public static final RegistryObject<Item> SYRUP_CRATE = registerWithTab("syrup_crate",
+            () -> new BlockItem(HHModBlocks.SYRUP_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> BROWN_MUSHROOM_CRATE = registerWithTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));
     public static final RegistryObject<Item> RED_MUSHROOM_CRATE = registerWithTab("red_mushroom_crate",
@@ -261,7 +265,7 @@ public class HHModItems {
 
     // Sap and Syrup
     public static final RegistryObject<Item> SAP_BUCKET = registerWithTab("sap_bucket",
-            () -> new Item(basicItem()));
+            () -> new Item(basicItem().stacksTo(1)));
     public static final RegistryObject<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
             () -> new Item(basicItem()));
 

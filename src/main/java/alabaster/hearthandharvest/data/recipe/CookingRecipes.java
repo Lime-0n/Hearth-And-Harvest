@@ -57,7 +57,7 @@ public class CookingRecipes
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GRAPE_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
                 .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(HHModItems.RED_GRAPES.get())
-                .addIngredient(HHModItems.BLUEBERRIES.get())
+                .addIngredient(HHModItems.RED_GRAPES.get())
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
@@ -178,14 +178,6 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
                 .build(consumer);
 
-        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SYRUP_BOTTLE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
-                .addIngredient(HHModItems.SAP_BUCKET.get())
-                .addIngredient(Items.SUGAR)
-                .addIngredient(Items.SUGAR)
-                .addIngredient(Items.SUGAR)
-                .unlockedByItems("has_sap_bucket", HHModItems.SAP_BUCKET.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.MISC)
-                .build(consumer);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.SALT.get(), 8, FAST_COOKING, SMALL_EXP)
                 .addIngredient(Items.WATER_BUCKET)
                 .unlockedByItems("has_water_bucket", Items.WATER_BUCKET)

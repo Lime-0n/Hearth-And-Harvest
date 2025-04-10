@@ -1,9 +1,11 @@
 package alabaster.hearthandharvest.data.loot;
 
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootTable;
 
@@ -22,10 +24,10 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.TREE_TAPPER.get());
         dropSelf(HHModBlocks.CASK.get());
         dropSelf(HHModBlocks.JUG.get());
+        dropOther(HHModBlocks.SAP_CAULDRON.get(), Items.CAULDRON);
         dropSelf(HHModBlocks.RASPBERRY_CRATE.get());
         dropSelf(HHModBlocks.BLUEBERRY_CRATE.get());
         dropSelf(HHModBlocks.RED_GRAPE_CRATE.get());
-        dropSelf(HHModBlocks.GREEN_GRAPE_CRATE.get());
         dropSelf(HHModBlocks.PEANUT_CRATE.get());
         dropSelf(HHModBlocks.APPLE_CRATE.get());
         dropSelf(HHModBlocks.GOLDEN_APPLE_CRATE.get());
@@ -40,8 +42,9 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.COTTON_BALE.get());
         dropSelf(HHModBlocks.SPOOL.get());
         dropSelf(HHModBlocks.ROPE_COIL.get());
+        dropOther(HHModBlocks.RED_GRAPE_CROP.get(), HHModItems.RED_GRAPES.get());
+        dropOther(HHModBlocks.GREEN_GRAPE_CROP.get(), HHModItems.GREEN_GRAPES.get());
     }
-
     @Override
     protected void add(Block block, LootTable.Builder builder) {
         this.generatedLootTables.add(block);

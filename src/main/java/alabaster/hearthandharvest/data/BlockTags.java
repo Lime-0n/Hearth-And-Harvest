@@ -78,12 +78,14 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.RED_GRAPE_WINE_CRATE.get(),
                 HHModBlocks.MEAD_CRATE.get(),
                 HHModBlocks.WATER_CRATE.get(),
-                HHModBlocks.HONEY_CRATE.get()
+                HHModBlocks.HONEY_CRATE.get(),
+                HHModBlocks.SYRUP_CRATE.get()
         );
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
                 HHModBlocks.JUG.get(),
-                HHModBlocks.JAR.get()
+                HHModBlocks.JAR.get(),
+                HHModBlocks.SAP_CAULDRON.get()
         );
     }
 }
