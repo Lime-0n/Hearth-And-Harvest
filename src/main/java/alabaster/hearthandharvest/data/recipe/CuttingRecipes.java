@@ -7,6 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.Tags;
+import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
@@ -18,6 +22,9 @@ public class CuttingRecipes {
 
         // Cleaver
         choppingAnimalItems(output);
+
+        // Axe
+        halfCabinets(output);
     }
 
     private static void cuttingFoods(RecipeOutput output) {
@@ -51,5 +58,30 @@ public class CuttingRecipes {
                 .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_chicken"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.RABBIT), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 1)
                 .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_rabbit"));
+    }
+
+    private static void halfCabinets(RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.OAK_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.OAK_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "oak_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.SPRUCE_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.SPRUCE_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "spruce_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BIRCH_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.BIRCH_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "birch_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.JUNGLE_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.JUNGLE_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "jungle_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.ACACIA_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.ACACIA_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "acacia_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.DARK_OAK_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.DARK_OAK_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "dark_oak_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.MANGROVE_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.MANGROVE_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "mangrove_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CHERRY_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.CHERRY_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cherry_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.BAMBOO_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.BAMBOO_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "bamboo_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.CRIMSON_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.CRIMSON_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crimson_half_cabinet_from_full"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.WARPED_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.WARPED_HALF_CABINET.get(), 2)
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_half_cabinet_from_full"));
     }
 }

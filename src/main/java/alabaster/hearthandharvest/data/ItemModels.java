@@ -39,6 +39,32 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.JUG.get(),"");
         items.remove(HHModItems.JUG.get());
 
+        blockBasedModel(HHModItems.COUNTER.get(),"");
+        items.remove(HHModItems.COUNTER.get());
+
+        blockBasedModel(HHModItems.OAK_HALF_CABINET.get(),"");
+        items.remove(HHModItems.OAK_HALF_CABINET.get());
+        blockBasedModel(HHModItems.BIRCH_HALF_CABINET.get(),"");
+        items.remove(HHModItems.BIRCH_HALF_CABINET.get());
+        blockBasedModel(HHModItems.SPRUCE_HALF_CABINET.get(),"");
+        items.remove(HHModItems.SPRUCE_HALF_CABINET.get());
+        blockBasedModel(HHModItems.JUNGLE_HALF_CABINET.get(),"");
+        items.remove(HHModItems.JUNGLE_HALF_CABINET.get());
+        blockBasedModel(HHModItems.ACACIA_HALF_CABINET.get(),"");
+        items.remove(HHModItems.ACACIA_HALF_CABINET.get());
+        blockBasedModel(HHModItems.DARK_OAK_HALF_CABINET.get(),"");
+        items.remove(HHModItems.DARK_OAK_HALF_CABINET.get());
+        blockBasedModel(HHModItems.MANGROVE_HALF_CABINET.get(),"");
+        items.remove(HHModItems.MANGROVE_HALF_CABINET.get());
+        blockBasedModel(HHModItems.CHERRY_HALF_CABINET.get(),"");
+        items.remove(HHModItems.CHERRY_HALF_CABINET.get());
+        blockBasedModel(HHModItems.BAMBOO_HALF_CABINET.get(),"");
+        items.remove(HHModItems.BAMBOO_HALF_CABINET.get());
+        blockBasedModel(HHModItems.CRIMSON_HALF_CABINET.get(),"");
+        items.remove(HHModItems.CRIMSON_HALF_CABINET.get());
+        blockBasedModel(HHModItems.WARPED_HALF_CABINET.get(),"");
+        items.remove(HHModItems.WARPED_HALF_CABINET.get());
+
         // Campfire Roastables
         items.remove(HHModItems.MARSHMALLOW_STICK.get());
         items.remove(HHModItems.ROASTED_MARSHMALLOW_STICK.get());

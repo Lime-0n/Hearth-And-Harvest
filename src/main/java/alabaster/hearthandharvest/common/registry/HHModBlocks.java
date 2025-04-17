@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
 
@@ -28,6 +29,33 @@ public class HHModBlocks {
 
     public static final Supplier<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
             () -> new SapCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL).randomTicks()));
+
+    public static final Supplier<Block> COUNTER = BLOCKS.register("counter",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.BRICKS)));
+
+    // Half-Cabinets
+    public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> SPRUCE_HALF_CABINET = BLOCKS.register("spruce_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> BIRCH_HALF_CABINET = BLOCKS.register("birch_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> JUNGLE_HALF_CABINET = BLOCKS.register("jungle_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> ACACIA_HALF_CABINET = BLOCKS.register("acacia_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> DARK_OAK_HALF_CABINET = BLOCKS.register("dark_oak_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> MANGROVE_HALF_CABINET = BLOCKS.register("mangrove_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> CHERRY_HALF_CABINET = BLOCKS.register("cherry_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.CHERRY_WOOD)));
+    public static final Supplier<Block> BAMBOO_HALF_CABINET = BLOCKS.register("bamboo_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.BAMBOO_WOOD)));
+    public static final Supplier<Block> CRIMSON_HALF_CABINET = BLOCKS.register("crimson_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+    public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
     // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",

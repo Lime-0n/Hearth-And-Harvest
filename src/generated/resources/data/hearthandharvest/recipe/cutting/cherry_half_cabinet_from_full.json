@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "farmersdelight:cherry_cabinet"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 2,
+        "id": "hearthandharvest:cherry_half_cabinet"
+      }
+    }
+  ],
+  "tool": {
+    "type": "farmersdelight:item_ability",
+    "action": "axe_dig"
+  }
+}

@@ -51,6 +51,17 @@ public class BlockTags extends BlockTagsProvider {
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).add(
                 HHModBlocks.TREE_TAPPER.get(),
                 HHModBlocks.CASK.get(),
+                HHModBlocks.OAK_HALF_CABINET.get(),
+                HHModBlocks.BIRCH_HALF_CABINET.get(),
+                HHModBlocks.SPRUCE_HALF_CABINET.get(),
+                HHModBlocks.JUNGLE_HALF_CABINET.get(),
+                HHModBlocks.ACACIA_HALF_CABINET.get(),
+                HHModBlocks.DARK_OAK_HALF_CABINET.get(),
+                HHModBlocks.MANGROVE_HALF_CABINET.get(),
+                HHModBlocks.CHERRY_HALF_CABINET.get(),
+                HHModBlocks.BAMBOO_HALF_CABINET.get(),
+                HHModBlocks.CRIMSON_HALF_CABINET.get(),
+                HHModBlocks.WARPED_HALF_CABINET.get(),
                 HHModBlocks.RASPBERRY_CRATE.get(),
                 HHModBlocks.BLUEBERRY_CRATE.get(),
                 HHModBlocks.RED_GRAPE_CRATE.get(),
@@ -85,7 +96,8 @@ public class BlockTags extends BlockTagsProvider {
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
                 HHModBlocks.JUG.get(),
                 HHModBlocks.JAR.get(),
-                HHModBlocks.SAP_CAULDRON.get()
+                HHModBlocks.SAP_CAULDRON.get(),
+                HHModBlocks.COUNTER.get()
         );
     }
 }

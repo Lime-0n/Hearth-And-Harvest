@@ -26,6 +26,18 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.CASK.get());
         dropSelf(HHModBlocks.JUG.get());
         dropOther(HHModBlocks.SAP_CAULDRON.get(), Items.CAULDRON);
+        dropSelf(HHModBlocks.COUNTER.get());
+        dropNamedContainer(HHModBlocks.OAK_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.SPRUCE_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.BIRCH_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.JUNGLE_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.ACACIA_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.DARK_OAK_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.MANGROVE_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.BAMBOO_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.CHERRY_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.CRIMSON_HALF_CABINET.get());
+        dropNamedContainer(HHModBlocks.WARPED_HALF_CABINET.get());
         dropSelf(HHModBlocks.RASPBERRY_CRATE.get());
         dropSelf(HHModBlocks.BLUEBERRY_CRATE.get());
         dropSelf(HHModBlocks.RED_GRAPE_CRATE.get());
@@ -51,6 +63,10 @@ public class HHBlockLoot extends BlockLootSubProvider {
     protected void add(Block block, LootTable.Builder builder) {
         this.generatedLootTables.add(block);
         this.map.put(block.getLootTable(), builder);
+    }
+
+    protected void dropNamedContainer(Block block) {
+        add(block, this::createNameableBlockEntityTable);
     }
 
     @Override

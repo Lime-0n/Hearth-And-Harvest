@@ -13,6 +13,21 @@
   "block.hearthandharvest.jar": "Jar",
   "block.hearthandharvest.jug": "Jug",
 
+  "block.hearthandharvest.counter": "Counter",
+  "block.hearthandharvest.sink": "Sink",
+
+  "block.hearthandharvest.oak_half_cabinet": "Oak Half Cabinet",
+  "block.hearthandharvest.birch_half_cabinet": "Birch Half Cabinet",
+  "block.hearthandharvest.spruce_half_cabinet": "Spruce Half Cabinet",
+  "block.hearthandharvest.jungle_half_cabinet": "Jungle Half Cabinet",
+  "block.hearthandharvest.acacia_half_cabinet": "Acacia Half Cabinet",
+  "block.hearthandharvest.dark_oak_half_cabinet": "Dark Oak Half Cabinet",
+  "block.hearthandharvest.mangrove_half_cabinet": "Mangrove Half Cabinet",
+  "block.hearthandharvest.cherry_half_cabinet": "Cherry Half Cabinet",
+  "block.hearthandharvest.bamboo_half_cabinet": "Bamboo Half Cabinet",
+  "block.hearthandharvest.crimson_half_cabinet": "Crimson Half Cabinet",
+  "block.hearthandharvest.warped_half_cabinet": "Warped Half Cabinet",
+
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
   "item.hearthandharvest.golden_cleaver": "Golden Cleaver",

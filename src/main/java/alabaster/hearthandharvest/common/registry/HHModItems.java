@@ -11,6 +11,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
+import vectorwing.farmersdelight.common.item.FuelBlockItem;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 import vectorwing.farmersdelight.common.item.MilkBottleItem;
 import vectorwing.farmersdelight.common.registry.ModMaterials;
@@ -86,6 +87,33 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.JUG.get(), basicItem()));
     public static final Supplier<Item> JAR = registerWithTab("jar",
             () -> new BlockItem(HHModBlocks.JAR.get(), basicItem()));
+
+    public static final Supplier<Item> COUNTER = registerWithTab("counter",
+            () -> new BlockItem(HHModBlocks.COUNTER.get(), basicItem()));
+
+    // Half-Cabinets
+    public static final Supplier<Item> OAK_HALF_CABINET = registerWithTab("oak_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.OAK_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> SPRUCE_HALF_CABINET = registerWithTab("spruce_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.SPRUCE_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> BIRCH_HALF_CABINET = registerWithTab("birch_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.BIRCH_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> JUNGLE_HALF_CABINET = registerWithTab("jungle_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.JUNGLE_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> ACACIA_HALF_CABINET = registerWithTab("acacia_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.ACACIA_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> DARK_OAK_HALF_CABINET = registerWithTab("dark_oak_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.DARK_OAK_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> MANGROVE_HALF_CABINET = registerWithTab("mangrove_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.MANGROVE_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> CHERRY_HALF_CABINET = registerWithTab("cherry_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.CHERRY_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> BAMBOO_HALF_CABINET = registerWithTab("bamboo_half_cabinet",
+            () -> new FuelBlockItem(HHModBlocks.BAMBOO_HALF_CABINET.get(), basicItem(), 300));
+    public static final Supplier<Item> CRIMSON_HALF_CABINET = registerWithTab("crimson_half_cabinet",
+            () -> new BlockItem(HHModBlocks.CRIMSON_HALF_CABINET.get(), basicItem()));
+    public static final Supplier<Item> WARPED_HALF_CABINET = registerWithTab("warped_half_cabinet",
+            () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
     // Crops
     public static final Supplier<Item> BLUEBERRIES = registerWithTab("blueberries",
