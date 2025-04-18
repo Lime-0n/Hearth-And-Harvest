@@ -34,6 +34,8 @@ public class HHModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.BRICKS)));
     public static final Supplier<Block> DRAWER = BLOCKS.register("drawer",
             () -> new CabinetBlock(Block.Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final Supplier<Block> SINK = BLOCKS.register("sink",
+            () -> new SinkBlock(Block.Properties.ofFullCopy(Blocks.BRICKS)));
 
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",
