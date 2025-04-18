@@ -71,8 +71,8 @@ public class CraftingRecipes
                 .pattern("BB")
                 .pattern("BB")
                 .define('i', Tags.Items.INGOTS_IRON)
-                .define('B', Items.BRICKS)
-                .unlockedBy("has_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICKS))
+                .define('B', Items.BRICK)
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DRAWER.get())
                 .pattern("iii")
@@ -81,7 +81,7 @@ public class CraftingRecipes
                 .define('i', Tags.Items.INGOTS_IRON)
                 .define('C', ModTags.WOODEN_CABINETS)
                 .define('B', Items.BRICK)
-                .unlockedBy("has_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
                 .save(output);
 
 
