@@ -29,6 +29,7 @@ public class HHModBlockEntities {
     @SubscribeEvent
     public static void addCabinetsBlockEntities(BlockEntityTypeAddBlocksEvent event) {
         event.modify(ModBlockEntityTypes.CABINET.get(),
+                HHModBlocks.DRAWER.get(),
                 HHModBlocks.OAK_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_HALF_CABINET.get(),
                 HHModBlocks.SPRUCE_HALF_CABINET.get(),

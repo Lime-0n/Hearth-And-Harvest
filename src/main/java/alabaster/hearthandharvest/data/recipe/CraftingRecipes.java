@@ -18,6 +18,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 public class CraftingRecipes
 {
@@ -70,9 +71,19 @@ public class CraftingRecipes
                 .pattern("BB")
                 .pattern("BB")
                 .define('i', Tags.Items.INGOTS_IRON)
-                .define('B', Blocks.BRICKS)
-                .unlockedBy("has_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.BRICKS))
+                .define('B', Items.BRICKS)
+                .unlockedBy("has_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICKS))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DRAWER.get())
+                .pattern("iii")
+                .pattern("BCB")
+                .pattern("BBB")
+                .define('i', Tags.Items.INGOTS_IRON)
+                .define('C', ModTags.WOODEN_CABINETS)
+                .define('B', Items.BRICK)
+                .unlockedBy("has_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .save(output);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.OAK_CABINET.get(), 1)
                 .requires(HHModItems.OAK_HALF_CABINET.get())
@@ -305,8 +316,8 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get())
-                .unlockedBy("has_milk_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get()))
+                .define('#', ModItems.MILK_BOTTLE.get())
+                .unlockedBy("has_milk_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MILK_BOTTLE.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.GOAT_MILK_CRATE.get(), 1)
                 .pattern("###")

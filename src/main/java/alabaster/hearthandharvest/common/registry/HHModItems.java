@@ -90,6 +90,8 @@ public class HHModItems {
 
     public static final Supplier<Item> COUNTER = registerWithTab("counter",
             () -> new BlockItem(HHModBlocks.COUNTER.get(), basicItem()));
+    public static final Supplier<Item> DRAWER = registerWithTab("drawer",
+            () -> new BlockItem(HHModBlocks.DRAWER.get(), basicItem()));
 
     // Half-Cabinets
     public static final Supplier<Item> OAK_HALF_CABINET = registerWithTab("oak_half_cabinet",

@@ -97,7 +97,8 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.JUG.get(),
                 HHModBlocks.JAR.get(),
                 HHModBlocks.SAP_CAULDRON.get(),
-                HHModBlocks.COUNTER.get()
+                HHModBlocks.COUNTER.get(),
+                HHModBlocks.DRAWER.get()
         );
     }
 }
