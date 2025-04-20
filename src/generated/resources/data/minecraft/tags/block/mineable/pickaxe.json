@@ -4,6 +4,7 @@
     "hearthandharvest:jar",
     "hearthandharvest:sap_cauldron",
     "hearthandharvest:counter",
-    "hearthandharvest:drawer"
+    "hearthandharvest:drawer",
+    "hearthandharvest:basin"
   ]
 }

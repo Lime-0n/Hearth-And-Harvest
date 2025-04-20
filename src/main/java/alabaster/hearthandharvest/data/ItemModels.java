@@ -45,6 +45,9 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.DRAWER.get(),"");
         items.remove(HHModItems.DRAWER.get());
 
+        blockBasedModel(HHModItems.BASIN.get(),"");
+        items.remove(HHModItems.BASIN.get());
+
         blockBasedModel(HHModItems.OAK_HALF_CABINET.get(),"");
         items.remove(HHModItems.OAK_HALF_CABINET.get());
         blockBasedModel(HHModItems.BIRCH_HALF_CABINET.get(),"");

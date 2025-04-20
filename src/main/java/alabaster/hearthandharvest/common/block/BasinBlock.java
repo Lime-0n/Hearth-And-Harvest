@@ -1,24 +1,29 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.HHModItems;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -26,23 +31,37 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SinkBlock extends Block {
-    public static final int MAX_WATER = 3;
-    public static final IntegerProperty WATER_LEVEL = IntegerProperty.create("water_level", 0, 3);
+public class BasinBlock extends Block {
+
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final IntegerProperty WATER_LEVEL = IntegerProperty.create("level", 0, 3);
     private static final VoxelShape INSIDE = box(2.0F, 1.0F, 2.0F, 14.0F, 16.0F, 14.0F);
     protected static final VoxelShape SHAPE;
 
-    public SinkBlock(Properties properties) {
+    public BasinBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATER_LEVEL, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATER_LEVEL, 0));
     }
 
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(HHModItems.SINK.get());
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATER_LEVEL);
+        super.createBlockStateDefinition(builder);
     }
 
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState()
+                .setValue(FACING, context.getHorizontalDirection());
+    }
+
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 
     protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
@@ -55,10 +74,11 @@ public class SinkBlock extends Block {
         ItemStack heldItem = player.getItemInHand(hand);
         int currentLevel = state.getValue(WATER_LEVEL);
         boolean changed = false;
+        ItemStack waterBottle = PotionContents.createItemStack(Items.POTION, Potions.WATER);
 
-        if (heldItem.is(Items.POTION)) {
+        if (heldItem.equals(waterBottle)) {
             if (currentLevel < 3) {
-                level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 1, MAX_WATER)), 3);
+                level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 1, 3)), 3);
                 if (!player.getAbilities().instabuild) {
                     heldItem.shrink(1);
                     level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -68,7 +88,7 @@ public class SinkBlock extends Block {
             }
         } else if (heldItem.is(Items.WATER_BUCKET)) {
             if (currentLevel < 3) {
-                level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 3, MAX_WATER)), 3);
+                level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 3, 3)), 3);
                 if (!player.getAbilities().instabuild) {
                     level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
@@ -81,7 +101,7 @@ public class SinkBlock extends Block {
                 if (!player.getAbilities().instabuild) {
                     heldItem.shrink(1);
                     level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    player.addItem(new ItemStack(Items.POTION));
+                    player.addItem(waterBottle);
                 }
                 changed = true;
             }
@@ -99,17 +119,43 @@ public class SinkBlock extends Block {
         return changed ? ItemInteractionResult.CONSUME : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    protected double getContentHeight(BlockState state) {
-        return 0.0F;
-    }
-
-    protected boolean isEntityInsideContent(BlockState state, BlockPos pos, Entity entity) {
-        return entity.getY() < (double)pos.getY() + this.getContentHeight(state) && entity.getBoundingBox().maxY > (double)pos.getY() + (double)0.25F;
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, level, pos, oldState, isMoving);
+        if (!level.isClientSide && !level.hasNeighborSignal(pos)) {
+            level.scheduleTick(pos, this, 60);
+        }
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATER_LEVEL);
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        if (!level.isClientSide) {
+            boolean isPowered = level.hasNeighborSignal(pos);
+            boolean isAlreadyScheduled = level.getBlockTicks().hasScheduledTick(pos, this);
+
+            if (!isPowered && !isAlreadyScheduled && state.getValue(WATER_LEVEL) < 3) {
+                level.scheduleTick(pos, this, 60);
+            }
+        }
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (level.hasNeighborSignal(pos)) {
+            return;
+        }
+
+        int currentLevel = state.getValue(WATER_LEVEL);
+        if (currentLevel < 3) {
+            int newLevel = currentLevel + 1;
+            BlockState newState = state.setValue(WATER_LEVEL, newLevel);
+            level.setBlock(pos, newState, 3);
+            level.playSound(null, pos, SoundEvents.FISH_SWIM, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            if (newLevel < 3) {
+                level.scheduleTick(pos, this, 60);
+            }
+        }
     }
 
     static {
