@@ -2,10 +2,12 @@ package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import vectorwing.farmersdelight.common.tag.ModTags;
@@ -100,6 +102,45 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.COUNTER.get(),
                 HHModBlocks.DRAWER.get(),
                 HHModBlocks.BASIN.get()
+        );
+
+        tag(Tags.Blocks.STORAGE_BLOCKS).add(
+                HHModBlocks.RASPBERRY_CRATE.get(),
+                HHModBlocks.BLUEBERRY_CRATE.get(),
+                HHModBlocks.RED_GRAPE_CRATE.get(),
+                HHModBlocks.GREEN_GRAPE_CRATE.get(),
+                HHModBlocks.CHERRY_CRATE.get(),
+                HHModBlocks.PEANUT_CRATE.get(),
+                HHModBlocks.APPLE_CRATE.get(),
+                HHModBlocks.GOLDEN_APPLE_CRATE.get(),
+                HHModBlocks.GOLDEN_CARROT_CRATE.get(),
+                HHModBlocks.POISONOUS_POTATO_CRATE.get(),
+                HHModBlocks.GLOW_BERRY_CRATE.get(),
+                HHModBlocks.SWEET_BERRY_CRATE.get(),
+                HHModBlocks.EGG_CRATE.get(),
+                HHModBlocks.TURTLE_EGG_CRATE.get(),
+                HHModBlocks.MILK_CRATE.get(),
+                HHModBlocks.GOAT_MILK_CRATE.get(),
+                HHModBlocks.BROWN_MUSHROOM_CRATE.get(),
+                HHModBlocks.RED_MUSHROOM_CRATE.get(),
+                HHModBlocks.WARPED_FUNGUS_CRATE.get(),
+                HHModBlocks.CRIMSON_FUNGUS_CRATE.get(),
+                HHModBlocks.BLUEBERRY_WINE_CRATE.get(),
+                HHModBlocks.CHERRY_WINE_CRATE.get(),
+                HHModBlocks.RASPBERRY_WINE_CRATE.get(),
+                HHModBlocks.RED_GRAPE_WINE_CRATE.get(),
+                HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(),
+                HHModBlocks.MEAD_CRATE.get(),
+                HHModBlocks.WATER_CRATE.get(),
+                HHModBlocks.HONEY_CRATE.get(),
+                HHModBlocks.SYRUP_CRATE.get(),
+                HHModBlocks.GUNPOWDER_BAG.get(),
+                HHModBlocks.SALT_BAG.get(),
+                HHModBlocks.SUGAR_BAG.get(),
+                HHModBlocks.COCOA_BEAN_BAG.get(),
+                HHModBlocks.COTTON_BALE.get(),
+                HHModBlocks.SPOOL.get(),
+                HHModBlocks.ROPE_COIL.get()
         );
     }
 }
