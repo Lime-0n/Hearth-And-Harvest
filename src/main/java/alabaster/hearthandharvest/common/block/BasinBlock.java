@@ -76,7 +76,7 @@ public class BasinBlock extends Block {
         boolean changed = false;
         ItemStack waterBottle = PotionContents.createItemStack(Items.POTION, Potions.WATER);
 
-        if (heldItem.equals(waterBottle)) {
+        if (heldItem.is(waterBottle.getItem())) {
             if (currentLevel < 3) {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 1, 3)), 3);
                 if (!player.getAbilities().instabuild) {
