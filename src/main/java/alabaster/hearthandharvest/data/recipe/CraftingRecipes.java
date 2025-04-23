@@ -83,6 +83,15 @@ public class CraftingRecipes
                 .define('B', Items.BRICK)
                 .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BASIN.get())
+                .pattern("iii")
+                .pattern("BCB")
+                .pattern("BBB")
+                .define('i', Tags.Items.INGOTS_IRON)
+                .define('C', Items.CAULDRON)
+                .define('B', Items.BRICK)
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .save(output);
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.OAK_CABINET.get(), 1)
