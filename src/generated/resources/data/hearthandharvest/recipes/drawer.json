@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "C": {
+      "tag": "farmersdelight:cabinets/wooden"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "iii",
+    "BCB",
+    "BBB"
+  ],
+  "result": {
+    "item": "hearthandharvest:drawer"
+  },
+  "show_notification": true
+}

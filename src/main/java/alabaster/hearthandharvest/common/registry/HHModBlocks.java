@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
 
@@ -27,6 +28,37 @@ public class HHModBlocks {
 
     public static final RegistryObject<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
             () -> new SapCauldronBlock(Block.Properties.copy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> COUNTER = BLOCKS.register("counter",
+            () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DRAWER = BLOCKS.register("drawer",
+            () -> new CabinetBlock(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> BASIN = BLOCKS.register("basin",
+            () -> new BasinBlock(Block.Properties.copy(Blocks.BRICKS).randomTicks()));
+
+    // Half-Cabinets
+    public static final RegistryObject<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> SPRUCE_HALF_CABINET = BLOCKS.register("spruce_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> BIRCH_HALF_CABINET = BLOCKS.register("birch_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> JUNGLE_HALF_CABINET = BLOCKS.register("jungle_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> ACACIA_HALF_CABINET = BLOCKS.register("acacia_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> DARK_OAK_HALF_CABINET = BLOCKS.register("dark_oak_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> MANGROVE_HALF_CABINET = BLOCKS.register("mangrove_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> CHERRY_HALF_CABINET = BLOCKS.register("cherry_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.CHERRY_WOOD)));
+    public static final RegistryObject<Block> BAMBOO_HALF_CABINET = BLOCKS.register("bamboo_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.BAMBOO_WOOD)));
+    public static final RegistryObject<Block> CRIMSON_HALF_CABINET = BLOCKS.register("crimson_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+    public static final RegistryObject<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
 
     // Crops

@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -12,7 +13,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 import java.util.function.Consumer;
 
@@ -62,6 +66,91 @@ public class CraftingRecipes
                 .define('B', Items.BUCKET)
                 .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.COUNTER.get())
+                .pattern("ii")
+                .pattern("BB")
+                .pattern("BB")
+                .define('i', Tags.Items.INGOTS_IRON)
+                .define('B', Items.BRICK)
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DRAWER.get())
+                .pattern("iii")
+                .pattern("BCB")
+                .pattern("BBB")
+                .define('i', Tags.Items.INGOTS_IRON)
+                .define('C', ModTags.WOODEN_CABINETS)
+                .define('B', Items.BRICK)
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BASIN.get())
+                .pattern("iii")
+                .pattern("BCB")
+                .pattern("BBB")
+                .define('i', Tags.Items.INGOTS_IRON)
+                .define('C', Items.CAULDRON)
+                .define('B', Items.BRICK)
+                .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
+                .save(consumer);
+
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.OAK_CABINET.get(), 1)
+                .requires(HHModItems.OAK_HALF_CABINET.get())
+                .requires(HHModItems.OAK_HALF_CABINET.get())
+                .unlockedBy("has_oak_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.OAK_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "oak_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.SPRUCE_CABINET.get(), 1)
+                .requires(HHModItems.SPRUCE_HALF_CABINET.get())
+                .requires(HHModItems.SPRUCE_HALF_CABINET.get())
+                .unlockedBy("has_spruce_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SPRUCE_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "spruce_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.BIRCH_CABINET.get(), 1)
+                .requires(HHModItems.BIRCH_HALF_CABINET.get())
+                .requires(HHModItems.BIRCH_HALF_CABINET.get())
+                .unlockedBy("has_birch_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BIRCH_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "birch_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.JUNGLE_CABINET.get(), 1)
+                .requires(HHModItems.JUNGLE_HALF_CABINET.get())
+                .requires(HHModItems.JUNGLE_HALF_CABINET.get())
+                .unlockedBy("has_jungle_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.JUNGLE_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "jungle_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.ACACIA_CABINET.get(), 1)
+                .requires(HHModItems.ACACIA_HALF_CABINET.get())
+                .requires(HHModItems.ACACIA_HALF_CABINET.get())
+                .unlockedBy("has_acacia_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ACACIA_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "acacia_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.DARK_OAK_CABINET.get(), 1)
+                .requires(HHModItems.DARK_OAK_HALF_CABINET.get())
+                .requires(HHModItems.DARK_OAK_HALF_CABINET.get())
+                .unlockedBy("has_dark_oak_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.DARK_OAK_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "dark_oak_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.MANGROVE_CABINET.get(), 1)
+                .requires(HHModItems.MANGROVE_HALF_CABINET.get())
+                .requires(HHModItems.MANGROVE_HALF_CABINET.get())
+                .unlockedBy("has_mangrove_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANGROVE_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "mangrove_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.CHERRY_CABINET.get(), 1)
+                .requires(HHModItems.CHERRY_HALF_CABINET.get())
+                .requires(HHModItems.CHERRY_HALF_CABINET.get())
+                .unlockedBy("has_cherry_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHERRY_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "cherry_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.BAMBOO_CABINET.get(), 1)
+                .requires(HHModItems.BAMBOO_HALF_CABINET.get())
+                .requires(HHModItems.BAMBOO_HALF_CABINET.get())
+                .unlockedBy("has_bamboo_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BAMBOO_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "bamboo_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.CRIMSON_CABINET.get(), 1)
+                .requires(HHModItems.CRIMSON_HALF_CABINET.get())
+                .requires(HHModItems.CRIMSON_HALF_CABINET.get())
+                .unlockedBy("has_crimson_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CRIMSON_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "crimson_cabinet_from_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.WARPED_CABINET.get(), 1)
+                .requires(HHModItems.WARPED_HALF_CABINET.get())
+                .requires(HHModItems.WARPED_HALF_CABINET.get())
+                .unlockedBy("has_warped_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WARPED_HALF_CABINET.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "warped_cabinet_from_halves"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HHModItems.UNIVERSAL_FEED.get(), 8)
                 .pattern("   ")
                 .pattern("HCF")

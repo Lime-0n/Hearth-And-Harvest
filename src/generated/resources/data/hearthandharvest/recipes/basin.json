@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "iii",
+    "BCB",
+    "BBB"
+  ],
+  "result": {
+    "item": "hearthandharvest:basin"
+  },
+  "show_notification": true
+}

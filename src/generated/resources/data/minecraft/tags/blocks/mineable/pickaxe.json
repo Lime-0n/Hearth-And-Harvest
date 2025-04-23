@@ -2,6 +2,9 @@
   "values": [
     "hearthandharvest:jug",
     "hearthandharvest:jar",
-    "hearthandharvest:sap_cauldron"
+    "hearthandharvest:sap_cauldron",
+    "hearthandharvest:counter",
+    "hearthandharvest:drawer",
+    "hearthandharvest:basin"
   ]
 }

@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
 import alabaster.hearthandharvest.common.utilities.CauldronBlockColor;
 import alabaster.hearthandharvest.common.utilities.TapperBlockColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,5 +15,6 @@ public class ClientEventHandler {
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
         event.register(new CauldronBlockColor(), HHModBlocks.SAP_CAULDRON.get());
         event.register(new TapperBlockColor(), HHModBlocks.TREE_TAPPER.get());
+        event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
     }
 }

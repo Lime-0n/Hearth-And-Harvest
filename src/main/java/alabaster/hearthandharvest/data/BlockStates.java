@@ -17,6 +17,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
 import javax.annotation.Nullable;
@@ -49,6 +50,18 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        this.halfCabinetBlock(HHModBlocks.OAK_HALF_CABINET.get(), "oak");
+        this.halfCabinetBlock(HHModBlocks.BIRCH_HALF_CABINET.get(), "birch");
+        this.halfCabinetBlock(HHModBlocks.SPRUCE_HALF_CABINET.get(), "spruce");
+        this.halfCabinetBlock(HHModBlocks.JUNGLE_HALF_CABINET.get(), "jungle");
+        this.halfCabinetBlock(HHModBlocks.ACACIA_HALF_CABINET.get(), "acacia");
+        this.halfCabinetBlock(HHModBlocks.DARK_OAK_HALF_CABINET.get(), "dark_oak");
+        this.halfCabinetBlock(HHModBlocks.MANGROVE_HALF_CABINET.get(), "mangrove");
+        this.halfCabinetBlock(HHModBlocks.CHERRY_HALF_CABINET.get(), "cherry");
+        this.halfCabinetBlock(HHModBlocks.BAMBOO_HALF_CABINET.get(), "bamboo");
+        this.halfCabinetBlock(HHModBlocks.CRIMSON_HALF_CABINET.get(), "crimson");
+        this.halfCabinetBlock(HHModBlocks.WARPED_HALF_CABINET.get(), "warped");
+
         this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
         this.crateBlock(HHModBlocks.RASPBERRY_CRATE.get(), "raspberry");
@@ -137,6 +150,20 @@ public class BlockStates extends BlockStateProvider {
                     return ConfiguredModel.builder()
                             .modelFile(models().singleTexture(stageName, parent, textureKey, resourceBlock(stageName)).renderType("cutout")).build();
                 }, ignored);
+    }
+
+    public void halfCabinetBlock(Block block, String woodType) {
+        this.horizontalBlock(block, state -> {
+            String suffix = state.getValue(CabinetBlock.OPEN) ? "_open" : "";
+            String modelName = woodType + "_half_cabinet" + suffix;
+
+            return models().getBuilder(modelName)
+                    .parent(existingModel("half_cabinet"))
+                    .texture("front", resourceBlock(woodType + "_cabinet_front" + suffix))
+                    .texture("side", resourceBlock(woodType + "_half_cabinet_side"))
+                    .texture("top", resourceBlock(woodType + "_half_cabinet_top"))
+                    .texture("back", resourceBlock(woodType + "_cabinet_side"));
+        });
     }
 
     public void wildCropBlock(Block block) {

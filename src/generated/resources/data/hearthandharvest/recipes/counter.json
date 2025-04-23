@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "ii",
+    "BB",
+    "BB"
+  ],
+  "result": {
+    "item": "hearthandharvest:counter"
+  },
+  "show_notification": true
+}

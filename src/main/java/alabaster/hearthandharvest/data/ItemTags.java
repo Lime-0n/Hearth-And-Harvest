@@ -12,6 +12,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
+import vectorwing.farmersdelight.common.tag.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -28,11 +29,33 @@ public class ItemTags extends ItemTagsProvider {
     }
 
     private void registerModTags() {
-        tag(HHModTags.CLEAVERS).add(HHModItems.FLINT_CLEAVER.get(), HHModItems.IRON_CLEAVER.get(), HHModItems.DIAMOND_CLEAVER.get(), HHModItems.GOLDEN_CLEAVER.get(), HHModItems.NETHERITE_CLEAVER.get());
+        tag(HHModTags.CLEAVERS)
+                .add(HHModItems.FLINT_CLEAVER.get())
+                .add(HHModItems.IRON_CLEAVER.get())
+                .add(HHModItems.DIAMOND_CLEAVER.get())
+                .add(HHModItems.GOLDEN_CLEAVER.get())
+                .add(HHModItems.NETHERITE_CLEAVER.get());
+
+        tag(ModTags.KNIVES)
+                .addTag(HHModTags.CLEAVERS);
+
         tag(HHModTags.JAMS).add(HHModItems.GRAPE_JAM.get(), HHModItems.RASPBERRY_JAM.get(), HHModItems.BLUEBERRY_JAM.get(), HHModItems.APPLE_JAM.get(), HHModItems.GLOW_BERRY_JAM.get(), HHModItems.SWEET_BERRY_JAM.get(), HHModItems.MELON_JAM.get());
         tag(ForgeTags.MILK_BOTTLE).add(HHModItems.GOAT_MILK_BOTTLE.get());
         tag(HHModTags.CHEESE_SLICES).add(HHModItems.CHEDDAR_CHEESE_SLICE.get(), HHModItems.GOAT_CHEESE_SLICE.get());
         tag(ForgeTags.BERRIES).add(HHModItems.BLUEBERRIES.get()).add(HHModItems.CHERRY.get()).add(HHModItems.RASPBERRY.get()).add(HHModItems.RED_GRAPES.get()).add(HHModItems.GREEN_GRAPES.get());
         tag(Tags.Items.SEEDS).add(HHModItems.COTTON_SEEDS.get()).add(HHModItems.SUNFLOWER_SEEDS.get());
+
+        tag(ModTags.WOODEN_CABINETS)
+                .add(HHModItems.OAK_HALF_CABINET.get())
+                .add(HHModItems.SPRUCE_HALF_CABINET.get())
+                .add(HHModItems.BIRCH_HALF_CABINET.get())
+                .add(HHModItems.JUNGLE_HALF_CABINET.get())
+                .add(HHModItems.ACACIA_HALF_CABINET.get())
+                .add(HHModItems.DARK_OAK_HALF_CABINET.get())
+                .add(HHModItems.MANGROVE_HALF_CABINET.get())
+                .add(HHModItems.CHERRY_HALF_CABINET.get())
+                .add(HHModItems.BAMBOO_HALF_CABINET.get())
+                .add(HHModItems.CRIMSON_HALF_CABINET.get())
+                .add(HHModItems.WARPED_HALF_CABINET.get());
     }
 }
