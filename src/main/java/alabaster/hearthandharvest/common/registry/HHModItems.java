@@ -19,7 +19,6 @@ import vectorwing.farmersdelight.common.registry.ModMaterials;
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
 public class HHModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, HearthAndHarvest.MODID);
     public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
@@ -27,11 +26,6 @@ public class HHModItems {
     public static Supplier<Item> registerWithTab(String name, Supplier<Item> supplier) {
         Supplier<Item> block = ITEMS.register(name, supplier);
         CREATIVE_TAB_ITEMS.add(block);
-        return block;
-    }
-
-    public static Supplier<Item> registerNoTab(String name, Supplier<Item> supplier) {
-        Supplier<Item> block = ITEMS.register(name, supplier);
         return block;
     }
 
@@ -306,7 +300,7 @@ public class HHModItems {
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",
             () -> new Item(basicItem().stacksTo(1)));
     public static final Supplier<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
-            () -> new Item(basicItem()));
+            () -> new Item(basicItem().craftRemainder(Items.GLASS_BOTTLE)));
 
     // Pies
     public static final Supplier<Item> BLUEBERRY_PIE = registerWithTab("blueberry_pie",
@@ -335,6 +329,9 @@ public class HHModItems {
     public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
             () -> new Item(jarItem(HHFoodValues.PEANUT_BUTTER)));
 
+    public static final Supplier<Item> COOKING_OIL = registerWithTab("cooking_oil",
+            () -> new Item(basicItem().craftRemainder(Items.GLASS_BOTTLE)));
+
     public static final Supplier<Item> UNRIPE_CHEDDAR_CHEESE_WHEEL = registerWithTab("unripe_cheddar_cheese_wheel",
             () -> new BlockItem(HHModBlocks.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(), basicItem()));
     public static final Supplier<Item> CHEDDAR_CHEESE_WHEEL = registerWithTab("cheddar_cheese_wheel",
@@ -358,7 +355,7 @@ public class HHModItems {
     public static final Supplier<Item> JERKY = registerWithTab("jerky",
             () -> new Item(foodItem(HHFoodValues.JERKY)));
     public static final Supplier<Item> BATTER = registerWithTab("batter",
-            () -> new Item(basicItem()));
+            () -> new Item(basicItem().craftRemainder(Items.BOWL)));
     public static final Supplier<Item> SALT = registerWithTab("salt",
             () -> new Item(basicItem()));
     public static final Supplier<Item> RAISINS = registerWithTab("raisins",
@@ -368,11 +365,11 @@ public class HHModItems {
 
     // Meals
     public static final Supplier<Item> ONION_SOUP = registerWithTab("onion_soup",
-            () -> new Item(foodItem(HHFoodValues.ONION_SOUP)));
+            () -> new Item(bowlFoodItem(HHFoodValues.ONION_SOUP)));
     public static final Supplier<Item> MACARONI_AND_CHEESE = registerWithTab("macaroni_and_cheese",
-            () -> new Item(foodItem(HHFoodValues.MACARONI_AND_CHEESE)));
+            () -> new Item(bowlFoodItem(HHFoodValues.MACARONI_AND_CHEESE)));
     public static final Supplier<Item> MASHED_POTATOES = registerWithTab("mashed_potatoes",
-            () -> new Item(foodItem(HHFoodValues.MASHED_POTATOES)));
+            () -> new Item(bowlFoodItem(HHFoodValues.MASHED_POTATOES)));
     public static final Supplier<Item> PEANUT_BUTTER_AND_JELLY_SANDWICH = registerWithTab("peanut_butter_and_jelly_sandwich",
             () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_AND_JELLY_SANDWICH)));
     public static final Supplier<Item> WAFFLE = registerWithTab("waffle",

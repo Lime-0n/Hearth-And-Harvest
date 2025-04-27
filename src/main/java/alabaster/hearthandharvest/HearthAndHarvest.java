@@ -7,6 +7,7 @@ import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Mob;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -39,6 +40,8 @@ public class HearthAndHarvest {
         HHModItems.ITEMS.register(modEventBus);
         HHModEffects.EFFECTS.register(modEventBus);
         HHModPotions.POTIONS.register(modEventBus);
+        //HHModFluids.FLUIDS.register(modEventBus);
+        //HHModFluids.FLUID_TYPES.register(modEventBus);
         HHModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         HHModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         HHModDataComponents.DATA_COMPONENTS.register(modEventBus);
@@ -73,5 +76,9 @@ public class HearthAndHarvest {
     public void onServerStarting(ServerStartingEvent event)
     {
         LOGGER.info("Hearth and Harvest is starting");
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

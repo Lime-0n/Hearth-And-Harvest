@@ -1,12 +1,16 @@
 package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.utilities.CauldronBlockColor;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
 import alabaster.hearthandharvest.common.utilities.TapperBlockColor;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 @EventBusSubscriber(modid = "hearthandharvest", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

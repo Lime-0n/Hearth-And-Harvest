@@ -17,6 +17,10 @@ public class HHModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, HearthAndHarvest.MODID);
 
+    public static <T extends Block> Supplier<T> registerNoItem(String name, Supplier<T> supplier) {
+        return BLOCKS.register(name, supplier);
+    }
+
     // Workstations
     public static final Supplier<Block> TREE_TAPPER = BLOCKS.register("tree_tapper",
             () -> new TreeTapperBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));
@@ -60,6 +64,10 @@ public class HHModBlocks {
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
     public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+
+    // Fluids
+    //public static final Supplier<LiquidBlock> OIL = registerNoItem("oil",
+    //        () -> new OilFluidBlock(HHModFluids.OIL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
     // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
@@ -182,10 +190,10 @@ public class HHModBlocks {
     public static final Supplier<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",
             () -> new UnripeCheeseWheelBlock(HHModBlocks.CHEDDAR_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> CHEDDAR_CHEESE_WHEEL = BLOCKS.register("cheddar_cheese_wheel",
-            () -> new CheeseWheelBlock(HHModItems.CHEDDAR_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
+            () -> new CheeseWheelBlock(HHModItems.CHEDDAR_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));
 
     public static final Supplier<Block> UNRIPE_GOAT_CHEESE_WHEEL = BLOCKS.register("unripe_goat_cheese_wheel",
             () -> new UnripeCheeseWheelBlock(HHModBlocks.GOAT_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> GOAT_CHEESE_WHEEL = BLOCKS.register("goat_cheese_wheel",
-            () -> new CheeseWheelBlock(HHModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));;
+            () -> new CheeseWheelBlock(HHModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));
 }
