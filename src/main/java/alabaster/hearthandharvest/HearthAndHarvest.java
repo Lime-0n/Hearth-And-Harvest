@@ -40,8 +40,8 @@ public class HearthAndHarvest {
         HHModItems.ITEMS.register(modEventBus);
         HHModEffects.EFFECTS.register(modEventBus);
         HHModPotions.POTIONS.register(modEventBus);
-        //HHModFluids.FLUIDS.register(modEventBus);
-        //HHModFluids.FLUID_TYPES.register(modEventBus);
+        HHModFluids.FLUIDS.register(modEventBus);
+        HHModFluids.FLUID_TYPES.register(modEventBus);
         HHModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         HHModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         HHModDataComponents.DATA_COMPONENTS.register(modEventBus);

@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
+import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
 import alabaster.hearthandharvest.common.item.UniversalFeedItem;
 import alabaster.hearthandharvest.common.item.WateringCanItem;
@@ -330,7 +331,7 @@ public class HHModItems {
             () -> new Item(jarItem(HHFoodValues.PEANUT_BUTTER)));
 
     public static final Supplier<Item> COOKING_OIL = registerWithTab("cooking_oil",
-            () -> new Item(basicItem().craftRemainder(Items.GLASS_BOTTLE)));
+            () -> new BucketItem(HHModFluids.COOKING_OIL.get(), basicItem().craftRemainder(Items.GLASS_BOTTLE)));
 
     public static final Supplier<Item> UNRIPE_CHEDDAR_CHEESE_WHEEL = registerWithTab("unripe_cheddar_cheese_wheel",
             () -> new BlockItem(HHModBlocks.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(), basicItem()));
