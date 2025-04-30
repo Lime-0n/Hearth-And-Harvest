@@ -351,7 +351,7 @@ public class HHModItems {
     public static final RegistryObject<Item> JERKY = registerWithTab("jerky",
             () -> new Item(foodItem(HHFoodValues.JERKY)));
     public static final RegistryObject<Item> BATTER = registerWithTab("batter",
-            () -> new Item(basicItem()));
+            () -> new Item(basicItem().craftRemainder(Items.BOWL)));
     public static final RegistryObject<Item> SALT = registerWithTab("salt",
             () -> new Item(basicItem()));
     public static final RegistryObject<Item> RAISINS = registerWithTab("raisins",
@@ -361,11 +361,11 @@ public class HHModItems {
 
     // Meals
     public static final RegistryObject<Item> ONION_SOUP = registerWithTab("onion_soup",
-            () -> new Item(foodItem(HHFoodValues.ONION_SOUP)));
+            () -> new Item(bowlFoodItem(HHFoodValues.ONION_SOUP)));
     public static final RegistryObject<Item> MACARONI_AND_CHEESE = registerWithTab("macaroni_and_cheese",
-            () -> new Item(foodItem(HHFoodValues.MACARONI_AND_CHEESE)));
+            () -> new Item(bowlFoodItem(HHFoodValues.MACARONI_AND_CHEESE)));
     public static final RegistryObject<Item> MASHED_POTATOES = registerWithTab("mashed_potatoes",
-            () -> new Item(foodItem(HHFoodValues.MASHED_POTATOES)));
+            () -> new Item(bowlFoodItem(HHFoodValues.MASHED_POTATOES)));
     public static final RegistryObject<Item> PEANUT_BUTTER_AND_JELLY_SANDWICH = registerWithTab("peanut_butter_and_jelly_sandwich",
             () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_AND_JELLY_SANDWICH)));
     public static final RegistryObject<Item> WAFFLE = registerWithTab("waffle",
