@@ -40,5 +40,20 @@ public class ClientEventHandler {
                 return FLOWING_COOKING_OIL;
             }
         }, HHModFluids.COOKING_OIL_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_SAP   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sap_still");
+            private static final ResourceLocation FLOWING_SAP = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sap_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_SAP;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_SAP;
+            }
+        }, HHModFluids.SAP_TYPE.get());
     }
 }

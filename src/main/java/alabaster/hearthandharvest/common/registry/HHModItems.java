@@ -193,16 +193,16 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.MILK_CRATE.get(), basicItem()));
     public static final Supplier<Item> GOAT_MILK_CRATE = registerWithTab("goat_milk_crate",
             () -> new BlockItem(HHModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
-    public static final Supplier<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
-            () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> GREEN_GRAPE_WINE_CRATE = registerWithTab("green_grape_wine_crate",
-            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
-            () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> BLUEBERRY_WINE_CRATE = registerWithTab("blueberry_wine_crate",
             () -> new BlockItem(HHModBlocks.BLUEBERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> CHERRY_WINE_CRATE = registerWithTab("cherry_wine_crate",
             () -> new BlockItem(HHModBlocks.CHERRY_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
+            () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
+            () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> GREEN_GRAPE_WINE_CRATE = registerWithTab("green_grape_wine_crate",
+            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> MEAD_CRATE = registerWithTab("mead_crate",
             () -> new BlockItem(HHModBlocks.MEAD_CRATE.get(), basicItem()));
     public static final Supplier<Item> WATER_CRATE = registerWithTab("water_crate",
