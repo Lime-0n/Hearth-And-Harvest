@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_milk_crate": {
+    "has_green_grape_wine": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:milk_crate"
+              "hearthandharvest:green_grape_wine"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:milk_bottle"
+        "recipe": "hearthandharvest:green_grape_wine_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_milk_crate",
+      "has_green_grape_wine",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:milk_bottle"
+      "hearthandharvest:green_grape_wine_crate"
     ]
   },
   "sends_telemetry_event": false

@@ -109,8 +109,10 @@ public class CaskGUI extends AbstractContainerScreen<CaskMenu> implements Recipe
 
         @Override
     public void render(GuiGraphics gui, final int mouseX, final int mouseY, float partialTicks) {
+        this.renderBackground(gui);
+
         if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-            this.renderBackground(gui);
+            this.renderBg(gui, partialTicks, mouseX, mouseY);
             this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
         } else {
             super.render(gui, mouseX, mouseY, partialTicks);
