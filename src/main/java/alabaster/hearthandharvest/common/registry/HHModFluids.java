@@ -1,8 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.fluid.CookingOilFluid;
-import alabaster.hearthandharvest.common.fluid.HHFluidType;
+import alabaster.hearthandharvest.common.fluid.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -25,4 +24,8 @@ public class HHModFluids {
     public static final Supplier<FluidType> SAP_TYPE = FLUID_TYPES.register("sap", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
     public static final Supplier<HHFluidType> SAP = FLUIDS.register("sap", () -> new SapFluid(true));
     public static final Supplier<HHFluidType> FLOWING_SAP = FLUIDS.register("flowing_sap", () -> new SapFluid(false));
+
+    public static final Supplier<FluidType> SYRUP_TYPE = FLUID_TYPES.register("syrup", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> SYRUP = FLUIDS.register("syrup", () -> new SyrupFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_SYRUP = FLUIDS.register("flowing_syrup", () -> new SyrupFluid(false));
 }

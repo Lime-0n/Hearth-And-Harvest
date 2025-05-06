@@ -3,9 +3,7 @@ package alabaster.hearthandharvest.client.event;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModFluids;
-import alabaster.hearthandharvest.common.utilities.CauldronBlockColor;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
-import alabaster.hearthandharvest.common.utilities.TapperBlockColor;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,8 +17,6 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
-        event.register(new CauldronBlockColor(), HHModBlocks.SAP_CAULDRON.get());
-        event.register(new TapperBlockColor(), HHModBlocks.TREE_TAPPER.get());
         event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
     }
 
@@ -55,5 +51,20 @@ public class ClientEventHandler {
                 return FLOWING_SAP;
             }
         }, HHModFluids.SAP_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_SYRUP   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/syrup_still");
+            private static final ResourceLocation FLOWING_SYRUP = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/syrup_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_SYRUP;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_SYRUP;
+            }
+        }, HHModFluids.SYRUP_TYPE.get());
     }
 }

@@ -39,5 +39,4 @@ public class HHFluidType extends BaseFlowingFluid {
     public int getAmount(FluidState fluidState) {
         return 0;
     }
-
 }

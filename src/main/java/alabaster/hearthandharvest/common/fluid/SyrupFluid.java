@@ -5,9 +5,9 @@ import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.FluidState;
 
-public class CookingOilFluid extends HHFluidType {
-    public CookingOilFluid(boolean source) {
-        super(new Properties(HHModFluids.COOKING_OIL_TYPE, HHModFluids.COOKING_OIL, HHModFluids.FLOWING_COOKING_OIL), source);
+public class SyrupFluid extends HHFluidType {
+    public SyrupFluid(boolean source) {
+        super(new Properties(HHModFluids.SYRUP_TYPE, HHModFluids.SYRUP, HHModFluids.FLOWING_SYRUP), source);
     }
 
     @Override
@@ -16,6 +16,6 @@ public class CookingOilFluid extends HHFluidType {
     }
 
     public Item getBucket() {
-        return HHModItems.COOKING_OIL.get();
+        return HHModItems.SYRUP_BOTTLE.get();
     }
 }

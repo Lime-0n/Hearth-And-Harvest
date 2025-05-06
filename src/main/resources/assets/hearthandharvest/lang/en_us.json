@@ -214,5 +214,7 @@
   "hearthandharvest.jei.info.sap_bucket": "Sap buckets can be put into a cauldron, and when over fire will slowly boil down into syrup. This syrup can be collected using bottles.",
   "hearthandharvest.jei.info.wild_grapes": "Grapes can be commonly found as a wild plant in temperate lands, such as plains and forests.",
 
-  "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil"
+  "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil",
+  "fluid_type.hearthandharvest.sap": "Sap",
+  "fluid_type.hearthandharvest.syrup": "Syrup"
 }
