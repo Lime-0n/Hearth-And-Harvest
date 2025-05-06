@@ -550,7 +550,7 @@ public class CraftingRecipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get(), 9)
                 .requires(HHModItems.MILK_CRATE.get())
                 .unlockedBy("has_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MILK_CRATE.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "milk_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.GOAT_MILK_BOTTLE.get(), 9)
                 .requires(HHModItems.GOAT_MILK_CRATE.get())
                 .unlockedBy("has_goat_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GOAT_MILK_CRATE.get()))

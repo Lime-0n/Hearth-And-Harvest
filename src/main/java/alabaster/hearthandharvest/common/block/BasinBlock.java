@@ -109,8 +109,9 @@ public class BasinBlock extends Block {
             if (currentLevel >= 3) {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, currentLevel - 3), 3);
                 if (!player.getAbilities().instabuild) {
+                    heldItem.shrink(1);
                     level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    player.setItemInHand(hand, new ItemStack(Items.WATER_BUCKET));
+                    player.addItem(new ItemStack(Items.WATER_BUCKET));
                 }
                 changed = true;
             }
