@@ -23,6 +23,9 @@ public class CuttingRecipes {
 
         // Cleaver
         choppingAnimalItems(consumer);
+
+        // Axe
+        halfCabinets(consumer);
     }
 
     private static void cuttingFoods(Consumer<FinishedRecipe> consumer) {
