@@ -213,6 +213,7 @@
   "hearthandharvest.jei.info.tree_tapper": "Tree tappers can be placed on Spruce and Dark Oak trees to collect sap over time. Collect the sap with a bucket when full.",
   "hearthandharvest.jei.info.sap_bucket": "Sap buckets can be put into a cauldron, and when over fire will slowly boil down into syrup. This syrup can be collected using bottles.",
   "hearthandharvest.jei.info.wild_grapes": "Grapes can be commonly found as a wild plant in temperate lands, such as plains and forests.",
+  "hearthandharvest.jei.info.pluck_chickens": "Shift-click on chickens bare handed to get some feathers, but beware that you may damage them! Use shears to avoid hurting them",
 
   "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil",
   "fluid_type.hearthandharvest.sap": "Sap",

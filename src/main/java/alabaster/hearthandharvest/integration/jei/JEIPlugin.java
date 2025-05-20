@@ -14,6 +14,7 @@ import mezz.jei.api.registration.*;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -39,6 +40,7 @@ public class JEIPlugin implements IModPlugin
         registration.addIngredientInfo(new ItemStack(HHModItems.WATERING_CAN.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.watering_can"));
         registration.addIngredientInfo(new ItemStack(HHModItems.TREE_TAPPER.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.tree_tapper"));
         registration.addIngredientInfo(new ItemStack(HHModItems.SAP_BUCKET.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.sap_bucket"));
+        registration.addIngredientInfo(new ItemStack(Items.FEATHER), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.pluck_chickens"));
         registration.addIngredientInfo(List.of(new ItemStack(HHModItems.WILD_RED_GRAPES.get()), new ItemStack(HHModItems.RED_GRAPES.get()), new ItemStack(HHModItems.WILD_GREEN_GRAPES.get()), new ItemStack(HHModItems.GREEN_GRAPES.get())), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.wild_grapes"));
     }
 
