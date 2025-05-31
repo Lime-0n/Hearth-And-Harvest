@@ -236,5 +236,13 @@ public class CookingRecipes
                 .unlockedByItems("has_batter", HHModItems.BATTER.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(consumer);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.BISCUITS_AND_GRAVY.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(HHModItems.COOKED_SAUSAGE.get())
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(ForgeTags.MILK_BOTTLE)
+                .addIngredient(Items.BREAD)
+                .unlockedByItems("has_cooked_sausage", HHModItems.COOKED_SAUSAGE.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(consumer);
     }
 }

@@ -132,4 +132,7 @@ public class HHFoodValues {
             .nutrition(8).saturationMod(0.3f).build();
     public static final FoodProperties WAFFLE = (new FoodProperties.Builder())
             .nutrition(6).saturationMod(0.3f).build();
+    public static final FoodProperties BISCUITS_AND_GRAVY = (new FoodProperties.Builder())
+            .nutrition(10).saturationMod(0.5f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 1), 1.0F).build();
 }

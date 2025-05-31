@@ -370,4 +370,6 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_AND_JELLY_SANDWICH)));
     public static final RegistryObject<Item> WAFFLE = registerWithTab("waffle",
             () -> new Item(foodItem(HHFoodValues.WAFFLE)));
+    public static final RegistryObject<Item> BISCUITS_AND_GRAVY = registerWithTab("biscuits_and_gravy",
+            () -> new Item(bowlFoodItem(HHFoodValues.BISCUITS_AND_GRAVY)));
 }
