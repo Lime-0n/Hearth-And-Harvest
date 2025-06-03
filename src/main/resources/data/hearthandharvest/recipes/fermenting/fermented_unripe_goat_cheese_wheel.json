@@ -6,7 +6,7 @@
     }
   ],
   "type": "brewinandchewin:fermenting",
-  "category": "meals",
+  "recipe_book_tab": "meals",
   "experience": 1.0,
   "ingredients": [
     {
@@ -17,12 +17,11 @@
     },
     {
       "item": "hearthandharvest:salt"
-    },
-    []
+    }
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:unripe_goat_cheese_wheel"
+    "item": "hearthandharvest:unripe_goat_cheese_wheel"
   },
-  "temperature": 5
+  "temperature": 3
 }
