@@ -4,7 +4,6 @@
   "block.hearthandharvest.tree_tapper": "树汁收集器",
 
   "block.hearthandharvest.cask": "熟成桶",
-  "hearthandharvest.container.cask": "熟成桶",
   "hearthandharvest.container.cask.dim": "周边光线暗，工作速度×2",
   "hearthandharvest.container.cask.medium": "周边光线充足，工作速度×1",
   "hearthandharvest.container.cask.bright": "周边光线明亮，工作速度×0.5",
