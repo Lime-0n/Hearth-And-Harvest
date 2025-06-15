@@ -101,6 +101,8 @@ public class BlockStates extends BlockStateProvider
 
         this.wildCropBlock(HHModBlocks.WILD_RED_GRAPES.get());
         this.wildCropBlock(HHModBlocks.WILD_GREEN_GRAPES.get());
+        this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
+        this.wildCropBlock(HHModBlocks.WILD_PEANUTS.get());
 
     }
 

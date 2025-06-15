@@ -99,6 +99,9 @@ public class HHFoodValues {
     public static final FoodProperties CHARRED_MARSHMALLOW_STICK = (new FoodProperties.Builder())
             .nutrition(1).saturationModifier(0.1f)
             .effect(() -> new MobEffectInstance(MobEffects.POISON, 200, 0), 1.0F).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
+    public static final FoodProperties SMORE = (new FoodProperties.Builder())
+            .nutrition(5).saturationModifier(0.5f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 200, 0), 1.0F).alwaysEdible().fast().build();
 
     public static final FoodProperties RASPBERRY_PIE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationModifier(0.3f).build();

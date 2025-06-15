@@ -1,0 +1,11 @@
+{
+  "type": "hearthandharvest:bottle_crate",
+  "category": "misc",
+  "input": {
+    "item": "hearthandharvest:cherry_wine"
+  },
+  "result": {
+    "id": "hearthandharvest:cherry_wine_crate",
+    "count": 1
+  }
+}

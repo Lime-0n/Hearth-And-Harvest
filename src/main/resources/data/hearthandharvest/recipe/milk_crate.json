@@ -1,0 +1,11 @@
+{
+  "type": "hearthandharvest:bottle_crate",
+  "category": "misc",
+  "input": {
+    "item": "farmersdelight:milk_bottle"
+  },
+  "result": {
+    "id": "hearthandharvest:milk_crate",
+    "count": 1
+  }
+}

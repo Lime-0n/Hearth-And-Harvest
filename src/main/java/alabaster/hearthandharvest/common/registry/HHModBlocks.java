@@ -74,6 +74,10 @@ public class HHModBlocks {
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
     public static final Supplier<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+    public static final Supplier<Block> WILD_COTTON = BLOCKS.register("wild_cotton",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+    public static final Supplier<Block> WILD_PEANUTS = BLOCKS.register("wild_peanuts",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
 
     // Crops
     public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
