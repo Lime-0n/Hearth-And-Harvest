@@ -46,6 +46,8 @@
 
   "block.hearthandharvest.wild_red_grapes": "Wild Red Grapes",
   "block.hearthandharvest.wild_green_grapes": "Wild Green Grapes",
+  "block.hearthandharvest.wild_cotton": "Wild Cotton",
+  "block.hearthandharvest.wild_peanuts": "Wild Peanuts",
 
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",
@@ -131,6 +133,7 @@
   "item.hearthandharvest.marshmallow_stick": "Marshmallow",
   "item.hearthandharvest.roasted_marshmallow_stick": "Roasted Marshmallow",
   "item.hearthandharvest.charred_marshmallow_stick": "Charred Marshmallow",
+  "item.hearthandharvest.smore": "Smore",
 
   "block.hearthandharvest.raspberry_pie": "Raspberry Pie",
   "item.hearthandharvest.raspberry_pie_slice": "Raspberry Pie Slice",

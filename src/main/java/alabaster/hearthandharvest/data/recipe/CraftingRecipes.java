@@ -320,34 +320,7 @@ public class CraftingRecipes
                 .define('#', Items.TURTLE_EGG)
                 .unlockedBy("has_turtle_egg", InventoryChangeTrigger.TriggerInstance.hasItems(Items.TURTLE_EGG))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MILK_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', ModItems.MILK_BOTTLE.get())
-                .unlockedBy("has_milk_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MILK_BOTTLE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.GOAT_MILK_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.GOAT_MILK_BOTTLE.get())
-                .unlockedBy("has_goat_milk_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GOAT_MILK_BOTTLE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BLUEBERRY_WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.BLUEBERRY_WINE.get())
-                .unlockedBy("has_blueberry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRY_WINE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CHERRY_WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.CHERRY_WINE.get())
-                .unlockedBy("has_cherry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHERRY_WINE.get()))
-                .save(output);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.RASPBERRY_WINE_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -624,6 +597,13 @@ public class CraftingRecipes
                 .define('S', Items.STICK)
                 .unlockedBy("has_sugar", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SUGAR))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SMORE.get(), 1)
+                .requires(HHModItems.ROASTED_MARSHMALLOW_STICK.get())
+                .requires(HHModItems.CHOCOLATE_BAR.get())
+                .requires(Items.COOKIE)
+                .requires(Items.COOKIE)
+                .unlockedBy("has_roasted_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_MARSHMALLOW_STICK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "smore"));
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.COTTON_CANDY.get(), 1)
                 .pattern(" W ")
                 .pattern("#C#")

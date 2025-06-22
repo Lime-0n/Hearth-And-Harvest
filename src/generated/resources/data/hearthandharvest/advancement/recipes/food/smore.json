@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_syrup_bottle": {
+    "has_roasted_marshmallow": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:syrup_bottle"
+            "items": "hearthandharvest:roasted_marshmallow_stick"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:syrup_crate"
+        "recipe": "hearthandharvest:smore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_syrup_bottle"
+      "has_roasted_marshmallow"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:syrup_crate"
+      "hearthandharvest:smore"
     ]
   }
 }

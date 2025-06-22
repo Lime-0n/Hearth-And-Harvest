@@ -137,6 +137,10 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WILD_RED_GRAPES.get(), basicItem()));
     public static final Supplier<Item> WILD_GREEN_GRAPES = registerWithTab("wild_green_grapes",
             () -> new BlockItem(HHModBlocks.WILD_GREEN_GRAPES.get(), basicItem()));
+    public static final Supplier<Item> WILD_COTTON = registerWithTab("wild_cotton",
+            () -> new BlockItem(HHModBlocks.WILD_COTTON.get(), basicItem()));
+    public static final Supplier<Item> WILD_PEANUTS = registerWithTab("wild_peanuts",
+            () -> new BlockItem(HHModBlocks.WILD_PEANUTS.get(), basicItem()));
     
     // Storage Blocks
 
@@ -296,6 +300,9 @@ public class HHModItems {
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1)));
     public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1)));
+
+    public static final Supplier<Item> SMORE = registerWithTab("smore",
+            () -> new MarshmallowStickItem(foodItem(HHFoodValues.SMORE)));
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",

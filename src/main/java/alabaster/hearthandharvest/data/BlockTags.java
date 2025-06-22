@@ -45,7 +45,9 @@ public class BlockTags extends BlockTagsProvider {
     protected void registerFDTags() {
         tag(ModTags.WILD_CROPS).add(
                 HHModBlocks.WILD_RED_GRAPES.get(),
-                HHModBlocks.WILD_GREEN_GRAPES.get()
+                HHModBlocks.WILD_GREEN_GRAPES.get(),
+                HHModBlocks.WILD_COTTON.get(),
+                HHModBlocks.WILD_PEANUTS.get()
                 );
     }
 
