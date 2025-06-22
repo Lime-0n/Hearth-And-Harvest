@@ -44,6 +44,8 @@
 
   "block.hearthandharvest.wild_red_grapes": "Дикий красный виноград",
   "block.hearthandharvest.wild_green_grapes": "Дикий зеленый виноград",
+  "block.hearthandharvest.wild_cotton": "Дикий хлопок",
+  "block.hearthandharvest.wild_peanuts": "Дикий арахис",
 
   "block.hearthandharvest.blueberry_crate": "Ящик черники",
   "block.hearthandharvest.raspberry_crate": "Ящик малины",
@@ -130,6 +132,7 @@
   "item.hearthandharvest.marshmallow_stick": "Маршмеллоу",
   "item.hearthandharvest.roasted_marshmallow_stick": "Жареный маршмеллоу",
   "item.hearthandharvest.charred_marshmallow_stick": "Обугленный маршмеллоу",
+  "item.hearthandharvest.smore": "Печенье с маршмэллоу и шоколадом",
 
   "block.hearthandharvest.raspberry_pie": "Малиновый пирог",
   "item.hearthandharvest.raspberry_pie_slice": "Кусок малинового пирога",
