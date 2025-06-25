@@ -2,10 +2,10 @@
   "type": "hearthandharvest:bottle_crate",
   "category": "building",
   "input": {
-    "item": "hearthandharvest:cherry_wine"
+    "item": "hearthandharvest:mead"
   },
   "result": {
-    "id": "hearthandharvest:cherry_wine_crate",
+    "id": "hearthandharvest:mead_crate",
     "count": 1
   }
 }

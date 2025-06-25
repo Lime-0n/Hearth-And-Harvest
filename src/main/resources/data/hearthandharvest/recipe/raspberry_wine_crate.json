@@ -1,11 +1,11 @@
 {
   "type": "hearthandharvest:bottle_crate",
-  "category": "misc",
+  "category": "building",
   "input": {
-    "item": "hearthandharvest:blueberry_wine"
+    "item": "hearthandharvest:raspberry_wine"
   },
   "result": {
-    "id": "hearthandharvest:blueberry_wine_crate",
+    "id": "hearthandharvest:raspberry_wine_crate",
     "count": 1
   }
 }

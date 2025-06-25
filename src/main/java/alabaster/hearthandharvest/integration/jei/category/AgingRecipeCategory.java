@@ -22,6 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import vectorwing.farmersdelight.common.utility.ClientRenderUtils;
 import vectorwing.farmersdelight.common.utility.RecipeUtils;
 
@@ -33,7 +34,7 @@ import java.util.List;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AgingRecipeCategory implements IRecipeCategory<CaskRecipe>
+public class AgingRecipeCategory implements IRecipeCategory<RecipeHolder<CaskRecipe>>
 {
     protected final IDrawable timeIcon;
     protected final IDrawable expIcon;
@@ -54,7 +55,7 @@ public class AgingRecipeCategory implements IRecipeCategory<CaskRecipe>
     }
 
     @Override
-    public RecipeType<CaskRecipe> getRecipeType() {
+    public RecipeType<RecipeHolder<CaskRecipe>> getRecipeType() {
         return HHRecipeTypes.AGING;
     }
 
@@ -73,8 +74,8 @@ public class AgingRecipeCategory implements IRecipeCategory<CaskRecipe>
         return this.icon;
     }
 
-    @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, CaskRecipe recipe, IFocusGroup focusGroup) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<CaskRecipe> holder, IFocusGroup focusGroup) {
+        CaskRecipe recipe = holder.value();
         NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
         ItemStack resultStack = RecipeUtils.getResultItem(recipe);
 
@@ -92,17 +93,16 @@ public class AgingRecipeCategory implements IRecipeCategory<CaskRecipe>
         builder.addSlot(RecipeIngredientRole.OUTPUT, 91, 12).addItemStack(resultStack);
     }
 
-    @Override
-    public void draw(CaskRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(RecipeHolder<CaskRecipe> holder, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         arrow.draw(guiGraphics, 51, 12);
         timeIcon.draw(guiGraphics, 54, 5);
-        if (recipe.getExperience() > 0) {
+        if (holder.value().getExperience() > 0) {
             expIcon.draw(guiGraphics, 53, 24);
         }
     }
 
-    @Override
-    public List<Component> getTooltipStrings(CaskRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public List<Component> getTooltipStrings(RecipeHolder<CaskRecipe> holder, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        CaskRecipe recipe = holder.value();
         if (ClientRenderUtils.isCursorInsideBounds(47, 4, 22, 28, mouseX, mouseY)) {
             List<Component> tooltipStrings = new ArrayList<>();
 

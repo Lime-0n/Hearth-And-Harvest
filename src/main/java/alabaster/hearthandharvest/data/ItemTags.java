@@ -61,5 +61,8 @@ public class ItemTags extends ItemTagsProvider {
                 .add(HHModItems.BAMBOO_HALF_CABINET.get())
                 .add(HHModItems.CRIMSON_HALF_CABINET.get())
                 .add(HHModItems.WARPED_HALF_CABINET.get());
+
+        tag(HHModTags.BOTTLES)
+                .add(HHModItems.RED_GRAPE_WINE.get());
     }
 }

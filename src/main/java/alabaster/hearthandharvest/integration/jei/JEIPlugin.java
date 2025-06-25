@@ -3,18 +3,27 @@ package alabaster.hearthandharvest.integration.jei;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.common.block.entity.container.CaskMenu;
+import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.registry.HHModMenuTypes;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import alabaster.hearthandharvest.common.utilities.HHTextUtils;
 import alabaster.hearthandharvest.integration.jei.category.AgingRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.*;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -36,6 +45,15 @@ public class JEIPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration) {
         HHRecipes modRecipes = new HHRecipes();
         registration.addRecipes(HHRecipeTypes.AGING, modRecipes.getCaskRecipes());
+
+        ClientLevel level = Minecraft.getInstance().level;
+        if (level == null) return;
+        RecipeManager recipeManager = level.getRecipeManager();
+        List<RecipeHolder<BottleCrateRecipe>> bottleCrateHolders = recipeManager.getAllRecipesFor(HHModRecipeTypes.BOTTLE_CRATE.get());
+        List<RecipeHolder<CraftingRecipe>> craftingRecipeHolders = bottleCrateHolders.stream()
+                .map(holder -> new RecipeHolder<CraftingRecipe>(holder.id(), holder.value()))
+                .toList();
+        registration.addRecipes(RecipeTypes.CRAFTING, craftingRecipeHolders);
 
         registration.addIngredientInfo(new ItemStack(HHModItems.WATERING_CAN.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.watering_can"));
         registration.addIngredientInfo(new ItemStack(HHModItems.TREE_TAPPER.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.tree_tapper"));

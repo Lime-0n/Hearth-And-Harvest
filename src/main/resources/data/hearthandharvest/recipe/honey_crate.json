@@ -1,0 +1,18 @@
+{
+  "type": "hearthandharvest:bottle_crate",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:honey_bottle"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:honey_crate"
+  }
+}

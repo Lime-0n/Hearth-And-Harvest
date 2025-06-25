@@ -46,8 +46,8 @@ public class HearthAndHarvest {
         HHModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         HHModDataComponents.DATA_COMPONENTS.register(modEventBus);
         HHModMenuTypes.MENUS.register(modEventBus);
-        HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());

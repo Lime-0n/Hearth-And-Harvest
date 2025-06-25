@@ -320,42 +320,6 @@ public class CraftingRecipes
                 .define('#', Items.TURTLE_EGG)
                 .unlockedBy("has_turtle_egg", InventoryChangeTrigger.TriggerInstance.hasItems(Items.TURTLE_EGG))
                 .save(output);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.RASPBERRY_WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.RASPBERRY_WINE.get())
-                .unlockedBy("has_raspberry_wine", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY_WINE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.RED_GRAPE_WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.RED_GRAPE_WINE.get())
-                .unlockedBy("has_red_grape_wine", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPE_WINE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.GREEN_GRAPE_WINE_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.GREEN_GRAPE_WINE.get())
-                .unlockedBy("has_green_grape_wine", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GREEN_GRAPE_WINE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MEAD_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.MEAD.get())
-                .unlockedBy("has_mead", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MEAD.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.HONEY_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', Items.HONEY_BOTTLE)
-                .unlockedBy("has_honey_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HONEY_BOTTLE))
-                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SYRUP_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
