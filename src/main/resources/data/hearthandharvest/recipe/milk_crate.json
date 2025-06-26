@@ -1,6 +1,6 @@
 {
   "type": "hearthandharvest:bottle_crate",
-  "category": "misc",
+  "category": "building",
   "input": {
     "item": "farmersdelight:milk_bottle"
   },

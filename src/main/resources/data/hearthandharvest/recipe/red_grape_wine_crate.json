@@ -1,18 +1,11 @@
 {
   "type": "hearthandharvest:bottle_crate",
   "category": "building",
-  "key": {
-    "#": {
-      "item": "hearthandharvest:red_grape_wine"
-    }
+  "input": {
+    "item": "hearthandharvest:red_grape_wine"
   },
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
   "result": {
-    "count": 1,
-    "id": "hearthandharvest:red_grape_wine_crate"
+    "id": "hearthandharvest:red_grape_wine_crate",
+    "count": 1
   }
 }
