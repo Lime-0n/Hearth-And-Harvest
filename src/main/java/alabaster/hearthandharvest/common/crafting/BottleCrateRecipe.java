@@ -1,6 +1,5 @@
 package alabaster.hearthandharvest.common.crafting;
 
-import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.registry.HHModRecipeSerializers;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -8,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -45,6 +43,19 @@ public class BottleCrateRecipe extends CustomRecipe {
     public NonNullList<ItemStack> getRemainingItems(CraftingInput container) {
         NonNullList<ItemStack> remainders = NonNullList.withSize(container.size(), ItemStack.EMPTY);
         return remainders;
+    }
+
+    public int getWidth() { return 3; }
+    public int getHeight() { return 3; }
+
+    @Override public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.withSize(9, input);
+        return list;
+    }
+
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return result.copy();
     }
 
     @Override
