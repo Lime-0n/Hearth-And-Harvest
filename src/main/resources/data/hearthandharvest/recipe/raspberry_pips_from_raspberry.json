@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "berry_good"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:raspberry"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:raspberry_pips"
+  }
+}

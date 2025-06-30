@@ -2,7 +2,6 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
-import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
 import alabaster.hearthandharvest.common.item.UniversalFeedItem;
 import alabaster.hearthandharvest.common.item.WateringCanItem;
@@ -10,6 +9,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.FuelBlockItem;
@@ -25,9 +25,9 @@ public class HHModItems {
     public static LinkedHashSet<Supplier<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
 
     public static Supplier<Item> registerWithTab(String name, Supplier<Item> supplier) {
-        Supplier<Item> block = ITEMS.register(name, supplier);
-        CREATIVE_TAB_ITEMS.add(block);
-        return block;
+        Supplier<Item> item = ITEMS.register(name, supplier);
+        CREATIVE_TAB_ITEMS.add(item);
+        return item;
     }
 
     // Helper methods
@@ -115,12 +115,14 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
     // Crops
-    public static final Supplier<Item> BLUEBERRIES = registerWithTab("blueberries",
-            () -> new ItemNameBlockItem(HHModBlocks.BLUEBERRY_BUSH.get(), foodItem(HHFoodValues.BLUEBERRIES)));
+    public static final Supplier<Item> BLUEBERRIES = ModList.get().isLoaded("berry_good")
+            ? registerWithTab("blueberries", () -> new Item(foodItem(HHFoodValues.BLUEBERRIES)))
+            : registerWithTab("blueberries", () -> new ItemNameBlockItem(HHModBlocks.BLUEBERRY_BUSH.get(), foodItem(HHFoodValues.BLUEBERRIES)));
     public static final Supplier<Item> CHERRY = registerWithTab("cherry",
             () -> new Item(foodItem(HHFoodValues.CHERRY)));
-    public static final Supplier<Item> RASPBERRY = registerWithTab("raspberry",
-            () -> new ItemNameBlockItem(HHModBlocks.RASPBERRY_BUSH.get(), foodItem(HHFoodValues.RASPBERRY)));
+    public static final Supplier<Item> RASPBERRY = ModList.get().isLoaded("berry_good")
+            ? registerWithTab("raspberry", () -> new Item(foodItem(HHFoodValues.RASPBERRY)))
+            :  registerWithTab("raspberry", () -> new ItemNameBlockItem(HHModBlocks.RASPBERRY_BUSH.get(), foodItem(HHFoodValues.RASPBERRY)));
     public static final Supplier<Item> RED_GRAPES = registerWithTab("red_grapes",
             () -> new ItemNameBlockItem(HHModBlocks.BUDDING_RED_GRAPE_CROP.get(), foodItem(HHFoodValues.GRAPES)));
     public static final Supplier<Item> GREEN_GRAPES = registerWithTab("green_grapes",
@@ -131,6 +133,16 @@ public class HHModItems {
             () -> new ItemNameBlockItem(HHModBlocks.COTTON_CROP.get(), basicItem()));
     public static final Supplier<Item> COTTON = registerWithTab("cotton",
             () -> new Item(basicItem()));
+
+    // Berry Good Pips
+    public static final Supplier<Item> BLUEBERRY_PIPS = ModList.get().isLoaded("berry_good")
+            ? registerWithTab("blueberry_pips",
+            () -> new ItemNameBlockItem(HHModBlocks.BLUEBERRY_BUSH.get(), basicItem()))
+            : null;
+    public static final Supplier<Item> RASPBERRY_PIPS = ModList.get().isLoaded("berry_good")
+            ? registerWithTab("raspberry_pips",
+            () -> new ItemNameBlockItem(HHModBlocks.RASPBERRY_BUSH.get(), basicItem()))
+            : null;
 
     // Wild Crops
     public static final Supplier<Item> WILD_RED_GRAPES = registerWithTab("wild_red_grapes",

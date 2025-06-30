@@ -221,5 +221,8 @@
 
   "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil",
   "fluid_type.hearthandharvest.sap": "Sap",
-  "fluid_type.hearthandharvest.syrup": "Syrup"
+  "fluid_type.hearthandharvest.syrup": "Syrup",
+
+  "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
+  "item.hearthandharvest.raspberry_pips": "Raspberry Pips"
 }
