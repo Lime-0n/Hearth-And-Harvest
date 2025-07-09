@@ -5,12 +5,15 @@ import alabaster.hearthandharvest.common.HHFoodValues;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
 import alabaster.hearthandharvest.common.item.UniversalFeedItem;
 import alabaster.hearthandharvest.common.item.WateringCanItem;
+import alabaster.hearthandharvest.common.item.WineBottleItem;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import umpaz.brewinandchewin.common.item.BoozeItem;
+import umpaz.brewinandchewin.common.registry.BnCItems;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.FuelBlockItem;
 import vectorwing.farmersdelight.common.item.KnifeItem;
@@ -238,29 +241,55 @@ public class HHModItems {
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.MEAD), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> CHERRY_WINE = registerWithTab("cherry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+            () -> new WineBottleItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.BLUEBERRY_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.BLUEBERRY_JUICE), true, false));
     public static final Supplier<Item> CHERRY_JUICE = registerWithTab("cherry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.CHERRY_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.CHERRY_JUICE), true, false));
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), true, false));
     public static final Supplier<Item> RED_GRAPE_JUICE = registerWithTab("red_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
+
+    // Brewin and Chewin Tankards
+    public static final Supplier<Item> TANKARD_OF_MEAD = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_mead",
+            () -> new BoozeItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
+    public static final Supplier<Item> TANKARD_OF_BLUEBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_blueberry_wine",
+            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
+    public static final Supplier<Item> TANKARD_OF_CHERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_cherry_wine",
+            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
+    public static final Supplier<Item> TANKARD_OF_RASPBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_raspberry_wine",
+            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
+    public static final Supplier<Item> TANKARD_OF_GREEN_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_green_grape_wine",
+            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
+    public static final Supplier<Item> TANKARD_OF_RED_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
+            ? registerWithTab("tankard_of_red_grape_wine",
+            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+            : null;
 
     // Jams
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",

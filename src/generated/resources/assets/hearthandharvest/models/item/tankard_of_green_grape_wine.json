@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hearthandharvest:item/tankard_of_green_grape_wine"
+  }
+}

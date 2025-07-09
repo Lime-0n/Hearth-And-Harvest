@@ -223,6 +223,13 @@
   "fluid_type.hearthandharvest.sap": "Sap",
   "fluid_type.hearthandharvest.syrup": "Syrup",
 
+  "fluid_type.hearthandharvest.blueberry_wine": "Blueberry Wine",
+  "fluid_type.hearthandharvest.cherry_wine": "Cherry Wine",
+  "fluid_type.hearthandharvest.green_grape_wine": "Green Grape Wine",
+  "fluid_type.hearthandharvest.red_grape_wine": "Red Grape Wine",
+  "fluid_type.hearthandharvest.raspberry_wine": "Raspberry Wine",
+  "fluid_type.hearthandharvest.mead": "Mead",
+
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips"
 }
