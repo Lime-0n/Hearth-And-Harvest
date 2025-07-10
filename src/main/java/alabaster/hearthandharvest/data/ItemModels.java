@@ -76,6 +76,17 @@ public class ItemModels extends ItemModelProvider
         items.remove(HHModItems.ROASTED_MARSHMALLOW_STICK.get());
         items.remove(HHModItems.CHARRED_MARSHMALLOW_STICK.get());
 
+        // Bottles
+        items.remove(HHModItems.BLUEBERRY_WINE.get());
+        items.remove(HHModItems.CHERRY_WINE.get());
+        items.remove(HHModItems.RASPBERRY_WINE.get());
+        items.remove(HHModItems.GREEN_GRAPE_WINE.get());
+        items.remove(HHModItems.RED_GRAPE_WINE.get());
+        items.remove(HHModItems.MEAD.get());
+
+        // Watering Can
+        items.remove(HHModItems.WATERING_CAN.get());
+
         // Slab Crates
         blockBasedModel(HHModItems.EGG_CRATE.get(), "_bottom");
         items.remove(HHModItems.EGG_CRATE.get());
