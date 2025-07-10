@@ -71,6 +71,29 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.WARPED_HALF_CABINET.get(),"");
         items.remove(HHModItems.WARPED_HALF_CABINET.get());
 
+        blockBasedModel(HHModItems.OAK_WINE_RACK.get(),"");
+        items.remove(HHModItems.OAK_WINE_RACK.get());
+        blockBasedModel(HHModItems.BIRCH_WINE_RACK.get(),"");
+        items.remove(HHModItems.BIRCH_WINE_RACK.get());
+        blockBasedModel(HHModItems.SPRUCE_WINE_RACK.get(),"");
+        items.remove(HHModItems.SPRUCE_WINE_RACK.get());
+        blockBasedModel(HHModItems.JUNGLE_WINE_RACK.get(),"");
+        items.remove(HHModItems.JUNGLE_WINE_RACK.get());
+        blockBasedModel(HHModItems.ACACIA_WINE_RACK.get(),"");
+        items.remove(HHModItems.ACACIA_WINE_RACK.get());
+        blockBasedModel(HHModItems.DARK_OAK_WINE_RACK.get(),"");
+        items.remove(HHModItems.DARK_OAK_WINE_RACK.get());
+        blockBasedModel(HHModItems.MANGROVE_WINE_RACK.get(),"");
+        items.remove(HHModItems.MANGROVE_WINE_RACK.get());
+        blockBasedModel(HHModItems.CHERRY_WINE_RACK.get(),"");
+        items.remove(HHModItems.CHERRY_WINE_RACK.get());
+        blockBasedModel(HHModItems.BAMBOO_WINE_RACK.get(),"");
+        items.remove(HHModItems.BAMBOO_WINE_RACK.get());
+        blockBasedModel(HHModItems.CRIMSON_WINE_RACK.get(),"");
+        items.remove(HHModItems.CRIMSON_WINE_RACK.get());
+        blockBasedModel(HHModItems.WARPED_WINE_RACK.get(),"");
+        items.remove(HHModItems.WARPED_WINE_RACK.get());
+
         // Campfire Roastables
         items.remove(HHModItems.MARSHMALLOW_STICK.get());
         items.remove(HHModItems.ROASTED_MARSHMALLOW_STICK.get());

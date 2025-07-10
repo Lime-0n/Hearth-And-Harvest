@@ -117,6 +117,30 @@ public class HHModItems {
     public static final Supplier<Item> WARPED_HALF_CABINET = registerWithTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
+    // Wine Racks
+    public static final Supplier<Item> OAK_WINE_RACK = registerWithTab("oak_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.OAK_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> SPRUCE_WINE_RACK = registerWithTab("spruce_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.SPRUCE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BIRCH_WINE_RACK = registerWithTab("birch_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.BIRCH_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> JUNGLE_WINE_RACK = registerWithTab("jungle_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.JUNGLE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> ACACIA_WINE_RACK = registerWithTab("acacia_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.ACACIA_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> DARK_OAK_WINE_RACK = registerWithTab("dark_oak_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.DARK_OAK_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> MANGROVE_WINE_RACK = registerWithTab("mangrove_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.MANGROVE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CHERRY_WINE_RACK = registerWithTab("cherry_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.CHERRY_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BAMBOO_WINE_RACK = registerWithTab("bamboo_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.BAMBOO_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CRIMSON_WINE_RACK = registerWithTab("crimson_wine_rack",
+            () -> new BlockItem(HHModBlocks.CRIMSON_WINE_RACK.get(), basicItem()));
+    public static final Supplier<Item> WARPED_WINE_RACK = registerWithTab("warped_wine_rack",
+            () -> new BlockItem(HHModBlocks.WARPED_WINE_RACK.get(), basicItem()));
+
     // Crops
     public static final Supplier<Item> BLUEBERRIES = ModList.get().isLoaded("berry_good")
             ? registerWithTab("blueberries", () -> new Item(foodItem(HHFoodValues.BLUEBERRIES)))

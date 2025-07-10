@@ -63,6 +63,18 @@ public class BlockStates extends BlockStateProvider
         this.halfCabinetBlock(HHModBlocks.BAMBOO_HALF_CABINET.get(), "bamboo");
         this.halfCabinetBlock(HHModBlocks.CRIMSON_HALF_CABINET.get(), "crimson");
         this.halfCabinetBlock(HHModBlocks.WARPED_HALF_CABINET.get(), "warped");
+
+        this.wineRackBlock(HHModBlocks.OAK_WINE_RACK.get(), "oak");
+        this.wineRackBlock(HHModBlocks.BIRCH_WINE_RACK.get(), "birch");
+        this.wineRackBlock(HHModBlocks.SPRUCE_WINE_RACK.get(), "spruce");
+        this.wineRackBlock(HHModBlocks.JUNGLE_WINE_RACK.get(), "jungle");
+        this.wineRackBlock(HHModBlocks.ACACIA_WINE_RACK.get(), "acacia");
+        this.wineRackBlock(HHModBlocks.DARK_OAK_WINE_RACK.get(), "dark_oak");
+        this.wineRackBlock(HHModBlocks.MANGROVE_WINE_RACK.get(), "mangrove");
+        this.wineRackBlock(HHModBlocks.CHERRY_WINE_RACK.get(), "cherry");
+        this.wineRackBlock(HHModBlocks.BAMBOO_WINE_RACK.get(), "bamboo");
+        this.wineRackBlock(HHModBlocks.CRIMSON_WINE_RACK.get(), "crimson");
+        this.wineRackBlock(HHModBlocks.WARPED_WINE_RACK.get(), "warped");
         
         this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
@@ -167,6 +179,18 @@ public class BlockStates extends BlockStateProvider
                     .texture("side", resourceBlock(woodType + "_half_cabinet_side"))
                     .texture("top", resourceBlock(woodType + "_half_cabinet_top"))
                     .texture("back", resourceBlock(woodType + "_cabinet_side"));
+        });
+    }
+
+    public void wineRackBlock(Block block, String woodType) {
+        this.horizontalBlock(block, state -> {
+            String modelName = woodType + "_wine_rack";
+
+            return models().getBuilder(modelName)
+                    .parent(existingModel("wine_rack"))
+                    .texture("side", resourceBlock(woodType + "_cabinet_side"))
+                    .texture("rack_side", resourceBlock(woodType + "_wine_rack_side"))
+                    .texture("rack_top", resourceBlock(woodType + "_wine_rack_top"));
         });
     }
 

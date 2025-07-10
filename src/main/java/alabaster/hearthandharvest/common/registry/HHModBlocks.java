@@ -65,6 +65,30 @@ public class HHModBlocks {
     public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
+    // Wine Rack
+    public static final Supplier<Block> OAK_WINE_RACK = BLOCKS.register("oak_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> SPRUCE_WINE_RACK = BLOCKS.register("spruce_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> BIRCH_WINE_RACK = BLOCKS.register("birch_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> JUNGLE_WINE_RACK = BLOCKS.register("jungle_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> ACACIA_WINE_RACK = BLOCKS.register("acacia_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> DARK_OAK_WINE_RACK = BLOCKS.register("dark_oak_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> MANGROVE_WINE_RACK = BLOCKS.register("mangrove_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+    public static final Supplier<Block> CHERRY_WINE_RACK = BLOCKS.register("cherry_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.CHERRY_WOOD)));
+    public static final Supplier<Block> BAMBOO_WINE_RACK = BLOCKS.register("bamboo_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.BAMBOO_WOOD)));
+    public static final Supplier<Block> CRIMSON_WINE_RACK = BLOCKS.register("crimson_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+    public static final Supplier<Block> WARPED_WINE_RACK = BLOCKS.register("warped_wine_rack",
+            () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+
     // Fluids
     //public static final Supplier<LiquidBlock> OIL = registerNoItem("oil",
     //        () -> new OilFluidBlock(HHModFluids.OIL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
