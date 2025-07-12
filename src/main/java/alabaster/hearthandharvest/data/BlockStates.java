@@ -240,4 +240,17 @@ public class BlockStates extends BlockStateProvider
                 );
     }
 
+    public void jarBlock(Block block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                            int jars = state.getValue(JarBlock.JARS);
+                            String suffix = jars > 0 ? "_" + jars : "";
+                            return ConfiguredModel.builder()
+                                    .modelFile(existingModel(blockName(block) + suffix))
+                                    .rotationY(((int) state.getValue(JarBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                                    .build();
+                        }
+                );
+    }
+
 }
