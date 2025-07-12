@@ -20,22 +20,22 @@ public class JarBlock extends Block {
     public static final IntegerProperty JARS  = IntegerProperty.create("jars", 1, MAX_JARS);
 
     // ─────── Hard-coded AABBs ───────
-    protected static final VoxelShape ONE_NORTH = Block.box(1, 0, 1,  7, 8,  7);
-    protected static final VoxelShape ONE_EAST  = Block.box(9, 0, 1, 15, 8,  7);
-    protected static final VoxelShape ONE_SOUTH = Block.box(9, 0, 9, 15, 8, 15);
-    protected static final VoxelShape ONE_WEST  = Block.box(1, 0, 9,  7, 8, 15);
+    protected static final VoxelShape ONE_NORTH = Block.box(1, 0, 1,  7, 10,  7);
+    protected static final VoxelShape ONE_EAST  = Block.box(9, 0, 1, 15, 10,  7);
+    protected static final VoxelShape ONE_SOUTH = Block.box(9, 0, 9, 15, 10, 15);
+    protected static final VoxelShape ONE_WEST  = Block.box(1, 0, 9,  7, 10, 15);
 
-    protected static final VoxelShape TWO_NORTH = Block.box(1, 0, 1, 15, 8,  7);
-    protected static final VoxelShape TWO_EAST  = Block.box(9, 0, 1, 15, 8, 15);
-    protected static final VoxelShape TWO_SOUTH = Block.box(1, 0, 9, 15, 8, 15);
-    protected static final VoxelShape TWO_WEST  = Block.box(1, 0, 1,  7, 8, 15);
+    protected static final VoxelShape TWO_NORTH = Block.box(1, 0, 1, 15, 10,  7);
+    protected static final VoxelShape TWO_EAST  = Block.box(9, 0, 1, 15, 10, 15);
+    protected static final VoxelShape TWO_SOUTH = Block.box(1, 0, 9, 15, 10, 15);
+    protected static final VoxelShape TWO_WEST  = Block.box(1, 0, 1,  7, 10, 15);
 
-    protected static final VoxelShape THREE_NORTH = Block.box(1, 0, 1, 15, 8, 15);
+    protected static final VoxelShape THREE_NORTH = Block.box(1, 0, 1, 15, 10, 15);
     protected static final VoxelShape THREE_EAST  = THREE_NORTH;
     protected static final VoxelShape THREE_SOUTH = THREE_NORTH;
     protected static final VoxelShape THREE_WEST  = THREE_NORTH;
 
-    protected static final VoxelShape FOUR_NORTH  = Block.box(1, 0, 1, 15, 8, 15);
+    protected static final VoxelShape FOUR_NORTH  = Block.box(1, 0, 1, 15, 10, 15);
     protected static final VoxelShape FOUR_EAST   = FOUR_NORTH;
     protected static final VoxelShape FOUR_SOUTH  = FOUR_NORTH;
     protected static final VoxelShape FOUR_WEST   = FOUR_NORTH;
