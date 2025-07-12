@@ -10,10 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import vectorwing.farmersdelight.common.block.CabinetBlock;
 
 public class WineRackBlock extends Block {
 
@@ -33,7 +31,7 @@ public class WineRackBlock extends Block {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection());
+                .setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -48,10 +46,10 @@ public class WineRackBlock extends Block {
             return Block.box(0.0D, 0.0D, 4.0, 16.0D, 16.0D, 16.0D);//
         }
         if (direction == Direction.EAST) {
-            return Block.box(0.0D, 0.0D, 0.0, 4.0D, 16.0D, 16.0D);
+            return Block.box(0.0D, 0.0D, 0.0, 12.0D, 16.0D, 16.0D);
         }
         if (direction == Direction.SOUTH) {
-            return Block.box(0.0D, 0.0D, 0.0, 16.0D, 16.0D, 4.0D);//
+            return Block.box(0.0D, 0.0D, 0.0, 16.0D, 16.0D, 12.0D);//
         }
         if (direction == Direction.WEST) {
             return Block.box(4.0D, 0.0D, 0.0, 16.0D, 16.0D, 16.0D);//
