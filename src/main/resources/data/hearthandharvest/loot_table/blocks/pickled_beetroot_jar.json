@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "hearthandharvest:jar",
+                  "block": "hearthandharvest:pickled_beetroot_jar",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "jars": "1"

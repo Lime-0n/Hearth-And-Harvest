@@ -29,7 +29,11 @@ public class HHModBlocks {
     public static final Supplier<Block> JUG = BLOCKS.register("jug",
             () -> new JugBlock(Block.Properties.ofFullCopy(Blocks.IRON_BARS).strength(2.0F, 3.0F).sound(SoundType.METAL)));
     public static final Supplier<Block> JAR = BLOCKS.register("jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS)
+                    .strength(1.0F, 2.0F)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+            ));
 
     public static final Supplier<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
             () -> new SapCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL).randomTicks()));

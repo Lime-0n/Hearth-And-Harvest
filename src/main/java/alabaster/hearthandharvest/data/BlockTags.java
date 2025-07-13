@@ -99,7 +99,6 @@ public class BlockTags extends BlockTagsProvider {
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
                 HHModBlocks.JUG.get(),
-                HHModBlocks.JAR.get(),
                 HHModBlocks.SAP_CAULDRON.get(),
                 HHModBlocks.COUNTER.get(),
                 HHModBlocks.DRAWER.get(),

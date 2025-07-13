@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "hearthandharvest:jar",
+                  "block": "hearthandharvest:blueberry_jam_jar",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "jars": "1"
