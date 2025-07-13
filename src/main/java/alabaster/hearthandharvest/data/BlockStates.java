@@ -8,22 +8,18 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 public class BlockStates extends BlockStateProvider
 {
@@ -39,10 +35,6 @@ public class BlockStates extends BlockStateProvider
 
     public ResourceLocation resourceBlock(String path) {
         return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/" + path);
-    }
-
-    public ModelFile existingModel(Block block) {
-        return new ModelFile.ExistingModelFile(resourceBlock(blockName(block)), models().existingFileHelper);
     }
 
     public ModelFile existingModel(String path) {
@@ -116,41 +108,21 @@ public class BlockStates extends BlockStateProvider
         this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
         this.wildCropBlock(HHModBlocks.WILD_PEANUTS.get());
 
-    }
+        this.jarBlock(HHModBlocks.BLUEBERRY_JAM_JAR.get(), "blueberry_jam");
+        this.jarBlock(HHModBlocks.CHERRY_JAM_JAR.get(), "cherry_jam");
+        this.jarBlock(HHModBlocks.GRAPE_JAM_JAR.get(), "grape_jam");
+        this.jarBlock(HHModBlocks.RASPBERRY_JAM_JAR.get(), "raspberry_jam");
+        this.jarBlock(HHModBlocks.APPLE_JAM_JAR.get(), "apple_jam");
+        this.jarBlock(HHModBlocks.SWEET_BERRY_JAM_JAR.get(), "sweet_berry_jam");
+        this.jarBlock(HHModBlocks.GLOW_BERRY_JAM_JAR.get(), "glow_berry_jam");
+        this.jarBlock(HHModBlocks.MELON_JAM_JAR.get(), "melon_jam");
+        this.jarBlock(HHModBlocks.PEANUT_BUTTER_JAR.get(), "peanut_butter");
+        this.jarBlock(HHModBlocks.PICKLED_BEETROOT_JAR.get(), "pickled_beetroot");
+        this.jarBlock(HHModBlocks.PICKLED_CABBAGE_JAR.get(), "pickled_cabbage");
+        this.jarBlock(HHModBlocks.PICKLED_CARROT_JAR.get(), "pickled_carrot");
+        this.jarBlock(HHModBlocks.PICKLED_ONION_JAR.get(), "pickled_onion");
+        this.jarBlock(HHModBlocks.PICKLED_POTATO_JAR.get(), "pickled_potato");
 
-    public ConfiguredModel[] cubeRandomRotation(Block block, String suffix) {
-        String formattedName = blockName(block) + (suffix.isEmpty() ? "" : "_" + suffix);
-        return ConfiguredModel.allYRotations(models().cubeAll(formattedName, resourceBlock(formattedName)), 0, false);
-    }
-
-    public void customDirectionalBlock(Block block, Function<BlockState, ModelFile> modelFunc, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction dir = state.getValue(BlockStateProperties.FACING);
-                    return ConfiguredModel.builder()
-                            .modelFile(modelFunc.apply(state))
-                            .rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0)
-                            .rotationY(dir.getAxis().isVertical() ? 0 : ((int) dir.toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                            .build();
-                }, ignored);
-    }
-
-    public void customHorizontalBlock(Block block, Function<BlockState, ModelFile> modelFunc, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> ConfiguredModel.builder()
-                        .modelFile(modelFunc.apply(state))
-                        .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                        .build(), ignored);
-    }
-
-    public void stageBlock(Block block, IntegerProperty ageProperty, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    int ageSuffix = state.getValue(ageProperty);
-                    String stageName = blockName(block) + "_stage" + ageSuffix;
-                    return ConfiguredModel.builder()
-                            .modelFile(models().cross(stageName, resourceBlock(stageName)).renderType("cutout")).build();
-                }, ignored);
     }
 
     public void customStageBlock(Block block, @Nullable ResourceLocation parent, String textureKey, IntegerProperty ageProperty, List<Integer> suffixes, Property<?>... ignored) {
@@ -240,17 +212,53 @@ public class BlockStates extends BlockStateProvider
                 );
     }
 
-    public void jarBlock(Block block) {
-        getVariantBuilder(block)
-                .forAllStates(state -> {
-                            int jars = state.getValue(JarBlock.JARS);
-                            String suffix = jars > 0 ? "_" + jars : "";
-                            return ConfiguredModel.builder()
-                                    .modelFile(existingModel(blockName(block) + suffix))
-                                    .rotationY(((int) state.getValue(JarBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                                    .build();
-                        }
-                );
+    public void jarBlock(Block block, String jarType) {
+        String baseModelPath = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
+        String modelTexture = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
+
+        for (int i = 1; i <= 4; i++) {
+            String modelName = jarType + "_jar_" + i;
+            String parentModel = HearthAndHarvest.MODID + ":block/generic_jar_" + i;
+
+            // Generate model file
+            models().withExistingParent(modelName, parentModel)
+                    .texture("lid", modelTexture);
+        }
+
+        // Generate blockstate JSON with multipart rotations
+        for (int i = 1; i <= 4; i++) {
+            String modelPath = HearthAndHarvest.MODID + ":block/" + jarType + "_jar_" + i;
+
+            ModelFile model = models().getExistingFile(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, jarType + "_jar_" + i));
+
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                getMultipartBuilder(block)
+                        .part()
+                        .modelFile(model)
+                        .rotationY(getYRotation(dir))
+                        .addModel()
+                        .condition(HorizontalDirectionalBlock.FACING, dir)
+                        .condition(JarBlock.JARS, i, 4);
+            }
+        }
+    }
+
+    private int getYRotation(Direction direction) {
+        return switch (direction) {
+            case EAST -> 90;
+            case SOUTH -> 180;
+            case WEST -> 270;
+            default -> 0;
+        };
+    }
+
+    private String buildJarsCondition(int minLevel) {
+        StringBuilder builder = new StringBuilder();
+        for (int j = minLevel; j <= 4; j++) {
+            if (builder.length() > 0) builder.append("|");
+            builder.append(j);
+        }
+        return builder.toString();
     }
 
 }

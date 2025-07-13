@@ -165,6 +165,22 @@ public class ItemModels extends ItemModelProvider
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
                 HHModItems.JAR.get(),
+
+                HHModItems.BLUEBERRY_JAM.get(),
+                HHModItems.CHERRY_JAM.get(),
+                HHModItems.GRAPE_JAM.get(),
+                HHModItems.RASPBERRY_JAM.get(),
+                HHModItems.APPLE_JAM.get(),
+                HHModItems.SWEET_BERRY_JAM.get(),
+                HHModItems.GLOW_BERRY_JAM.get(),
+                HHModItems.MELON_JAM.get(),
+                HHModItems.PEANUT_BUTTER.get(),
+                HHModItems.PICKLED_BEETROOTS.get(),
+                HHModItems.PICKLED_CABBAGE.get(),
+                HHModItems.PICKLED_CARROTS.get(),
+                HHModItems.PICKLED_ONIONS.get(),
+                HHModItems.PICKLED_POTATOES.get(),
+
                 HHModItems.RASPBERRY.get(),
                 HHModItems.BLUEBERRIES.get(),
                 HHModItems.RED_GRAPES.get(),

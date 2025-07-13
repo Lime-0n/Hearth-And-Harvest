@@ -214,6 +214,36 @@ public class HHModBlocks {
     public static final Supplier<Block> CARROT_CAKE = BLOCKS.register("carrot_cake",
             () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  HHModItems.CARROT_CAKE_SLICE));
 
+    // Jars
+    public static final Supplier<Block> BLUEBERRY_JAM_JAR = BLOCKS.register("blueberry_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> CHERRY_JAM_JAR = BLOCKS.register("cherry_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> GRAPE_JAM_JAR = BLOCKS.register("grape_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> RASPBERRY_JAM_JAR = BLOCKS.register("raspberry_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> APPLE_JAM_JAR = BLOCKS.register("apple_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> SWEET_BERRY_JAM_JAR = BLOCKS.register("sweet_berry_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> GLOW_BERRY_JAM_JAR = BLOCKS.register("glow_berry_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> MELON_JAM_JAR = BLOCKS.register("melon_jam_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PEANUT_BUTTER_JAR = BLOCKS.register("peanut_butter_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PICKLED_BEETROOT_JAR = BLOCKS.register("pickled_beetroot_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PICKLED_CABBAGE_JAR = BLOCKS.register("pickled_cabbage_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PICKLED_CARROT_JAR = BLOCKS.register("pickled_carrot_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PICKLED_ONION_JAR = BLOCKS.register("pickled_onion_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> PICKLED_POTATO_JAR = BLOCKS.register("pickled_potato_jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+
     // Cheese
     public static final Supplier<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",
             () -> new UnripeCheeseWheelBlock(HHModBlocks.CHEDDAR_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));

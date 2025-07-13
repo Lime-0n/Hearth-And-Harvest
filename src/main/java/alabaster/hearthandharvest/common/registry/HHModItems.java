@@ -317,31 +317,35 @@ public class HHModItems {
 
     // Jams
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
-            () -> new Item(jarItem(HHFoodValues.BLUEBERRY_JAM)));
+            () -> new BlockItem(HHModBlocks.BLUEBERRY_JAM_JAR.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
+    public static final Supplier<Item> CHERRY_JAM = registerWithTab("cherry_jam",
+            () -> new BlockItem(HHModBlocks.CHERRY_JAM_JAR.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> RASPBERRY_JAM = registerWithTab("raspberry_jam",
-            () -> new Item(jarItem(HHFoodValues.RASPBERRY_JAM)));
+            () -> new BlockItem(HHModBlocks.RASPBERRY_JAM_JAR.get(), jarItem(HHFoodValues.RASPBERRY_JAM)));
     public static final Supplier<Item> GRAPE_JAM = registerWithTab("grape_jam",
-            () -> new Item(jarItem(HHFoodValues.GRAPE_JAM)));
+            () -> new BlockItem(HHModBlocks.GRAPE_JAM_JAR.get(), jarItem(HHFoodValues.GRAPE_JAM)));
     public static final Supplier<Item> APPLE_JAM = registerWithTab("apple_jam",
-            () -> new Item(jarItem(HHFoodValues.APPLE_JAM)));
+            () -> new BlockItem(HHModBlocks.APPLE_JAM_JAR.get(), jarItem(HHFoodValues.APPLE_JAM)));
     public static final Supplier<Item> SWEET_BERRY_JAM = registerWithTab("sweet_berry_jam",
-            () -> new Item(jarItem(HHFoodValues.SWEET_BERRY_JAM)));
+            () -> new BlockItem(HHModBlocks.SWEET_BERRY_JAM_JAR.get(), jarItem(HHFoodValues.SWEET_BERRY_JAM)));
     public static final Supplier<Item> GLOW_BERRY_JAM = registerWithTab("glow_berry_jam",
-            () -> new Item(jarItem(HHFoodValues.GLOW_BERRY_JAM)));
+            () -> new BlockItem(HHModBlocks.GLOW_BERRY_JAM_JAR.get(), jarItem(HHFoodValues.GLOW_BERRY_JAM)));
     public static final Supplier<Item> MELON_JAM = registerWithTab("melon_jam",
-            () -> new Item(jarItem(HHFoodValues.MELON_JAM)));
+            () -> new BlockItem(HHModBlocks.MELON_JAM_JAR.get(), jarItem(HHFoodValues.MELON_JAM)));
+    public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
+            () -> new BlockItem(HHModBlocks.PEANUT_BUTTER_JAR.get(), jarItem(HHFoodValues.PEANUT_BUTTER)));
 
     // Pickled Vegetables
     public static final Supplier<Item> PICKLED_BEETROOTS = registerWithTab("pickled_beetroots",
-            () -> new Item(jarItem(HHFoodValues.PICKLED_BEETROOTS)));
+            () -> new BlockItem(HHModBlocks.PICKLED_BEETROOT_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_CABBAGE = registerWithTab("pickled_cabbage",
-            () -> new Item(jarItem(HHFoodValues.PICKLED_CABBAGE)));
+            () -> new BlockItem(HHModBlocks.PICKLED_CABBAGE_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_CARROTS = registerWithTab("pickled_carrots",
-            () -> new Item(jarItem(HHFoodValues.PICKLED_CARROTS)));
+            () -> new BlockItem(HHModBlocks.PICKLED_CARROT_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_ONIONS = registerWithTab("pickled_onions",
-            () -> new Item(jarItem(HHFoodValues.PICKLED_ONIONS)));
+            () -> new BlockItem(HHModBlocks.PICKLED_ONION_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_POTATOES = registerWithTab("pickled_potatoes",
-            () -> new Item(jarItem(HHFoodValues.PICKLED_POTATOES)));
+            () -> new BlockItem(HHModBlocks.PICKLED_POTATO_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
 
     // Sweets
     public static final Supplier<Item> CARAMEL = registerWithTab("caramel",
@@ -399,9 +403,6 @@ public class HHModItems {
 
 
     // Ingredients
-    public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
-            () -> new Item(jarItem(HHFoodValues.PEANUT_BUTTER)));
-
     public static final Supplier<Item> COOKING_OIL = registerWithTab("cooking_oil",
             () -> new BucketItem(HHModFluids.COOKING_OIL.get(), basicItem().craftRemainder(Items.GLASS_BOTTLE)));
 
