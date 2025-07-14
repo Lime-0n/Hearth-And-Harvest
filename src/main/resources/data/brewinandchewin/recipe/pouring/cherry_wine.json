@@ -1,7 +1,7 @@
 {
   "type": "brewinandchewin:keg_pouring",
   "fluid": {
-    "amount": 250,
+    "amount": 500,
     "id": "hearthandharvest:cherry_wine"
   },
   "output": {

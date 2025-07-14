@@ -28,12 +28,6 @@ public class HHModBlocks {
             () -> new CaskBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));
     public static final Supplier<Block> JUG = BLOCKS.register("jug",
             () -> new JugBlock(Block.Properties.ofFullCopy(Blocks.IRON_BARS).strength(2.0F, 3.0F).sound(SoundType.METAL)));
-    public static final Supplier<Block> JAR = BLOCKS.register("jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS)
-                    .strength(0.5F, 2.0F)
-                    .sound(SoundType.GLASS)
-                    .noOcclusion()
-            ));
 
     public static final Supplier<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
             () -> new SapCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL).randomTicks()));
@@ -219,34 +213,36 @@ public class HHModBlocks {
             () -> new SliceableCakeBlock(Block.Properties.ofFullCopy(Blocks.CAKE),  HHModItems.CARROT_CAKE_SLICE));
 
     // Jars
-    public static final Supplier<Block> BLUEBERRY_JAM_JAR = BLOCKS.register("blueberry_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> CHERRY_JAM_JAR = BLOCKS.register("cherry_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> GRAPE_JAM_JAR = BLOCKS.register("grape_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> RASPBERRY_JAM_JAR = BLOCKS.register("raspberry_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> APPLE_JAM_JAR = BLOCKS.register("apple_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> SWEET_BERRY_JAM_JAR = BLOCKS.register("sweet_berry_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> GLOW_BERRY_JAM_JAR = BLOCKS.register("glow_berry_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> MELON_JAM_JAR = BLOCKS.register("melon_jam_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PEANUT_BUTTER_JAR = BLOCKS.register("peanut_butter_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PICKLED_BEETROOT_JAR = BLOCKS.register("pickled_beetroot_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PICKLED_CABBAGE_JAR = BLOCKS.register("pickled_cabbage_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PICKLED_CARROT_JAR = BLOCKS.register("pickled_carrot_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PICKLED_ONION_JAR = BLOCKS.register("pickled_onion_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
-    public static final Supplier<Block> PICKLED_POTATO_JAR = BLOCKS.register("pickled_potato_jar",
-            () -> new JarBlock(Block.Properties.ofFullCopy(HHModBlocks.JAR.get())));
+    public static final Supplier<Block> JAR = BLOCKS.register("jar",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> BLUEBERRY_JAM = BLOCKS.register("blueberry_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> CHERRY_JAM = BLOCKS.register("cherry_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> GRAPE_JAM = BLOCKS.register("grape_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> RASPBERRY_JAM = BLOCKS.register("raspberry_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> APPLE_JAM = BLOCKS.register("apple_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> SWEET_BERRY_JAM = BLOCKS.register("sweet_berry_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> GLOW_BERRY_JAM = BLOCKS.register("glow_berry_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> MELON_JAM = BLOCKS.register("melon_jam",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PEANUT_BUTTER = BLOCKS.register("peanut_butter",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PICKLED_BEETROOTS = BLOCKS.register("pickled_beetroots",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PICKLED_CABBAGE = BLOCKS.register("pickled_cabbage",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PICKLED_CARROTS = BLOCKS.register("pickled_carrots",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PICKLED_ONIONS = BLOCKS.register("pickled_onions",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final Supplier<Block> PICKLED_POTATOES = BLOCKS.register("pickled_potatoes",
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 
     // Cheese
     public static final Supplier<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",

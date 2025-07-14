@@ -108,20 +108,20 @@ public class BlockStates extends BlockStateProvider
         this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
         this.wildCropBlock(HHModBlocks.WILD_PEANUTS.get());
 
-        this.jarBlock(HHModBlocks.BLUEBERRY_JAM_JAR.get(), "blueberry_jam");
-        this.jarBlock(HHModBlocks.CHERRY_JAM_JAR.get(), "cherry_jam");
-        this.jarBlock(HHModBlocks.GRAPE_JAM_JAR.get(), "grape_jam");
-        this.jarBlock(HHModBlocks.RASPBERRY_JAM_JAR.get(), "raspberry_jam");
-        this.jarBlock(HHModBlocks.APPLE_JAM_JAR.get(), "apple_jam");
-        this.jarBlock(HHModBlocks.SWEET_BERRY_JAM_JAR.get(), "sweet_berry_jam");
-        this.jarBlock(HHModBlocks.GLOW_BERRY_JAM_JAR.get(), "glow_berry_jam");
-        this.jarBlock(HHModBlocks.MELON_JAM_JAR.get(), "melon_jam");
-        this.jarBlock(HHModBlocks.PEANUT_BUTTER_JAR.get(), "peanut_butter");
-        this.jarBlock(HHModBlocks.PICKLED_BEETROOT_JAR.get(), "pickled_beetroot");
-        this.jarBlock(HHModBlocks.PICKLED_CABBAGE_JAR.get(), "pickled_cabbage");
-        this.jarBlock(HHModBlocks.PICKLED_CARROT_JAR.get(), "pickled_carrot");
-        this.jarBlock(HHModBlocks.PICKLED_ONION_JAR.get(), "pickled_onion");
-        this.jarBlock(HHModBlocks.PICKLED_POTATO_JAR.get(), "pickled_potato");
+        this.jarBlock(HHModBlocks.BLUEBERRY_JAM.get(), "blueberry_jam");
+        this.jarBlock(HHModBlocks.CHERRY_JAM.get(), "cherry_jam");
+        this.jarBlock(HHModBlocks.GRAPE_JAM.get(), "grape_jam");
+        this.jarBlock(HHModBlocks.RASPBERRY_JAM.get(), "raspberry_jam");
+        this.jarBlock(HHModBlocks.APPLE_JAM.get(), "apple_jam");
+        this.jarBlock(HHModBlocks.SWEET_BERRY_JAM.get(), "sweet_berry_jam");
+        this.jarBlock(HHModBlocks.GLOW_BERRY_JAM.get(), "glow_berry_jam");
+        this.jarBlock(HHModBlocks.MELON_JAM.get(), "melon_jam");
+        this.jarBlock(HHModBlocks.PEANUT_BUTTER.get(), "peanut_butter");
+        this.jarBlock(HHModBlocks.PICKLED_BEETROOTS.get(), "pickled_beetroots");
+        this.jarBlock(HHModBlocks.PICKLED_CABBAGE.get(), "pickled_cabbage");
+        this.jarBlock(HHModBlocks.PICKLED_CARROTS.get(), "pickled_carrots");
+        this.jarBlock(HHModBlocks.PICKLED_ONIONS.get(), "pickled_onions");
+        this.jarBlock(HHModBlocks.PICKLED_POTATOES.get(), "pickled_potatoes");
 
     }
 
@@ -213,7 +213,7 @@ public class BlockStates extends BlockStateProvider
     }
 
     public void jarBlock(Block block, String jarType) {
-        String baseModelPath = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
+        String baseModelPath = HearthAndHarvest.MODID + ":block/" + jarType;
         String modelTexture = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
 
         for (int i = 1; i <= 4; i++) {
