@@ -13,14 +13,14 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "hearthandharvest:raspberry"
     },
     {
       "item": "hearthandharvest:raspberry"
     }
   ],
   "result": {
-    "amount": 250,
+    "amount": 500,
     "id": "hearthandharvest:raspberry_wine"
   },
   "temperature": 3,

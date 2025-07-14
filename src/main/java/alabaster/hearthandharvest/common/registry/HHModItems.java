@@ -83,8 +83,6 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.CASK.get(), basicItem()));
     public static final Supplier<Item> JUG = registerWithTab("jug",
             () -> new BlockItem(HHModBlocks.JUG.get(), basicItem()));
-    public static final Supplier<Item> JAR = registerWithTab("jar",
-            () -> new BlockItem(HHModBlocks.JAR.get(), basicItem()));
 
     public static final Supplier<Item> COUNTER = registerWithTab("counter",
             () -> new BlockItem(HHModBlocks.COUNTER.get(), basicItem()));
@@ -290,32 +288,35 @@ public class HHModItems {
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
 
     // Brewin and Chewin Tankards
-    public static final Supplier<Item> TANKARD_OF_MEAD = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_mead",
-            () -> new BoozeItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
-    public static final Supplier<Item> TANKARD_OF_BLUEBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_blueberry_wine",
-            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
-    public static final Supplier<Item> TANKARD_OF_CHERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_cherry_wine",
-            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
-    public static final Supplier<Item> TANKARD_OF_RASPBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_raspberry_wine",
-            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
-    public static final Supplier<Item> TANKARD_OF_GREEN_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_green_grape_wine",
-            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
-    public static final Supplier<Item> TANKARD_OF_RED_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
-            ? registerWithTab("tankard_of_red_grape_wine",
-            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-            : null;
+//    public static final Supplier<Item> TANKARD_OF_MEAD = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_mead",
+//            () -> new BoozeItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
+//    public static final Supplier<Item> TANKARD_OF_BLUEBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_blueberry_wine",
+//            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
+//    public static final Supplier<Item> TANKARD_OF_CHERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_cherry_wine",
+//            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
+//    public static final Supplier<Item> TANKARD_OF_RASPBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_raspberry_wine",
+//            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
+//    public static final Supplier<Item> TANKARD_OF_GREEN_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_green_grape_wine",
+//            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
+//    public static final Supplier<Item> TANKARD_OF_RED_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
+//            ? registerWithTab("tankard_of_red_grape_wine",
+//            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            : null;
 
-    // Jams
+    // Jar Items
+    public static final Supplier<Item> JAR = registerWithTab("jar",
+            () -> new BlockItem(HHModBlocks.JAR.get(), basicItem()));
+
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
             () -> new BlockItem(HHModBlocks.BLUEBERRY_JAM_JAR.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> CHERRY_JAM = registerWithTab("cherry_jam",
@@ -332,10 +333,10 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GLOW_BERRY_JAM_JAR.get(), jarItem(HHFoodValues.GLOW_BERRY_JAM)));
     public static final Supplier<Item> MELON_JAM = registerWithTab("melon_jam",
             () -> new BlockItem(HHModBlocks.MELON_JAM_JAR.get(), jarItem(HHFoodValues.MELON_JAM)));
+
     public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
             () -> new BlockItem(HHModBlocks.PEANUT_BUTTER_JAR.get(), jarItem(HHFoodValues.PEANUT_BUTTER)));
 
-    // Pickled Vegetables
     public static final Supplier<Item> PICKLED_BEETROOTS = registerWithTab("pickled_beetroots",
             () -> new BlockItem(HHModBlocks.PICKLED_BEETROOT_JAR.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_CABBAGE = registerWithTab("pickled_cabbage",

@@ -13,14 +13,14 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "hearthandharvest:red_grapes"
     },
     {
       "item": "hearthandharvest:red_grapes"
     }
   ],
   "result": {
-    "amount": 250,
+    "amount": 500,
     "id": "hearthandharvest:red_grape_wine"
   },
   "temperature": 3,

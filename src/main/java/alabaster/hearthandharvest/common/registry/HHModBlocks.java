@@ -30,7 +30,7 @@ public class HHModBlocks {
             () -> new JugBlock(Block.Properties.ofFullCopy(Blocks.IRON_BARS).strength(2.0F, 3.0F).sound(SoundType.METAL)));
     public static final Supplier<Block> JAR = BLOCKS.register("jar",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS)
-                    .strength(1.0F, 2.0F)
+                    .strength(0.5F, 2.0F)
                     .sound(SoundType.GLASS)
                     .noOcclusion()
             ));

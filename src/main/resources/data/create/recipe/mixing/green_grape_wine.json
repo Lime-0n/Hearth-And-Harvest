@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:green_grapes"
+    },
+    {
+      "item": "hearthandharvest:green_grapes"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "id": "hearthandharvest:green_grape_wine"
+    }
+  ]
+}

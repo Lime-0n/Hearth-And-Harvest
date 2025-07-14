@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 500,
+      "fluid": "hearthandharvest:raspberry_wine"
+    }
+  ],
+  "results": [
+    {
+      "id": "hearthandharvest:raspberry_wine"
+    }
+  ]
+}
