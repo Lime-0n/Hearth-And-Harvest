@@ -17,10 +17,6 @@ public class HHModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, HearthAndHarvest.MODID);
 
-    public static <T extends Block> Supplier<T> registerNoItem(String name, Supplier<T> supplier) {
-        return BLOCKS.register(name, supplier);
-    }
-
     // Workstations
     public static final Supplier<Block> TREE_TAPPER = BLOCKS.register("tree_tapper",
             () -> new TreeTapperBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));

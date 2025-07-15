@@ -1,6 +1,8 @@
 package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
@@ -8,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
@@ -18,6 +21,14 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
         event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
+    }
+
+    @SubscribeEvent
+    public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(
+                HHModBlockEntities.WINE_RACK.get(),
+                WineRackRenderer::new
+        );
     }
 
     @SubscribeEvent
