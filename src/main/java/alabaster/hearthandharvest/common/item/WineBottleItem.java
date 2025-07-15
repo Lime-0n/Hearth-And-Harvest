@@ -71,7 +71,7 @@ public class WineBottleItem extends Item {
 
     @Override
     public SoundEvent getEatingSound() {
-        return SoundEvents.GENERIC_DRINK;
+        return SoundEvents.BREWING_STAND_BREW;
     }
 
     @Override
