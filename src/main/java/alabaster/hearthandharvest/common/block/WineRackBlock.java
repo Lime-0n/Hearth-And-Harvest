@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.WineRackBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.container.WineRackSlotHelper;
+import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
@@ -70,7 +71,6 @@ public class WineRackBlock extends Block implements EntityBlock {
         return super.getShape(state, level, pos, context);
     }
 
-
     @Override
     public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!(level.getBlockEntity(pos) instanceof WineRackBlockEntity rack)) {
@@ -83,8 +83,11 @@ public class WineRackBlock extends Block implements EntityBlock {
         }
 
         ItemStack current = rack.getItem(slot);
+
         if (current.isEmpty()) {
-            if (!heldStack.isEmpty() && !(heldStack.getItem() instanceof BlockItem)) {
+            if (!heldStack.isEmpty() && ! (heldStack.getItem() instanceof BlockItem)
+                    && heldStack.is(HHModTags.WINE_BOTTLES)) {
+
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);
                 if (!player.getAbilities().instabuild) {

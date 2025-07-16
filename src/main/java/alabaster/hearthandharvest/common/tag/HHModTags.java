@@ -15,6 +15,7 @@ public class HHModTags {
 
     public static final TagKey<Item> CLEAVERS = modItemTag("cleavers");
     public static final TagKey<Item> JAMS = modItemTag("jelly");
+    public static final TagKey<Item> WINE_BOTTLES = modItemTag("wine_bottles");
     public static final TagKey<Item> CHEESE_SLICES = modItemTag("cheese_slices");
 
     // Items that have a bottle as their container/craft remainder
