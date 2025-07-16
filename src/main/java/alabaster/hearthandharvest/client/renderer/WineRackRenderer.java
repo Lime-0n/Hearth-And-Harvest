@@ -25,9 +25,9 @@ public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity
         Direction facing = rack.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
 
         pose.pushPose();
-        pose.translate(0.0, 0.0, 0.0);
+        pose.translate(0.5F, 0.5F, 0.5F);
         pose.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
-        pose.translate(-0.0, -0.0, -0.0);
+        pose.translate(-0.5F, -0.5F, -0.5F);
 
         for (int slot = 0; slot < 9; slot++) {
             ItemStack stack = rack.getItem(slot);
@@ -37,22 +37,21 @@ public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity
             int row = slot / 3, col = slot % 3;
             double px = 1./16, spacing = px, slotSize = 4*px;
 
-            // Adjusting the position of the bottle within the slot
-            double x = spacing + col * (slotSize + spacing) - 0.125; // Move 2 pixels to the left
-            double y = 1.0 - (spacing + slotSize + row * (slotSize + spacing)) + 0.125; // Move 2 pixels up
-            double z = 1.0 / 16.0; // Adjust the Z-axis offset as needed
+            double baseX = spacing + col * (slotSize + spacing);
+            double baseY = 1.0 - (spacing + slotSize + row * (slotSize + spacing));
+            double baseZ = px;
 
+            // Apply fixed pixel offsets
+            double x = baseX + 2 * px; // +0.25 blocks
+            double y = baseY + 2 * px;
+            double z = baseZ + 10 * px; // +0.5 blocks
 
             pose.translate(x, y, z);
             pose.mulPose(Axis.XP.rotationDegrees(90));
-            pose.scale(1.0f, 1.0f, 1.0f); // Adjust the Z-axis scaling factor as needed
-
             itemRenderer.renderStatic(stack, ItemDisplayContext.FIRST_PERSON_LEFT_HAND, light, overlay, pose, buf, rack.getLevel(), 0);
             pose.popPose();
-        }
 
+        }
         pose.popPose();
     }
-
 }
-

@@ -15,8 +15,8 @@ public class WineRackSlotHelper {
         local = switch (facing) {
             case NORTH -> local;
             case SOUTH -> new Vec3(1 - local.x, local.y, 1 - local.z);
-            case EAST -> new Vec3(1 - local.z, local.y, local.x);
-            case WEST -> new Vec3(local.z, local.y, 1 - local.x);
+            case EAST -> new Vec3(local.z, local.y, 1 - local.x);
+            case WEST -> new Vec3(1 - local.z, local.y, local.x);
             default -> local;
         };
 
@@ -24,6 +24,12 @@ public class WineRackSlotHelper {
         int row = getSlotCoord(1 - local.y); // y is top-down
 
         if (col < 0 || row < 0) return -1;
+
+        // Flip left/right columns for all horizontal facings
+        if (facing == Direction.NORTH || facing == Direction.SOUTH || facing == Direction.EAST || facing == Direction.WEST) {
+            if (col == 0) col = 2;
+            else if (col == 2) col = 0;
+        }
 
         return row * 3 + col;
     }
