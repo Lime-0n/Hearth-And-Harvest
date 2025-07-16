@@ -224,7 +224,7 @@ public class HHModBlocks {
     public static final Supplier<Block> SWEET_BERRY_JAM = BLOCKS.register("sweet_berry_jam",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final Supplier<Block> GLOW_BERRY_JAM = BLOCKS.register("glow_berry_jam",
-            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+            () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).lightLevel(state -> 8).noOcclusion()));
     public static final Supplier<Block> MELON_JAM = BLOCKS.register("melon_jam",
             () -> new JarBlock(Block.Properties.ofFullCopy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
     public static final Supplier<Block> PEANUT_BUTTER = BLOCKS.register("peanut_butter",
