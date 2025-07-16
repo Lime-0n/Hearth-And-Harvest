@@ -292,23 +292,23 @@ public class HHModItems {
 //            : null;
 //    public static final Supplier<Item> TANKARD_OF_BLUEBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
 //            ? registerWithTab("tankard_of_blueberry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.BLUEBERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
 //            : null;
 //    public static final Supplier<Item> TANKARD_OF_CHERRY_WINE = ModList.get().isLoaded("brewinandchewin")
 //            ? registerWithTab("tankard_of_cherry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.CHERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
 //            : null;
 //    public static final Supplier<Item> TANKARD_OF_RASPBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
 //            ? registerWithTab("tankard_of_raspberry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.RASPBERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
 //            : null;
 //    public static final Supplier<Item> TANKARD_OF_GREEN_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
 //            ? registerWithTab("tankard_of_green_grape_wine",
-//            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
 //            : null;
 //    public static final Supplier<Item> TANKARD_OF_RED_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
 //            ? registerWithTab("tankard_of_red_grape_wine",
-//            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
+//            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.RED_GRAPE_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
 //            : null;
 
     // Jar Items
