@@ -9,19 +9,24 @@
   "heat_requirement": "heated",
   "ingredients": [
     {
-      "item": "hearthandharvest:raspberry"
+      "item": "hearthandharvest:green_grapes"
     },
     {
-      "item": "hearthandharvest:raspberry"
+      "item": "hearthandharvest:green_grapes"
     },
     {
       "item": "minecraft:sugar"
+    },
+    {
+      "type": "fluid_tag",
+      "amount": 500,
+      "fluid_tag": "c:water"
     }
   ],
   "results": [
     {
-      "amount": 250,
-      "id": "hearthandharvest:raspberry_wine"
+      "amount": 500,
+      "id": "hearthandharvest:green_grape_wine"
     }
   ]
 }

@@ -23,7 +23,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;

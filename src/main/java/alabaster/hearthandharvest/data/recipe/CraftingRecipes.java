@@ -810,6 +810,11 @@ public class CraftingRecipes
                 .requires(Items.BOWL)
                 .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "batter"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.SUGAR, 4)
+                .requires(HHModItems.SYRUP_BOTTLE.get())
+                .unlockedBy("has_syrup", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sugar_from_syrup"));
     }
 
     private static void recipesFoodBlocks(RecipeOutput output) {

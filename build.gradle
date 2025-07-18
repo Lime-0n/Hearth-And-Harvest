@@ -131,11 +131,12 @@ dependencies {
     // Farmers Delight
     implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
     implementation "curse.maven:brewin-and-chewin-637808:${brewinandchewin_version}"
+    implementation "curse.maven:jei-238222:6614392"
 
     // JEI
-    compileOnly "mezz.jei:jei-${jei_minecraft}-common-api:${jei_version}"
-    compileOnly "mezz.jei:jei-${jei_minecraft}-neoforge-api:${jei_version}"
-    localRuntime "mezz.jei:jei-${jei_minecraft}-neoforge:${jei_version}"
+    //compileOnly "mezz.jei:jei-${jei_minecraft}-common-api:${jei_version}"
+    //compileOnly "mezz.jei:jei-${jei_minecraft}-neoforge-api:${jei_version}"
+    //localRuntime "mezz.jei:jei-${jei_minecraft}-neoforge:${jei_version}"
 
     // Appleskin
     compileOnly "squeek.appleskin:appleskin-neoforge:${appleskin_version}:api"
