@@ -41,6 +41,8 @@ public class HHFoodValues {
 
     public static final FoodProperties RASPBERRY_JAM = (new FoodProperties.Builder())
             .nutrition(5).saturationMod(0.3f).build();
+    public static final FoodProperties CHERRY_JAM = (new FoodProperties.Builder())
+            .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties BLUEBERRY_JAM = (new FoodProperties.Builder())
             .nutrition(5).saturationMod(0.3f).build();
     public static final FoodProperties GRAPE_JAM = (new FoodProperties.Builder())

@@ -1,0 +1,11 @@
+{
+  "type": "hearthandharvest:bottle_crate",
+  "category": "building",
+  "input": {
+    "item": "hearthandharvest:mead"
+  },
+  "result": {
+    "id": "hearthandharvest:mead_crate",
+    "count": 1
+  }
+}

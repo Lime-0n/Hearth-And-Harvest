@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -62,6 +63,18 @@ public class BlockStates extends BlockStateProvider {
         this.halfCabinetBlock(HHModBlocks.CRIMSON_HALF_CABINET.get(), "crimson");
         this.halfCabinetBlock(HHModBlocks.WARPED_HALF_CABINET.get(), "warped");
 
+        this.wineRackBlock(HHModBlocks.OAK_WINE_RACK.get(), "oak");
+        this.wineRackBlock(HHModBlocks.BIRCH_WINE_RACK.get(), "birch");
+        this.wineRackBlock(HHModBlocks.SPRUCE_WINE_RACK.get(), "spruce");
+        this.wineRackBlock(HHModBlocks.JUNGLE_WINE_RACK.get(), "jungle");
+        this.wineRackBlock(HHModBlocks.ACACIA_WINE_RACK.get(), "acacia");
+        this.wineRackBlock(HHModBlocks.DARK_OAK_WINE_RACK.get(), "dark_oak");
+        this.wineRackBlock(HHModBlocks.MANGROVE_WINE_RACK.get(), "mangrove");
+        this.wineRackBlock(HHModBlocks.CHERRY_WINE_RACK.get(), "cherry");
+        this.wineRackBlock(HHModBlocks.BAMBOO_WINE_RACK.get(), "bamboo");
+        this.wineRackBlock(HHModBlocks.CRIMSON_WINE_RACK.get(), "crimson");
+        this.wineRackBlock(HHModBlocks.WARPED_WINE_RACK.get(), "warped");
+
         this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
         this.crateBlock(HHModBlocks.RASPBERRY_CRATE.get(), "raspberry");
@@ -99,42 +112,24 @@ public class BlockStates extends BlockStateProvider {
 
         this.wildCropBlock(HHModBlocks.WILD_RED_GRAPES.get());
         this.wildCropBlock(HHModBlocks.WILD_GREEN_GRAPES.get());
+        this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
+        this.wildCropBlock(HHModBlocks.WILD_PEANUTS.get());
 
-    }
+        this.jarBlock(HHModBlocks.BLUEBERRY_JAM.get(), "blueberry_jam");
+        this.jarBlock(HHModBlocks.CHERRY_JAM.get(), "cherry_jam");
+        this.jarBlock(HHModBlocks.GRAPE_JAM.get(), "grape_jam");
+        this.jarBlock(HHModBlocks.RASPBERRY_JAM.get(), "raspberry_jam");
+        this.jarBlock(HHModBlocks.APPLE_JAM.get(), "apple_jam");
+        this.jarBlock(HHModBlocks.SWEET_BERRY_JAM.get(), "sweet_berry_jam");
+        this.jarBlock(HHModBlocks.GLOW_BERRY_JAM.get(), "glow_berry_jam");
+        this.jarBlock(HHModBlocks.MELON_JAM.get(), "melon_jam");
+        this.jarBlock(HHModBlocks.PEANUT_BUTTER.get(), "peanut_butter");
+        this.jarBlock(HHModBlocks.PICKLED_BEETROOTS.get(), "pickled_beetroots");
+        this.jarBlock(HHModBlocks.PICKLED_CABBAGE.get(), "pickled_cabbage");
+        this.jarBlock(HHModBlocks.PICKLED_CARROTS.get(), "pickled_carrots");
+        this.jarBlock(HHModBlocks.PICKLED_ONIONS.get(), "pickled_onions");
+        this.jarBlock(HHModBlocks.PICKLED_POTATOES.get(), "pickled_potatoes");
 
-    public ConfiguredModel[] cubeRandomRotation(Block block, String suffix) {
-        String formattedName = blockName(block) + (suffix.isEmpty() ? "" : "_" + suffix);
-        return ConfiguredModel.allYRotations(models().cubeAll(formattedName, resourceBlock(formattedName)), 0, false);
-    }
-
-    public void customDirectionalBlock(Block block, Function<BlockState, ModelFile> modelFunc, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction dir = state.getValue(BlockStateProperties.FACING);
-                    return ConfiguredModel.builder()
-                            .modelFile(modelFunc.apply(state))
-                            .rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0)
-                            .rotationY(dir.getAxis().isVertical() ? 0 : ((int) dir.toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                            .build();
-                }, ignored);
-    }
-
-    public void customHorizontalBlock(Block block, Function<BlockState, ModelFile> modelFunc, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> ConfiguredModel.builder()
-                        .modelFile(modelFunc.apply(state))
-                        .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                        .build(), ignored);
-    }
-
-    public void stageBlock(Block block, IntegerProperty ageProperty, Property<?>... ignored) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    int ageSuffix = state.getValue(ageProperty);
-                    String stageName = blockName(block) + "_stage" + ageSuffix;
-                    return ConfiguredModel.builder()
-                            .modelFile(models().cross(stageName, resourceBlock(stageName)).renderType("cutout")).build();
-                }, ignored);
     }
 
     public void customStageBlock(Block block, @Nullable ResourceLocation parent, String textureKey, IntegerProperty ageProperty, List<Integer> suffixes, Property<?>... ignored) {
@@ -163,6 +158,18 @@ public class BlockStates extends BlockStateProvider {
                     .texture("side", resourceBlock(woodType + "_half_cabinet_side"))
                     .texture("top", resourceBlock(woodType + "_half_cabinet_top"))
                     .texture("back", resourceBlock(woodType + "_cabinet_side"));
+        });
+    }
+
+    public void wineRackBlock(Block block, String woodType) {
+        this.horizontalBlock(block, state -> {
+            String modelName = woodType + "_wine_rack";
+
+            return models().getBuilder(modelName)
+                    .parent(existingModel("wine_rack"))
+                    .texture("side", resourceBlock(woodType + "_cabinet_side"))
+                    .texture("rack_side", resourceBlock(woodType + "_wine_rack_side"))
+                    .texture("rack_top", resourceBlock(woodType + "_wine_rack_top"));
         });
     }
 
@@ -210,5 +217,54 @@ public class BlockStates extends BlockStateProvider {
                                     .build();
                         }
                 );
+    }
+
+    public void jarBlock(Block block, String jarType) {
+        String baseModelPath = HearthAndHarvest.MODID + ":block/" + jarType;
+        String modelTexture = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
+
+        for (int i = 1; i <= 4; i++) {
+            String modelName = jarType + "_jar_" + i;
+            String parentModel = HearthAndHarvest.MODID + ":block/generic_jar_" + i;
+
+            // Generate model file
+            models().withExistingParent(modelName, parentModel)
+                    .texture("lid", modelTexture);
+        }
+
+        // Generate blockstate JSON with multipart rotations
+        for (int i = 1; i <= 4; i++) {
+            String modelPath = HearthAndHarvest.MODID + ":block/" + jarType + "_jar_" + i;
+
+            ModelFile model = models().getExistingFile(new ResourceLocation(HearthAndHarvest.MODID, jarType + "_jar_" + i));
+
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                getMultipartBuilder(block)
+                        .part()
+                        .modelFile(model)
+                        .rotationY(getYRotation(dir))
+                        .addModel()
+                        .condition(HorizontalDirectionalBlock.FACING, dir)
+                        .condition(JarBlock.JARS, i, 4);
+            }
+        }
+    }
+
+    private int getYRotation(Direction direction) {
+        return switch (direction) {
+            case EAST -> 90;
+            case SOUTH -> 180;
+            case WEST -> 270;
+            default -> 0;
+        };
+    }
+
+    private String buildJarsCondition(int minLevel) {
+        StringBuilder builder = new StringBuilder();
+        for (int j = minLevel; j <= 4; j++) {
+            if (builder.length() > 0) builder.append("|");
+            builder.append(j);
+        }
+        return builder.toString();
     }
 }

@@ -4,7 +4,6 @@
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
 
   "block.hearthandharvest.cask": "Cask",
-  "hearthandharvest.container.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
   "hearthandharvest.container.cask.medium": "Surrounding light is well lit, speed is 1x",
   "hearthandharvest.container.cask.bright": "Surrounding light is bright, speed is 0.5x",
@@ -30,6 +29,18 @@
   "block.hearthandharvest.crimson_half_cabinet": "Crimson Half Cabinet",
   "block.hearthandharvest.warped_half_cabinet": "Warped Half Cabinet",
 
+  "block.hearthandharvest.oak_wine_rack": "Oak Wine Rack",
+  "block.hearthandharvest.birch_wine_rack": "Birch Wine Rack",
+  "block.hearthandharvest.spruce_wine_rack": "Spruce Wine Rack",
+  "block.hearthandharvest.jungle_wine_rack": "Jungle Wine Rack",
+  "block.hearthandharvest.acacia_wine_rack": "Acacia Wine Rack",
+  "block.hearthandharvest.dark_oak_wine_rack": "Dark Oak Wine Rack",
+  "block.hearthandharvest.mangrove_wine_rack": "Mangrove Wine Rack",
+  "block.hearthandharvest.cherry_wine_rack": "Cherry Wine Rack",
+  "block.hearthandharvest.bamboo_wine_rack": "Bamboo Wine Rack",
+  "block.hearthandharvest.crimson_wine_rack": "Crimson Wine Rack",
+  "block.hearthandharvest.warped_wine_rack": "Warped Wine Rack",
+
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
   "item.hearthandharvest.golden_cleaver": "Golden Cleaver",
@@ -47,6 +58,8 @@
 
   "block.hearthandharvest.wild_red_grapes": "Wild Red Grapes",
   "block.hearthandharvest.wild_green_grapes": "Wild Green Grapes",
+  "block.hearthandharvest.wild_cotton": "Wild Cotton",
+  "block.hearthandharvest.wild_peanuts": "Wild Peanuts",
 
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",
@@ -107,19 +120,20 @@
   "item.hearthandharvest.red_grape_juice": "Red Grape Juice",
   "item.hearthandharvest.green_grape_juice": "Green Grape Juice",
 
-  "item.hearthandharvest.raspberry_jam": "Raspberry Jam",
-  "item.hearthandharvest.blueberry_jam": "Blueberry Jam",
-  "item.hearthandharvest.grape_jam": "Grape Jam",
-  "item.hearthandharvest.apple_jam": "Apple Jam",
-  "item.hearthandharvest.sweet_berry_jam": "Sweet Berry Jam",
-  "item.hearthandharvest.glow_berry_jam": "Glow Berry Jam",
-  "item.hearthandharvest.melon_jam": "Melon Jam",
-
-  "item.hearthandharvest.pickled_beetroots": "Pickled Beetroots",
-  "item.hearthandharvest.pickled_cabbage": "Pickled Cabbage",
-  "item.hearthandharvest.pickled_carrots": "Pickled Carrots",
-  "item.hearthandharvest.pickled_onions": "Pickled Onions",
-  "item.hearthandharvest.pickled_potatoes": "Pickled Potatoes",
+  "block.hearthandharvest.raspberry_jam": "Raspberry Jam",
+  "block.hearthandharvest.cherry_jam": "Cherry Jam",
+  "block.hearthandharvest.blueberry_jam": "Blueberry Jam",
+  "block.hearthandharvest.grape_jam": "Grape Jam",
+  "block.hearthandharvest.apple_jam": "Apple Jam",
+  "block.hearthandharvest.sweet_berry_jam": "Sweet Berry Jam",
+  "block.hearthandharvest.glow_berry_jam": "Glow Berry Jam",
+  "block.hearthandharvest.melon_jam": "Melon Jam",
+  "block.hearthandharvest.peanut_butter": "Peanut Butter",
+  "block.hearthandharvest.pickled_beetroots": "Pickled Beetroots",
+  "block.hearthandharvest.pickled_cabbage": "Pickled Cabbage",
+  "block.hearthandharvest.pickled_carrots": "Pickled Carrots",
+  "block.hearthandharvest.pickled_onions": "Pickled Onions",
+  "block.hearthandharvest.pickled_potatoes": "Pickled Potatoes",
 
   "item.hearthandharvest.caramel": "Caramel",
   "item.hearthandharvest.caramel_apple": "Caramel Apple",
@@ -132,6 +146,7 @@
   "item.hearthandharvest.marshmallow_stick": "Marshmallow",
   "item.hearthandharvest.roasted_marshmallow_stick": "Roasted Marshmallow",
   "item.hearthandharvest.charred_marshmallow_stick": "Charred Marshmallow",
+  "item.hearthandharvest.smore": "Smore",
 
   "block.hearthandharvest.raspberry_pie": "Raspberry Pie",
   "item.hearthandharvest.raspberry_pie_slice": "Raspberry Pie Slice",
@@ -147,7 +162,7 @@
   "item.hearthandharvest.sap_bucket": "Sap Bucket",
   "item.hearthandharvest.syrup_bottle": "Syrup Bottle",
 
-  "item.hearthandharvest.peanut_butter": "Peanut Butter",
+  "item.hearthandharvest.cooking_oil": "Cooking Oil",
 
   "block.hearthandharvest.unripe_cheddar_cheese_wheel": "Unripe Cheddar Cheese Wheel",
   "block.hearthandharvest.cheddar_cheese_wheel": "Cheddar Cheese Wheel",
@@ -214,5 +229,19 @@
   "hearthandharvest.jei.info.tree_tapper": "Tree tappers can be placed on Spruce and Dark Oak trees to collect sap over time. Collect the sap with a bucket when full.",
   "hearthandharvest.jei.info.sap_bucket": "Sap buckets can be put into a cauldron, and when over fire will slowly boil down into syrup. This syrup can be collected using bottles.",
   "hearthandharvest.jei.info.wild_grapes": "Grapes can be commonly found as a wild plant in temperate lands, such as plains and forests.",
-  "hearthandharvest.jei.info.pluck_chickens": "Shift-click on chickens bare handed to get some feathers, but beware that you may damage them! Use shears to avoid hurting them"
+  "hearthandharvest.jei.info.pluck_chickens": "Shift-click on chickens bare handed to get some feathers, but beware that you may damage them! Use shears to avoid hurting them",
+
+  "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil",
+  "fluid_type.hearthandharvest.sap": "Sap",
+  "fluid_type.hearthandharvest.syrup": "Syrup",
+
+  "fluid_type.hearthandharvest.blueberry_wine": "Blueberry Wine",
+  "fluid_type.hearthandharvest.cherry_wine": "Cherry Wine",
+  "fluid_type.hearthandharvest.green_grape_wine": "Green Grape Wine",
+  "fluid_type.hearthandharvest.red_grape_wine": "Red Grape Wine",
+  "fluid_type.hearthandharvest.raspberry_wine": "Raspberry Wine",
+  "fluid_type.hearthandharvest.mead": "Mead",
+
+  "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
+  "item.hearthandharvest.raspberry_pips": "Raspberry Pips"
 }

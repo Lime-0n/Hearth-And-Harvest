@@ -1,10 +1,10 @@
 {
-	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "hearthandharvest:block/tree_tapper_bits",
 		"1": "hearthandharvest:block/tree_tapper_bottom",
 		"2": "hearthandharvest:block/tree_tapper_side",
-		"3": "minecraft:block/water_still",
+		"3": "hearthandharvest:block/sap_still",
 		"particle": "hearthandharvest:block/tree_tapper_side"
 	},
 	"elements": [

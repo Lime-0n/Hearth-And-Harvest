@@ -71,10 +71,44 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.WARPED_HALF_CABINET.get(),"");
         items.remove(HHModItems.WARPED_HALF_CABINET.get());
 
+        blockBasedModel(HHModItems.OAK_WINE_RACK.get(),"");
+        items.remove(HHModItems.OAK_WINE_RACK.get());
+        blockBasedModel(HHModItems.BIRCH_WINE_RACK.get(),"");
+        items.remove(HHModItems.BIRCH_WINE_RACK.get());
+        blockBasedModel(HHModItems.SPRUCE_WINE_RACK.get(),"");
+        items.remove(HHModItems.SPRUCE_WINE_RACK.get());
+        blockBasedModel(HHModItems.JUNGLE_WINE_RACK.get(),"");
+        items.remove(HHModItems.JUNGLE_WINE_RACK.get());
+        blockBasedModel(HHModItems.ACACIA_WINE_RACK.get(),"");
+        items.remove(HHModItems.ACACIA_WINE_RACK.get());
+        blockBasedModel(HHModItems.DARK_OAK_WINE_RACK.get(),"");
+        items.remove(HHModItems.DARK_OAK_WINE_RACK.get());
+        blockBasedModel(HHModItems.MANGROVE_WINE_RACK.get(),"");
+        items.remove(HHModItems.MANGROVE_WINE_RACK.get());
+        blockBasedModel(HHModItems.CHERRY_WINE_RACK.get(),"");
+        items.remove(HHModItems.CHERRY_WINE_RACK.get());
+        blockBasedModel(HHModItems.BAMBOO_WINE_RACK.get(),"");
+        items.remove(HHModItems.BAMBOO_WINE_RACK.get());
+        blockBasedModel(HHModItems.CRIMSON_WINE_RACK.get(),"");
+        items.remove(HHModItems.CRIMSON_WINE_RACK.get());
+        blockBasedModel(HHModItems.WARPED_WINE_RACK.get(),"");
+        items.remove(HHModItems.WARPED_WINE_RACK.get());
+
         // Campfire Roastables
         items.remove(HHModItems.MARSHMALLOW_STICK.get());
         items.remove(HHModItems.ROASTED_MARSHMALLOW_STICK.get());
         items.remove(HHModItems.CHARRED_MARSHMALLOW_STICK.get());
+
+        // Bottles
+        items.remove(HHModItems.BLUEBERRY_WINE.get());
+        items.remove(HHModItems.CHERRY_WINE.get());
+        items.remove(HHModItems.RASPBERRY_WINE.get());
+        items.remove(HHModItems.GREEN_GRAPE_WINE.get());
+        items.remove(HHModItems.RED_GRAPE_WINE.get());
+        items.remove(HHModItems.MEAD.get());
+
+        // Watering Can
+        items.remove(HHModItems.WATERING_CAN.get());
 
         // Slab Crates
         blockBasedModel(HHModItems.EGG_CRATE.get(), "_bottom");
@@ -131,6 +165,21 @@ public class ItemModels extends ItemModelProvider
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
                 HHModItems.JAR.get(),
+                HHModItems.BLUEBERRY_JAM.get(),
+                HHModItems.CHERRY_JAM.get(),
+                HHModItems.GRAPE_JAM.get(),
+                HHModItems.RASPBERRY_JAM.get(),
+                HHModItems.APPLE_JAM.get(),
+                HHModItems.SWEET_BERRY_JAM.get(),
+                HHModItems.GLOW_BERRY_JAM.get(),
+                HHModItems.MELON_JAM.get(),
+                HHModItems.PEANUT_BUTTER.get(),
+                HHModItems.PICKLED_BEETROOTS.get(),
+                HHModItems.PICKLED_CABBAGE.get(),
+                HHModItems.PICKLED_CARROTS.get(),
+                HHModItems.PICKLED_ONIONS.get(),
+                HHModItems.PICKLED_POTATOES.get(),
+
                 HHModItems.RASPBERRY.get(),
                 HHModItems.BLUEBERRIES.get(),
                 HHModItems.RED_GRAPES.get(),

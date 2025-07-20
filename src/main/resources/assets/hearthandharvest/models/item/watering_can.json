@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "particle": "hearthandharvest:item/watering_can"
+  },
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "hearthandharvest:item/2d_watering_can"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "hearthandharvest:item/2d_watering_can"
+    },
+    "ground": {
+      "parent": "hearthandharvest:item/2d_watering_can"
+    },
+    "fixed": {
+      "parent": "hearthandharvest:item/2d_watering_can"
+    }
+  }
+}

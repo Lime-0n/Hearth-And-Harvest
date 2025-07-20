@@ -5,9 +5,13 @@ import alabaster.hearthandharvest.common.HHFoodValues;
 import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
 import alabaster.hearthandharvest.common.item.UniversalFeedItem;
 import alabaster.hearthandharvest.common.item.WateringCanItem;
+import alabaster.hearthandharvest.common.item.WineBottleItem;
 import com.google.common.collect.Sets;
+import com.sun.jna.platform.win32.WinDef;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -51,7 +55,6 @@ public class HHModItems {
     public static Item.Properties jarItem(FoodProperties food) {
         return new Item.Properties().food(food).craftRemainder(HHModItems.JAR.get()).stacksTo(16);
     }
-
 
     // Tools
     public static final RegistryObject<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
@@ -110,6 +113,30 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.CRIMSON_HALF_CABINET.get(), basicItem()));
     public static final Supplier<Item> WARPED_HALF_CABINET = registerWithTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
+
+    // Wine Rack
+    public static final Supplier<Item> OAK_WINE_RACK = registerWithTab("oak_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.OAK_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> SPRUCE_WINE_RACK = registerWithTab("spruce_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.SPRUCE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BIRCH_WINE_RACK = registerWithTab("birch_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.BIRCH_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> JUNGLE_WINE_RACK = registerWithTab("jungle_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.JUNGLE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> ACACIA_WINE_RACK = registerWithTab("acacia_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.ACACIA_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> DARK_OAK_WINE_RACK = registerWithTab("dark_oak_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.DARK_OAK_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> MANGROVE_WINE_RACK = registerWithTab("mangrove_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.MANGROVE_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CHERRY_WINE_RACK = registerWithTab("cherry_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.CHERRY_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BAMBOO_WINE_RACK = registerWithTab("bamboo_wine_rack",
+            () -> new FuelBlockItem(HHModBlocks.BAMBOO_WINE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CRIMSON_WINE_RACK = registerWithTab("crimson_wine_rack",
+            () -> new BlockItem(HHModBlocks.CRIMSON_WINE_RACK.get(), basicItem()));
+    public static final Supplier<Item> WARPED_WINE_RACK = registerWithTab("warped_wine_rack",
+            () -> new BlockItem(HHModBlocks.WARPED_WINE_RACK.get(), basicItem()));
 
     // Crops
     public static final RegistryObject<Item> BLUEBERRIES = registerWithTab("blueberries",
@@ -218,18 +245,18 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WARPED_FUNGUS_CRATE.get(), basicItem()));
 
     // Drinks
-    public static final RegistryObject<Item> MEAD = registerWithTab("mead",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.MEAD), false, false));
-    public static final RegistryObject<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
-    public static final RegistryObject<Item> CHERRY_WINE = registerWithTab("cherry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
-    public static final RegistryObject<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
-    public static final RegistryObject<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
-    public static final RegistryObject<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.WINE), false, false));
+    public static final Supplier<Item> MEAD = registerWithTab("mead",
+            () -> new WineBottleItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
+            () -> new WineBottleItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> CHERRY_WINE = registerWithTab("cherry_wine",
+            () -> new WineBottleItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
+            () -> new WineBottleItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
+            () -> new WineBottleItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
+            () -> new WineBottleItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final RegistryObject<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final RegistryObject<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
@@ -247,6 +274,8 @@ public class HHModItems {
     // Jams
     public static final RegistryObject<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
             () -> new Item(jarItem(HHFoodValues.BLUEBERRY_JAM)));
+    public static final RegistryObject<Item> CHERRY_JAM = registerWithTab("cherry_jam",
+            () -> new Item(jarItem(HHFoodValues.CHERRY_JAM)));
     public static final RegistryObject<Item> RASPBERRY_JAM = registerWithTab("raspberry_jam",
             () -> new Item(jarItem(HHFoodValues.RASPBERRY_JAM)));
     public static final RegistryObject<Item> GRAPE_JAM = registerWithTab("grape_jam",

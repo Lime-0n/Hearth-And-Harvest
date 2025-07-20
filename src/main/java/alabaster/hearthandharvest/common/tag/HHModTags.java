@@ -15,6 +15,7 @@ public class HHModTags {
     public static final TagKey<Item> CLEAVERS = modItemTag("cleavers");
     public static final TagKey<Item> JAMS = modItemTag("jelly");
     public static final TagKey<Item> CHEESE_SLICES = modItemTag("cheese_slices");
+    public static final TagKey<Item> WINE_BOTTLES = modItemTag("wine_bottles");
 
     private static TagKey<Block> modBlockTag(String path) {
         return BlockTags.create(new ResourceLocation(HearthAndHarvest.MODID, path));

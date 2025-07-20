@@ -23,8 +23,6 @@ public class HHModBlocks {
             () -> new CaskBlock(Block.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F).sound(SoundType.WOOD).randomTicks()));
     public static final RegistryObject<Block> JUG = BLOCKS.register("jug",
             () -> new JugBlock(Block.Properties.copy(Blocks.IRON_BARS).strength(2.0F, 3.0F).sound(SoundType.METAL)));
-    public static final RegistryObject<Block> JAR = BLOCKS.register("jar",
-            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(2.0F, 3.0F).sound(SoundType.GLASS)));
 
     public static final RegistryObject<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron",
             () -> new SapCauldronBlock(Block.Properties.copy(Blocks.CAULDRON).strength(2.0F, 3.0F).sound(SoundType.METAL)));
@@ -60,6 +58,29 @@ public class HHModBlocks {
     public static final RegistryObject<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
+    // Half-Cabinets
+    public static final RegistryObject<Block> OAK_WINE_RACK = BLOCKS.register("oak_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> SPRUCE_WINE_RACK = BLOCKS.register("spruce_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> BIRCH_WINE_RACK = BLOCKS.register("birch_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> JUNGLE_WINE_RACK = BLOCKS.register("jungle_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> ACACIA_WINE_RACK = BLOCKS.register("acacia_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> DARK_OAK_WINE_RACK = BLOCKS.register("dark_oak_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> MANGROVE_WINE_RACK = BLOCKS.register("mangrove_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL)));
+    public static final RegistryObject<Block> CHERRY_WINE_RACK = BLOCKS.register("cherry_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.CHERRY_WOOD)));
+    public static final RegistryObject<Block> BAMBOO_WINE_RACK = BLOCKS.register("bamboo_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.BAMBOO_WOOD)));
+    public static final RegistryObject<Block> CRIMSON_WINE_RACK = BLOCKS.register("crimson_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+    public static final RegistryObject<Block> WARPED_WINE_RACK = BLOCKS.register("warped_wine_rack",
+            () -> new WineRackBlock(Block.Properties.copy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
     // Crops
     public static final RegistryObject<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
@@ -83,6 +104,10 @@ public class HHModBlocks {
     public static final RegistryObject<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
     public static final RegistryObject<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
+    public static final RegistryObject<Block> WILD_COTTON = BLOCKS.register("wild_cotton",
+            () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
+    public static final RegistryObject<Block> WILD_PEANUTS = BLOCKS.register("wild_peanuts",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.copy(Blocks.TALL_GRASS)));
 
     // Crates
@@ -177,6 +202,37 @@ public class HHModBlocks {
             () -> new PieBlock(Block.Properties.copy(Blocks.CAKE), HHModItems.CHICKEN_POT_PIE_SLICE));
     public static final RegistryObject<Block> CARROT_CAKE = BLOCKS.register("carrot_cake",
             () -> new SliceableCakeBlock(Block.Properties.copy(Blocks.CAKE),  HHModItems.CARROT_CAKE_SLICE));
+
+    public static final RegistryObject<Block> JAR = BLOCKS.register("jar",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> BLUEBERRY_JAM = BLOCKS.register("blueberry_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_JAM = BLOCKS.register("cherry_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> GRAPE_JAM = BLOCKS.register("grape_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> RASPBERRY_JAM = BLOCKS.register("raspberry_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> APPLE_JAM = BLOCKS.register("apple_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> SWEET_BERRY_JAM = BLOCKS.register("sweet_berry_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> GLOW_BERRY_JAM = BLOCKS.register("glow_berry_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).lightLevel(state -> 8).noOcclusion()));
+    public static final RegistryObject<Block> MELON_JAM = BLOCKS.register("melon_jam",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PEANUT_BUTTER = BLOCKS.register("peanut_butter",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PICKLED_BEETROOTS = BLOCKS.register("pickled_beetroots",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PICKLED_CABBAGE = BLOCKS.register("pickled_cabbage",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PICKLED_CARROTS = BLOCKS.register("pickled_carrots",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PICKLED_ONIONS = BLOCKS.register("pickled_onions",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
+    public static final RegistryObject<Block> PICKLED_POTATOES = BLOCKS.register("pickled_potatoes",
+            () -> new JarBlock(Block.Properties.copy(Blocks.GLASS).strength(0.5F, 2.0F).sound(SoundType.GLASS).noOcclusion()));
 
     // Cheese
     public static final RegistryObject<Block> UNRIPE_CHEDDAR_CHEESE_WHEEL = BLOCKS.register("unripe_cheddar_cheese_wheel",

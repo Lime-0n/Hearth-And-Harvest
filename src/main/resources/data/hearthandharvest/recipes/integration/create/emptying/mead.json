@@ -1,0 +1,28 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:emptying",
+  "ingredients": [
+    {
+      "type": "forge:compound",
+      "ingredients": [
+        {
+          "item": "hearthandharvest:mead"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:glass_bottle"
+    },
+    {
+      "amount": 500,
+      "id": "hearthandharvest:mead"
+    }
+  ]
+}
