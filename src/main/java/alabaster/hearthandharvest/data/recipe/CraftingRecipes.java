@@ -13,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
@@ -150,6 +151,95 @@ public class CraftingRecipes
                 .requires(HHModItems.WARPED_HALF_CABINET.get())
                 .unlockedBy("has_warped_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WARPED_HALF_CABINET.get()))
                 .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "warped_cabinet_from_halves"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.OAK_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.OAK_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BIRCH_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.BIRCH_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.SPRUCE_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.SPRUCE_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.JUNGLE_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.JUNGLE_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.ACACIA_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.ACACIA_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DARK_OAK_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.DARK_OAK_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.MANGROVE_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.MANGROVE_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CHERRY_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.CHERRY_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BAMBOO_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.BAMBOO_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CRIMSON_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.CRIMSON_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.WARPED_WINE_RACK.get())
+                .pattern("HSH")
+                .pattern("SSS")
+                .pattern("HSH")
+                .define('S', Items.STICK)
+                .define('H', Blocks.WARPED_SLAB)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HHModItems.UNIVERSAL_FEED.get(), 8)
                 .pattern("   ")
@@ -556,6 +646,13 @@ public class CraftingRecipes
                 .define('S', Items.STICK)
                 .unlockedBy("has_sugar", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SUGAR))
                 .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SMORE.get(), 1)
+                .requires(HHModItems.ROASTED_MARSHMALLOW_STICK.get())
+                .requires(HHModItems.CHOCOLATE_BAR.get())
+                .requires(Items.COOKIE)
+                .requires(Items.COOKIE)
+                .unlockedBy("has_roasted_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_MARSHMALLOW_STICK.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "smore"));
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.COTTON_CANDY.get(), 1)
                 .pattern(" # ")
                 .pattern("#C#")
@@ -706,6 +803,11 @@ public class CraftingRecipes
                 .requires(Items.BOWL)
                 .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
                 .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "batter"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.SUGAR, 4)
+                .requires(HHModItems.SYRUP_BOTTLE.get())
+                .unlockedBy("has_syrup", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "sugar_from_syrup"));
     }
 
     private static void recipesFoodBlocks(Consumer<FinishedRecipe> consumer) {

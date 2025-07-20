@@ -17,6 +17,4 @@ public class HHModRecipeSerializers {
 
     public static final Supplier<RecipeSerializer<?>> BOTTLE_CRATE =
             RECIPE_SERIALIZERS.register("bottle_crate", BottleCrateRecipe.Serializer::new);
-
-
 }

@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
@@ -13,6 +14,8 @@ public class HHModRecipeTypes
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, HearthAndHarvest.MODID);
 
     public static final RegistryObject<RecipeType<CaskRecipe>> AGING = RECIPE_TYPES.register("aging", () -> registerRecipeType("aging"));
+
+    public static final RegistryObject<RecipeType<BottleCrateRecipe>> BOTTLE_CRATE = RECIPE_TYPES.register("bottle_crate", () -> registerRecipeType("bottle_crate"));
 
     public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String identifier) {
         return new RecipeType<>()

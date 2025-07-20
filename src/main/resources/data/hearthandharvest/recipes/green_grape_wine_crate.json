@@ -1,11 +1,10 @@
 {
   "type": "hearthandharvest:bottle_crate",
-  "category": "building",
   "input": {
     "item": "hearthandharvest:green_grape_wine"
   },
   "result": {
-    "id": "hearthandharvest:green_grape_wine_crate",
+    "item": "hearthandharvest:green_grape_wine_crate",
     "count": 1
   }
 }

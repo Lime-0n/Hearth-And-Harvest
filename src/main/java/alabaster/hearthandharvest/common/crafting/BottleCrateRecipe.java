@@ -72,17 +72,14 @@ public class BottleCrateRecipe extends CustomRecipe {
 
         @Override
         public BottleCrateRecipe fromJson (ResourceLocation id, JsonObject json){
-
             Ingredient input = Ingredient.fromJson(json.getAsJsonObject("input"));
             JsonObject resultJson = json.getAsJsonObject("result");
             ItemStack result = CraftingHelper.getItemStack(resultJson, true);
-
             return new BottleCrateRecipe(id, input, result);
         }
 
         @Override
         public BottleCrateRecipe fromNetwork (ResourceLocation id, FriendlyByteBuf buf){
-            CraftingBookCategory category = buf.readEnum(CraftingBookCategory.class);
             Ingredient input = Ingredient.fromNetwork(buf);
             ItemStack result = buf.readItem();
             return new BottleCrateRecipe(id, input, result);

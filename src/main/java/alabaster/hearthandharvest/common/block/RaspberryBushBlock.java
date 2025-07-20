@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.ModList;
 
 public class RaspberryBushBlock extends SweetBerryBushBlock {
     public RaspberryBushBlock(Properties properties) {
@@ -26,8 +27,8 @@ public class RaspberryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
-        return new ItemStack(HHModItems.RASPBERRY.get());
+    public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos pos, BlockState state) {
+        return new ItemStack(ModList.get().isLoaded("berry_good") ? HHModItems.RASPBERRY_PIPS.get() : HHModItems.RASPBERRY.get());
     }
 
     @Override

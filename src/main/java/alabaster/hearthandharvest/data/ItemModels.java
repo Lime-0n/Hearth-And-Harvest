@@ -201,7 +201,9 @@ public class ItemModels extends ItemModelProvider
         // Blocks with flat block textures for their items
         Set<Item> flatBlockItems = Sets.newHashSet(
                 HHModItems.WILD_RED_GRAPES.get(),
-                HHModItems.WILD_GREEN_GRAPES.get()
+                HHModItems.WILD_GREEN_GRAPES.get(),
+                HHModItems.WILD_COTTON.get(),
+                HHModItems.WILD_PEANUTS.get()
         );
         takeAll(items, flatBlockItems.toArray(new Item[0])).forEach(item -> itemGeneratedModel(item, resourceBlock(itemName(item))));
 

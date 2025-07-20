@@ -1,5 +1,5 @@
 {
-  "neoforge:conditions": [
+  "conditions": [
     {
       "type": "forge:mod_loaded",
       "modid": "berry_good"
