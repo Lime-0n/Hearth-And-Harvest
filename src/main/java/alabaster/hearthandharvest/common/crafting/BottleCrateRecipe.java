@@ -87,7 +87,6 @@ public class BottleCrateRecipe extends CustomRecipe {
 
         @Override
         public void toNetwork (FriendlyByteBuf buf, BottleCrateRecipe recipe){
-            buf.writeEnum(recipe.category());
             recipe.input.toNetwork(buf);
             buf.writeItem(recipe.result);
         }
