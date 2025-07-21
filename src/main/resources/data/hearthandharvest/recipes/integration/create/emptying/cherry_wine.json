@@ -8,21 +8,16 @@
   "type": "create:emptying",
   "ingredients": [
     {
-      "type": "forge:compound",
-      "ingredients": [
-        {
-          "item": "hearthandharvest:cherry_wine"
-        }
-      ]
+      "item": "hearthandharvest:cherry_wine"
     }
   ],
   "results": [
     {
-      "id": "minecraft:glass_bottle"
+      "item": "minecraft:glass_bottle"
     },
     {
       "amount": 500,
-      "id": "hearthandharvest:cherry_wine"
+      "fluid": "hearthandharvest:cherry_wine"
     }
   ]
 }

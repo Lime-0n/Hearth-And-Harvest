@@ -6,12 +6,9 @@
     }
   ],
   "type": "brewinandchewin:fermenting",
-  "base_fluid": {
-    "amount": 500,
-    "ingredient": {
-      "tag": "#forge:water"
-    },
-    "unit": "millibuckets"
+  "basefluid": {
+    "count": 500,
+    "fluid": "minecraft:water"
   },
   "experience": 1.0,
   "ingredients": [
@@ -26,9 +23,9 @@
     },
     []
   ],
+  "recipe_book_tab": "drinks",
   "result": {
-    "amount": 500,
-    "id": "hearthandharvest:red_grape_wine"
-  },
-  "unit": "millibuckets"
+    "count": 500,
+    "fluid": "hearthandharvest:red_grape_wine"
+  }
 }

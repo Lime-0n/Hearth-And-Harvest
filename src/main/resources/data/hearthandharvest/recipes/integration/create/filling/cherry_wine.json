@@ -11,14 +11,14 @@
       "item": "minecraft:glass_bottle"
     },
     {
-      "type": "fluid_stack",
       "amount": 500,
-      "fluid": "hearthandharvest:cherry_wine"
+      "fluid": "hearthandharvest:cherry_wine",
+      "nbt": {}
     }
   ],
   "results": [
     {
-      "id": "hearthandharvest:cherry_wine"
+      "item": "hearthandharvest:cherry_wine"
     }
   ]
 }

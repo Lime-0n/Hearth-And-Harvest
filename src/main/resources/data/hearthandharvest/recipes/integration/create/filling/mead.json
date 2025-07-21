@@ -11,14 +11,14 @@
       "item": "minecraft:glass_bottle"
     },
     {
-      "type": "fluid_stack",
       "amount": 500,
-      "fluid": "hearthandharvest:mead"
+      "fluid": "hearthandharvest:mead",
+      "nbt": {}
     }
   ],
   "results": [
     {
-      "id": "hearthandharvest:mead"
+      "item": "hearthandharvest:mead"
     }
   ]
 }

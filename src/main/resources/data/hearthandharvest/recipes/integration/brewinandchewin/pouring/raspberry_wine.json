@@ -6,13 +6,14 @@
     }
   ],
   "type": "brewinandchewin:keg_pouring",
-  "fluid": {
-    "amount": 500,
-    "id": "hearthandharvest:raspberry_wine"
+  "amount": 500,
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
+  "filling": true,
+  "fluid": "hearthandharvest:raspbery_wine",
   "output": {
-    "count": 1,
-    "id": "hearthandharvest:raspberry_wine"
+    "item": "hearthandharvest:raspbery_wine"
   },
-  "unit": "millibuckets"
+  "strict": false
 }

@@ -6,13 +6,14 @@
     }
   ],
   "type": "brewinandchewin:keg_pouring",
-  "fluid": {
-    "amount": 500,
-    "id": "hearthandharvest:mead"
+  "amount": 500,
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
+  "filling": true,
+  "fluid": "hearthandharvest:mead",
   "output": {
-    "count": 1,
-    "id": "hearthandharvest:mead"
+    "item": "hearthandharvest:mead"
   },
-  "unit": "millibuckets"
+  "strict": false
 }

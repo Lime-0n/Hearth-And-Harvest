@@ -6,13 +6,14 @@
     }
   ],
   "type": "brewinandchewin:keg_pouring",
-  "fluid": {
-    "amount": 500,
-    "id": "hearthandharvest:red_grape_wine"
+  "amount": 500,
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
+  "filling": true,
+  "fluid": "hearthandharvest:red_grape_wine",
   "output": {
-    "count": 1,
-    "id": "hearthandharvest:red_grape_wine"
+    "item": "hearthandharvest:red_grape_wine"
   },
-  "unit": "millibuckets"
+  "strict": false
 }

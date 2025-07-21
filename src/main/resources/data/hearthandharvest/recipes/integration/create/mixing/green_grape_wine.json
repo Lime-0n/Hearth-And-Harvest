@@ -6,7 +6,7 @@
     }
   ],
   "type": "create:mixing",
-  "heat_requirement": "heated",
+  "heatRequirement": "heated",
   "ingredients": [
     {
       "item": "hearthandharvest:green_grapes"
@@ -18,15 +18,14 @@
       "item": "minecraft:sugar"
     },
     {
-      "type": "fluid_tag",
       "amount": 500,
-      "fluid_tag": "forge:water"
+      "fluid": "minecraft:water"
     }
   ],
   "results": [
     {
       "amount": 500,
-      "id": "hearthandharvest:green_grape_wine"
+      "fluid": "hearthandharvest:green_grape_wine"
     }
   ]
 }

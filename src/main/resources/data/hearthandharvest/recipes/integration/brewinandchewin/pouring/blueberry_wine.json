@@ -6,13 +6,14 @@
     }
   ],
   "type": "brewinandchewin:keg_pouring",
-  "fluid": {
-    "amount": 500,
-    "id": "hearthandharvest:blueberry_wine"
+  "amount": 500,
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
+  "filling": true,
+  "fluid": "hearthandharvest:blueberry_wine",
   "output": {
-    "count": 1,
-    "id": "hearthandharvest:blueberry_wine"
+    "item": "hearthandharvest:blueberry_wine"
   },
-  "unit": "millibuckets"
+  "strict": false
 }
