@@ -11,9 +11,9 @@
     "item": "minecraft:glass_bottle"
   },
   "filling": true,
-  "fluid": "hearthandharvest:raspbery_wine",
+  "fluid": "hearthandharvest:raspberry_wine",
   "output": {
-    "item": "hearthandharvest:raspbery_wine"
+    "item": "hearthandharvest:raspberry_wine"
   },
   "strict": false
 }
