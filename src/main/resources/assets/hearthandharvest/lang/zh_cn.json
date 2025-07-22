@@ -4,6 +4,7 @@
   "block.hearthandharvest.tree_tapper": "木龙头",
 
   "block.hearthandharvest.cask": "小木桶",
+  "hearthandharvest.container.cask": "小木桶",
   "hearthandharvest.container.cask.dim": "周围光照昏暗时，速率为2x",
   "hearthandharvest.container.cask.medium": "周围光照充足时，速率为1x",
   "hearthandharvest.container.cask.bright": "周围光照明亮时，速率为0.5x",

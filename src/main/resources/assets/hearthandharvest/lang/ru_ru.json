@@ -4,6 +4,7 @@
   "block.hearthandharvest.tree_tapper": "Подсочник",
 
   "block.hearthandharvest.cask": "Бочка",
+  "hearthandharvest.container.cask": "Бочка",
   "hearthandharvest.container.cask.dim": "Освещение тусклый, скорость удвоена",
   "hearthandharvest.container.cask.medium": "Освещение среднее, скорость стандартная",
   "hearthandharvest.container.cask.bright": "Освещение яркое, скорость уменьшена вдвое",

@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.Mod;
 public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
-        event.register(new CauldronBlockColor(), HHModBlocks.SAP_CAULDRON.get());
-        event.register(new TapperBlockColor(), HHModBlocks.TREE_TAPPER.get());
+        //event.register(new CauldronBlockColor(), HHModBlocks.SAP_CAULDRON.get());
+        //event.register(new TapperBlockColor(), HHModBlocks.TREE_TAPPER.get());
         event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
     }
 
