@@ -716,6 +716,16 @@ public class CraftingRecipes
                 .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy("has_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPES.get()))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_PIE.get(), 1)
+                .pattern("WWW")
+                .pattern("FFF")
+                .pattern("SPS")
+                .define('W', Items.WHEAT)
+                .define('S', Items.SUGAR)
+                .define('F', HHModItems.ROASTED_PEANUTS.get())
+                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
+                .unlockedBy("has_peanut_butters", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_PEANUTS.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_PIE.get(), 1)
                 .pattern("##")
                 .pattern("##")
@@ -737,6 +747,13 @@ public class CraftingRecipes
                 .unlockedBy("has_grape_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GRAPE_PIE_SLICE.get()))
                 .group("grape_pie")
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "grape_pie_from_slices"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_PIE.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.PEANUT_BUTTER_PIE_SLICE.get())
+                .unlockedBy("has_peanut_butter_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT_BUTTER_PIE_SLICE.get()))
+                .group("peanut_butter_pie")
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "peanut_butter_pie_from_slices"));
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.CHICKEN_POT_PIE.get(), 1)
                 .pattern(" C ")
                 .pattern("TVO")

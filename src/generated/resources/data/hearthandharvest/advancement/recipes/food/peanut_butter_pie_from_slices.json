@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "cooked_sausage": {
+    "has_peanut_butter_pie_slice": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:raw_sausage"
+            "items": "hearthandharvest:peanut_butter_pie_slice"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:cooked_sausage"
+        "recipe": "hearthandharvest:peanut_butter_pie_from_slices"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "cooked_sausage"
+      "has_peanut_butter_pie_slice"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:cooked_sausage"
+      "hearthandharvest:peanut_butter_pie_from_slices"
     ]
   }
 }

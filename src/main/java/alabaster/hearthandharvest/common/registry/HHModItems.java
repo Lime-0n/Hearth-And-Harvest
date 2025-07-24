@@ -358,6 +358,8 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_COOKIE)));
     public static final Supplier<Item> TRAIL_MIX = registerWithTab("trail_mix",
             () -> new Item(foodItem(HHFoodValues.TRAIL_MIX)));
+    public static final Supplier<Item> ROASTED_PEANUTS = registerWithTab("roasted_peanuts",
+            () -> new Item(foodItem(HHFoodValues.ROASTED_PEANUTS)));
 
     public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1)));
@@ -388,6 +390,10 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GRAPE_PIE.get(), basicItem()));
     public static final Supplier<Item> GRAPE_PIE_SLICE = registerWithTab("grape_pie_slice",
             () -> new Item(foodItem(HHFoodValues.GRAPE_PIE_SLICE)));
+    public static final Supplier<Item> PEANUT_BUTTER_PIE = registerWithTab("peanut_butter_pie",
+            () -> new BlockItem(HHModBlocks.PEANUT_BUTTER_PIE.get(), basicItem()));
+    public static final Supplier<Item> PEANUT_BUTTER_PIE_SLICE = registerWithTab("peanut_butter_pie_slice",
+            () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_PIE_SLICE)));
     public static final Supplier<Item> CHICKEN_POT_PIE = registerWithTab("chicken_pot_pie",
             () -> new BlockItem(HHModBlocks.CHICKEN_POT_PIE.get(), basicItem()));
     public static final Supplier<Item> CHICKEN_POT_PIE_SLICE = registerWithTab("chicken_pot_pie_slice",
