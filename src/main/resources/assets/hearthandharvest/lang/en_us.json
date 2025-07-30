@@ -145,6 +145,7 @@
   "item.hearthandharvest.blueberry_muffin": "Blueberry Muffin",
   "item.hearthandharvest.peanut_butter_cookie": "Peanut Butter Cookie",
   "item.hearthandharvest.trail_mix": "Trail Mix",
+  "item.hearthandharvest.roasted_peanuts": "Roasted Peanuts",
 
   "item.hearthandharvest.marshmallow_stick": "Marshmallow",
   "item.hearthandharvest.roasted_marshmallow_stick": "Roasted Marshmallow",
@@ -157,6 +158,8 @@
   "item.hearthandharvest.blueberry_pie_slice": "Blueberry Pie Slice",
   "block.hearthandharvest.grape_pie": "Grape Pie",
   "item.hearthandharvest.grape_pie_slice": "Grape Pie Slice",
+  "block.hearthandharvest.peanut_butter_pie": "Peanut Butter Pie",
+  "item.hearthandharvest.peanut_butter_pie_slice": "Peanut Butter Pie Slice",
   "block.hearthandharvest.chicken_pot_pie": "Chicken Pot Pie",
   "item.hearthandharvest.chicken_pot_pie_slice": "Chicken Pot Pie Slice",
   "block.hearthandharvest.carrot_cake": "Carrot Cake",

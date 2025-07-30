@@ -17,7 +17,9 @@ public class SmeltingRecipes
 
     public static void register(Consumer<FinishedRecipe> consumer) {
         foodSmeltingRecipes("cooked_sausage", HHModItems.RAW_SAUSAGE.get(), HHModItems.COOKED_SAUSAGE.get(), 0.35F, consumer);
-        foodSmeltingRecipes("raisins", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, consumer);
+        foodSmeltingRecipes("red_grape_raisins", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.2F, consumer);
+        foodSmeltingRecipes("green_grape_raisins", HHModItems.GREEN_GRAPES.get(), HHModItems.RAISINS.get(), 0.2F, consumer);
+        foodSmeltingRecipes("roasted_peanuts", HHModItems.PEANUT.get(), HHModItems.ROASTED_PEANUTS.get(), 0.35F, consumer);
 
         // Marshmallows have only a campfire recipe
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
