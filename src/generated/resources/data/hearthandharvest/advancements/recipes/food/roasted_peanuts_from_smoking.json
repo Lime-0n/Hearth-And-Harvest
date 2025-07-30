@@ -1,34 +1,34 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "cooked_sausage": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hearthandharvest:roasted_peanuts_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "roasted_peanuts": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:raw_sausage"
+              "hearthandharvest:peanut"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "hearthandharvest:cooked_sausage"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "cooked_sausage",
+      "roasted_peanuts",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:cooked_sausage"
+      "hearthandharvest:roasted_peanuts_from_smoking"
     ]
   },
   "sends_telemetry_event": false

@@ -4,7 +4,7 @@ license="MIT License"
 
 [[mods]]
 modId = "hearthandharvest"
-version = "1.0.10"
+version = "1.0.11"
 displayName = "Hearth and Harvest"
 logoFile="logo.png"
 authors="AlabasterLeking"

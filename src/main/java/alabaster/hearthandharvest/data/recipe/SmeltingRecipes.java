@@ -17,8 +17,8 @@ public class SmeltingRecipes
 
     public static void register(Consumer<FinishedRecipe> consumer) {
         foodSmeltingRecipes("cooked_sausage", HHModItems.RAW_SAUSAGE.get(), HHModItems.COOKED_SAUSAGE.get(), 0.35F, consumer);
-        foodSmeltingRecipes("red_grape_raisins", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.2F, consumer);
-        foodSmeltingRecipes("green_grape_raisins", HHModItems.GREEN_GRAPES.get(), HHModItems.RAISINS.get(), 0.2F, consumer);
+        foodSmeltingRecipes("raisins_from_red_grapes", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, consumer);
+        foodSmeltingRecipes("raisins_from_green_grapes", HHModItems.GREEN_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, consumer);
         foodSmeltingRecipes("roasted_peanuts", HHModItems.PEANUT.get(), HHModItems.ROASTED_PEANUTS.get(), 0.35F, consumer);
 
         // Marshmallows have only a campfire recipe
@@ -36,7 +36,7 @@ public class SmeltingRecipes
         String namePrefix = new ResourceLocation(HearthAndHarvest.MODID, name).toString();
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.FOOD, result, experience, 200)
                 .unlockedBy(name, InventoryChangeTrigger.TriggerInstance.hasItems(ingredient))
-                .save(consumer);
+                .save(consumer,namePrefix + "_from_smelting");
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), RecipeCategory.FOOD, result, experience, 600)
                 .unlockedBy(name, InventoryChangeTrigger.TriggerInstance.hasItems(ingredient))
                 .save(consumer, namePrefix + "_from_campfire_cooking");

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "hearthandharvest:roasted_peanuts"
+    },
+    "P": {
+      "item": "farmersdelight:pie_crust"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "FFF",
+    "SPS"
+  ],
+  "result": {
+    "item": "hearthandharvest:peanut_butter_pie"
+  },
+  "show_notification": true
+}

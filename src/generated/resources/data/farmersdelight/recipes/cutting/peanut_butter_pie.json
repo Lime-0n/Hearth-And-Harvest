@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:peanut_butter_pie"
+    }
+  ],
+  "result": [
+    {
+      "count": 4,
+      "item": "hearthandharvest:peanut_butter_pie_slice"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}
