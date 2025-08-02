@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -155,7 +156,7 @@ public class TreeTapperBlock extends Block {
                                         case WEST  -> x -= offset;
                                         case EAST  -> x += offset;
                                 }
-                                level.addParticle(ParticleTypes.DRIPPING_HONEY, x, y, z, 0.0D, 0.0D, 0.0D);
+                                level.addParticle(HHModParticleTypes.DRIPPING_SAP.get(), x, y, z, 0.0D, 0.0D, 0.0D);
                         }
                 }
         }
