@@ -165,6 +165,21 @@ public class ClientEventHandler {
         }, HHModFluids.RED_GRAPE_WINE_TYPE.get());
 
         event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_SWEET_BERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_still");
+            private static final ResourceLocation FLOWING_SWEET_BERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_SWEET_BERRY_WINE;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_SWEET_BERRY_WINE;
+            }
+        }, HHModFluids.SWEET_BERRY_WINE_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_MEAD   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_still");
             private static final ResourceLocation FLOWING_MEAD = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_flow");
 

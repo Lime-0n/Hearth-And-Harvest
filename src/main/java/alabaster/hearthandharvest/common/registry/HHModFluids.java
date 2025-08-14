@@ -49,6 +49,10 @@ public class HHModFluids {
     public static final Supplier<HHFluidType> RED_GRAPE_WINE = FLUIDS.register("red_grape_wine", () -> new RedGrapeWineFluid(true));
     public static final Supplier<HHFluidType> FLOWING_RED_GRAPE_WINE = FLUIDS.register("flowing_red_grape_wine", () -> new RedGrapeWineFluid(false));
 
+    public static final Supplier<FluidType> SWEET_BERRY_WINE_TYPE = FLUID_TYPES.register("sweet_berry_wine", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> SWEET_BERRY_WINE = FLUIDS.register("sweet_berry_wine", () -> new SweetBerryWineFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_SWEET_BERRY_WINE = FLUIDS.register("flowing_sweet_berry_wine", () -> new SweetBerryWineFluid(false));
+
     public static final Supplier<FluidType> MEAD_TYPE = FLUID_TYPES.register("mead", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
     public static final Supplier<HHFluidType> MEAD = FLUIDS.register("mead", () -> new MeadFluid(true));
     public static final Supplier<HHFluidType> FLOWING_MEAD = FLUIDS.register("flowing_mead", () -> new MeadFluid(false));

@@ -1,0 +1,21 @@
+{
+  "type": "hearthandharvest:aging",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:sweet_berry_wine"
+  }
+}

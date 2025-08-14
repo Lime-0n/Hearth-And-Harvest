@@ -250,6 +250,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> GREEN_GRAPE_WINE_CRATE = registerWithBlockTab("green_grape_wine_crate",
             () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
+    public static final Supplier<Item> SWEET_BERRY_WINE_CRATE = registerWithBlockTab("sweet_berry_wine_crate",
+            () -> new BlockItem(HHModBlocks.SWEET_BERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> MEAD_CRATE = registerWithBlockTab("mead_crate",
             () -> new BlockItem(HHModBlocks.MEAD_CRATE.get(), basicItem()));
     public static final Supplier<Item> WATER_CRATE = registerWithBlockTab("water_crate",
@@ -280,6 +282,8 @@ public class HHModItems {
             () -> new WineBottleItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.RED_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
             () -> new WineBottleItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> SWEET_BERRY_WINE = registerWithTab("sweet_berry_wine",
+            () -> new WineBottleItem(()-> HHModFluids.SWEET_BERRY_WINE.get(), drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
