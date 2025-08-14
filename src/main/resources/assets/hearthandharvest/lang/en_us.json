@@ -1,5 +1,6 @@
 {
   "itemGroup.hearthandharvest": "Hearth and Harvest",
+  "itemGroup.hearthandharvest_blocks": "Hearth and Harvest Blocks",
 
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
 
@@ -92,6 +93,7 @@
   "block.hearthandharvest.raspberry_wine_crate": "Raspberry Wine Crate",
   "block.hearthandharvest.red_grape_wine_crate": "Red Grape Wine Crate",
   "block.hearthandharvest.green_grape_wine_crate": "Green Grape Wine Crate",
+  "block.hearthandharvest.sweet_berry_wine_crate": "Sweet Berry Wine Crate",
   "block.hearthandharvest.mead_crate": "Mead Crate",
   "block.hearthandharvest.water_crate": "Water Bottle Crate",
   "block.hearthandharvest.honey_crate": "Honey Bottle Crate",
@@ -112,6 +114,7 @@
   "item.hearthandharvest.blueberry_wine": "Blueberry Wine",
   "item.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "item.hearthandharvest.cherry_wine": "Cherry Wine",
+  "item.hearthandharvest.sweet_berry_wine": "Sweet Berry Wine",
   "item.hearthandharvest.goat_milk_bottle": "Goat Milk Bottle",
   "farmersdelight.tooltip.goat_milk_bottle": "Clears 1 Effect",
   "item.hearthandharvest.cherry_juice": "Cherry Juice",
@@ -244,6 +247,7 @@
   "fluid_type.hearthandharvest.green_grape_wine": "Green Grape Wine",
   "fluid_type.hearthandharvest.red_grape_wine": "Red Grape Wine",
   "fluid_type.hearthandharvest.raspberry_wine": "Raspberry Wine",
+  "fluid_type.hearthandharvest.sweet_berry_wine": "Sweet Berry Wine",
   "fluid_type.hearthandharvest.mead": "Mead",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",

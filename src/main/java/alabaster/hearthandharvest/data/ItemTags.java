@@ -43,7 +43,7 @@ public class ItemTags extends ItemTagsProvider {
         tag(CommonTags.TOOLS_KNIFE)
                 .addTag(HHModTags.CLEAVERS);
 
-        tag(HHModTags.WINE_BOTTLES).add(HHModItems.BLUEBERRY_WINE.get(), HHModItems.CHERRY_WINE.get(), HHModItems.GREEN_GRAPE_WINE.get(), HHModItems.MEAD.get(), HHModItems.RASPBERRY_WINE.get(), HHModItems.RED_GRAPE_WINE.get());
+        tag(HHModTags.WINE_BOTTLES).add(HHModItems.BLUEBERRY_WINE.get(), HHModItems.CHERRY_WINE.get(), HHModItems.GREEN_GRAPE_WINE.get(), HHModItems.MEAD.get(), HHModItems.RASPBERRY_WINE.get(), HHModItems.RED_GRAPE_WINE.get(), HHModItems.SWEET_BERRY_WINE.get());
         tag(HHModTags.JAMS).add(HHModItems.GRAPE_JAM.get(), HHModItems.CHERRY_JAM.get(), HHModItems.RASPBERRY_JAM.get(), HHModItems.BLUEBERRY_JAM.get(), HHModItems.APPLE_JAM.get(), HHModItems.GLOW_BERRY_JAM.get(), HHModItems.SWEET_BERRY_JAM.get(), HHModItems.MELON_JAM.get());
         tag(CommonTags.FOODS_MILK).add(HHModItems.GOAT_MILK_BOTTLE.get());
         tag(HHModTags.CHEESE_SLICES).add(HHModItems.CHEDDAR_CHEESE_SLICE.get(), HHModItems.GOAT_CHEESE_SLICE.get());

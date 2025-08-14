@@ -105,6 +105,7 @@ public class ItemModels extends ItemModelProvider
         items.remove(HHModItems.RASPBERRY_WINE.get());
         items.remove(HHModItems.GREEN_GRAPE_WINE.get());
         items.remove(HHModItems.RED_GRAPE_WINE.get());
+        items.remove(HHModItems.SWEET_BERRY_WINE.get());
         items.remove(HHModItems.MEAD.get());
 
         // Watering Can
@@ -137,6 +138,9 @@ public class ItemModels extends ItemModelProvider
 
         blockBasedModel(HHModItems.GREEN_GRAPE_WINE_CRATE.get(), "_bottom");
         items.remove(HHModItems.GREEN_GRAPE_WINE_CRATE.get());
+
+        blockBasedModel(HHModItems.SWEET_BERRY_WINE_CRATE.get(), "_bottom");
+        items.remove(HHModItems.SWEET_BERRY_WINE_CRATE.get());
 
         blockBasedModel(HHModItems.MEAD_CRATE.get(), "_bottom");
         items.remove(HHModItems.MEAD_CRATE.get());

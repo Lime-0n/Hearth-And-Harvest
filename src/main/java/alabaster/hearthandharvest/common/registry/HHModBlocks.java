@@ -179,6 +179,8 @@ public class HHModBlocks {
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> CHERRY_WINE_CRATE = BLOCKS.register("cherry_wine_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> SWEET_BERRY_WINE_CRATE = BLOCKS.register("sweet_berry_wine_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> MEAD_CRATE = BLOCKS.register("mead_crate",
             () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> WATER_CRATE = BLOCKS.register("water_crate",

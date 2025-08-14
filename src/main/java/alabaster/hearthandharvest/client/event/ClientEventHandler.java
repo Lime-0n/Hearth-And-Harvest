@@ -1,10 +1,12 @@
 package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
 import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModFluids;
+import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -12,6 +14,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
@@ -28,6 +31,14 @@ public class ClientEventHandler {
         event.registerBlockEntityRenderer(
                 HHModBlockEntities.WINE_RACK.get(),
                 WineRackRenderer::new
+        );
+    }
+
+    @SubscribeEvent
+    public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(
+                HHModParticleTypes.DRIPPING_SAP.get(),
+                DrippingSapParticle.Provider::new
         );
     }
 
@@ -152,6 +163,21 @@ public class ClientEventHandler {
                 return FLOWING_RED_GRAPE_WINE;
             }
         }, HHModFluids.RED_GRAPE_WINE_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_SWEET_BERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_still");
+            private static final ResourceLocation FLOWING_SWEET_BERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_SWEET_BERRY_WINE;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_SWEET_BERRY_WINE;
+            }
+        }, HHModFluids.SWEET_BERRY_WINE_TYPE.get());
 
         event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_MEAD   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_still");

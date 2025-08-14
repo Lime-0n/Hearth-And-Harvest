@@ -1,9 +1,11 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -113,9 +115,7 @@ public class TreeTapperBlock extends Block {
         @SuppressWarnings("deprecation")
         public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
                 if (level.isClientSide) return;
-
                 Direction direction = state.getValue(FACING);
-
                 float chance = 0.0F;
 
                 // Check only the four directly adjacent blocks (north, south, east, west)
@@ -129,6 +129,34 @@ public class TreeTapperBlock extends Block {
                 if (level.getRandom().nextFloat() <= chance) {
                         if (state.getValue(SAP) != this.getMaxSap()) {
                                 level.setBlock(pos, state.setValue(SAP, state.getValue(SAP) + 1), 3);
+                        }
+                }
+        }
+
+        @Override
+        public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+                if (!level.isClientSide) return;
+
+                if (state.getValue(SAP) < 4) {
+                        Direction direction = state.getValue(FACING);
+                        BlockPos tappablePos = pos.relative(direction);
+                        BlockState tappableState = level.getBlockState(tappablePos);
+
+                        // Only drip when on a tappable block
+                        if (tappableState.is(HHModTags.TAPPABLE) && random.nextFloat() < 0.1F) {
+                                double x = pos.getX() + 0.5D;
+                                double y = pos.getY() + 0.75D;
+                                double z = pos.getZ() + 0.5D;
+
+                                // Offset a bit based on facing
+                                double offset = 0.1D;
+                                switch (direction) {
+                                        case NORTH -> z -= offset;
+                                        case SOUTH -> z += offset;
+                                        case WEST  -> x -= offset;
+                                        case EAST  -> x += offset;
+                                }
+                                level.addParticle(HHModParticleTypes.DRIPPING_SAP.get(), x, y, z, 0.0D, 0.0D, 0.0D);
                         }
                 }
         }

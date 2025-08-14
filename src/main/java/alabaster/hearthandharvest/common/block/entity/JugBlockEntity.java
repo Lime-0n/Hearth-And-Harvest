@@ -26,7 +26,9 @@ public class JugBlockEntity extends BlockEntity {
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
         super.loadAdditional(compound, provider);
-        fluidTank.readFromNBT(provider, compound);
+        if (compound.contains("FluidTank")) {
+            fluidTank.readFromNBT(provider, compound.getCompound("FluidTank"));
+        }
     }
 
     @Override
