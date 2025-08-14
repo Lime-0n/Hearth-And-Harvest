@@ -381,7 +381,7 @@ public class HHModItems {
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",
-            () -> new Item(basicItem().stacksTo(1)));
+            () -> new BucketItem(HHModFluids.SAP.get(), basicItem().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final Supplier<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
             () -> new Item(basicItem().craftRemainder(Items.GLASS_BOTTLE)));
 

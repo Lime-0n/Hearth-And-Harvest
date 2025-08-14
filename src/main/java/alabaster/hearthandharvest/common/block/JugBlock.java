@@ -37,6 +37,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -111,46 +112,50 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         return stack;
     }
 
+    @Override
     public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.isClientSide()) {
             return ItemInteractionResult.SUCCESS;
         }
 
-        ItemStack heldItem = player.getItemInHand(hand);
         BlockEntity blockEntity = level.getBlockEntity(pos);
-
         if (!(blockEntity instanceof JugBlockEntity jugBlockEntity)) {
             return ItemInteractionResult.SUCCESS;
         }
 
-        // Handle empty bucket: extract fluid from the jug
-        if (heldItem.getItem() == Items.BUCKET) {
-            FluidStack drained = jugBlockEntity.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
-            if (!drained.isEmpty()) {
-                ItemStack filledBucket = new ItemStack(drained.getFluid().getBucket());
-                if (!player.getInventory().add(filledBucket)) {
-                    player.drop(filledBucket, false);
-                }
-                player.setItemInHand(hand, filledBucket);
-                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
-                return ItemInteractionResult.CONSUME;
-            }
-            return ItemInteractionResult.SUCCESS;
-        }
+        // Get fluid handler for the held item
+        IFluidHandlerItem itemHandler = stack.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM);
+        if (itemHandler != null) {
+            boolean didSomething = false;
 
-        // Handle filled bucket: insert fluid into the jug
-        Item bucketItem = heldItem.getItem();
-        if (bucketItem instanceof BucketItem bucket) {
-            Fluid fluid = bucket.content;
-            if (fluid != Fluids.EMPTY) {
-                FluidStack fluidStack = new FluidStack(fluid, FluidType.BUCKET_VOLUME);
-                int filled = jugBlockEntity.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
-                if (filled == FluidType.BUCKET_VOLUME) {
-                    player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1, 1);
-                    return ItemInteractionResult.CONSUME;
+            // Try draining from the container into the jug
+            FluidStack simulatedDrain = itemHandler.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
+            if (!simulatedDrain.isEmpty()) {
+                int filled = jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.EXECUTE);
+                if (filled > 0) {
+                    itemHandler.drain(filled, IFluidHandler.FluidAction.EXECUTE);
+                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    player.setItemInHand(hand, itemHandler.getContainer());
+                    didSomething = true;
                 }
-                return ItemInteractionResult.SUCCESS;
+            }
+
+            // If nothing transferred into the jug, try filling container from the jug
+            if (!didSomething) {
+                FluidStack simulatedFill = jugBlockEntity.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
+                if (!simulatedFill.isEmpty()) {
+                    int filled = itemHandler.fill(simulatedFill, IFluidHandler.FluidAction.EXECUTE);
+                    if (filled > 0) {
+                        jugBlockEntity.drain(filled, IFluidHandler.FluidAction.EXECUTE);
+                        level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        player.setItemInHand(hand, itemHandler.getContainer());
+                        didSomething = true;
+                    }
+                }
+            }
+
+            if (didSomething) {
+                return ItemInteractionResult.CONSUME;
             }
         }
 
