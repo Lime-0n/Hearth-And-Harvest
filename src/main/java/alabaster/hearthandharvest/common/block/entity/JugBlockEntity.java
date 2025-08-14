@@ -10,6 +10,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
+import java.awt.*;
+
 public class JugBlockEntity extends BlockEntity {
 
     private final FluidTank fluidTank;
@@ -21,6 +23,14 @@ public class JugBlockEntity extends BlockEntity {
 
     public FluidStack getOutput() {
         return fluidTank.getFluid();
+    }
+
+    public int getFluidAmount() {
+        return fluidTank.getFluidAmount();
+    }
+
+    public int getFluidCapacity() {
+        return fluidTank.getCapacity();
     }
 
     @Override

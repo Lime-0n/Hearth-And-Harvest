@@ -2,10 +2,7 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
-import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
-import alabaster.hearthandharvest.common.item.UniversalFeedItem;
-import alabaster.hearthandharvest.common.item.WateringCanItem;
-import alabaster.hearthandharvest.common.item.WineBottleItem;
+import alabaster.hearthandharvest.common.item.*;
 import com.electronwill.nightconfig.core.concurrent.StampedConfig;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
@@ -88,7 +85,7 @@ public class HHModItems {
     public static final Supplier<Item> CASK = registerWithTab("cask",
             () -> new BlockItem(HHModBlocks.CASK.get(), basicItem()));
     public static final Supplier<Item> JUG = registerWithTab("jug",
-            () -> new BlockItem(HHModBlocks.JUG.get(), basicItem()));
+            () -> new JugBlockItem(HHModBlocks.JUG.get(), basicItem()));
 
     public static final Supplier<Item> COUNTER = registerWithBlockTab("counter",
             () -> new BlockItem(HHModBlocks.COUNTER.get(), basicItem()));

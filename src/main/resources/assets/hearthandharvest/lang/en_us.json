@@ -251,5 +251,8 @@
   "fluid_type.hearthandharvest.mead": "Mead",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
-  "item.hearthandharvest.raspberry_pips": "Raspberry Pips"
+  "item.hearthandharvest.raspberry_pips": "Raspberry Pips",
+
+  "tooltip.hearthandharvest.jug.empty": "Empty",
+  "tooltip.hearthandharvest.jug.amount": "%1$d mB"
 }
