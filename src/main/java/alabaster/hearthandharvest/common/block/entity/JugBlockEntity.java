@@ -22,6 +22,14 @@ public class JugBlockEntity extends BlockEntity {
         return fluidTank.getFluid();
     }
 
+    public int getFluidAmount() {
+        return fluidTank.getFluidAmount();
+    }
+
+    public int getFluidCapacity() {
+        return fluidTank.getCapacity();
+    }
+
     @Override
     public void load(CompoundTag compound) {
         super.load(compound);
