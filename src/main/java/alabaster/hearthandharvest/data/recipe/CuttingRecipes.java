@@ -35,6 +35,8 @@ public class CuttingRecipes {
                 .build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.GRAPE_PIE.get()), Ingredient.of(ModTags.KNIVES), HHModItems.GRAPE_PIE_SLICE.get(), 4)
                 .build(consumer);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.PEANUT_BUTTER_PIE.get()), Ingredient.of(ModTags.KNIVES), HHModItems.PEANUT_BUTTER_PIE_SLICE.get(), 4)
+                .build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.GOAT_CHEESE_WHEEL.get()), Ingredient.of(ModTags.KNIVES), HHModItems.GOAT_CHEESE_SLICE.get(), 4)
                 .build(consumer);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CHEDDAR_CHEESE_WHEEL.get()), Ingredient.of(ModTags.KNIVES), HHModItems.CHEDDAR_CHEESE_SLICE.get(), 4)

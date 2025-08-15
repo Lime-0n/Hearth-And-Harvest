@@ -189,6 +189,7 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.RASPBERRY_PIE.get(),
                 HHModItems.BLUEBERRY_PIE.get(),
                 HHModItems.GRAPE_PIE.get(),
+                HHModItems.PEANUT_BUTTER_PIE.get(),
                 HHModItems.CHICKEN_POT_PIE.get(),
                 HHModItems.UNRIPE_CHEDDAR_CHEESE_WHEEL.get(),
                 HHModItems.CHEDDAR_CHEESE_WHEEL.get(),

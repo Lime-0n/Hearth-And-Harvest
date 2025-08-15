@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:raisins_from_smoking"
+        "recipe": "hearthandharvest:roasted_peanuts_from_smoking"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "raisins": {
+    "roasted_peanuts": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:red_grapes"
+              "hearthandharvest:peanut"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "raisins",
+      "roasted_peanuts",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:raisins_from_smoking"
+      "hearthandharvest:roasted_peanuts_from_smoking"
     ]
   },
   "sends_telemetry_event": false

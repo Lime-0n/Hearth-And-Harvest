@@ -198,6 +198,8 @@ public class HHModBlocks {
             () -> new PieBlock(Block.Properties.copy(Blocks.CAKE), HHModItems.BLUEBERRY_PIE_SLICE));
     public static final RegistryObject<Block> GRAPE_PIE = BLOCKS.register("grape_pie",
             () -> new PieBlock(Block.Properties.copy(Blocks.CAKE), HHModItems.GRAPE_PIE_SLICE));
+    public static final RegistryObject<Block> PEANUT_BUTTER_PIE = BLOCKS.register("peanut_butter_pie",
+            () -> new PieBlock(Block.Properties.copy(Blocks.CAKE), HHModItems.PEANUT_BUTTER_PIE_SLICE));
     public static final RegistryObject<Block> CHICKEN_POT_PIE = BLOCKS.register("chicken_pot_pie",
             () -> new PieBlock(Block.Properties.copy(Blocks.CAKE), HHModItems.CHICKEN_POT_PIE_SLICE));
     public static final RegistryObject<Block> CARROT_CAKE = BLOCKS.register("carrot_cake",

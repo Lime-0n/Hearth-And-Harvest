@@ -2,10 +2,7 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
-import alabaster.hearthandharvest.common.item.MarshmallowStickItem;
-import alabaster.hearthandharvest.common.item.UniversalFeedItem;
-import alabaster.hearthandharvest.common.item.WateringCanItem;
-import alabaster.hearthandharvest.common.item.WineBottleItem;
+import alabaster.hearthandharvest.common.item.*;
 import com.google.common.collect.Sets;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
@@ -25,8 +22,15 @@ import java.util.function.Supplier;
 public class HHModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HearthAndHarvest.MODID);
     public static LinkedHashSet<RegistryObject<Item>> CREATIVE_TAB_ITEMS = Sets.newLinkedHashSet();
+    public static LinkedHashSet<RegistryObject<Item>> CREATIVE_TAB_BLOCKS = Sets.newLinkedHashSet();
 
     public static RegistryObject<Item> registerWithTab(final String name, final Supplier<Item> supplier) {
+        RegistryObject<Item> block = ITEMS.register(name, supplier);
+        CREATIVE_TAB_ITEMS.add(block);
+        return block;
+    }
+
+    public static RegistryObject<Item> registerWithBlockTab(final String name, final Supplier<Item> supplier) {
         RegistryObject<Item> block = ITEMS.register(name, supplier);
         CREATIVE_TAB_ITEMS.add(block);
         return block;
@@ -76,61 +80,61 @@ public class HHModItems {
     public static final RegistryObject<Item> CASK = registerWithTab("cask",
             () -> new BlockItem(HHModBlocks.CASK.get(), basicItem()));
     public static final RegistryObject<Item> JUG = registerWithTab("jug",
-            () -> new BlockItem(HHModBlocks.JUG.get(), basicItem()));
+            () -> new JugBlockItem(HHModBlocks.JUG.get(), basicItem()));
 
-    public static final Supplier<Item> COUNTER = registerWithTab("counter",
+    public static final Supplier<Item> COUNTER = registerWithBlockTab("counter",
             () -> new BlockItem(HHModBlocks.COUNTER.get(), basicItem()));
-    public static final Supplier<Item> DRAWER = registerWithTab("drawer",
+    public static final Supplier<Item> DRAWER = registerWithBlockTab("drawer",
             () -> new BlockItem(HHModBlocks.DRAWER.get(), basicItem()));
-    public static final Supplier<Item> BASIN = registerWithTab("basin",
+    public static final Supplier<Item> BASIN = registerWithBlockTab("basin",
             () -> new BlockItem(HHModBlocks.BASIN.get(), basicItem()));
 
     // Half-Cabinets
-    public static final Supplier<Item> OAK_HALF_CABINET = registerWithTab("oak_half_cabinet",
+    public static final Supplier<Item> OAK_HALF_CABINET = registerWithBlockTab("oak_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.OAK_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> SPRUCE_HALF_CABINET = registerWithTab("spruce_half_cabinet",
+    public static final Supplier<Item> SPRUCE_HALF_CABINET = registerWithBlockTab("spruce_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.SPRUCE_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> BIRCH_HALF_CABINET = registerWithTab("birch_half_cabinet",
+    public static final Supplier<Item> BIRCH_HALF_CABINET = registerWithBlockTab("birch_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.BIRCH_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> JUNGLE_HALF_CABINET = registerWithTab("jungle_half_cabinet",
+    public static final Supplier<Item> JUNGLE_HALF_CABINET = registerWithBlockTab("jungle_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.JUNGLE_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> ACACIA_HALF_CABINET = registerWithTab("acacia_half_cabinet",
+    public static final Supplier<Item> ACACIA_HALF_CABINET = registerWithBlockTab("acacia_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.ACACIA_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> DARK_OAK_HALF_CABINET = registerWithTab("dark_oak_half_cabinet",
+    public static final Supplier<Item> DARK_OAK_HALF_CABINET = registerWithBlockTab("dark_oak_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.DARK_OAK_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> MANGROVE_HALF_CABINET = registerWithTab("mangrove_half_cabinet",
+    public static final Supplier<Item> MANGROVE_HALF_CABINET = registerWithBlockTab("mangrove_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.MANGROVE_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> CHERRY_HALF_CABINET = registerWithTab("cherry_half_cabinet",
+    public static final Supplier<Item> CHERRY_HALF_CABINET = registerWithBlockTab("cherry_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.CHERRY_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> BAMBOO_HALF_CABINET = registerWithTab("bamboo_half_cabinet",
+    public static final Supplier<Item> BAMBOO_HALF_CABINET = registerWithBlockTab("bamboo_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.BAMBOO_HALF_CABINET.get(), basicItem(), 300));
-    public static final Supplier<Item> CRIMSON_HALF_CABINET = registerWithTab("crimson_half_cabinet",
+    public static final Supplier<Item> CRIMSON_HALF_CABINET = registerWithBlockTab("crimson_half_cabinet",
             () -> new BlockItem(HHModBlocks.CRIMSON_HALF_CABINET.get(), basicItem()));
-    public static final Supplier<Item> WARPED_HALF_CABINET = registerWithTab("warped_half_cabinet",
+    public static final Supplier<Item> WARPED_HALF_CABINET = registerWithBlockTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
     // Wine Rack
-    public static final Supplier<Item> OAK_WINE_RACK = registerWithTab("oak_wine_rack",
+    public static final Supplier<Item> OAK_WINE_RACK = registerWithBlockTab("oak_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.OAK_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> SPRUCE_WINE_RACK = registerWithTab("spruce_wine_rack",
+    public static final Supplier<Item> SPRUCE_WINE_RACK = registerWithBlockTab("spruce_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.SPRUCE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> BIRCH_WINE_RACK = registerWithTab("birch_wine_rack",
+    public static final Supplier<Item> BIRCH_WINE_RACK = registerWithBlockTab("birch_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.BIRCH_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> JUNGLE_WINE_RACK = registerWithTab("jungle_wine_rack",
+    public static final Supplier<Item> JUNGLE_WINE_RACK = registerWithBlockTab("jungle_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.JUNGLE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> ACACIA_WINE_RACK = registerWithTab("acacia_wine_rack",
+    public static final Supplier<Item> ACACIA_WINE_RACK = registerWithBlockTab("acacia_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.ACACIA_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> DARK_OAK_WINE_RACK = registerWithTab("dark_oak_wine_rack",
+    public static final Supplier<Item> DARK_OAK_WINE_RACK = registerWithBlockTab("dark_oak_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.DARK_OAK_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> MANGROVE_WINE_RACK = registerWithTab("mangrove_wine_rack",
+    public static final Supplier<Item> MANGROVE_WINE_RACK = registerWithBlockTab("mangrove_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.MANGROVE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> CHERRY_WINE_RACK = registerWithTab("cherry_wine_rack",
+    public static final Supplier<Item> CHERRY_WINE_RACK = registerWithBlockTab("cherry_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.CHERRY_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> BAMBOO_WINE_RACK = registerWithTab("bamboo_wine_rack",
+    public static final Supplier<Item> BAMBOO_WINE_RACK = registerWithBlockTab("bamboo_wine_rack",
             () -> new FuelBlockItem(HHModBlocks.BAMBOO_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> CRIMSON_WINE_RACK = registerWithTab("crimson_wine_rack",
+    public static final Supplier<Item> CRIMSON_WINE_RACK = registerWithBlockTab("crimson_wine_rack",
             () -> new BlockItem(HHModBlocks.CRIMSON_WINE_RACK.get(), basicItem()));
-    public static final Supplier<Item> WARPED_WINE_RACK = registerWithTab("warped_wine_rack",
+    public static final Supplier<Item> WARPED_WINE_RACK = registerWithBlockTab("warped_wine_rack",
             () -> new BlockItem(HHModBlocks.WARPED_WINE_RACK.get(), basicItem()));
 
     // Crops
@@ -176,83 +180,83 @@ public class HHModItems {
     // Storage Blocks
 
     // Crates
-    public static final RegistryObject<Item> BLUEBERRY_CRATE = registerWithTab("blueberry_crate",
+    public static final RegistryObject<Item> BLUEBERRY_CRATE = registerWithBlockTab("blueberry_crate",
             () -> new BlockItem(HHModBlocks.BLUEBERRY_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> CHERRY_CRATE = registerWithTab("cherry_crate",
+    public static final RegistryObject<Item> CHERRY_CRATE = registerWithBlockTab("cherry_crate",
             () -> new BlockItem(HHModBlocks.CHERRY_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> RASPBERRY_CRATE = registerWithTab("raspberry_crate",
+    public static final RegistryObject<Item> RASPBERRY_CRATE = registerWithBlockTab("raspberry_crate",
             () -> new BlockItem(HHModBlocks.RASPBERRY_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> RED_GRAPE_CRATE = registerWithTab("red_grape_crate",
+    public static final RegistryObject<Item> RED_GRAPE_CRATE = registerWithBlockTab("red_grape_crate",
             () -> new BlockItem(HHModBlocks.RED_GRAPE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GREEN_GRAPE_CRATE = registerWithTab("green_grape_crate",
+    public static final RegistryObject<Item> GREEN_GRAPE_CRATE = registerWithBlockTab("green_grape_crate",
             () -> new BlockItem(HHModBlocks.GREEN_GRAPE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> PEANUT_CRATE = registerWithTab("peanut_crate",
+    public static final RegistryObject<Item> PEANUT_CRATE = registerWithBlockTab("peanut_crate",
             () -> new BlockItem(HHModBlocks.PEANUT_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> APPLE_CRATE = registerWithTab("apple_crate",
+    public static final RegistryObject<Item> APPLE_CRATE = registerWithBlockTab("apple_crate",
             () -> new BlockItem(HHModBlocks.APPLE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GOLDEN_APPLE_CRATE = registerWithTab("golden_apple_crate",
+    public static final RegistryObject<Item> GOLDEN_APPLE_CRATE = registerWithBlockTab("golden_apple_crate",
             () -> new BlockItem(HHModBlocks.GOLDEN_APPLE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GOLDEN_CARROT_CRATE = registerWithTab("golden_carrot_crate",
+    public static final RegistryObject<Item> GOLDEN_CARROT_CRATE = registerWithBlockTab("golden_carrot_crate",
             () -> new BlockItem(HHModBlocks.GOLDEN_CARROT_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> POISONOUS_POTATO_CRATE = registerWithTab("poisonous_potato_crate",
+    public static final RegistryObject<Item> POISONOUS_POTATO_CRATE = registerWithBlockTab("poisonous_potato_crate",
             () -> new BlockItem(HHModBlocks.POISONOUS_POTATO_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GLOW_BERRY_CRATE = registerWithTab("glow_berry_crate",
+    public static final RegistryObject<Item> GLOW_BERRY_CRATE = registerWithBlockTab("glow_berry_crate",
             () -> new BlockItem(HHModBlocks.GLOW_BERRY_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> SWEET_BERRY_CRATE = registerWithTab("sweet_berry_crate",
+    public static final RegistryObject<Item> SWEET_BERRY_CRATE = registerWithBlockTab("sweet_berry_crate",
             () -> new BlockItem(HHModBlocks.SWEET_BERRY_CRATE.get(), basicItem()));
     
     // Bags
-    public static final RegistryObject<Item> SALT_BAG = registerWithTab("salt_bag",
+    public static final RegistryObject<Item> SALT_BAG = registerWithBlockTab("salt_bag",
             () -> new BlockItem(HHModBlocks.SALT_BAG.get(), basicItem()));
-    public static final RegistryObject<Item> SUGAR_BAG = registerWithTab("sugar_bag",
+    public static final RegistryObject<Item> SUGAR_BAG = registerWithBlockTab("sugar_bag",
             () -> new BlockItem(HHModBlocks.SUGAR_BAG.get(), basicItem()));
-    public static final RegistryObject<Item> COCOA_BEAN_BAG = registerWithTab("cocoa_bean_bag",
+    public static final RegistryObject<Item> COCOA_BEAN_BAG = registerWithBlockTab("cocoa_bean_bag",
             () -> new BlockItem(HHModBlocks.COCOA_BEAN_BAG.get(), basicItem()));
-    public static final RegistryObject<Item> GUNPOWDER_BAG = registerWithTab("gunpowder_bag",
+    public static final RegistryObject<Item> GUNPOWDER_BAG = registerWithBlockTab("gunpowder_bag",
             () -> new BlockItem(HHModBlocks.GUNPOWDER_BAG.get(), basicItem()));
     
     // Misc
-    public static final RegistryObject<Item> COTTON_BALE = registerWithTab("cotton_bale",
+    public static final RegistryObject<Item> COTTON_BALE = registerWithBlockTab("cotton_bale",
             () -> new BlockItem(HHModBlocks.COTTON_BALE.get(), basicItem()));
-    public static final RegistryObject<Item> SPOOL = registerWithTab("spool",
+    public static final RegistryObject<Item> SPOOL = registerWithBlockTab("spool",
             () -> new BlockItem(HHModBlocks.SPOOL.get(), basicItem()));
-    public static final RegistryObject<Item> ROPE_COIL = registerWithTab("rope_coil",
+    public static final RegistryObject<Item> ROPE_COIL = registerWithBlockTab("rope_coil",
             () -> new BlockItem(HHModBlocks.ROPE_COIL.get(), basicItem()));
 
     // Half-Slab Crates
-    public static final RegistryObject<Item> EGG_CRATE = registerWithTab("egg_crate",
+    public static final RegistryObject<Item> EGG_CRATE = registerWithBlockTab("egg_crate",
             () -> new BlockItem(HHModBlocks.EGG_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> TURTLE_EGG_CRATE = registerWithTab("turtle_egg_crate",
+    public static final RegistryObject<Item> TURTLE_EGG_CRATE = registerWithBlockTab("turtle_egg_crate",
             () -> new BlockItem(HHModBlocks.TURTLE_EGG_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> MILK_CRATE = registerWithTab("milk_crate",
+    public static final RegistryObject<Item> MILK_CRATE = registerWithBlockTab("milk_crate",
             () -> new BlockItem(HHModBlocks.MILK_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GOAT_MILK_CRATE = registerWithTab("goat_milk_crate",
+    public static final RegistryObject<Item> GOAT_MILK_CRATE = registerWithBlockTab("goat_milk_crate",
             () -> new BlockItem(HHModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> RED_GRAPE_WINE_CRATE = registerWithTab("red_grape_wine_crate",
+    public static final RegistryObject<Item> RED_GRAPE_WINE_CRATE = registerWithBlockTab("red_grape_wine_crate",
             () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> GREEN_GRAPE_WINE_CRATE = registerWithTab("green_grape_wine_crate",
+    public static final RegistryObject<Item> GREEN_GRAPE_WINE_CRATE = registerWithBlockTab("green_grape_wine_crate",
             () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> RASPBERRY_WINE_CRATE = registerWithTab("raspberry_wine_crate",
+    public static final RegistryObject<Item> RASPBERRY_WINE_CRATE = registerWithBlockTab("raspberry_wine_crate",
             () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> BLUEBERRY_WINE_CRATE = registerWithTab("blueberry_wine_crate",
+    public static final RegistryObject<Item> BLUEBERRY_WINE_CRATE = registerWithBlockTab("blueberry_wine_crate",
             () -> new BlockItem(HHModBlocks.BLUEBERRY_WINE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> CHERRY_WINE_CRATE = registerWithTab("cherry_wine_crate",
+    public static final RegistryObject<Item> CHERRY_WINE_CRATE = registerWithBlockTab("cherry_wine_crate",
             () -> new BlockItem(HHModBlocks.CHERRY_WINE_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> MEAD_CRATE = registerWithTab("mead_crate",
+    public static final RegistryObject<Item> MEAD_CRATE = registerWithBlockTab("mead_crate",
             () -> new BlockItem(HHModBlocks.MEAD_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> WATER_CRATE = registerWithTab("water_crate",
+    public static final RegistryObject<Item> WATER_CRATE = registerWithBlockTab("water_crate",
             () -> new BlockItem(HHModBlocks.WATER_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> HONEY_CRATE = registerWithTab("honey_crate",
+    public static final RegistryObject<Item> HONEY_CRATE = registerWithBlockTab("honey_crate",
             () -> new BlockItem(HHModBlocks.HONEY_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> SYRUP_CRATE = registerWithTab("syrup_crate",
+    public static final RegistryObject<Item> SYRUP_CRATE = registerWithBlockTab("syrup_crate",
             () -> new BlockItem(HHModBlocks.SYRUP_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> BROWN_MUSHROOM_CRATE = registerWithTab("brown_mushroom_crate",
+    public static final RegistryObject<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> RED_MUSHROOM_CRATE = registerWithTab("red_mushroom_crate",
+    public static final RegistryObject<Item> RED_MUSHROOM_CRATE = registerWithBlockTab("red_mushroom_crate",
             () -> new BlockItem(HHModBlocks.RED_MUSHROOM_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> CRIMSON_FUNGUS_CRATE = registerWithTab("crimson_fungus_crate",
+    public static final RegistryObject<Item> CRIMSON_FUNGUS_CRATE = registerWithBlockTab("crimson_fungus_crate",
             () -> new BlockItem(HHModBlocks.CRIMSON_FUNGUS_CRATE.get(), basicItem()));
-    public static final RegistryObject<Item> WARPED_FUNGUS_CRATE = registerWithTab("warped_fungus_crate",
+    public static final RegistryObject<Item> WARPED_FUNGUS_CRATE = registerWithBlockTab("warped_fungus_crate",
             () -> new BlockItem(HHModBlocks.WARPED_FUNGUS_CRATE.get(), basicItem()));
 
     // Drinks
@@ -328,6 +332,8 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_COOKIE)));
     public static final RegistryObject<Item> TRAIL_MIX = registerWithTab("trail_mix",
             () -> new Item(foodItem(HHFoodValues.TRAIL_MIX)));
+    public static final RegistryObject<Item> ROASTED_PEANUTS = registerWithTab("roasted_peanuts",
+            () -> new Item(foodItem(HHFoodValues.ROASTED_PEANUTS)));
 
     public static final RegistryObject<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).craftRemainder(Items.STICK).stacksTo(1)));
@@ -340,8 +346,8 @@ public class HHModItems {
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.SMORE)));
 
     // Sap and Syrup
-    public static final RegistryObject<Item> SAP_BUCKET = registerWithTab("sap_bucket",
-            () -> new Item(basicItem().stacksTo(1)));
+    public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",
+            () -> new BucketItem(HHModFluids.SAP.get(), basicItem().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
             () -> new Item(basicItem()));
 
@@ -358,6 +364,10 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GRAPE_PIE.get(), basicItem()));
     public static final RegistryObject<Item> GRAPE_PIE_SLICE = registerWithTab("grape_pie_slice",
             () -> new Item(foodItem(HHFoodValues.GRAPE_PIE_SLICE)));
+    public static final RegistryObject<Item> PEANUT_BUTTER_PIE = registerWithTab("peanut_butter_pie",
+            () -> new BlockItem(HHModBlocks.PEANUT_BUTTER_PIE.get(), basicItem()));
+    public static final RegistryObject<Item> PEANUT_BUTTER_PIE_SLICE = registerWithTab("peanut_butter_pie_slice",
+            () -> new Item(foodItem(HHFoodValues.PEANUT_BUTTER_PIE_SLICE)));
     public static final RegistryObject<Item> CHICKEN_POT_PIE = registerWithTab("chicken_pot_pie",
             () -> new BlockItem(HHModBlocks.CHICKEN_POT_PIE.get(), basicItem()));
     public static final RegistryObject<Item> CHICKEN_POT_PIE_SLICE = registerWithTab("chicken_pot_pie_slice",

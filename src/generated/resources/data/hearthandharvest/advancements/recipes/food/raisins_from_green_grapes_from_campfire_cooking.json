@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:raisins"
+        "recipe": "hearthandharvest:raisins_from_green_grapes_from_campfire_cooking"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "raisins": {
+    "raisins_from_green_grapes": {
       "conditions": {
         "items": [
           {
             "items": [
-              "hearthandharvest:red_grapes"
+              "hearthandharvest:green_grapes"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "raisins",
+      "raisins_from_green_grapes",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:raisins"
+      "hearthandharvest:raisins_from_green_grapes_from_campfire_cooking"
     ]
   },
   "sends_telemetry_event": false

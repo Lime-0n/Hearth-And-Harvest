@@ -1,6 +1,8 @@
 package alabaster.hearthandharvest.common.block;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -96,6 +98,17 @@ public class TreeTapperBlock extends Block {
         }
 
         @Override
+        public boolean hasAnalogOutputSignal(BlockState state) {
+            return true;
+        }
+
+        @Override
+        public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+            return state.getValue(SAP);
+        }
+
+
+        @Override
         protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
                 builder.add(FACING, SAP, WATERLOGGED);
                 super.createBlockStateDefinition(builder);
@@ -123,7 +136,7 @@ public class TreeTapperBlock extends Block {
                 if (direction.getAxis().isHorizontal()) {
                         BlockState neighborState = level.getBlockState(pos.relative(direction));
                         if (neighborState.is(HHModTags.TAPPABLE)) {
-                                chance += 0.02F;
+                                chance += Config.TREE_TAPPER_BASE_CHANCE.get().floatValue();
                         }
                 }
 
@@ -133,6 +146,34 @@ public class TreeTapperBlock extends Block {
                         }
                 }
         }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (!level.isClientSide) return;
+
+        if (state.getValue(SAP) < 4) {
+            Direction direction = state.getValue(FACING);
+            BlockPos tappablePos = pos.relative(direction);
+            BlockState tappableState = level.getBlockState(tappablePos);
+
+            // Only drip when on a tappable block
+            if (tappableState.is(HHModTags.TAPPABLE) && random.nextFloat() < 0.1F) {
+                double x = pos.getX() + 0.5D;
+                double y = pos.getY() + 0.75D;
+                double z = pos.getZ() + 0.5D;
+
+                // Offset a bit based on facing
+                double offset = 0.1D;
+                switch (direction) {
+                    case NORTH -> z -= offset;
+                    case SOUTH -> z += offset;
+                    case WEST  -> x -= offset;
+                    case EAST  -> x += offset;
+                }
+                level.addParticle(HHModParticleTypes.DRIPPING_SAP.get(), x, y, z, 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
 
         public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
                 int sapLevel = state.getValue(SAP);

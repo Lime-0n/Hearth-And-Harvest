@@ -113,10 +113,12 @@ public class HHFoodValues {
     public static final FoodProperties PEANUT_BUTTER_COOKIE = (new FoodProperties.Builder())
             .nutrition(3).saturationMod(0.3f).fast().build();
     public static final FoodProperties TRAIL_MIX = (new FoodProperties.Builder())
-            .nutrition(3).saturationMod(0.3f)
+            .nutrition(5).saturationMod(0.5f)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, MEDIUM_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, SHORT_DURATION, 0), 1.0F)
             .fast().build();
+    public static final FoodProperties ROASTED_PEANUTS = (new FoodProperties.Builder())
+            .nutrition(4).saturationMod(0.5f).fast().build();
 
     public static final FoodProperties MARSHMALLOW_STICK = (new FoodProperties.Builder())
             .nutrition(2).saturationMod(0.3f).alwaysEat().fast().build();
@@ -135,6 +137,8 @@ public class HHFoodValues {
     public static final FoodProperties BLUEBERRY_PIE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties GRAPE_PIE_SLICE = (new FoodProperties.Builder())
+            .nutrition(3).saturationMod(0.3f).build();
+    public static final FoodProperties PEANUT_BUTTER_PIE_SLICE = (new FoodProperties.Builder())
             .nutrition(3).saturationMod(0.3f).build();
     public static final FoodProperties CHICKEN_POT_PIE_SLICE = (new FoodProperties.Builder())
             .nutrition(5).saturationMod(0.3f).build();

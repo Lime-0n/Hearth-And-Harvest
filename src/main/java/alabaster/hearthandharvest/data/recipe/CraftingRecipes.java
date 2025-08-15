@@ -493,6 +493,10 @@ public class CraftingRecipes
                 .requires(HHModItems.BLUEBERRY_CRATE.get())
                 .unlockedBy("has_blueberry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRY_CRATE.get()))
                 .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.CHERRY.get(), 9)
+                .requires(HHModItems.CHERRY_CRATE.get())
+                .unlockedBy("has_cherry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHERRY_CRATE.get()))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RED_GRAPES.get(), 9)
                 .requires(HHModItems.RED_GRAPE_CRATE.get())
                 .unlockedBy("has_red_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPE_CRATE.get()))
@@ -709,6 +713,16 @@ public class CraftingRecipes
                 .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy("has_red_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPES.get()))
                 .save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_PIE.get(), 1)
+                .pattern("WWW")
+                .pattern("FFF")
+                .pattern("SPS")
+                .define('W', Items.WHEAT)
+                .define('S', Items.SUGAR)
+                .define('F', HHModItems.ROASTED_PEANUTS.get())
+                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
+                .unlockedBy("has_peanut_butters", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_PEANUTS.get()))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_PIE.get(), 1)
                 .pattern("##")
                 .pattern("##")
@@ -730,6 +744,13 @@ public class CraftingRecipes
                 .unlockedBy("has_grape_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GRAPE_PIE_SLICE.get()))
                 .group("grape_pie")
                 .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "grape_pie_from_slices"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_PIE.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.PEANUT_BUTTER_PIE_SLICE.get())
+                .unlockedBy("has_peanut_butter_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT_BUTTER_PIE_SLICE.get()))
+                .group("peanut_butter_pie")
+                .save(consumer, new ResourceLocation(HearthAndHarvest.MODID, "peanut_butter_pie_from_slices"));
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.CHICKEN_POT_PIE.get(), 1)
                 .pattern(" C ")
                 .pattern("TVO")

@@ -17,6 +17,11 @@ public class HHModFluids {
     public static final DeferredRegister<Fluid> FLUIDS =
             DeferredRegister.create(ForgeRegistries.FLUIDS, HearthAndHarvest.MODID);
 
+    public static final RegistryObject<FluidType> SAP_FLUID_TYPE = FLUID_TYPES.register("sap", BlueberryWineFluidType::new);
+    public static final RegistryObject<FlowingFluid> SAP = FLUIDS.register("sap", () -> new ForgeFlowingFluid.Source(HHModFluids.SAP_FLUID_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> FLOWING_SAP = FLUIDS.register("flowing_sap", () -> new ForgeFlowingFluid.Flowing(HHModFluids.SAP_FLUID_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties SAP_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(SAP_FLUID_TYPE, SAP, FLOWING_SAP);
+
     public static final RegistryObject<FluidType> BLUEBERRY_WINE_FLUID_TYPE = FLUID_TYPES.register("blueberry_wine", BlueberryWineFluidType::new);
     public static final RegistryObject<FlowingFluid> BLUEBERRY_WINE = FLUIDS.register("blueberry_wine", () -> new ForgeFlowingFluid.Source(HHModFluids.BLUEBERRY_WINE_FLUID_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_BLUEBERRY_WINE = FLUIDS.register("flowing_blueberry_wine", () -> new ForgeFlowingFluid.Flowing(HHModFluids.BLUEBERRY_WINE_FLUID_PROPERTIES));
