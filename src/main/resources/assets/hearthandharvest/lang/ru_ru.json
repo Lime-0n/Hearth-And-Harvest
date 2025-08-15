@@ -247,4 +247,7 @@
 
   "item.hearthandharvest.blueberry_pips": "Косточки черники",
   "item.hearthandharvest.raspberry_pips": "Косточки малины"
+
+  "tooltip.hearthandharvest.jug.empty": "Пустой",
+  "tooltip.hearthandharvest.jug.amount": "%1$d mB"
 }
