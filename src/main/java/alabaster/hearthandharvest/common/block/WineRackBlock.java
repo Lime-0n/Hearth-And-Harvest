@@ -110,7 +110,7 @@ public class WineRackBlock extends Block implements EntityBlock {
 
     @Override
     public boolean hasAnalogOutputSignal(BlockState state) {
-        return true; // Tells Minecraft this block can output comparator signals
+        return true;
     }
 
     @Override
@@ -125,8 +125,6 @@ public class WineRackBlock extends Block implements EntityBlock {
                 filledSlots++;
             }
         }
-
-        // 1 signal strength per bottle, capped at 15
         return Math.min(filledSlots, 15);
     }
 
