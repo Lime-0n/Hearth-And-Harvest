@@ -70,6 +70,23 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                 .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
     }
 
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof JugBlockEntity jug) {
+            int amount = jug.getFluidAmount();       // Current fluid in mB
+            int bucketSize = 1000;                   // 1 bucket = 1000 mB
+            int signal = amount / bucketSize;        // Integer division: 1 per full bucket
+            return Math.min(signal, 8);              // Cap at 8
+        }
+        return 0;
+    }
+
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }

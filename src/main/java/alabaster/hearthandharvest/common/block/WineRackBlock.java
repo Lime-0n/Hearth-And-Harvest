@@ -109,6 +109,26 @@ public class WineRackBlock extends Block implements EntityBlock {
     }
 
     @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        if (!(level.getBlockEntity(pos) instanceof WineRackBlockEntity rack)) {
+            return 0;
+        }
+
+        int filledSlots = 0;
+        for (int i = 0; i < rack.getContainerSize(); i++) {
+            if (!rack.getItem(i).isEmpty()) {
+                filledSlots++;
+            }
+        }
+        return Math.min(filledSlots, 15);
+    }
+
+    @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
         if (blockEntity instanceof WineRackBlockEntity rack) {
             for (int i = 0; i < rack.getContainerSize(); i++) {

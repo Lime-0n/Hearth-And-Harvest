@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.block;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import alabaster.hearthandharvest.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -97,6 +98,16 @@ public class TreeTapperBlock extends Block {
         }
 
         @Override
+        public boolean hasAnalogOutputSignal(BlockState state) {
+            return true;
+        }
+
+        @Override
+        public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+            return state.getValue(SAP);
+        }
+
+        @Override
         protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
                 builder.add(FACING, SAP, WATERLOGGED);
                 super.createBlockStateDefinition(builder);
@@ -122,13 +133,14 @@ public class TreeTapperBlock extends Block {
                 if (direction.getAxis().isHorizontal()) {
                         BlockState neighborState = level.getBlockState(pos.relative(direction));
                         if (neighborState.is(HHModTags.TAPPABLE)) {
-                                chance += 0.02F;
+                            chance += Config.TREE_TAPPER_BASE_CHANCE.get().floatValue();
                         }
                 }
 
-                if (level.getRandom().nextFloat() <= chance) {
+            if (random.nextFloat() <= chance) {
                         if (state.getValue(SAP) != this.getMaxSap()) {
                                 level.setBlock(pos, state.setValue(SAP, state.getValue(SAP) + 1), 3);
+                                level.updateNeighbourForOutputSignal(pos, this);
                         }
                 }
         }
@@ -172,6 +184,7 @@ public class TreeTapperBlock extends Block {
                         }
                         level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                         level.setBlock(pos, state.setValue(SAP, 0), 2);
+                        level.updateNeighbourForOutputSignal(pos, this);
                 }
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
