@@ -32,7 +32,7 @@ public class HHModItems {
 
     public static RegistryObject<Item> registerWithBlockTab(final String name, final Supplier<Item> supplier) {
         RegistryObject<Item> block = ITEMS.register(name, supplier);
-        CREATIVE_TAB_ITEMS.add(block);
+        CREATIVE_TAB_BLOCKS.add(block);
         return block;
     }
 
