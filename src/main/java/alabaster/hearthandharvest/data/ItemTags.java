@@ -44,7 +44,7 @@ public class ItemTags extends ItemTagsProvider {
         tag(HHModTags.CHEESE_SLICES).add(HHModItems.CHEDDAR_CHEESE_SLICE.get(), HHModItems.GOAT_CHEESE_SLICE.get());
         tag(ForgeTags.BERRIES).add(HHModItems.BLUEBERRIES.get()).add(HHModItems.CHERRY.get()).add(HHModItems.RASPBERRY.get()).add(HHModItems.RED_GRAPES.get()).add(HHModItems.GREEN_GRAPES.get());
         tag(Tags.Items.SEEDS).add(HHModItems.COTTON_SEEDS.get()).add(HHModItems.SUNFLOWER_SEEDS.get());
-        tag(HHModTags.WINE_BOTTLES).add(HHModItems.BLUEBERRY_WINE.get(), HHModItems.CHERRY_WINE.get(), HHModItems.GREEN_GRAPE_WINE.get(), HHModItems.MEAD.get(), HHModItems.RASPBERRY_WINE.get(), HHModItems.RED_GRAPE_WINE.get());
+        tag(HHModTags.WINE_BOTTLES).add(HHModItems.BLUEBERRY_WINE.get(), HHModItems.CHERRY_WINE.get(), HHModItems.GREEN_GRAPE_WINE.get(), HHModItems.MEAD.get(), HHModItems.RASPBERRY_WINE.get(), HHModItems.RED_GRAPE_WINE.get(), HHModItems.SWEET_BERRY_WINE.get());
 
         tag(ModTags.WOODEN_CABINETS)
                 .add(HHModItems.OAK_HALF_CABINET.get())

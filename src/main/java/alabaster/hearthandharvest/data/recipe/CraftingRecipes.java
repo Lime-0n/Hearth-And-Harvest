@@ -505,6 +505,10 @@ public class CraftingRecipes
                 .requires(HHModItems.GREEN_GRAPE_CRATE.get())
                 .unlockedBy("has_green_grape_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GREEN_GRAPE_CRATE.get()))
                 .save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SWEET_BERRY_WINE.get(), 9)
+                .requires(HHModItems.SWEET_BERRY_WINE_CRATE.get())
+                .unlockedBy("has_sweet_berry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SWEET_BERRY_WINE_CRATE.get()))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.PEANUT.get(), 9)
                 .requires(HHModItems.PEANUT_CRATE.get())
                 .unlockedBy("has_peanut_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT_CRATE.get()))

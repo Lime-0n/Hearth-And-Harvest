@@ -1,0 +1,10 @@
+{
+  "type": "hearthandharvest:bottle_crate",
+  "input": {
+    "item": "hearthandharvest:sweet_berry_wine"
+  },
+  "result": {
+    "item": "hearthandharvest:sweet_berry_wine_crate",
+    "count": 1
+  }
+}

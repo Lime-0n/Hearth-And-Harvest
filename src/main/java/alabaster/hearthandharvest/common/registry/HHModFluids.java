@@ -47,6 +47,11 @@ public class HHModFluids {
     public static final RegistryObject<FlowingFluid> FLOWING_RED_GRAPE_WINE = FLUIDS.register("flowing_red_grape_wine", () -> new ForgeFlowingFluid.Flowing(HHModFluids.RED_GRAPE_WINE_FLUID_PROPERTIES));
     public static final ForgeFlowingFluid.Properties RED_GRAPE_WINE_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(RED_GRAPE_WINE_FLUID_TYPE, RED_GRAPE_WINE, FLOWING_RED_GRAPE_WINE);
 
+    public static final RegistryObject<FluidType> SWEET_BERRY_WINE_FLUID_TYPE = FLUID_TYPES.register("sweet_berry_wine", SweetBerryWineFluidType::new);
+    public static final RegistryObject<FlowingFluid> SWEET_BERRY_WINE = FLUIDS.register("sweet_berry_wine", () -> new ForgeFlowingFluid.Source(HHModFluids.SWEET_BERRY_WINE_FLUID_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> FLOWING_SWEET_BERRY_WINE = FLUIDS.register("flowing_sweet_berry_wine", () -> new ForgeFlowingFluid.Flowing(HHModFluids.SWEET_BERRY_WINE_FLUID_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties SWEET_BERRY_WINE_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(SWEET_BERRY_WINE_FLUID_TYPE, SWEET_BERRY_WINE, FLOWING_SWEET_BERRY_WINE);
+
     public static final RegistryObject<FluidType> MEAD_FLUID_TYPE = FLUID_TYPES.register("mead", MeadFluidType::new);
     public static final RegistryObject<FlowingFluid> MEAD = FLUIDS.register("mead", () -> new ForgeFlowingFluid.Source(HHModFluids.MEAD_FLUID_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_MEAD = FLUIDS.register("flowing_mead", () -> new ForgeFlowingFluid.Flowing(HHModFluids.MEAD_FLUID_PROPERTIES));

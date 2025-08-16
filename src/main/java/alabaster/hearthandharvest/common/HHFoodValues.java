@@ -60,6 +60,12 @@ public class HHFoodValues {
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, SHORT_DURATION, 1), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, SHORT_DURATION, 0), 1.0F)
             .build();
+    public static final FoodProperties SWEET_BERRY_WINE = (new FoodProperties.Builder())
+            .nutrition(7).saturationMod(0.5f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, SHORT_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, SHORT_DURATION, 1), 1.0F)
+            .build();
 
     public static final FoodProperties GOAT_MILK_BOTTLE = (new FoodProperties.Builder())
             .nutrition(2).saturationMod(0.3f).build();
