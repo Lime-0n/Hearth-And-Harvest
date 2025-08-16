@@ -92,6 +92,7 @@
   "block.hearthandharvest.raspberry_wine_crate": "Ящик малинового вина",
   "block.hearthandharvest.red_grape_wine_crate": "Ящик красного вина",
   "block.hearthandharvest.green_grape_wine_crate": "Ящик белого вина",
+  "block.hearthandharvest.sweet_berry_wine_crate": "Ящик вина из сладких ягод",
   "block.hearthandharvest.mead_crate": "Ящик медовухи",
   "block.hearthandharvest.water_crate": "Ящик воды",
   "block.hearthandharvest.honey_crate": "Ящик меда",
@@ -112,7 +113,8 @@
   "item.hearthandharvest.blueberry_wine": "Черничное вино",
   "item.hearthandharvest.raspberry_wine": "Малиновое вино",
   "item.hearthandharvest.cherry_wine": "Вишневое вино",
-"item.hearthandharvest.goat_milk_bottle": "Бутылка козьего молока",
+  "item.hearthandharvest.sweet_berry_wine": "Вино из сладких ягод",
+  "item.hearthandharvest.goat_milk_bottle": "Бутылка козьего молока",
   "farmersdelight.tooltip.goat_milk_bottle": "Очищает от 1 эффекта",
   "item.hearthandharvest.cherry_juice": "Вишневый сок",
   "item.hearthandharvest.raspberry_juice": "Малиновый сок",
@@ -142,6 +144,7 @@
   "item.hearthandharvest.blueberry_muffin": "Черничный маффин",
   "item.hearthandharvest.peanut_butter_cookie": "Печенье с арахисовым маслом",
   "item.hearthandharvest.trail_mix": "Дорожная смесь",
+  "item.hearthandharvest.roasted_peanuts": "Жареный арахис",
 
   "item.hearthandharvest.marshmallow_stick": "Маршмеллоу",
   "item.hearthandharvest.roasted_marshmallow_stick": "Жареный маршмеллоу",
@@ -154,6 +157,8 @@
   "item.hearthandharvest.blueberry_pie_slice": "Кусок черничного пирога",
   "block.hearthandharvest.grape_pie": "Виноградный пирог",
   "item.hearthandharvest.grape_pie_slice": "Кусок виноградного пирога",
+  "block.hearthandharvest.peanut_butter_pie": "Пирог с арахисовым маслом",
+  "item.hearthandharvest.peanut_butter_pie_slice": "Кусок пирога с арахисовым маслом",
   "block.hearthandharvest.chicken_pot_pie": "Куриный пирог",
   "item.hearthandharvest.chicken_pot_pie_slice": "Кусок куриного пирога",
   "block.hearthandharvest.carrot_cake": "Морковный торт",
@@ -240,6 +245,7 @@
   "fluid_type.hearthandharvest.green_grape_wine": "Белое вино",
   "fluid_type.hearthandharvest.red_grape_wine": "Красное вино",
   "fluid_type.hearthandharvest.raspberry_wine": "Малиновое вино",
+  "fluid_type.hearthandharvest.sweet_berry_wine": "Вино из сладких ягод"
   "fluid_type.hearthandharvest.mead": "Медовуха",
 
   "item.hearthandharvest.blueberry_pips": "Косточки черники",
