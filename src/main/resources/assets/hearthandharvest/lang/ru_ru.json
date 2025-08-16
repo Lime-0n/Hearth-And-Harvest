@@ -115,7 +115,7 @@
   "item.hearthandharvest.blueberry_wine": "Черничное вино",
   "item.hearthandharvest.raspberry_wine": "Малиновое вино",
   "item.hearthandharvest.cherry_wine": "Вишневое вино",
-"item.hearthandharvest.goat_milk_bottle": "Бутылка козьего молока",
+  "item.hearthandharvest.goat_milk_bottle": "Бутылка козьего молока",
   "farmersdelight.tooltip.goat_milk_bottle": "Очищает от 1 эффекта",
   "item.hearthandharvest.cherry_juice": "Вишневый сок",
   "item.hearthandharvest.raspberry_juice": "Малиновый сок",
@@ -228,7 +228,7 @@
 
   "hearthandharvest.jei.aging": "Созревание",
 
-    "hearthandharvest.jei.info.watering_can": "Лейку можно заряжать костной мукой, держа ее в левой руке и кликнув ЛКМ, и водой – нажав по источнику воды. Лейка накладывает эффект костной муки на область 3x3 при использовании. Также ей можно тушить огонь и горящие блоки.",
+  "hearthandharvest.jei.info.watering_can": "Лейку можно заряжать костной мукой, держа ее в левой руке и кликнув ЛКМ, и водой – нажав по источнику воды. Лейка накладывает эффект костной муки на область 3x3 при использовании. Также ей можно тушить огонь и горящие блоки.",
   "hearthandharvest.jei.info.tree_tapper": "Подсочник можно установить на ель или тёмный дуб для сбора сока. Когда он наполнится, соберите сок ведром.",
   "hearthandharvest.jei.info.sap_bucket": "Ведро древесного сока можно поставить в котёл над огнём, где сок постепенно превратится в сироп. Сироп собирайте в бутылки.",
   "hearthandharvest.jei.info.pluck_chickens": "Используйте ЛКМ по курице голыми руками чтобы получить перья, но будьте осторожны – так их легко поранить! Используйте ножницы, чтобы не причинить вреда.",
@@ -246,7 +246,7 @@
   "fluid_type.hearthandharvest.mead": "Медовуха",
 
   "item.hearthandharvest.blueberry_pips": "Косточки черники",
-  "item.hearthandharvest.raspberry_pips": "Косточки малины"
+  "item.hearthandharvest.raspberry_pips": "Косточки малины",
 
   "tooltip.hearthandharvest.jug.empty": "Пустой",
   "tooltip.hearthandharvest.jug.amount": "%1$d mB"
