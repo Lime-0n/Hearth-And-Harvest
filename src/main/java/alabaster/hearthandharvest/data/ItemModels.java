@@ -190,6 +190,7 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.GREEN_GRAPES.get(),
                 HHModItems.PEANUT.get(),
                 HHModItems.COTTON_SEEDS.get(),
+                HHModItems.CORN_KERNELS.get(),
                 HHModItems.RASPBERRY_PIE.get(),
                 HHModItems.BLUEBERRY_PIE.get(),
                 HHModItems.GRAPE_PIE.get(),

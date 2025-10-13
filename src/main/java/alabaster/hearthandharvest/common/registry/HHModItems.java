@@ -161,6 +161,10 @@ public class HHModItems {
             () -> new ItemNameBlockItem(HHModBlocks.COTTON_CROP.get(), basicItem()));
     public static final Supplier<Item> COTTON = registerWithTab("cotton",
             () -> new Item(basicItem()));
+    public static final Supplier<Item> CORN = registerWithTab("corn",
+            () -> new Item(foodItem(HHFoodValues.CHERRY)));
+    public static final Supplier<Item> CORN_KERNELS = registerWithTab("corn_kernels",
+            () -> new ItemNameBlockItem(HHModBlocks.CORN_STALK.get(), basicItem()));
 
     // Berry Good Pips
     public static final Supplier<Item> BLUEBERRY_PIPS = ModList.get().isLoaded("berry_good")
@@ -197,6 +201,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GREEN_GRAPE_CRATE.get(), basicItem()));
     public static final Supplier<Item> PEANUT_CRATE = registerWithBlockTab("peanut_crate",
             () -> new BlockItem(HHModBlocks.PEANUT_CRATE.get(), basicItem()));
+    public static final Supplier<Item> CORN_CRATE = registerWithBlockTab("corn_crate",
+            () -> new BlockItem(HHModBlocks.CORN_CRATE.get(), basicItem()));
     public static final Supplier<Item> APPLE_CRATE = registerWithBlockTab("apple_crate",
             () -> new BlockItem(HHModBlocks.APPLE_CRATE.get(), basicItem()));
     public static final Supplier<Item> GOLDEN_APPLE_CRATE = registerWithBlockTab("golden_apple_crate",

@@ -114,6 +114,8 @@ public class HHModBlocks {
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final Supplier<Block> COTTON_CROP = BLOCKS.register("cotton",
             () -> new CottonBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final Supplier<Block> CORN_STALK = BLOCKS.register("corn_stalk",
+            () -> new CornStalkBlock());
 
     // Crates
 
@@ -128,6 +130,8 @@ public class HHModBlocks {
     public static final Supplier<Block> RASPBERRY_CRATE = BLOCKS.register("raspberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> PEANUT_CRATE = BLOCKS.register("peanut_crate",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final Supplier<Block> CORN_CRATE = BLOCKS.register("corn_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> APPLE_CRATE = BLOCKS.register("apple_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

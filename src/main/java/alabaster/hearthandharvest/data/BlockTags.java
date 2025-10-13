@@ -34,7 +34,8 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.GREEN_GRAPE_CROP.get(),
                 HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
                 HHModBlocks.COTTON_CROP.get(),
-                HHModBlocks.PEANUT_CROP.get());
+                HHModBlocks.PEANUT_CROP.get(),
+                HHModBlocks.CORN_STALK.get());
 
         tag(HHModTags.TAPPABLE).add(
                 Blocks.SPRUCE_LOG,
@@ -83,6 +84,7 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.GREEN_GRAPE_CRATE.get(),
                 HHModBlocks.CHERRY_CRATE.get(),
                 HHModBlocks.PEANUT_CRATE.get(),
+                HHModBlocks.CORN_CRATE.get(),
                 HHModBlocks.APPLE_CRATE.get(),
                 HHModBlocks.GOLDEN_APPLE_CRATE.get(),
                 HHModBlocks.GOLDEN_CARROT_CRATE.get(),
@@ -124,6 +126,7 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.GREEN_GRAPE_CRATE.get(),
                 HHModBlocks.CHERRY_CRATE.get(),
                 HHModBlocks.PEANUT_CRATE.get(),
+                HHModBlocks.CORN_CRATE.get(),
                 HHModBlocks.APPLE_CRATE.get(),
                 HHModBlocks.GOLDEN_APPLE_CRATE.get(),
                 HHModBlocks.GOLDEN_CARROT_CRATE.get(),
