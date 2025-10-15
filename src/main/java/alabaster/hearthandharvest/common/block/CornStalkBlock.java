@@ -3,12 +3,14 @@ package alabaster.hearthandharvest.common.block;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -34,6 +37,10 @@ import javax.annotation.Nullable;
 public class CornStalkBlock extends Block implements BonemealableBlock {
     public static final EnumProperty<CornSection> SECTION = EnumProperty.create("section", CornSection.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
+    public static final BooleanProperty TRIM_NORTH = BooleanProperty.create("trim_north");
+    public static final BooleanProperty TRIM_EAST  = BooleanProperty.create("trim_east");
+    public static final BooleanProperty TRIM_SOUTH = BooleanProperty.create("trim_south");
+    public static final BooleanProperty TRIM_WEST  = BooleanProperty.create("trim_west");
 
     private static final int BOTTOM_MAX_AGE = 5;
     private static final int MIDDLE_MAX_AGE = 5;
@@ -67,12 +74,18 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                 .sound(SoundType.CROP)
                 .randomTicks()
         );
-        this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, CornSection.BOTTOM).setValue(AGE, 0));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(SECTION, CornSection.BOTTOM)
+                .setValue(AGE, 0)
+                .setValue(TRIM_NORTH, false)
+                .setValue(TRIM_EAST, false)
+                .setValue(TRIM_SOUTH, false)
+                .setValue(TRIM_WEST, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SECTION, AGE);
+        builder.add(SECTION, AGE, TRIM_NORTH, TRIM_EAST, TRIM_SOUTH, TRIM_WEST);
     }
 
     protected ItemLike getBaseSeedId() {
@@ -188,7 +201,99 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+        super.onRemove(state, world, pos, newState, isMoving);
+
+        if (world.isClientSide) return;
+
+        if (state.getBlock() != newState.getBlock()) {
+            CornSection section = state.getValue(SECTION);
+
+            if (section == CornSection.TOP) {
+                BlockPos below = pos.below();
+                BlockState belowState = world.getBlockState(below);
+                if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(SECTION) == CornSection.MIDDLE) {
+                    int currentAge = belowState.getValue(AGE);
+                    if (currentAge > 2) {
+                        world.setBlock(below, belowState.setValue(AGE, 2), 2);
+                    }
+                }
+            }
+
+            if (section == CornSection.MIDDLE) {
+                BlockPos below = pos.below();
+                BlockState belowState = world.getBlockState(below);
+                if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(SECTION) == CornSection.BOTTOM) {
+                    int currentAge = belowState.getValue(AGE);
+                    if (currentAge > 2) {
+                        world.setBlock(below, belowState.setValue(AGE, 2), 2);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public VoxelShape getInteractionShape(BlockState state, BlockGetter world, BlockPos pos) {
+        int mask = shapeMask(world, pos);
+        return SHAPE_CACHE[mask];
+    }
+
+    private Direction directionFromHit(BlockPos pos, double hitX, double hitY, double hitZ, Direction faceFallback) {
+        double localX = hitX - pos.getX();
+        double localZ = hitZ - pos.getZ();
+
+        final double LEFT_THRESHOLD = 0.30;
+        final double RIGHT_THRESHOLD = 0.70;
+        final double FRONT_THRESHOLD = 0.30;
+        final double BACK_THRESHOLD = 0.70;
+
+        if (localX < LEFT_THRESHOLD) return Direction.WEST;
+        if (localX > RIGHT_THRESHOLD) return Direction.EAST;
+        if (localZ < FRONT_THRESHOLD) return Direction.NORTH;
+        if (localZ > BACK_THRESHOLD) return Direction.SOUTH;
+
+        if (faceFallback != null && faceFallback.getAxis().isHorizontal()) {
+            return faceFallback;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        Direction face = hitResult.getDirection();
+        Direction clickedDir = directionFromHit(pos, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z, face);
+
+        if (stack.getItem() == Items.SHEARS && clickedDir != null) {
+            BooleanProperty selfProp = trimPropertyFor(clickedDir);
+            BooleanProperty otherProp = trimPropertyFor(clickedDir.getOpposite());
+
+            if (!state.hasProperty(selfProp)) {
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
+
+            if (!level.isClientSide) {
+                boolean newValue = !state.getValue(selfProp);
+                BlockState newState = state.setValue(selfProp, newValue);
+                level.setBlock(pos, newState, 3);
+
+                BlockPos neighborPos = pos.relative(clickedDir);
+                BlockState neighborState = level.getBlockState(neighborPos);
+                if (neighborState.getBlock() instanceof CornStalkBlock && neighborState.hasProperty(otherProp)) {
+                    BlockState newNeighbor = neighborState.setValue(otherProp, newValue);
+                    level.setBlock(neighborPos, newNeighbor, 3);
+                }
+
+                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
+
+                EquipmentSlot slot = (hand == InteractionHand.MAIN_HAND) ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                stack.hurtAndBreak(1, player, slot);
+            }
+
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+
         CornSection section = state.getValue(SECTION);
         int age = state.getValue(AGE);
 
@@ -198,7 +303,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                     int count = (age == 5) ? 2 : 1;
                     popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
                     level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 3), 2);
+                    level.setBlock(pos, state.setValue(AGE, 3), 3);
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
@@ -208,17 +313,17 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                     int count = (age == 5) ? 2 : 1;
                     popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
                     level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 3), 2);
+                    level.setBlock(pos, state.setValue(AGE, 3), 3);
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
-        } else {
+        } else { // TOP
             if (age >= 3) {
                 if (!level.isClientSide) {
                     int count = (age == 4) ? 2 : 1;
                     popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
                     level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 2), 2);
+                    level.setBlock(pos, state.setValue(AGE, 2), 3);
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
@@ -226,6 +331,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
@@ -274,23 +380,54 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        if (state.getValue(AGE) < 3)
-            return Shapes.empty();
-        int mask = shapeMask(world, pos);
-        return SHAPE_CACHE[mask];
+        CornSection section = state.getValue(SECTION);
+
+        if (section == CornSection.TOP || section == CornSection.MIDDLE || section == CornSection.BOTTOM) {
+            if (state.getValue(AGE) < 3 && section == CornSection.BOTTOM) return Shapes.empty();
+            int mask = shapeMask(world, pos);
+            return SHAPE_CACHE[mask];
+        }
+
+        return Shapes.empty();
     }
 
-    private int shapeMask(BlockGetter world, BlockPos pos) {
+    @Override
+    public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
+        return false;
+    }
+
+    private int shapeMask(BlockGetter level, BlockPos pos) {
         int mask = 0;
-        if (canConnectTo(world.getBlockState(pos.north()))) mask |= 1;
-        if (canConnectTo(world.getBlockState(pos.east())))  mask |= 2;
-        if (canConnectTo(world.getBlockState(pos.south()))) mask |= 4;
-        if (canConnectTo(world.getBlockState(pos.west())))  mask |= 8;
+        if (canConnectTo(level, pos, Direction.NORTH)) mask |= 1;
+        if (canConnectTo(level, pos, Direction.EAST))  mask |= 2;
+        if (canConnectTo(level, pos, Direction.SOUTH)) mask |= 4;
+        if (canConnectTo(level, pos, Direction.WEST))  mask |= 8;
         return mask;
     }
 
-    private boolean canConnectTo(BlockState state) {
-        return state.getBlock() instanceof CornStalkBlock && state.getValue(AGE) >= 3;
+    private boolean canConnectTo(BlockGetter level, BlockPos pos, Direction dir) {
+        BlockPos neighborPos = pos.relative(dir);
+        BlockState neighbor = level.getBlockState(neighborPos);
+        if (!(neighbor.getBlock() instanceof CornStalkBlock)) return false;
+        if (!neighbor.hasProperty(AGE) || neighbor.getValue(AGE) < 3) return false;
+
+        BlockState self = level.getBlockState(pos);
+        BooleanProperty selfProp = trimPropertyFor(dir);
+        BooleanProperty otherProp = trimPropertyFor(dir.getOpposite());
+
+        if (!self.hasProperty(selfProp) || !neighbor.hasProperty(otherProp)) return false;
+
+        return !self.getValue(selfProp) && !neighbor.getValue(otherProp);
+    }
+
+    private static BooleanProperty trimPropertyFor(Direction dir) {
+        return switch (dir) {
+            case NORTH -> TRIM_NORTH;
+            case EAST  -> TRIM_EAST;
+            case SOUTH -> TRIM_SOUTH;
+            case WEST  -> TRIM_WEST;
+            default    -> TRIM_NORTH;
+        };
     }
 
     @Override

@@ -56,11 +56,15 @@
   "item.hearthandharvest.peanut": "Peanut",
   "item.hearthandharvest.cotton_seeds": "Cotton Seeds",
   "item.hearthandharvest.cotton": "Cotton",
+  "item.hearthandharvest.corn": "Corn",
+  "item.hearthandharvest.corn_kernels": "Corn Kernels",
+  "item.hearthandharvest.corn_husk": "Corn Husk",
 
   "block.hearthandharvest.wild_red_grapes": "Wild Red Grapes",
   "block.hearthandharvest.wild_green_grapes": "Wild Green Grapes",
   "block.hearthandharvest.wild_cotton": "Wild Cotton",
   "block.hearthandharvest.wild_peanuts": "Wild Peanuts",
+  "block.hearthandharvest.corn_stalk": "Corn Stalk",
 
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",
@@ -68,6 +72,7 @@
   "block.hearthandharvest.red_grape_crate": "Red Grape Crate",
   "block.hearthandharvest.green_grape_crate": "Green Grape Crate",
   "block.hearthandharvest.peanut_crate": "Peanut Crate",
+  "block.hearthandharvest.corn_crate": "Corn Crate",
   "block.hearthandharvest.apple_crate": "Apple Crate",
   "block.hearthandharvest.golden_apple_crate": "Golden Apple Crate",
   "block.hearthandharvest.golden_carrot_crate": "Golden Carrot Crate",
@@ -186,6 +191,7 @@
   "item.hearthandharvest.salt": "Salt",
   "item.hearthandharvest.raisins": "Raisins",
   "item.hearthandharvest.sunflower_seeds": "Sunflower Seeds",
+  "item.hearthandharvest.popcorn": "Popcorn",
 
   "item.hearthandharvest.onion_soup": "Onion Soup",
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",

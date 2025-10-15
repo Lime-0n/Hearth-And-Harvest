@@ -8,6 +8,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
@@ -165,6 +166,8 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.CHERRY)));
     public static final Supplier<Item> CORN_KERNELS = registerWithTab("corn_kernels",
             () -> new ItemNameBlockItem(HHModBlocks.CORN_STALK.get(), basicItem()));
+    public static final Supplier<Item> CORN_HUSK = registerWithTab("corn_husk",
+            () -> new Item(basicItem()));
 
     // Berry Good Pips
     public static final Supplier<Item> BLUEBERRY_PIPS = ModList.get().isLoaded("berry_good")
@@ -300,32 +303,6 @@ public class HHModItems {
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
 
-    // Brewin and Chewin Tankards
-//    public static final Supplier<Item> TANKARD_OF_MEAD = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_mead",
-//            () -> new BoozeItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-//    public static final Supplier<Item> TANKARD_OF_BLUEBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_blueberry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.BLUEBERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-//    public static final Supplier<Item> TANKARD_OF_CHERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_cherry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.CHERRY_WINE.get(), drinkItem().food(HHFoodValues.CHERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-//    public static final Supplier<Item> TANKARD_OF_RASPBERRY_WINE = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_raspberry_wine",
-//            () -> new BoozeItem(()-> HHModFluids.RASPBERRY_WINE.get(), drinkItem().food(HHFoodValues.RASPBERRY_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-//    public static final Supplier<Item> TANKARD_OF_GREEN_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_green_grape_wine",
-//            () -> new BoozeItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-//    public static final Supplier<Item> TANKARD_OF_RED_GRAPE_WINE = ModList.get().isLoaded("brewinandchewin")
-//            ? registerWithTab("tankard_of_red_grape_wine",
-//            () -> new BoozeItem(()-> HHModFluids.RED_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.RED_GRAPE_WINE).stacksTo(16).craftRemainder(BnCItems.TANKARD)))
-//            : null;
-
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",
             () -> new BlockItem(HHModBlocks.JAR.get(), basicItem()));
@@ -418,7 +395,6 @@ public class HHModItems {
     public static final Supplier<Item> CARROT_CAKE_SLICE = registerWithTab("carrot_cake_slice",
             () -> new Item(foodItem(HHFoodValues.CARROT_CAKE_SLICE)));
 
-
     // Ingredients
     public static final Supplier<Item> COOKING_OIL = registerWithTab("cooking_oil",
             () -> new BucketItem(HHModFluids.COOKING_OIL.get(), basicItem().craftRemainder(Items.GLASS_BOTTLE)));
@@ -452,6 +428,8 @@ public class HHModItems {
     public static final Supplier<Item> RAISINS = registerWithTab("raisins",
             () -> new Item(foodItem(HHFoodValues.RAISINS)));
     public static final Supplier<Item> SUNFLOWER_SEEDS = registerWithTab("sunflower_seeds",
+            () -> new ItemNameBlockItem(Blocks.SUNFLOWER, foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
+    public static final Supplier<Item> POPCORN = registerWithTab("popcorn",
             () -> new Item(foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
 
     // Meals
