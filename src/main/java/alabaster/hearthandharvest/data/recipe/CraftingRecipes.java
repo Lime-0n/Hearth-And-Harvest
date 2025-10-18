@@ -303,6 +303,13 @@ public class CraftingRecipes
                 .define('#', HHModItems.PEANUT.get())
                 .unlockedBy("has_peanut", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT.get()))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CORN_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.CORN.get())
+                .unlockedBy("has_corn", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.APPLE_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -330,6 +337,13 @@ public class CraftingRecipes
                 .pattern("###")
                 .define('#', Items.POISONOUS_POTATO)
                 .unlockedBy("has_poisonous_potato", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POISONOUS_POTATO))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.ROTTEN_TOMATO_CRATE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.ROTTEN_TOMATO.get())
+                .unlockedBy("has_rotten_tomato", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ROTTEN_TOMATO.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.GLOW_BERRY_CRATE.get(), 1)
                 .pattern("###")
@@ -515,6 +529,10 @@ public class CraftingRecipes
                 .requires(HHModItems.PEANUT_CRATE.get())
                 .unlockedBy("has_peanut_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT_CRATE.get()))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.CORN.get(), 9)
+                .requires(HHModItems.CORN_CRATE.get())
+                .unlockedBy("has_corn_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_CRATE.get()))
+                .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.APPLE, 9)
                 .requires(HHModItems.APPLE_CRATE.get())
                 .unlockedBy("has_apple_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.APPLE_CRATE.get()))
@@ -531,6 +549,10 @@ public class CraftingRecipes
                 .requires(HHModItems.POISONOUS_POTATO_CRATE.get())
                 .unlockedBy("has_poisonous_potato_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POISONOUS_POTATO_CRATE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "poisonous_potato_from_crate"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ROTTEN_TOMATO.get(), 9)
+                .requires(HHModItems.ROTTEN_TOMATO_CRATE.get())
+                .unlockedBy("has_rotten_tomato_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROTTEN_TOMATO_CRATE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "rotten_tomato_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_BERRIES, 9)
                 .requires(HHModItems.GLOW_BERRY_CRATE.get())
                 .unlockedBy("has_glow_berry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GLOW_BERRY_CRATE.get()))
