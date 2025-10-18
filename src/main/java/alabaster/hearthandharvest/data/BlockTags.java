@@ -37,6 +37,15 @@ public class BlockTags extends BlockTagsProvider {
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get());
 
+        tag(net.minecraft.tags.BlockTags.MAINTAINS_FARMLAND).add(
+                HHModBlocks.RED_GRAPE_CROP.get(),
+                HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
+                HHModBlocks.GREEN_GRAPE_CROP.get(),
+                HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
+                HHModBlocks.COTTON_CROP.get(),
+                HHModBlocks.PEANUT_CROP.get(),
+                HHModBlocks.CORN_STALK.get());
+
         tag(HHModTags.TAPPABLE).add(
                 Blocks.SPRUCE_LOG,
                 Blocks.DARK_OAK_LOG

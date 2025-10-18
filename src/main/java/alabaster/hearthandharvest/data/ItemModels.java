@@ -183,7 +183,7 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.PICKLED_CARROTS.get(),
                 HHModItems.PICKLED_ONIONS.get(),
                 HHModItems.PICKLED_POTATOES.get(),
-
+                HHModItems.SUNFLOWER_SEEDS.get(),
                 HHModItems.RASPBERRY.get(),
                 HHModItems.BLUEBERRIES.get(),
                 HHModItems.RED_GRAPES.get(),

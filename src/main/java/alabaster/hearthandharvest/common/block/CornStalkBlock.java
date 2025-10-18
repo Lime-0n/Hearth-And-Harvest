@@ -1,6 +1,5 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,14 +9,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,13 +23,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.tags.BlockTags;
-
-import javax.annotation.Nullable;
+import net.neoforged.neoforge.common.util.TriState;
+import org.jetbrains.annotations.NotNull;
 
 public class CornStalkBlock extends Block implements BonemealableBlock {
     public static final EnumProperty<CornSection> SECTION = EnumProperty.create("section", CornSection.class);
@@ -46,7 +41,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     private static final int MIDDLE_MAX_AGE = 5;
     private static final int TOP_MAX_AGE = 4;
 
-    private static final int GROWTH_CHANCE = 6;
+    private static final int BASE_GROW_CHANCE = 25;
 
     private static final VoxelShape SHAPE_POST = Block.box(5, 0, 5, 11, 16, 11);
     private static final VoxelShape SHAPE_NORTH = Block.box(5, 0, 0, 11, 16, 5);
@@ -73,6 +68,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                 .strength(0.5f)
                 .sound(SoundType.CROP)
                 .randomTicks()
+                .forceSolidOff()
         );
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(SECTION, CornSection.BOTTOM)
@@ -93,22 +89,51 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!this.canSurvive(state, world, pos)) {
+            if (world instanceof Level lvl && !lvl.isClientSide()) {
+                lvl.destroyBlock(pos, true);
+            } else {
+                return Blocks.AIR.defaultBlockState();
+            }
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         CornSection section = state.getValue(SECTION);
+        BlockPos below = pos.below();
+        BlockState soil = world.getBlockState(below);
+
+        TriState soilDecision = soil.canSustainPlant(world, below, Direction.UP, state);
+        if (!soilDecision.isDefault()) {
+            return soilDecision.isTrue();
+        }
+
+        if (!(hasSufficientLight(world, pos) && super.canSurvive(state, world, pos))) {
+            return false;
+        }
+
         if (section == CornSection.BOTTOM) {
-            BlockState below = world.getBlockState(pos.below());
-            return below.is(BlockTags.DIRT) || below.is(Blocks.FARMLAND) || below.is(Blocks.GRASS_BLOCK) || below.is(Blocks.COARSE_DIRT) || below.is(Blocks.PODZOL);
+            return soil.is(BlockTags.DIRT)
+                    || soil.is(Blocks.FARMLAND)
+                    || soil.is(Blocks.GRASS_BLOCK)
+                    || soil.is(Blocks.COARSE_DIRT)
+                    || soil.is(Blocks.PODZOL);
         } else if (section == CornSection.MIDDLE) {
-            BlockState below = world.getBlockState(pos.below());
-            return isSameCornSection(below, CornSection.BOTTOM);
+            return isSameCornSection(soil, CornSection.BOTTOM);
         } else {
-            BlockState below = world.getBlockState(pos.below());
-            return isSameCornSection(below, CornSection.MIDDLE);
+            return isSameCornSection(soil, CornSection.MIDDLE);
         }
     }
 
+    public static boolean hasSufficientLight(LevelReader level, BlockPos pos) {
+        return level.getRawBrightness(pos, 0) >= 8;
+    }
+
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.getBlock() instanceof FarmBlock;
+        return state.is(BlockTags.DIRT) || state.getBlock() instanceof FarmBlock;
     }
 
     private boolean isSameCornSection(BlockState state, CornSection expected) {
@@ -121,31 +146,24 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean moved) {
-        super.neighborChanged(state, world, pos, neighborBlock, neighborPos, moved);
-        if (!this.canSurvive(state, world, pos)) {
-            world.destroyBlock(pos, true);
-        }
-    }
-
-    @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         super.randomTick(state, world, pos, random);
 
-        if (random.nextInt(GROWTH_CHANCE) != 0) return;
+        if (world.getMaxLocalRawBrightness(pos) < 9) return;
 
         CornSection section = state.getValue(SECTION);
         int age = state.getValue(AGE);
 
         if (section != CornSection.TOP && age >= 3 && !topIsAtLeastStage2(world, pos)) return;
 
+        int chance = computeGrowthChance(world, pos);
+        if (random.nextInt(chance) != 0) return;
+
         if (section == CornSection.BOTTOM) {
             if (age < BOTTOM_MAX_AGE) {
                 int newAge = age + 1;
                 world.setBlock(pos, state.setValue(AGE, newAge), 3);
-                if (newAge == 3) {
-                    tryPlaceMiddle(world, pos);
-                }
+                if (newAge == 3) tryPlaceMiddle(world, pos);
             }
             return;
         }
@@ -154,9 +172,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
             if (age < MIDDLE_MAX_AGE) {
                 int newAge = age + 1;
                 world.setBlock(pos, state.setValue(AGE, newAge), 2);
-                if (newAge == 3) {
-                    tryPlaceTop(world, pos);
-                }
+                if (newAge == 3) tryPlaceTop(world, pos);
             }
             return;
         }
@@ -167,6 +183,34 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                 world.setBlock(pos, state.setValue(AGE, newAge), 2);
             }
         }
+    }
+
+    private int computeGrowthChance(LevelReader world, BlockPos pos) {
+        float f = 1.0F;
+
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dz = -1; dz <= 1; dz++) {
+                BlockPos soilPos = pos.offset(dx, -1, dz);
+                BlockState soil = world.getBlockState(soilPos);
+                float contribution = 0.0F;
+                if (soil.getBlock() instanceof FarmBlock) {
+                    try {
+                        Integer moisture = soil.hasProperty(FarmBlock.MOISTURE) ? soil.getValue(FarmBlock.MOISTURE) : 0;
+                        contribution = (moisture > 0) ? 3.0F : 1.0F;
+                    } catch (Exception e) {
+                        contribution = 1.0F;
+                    }
+                }
+                if (dx != 0 || dz != 0) {
+                    contribution /= 4.0F;
+                }
+                f += contribution;
+            }
+        }
+
+        int chance = (int)((float) BASE_GROW_CHANCE / f) + 1;
+        if (chance < 1) chance = 1;
+        return chance;
     }
 
     private boolean topIsAtLeastStage2(LevelReader world, BlockPos pos) {
@@ -234,6 +278,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
+    @NotNull
     public VoxelShape getInteractionShape(BlockState state, BlockGetter world, BlockPos pos) {
         int mask = shapeMask(world, pos);
         return SHAPE_CACHE[mask];
@@ -332,9 +377,8 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-
     @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
         super.playerDestroy(level, player, pos, state, blockEntity, stack);
 
         if (level.isClientSide) return;
@@ -368,28 +412,41 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         return SHAPE_CACHE[mask];
     }
 
-    private boolean isMatureBottomAt(LevelReader world, BlockPos pos) {
-        BlockState state = world.getBlockState(pos);
-        if (state.getBlock() instanceof CornStalkBlock) {
-            if (state.hasProperty(SECTION) && state.hasProperty(AGE)) {
-                return state.getValue(SECTION) == CornSection.BOTTOM && state.getValue(AGE) >= 3;
-            }
-        }
-        return false;
-    }
-
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    @NotNull
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         CornSection section = state.getValue(SECTION);
-
-        if (section == CornSection.TOP || section == CornSection.MIDDLE || section == CornSection.BOTTOM) {
-            if (state.getValue(AGE) < 3 && section == CornSection.BOTTOM) return Shapes.empty();
-            int mask = shapeMask(world, pos);
-            return SHAPE_CACHE[mask];
+        if (section == CornSection.BOTTOM && state.getValue(AGE) < 3) {
+            return Shapes.empty();
         }
 
-        return Shapes.empty();
+        int mask = shapeMask(level, pos);
+        VoxelShape sideShape = SHAPE_CACHE[mask];
+
+        VoxelShape topBottomSlice = Shapes.or(
+                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.5D, 16.0D),   // bottom slice
+                Block.box(0.0D, 14.5D, 0.0D, 16.0D, 16.0D, 16.0D)  // top slice
+        );
+        VoxelShape sideOnly = Shapes.join(sideShape, topBottomSlice, BooleanOp.ONLY_FIRST);
+
+        if (context instanceof EntityCollisionContext entityCtx && entityCtx.getEntity() != null) {
+            Entity entity = entityCtx.getEntity();
+
+            if (entity.getY() > pos.getY() + 0.4D) { // tweak threshold feel here (0.3 - 0.5 ideal)
+                return Shapes.empty();
+            }
+
+            VoxelShape bottomCollisionCheck = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
+            if (entityCtx.isAbove(bottomCollisionCheck, pos, false)) {
+                return Shapes.empty();
+            }
+
+            return sideOnly;
+        }
+
+        return sideOnly;
     }
+
 
     @Override
     public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
@@ -429,6 +486,10 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
             default    -> TRIM_NORTH;
         };
     }
+
+    /* ----------------------
+       Bonemeal
+       ---------------------- */
 
     @Override
     public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
