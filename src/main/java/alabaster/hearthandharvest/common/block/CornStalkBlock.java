@@ -43,11 +43,11 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     private static final int BASE_GROW_CHANCE = 25;
 
-    private static final VoxelShape SHAPE_POST = Block.box(5, 0, 5, 11, 16, 11);
-    private static final VoxelShape SHAPE_NORTH = Block.box(5, 0, 0, 11, 16, 5);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(5, 0, 11, 11, 16, 16);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 0, 5, 5, 16, 11);
-    private static final VoxelShape SHAPE_EAST = Block.box(11, 0, 5, 16, 16, 11);
+    private static final VoxelShape SHAPE_POST = Block.box(6, 0, 6, 10, 16, 10);
+    private static final VoxelShape SHAPE_NORTH = Block.box(6, 0, 0, 10, 16, 6);
+    private static final VoxelShape SHAPE_SOUTH = Block.box(6, 0, 10, 10, 16, 16);
+    private static final VoxelShape SHAPE_WEST = Block.box(0, 0, 6, 6, 16, 10);
+    private static final VoxelShape SHAPE_EAST = Block.box(10, 0, 6, 16, 16, 10);
 
     private static final VoxelShape[] SHAPE_CACHE = new VoxelShape[16];
 
