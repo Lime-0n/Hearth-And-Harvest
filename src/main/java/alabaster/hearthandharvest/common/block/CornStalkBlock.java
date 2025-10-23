@@ -6,12 +6,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.*;
@@ -20,12 +22,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.phys.shapes.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.util.TriState;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,29 +37,29 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     public static final BooleanProperty TRIM_SOUTH = BooleanProperty.create("trim_south");
     public static final BooleanProperty TRIM_WEST  = BooleanProperty.create("trim_west");
 
-    private static final int BOTTOM_MAX_AGE = 5;
-    private static final int MIDDLE_MAX_AGE = 5;
-    private static final int TOP_MAX_AGE = 4;
+    private static final int MAX_AGE = 5;
 
     private static final int BASE_GROW_CHANCE = 25;
 
-    private static final VoxelShape SHAPE_POST = Block.box(6, 0, 6, 10, 16, 10);
+    private static final VoxelShape SHAPE_POST  = Block.box(6, 0, 6, 10, 16, 10);
     private static final VoxelShape SHAPE_NORTH = Block.box(6, 0, 0, 10, 16, 6);
     private static final VoxelShape SHAPE_SOUTH = Block.box(6, 0, 10, 10, 16, 16);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 0, 6, 6, 16, 10);
-    private static final VoxelShape SHAPE_EAST = Block.box(10, 0, 6, 16, 16, 10);
+    private static final VoxelShape SHAPE_WEST  = Block.box(0, 0, 6, 6, 16, 10);
+    private static final VoxelShape SHAPE_EAST  = Block.box(10, 0, 6, 16, 16, 10);
 
-    private static final VoxelShape[] SHAPE_CACHE = new VoxelShape[16];
+    private static final VoxelShape[] SHAPE_CACHE = buildShapeCache();
 
-    static {
+    private static VoxelShape[] buildShapeCache() {
+        VoxelShape[] cache = new VoxelShape[16];
         for (int mask = 0; mask < 16; mask++) {
             VoxelShape s = SHAPE_POST;
             if ((mask & 1) != 0) s = Shapes.or(s, SHAPE_NORTH);
             if ((mask & 2) != 0) s = Shapes.or(s, SHAPE_EAST);
             if ((mask & 4) != 0) s = Shapes.or(s, SHAPE_SOUTH);
             if ((mask & 8) != 0) s = Shapes.or(s, SHAPE_WEST);
-            SHAPE_CACHE[mask] = s;
+            cache[mask] = s;
         }
+        return cache;
     }
 
     public CornStalkBlock() {
@@ -93,9 +93,9 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         if (!this.canSurvive(state, world, pos)) {
             if (world instanceof Level lvl && !lvl.isClientSide()) {
                 lvl.destroyBlock(pos, true);
-            } else {
-                return Blocks.AIR.defaultBlockState();
+                return state;
             }
+            return Blocks.AIR.defaultBlockState();
         }
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
@@ -103,52 +103,34 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         CornSection section = state.getValue(SECTION);
-        BlockPos below = pos.below();
-        BlockState soil = world.getBlockState(below);
+        BlockState below = world.getBlockState(pos.below());
 
-        TriState soilDecision = soil.canSustainPlant(world, below, Direction.UP, state);
-        if (!soilDecision.isDefault()) {
-            return soilDecision.isTrue();
-        }
+        TriState tri = below.canSustainPlant(world, pos.below(), Direction.UP, state);
+        if (!tri.isDefault()) return tri.isTrue();
 
-        if (!(hasSufficientLight(world, pos) && super.canSurvive(state, world, pos))) {
-            return false;
-        }
+        if (!(hasSufficientLight(world, pos) && super.canSurvive(state, world, pos))) return false;
 
-        if (section == CornSection.BOTTOM) {
-            return soil.is(BlockTags.DIRT)
-                    || soil.is(Blocks.FARMLAND)
-                    || soil.is(Blocks.GRASS_BLOCK)
-                    || soil.is(Blocks.COARSE_DIRT)
-                    || soil.is(Blocks.PODZOL);
-        } else if (section == CornSection.MIDDLE) {
-            return isSameCornSection(soil, CornSection.BOTTOM);
-        } else {
-            return isSameCornSection(soil, CornSection.MIDDLE);
-        }
+        return switch (section) {
+            case BOTTOM -> (below.is(BlockTags.DIRT)
+                    || below.is(Blocks.FARMLAND)
+                    || below.is(Blocks.GRASS_BLOCK)
+                    || below.is(Blocks.COARSE_DIRT)
+                    || below.is(Blocks.PODZOL));
+            case MIDDLE -> isSameCornSection(below, CornSection.BOTTOM);
+            case TOP -> isSameCornSection(below, CornSection.MIDDLE);
+        };
     }
 
     public static boolean hasSufficientLight(LevelReader level, BlockPos pos) {
         return level.getRawBrightness(pos, 0) >= 8;
     }
 
-    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(BlockTags.DIRT) || state.getBlock() instanceof FarmBlock;
-    }
-
     private boolean isSameCornSection(BlockState state, CornSection expected) {
-        if (state.getBlock() instanceof CornStalkBlock) {
-            if (state.hasProperty(SECTION)) {
-                return state.getValue(SECTION) == expected;
-            }
-        }
-        return false;
+        return state.getBlock() instanceof CornStalkBlock && state.hasProperty(SECTION) && state.getValue(SECTION) == expected;
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        super.randomTick(state, world, pos, random);
-
         if (world.getMaxLocalRawBrightness(pos) < 9) return;
 
         CornSection section = state.getValue(SECTION);
@@ -159,149 +141,108 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         int chance = computeGrowthChance(world, pos);
         if (random.nextInt(chance) != 0) return;
 
-        if (section == CornSection.BOTTOM) {
-            if (age < BOTTOM_MAX_AGE) {
-                int newAge = age + 1;
-                world.setBlock(pos, state.setValue(AGE, newAge), 3);
-                if (newAge == 3) tryPlaceMiddle(world, pos);
+        switch (section) {
+            case BOTTOM -> {
+                if (age < MAX_AGE) {
+                    int newAge = age + 1;
+                    world.setBlock(pos, state.setValue(AGE, newAge), 3);
+                    if (newAge == 3) tryPlaceMiddle(world, pos);
+                }
             }
-            return;
-        }
-
-        if (section == CornSection.MIDDLE) {
-            if (age < MIDDLE_MAX_AGE) {
-                int newAge = age + 1;
-                world.setBlock(pos, state.setValue(AGE, newAge), 2);
-                if (newAge == 3) tryPlaceTop(world, pos);
+            case MIDDLE -> {
+                if (age < MAX_AGE) {
+                    int newAge = age + 1;
+                    world.setBlock(pos, state.setValue(AGE, newAge), 2);
+                    if (newAge == 3) tryPlaceTop(world, pos);
+                }
             }
-            return;
-        }
-
-        if (section == CornSection.TOP) {
-            if (age < TOP_MAX_AGE) {
-                int newAge = age + 1;
-                world.setBlock(pos, state.setValue(AGE, newAge), 2);
+            case TOP -> {
+                if (age < MAX_AGE) {
+                    world.setBlock(pos, state.setValue(AGE, age + 1), 2);
+                }
             }
         }
     }
 
     private int computeGrowthChance(LevelReader world, BlockPos pos) {
         float f = 1.0F;
-
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
-                BlockPos soilPos = pos.offset(dx, -1, dz);
-                BlockState soil = world.getBlockState(soilPos);
+                BlockState soil = world.getBlockState(pos.offset(dx, -1, dz));
                 float contribution = 0.0F;
                 if (soil.getBlock() instanceof FarmBlock) {
-                    try {
-                        Integer moisture = soil.hasProperty(FarmBlock.MOISTURE) ? soil.getValue(FarmBlock.MOISTURE) : 0;
-                        contribution = (moisture > 0) ? 3.0F : 1.0F;
-                    } catch (Exception e) {
-                        contribution = 1.0F;
-                    }
+                    int moisture = soil.hasProperty(FarmBlock.MOISTURE) ? soil.getValue(FarmBlock.MOISTURE) : 0;
+                    contribution = (moisture > 0) ? 3.0F : 1.0F;
                 }
-                if (dx != 0 || dz != 0) {
-                    contribution /= 4.0F;
-                }
+                if (!(dx == 0 && dz == 0)) contribution /= 4.0F;
                 f += contribution;
             }
         }
-
-        int chance = (int)((float) BASE_GROW_CHANCE / f) + 1;
-        if (chance < 1) chance = 1;
-        return chance;
+        int chance = (int) ((float) BASE_GROW_CHANCE / f) + 1;
+        return Math.max(chance, 1);
     }
 
     private boolean topIsAtLeastStage2(LevelReader world, BlockPos pos) {
-        BlockPos bottomPos = pos;
-        BlockState s = world.getBlockState(pos);
-        if (s.getValue(SECTION) == CornSection.MIDDLE) bottomPos = bottomPos.below();
-        if (s.getValue(SECTION) == CornSection.TOP) bottomPos = bottomPos.below(2);
+        BlockPos bottomPos = switch (world.getBlockState(pos).getValue(SECTION)) {
+            case BOTTOM -> pos;
+            case MIDDLE -> pos.below();
+            case TOP -> pos.below(2);
+        };
         BlockState top = world.getBlockState(bottomPos.above(2));
         return top.getBlock() instanceof CornStalkBlock && top.getValue(AGE) >= 2;
     }
 
     private void tryPlaceMiddle(Level world, BlockPos bottomPos) {
         BlockPos midPos = bottomPos.above();
-        BlockState midState = world.getBlockState(midPos);
-        if (midState.isAir()) {
-            BlockState newMiddle = this.defaultBlockState().setValue(SECTION, CornSection.MIDDLE).setValue(AGE, 0);
-            if (newMiddle.canSurvive(world, midPos)) {
-                world.setBlock(midPos, newMiddle, 3);
-            }
+        if (world.getBlockState(midPos).isAir()) {
+            BlockState mid = defaultBlockState().setValue(SECTION, CornSection.MIDDLE).setValue(AGE, 0);
+            if (mid.canSurvive(world, midPos)) world.setBlock(midPos, mid, 3);
         }
     }
 
     private void tryPlaceTop(Level world, BlockPos middlePos) {
         BlockPos topPos = middlePos.above();
-        BlockState topState = world.getBlockState(topPos);
-        if (topState.isAir()) {
-            BlockState newTop = this.defaultBlockState().setValue(SECTION, CornSection.TOP).setValue(AGE, 0);
-            if (newTop.canSurvive(world, topPos)) {
-                world.setBlock(topPos, newTop, 3);
-            }
+        if (world.getBlockState(topPos).isAir()) {
+            BlockState top = defaultBlockState().setValue(SECTION, CornSection.TOP).setValue(AGE, 0);
+            if (top.canSurvive(world, topPos)) world.setBlock(topPos, top, 3);
         }
     }
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         super.onRemove(state, world, pos, newState, isMoving);
-
         if (world.isClientSide) return;
+        if (state.getBlock() == newState.getBlock()) return;
 
-        if (state.getBlock() != newState.getBlock()) {
-            CornSection section = state.getValue(SECTION);
-
-            if (section == CornSection.TOP) {
-                BlockPos below = pos.below();
-                BlockState belowState = world.getBlockState(below);
-                if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(SECTION) == CornSection.MIDDLE) {
-                    int currentAge = belowState.getValue(AGE);
-                    if (currentAge > 2) {
-                        world.setBlock(below, belowState.setValue(AGE, 2), 2);
-                    }
-                }
+        CornSection section = state.getValue(SECTION);
+        if (section == CornSection.TOP || section == CornSection.MIDDLE) {
+            BlockPos below = pos.below();
+            BlockState belowState = world.getBlockState(below);
+            if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(AGE) > 2) {
+                world.setBlock(below, belowState.setValue(AGE, 2), 2);
             }
-
-            if (section == CornSection.MIDDLE) {
-                BlockPos below = pos.below();
-                BlockState belowState = world.getBlockState(below);
-                if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(SECTION) == CornSection.BOTTOM) {
-                    int currentAge = belowState.getValue(AGE);
-                    if (currentAge > 2) {
-                        world.setBlock(below, belowState.setValue(AGE, 2), 2);
-                    }
-                }
-            }
+        }
+        if (section == CornSection.MIDDLE || section == CornSection.TOP) {
+            // bottom segment may also need reduction handled above indirectly when top/middle removed
         }
     }
 
     @Override
     @NotNull
     public VoxelShape getInteractionShape(BlockState state, BlockGetter world, BlockPos pos) {
-        int mask = shapeMask(world, pos);
-        return SHAPE_CACHE[mask];
+        return SHAPE_CACHE[shapeMask(world, pos)];
     }
 
     private Direction directionFromHit(BlockPos pos, double hitX, double hitY, double hitZ, Direction faceFallback) {
         double localX = hitX - pos.getX();
         double localZ = hitZ - pos.getZ();
 
-        final double LEFT_THRESHOLD = 0.30;
-        final double RIGHT_THRESHOLD = 0.70;
-        final double FRONT_THRESHOLD = 0.30;
-        final double BACK_THRESHOLD = 0.70;
-
-        if (localX < LEFT_THRESHOLD) return Direction.WEST;
-        if (localX > RIGHT_THRESHOLD) return Direction.EAST;
-        if (localZ < FRONT_THRESHOLD) return Direction.NORTH;
-        if (localZ > BACK_THRESHOLD) return Direction.SOUTH;
-
-        if (faceFallback != null && faceFallback.getAxis().isHorizontal()) {
-            return faceFallback;
-        }
-
+        final double LEFT = 0.30, RIGHT = 0.70, FRONT = 0.30, BACK = 0.70;
+        if (localX < LEFT) return Direction.WEST;
+        if (localX > RIGHT) return Direction.EAST;
+        if (localZ < FRONT) return Direction.NORTH;
+        if (localZ > BACK) return Direction.SOUTH;
+        if (faceFallback != null && faceFallback.getAxis().isHorizontal()) return faceFallback;
         return null;
     }
 
@@ -311,93 +252,67 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         Direction clickedDir = directionFromHit(pos, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z, face);
 
         if (stack.getItem() == Items.SHEARS && clickedDir != null) {
-            BooleanProperty selfProp = trimPropertyFor(clickedDir);
-            BooleanProperty otherProp = trimPropertyFor(clickedDir.getOpposite());
-
-            if (!state.hasProperty(selfProp)) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
-
-            if (!level.isClientSide) {
-                boolean newValue = !state.getValue(selfProp);
-                BlockState newState = state.setValue(selfProp, newValue);
-                level.setBlock(pos, newState, 3);
-
-                BlockPos neighborPos = pos.relative(clickedDir);
-                BlockState neighborState = level.getBlockState(neighborPos);
-                if (neighborState.getBlock() instanceof CornStalkBlock && neighborState.hasProperty(otherProp)) {
-                    BlockState newNeighbor = neighborState.setValue(otherProp, newValue);
-                    level.setBlock(neighborPos, newNeighbor, 3);
-                }
-
-                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
-
-                EquipmentSlot slot = (hand == InteractionHand.MAIN_HAND) ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                stack.hurtAndBreak(1, player, slot);
-            }
-
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return handleShears(stack, state, level, pos, player, hand, clickedDir);
         }
 
+        return handleHarvestInteraction(state, level, pos, player);
+    }
+
+    private ItemInteractionResult handleShears(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, Direction clickedDir) {
+        BooleanProperty selfProp = trimPropertyFor(clickedDir);
+        BooleanProperty otherProp = trimPropertyFor(clickedDir.getOpposite());
+
+        if (!state.hasProperty(selfProp)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide) return ItemInteractionResult.sidedSuccess(true);
+
+        boolean newValue = !state.getValue(selfProp);
+        level.setBlock(pos, state.setValue(selfProp, newValue), 3);
+
+        BlockPos neighborPos = pos.relative(clickedDir);
+        BlockState neighborState = level.getBlockState(neighborPos);
+        if (neighborState.getBlock() instanceof CornStalkBlock && neighborState.hasProperty(otherProp)) {
+            level.setBlock(neighborPos, neighborState.setValue(otherProp, newValue), 3);
+        }
+
+        level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
+        EquipmentSlot slot = (hand == InteractionHand.MAIN_HAND) ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+        stack.hurtAndBreak(1, player, slot);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    private ItemInteractionResult handleHarvestInteraction(BlockState state, Level level, BlockPos pos, Player player) {
         CornSection section = state.getValue(SECTION);
         int age = state.getValue(AGE);
 
-        if (section == CornSection.BOTTOM) {
-            if (age >= 4) {
-                if (!level.isClientSide) {
-                    int count = (age == 5) ? 2 : 1;
-                    popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
-                    level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 3), 3);
-                }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
-            }
-        } else if (section == CornSection.MIDDLE) {
-            if (age >= 4) {
-                if (!level.isClientSide) {
-                    int count = (age == 5) ? 2 : 1;
-                    popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
-                    level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 3), 3);
-                }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
-            }
-        } else { // TOP
-            if (age >= 3) {
-                if (!level.isClientSide) {
-                    int count = (age == 4) ? 2 : 1;
-                    popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
-                    level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
-                    level.setBlock(pos, state.setValue(AGE, 2), 3);
-                }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
-            }
-        }
+        // Only allow harvesting if fully grown
+        boolean canHarvest = (age == MAX_AGE);
+        if (!canHarvest) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide) return ItemInteractionResult.sidedSuccess(true);
+
+        // Drop corn
+        int count = 2; // fully grown always drops 2
+        level.setBlock(pos, state.setValue(AGE, MAX_AGE - 2), 3); // reset to age 3 after harvest
+
+        popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
+        level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
         super.playerDestroy(level, player, pos, state, blockEntity, stack);
-
         if (level.isClientSide) return;
 
         CornSection section = state.getValue(SECTION);
         if (section == CornSection.BOTTOM) {
-            BlockPos mid = pos.above();
-            BlockPos top = pos.above(2);
-            if (level.getBlockState(mid).getBlock() instanceof CornStalkBlock) {
-                level.destroyBlock(mid, true);
-            }
-            if (level.getBlockState(top).getBlock() instanceof CornStalkBlock) {
-                level.destroyBlock(top, true);
-            }
+            BlockPos mid = pos.above(), top = pos.above(2);
+            if (level.getBlockState(mid).getBlock() instanceof CornStalkBlock) level.destroyBlock(mid, true);
+            if (level.getBlockState(top).getBlock() instanceof CornStalkBlock) level.destroyBlock(top, true);
         } else if (section == CornSection.MIDDLE) {
             BlockPos top = pos.above();
-            if (level.getBlockState(top).getBlock() instanceof CornStalkBlock) {
-                level.destroyBlock(top, true);
-            }
+            if (level.getBlockState(top).getBlock() instanceof CornStalkBlock) level.destroyBlock(top, true);
         }
     }
 
@@ -406,51 +321,79 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         return RenderShape.MODEL;
     }
 
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        int mask = shapeMask(world, pos);
-        return SHAPE_CACHE[mask];
+    private double getVoxelHeight(CornSection section, int age) {
+        return switch (section) {
+            case BOTTOM -> switch (age) {
+                case 0 -> 8.0;
+                case 1 -> 10.0;
+                default -> 16.0; // 2-4
+            };
+            case MIDDLE -> switch (age) {
+                case 0 -> 6.0;
+                case 1 -> 13.0;
+                default -> 16.0; // 2-4
+            };
+            case TOP -> switch (age) {
+                case 0 -> 7.0;
+                case 1 -> 9.0;
+                case 2 -> 14.0;
+                default -> 15.0; // 3-5
+            };
+        };
     }
 
     @Override
     @NotNull
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        CornSection section = state.getValue(SECTION);
-        if (section == CornSection.BOTTOM && state.getValue(AGE) < 3) {
-            return Shapes.empty();
-        }
-
-        int mask = shapeMask(level, pos);
-        VoxelShape sideShape = SHAPE_CACHE[mask];
-
-        VoxelShape topBottomSlice = Shapes.or(
-                Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.5D, 16.0D),   // bottom slice
-                Block.box(0.0D, 14.5D, 0.0D, 16.0D, 16.0D, 16.0D)  // top slice
-        );
-        VoxelShape sideOnly = Shapes.join(sideShape, topBottomSlice, BooleanOp.ONLY_FIRST);
-
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        // Only provide a collision shape for entities
         if (context instanceof EntityCollisionContext entityCtx && entityCtx.getEntity() != null) {
-            Entity entity = entityCtx.getEntity();
+            double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
 
-            if (entity.getY() > pos.getY() + 0.4D) { // tweak threshold feel here (0.3 - 0.5 ideal)
-                return Shapes.empty();
+            // Center post
+            VoxelShape post = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
+
+            // Fence-style connections if grown enough
+            if (state.getValue(AGE) >= 3) {
+                for (Direction dir : Direction.Plane.HORIZONTAL) {
+                    if (canConnectTo(world, pos, dir)) {
+                        post = Shapes.or(post, connectionShape(dir, height));
+                    }
+                }
             }
 
-            VoxelShape bottomCollisionCheck = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
-            if (entityCtx.isAbove(bottomCollisionCheck, pos, false)) {
-                return Shapes.empty();
-            }
-
-            return sideOnly;
+            return post;
         }
-
-        return sideOnly;
+        return Shapes.empty();
     }
 
+    // Helper to create a directional connection shape
+    private VoxelShape connectionShape(Direction dir, double height) {
+        return switch (dir) {
+            case NORTH -> Block.box(6.0, 0.0, 0.0, 10.0, height, 6.0);
+            case SOUTH -> Block.box(6.0, 0.0, 10.0, 10.0, height, 16.0);
+            case WEST  -> Block.box(0.0, 0.0, 6.0, 6.0, height, 10.0);
+            case EAST  -> Block.box(10.0, 0.0, 6.0, 16.0, height, 10.0);
+            default   -> Shapes.empty();
+        };
+    }
 
     @Override
-    public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
-        return false;
+    @NotNull
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
+
+        VoxelShape shape = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
+
+        // Fence-style connections only if age >= 3
+        if (state.getValue(AGE) >= 3) {
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                if (canConnectTo(world, pos, dir)) {
+                    shape = Shapes.or(shape, connectionShape(dir, height));
+                }
+            }
+        }
+
+        return shape;
     }
 
     private int shapeMask(BlockGetter level, BlockPos pos) {
@@ -463,15 +406,12 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     private boolean canConnectTo(BlockGetter level, BlockPos pos, Direction dir) {
-        BlockPos neighborPos = pos.relative(dir);
-        BlockState neighbor = level.getBlockState(neighborPos);
-        if (!(neighbor.getBlock() instanceof CornStalkBlock)) return false;
-        if (!neighbor.hasProperty(AGE) || neighbor.getValue(AGE) < 3) return false;
+        BlockState neighbor = level.getBlockState(pos.relative(dir));
+        if (!(neighbor.getBlock() instanceof CornStalkBlock) || !neighbor.hasProperty(AGE) || neighbor.getValue(AGE) < 3) return false;
 
         BlockState self = level.getBlockState(pos);
         BooleanProperty selfProp = trimPropertyFor(dir);
         BooleanProperty otherProp = trimPropertyFor(dir.getOpposite());
-
         if (!self.hasProperty(selfProp) || !neighbor.hasProperty(otherProp)) return false;
 
         return !self.getValue(selfProp) && !neighbor.getValue(otherProp);
@@ -487,21 +427,14 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         };
     }
 
-    /* ----------------------
-       Bonemeal
-       ---------------------- */
-
     @Override
     public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         CornSection section = state.getValue(SECTION);
-        int age = state.getValue(AGE);
-        if (section == CornSection.BOTTOM) {
-            return age < BOTTOM_MAX_AGE;
-        } else if (section == CornSection.MIDDLE) {
-            return age < MIDDLE_MAX_AGE;
-        } else {
-            return age < TOP_MAX_AGE;
-        }
+        return switch (section) {
+            case BOTTOM -> state.getValue(AGE) < MAX_AGE;
+            case MIDDLE -> state.getValue(AGE) < MAX_AGE;
+            case TOP -> state.getValue(AGE) < MAX_AGE;
+        };
     }
 
     @Override
@@ -511,23 +444,64 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        CornSection section = state.getValue(SECTION);
-        int age = state.getValue(AGE);
+        BlockPos bottomPos = switch (state.getValue(SECTION)) {
+            case BOTTOM -> pos;
+            case MIDDLE -> pos.below();
+            case TOP -> pos.below(2);
+        };
 
-        if (section != CornSection.TOP && age >= 3 && !topIsAtLeastStage2(world, pos)) return;
+        BlockState bottom = world.getBlockState(bottomPos);
+        if (!(bottom.getBlock() instanceof CornStalkBlock)) return;
 
-        if (section == CornSection.BOTTOM && age < BOTTOM_MAX_AGE) {
-            int newAge = age + 1;
-            world.setBlock(pos, state.setValue(AGE, newAge), 2);
-            if (newAge == 3) tryPlaceMiddle(world, pos);
-        } else if (section == CornSection.MIDDLE && age < MIDDLE_MAX_AGE) {
-            int newAge = age + 1;
-            world.setBlock(pos, state.setValue(AGE, newAge), 2);
-            if (newAge == 3) tryPlaceTop(world, pos);
-        } else if (section == CornSection.TOP && age < TOP_MAX_AGE) {
-            int newAge = age + 1;
-            world.setBlock(pos, state.setValue(AGE, newAge), 2);
+        BlockPos middlePos = bottomPos.above();
+        BlockPos topPos = bottomPos.above(2);
+        BlockState middle = world.getBlockState(middlePos);
+        BlockState top = world.getBlockState(topPos);
+
+        boolean grew = false;
+
+        // Determine if top is at least stage 2
+        boolean topReady = top.getBlock() instanceof CornStalkBlock && top.getValue(AGE) >= 3;
+
+        // Grow bottom
+        int bottomAge = bottom.getValue(AGE);
+        if (bottomAge < MAX_AGE) {
+            // Only allow progression past stage 3 if top is ready
+            if (bottomAge < 3 || topReady) {
+                int newAge = bottomAge + 1;
+                world.setBlock(bottomPos, bottom.setValue(AGE, newAge), 2);
+                BoneMealItem.addGrowthParticles(world, bottomPos, 0);
+                grew = true;
+                if (newAge == 3) tryPlaceMiddle(world, bottomPos);
+            }
         }
+
+        // Grow middle
+        if (middle.getBlock() instanceof CornStalkBlock) {
+            int middleAge = middle.getValue(AGE);
+            if (middleAge < MAX_AGE) {
+                if (middleAge < 3 || topReady) {
+                    int newAge = middleAge + 1;
+                    world.setBlock(middlePos, middle.setValue(AGE, newAge), 2);
+                    BoneMealItem.addGrowthParticles(world, middlePos, 0);
+                    grew = true;
+                    if (newAge == 3) tryPlaceTop(world, middlePos);
+                }
+            }
+        }
+
+        // Grow top
+        if (top.getBlock() instanceof CornStalkBlock) {
+            int topAge = top.getValue(AGE);
+            if (topAge < MAX_AGE) {
+                int newAge = topAge + 1;
+                world.setBlock(topPos, top.setValue(AGE, newAge), 2);
+                BoneMealItem.addGrowthParticles(world, topPos, 0);
+                grew = true;
+            }
+        }
+
+        if (!grew) BoneMealItem.addGrowthParticles(world, pos, 0);
     }
 
     public enum CornSection implements net.minecraft.util.StringRepresentable {
@@ -537,9 +511,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         private final String name;
         CornSection(String name) { this.name = name; }
-        @Override
-        public String getSerializedName() { return this.name; }
-        @Override
-        public String toString() { return this.name; }
+        @Override public String getSerializedName() { return this.name; }
+        @Override public String toString() { return this.name; }
     }
 }

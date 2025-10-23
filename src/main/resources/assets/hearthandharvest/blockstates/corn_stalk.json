@@ -18,6 +18,7 @@
     "section=top,age=1": { "model": "hearthandharvest:block/corn_stalk_top_age1" },
     "section=top,age=2": { "model": "hearthandharvest:block/corn_stalk_top_age2" },
     "section=top,age=3": { "model": "hearthandharvest:block/corn_stalk_top_age3" },
-    "section=top,age=4": { "model": "hearthandharvest:block/corn_stalk_top_age4" }
+    "section=top,age=4": { "model": "hearthandharvest:block/corn_stalk_top_age4" },
+    "section=top,age=5": { "model": "hearthandharvest:block/corn_stalk_top_age5" }
   }
 }
