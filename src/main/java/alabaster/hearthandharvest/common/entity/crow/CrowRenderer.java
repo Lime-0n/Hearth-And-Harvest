@@ -14,7 +14,7 @@ public class CrowRenderer extends MobRenderer<CrowEntity, CrowModel<CrowEntity>>
 
     @Override
     public ResourceLocation getTextureLocation(CrowEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/entity/crow.png");
+        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/entity/crow");
     }
 
     @Override

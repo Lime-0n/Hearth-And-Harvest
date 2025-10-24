@@ -12,6 +12,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
@@ -64,7 +66,6 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     public CornStalkBlock() {
         super(BlockBehaviour.Properties.of()
-                .noCollission()
                 .strength(0.5f)
                 .sound(SoundType.CROP)
                 .randomTicks()
@@ -281,7 +282,6 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     private ItemInteractionResult handleHarvestInteraction(BlockState state, Level level, BlockPos pos, Player player) {
-        CornSection section = state.getValue(SECTION);
         int age = state.getValue(AGE);
 
         // Only allow harvesting if fully grown
@@ -344,29 +344,74 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     @NotNull
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        // Only provide a collision shape for entities
-        if (context instanceof EntityCollisionContext entityCtx && entityCtx.getEntity() != null) {
-            double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        // Immature corn has no collision at all
+        if (state.getValue(AGE) < 3) {
+            return Shapes.empty();
+        }
 
-            // Center post
-            VoxelShape post = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
+        if (context instanceof EntityCollisionContext entityCtx) {
+            Entity entity = entityCtx.getEntity();
 
-            // Fence-style connections if grown enough
-            if (state.getValue(AGE) >= 3) {
-                for (Direction dir : Direction.Plane.HORIZONTAL) {
-                    if (canConnectTo(world, pos, dir)) {
-                        post = Shapes.or(post, connectionShape(dir, height));
-                    }
-                }
+            // Items
+            if (entity instanceof ItemEntity) {
+                return Shapes.empty();
             }
 
-            return post;
+            // Players
+            if (entity instanceof Player player) {
+                double playerFeetY = player.getY();
+                double playerEyeY = player.getEyeY();
+                double blockTopY = pos.getY() + 1.0;
+
+                if (playerFeetY > blockTopY - 0.4 || playerEyeY > blockTopY + 0.2) {
+                    return Shapes.empty();
+                }
+
+                if (player.getDeltaMovement().y < -0.2) {
+                    if (playerFeetY > pos.getY() + 0.3) {
+                        return Shapes.empty();
+                    }
+                }
+
+                double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
+                VoxelShape stalk = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
+
+                for (Direction dir : Direction.Plane.HORIZONTAL) {
+                    if (canConnectTo(level, pos, dir)) {
+                        stalk = Shapes.or(stalk, connectionShape(dir, height));
+                    }
+                }
+                return stalk;
+            }
+
+            // Other mobs
+            if (entity instanceof Mob) {
+                double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
+                VoxelShape stalk = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
+
+                for (Direction dir : Direction.Plane.HORIZONTAL) {
+                    if (canConnectTo(level, pos, dir)) {
+                        stalk = Shapes.or(stalk, connectionShape(dir, height));
+                    }
+                }
+                return stalk;
+            }
         }
+
+        // Default collision for projectiles or others
         return Shapes.empty();
     }
 
-    // Helper to create a directional connection shape
+    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+        return false;
+    }
+
+    @Override
+    public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter world, BlockPos pos) {
+        return false;
+    }
+
     private VoxelShape connectionShape(Direction dir, double height) {
         return switch (dir) {
             case NORTH -> Block.box(6.0, 0.0, 0.0, 10.0, height, 6.0);
