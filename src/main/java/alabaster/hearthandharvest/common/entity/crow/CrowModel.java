@@ -3,86 +3,98 @@ package alabaster.hearthandharvest.common.entity.crow;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class CrowModel<T extends Entity> extends EntityModel<T> {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crow"), "main");
-
+public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crow"), "main");
+    private final ModelPart crow;
     private final ModelPart body;
-	private final ModelPart legs;
-	private final ModelPart rightleg;
-	private final ModelPart leftleg;
-	private final ModelPart wings;
-	private final ModelPart head;
-	private final ModelPart beak;
-	private final ModelPart lowerbeak;
+    private final ModelPart legs;
+    private final ModelPart rightleg;
+    private final ModelPart leftleg;
+    private final ModelPart wings;
+    private final ModelPart head;
+    private final ModelPart beak;
+    private final ModelPart lowerbeak;
 
-	public CrowModel(ModelPart root) {
-		this.body = root.getChild("body");
-		this.legs = root.getChild("legs");
-		this.rightleg = this.legs.getChild("rightleg");
-		this.leftleg = this.legs.getChild("leftleg");
-		this.wings = root.getChild("wings");
-		this.head = root.getChild("head");
-		this.beak = this.head.getChild("beak");
-		this.lowerbeak = this.beak.getChild("lowerbeak");
-	}
+    public CrowModel(ModelPart root) {
+        this.crow = root.getChild("crow");
+        this.body = this.crow.getChild("body");
+        this.legs = this.crow.getChild("legs");
+        this.rightleg = this.legs.getChild("rightleg");
+        this.leftleg = this.legs.getChild("leftleg");
+        this.wings = this.crow.getChild("wings");
+        this.head = this.crow.getChild("head");
+        this.beak = this.head.getChild("beak");
+        this.lowerbeak = this.beak.getChild("lowerbeak");
+    }
 
-	public static LayerDefinition createBodyLayer() {
-		MeshDefinition meshdefinition = new MeshDefinition();
-		PartDefinition partdefinition = meshdefinition.getRoot();
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(4.5F, 20.0F, 2.25F));
+        PartDefinition crow = partdefinition.addOrReplaceChild("crow", CubeListBuilder.create(), PartPose.offset(4.5F, 20.0F, 2.25F));
 
-		PartDefinition torso_r1 = body.addOrReplaceChild("torso_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -1.0F, -4.25F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.4363F, 0.0F, 0.0F));
+        PartDefinition body = crow.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition tail_r1 = body.addOrReplaceChild("tail_r1", CubeListBuilder.create().texOffs(12, 8).addBox(-1.5F, -1.0F, 0.35F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, 0.0F, 0.0F, -0.6545F, 0.0F, 0.0F));
+        PartDefinition torso_r1 = body.addOrReplaceChild("torso_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -1.0F, -4.25F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.4363F, 0.0F, 0.0F));
 
-		PartDefinition legs = partdefinition.addOrReplaceChild("legs", CubeListBuilder.create(), PartPose.offset(-2.0F, 24.0F, 1.0F));
+        PartDefinition tail_r1 = body.addOrReplaceChild("tail_r1", CubeListBuilder.create().texOffs(12, 8).addBox(-1.5F, -1.0F, 0.35F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, 0.0F, 0.0F, -0.6545F, 0.0F, 0.0F));
 
-		PartDefinition rightleg = legs.addOrReplaceChild("rightleg", CubeListBuilder.create().texOffs(10, 14).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
-		.texOffs(9, 18).addBox(0.0F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        PartDefinition legs = crow.addOrReplaceChild("legs", CubeListBuilder.create(), PartPose.offset(-6.5F, 4.0F, -1.25F));
 
-		PartDefinition leftleg = legs.addOrReplaceChild("leftleg", CubeListBuilder.create().texOffs(10, 14).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
-		.texOffs(9, 18).addBox(0.0F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 0.0F, 0.0F));
+        PartDefinition rightleg = legs.addOrReplaceChild("rightleg", CubeListBuilder.create().texOffs(10, 14).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
+                .texOffs(9, 18).addBox(0.0F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition wings = partdefinition.addOrReplaceChild("wings", CubeListBuilder.create(), PartPose.offset(-0.5F, 20.0F, 2.25F));
+        PartDefinition leftleg = legs.addOrReplaceChild("leftleg", CubeListBuilder.create().texOffs(10, 14).addBox(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
+                .texOffs(9, 18).addBox(0.0F, 0.0F, -1.0F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 0.0F, 0.0F));
 
-		PartDefinition rightwing_r1 = wings.addOrReplaceChild("rightwing_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-3.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-		.texOffs(12, 12).addBox(2.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
+        PartDefinition wings = crow.addOrReplaceChild("wings", CubeListBuilder.create(), PartPose.offset(-5.0F, 0.0F, 0.0F));
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 8).addBox(-1.5F, -1.75F, 0.0F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, 17.75F, -3.0F, 0.3054F, 0.0F, 0.0F));
+        PartDefinition rightwing_r1 = wings.addOrReplaceChild("rightwing_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-3.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(12, 12).addBox(2.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.3054F, 0.0F, 0.0F));
 
-		PartDefinition beak = head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(18, 0).addBox(-0.5F, -0.75F, -4.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 1.0F));
+        PartDefinition head = crow.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 8).addBox(-1.5F, -1.75F, 0.0F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -2.25F, -5.25F, 0.3054F, 0.0F, 0.0F));
 
-		PartDefinition lowerbeak = beak.addOrReplaceChild("lowerbeak", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, -1.0F, 0.0873F, 0.0F, 0.0F));
+        PartDefinition beak = head.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(18, 0).addBox(-0.5F, -0.75F, -4.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 1.0F));
 
-		PartDefinition tounge_r1 = lowerbeak.addOrReplaceChild("tounge_r1", CubeListBuilder.create().texOffs(16, 4).addBox(-0.5F, 0.75F, -3.0F, 1.0F, 0.0F, 3.0F, new CubeDeformation(0.0F))
-		.texOffs(18, 4).addBox(-0.5F, 0.25F, -3.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0436F, 0.0F, 0.0F));
+        PartDefinition lowerbeak = beak.addOrReplaceChild("lowerbeak", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.0F, -1.0F, 0.0873F, 0.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
+        PartDefinition tounge_r1 = lowerbeak.addOrReplaceChild("tounge_r1", CubeListBuilder.create().texOffs(16, 4).addBox(-0.5F, 0.75F, -3.0F, 1.0F, 0.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.0436F, 0.0F, 0.0F));
 
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		body.render(poseStack, vertexConsumer, packedLight, packedOverlay);
-		legs.render(poseStack, vertexConsumer, packedLight, packedOverlay);
-		wings.render(poseStack, vertexConsumer, packedLight, packedOverlay);
-		head.render(poseStack, vertexConsumer, packedLight, packedOverlay);
-	}
+        PartDefinition partlowerbeak_r1 = lowerbeak.addOrReplaceChild("partlowerbeak_r1", CubeListBuilder.create().texOffs(18, 4).addBox(-0.5F, 0.25F, -3.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
 
-    @Override
-    public void setupAnim(T t, float v, float v1, float v2, float v3, float v4) {
-
+        return LayerDefinition.create(meshdefinition, 32, 32);
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int i1, int i2) {
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+        crow.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    }
 
+    private void applyHeadRotation(float headYaw, float headPitch) {
+        headYaw = Mth.clamp(headYaw, -30f, 30f);
+        headPitch = Mth.clamp(headPitch, -25f, 45);
+
+        this.head.yRot = headYaw * ((float) Math.PI / 180f);
+        this.head.xRot = headPitch * ((float) Math.PI / 180f);
+    }
+
+    @Override
+    public ModelPart root() {
+        return crow;
+    }
+
+    @Override
+    public void setupAnim(CrowEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.applyHeadRotation(netHeadYaw, headPitch);
     }
 }

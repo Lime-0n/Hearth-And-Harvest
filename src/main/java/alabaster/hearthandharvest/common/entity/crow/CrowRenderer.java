@@ -9,12 +9,12 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CrowRenderer extends MobRenderer<CrowEntity, CrowModel<CrowEntity>> {
     public CrowRenderer(EntityRendererProvider.Context context) {
-        super(context, new CrowModel<>(context.bakeLayer(CrowModel.LAYER_LOCATION)), 0.25f);
+        super(context, new CrowModel<>(context.bakeLayer(CrowModel.LAYER_LOCATION)), 0.15f);
     }
 
     @Override
     public ResourceLocation getTextureLocation(CrowEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/entity/crow");
+        return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "textures/entity/crow.png");
     }
 
     @Override
