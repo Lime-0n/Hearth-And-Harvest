@@ -145,18 +145,32 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         switch (section) {
             case BOTTOM -> {
                 if (age < MAX_AGE) {
+                    BlockPos above = pos.above();
+                    if (age == 2 && !world.getBlockState(above).isAir()) {
+                        return;
+                    }
                     int newAge = age + 1;
                     world.setBlock(pos, state.setValue(AGE, newAge), 3);
-                    if (newAge == 3) tryPlaceMiddle(world, pos);
+                    if (newAge == 3) {
+                        tryPlaceMiddle(world, pos);
+                    }
                 }
             }
+
             case MIDDLE -> {
                 if (age < MAX_AGE) {
+                    BlockPos above = pos.above();
+                    if (age == 2 && !world.getBlockState(above).isAir()) {
+                        return;
+                    }
                     int newAge = age + 1;
                     world.setBlock(pos, state.setValue(AGE, newAge), 2);
-                    if (newAge == 3) tryPlaceTop(world, pos);
+                    if (newAge == 3) {
+                        tryPlaceTop(world, pos);
+                    }
                 }
             }
+
             case TOP -> {
                 if (age < MAX_AGE) {
                     world.setBlock(pos, state.setValue(AGE, age + 1), 2);
@@ -193,20 +207,26 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         return top.getBlock() instanceof CornStalkBlock && top.getValue(AGE) >= 2;
     }
 
-    private void tryPlaceMiddle(Level world, BlockPos bottomPos) {
-        BlockPos midPos = bottomPos.above();
-        if (world.getBlockState(midPos).isAir()) {
-            BlockState mid = defaultBlockState().setValue(SECTION, CornSection.MIDDLE).setValue(AGE, 0);
-            if (mid.canSurvive(world, midPos)) world.setBlock(midPos, mid, 3);
-        }
+    private void tryPlaceMiddle(ServerLevel world, BlockPos pos) {
+        BlockPos above = pos.above();
+        // Stop if the space isn't free
+        if (!world.getBlockState(above).isAir()) return;
+
+        BlockState newState = this.defaultBlockState()
+                .setValue(SECTION, CornSection.MIDDLE)
+                .setValue(AGE, 0);
+        world.setBlock(above, newState, 3);
     }
 
-    private void tryPlaceTop(Level world, BlockPos middlePos) {
-        BlockPos topPos = middlePos.above();
-        if (world.getBlockState(topPos).isAir()) {
-            BlockState top = defaultBlockState().setValue(SECTION, CornSection.TOP).setValue(AGE, 0);
-            if (top.canSurvive(world, topPos)) world.setBlock(topPos, top, 3);
-        }
+    private void tryPlaceTop(ServerLevel world, BlockPos pos) {
+        BlockPos above = pos.above();
+        // Stop if the space isn't free
+        if (!world.getBlockState(above).isAir()) return;
+
+        BlockState newState = this.defaultBlockState()
+                .setValue(SECTION, CornSection.TOP)
+                .setValue(AGE, 0);
+        world.setBlock(above, newState, 3);
     }
 
     @Override
@@ -222,9 +242,6 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
             if (belowState.getBlock() instanceof CornStalkBlock && belowState.getValue(AGE) > 2) {
                 world.setBlock(below, belowState.setValue(AGE, 2), 2);
             }
-        }
-        if (section == CornSection.MIDDLE || section == CornSection.TOP) {
-            // bottom segment may also need reduction handled above indirectly when top/middle removed
         }
     }
 
@@ -497,6 +514,12 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         BlockState bottom = world.getBlockState(bottomPos);
         if (!(bottom.getBlock() instanceof CornStalkBlock)) return;
+
+        if ((state.getValue(SECTION) == CornSection.BOTTOM || state.getValue(SECTION) == CornSection.MIDDLE)
+                && state.getValue(AGE) == 2
+                && !world.getBlockState(pos.above()).isAir()) {
+            return;
+        }
 
         BlockPos middlePos = bottomPos.above();
         BlockPos topPos = bottomPos.above(2);
