@@ -252,7 +252,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         Direction face = hitResult.getDirection();
         Direction clickedDir = directionFromHit(pos, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z, face);
 
-        if (stack.getItem() == Items.SHEARS && clickedDir != null) {
+        if (stack.getItem() == Items.SHEARS && clickedDir != null && state.getValue(AGE) > 2) {
             return handleShears(stack, state, level, pos, player, hand, clickedDir);
         }
 
