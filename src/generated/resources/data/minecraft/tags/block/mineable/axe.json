@@ -55,6 +55,7 @@
     "hearthandharvest:mead_crate",
     "hearthandharvest:water_crate",
     "hearthandharvest:honey_crate",
-    "hearthandharvest:syrup_crate"
+    "hearthandharvest:syrup_crate",
+    "hearthandharvest:corn_stalk"
   ]
 }
