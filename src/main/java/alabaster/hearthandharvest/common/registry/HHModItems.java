@@ -5,7 +5,9 @@ import alabaster.hearthandharvest.common.HHFoodValues;
 import alabaster.hearthandharvest.common.item.*;
 import com.electronwill.nightconfig.core.concurrent.StampedConfig;
 import com.google.common.collect.Sets;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
@@ -356,9 +358,19 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.ROASTED_PEANUTS)));
 
     public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new RoastableItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1),
+                    HHModItems.ROASTED_MARSHMALLOW_STICK,
+                    5,
+                    Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY))
+    );
+
     public static final Supplier<Item> ROASTED_MARSHMALLOW_STICK = registerWithTab("roasted_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new RoastableItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1),
+                    HHModItems.CHARRED_MARSHMALLOW_STICK,
+                    5,
+                    Component.literal("Perfectly roasted!").withStyle(ChatFormatting.GOLD))
+    );
+
     public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1)));
 
