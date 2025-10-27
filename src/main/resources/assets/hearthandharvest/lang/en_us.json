@@ -158,6 +158,8 @@
   "item.hearthandharvest.roasted_marshmallow_stick": "Roasted Marshmallow",
   "item.hearthandharvest.charred_marshmallow_stick": "Charred Marshmallow",
   "item.hearthandharvest.smore": "Smore",
+  "item.hearthandharvest.cider_donut": "Cider Donut",
+  "item.hearthandharvest.candy_corn": "Candy Corn",
 
   "block.hearthandharvest.raspberry_pie": "Raspberry Pie",
   "item.hearthandharvest.raspberry_pie_slice": "Raspberry Pie Slice",
@@ -186,6 +188,7 @@
 
   "item.hearthandharvest.raw_sausage": "Raw Sausage",
   "item.hearthandharvest.cooked_sausage": "Cooked Sausage",
+  "item.hearthandharvest.raw_skewered_sausage": "Raw Skewered Sausage",
   "item.hearthandharvest.skewered_sausage": "Skewered Sausage",
   "item.hearthandharvest.jerky": "Jerky",
   "item.hearthandharvest.batter": "Batter",
@@ -193,6 +196,8 @@
   "item.hearthandharvest.raisins": "Raisins",
   "item.hearthandharvest.sunflower_seeds": "Sunflower Seeds",
   "item.hearthandharvest.popcorn": "Popcorn",
+  "item.hearthandharvest.uncooked_corn_on_the_cob": "Uncooked Corn on the Cob",
+  "item.hearthandharvest.cooked_corn_on_the_cob": "Cooked Corn on the Cob",
 
   "item.hearthandharvest.onion_soup": "Onion Soup",
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",

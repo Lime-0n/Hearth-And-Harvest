@@ -243,5 +243,21 @@ public class CookingRecipes
                 .unlockedByItems("has_cooked_sausage", HHModItems.COOKED_SAUSAGE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CIDER_DONUT.get(), 2, SLOW_COOKING, MEDIUM_EXP)
+                .addIngredient(ModItems.APPLE_CIDER.get())
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(Items.EGG)
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_apple_cider", ModItems.APPLE_CIDER.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CANDY_CORN.get(), 4, FAST_COOKING, SMALL_EXP)
+                .addIngredient(HHModItems.CORN_KERNELS.get())
+                .addIngredient(Items.ORANGE_DYE)
+                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_corn_kernels", HHModItems.CORN_KERNELS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
     }
 }

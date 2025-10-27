@@ -222,7 +222,11 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.IRON_CLEAVER.get(),
                 HHModItems.DIAMOND_CLEAVER.get(),
                 HHModItems.GOLDEN_CLEAVER.get(),
-                HHModItems.NETHERITE_CLEAVER.get()
+                HHModItems.NETHERITE_CLEAVER.get(),
+                HHModItems.UNCOOKED_CORN_ON_THE_COB.get(),
+                HHModItems.COOKED_CORN_ON_THE_COB.get(),
+                HHModItems.RAW_SKEWERED_SAUSAGE.get(),
+                HHModItems.SKEWERED_SAUSAGE.get()
         );
         takeAll(items, handheldItems.toArray(new Item[0])).forEach(item -> itemHandheldModel(item, resourceItem(itemName(item))));
 

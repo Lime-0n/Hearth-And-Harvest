@@ -165,6 +165,8 @@ public class HHFoodValues {
             .nutrition(2).saturationModifier(0.3f).build();
     public static final FoodProperties COOKED_SAUSAGE = (new FoodProperties.Builder())
             .nutrition(4).saturationModifier(0.3f).build();
+    public static final FoodProperties RAW_SKEWERED_SAUSAGE = (new FoodProperties.Builder())
+            .nutrition(4).saturationModifier(0.3f).build();
     public static final FoodProperties SKEWERED_SAUSAGE = (new FoodProperties.Builder())
             .nutrition(6).saturationModifier(0.3f).build();
     public static final FoodProperties JERKY = (new FoodProperties.Builder())

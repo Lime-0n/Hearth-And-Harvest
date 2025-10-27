@@ -358,21 +358,27 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.ROASTED_PEANUTS)));
 
     public static final Supplier<Item> MARSHMALLOW_STICK = registerWithTab("marshmallow_stick",
-            () -> new RoastableItem(foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1),
+            () -> new RoastableItem(
+                    foodItem(HHFoodValues.MARSHMALLOW_STICK).stacksTo(1).craftRemainder(Items.STICK),
                     HHModItems.ROASTED_MARSHMALLOW_STICK,
                     5,
                     Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY))
     );
 
     public static final Supplier<Item> ROASTED_MARSHMALLOW_STICK = registerWithTab("roasted_marshmallow_stick",
-            () -> new RoastableItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1),
+            () -> new RoastableItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1).craftRemainder(Items.STICK),
                     HHModItems.CHARRED_MARSHMALLOW_STICK,
-                    5,
+                    10,
                     Component.literal("Perfectly roasted!").withStyle(ChatFormatting.GOLD))
     );
 
     public static final Supplier<Item> CHARRED_MARSHMALLOW_STICK = registerWithTab("charred_marshmallow_stick",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1)));
+            () -> new RoastableItem(
+                    foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).stacksTo(1).craftRemainder(Items.STICK),
+                    null,
+                    5,
+                    Component.literal("Oh, it's burnt...").withStyle(ChatFormatting.DARK_GRAY))
+    );
 
     public static final Supplier<Item> SMORE = registerWithTab("smore",
             () -> new MarshmallowStickItem(foodItem(HHFoodValues.SMORE)));
@@ -431,8 +437,14 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.RAW_SAUSAGE)));
     public static final Supplier<Item> COOKED_SAUSAGE = registerWithTab("cooked_sausage",
             () -> new Item(foodItem(HHFoodValues.COOKED_SAUSAGE)));
+    public static final Supplier<Item> RAW_SKEWERED_SAUSAGE = registerWithTab("raw_skewered_sausage",
+            () -> new RoastableItem(foodItem(HHFoodValues.RAW_SKEWERED_SAUSAGE).stacksTo(1).craftRemainder(Items.STICK),
+                    HHModItems.SKEWERED_SAUSAGE,
+                    10,
+                    Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY))
+    );
     public static final Supplier<Item> SKEWERED_SAUSAGE = registerWithTab("skewered_sausage",
-            () -> new Item(foodItem(HHFoodValues.SKEWERED_SAUSAGE)));
+            () -> new Item(foodItem(HHFoodValues.SKEWERED_SAUSAGE).craftRemainder(Items.STICK)));
     public static final Supplier<Item> JERKY = registerWithTab("jerky",
             () -> new Item(foodItem(HHFoodValues.JERKY)));
     public static final Supplier<Item> BATTER = registerWithTab("batter",
@@ -444,6 +456,23 @@ public class HHModItems {
     public static final Supplier<Item> SUNFLOWER_SEEDS = registerWithTab("sunflower_seeds",
             () -> new ItemNameBlockItem(Blocks.SUNFLOWER, foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
     public static final Supplier<Item> POPCORN = registerWithTab("popcorn",
+            () -> new Item(foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
+    public static final Supplier<Item> UNCOOKED_CORN_ON_THE_COB = registerWithTab("uncooked_corn_on_the_cob",
+            () -> new RoastableItem(foodItem(HHFoodValues.ROASTED_MARSHMALLOW_STICK).stacksTo(1).craftRemainder(Items.STICK),
+                    HHModItems.COOKED_CORN_ON_THE_COB,
+                    10,
+                    Component.literal("Hold near a campfire to cook").withStyle(ChatFormatting.GRAY))
+    );
+    public static final Supplier<Item> COOKED_CORN_ON_THE_COB = registerWithTab("cooked_corn_on_the_cob",
+            () -> new RoastableItem(
+                    foodItem(HHFoodValues.CHARRED_MARSHMALLOW_STICK).craftRemainder(Items.STICK),
+                    null,
+                    0,
+                    Component.literal("Hot and buttery!").withStyle(ChatFormatting.GOLD))
+    );
+    public static final Supplier<Item> CIDER_DONUT = registerWithTab("cider_donut",
+            () -> new Item(foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
+    public static final Supplier<Item> CANDY_CORN = registerWithTab("candy_corn",
             () -> new Item(foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
 
     // Meals

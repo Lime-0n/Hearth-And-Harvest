@@ -15,12 +15,18 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.List;
 import java.util.function.Supplier;
 
+import javax.annotation.Nullable;
+
 public class RoastableItem extends Item {
+    @Nullable
     private final Supplier<Item> cookedItem;
     private final int cookTimeToTransform;
     private final Component tooltip;
 
-    public RoastableItem(Properties properties, Supplier<Item> cookedItem, int cookTimeToTransform, Component tooltip) {
+    public RoastableItem(Properties properties,
+                         @Nullable Supplier<Item> cookedItem,
+                         int cookTimeToTransform,
+                         Component tooltip) {
         super(properties.component(HHModDataComponents.COOK_TIME.get(), 0));
         this.cookedItem = cookedItem;
         this.cookTimeToTransform = cookTimeToTransform;
@@ -32,17 +38,16 @@ public class RoastableItem extends Item {
         if (level.isClientSide || !(entity instanceof Player player)) return;
 
         if (!isPlayerNearHeatSource(player, level)) return;
-
         if (level.getGameTime() % 20 != 0) return; // once per second
 
         int cookTime = stack.get(HHModDataComponents.COOK_TIME.get());
         int newCookTime = cookTime + 1;
         stack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> newCookTime);
 
-        if (cookTime >= cookTimeToTransform) {
+        // Only transform if cookedItem is defined
+        if (cookedItem != null && newCookTime >= cookTimeToTransform) {
             ItemStack newStack = cookedItem.get().getDefaultInstance();
-            final int finalCookTime = cookTime;
-            newStack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> finalCookTime);
+            newStack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> newCookTime);
             replaceItemInHand(player, stack, newStack);
         }
     }
@@ -59,9 +64,9 @@ public class RoastableItem extends Item {
         if (player.isOnFire()) return true;
         BlockPos pos = player.blockPosition();
         for (BlockPos nearbyPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
-            if (level.getBlockState(nearbyPos).is(Blocks.CAMPFIRE) ||
-                    level.getBlockState(nearbyPos).is(Blocks.FIRE) ||
-                    level.getBlockState(nearbyPos).is(Blocks.SOUL_CAMPFIRE)) {
+            if (level.getBlockState(nearbyPos).is(Blocks.CAMPFIRE)
+                    || level.getBlockState(nearbyPos).is(Blocks.FIRE)
+                    || level.getBlockState(nearbyPos).is(Blocks.SOUL_CAMPFIRE)) {
                 return true;
             }
         }
@@ -74,11 +79,10 @@ public class RoastableItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        int cookTime = stack.get(HHModDataComponents.COOK_TIME.get());
-        if (cookTime < cookTimeToTransform && tooltip != null) {
-            tooltip.add((Component) tooltip);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipList, TooltipFlag flag) {
+        if (tooltip != null) {
+            tooltipList.add(tooltip);
         }
-        super.appendHoverText(stack, context, tooltip, flag);
+        super.appendHoverText(stack, context, tooltipList, flag);
     }
 }

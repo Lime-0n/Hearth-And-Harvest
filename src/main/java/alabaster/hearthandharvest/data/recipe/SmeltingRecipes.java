@@ -18,8 +18,9 @@ public class SmeltingRecipes
         foodSmeltingRecipes("raisins_from_red_grapes", HHModItems.RED_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, output);
         foodSmeltingRecipes("raisins_from_green_grapes", HHModItems.GREEN_GRAPES.get(), HHModItems.RAISINS.get(), 0.35F, output);
         foodSmeltingRecipes("roasted_peanuts", HHModItems.PEANUT.get(), HHModItems.ROASTED_PEANUTS.get(), 0.35F, output);
+        foodSmeltingRecipes("popcorn", HHModItems.CORN_KERNELS.get(), HHModItems.POPCORN.get(), 0.35F, output);
 
-        // Marshmallows have only a campfire recipe
+        // Items with only a campfire recipe
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
                         HHModItems.ROASTED_MARSHMALLOW_STICK.get(), 0.35F, 200)
                 .unlockedBy("has_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MARSHMALLOW_STICK.get()))
@@ -28,6 +29,10 @@ public class SmeltingRecipes
                         HHModItems.CHARRED_MARSHMALLOW_STICK.get(), 0.35F, 200)
                 .unlockedBy("has_roasted_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_MARSHMALLOW_STICK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charred_marshmallow").toString() + "_from_campfire");
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.UNCOOKED_CORN_ON_THE_COB.get()), RecipeCategory.FOOD,
+                        HHModItems.COOKED_CORN_ON_THE_COB.get(), 0.5F, 400)
+                .unlockedBy("has_uncooked_corn_on_the_cob", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.UNCOOKED_CORN_ON_THE_COB.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cooked_corn_on_the_cob").toString() + "_from_campfire");
     }
 
     private static void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience, RecipeOutput output) {

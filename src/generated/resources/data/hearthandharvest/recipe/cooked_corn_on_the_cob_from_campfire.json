@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 400,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "hearthandharvest:uncooked_corn_on_the_cob"
+  },
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:cooked_corn_on_the_cob"
+  }
+}

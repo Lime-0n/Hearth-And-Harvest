@@ -843,6 +843,12 @@ public class CraftingRecipes
                 .unlockedBy("has_cooked_sausage", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COOKED_SAUSAGE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "skewered_sausage"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.UNCOOKED_CORN_ON_THE_COB.get(), 1)
+                .requires(HHModItems.CORN.get())
+                .requires(Items.STICK)
+                .unlockedBy("has_corn", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "uncooked_corn_on_the_cob"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_AND_JELLY_SANDWICH.get(), 1)
                 .requires(HHModTags.JAMS)
                 .requires(HHModItems.PEANUT_BUTTER.get())

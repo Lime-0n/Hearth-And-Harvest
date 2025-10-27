@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "hearthandharvest:item/skewered_sausage"
+    "layer0": "hearthandharvest:item/cooked_corn_on_the_cob"
   }
 }
