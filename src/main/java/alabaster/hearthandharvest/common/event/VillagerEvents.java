@@ -15,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
+import vectorwing.farmersdelight.common.Configuration;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -32,22 +33,29 @@ public class VillagerEvents
         ResourceLocation professionKey = BuiltInRegistries.VILLAGER_PROFESSION.getKey(profession);
         if (professionKey == null) return;
         if (professionKey.getPath().equals("farmer")) {
-            trades.get(1).add(itemForEmeraldTrade(HHModItems.RED_GRAPES.get(), 1, 12));
-            trades.get(1).add(itemForEmeraldTrade(HHModItems.BLUEBERRIES.get(), 1, 12));
-            trades.get(1).add(itemForEmeraldTrade(HHModItems.RASPBERRY.get(), 1, 12));
-            trades.get(2).add(itemForEmeraldTrade(HHModItems.PEANUT.get(), 1, 12));
-            trades.get(2).add(itemForEmeraldTrade(HHModItems.COTTON_SEEDS.get(), 1, 12));
+            trades.get(1).add(emeraldForItemsTrade(HHModItems.BLUEBERRIES.get(), 26, 16, 2));
+            trades.get(1).add(emeraldForItemsTrade(HHModItems.RASPBERRY.get(), 26, 16, 2));
+            trades.get(1).add(emeraldForItemsTrade(HHModItems.CHERRY.get(), 10, 16, 2));
+            trades.get(1).add(emeraldForItemsTrade(HHModItems.PEANUT.get(), 16, 16, 2));
+            trades.get(1).add(emeraldForItemsTrade(HHModItems.COTTON.get(), 16, 16, 2));
+            trades.get(2).add(emeraldForItemsTrade(HHModItems.CORN.get(), 24, 16, 5));
+            trades.get(2).add(emeraldForItemsTrade(HHModItems.RED_GRAPES.get(), 24, 16, 5));
+            trades.get(2).add(emeraldForItemsTrade(HHModItems.GREEN_GRAPES.get(), 24, 16, 5));
         }
     }
 
     @SubscribeEvent
     public static void onWandererTrades(WandererTradesEvent event) {
+        if (Configuration.WANDERING_TRADER_SELLS_FD_ITEMS.get()) {
             List<VillagerTrades.ItemListing> trades = event.getGenericTrades();
             trades.add(itemForEmeraldTrade(HHModItems.RED_GRAPES.get(), 1, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.GREEN_GRAPES.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.BLUEBERRIES.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.RASPBERRY.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.PEANUT.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.COTTON_SEEDS.get(), 1, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.CORN_KERNELS.get(), 1, 12));
+        }
     }
 
     public static BasicItemListing emeraldForItemsTrade(ItemLike item, int count, int maxTrades, int xp) {
