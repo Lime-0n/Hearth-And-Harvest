@@ -4,6 +4,8 @@
 
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
 
+  "item.hearthandharvest.crow_spawn_egg": "Crow Spawn Egg",
+
   "block.hearthandharvest.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
   "hearthandharvest.container.cask.medium": "Surrounding light is well lit, speed is 1x",
@@ -65,6 +67,15 @@
   "block.hearthandharvest.wild_cotton": "Wild Cotton",
   "block.hearthandharvest.wild_peanuts": "Wild Peanuts",
   "block.hearthandharvest.corn_stalk": "Corn Stalk",
+
+  "block.hearthandharvest.yellow_mum": "Yellow Mum",
+  "block.hearthandharvest.orange_mum": "Orange Mum",
+  "block.hearthandharvest.red_mum": "Red Mum",
+  "block.hearthandharvest.blue_mum": "Blue Mum",
+  "block.hearthandharvest.light_blue_mum": "Light Blue Mum",
+  "block.hearthandharvest.purple_mum": "Purple Mum",
+  "block.hearthandharvest.pink_mum": "Pink Mum",
+  "block.hearthandharvest.white_mum": "White Mum",
 
   "block.hearthandharvest.blueberry_crate": "Blueberry Crate",
   "block.hearthandharvest.cherry_crate": "Cherry Crate",

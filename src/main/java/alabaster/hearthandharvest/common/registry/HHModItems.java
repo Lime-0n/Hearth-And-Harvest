@@ -12,6 +12,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.FuelBlockItem;
@@ -81,6 +82,11 @@ public class HHModItems {
             () -> new WateringCanItem(basicItem()));
     public static final Supplier<Item> UNIVERSAL_FEED = registerWithTab("universal_feed",
             () -> new UniversalFeedItem(basicItem()));
+
+    // Spawn Eggs
+    public static final Supplier<Item> CROW_SPAWN_EGG = registerWithTab("crow_spawn_egg",
+            () -> new DeferredSpawnEggItem(HHModEntities.CROW, 0x1c2030,0x0d111c,
+                    new Item.Properties()));
 
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",

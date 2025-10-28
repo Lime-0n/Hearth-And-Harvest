@@ -73,6 +73,22 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.ROPE_COIL.get());
         dropOther(HHModBlocks.RED_GRAPE_CROP.get(), HHModItems.RED_GRAPES.get());
         dropOther(HHModBlocks.GREEN_GRAPE_CROP.get(), HHModItems.GREEN_GRAPES.get());
+        dropSelf(HHModBlocks.YELLOW_MUM.get());
+        dropSelf(HHModBlocks.ORANGE_MUM.get());
+        dropSelf(HHModBlocks.RED_MUM.get());
+        dropSelf(HHModBlocks.BLUE_MUM.get());
+        dropSelf(HHModBlocks.LIGHT_BLUE_MUM.get());
+        dropSelf(HHModBlocks.PURPLE_MUM.get());
+        dropSelf(HHModBlocks.PINK_MUM.get());
+        dropSelf(HHModBlocks.WHITE_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_YELLOW_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_ORANGE_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_RED_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_BLUE_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_LIGHT_BLUE_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_PURPLE_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_PINK_MUM.get());
+        dropPottedContents(HHModBlocks.POTTED_WHITE_MUM.get());
     }
 
     @Override

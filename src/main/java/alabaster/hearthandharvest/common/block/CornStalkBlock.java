@@ -30,6 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.util.TriState;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CornStalkBlock extends Block implements BonemealableBlock {
     public static final EnumProperty<CornSection> SECTION = EnumProperty.create("section", CornSection.class);
@@ -116,7 +117,8 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                     || below.is(Blocks.FARMLAND)
                     || below.is(Blocks.GRASS_BLOCK)
                     || below.is(Blocks.COARSE_DIRT)
-                    || below.is(Blocks.PODZOL));
+                    || below.is(Blocks.PODZOL)
+                    || below.is(ModBlocks.RICH_SOIL_FARMLAND.get()));
             case MIDDLE -> isSameCornSection(below, CornSection.BOTTOM);
             case TOP -> isSameCornSection(below, CornSection.MIDDLE);
         };
@@ -301,16 +303,15 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     private ItemInteractionResult handleHarvestInteraction(BlockState state, Level level, BlockPos pos, Player player) {
         int age = state.getValue(AGE);
 
-        // Only allow harvesting if fully grown
-        boolean canHarvest = (age == MAX_AGE);
-        if (!canHarvest) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        // Only allow harvesting if at least age 4
+        if (age < 4) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
 
         if (level.isClientSide) return ItemInteractionResult.sidedSuccess(true);
 
-        // Drop corn
-        int count = 2; // fully grown always drops 2
-        level.setBlock(pos, state.setValue(AGE, MAX_AGE - 2), 3); // reset to age 3 after harvest
-
+        int count = (age == 5) ? 2 : 1;
+        level.setBlock(pos, state.setValue(AGE, 3), 3);
         popResource(level, pos, new ItemStack(HHModItems.CORN.get(), count));
         level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
 

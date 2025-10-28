@@ -46,9 +46,7 @@ public class CuttingRecipes {
                 .addResultWithChance(HHModItems.SUNFLOWER_SEEDS.get(), 0.5F, 2)
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CORN.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.CORN_KERNELS.get(), 2)
-                .addResultWithChance(HHModItems.CORN_KERNELS.get(), 0.5F, 1)
-                .addResultWithChance(HHModItems.CORN_KERNELS.get(), 0.33F, 1)
-                .addResultWithChance(HHModItems.CORN_HUSK.get(), 0.5F, 1)
+                .addResult(HHModItems.CORN_HUSK.get())
                 .build(output);
     }
 

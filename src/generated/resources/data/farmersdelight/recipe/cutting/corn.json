@@ -13,21 +13,6 @@
       }
     },
     {
-      "chance": 0.5,
-      "item": {
-        "count": 1,
-        "id": "hearthandharvest:corn_kernels"
-      }
-    },
-    {
-      "chance": 0.33,
-      "item": {
-        "count": 1,
-        "id": "hearthandharvest:corn_kernels"
-      }
-    },
-    {
-      "chance": 0.5,
       "item": {
         "count": 1,
         "id": "hearthandharvest:corn_husk"

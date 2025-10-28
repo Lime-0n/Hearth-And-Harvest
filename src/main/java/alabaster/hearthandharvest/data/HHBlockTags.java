@@ -79,6 +79,16 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.PINK_MUM.get(),
                 HHModBlocks.WHITE_MUM.get());
 
+        tag(BlockTags.FLOWER_POTS).add(
+                HHModBlocks.POTTED_YELLOW_MUM.get(),
+                HHModBlocks.POTTED_ORANGE_MUM.get(),
+                HHModBlocks.POTTED_RED_MUM.get(),
+                HHModBlocks.POTTED_BLUE_MUM.get(),
+                HHModBlocks.POTTED_LIGHT_BLUE_MUM.get(),
+                HHModBlocks.POTTED_PURPLE_MUM.get(),
+                HHModBlocks.POTTED_PINK_MUM.get(),
+                HHModBlocks.POTTED_WHITE_MUM.get());
+
     }
 
     protected void registerCommonTags() {

@@ -29,6 +29,9 @@ public class ItemModels extends ItemModelProvider
         Set<Item> items = BuiltInRegistries.ITEM.stream().filter(i -> HearthAndHarvest.MODID.equals(BuiltInRegistries.ITEM.getKey(i).getNamespace()))
                 .collect(Collectors.toSet());
 
+        // Specific Cases
+        items.remove(HHModItems.CROW_SPAWN_EGG.get());
+
         // Workstations
         blockBasedModel(HHModItems.TREE_TAPPER.get(),"");
         items.remove(HHModItems.TREE_TAPPER.get());
