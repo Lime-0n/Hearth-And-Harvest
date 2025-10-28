@@ -58,6 +58,27 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get());
+
+        tag(BlockTags.FLOWERS).add(
+                HHModBlocks.YELLOW_MUM.get(),
+                HHModBlocks.ORANGE_MUM.get(),
+                HHModBlocks.RED_MUM.get(),
+                HHModBlocks.BLUE_MUM.get(),
+                HHModBlocks.LIGHT_BLUE_MUM.get(),
+                HHModBlocks.PURPLE_MUM.get(),
+                HHModBlocks.PINK_MUM.get(),
+                HHModBlocks.WHITE_MUM.get());
+
+        tag(BlockTags.SMALL_FLOWERS).add(
+                HHModBlocks.YELLOW_MUM.get(),
+                HHModBlocks.ORANGE_MUM.get(),
+                HHModBlocks.RED_MUM.get(),
+                HHModBlocks.BLUE_MUM.get(),
+                HHModBlocks.LIGHT_BLUE_MUM.get(),
+                HHModBlocks.PURPLE_MUM.get(),
+                HHModBlocks.PINK_MUM.get(),
+                HHModBlocks.WHITE_MUM.get());
+
     }
 
     protected void registerCommonTags() {

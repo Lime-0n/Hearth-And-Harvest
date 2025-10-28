@@ -110,6 +110,24 @@ public class BlockStates extends BlockStateProvider
         this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
         this.wildCropBlock(HHModBlocks.WILD_PEANUTS.get());
 
+        this.wildCropBlock(HHModBlocks.YELLOW_MUM.get());
+        this.wildCropBlock(HHModBlocks.ORANGE_MUM.get());
+        this.wildCropBlock(HHModBlocks.RED_MUM.get());
+        this.wildCropBlock(HHModBlocks.BLUE_MUM.get());
+        this.wildCropBlock(HHModBlocks.LIGHT_BLUE_MUM.get());
+        this.wildCropBlock(HHModBlocks.PURPLE_MUM.get());
+        this.wildCropBlock(HHModBlocks.PINK_MUM.get());
+        this.wildCropBlock(HHModBlocks.WHITE_MUM.get());
+
+        this.pottedFlower(HHModBlocks.POTTED_YELLOW_MUM.get(), HHModBlocks.YELLOW_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_ORANGE_MUM.get(), HHModBlocks.ORANGE_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_RED_MUM.get(), HHModBlocks.RED_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_BLUE_MUM.get(), HHModBlocks.BLUE_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_LIGHT_BLUE_MUM.get(), HHModBlocks.LIGHT_BLUE_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_PURPLE_MUM.get(), HHModBlocks.PURPLE_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_PINK_MUM.get(), HHModBlocks.PINK_MUM.get());
+        this.pottedFlower(HHModBlocks.POTTED_WHITE_MUM.get(), HHModBlocks.WHITE_MUM.get());
+
         this.jarBlock(HHModBlocks.BLUEBERRY_JAM.get(), "blueberry_jam");
         this.jarBlock(HHModBlocks.CHERRY_JAM.get(), "cherry_jam");
         this.jarBlock(HHModBlocks.GRAPE_JAM.get(), "grape_jam");
@@ -178,6 +196,13 @@ public class BlockStates extends BlockStateProvider
         } else {
             this.simpleBlock(block, models().cross(blockName(block), resourceBlock(blockName(block))).renderType("cutout"));
         }
+    }
+
+    public void pottedFlower(Block pottedBlock, Block flowerBlock) {
+        simpleBlock(pottedBlock,
+                models().withExistingParent(blockName(pottedBlock), mcLoc("block/flower_pot_cross"))
+                        .texture("plant", resourceBlock(blockName(flowerBlock)))
+                        .renderType("cutout"));
     }
 
     public void crateBlock(Block block, String cropName) {

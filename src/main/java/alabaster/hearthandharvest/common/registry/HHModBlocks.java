@@ -83,10 +83,6 @@ public class HHModBlocks {
     public static final Supplier<Block> WARPED_WINE_RACK = BLOCKS.register("warped_wine_rack",
             () -> new WineRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
-    // Fluids
-    //public static final Supplier<LiquidBlock> OIL = registerNoItem("oil",
-    //        () -> new OilFluidBlock(HHModFluids.OIL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
-
     // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
@@ -96,6 +92,41 @@ public class HHModBlocks {
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
     public static final Supplier<Block> WILD_PEANUTS = BLOCKS.register("wild_peanuts",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
+    // Flowers
+    public static final Supplier<Block> YELLOW_MUM = BLOCKS.register("yellow_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> ORANGE_MUM = BLOCKS.register("orange_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> RED_MUM = BLOCKS.register("red_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> BLUE_MUM = BLOCKS.register("blue_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> LIGHT_BLUE_MUM = BLOCKS.register("light_blue_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> PURPLE_MUM = BLOCKS.register("purple_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> PINK_MUM = BLOCKS.register("pink_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+    public static final Supplier<Block> WHITE_MUM = BLOCKS.register("white_mum",
+            () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final Supplier<Block> POTTED_YELLOW_MUM = BLOCKS.register("potted_yellow_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.YELLOW_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_ORANGE_MUM = BLOCKS.register("potted_orange_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.ORANGE_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_RED_MUM = BLOCKS.register("potted_red_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.RED_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_BLUE_MUM = BLOCKS.register("potted_blue_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.BLUE_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_LIGHT_BLUE_MUM = BLOCKS.register("potted_light_blue_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.LIGHT_BLUE_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_PURPLE_MUM = BLOCKS.register("potted_purple_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.PURPLE_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_PINK_MUM = BLOCKS.register("potted_pink_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.PINK_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final Supplier<Block> POTTED_WHITE_MUM = BLOCKS.register("potted_white_mum",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.WHITE_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
 
     // Crops
     public static final Supplier<Block> RASPBERRY_BUSH = BLOCKS.register("raspberry_bush",
@@ -118,7 +149,6 @@ public class HHModBlocks {
             () -> new CornStalkBlock());
 
     // Crates
-
     public static final Supplier<Block> BLUEBERRY_CRATE = BLOCKS.register("blueberry_crate",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final Supplier<Block> CHERRY_CRATE = BLOCKS.register("cherry_crate",

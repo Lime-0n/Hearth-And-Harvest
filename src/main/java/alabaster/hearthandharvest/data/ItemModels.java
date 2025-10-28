@@ -209,7 +209,15 @@ public class ItemModels extends ItemModelProvider
                 HHModItems.WILD_RED_GRAPES.get(),
                 HHModItems.WILD_GREEN_GRAPES.get(),
                 HHModItems.WILD_COTTON.get(),
-                HHModItems.WILD_PEANUTS.get()
+                HHModItems.WILD_PEANUTS.get(),
+                HHModItems.YELLOW_MUM.get(),
+                HHModItems.ORANGE_MUM.get(),
+                HHModItems.RED_MUM.get(),
+                HHModItems.BLUE_MUM.get(),
+                HHModItems.LIGHT_BLUE_MUM.get(),
+                HHModItems.PURPLE_MUM.get(),
+                HHModItems.PINK_MUM.get(),
+                HHModItems.WHITE_MUM.get()
         );
 
         takeAll(items, flatBlockItems.toArray(new Item[0])).forEach(item -> itemGeneratedModel(item, resourceBlock(itemName(item))));

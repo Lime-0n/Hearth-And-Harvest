@@ -190,9 +190,25 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.WILD_COTTON.get(), basicItem()));
     public static final Supplier<Item> WILD_PEANUTS = registerWithTab("wild_peanuts",
             () -> new BlockItem(HHModBlocks.WILD_PEANUTS.get(), basicItem()));
-    
-    // Storage Blocks
 
+    // Flowers
+    public static final Supplier<Item> YELLOW_MUM = registerWithTab("yellow_mum",
+            () -> new BlockItem(HHModBlocks.YELLOW_MUM.get(), basicItem()));
+    public static final Supplier<Item> ORANGE_MUM = registerWithTab("orange_mum",
+            () -> new BlockItem(HHModBlocks.ORANGE_MUM.get(), basicItem()));
+    public static final Supplier<Item> RED_MUM = registerWithTab("red_mum",
+            () -> new BlockItem(HHModBlocks.RED_MUM.get(), basicItem()));
+    public static final Supplier<Item> BLUE_MUM = registerWithTab("blue_mum",
+            () -> new BlockItem(HHModBlocks.BLUE_MUM.get(), basicItem()));
+    public static final Supplier<Item> LIGHT_BLUE_MUM = registerWithTab("light_blue_mum",
+            () -> new BlockItem(HHModBlocks.LIGHT_BLUE_MUM.get(), basicItem()));
+    public static final Supplier<Item> PURPLE_MUM = registerWithTab("purple_mum",
+            () -> new BlockItem(HHModBlocks.PURPLE_MUM.get(), basicItem()));
+    public static final Supplier<Item> PINK_MUM = registerWithTab("pink_mum",
+            () -> new BlockItem(HHModBlocks.PINK_MUM.get(), basicItem()));
+    public static final Supplier<Item> WHITE_MUM = registerWithTab("white_mum",
+            () -> new BlockItem(HHModBlocks.WHITE_MUM.get(), basicItem()));
+    
     // Crates
     public static final Supplier<Item> BLUEBERRY_CRATE = registerWithBlockTab("blueberry_crate",
             () -> new BlockItem(HHModBlocks.BLUEBERRY_CRATE.get(), basicItem()));
