@@ -19,6 +19,7 @@ public class CuttingRecipes {
     public static void register(RecipeOutput output) {
         // Knife
         cuttingFoods(output);
+        cuttingFlowers(output);
 
         // Cleaver
         choppingAnimalItems(output);
@@ -47,6 +48,25 @@ public class CuttingRecipes {
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CORN.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.CORN_KERNELS.get(), 2)
                 .addResult(HHModItems.CORN_HUSK.get())
+                .build(output);
+    }
+
+    private static void cuttingFlowers(RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.YELLOW_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.YELLOW_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.ORANGE_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.ORANGE_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.RED_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.RED_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.BLUE_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.BLUE_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.LIGHT_BLUE_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.LIGHT_BLUE_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.PURPLE_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.PURPLE_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.PINK_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.PINK_DYE, 2)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.WHITE_MUM.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.WHITE_DYE, 2)
                 .build(output);
     }
 

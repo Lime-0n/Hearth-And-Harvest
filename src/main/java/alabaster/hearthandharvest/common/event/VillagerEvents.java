@@ -55,6 +55,15 @@ public class VillagerEvents
             trades.add(itemForEmeraldTrade(HHModItems.PEANUT.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.COTTON_SEEDS.get(), 1, 12));
             trades.add(itemForEmeraldTrade(HHModItems.CORN_KERNELS.get(), 1, 12));
+
+            trades.add(itemForEmeraldTrade(HHModItems.YELLOW_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.ORANGE_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.RED_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.BLUE_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.LIGHT_BLUE_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.PURPLE_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.PINK_MUM.get(), 8, 12));
+            trades.add(itemForEmeraldTrade(HHModItems.WHITE_MUM.get(), 8, 12));
         }
     }
 

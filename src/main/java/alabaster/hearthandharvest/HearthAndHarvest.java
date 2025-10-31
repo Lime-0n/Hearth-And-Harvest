@@ -10,6 +10,7 @@ import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
+import alabaster.hearthandharvest.common.worldgen.HHFeatures;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -64,6 +65,7 @@ public class HearthAndHarvest {
         HHModMenuTypes.MENUS.register(modEventBus);
         HHModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        HHFeatures.FEATURES.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
