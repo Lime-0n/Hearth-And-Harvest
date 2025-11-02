@@ -90,13 +90,15 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
                 Capabilities.ItemHandler.BLOCK,
                 HHModBlockEntities.CASK.get(),
                 (be, context) -> {
-                    if (context == Direction.UP) {
-                        return be.inputHandler;
+                    if (context == null) return be.inputHandler;
+                    if (context == Direction.DOWN) {
+                        return new CaskItemHandler(be.outputHandler, Direction.DOWN);
                     }
-                    return be.outputHandler;
+                    return new CaskItemHandler(be.inputHandler, context);
                 }
         );
     }
+
 
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
