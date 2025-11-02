@@ -13,11 +13,11 @@ public class Config {
     public static ModConfigSpec COMMON_CONFIG;
     private static final Map<String, ModConfigSpec.BooleanValue> ITEMS = new HashMap<>();
 
-    public static ModConfigSpec.BooleanValue WANDERING_TRADER_CROPS;
     public static ModConfigSpec.DoubleValue TREE_TAPPER_BASE_CHANCE;
 
     public Config() {
     }
+
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -25,10 +25,6 @@ public class Config {
 
     static {
         ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
-
-        WANDERING_TRADER_CROPS = COMMON_BUILDER
-                .comment("Should the Wandering Trader sell the mods crops?")
-                .define("wanderingTraderCrops", true);
 
         TREE_TAPPER_BASE_CHANCE = COMMON_BUILDER
                 .comment("Base chance (0.0 - 1.0) per random tick for a Tree Tapper to increase sap when on a tappable block.\n"

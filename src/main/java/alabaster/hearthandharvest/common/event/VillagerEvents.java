@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -27,6 +28,7 @@ public class VillagerEvents
 {
     @SubscribeEvent
     public static void onVillagerTrades(VillagerTradesEvent event) {
+        if (!Configuration.FARMERS_BUY_FD_CROPS.get()) return;
 
         Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
         VillagerProfession profession = event.getType();
