@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "alabaster.hearthandharvest.common.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "hearthandharvest.refmap.json",
+  "mixins": [
+    "AbstractHorseMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
