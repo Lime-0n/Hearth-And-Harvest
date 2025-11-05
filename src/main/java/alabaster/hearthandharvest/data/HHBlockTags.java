@@ -37,6 +37,14 @@ public class HHBlockTags extends BlockTagsProvider {
                 Blocks.SPRUCE_LOG,
                 Blocks.DARK_OAK_LOG
         );
+
+        tag(HHModTags.CROW_EDIBLE_CROPS).add(
+                Blocks.WHEAT,
+                Blocks.PUMPKIN_STEM,
+                Blocks.POTATOES,
+                HHModBlocks.PEANUT_CROP.get(),
+                HHModBlocks.CORN_STALK.get()
+        );
     }
 
     protected void registerMinecraftTags() {

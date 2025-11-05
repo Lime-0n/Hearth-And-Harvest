@@ -62,13 +62,13 @@ public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
 
         PartDefinition torso_r1 = torso.addOrReplaceChild("torso_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -1.0F, -4.25F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -0.4363F, 0.0F, 0.0F));
 
-        PartDefinition legs = crow.addOrReplaceChild("legs", CubeListBuilder.create(), PartPose.offset(-6.5F, 4.0F, -1.25F));
+        PartDefinition legs = crow.addOrReplaceChild("legs", CubeListBuilder.create(), PartPose.offset(-5.0F, 1.0F, -1.5F));
 
         PartDefinition rightleg = legs.addOrReplaceChild("rightleg", CubeListBuilder.create().texOffs(10, 14).addBox(-0.5F, -2.0F, 0.25F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
-                .texOffs(9, 18).addBox(-0.5F, 2.0F, -0.75F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, -2.0F, -0.25F));
+                .texOffs(9, 18).addBox(-0.5F, 2.0F, -0.75F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 1.0F, 0.0F));
 
         PartDefinition leftleg = legs.addOrReplaceChild("leftleg", CubeListBuilder.create().texOffs(10, 14).addBox(-0.5F, -2.0F, 0.25F, 1.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
-                .texOffs(9, 18).addBox(-0.5F, 2.0F, -0.75F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(2.5F, -2.0F, -0.25F));
+                .texOffs(9, 18).addBox(-0.5F, 2.0F, -0.75F, 1.0F, 0.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(1.0F, 1.0F, 0.0F));
 
         PartDefinition wings = crow.addOrReplaceChild("wings", CubeListBuilder.create(), PartPose.offset(-5.0F, 0.0F, 0.0F));
 
