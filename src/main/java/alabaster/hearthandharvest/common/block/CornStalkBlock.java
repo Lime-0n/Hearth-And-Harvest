@@ -274,7 +274,6 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
         if (stack.getItem() == Items.SHEARS && clickedDir != null && state.getValue(AGE) > 2) {
             return handleShears(stack, state, level, pos, player, hand, clickedDir);
         }
-
         return handleHarvestInteraction(state, level, pos, player);
     }
 
@@ -303,7 +302,10 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     private ItemInteractionResult handleHarvestInteraction(BlockState state, Level level, BlockPos pos, Player player) {
         int age = state.getValue(AGE);
 
-        // Only allow harvesting if at least age 4
+        if (player.getItemInHand(InteractionHand.MAIN_HAND).is(Items.BONE_MEAL) && age < 5) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
         if (age < 4) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
