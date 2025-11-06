@@ -3,11 +3,14 @@ package alabaster.hearthandharvest.client.event;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
 import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
+import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -40,6 +43,16 @@ public class ClientEventHandler {
                 HHModParticleTypes.DRIPPING_SAP.get(),
                 DrippingSapParticle.Provider::new
         );
+    }
+
+    @SubscribeEvent
+    public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
+        for (var skinModel : PlayerSkin.Model.values()) {
+            PlayerRenderer renderer = event.getSkin(skinModel);
+            if (renderer != null) {
+                renderer.addLayer(new CrowOnShoulderLayer(renderer, event.getEntityModels()));
+            }
+        }
     }
 
     @SubscribeEvent

@@ -129,38 +129,13 @@ public class CrowEatCropsGoal extends Goal {
         return true;
     }
 
-
-    /** Handles crop or corn destruction logic */
     private void destroyCrop(ServerLevel server, BlockPos pos, BlockState state) {
         Block block = state.getBlock();
 
-        if (block instanceof CropBlock) {
-            server.destroyBlock(pos, false);
+        if (block.defaultBlockState().is(BlockTags.CROPS)) {
+            server.destroyBlock(pos, true);
             server.levelEvent(2001, pos, Block.getId(state));
             crow.playSound(SoundEvents.PARROT_EAT, 0.9F, 1.0F);
-        }
-
-        if (block instanceof CornStalkBlock corn) {
-            CornStalkBlock.CornSection section = state.getValue(CornStalkBlock.SECTION);
-
-            // Find bottom of the stalk
-            BlockPos bottomPos = switch (section) {
-                case BOTTOM -> pos;
-                case MIDDLE -> pos.below();
-                case TOP -> pos.below(2);
-            };
-
-            // Destroy up to 3 high stalk
-            for (int i = 0; i < 3; i++) {
-                BlockPos check = bottomPos.above(i);
-                BlockState s = server.getBlockState(check);
-                if (s.getBlock() instanceof CornStalkBlock) {
-                    server.destroyBlock(check, false);
-                    server.levelEvent(2001, check, Block.getId(s));
-                }
-            }
-
-            crow.playSound(SoundEvents.PARROT_EAT, 0.9F, 0.9F + crow.getRandom().nextFloat() * 0.2F);
         }
     }
 }
