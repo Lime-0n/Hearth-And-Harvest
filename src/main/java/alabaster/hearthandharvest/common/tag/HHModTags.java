@@ -23,9 +23,6 @@ public class HHModTags {
     public static final TagKey<Item> CROW_SHINY_ITEMS = modItemTag("crow_shiny_items");
     public static final TagKey<Block> CROW_EDIBLE_CROPS = modBlockTag("crow_edible_crops");
 
-    // Items that have a bottle as their container/craft remainder
-    public static final TagKey<Item> BOTTLES = modItemTag("bottles");
-
     private static TagKey<Block> modBlockTag(String path) {
         return BlockTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
     }

@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -8,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -168,7 +170,14 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CRIMSON_HALF_CABINET.get())
                 .add(HHModItems.WARPED_HALF_CABINET.get());
 
-        tag(HHModTags.BOTTLES)
-                .add(HHModItems.RED_GRAPE_WINE.get());
+        tag(ItemTags.SMALL_FLOWERS)
+                .add(HHModItems.YELLOW_MUM.get())
+                .add(HHModItems.ORANGE_MUM.get())
+                .add(HHModItems.RED_MUM.get())
+                .add(HHModItems.BLUE_MUM.get())
+                .add(HHModItems.LIGHT_BLUE_MUM.get())
+                .add(HHModItems.PURPLE_MUM.get())
+                .add(HHModItems.PINK_MUM.get())
+                .add(HHModItems.WHITE_MUM.get());
     }
 }

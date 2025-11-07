@@ -6,211 +6,134 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class CrowPickUpShinyGoal extends Goal {
 
     private final CrowEntity crow;
-    private final double flySpeed;
-
     private ItemEntity targetItem;
-
-    private int thinkingTimer;
-    private int maxThinkingTime;
+    private Vec3 cachedWalkTarget = null;
     private int tickTimer;
-    private static final double GROUND_SPEED = 0.25D;
-    private static final double FLY_SPEED = 0.9D;
+    private int walkCooldown;
 
-    public CrowPickUpShinyGoal(CrowEntity crow, double flySpeed) {
+    private static final double GROUND_SPEED = 0.75D;
+    private static final double FLY_SPEED = 0.9D;
+    private static final double PICKUP_DISTANCE = 0.65;
+    private static final double MAX_DISTANCE = 10.0;
+
+    private final Predicate<ItemEntity> targetSelector;
+    private final NearestItemSorter sorter = new NearestItemSorter();
+
+    public CrowPickUpShinyGoal(CrowEntity crow) {
         this.crow = crow;
-        this.flySpeed = flySpeed;
+        this.targetSelector = item -> item.isAlive() && item.getItem().is(HHModTags.CROW_SHINY_ITEMS);
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
     @Override
     public boolean canUse() {
-        // Only wild crows steal shiny items
-        if (crow.isTame()) return false;
+        if (crow.isTame() || crow.isPassenger() || crow.isOrderedToSit()) return false;
 
-        if (crow.isPassenger() || crow.isOrderedToSit()) return false;
-        if (crow.level().isClientSide()) return false;
-
-        if (crow.getRandom().nextInt(4) != 0)
-            return false;
-
-        // Find shiny items from tag
         List<ItemEntity> items = crow.level().getEntitiesOfClass(
                 ItemEntity.class,
-                crow.getBoundingBox().inflate(10),
-                e -> e.isAlive() && e.getItem().is(HHModTags.CROW_SHINY_ITEMS)
+                new AABB(crow.blockPosition()).inflate(MAX_DISTANCE),
+                targetSelector
         );
 
         if (items.isEmpty()) return false;
 
-        targetItem = items.stream()
-                .min(Comparator.comparingDouble(crow::distanceToSqr))
-                .orElse(null);
-
-        return targetItem != null;
+        Collections.sort(items, sorter);
+        targetItem = items.get(0);
+        return true;
     }
 
     @Override
     public boolean canContinueToUse() {
-        // If crow becomes tame mid-behavior → immediately stop
-        if (crow.isTame()) return false;
-
-        return targetItem != null &&
-                targetItem.isAlive() &&
-                tickTimer < 200 &&
-                !crow.isOrderedToSit() &&
-                !crow.isPassenger();
+        return targetItem != null && targetItem.isAlive() && !crow.isTame() && !crow.isOrderedToSit();
     }
-
 
     @Override
     public void start() {
         tickTimer = 0;
-        thinkingTimer = 0;
-        maxThinkingTime = 20 + crow.getRandom().nextInt(20);
+        walkCooldown = 0;
+        cachedWalkTarget = null;
     }
 
     @Override
     public void stop() {
         targetItem = null;
+        cachedWalkTarget = null;
+        crow.getNavigation().stop();
     }
 
     @Override
     public void tick() {
-        if (crow.isTame()) {
-            stop();
-            return;
-        }
-
-        if (targetItem != null) {
-            Vec3 itemPos = targetItem.position();
-            double distSq = crow.distanceToSqr(itemPos);
-            double dist = Math.sqrt(distSq);
-
-            if (dist < 3.0 && this.crow.onGround()) {
-                // kill all flying motion
-                Vec3 mv = this.crow.getDeltaMovement();
-                this.crow.setDeltaMovement(mv.x * 0.3, 0, mv.z * 0.3);
-            }
-        }
+        if (targetItem == null || !targetItem.isAlive()) return;
 
         tickTimer++;
-        if (targetItem == null) return;
+        Vec3 itemPos = targetItem.position();
+        double distance = crow.distanceToSqr(itemPos);
 
-        Vec3 itemPos = targetItem.position().add(0, 0.1, 0);
-        double distSq = crow.distanceToSqr(itemPos);
-        double dist = Math.sqrt(distSq);
+        // Look at the item
+        crow.getLookControl().setLookAt(itemPos.x, itemPos.y + 0.1, itemPos.z, 10f, 10f);
 
-        crow.getLookControl().setLookAt(itemPos.x, itemPos.y, itemPos.z, 20f, 20f);
+        if (!crow.onGround()) {
+            // Flying motion toward the item
+            crow.getMoveControl().setWantedPosition(itemPos.x, itemPos.y, itemPos.z, FLY_SPEED);
+            crow.setDeltaMovement(crow.getDeltaMovement().scale(0.8).subtract(0, 0.2, 0));
+            return;
+        }
 
-        if (dist > 3.0) {
-            if (!crow.onGround()) {
-                crow.getMoveControl().setWantedPosition(
-                        itemPos.x,
-                        itemPos.y,
-                        itemPos.z,
-                        FLY_SPEED
-                );
-            } else {
-                crow.setDeltaMovement(crow.getDeltaMovement().add(0, 0.2, 0));
+        // Ground navigation
+        if (distance > PICKUP_DISTANCE) {
+            if (cachedWalkTarget == null || crow.position().distanceToSqr(cachedWalkTarget) < 0.25 || crow.getNavigation().isDone()) {
+                Vec3 dir = itemPos.subtract(crow.position()).normalize();
+                cachedWalkTarget = itemPos.subtract(dir.scale(PICKUP_DISTANCE));
+                cachedWalkTarget = new Vec3(cachedWalkTarget.x, crow.getY(), cachedWalkTarget.z);
+                crow.getNavigation().moveTo(cachedWalkTarget.x, cachedWalkTarget.y, cachedWalkTarget.z, GROUND_SPEED);
             }
             return;
         }
 
-        if (!crow.onGround()) {
-            crow.setDeltaMovement(
-                    crow.getDeltaMovement().x * 0.8,
-                    -0.25,
-                    crow.getDeltaMovement().z * 0.8
-            );
-
-            crow.getMoveControl().setWantedPosition(
-                    itemPos.x,
-                    itemPos.y,
-                    itemPos.z,
-                    0.5
-            );
-
-            return;
-        }
-
-        if (dist > 1.0) {
-            crow.getNavigation().moveTo(itemPos.x, itemPos.y, itemPos.z, GROUND_SPEED);
-            return;
-        }
-
-        hoverOrWait(itemPos);
-    }
-
-    private void hoverOrWait(Vec3 itemPos) {
-        if (crow.isTame()) {
-            stop();
-            return;
-        }
+        // Pickup
         crow.getNavigation().stop();
         crow.setDeltaMovement(Vec3.ZERO);
-
-        thinkingTimer++;
-
-        if (crow.level().random.nextInt(8) == 0) {
-            crow.getLookControl().setLookAt(
-                    itemPos.x,
-                    itemPos.y + crow.getRandom().nextFloat() * 0.1,
-                    itemPos.z,
-                    10f,
-                    10f
-            );
-        }
-
-        if (thinkingTimer >= maxThinkingTime) {
-            handlePickup((ServerLevel) crow.level());
-        }
+        handlePickup((ServerLevel) crow.level());
     }
 
     private void handlePickup(ServerLevel level) {
         if (targetItem == null) return;
 
         targetItem.discard();
-        level.broadcastEntityEvent(crow, (byte) 7); // pickup animation
+        level.broadcastEntityEvent(crow, (byte) 7);
         crow.playPickupSound();
 
         if (!crow.isTame()) {
-            attemptTameProgress(level);
+            Player nearby = level.getNearestPlayer(crow, 6.0);
+            if (nearby != null && level.random.nextFloat() < 0.2F) {
+                crow.increaseTameProgress(nearby);
+                if (crow.isTame()) crow.showHappyParticles();
+            } else {
+                crow.showUnhappyParticles();
+            }
         }
 
         targetItem = null;
     }
 
-    private void attemptTameProgress(ServerLevel level) {
-        Player nearby = level.getNearestPlayer(crow, 6.0);
-
-        if (nearby == null) {
-            return;
-        }
-
-        // 20% chance to gain tame progress
-        if (level.random.nextFloat() < 0.20F) {
-
-            // Increase progress and check if it tames
-            boolean wasTamed = crow.isTame();
-            crow.increaseTameProgress(nearby);
-
-            // If it just became tamed → happy particles
-            if (!wasTamed && crow.isTame()) {
-                crow.showHappyParticles();
-            }
-
-        } else {
-            // Chance failed → show unhappy particles
-            crow.showUnhappyParticles();
+    private class NearestItemSorter implements Comparator<ItemEntity> {
+        @Override
+        public int compare(ItemEntity a, ItemEntity b) {
+            double d1 = crow.distanceToSqr(a);
+            double d2 = crow.distanceToSqr(b);
+            return Double.compare(d1, d2);
         }
     }
 }

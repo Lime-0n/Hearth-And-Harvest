@@ -42,9 +42,10 @@ public class CrowEntity extends TamableAnimal {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 6.0D)
-                .add(Attributes.ATTACK_DAMAGE, 0.5D)
-                .add(Attributes.FLYING_SPEED, 0.4D)
-                .add(Attributes.MOVEMENT_SPEED, 0.4D);
+                .add(Attributes.ATTACK_DAMAGE, 1.0D)
+                .add(Attributes.FLYING_SPEED, 0.5D)
+                .add(Attributes.MOVEMENT_SPEED, 0.5D)
+                .add(Attributes.STEP_HEIGHT, 1.0D);
     }
 
     @Override
@@ -60,8 +61,8 @@ public class CrowEntity extends TamableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(1, new CrowAttackTargetGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new CrowFleePlayerGoal(this, 3.0D));
-        this.goalSelector.addGoal(3, new CrowPickUpShinyGoal(this, 0.8D));
+        this.goalSelector.addGoal(2, new CrowFleePlayerGoal(this, 2.5D));
+        this.goalSelector.addGoal(3, new CrowPickUpShinyGoal(this));
         this.goalSelector.addGoal(4, new CrowEatCropsGoal(this, 0.8D));
         this.goalSelector.addGoal(5, new CrowPerchGoal(this));
         this.goalSelector.addGoal(6, new CrowFlyRandomlyGoal(this));
@@ -154,9 +155,8 @@ public class CrowEntity extends TamableAnimal {
 
     public void increaseTameProgress(Player player) {
         tameProgress++;
-        if (tameProgress >= 3) { // 5 shiny pickups to tame
+        if (tameProgress >= 3) { // 3 shiny pickups to tame
             this.tame(player);
-            this.showHappyParticles();
         }
     }
 
