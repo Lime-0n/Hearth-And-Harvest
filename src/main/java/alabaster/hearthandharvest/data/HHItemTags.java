@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -120,6 +121,15 @@ public class HHItemTags extends ItemTagsProvider {
 
         tag(HHModTags.CROW_TEMPT_ITEMS)
                 .add(HHModItems.CORN_KERNELS.get());
+
+        tag(HHModTags.CROW_SHINY_ITEMS)
+                .add(Items.DIAMOND)
+                .add(Items.EMERALD)
+                .add(Items.IRON_INGOT)
+                .add(Items.IRON_NUGGET)
+                .add(Items.COPPER_INGOT)
+                .add(Items.GOLD_INGOT)
+                .add(Items.GOLD_NUGGET);
 
         tag(ItemTags.CHICKEN_FOOD)
                 .add(HHModItems.CORN_KERNELS.get());

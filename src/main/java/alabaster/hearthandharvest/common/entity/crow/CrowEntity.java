@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public class CrowEntity extends TamableAnimal {
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState flyingAnimationState = new AnimationState();
-
+    private int tameProgress = 0;
     private int perchCooldown = 0;
 
     public CrowEntity(EntityType<? extends CrowEntity> type, Level level) {
@@ -60,7 +60,7 @@ public class CrowEntity extends TamableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(1, new CrowAttackTargetGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new CrowFleePlayerGoal(this, 2.0D));
+        this.goalSelector.addGoal(2, new CrowFleePlayerGoal(this, 3.0D));
         this.goalSelector.addGoal(3, new CrowPickUpShinyGoal(this, 0.8D));
         this.goalSelector.addGoal(4, new CrowEatCropsGoal(this, 0.8D));
         this.goalSelector.addGoal(5, new CrowPerchGoal(this));
@@ -85,6 +85,18 @@ public class CrowEntity extends TamableAnimal {
                     tryToSitOnShoulder(player);
                 }
             }
+        }
+
+        if (!this.isOrderedToSit()
+                && !this.onGround()
+                && this.getNavigation().isDone()) {
+
+            // gently fall towards ground
+            this.setDeltaMovement(
+                    this.getDeltaMovement().x * 0.8,
+                    -0.15,
+                    this.getDeltaMovement().z * 0.8
+            );
         }
 
         if (!this.level().isClientSide()) {
@@ -139,6 +151,15 @@ public class CrowEntity extends TamableAnimal {
 
         return false;
     }
+
+    public void increaseTameProgress(Player player) {
+        tameProgress++;
+        if (tameProgress >= 3) { // 5 shiny pickups to tame
+            this.tame(player);
+            this.showHappyParticles();
+        }
+    }
+
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -205,8 +226,8 @@ public class CrowEntity extends TamableAnimal {
         }
     }
 
-    private boolean isFlying() {
-        return !this.onGround();
+    public boolean isFlying() {
+        return !this.onGround() && !this.getNavigation().isInProgress();
     }
 
     public void perchCooldown(int ticks) {
@@ -255,9 +276,18 @@ public class CrowEntity extends TamableAnimal {
     }
 
     public void showHappyParticles() {
-        if (this.level() instanceof ServerLevel serverLevel) {
-            ((ServerLevel)this.level()).sendParticles(ParticleTypes.HEART,
-                    this.getX(), this.getY() + 0.8, this.getZ(), 3, 0.2, 0.2, 0.2, 0.0);
+        if (this.level() instanceof ServerLevel server) {
+            server.sendParticles(
+                    ParticleTypes.HEART, this.getX(), this.getY() + 0.8, this.getZ(), 3, 0.2, 0.2, 0.2, 0.0
+            );
+        }
+    }
+
+    public void showUnhappyParticles() {
+        if (this.level() instanceof ServerLevel server) {
+            server.sendParticles(
+                    ParticleTypes.SMOKE, this.getX(), this.getY() + 0.8, this.getZ(), 3, 0.2, 0.2, 0.2, 0.0
+            );
         }
     }
 }

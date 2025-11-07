@@ -24,7 +24,7 @@ public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
     private final ModelPart wings;
     private final ModelPart leftwing;
     private final ModelPart rightwing;
-    private final ModelPart head;
+    final ModelPart head;
     private final ModelPart beak;
     private final ModelPart upperbeak;
     private final ModelPart lowerbeak;

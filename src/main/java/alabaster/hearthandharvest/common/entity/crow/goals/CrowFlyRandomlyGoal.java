@@ -14,8 +14,10 @@ public class CrowFlyRandomlyGoal extends Goal {
     private Vec3 target;
     private final double speed = 1.0D;
     private int stateTime = 0;
-    private final double flyRadius = 12.0D;       // horizontal radius
-    private final double maxAltitudeOffset = 30.0D; // how high above ground
+
+    private static final double WALK_RADIUS = 8.0;
+    private static final double LOW_FLY_RADIUS = 10.0;
+    private static final double GLIDE_RADIUS = 12.0;
 
     public CrowFlyRandomlyGoal(CrowEntity crow) {
         this.crow = crow;
@@ -25,17 +27,19 @@ public class CrowFlyRandomlyGoal extends Goal {
     @Override
     public boolean canUse() {
         if (crow.isOrderedToSit() || crow.isPassenger()) return false;
-        // If on ground: chance to take off
+
+        // More grounded behavior: only start flying occasionally
         if (crow.onGround()) {
-            return crow.getRandom().nextInt(120) == 0;
+            return crow.getRandom().nextInt(90) == 0;
         }
-        // If in air: chance to pick a new target
+
+        // If in air: try to pick a new position to move toward
         return crow.getRandom().nextInt(40) == 0;
     }
 
     @Override
     public void start() {
-        this.target = getRandomFlyPos();
+        this.target = chooseMovementTarget();
         if (target != null) {
             crow.getMoveControl().setWantedPosition(target.x, target.y, target.z, speed);
         }
@@ -44,49 +48,92 @@ public class CrowFlyRandomlyGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return target != null && !crow.isOrderedToSit()
-                && crow.distanceToSqr(target) > 4.0D;
+        return target != null &&
+                crow.distanceToSqr(target) > 2.0D &&
+                !crow.isOrderedToSit() &&
+                stateTime < 120;
     }
 
     @Override
     public void tick() {
         stateTime++;
-        // If reached close to target or time limit exceeded, pick new target
-        if (target == null || crow.distanceToSqr(target) < 4.0D || stateTime > 200) {
-            this.target = getRandomFlyPos();
+
+        if (target == null || crow.distanceToSqr(target) < 3.0D || stateTime > 120) {
+            target = chooseMovementTarget();
             if (target != null) {
                 crow.getMoveControl().setWantedPosition(target.x, target.y, target.z, speed);
             }
             stateTime = 0;
         }
-
-        // Occasionally add vertical drift (simulate gliding/flap)
-        if (crow.getRandom().nextInt(50) == 0) {
-            crow.setDeltaMovement(crow.getDeltaMovement().add(
-                    0,
-                    (crow.getRandom().nextDouble() - 0.5D) * 0.1D,
-                    0));
-        }
     }
 
-    private Vec3 getRandomFlyPos() {
-        RandomSource random = crow.getRandom();
-        BlockPos origin = crow.blockPosition();
+    private Vec3 chooseMovementTarget() {
+        RandomSource r = crow.getRandom();
+        BlockPos base = crow.blockPosition();
 
-        // Ground level at origin
-        BlockPos groundBelow = crow.level().getHeightmapPos(
-                net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                origin
+        // 40% target = ground position
+        if (r.nextDouble() < 0.4) {
+            return findGroundPos(base);
+        }
+
+        // 40% target = perch height (1–3 blocks above ground)
+        if (r.nextDouble() < 0.8) {
+            return findNearGroundAirPos(base);
+        }
+
+        // 20% target = short glide
+        return findMediumAirPos(base);
+    }
+
+    private Vec3 findGroundPos(BlockPos base) {
+        RandomSource r = crow.getRandom();
+        for (int i = 0; i < 8; i++) {
+            BlockPos pos = base.offset(
+                    (int) (r.nextInt((int) WALK_RADIUS * 2) - WALK_RADIUS),
+                    -2,
+                    (int) (r.nextInt((int) WALK_RADIUS * 2) - WALK_RADIUS)
+            );
+
+            BlockPos ground = crow.level().getHeightmapPos(
+                    net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    pos
+            );
+
+            return new Vec3(
+                    ground.getX() + 0.5,
+                    ground.getY() + 1.0,
+                    ground.getZ() + 0.5
+            );
+        }
+        return null;
+    }
+
+    private Vec3 findNearGroundAirPos(BlockPos base) {
+        RandomSource r = crow.getRandom();
+        BlockPos pos = base.offset(
+                (int) (r.nextInt((int) LOW_FLY_RADIUS * 2) - LOW_FLY_RADIUS),
+                0,
+                (int) (r.nextInt((int) LOW_FLY_RADIUS * 2) - LOW_FLY_RADIUS)
         );
-        double baseY = groundBelow.getY() + 2.0D; // start a bit above ground
 
-        // Choose horizontal offset
-        double dx = origin.getX() + Mth.nextDouble(random, -flyRadius, flyRadius);
-        double dz = origin.getZ() + Mth.nextDouble(random, -flyRadius, flyRadius);
+        BlockPos ground = crow.level().getHeightmapPos(
+                net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                pos
+        );
 
-        // Choose altitude
-        double dy = baseY + Mth.nextDouble(random, 0.0D, maxAltitudeOffset);
+        return new Vec3(
+                ground.getX() + 0.5,
+                ground.getY() + 2.0 + r.nextDouble() * 2.0,  // 2–4 blocks up
+                ground.getZ() + 0.5
+        );
+    }
 
-        return new Vec3(dx, dy, dz);
+    private Vec3 findMediumAirPos(BlockPos base) {
+        RandomSource r = crow.getRandom();
+        return new Vec3(
+                base.getX() + r.nextDouble() * GLIDE_RADIUS * (r.nextBoolean() ? 1 : -1),
+                base.getY() + 3.0 + r.nextDouble() * 3.0,  // 3–6 blocks up
+                base.getZ() + r.nextDouble() * GLIDE_RADIUS * (r.nextBoolean() ? 1 : -1)
+        );
     }
 }
