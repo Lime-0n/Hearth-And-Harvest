@@ -1,13 +1,13 @@
 # Hearth-And-Harvest
 
 
-<a href="https://www.curseforge.com/minecraft/mc-mods/farmers-delight">
+<a href="https://www.curseforge.com/minecraft/mc-mods/hearth-and-harvest">
   <img src="http://cf.way2muchnoise.eu/full_892827_downloads.svg" alt="Curseforge Downloads">
 </a>
 
 
-<p dir="auto"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/AlabasterLeking/Crabbers-Delight/1.20.1/src/main/resources/crabbersdelightbanner.png" alt="Crabber's Delight" width="544" height="128" /></p>
-<p style="text-align: left;"><span style="font-size: 14px;"><strong>Crabber's Delight</strong> is a mod that expands upon the cooking system from <strong>Farmer's Delight.</strong></span></p>
+<p dir="auto"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/AlabasterLeking/Hearth-and-Harvest/NeoForge-1.21.1/src/main/resources/HearthAndHarvestBanner.png" alt="Hearth and Harvest" width="544" height="128" /></p>
+<p style="text-align: left;"><span style="font-size: 14px;"><strong>Hearth and Harvest</strong> is a mod that expands upon the cooking system from <strong>Farmer's Delight.</strong></span></p>
 <p><span style="font-size: 14px;">It introduces more seafood into the game, including crabs, shrimps, and clams, that can all be used in a collection of new dishes as well as some other food items to expand upon the existing sealife in Minecraft.</span><span style="font-size: 14px;"><br /></span></p>
 <p><span style="font-size: 14px;">📖 <strong>Getting Started:</strong></span></p>
 <p><span style="font-size: 14px;">To get started, build a crab trap and put in the water. You can then place fish or buckets of chum into the bait slot of the trap to collect seafood, junk, and even some treasures!</span><span style="font-size: 14px;"><br /></span></p>
