@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -517,13 +518,6 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         BlockState bottom = world.getBlockState(bottomPos);
         if (!(bottom.getBlock() instanceof CornStalkBlock)) return;
-
-        if ((state.getValue(SECTION) == CornSection.BOTTOM || state.getValue(SECTION) == CornSection.MIDDLE)
-                && state.getValue(AGE) == 2
-                && !world.getBlockState(pos.above()).isAir()) {
-            return;
-        }
-
         BlockPos middlePos = bottomPos.above();
         BlockPos topPos = bottomPos.above(2);
         BlockState middle = world.getBlockState(middlePos);
@@ -531,15 +525,16 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         boolean grew = false;
 
-        // Determine if top is at least stage 2
-        boolean topReady = top.getBlock() instanceof CornStalkBlock && top.getValue(AGE) >= 3;
+        // Determine if the top section is stage 2 or higher
+        boolean topReady = top.getBlock() instanceof CornStalkBlock && top.getValue(AGE) >= 2;
 
-        // Grow bottom
+        // === GROW BOTTOM ===
         int bottomAge = bottom.getValue(AGE);
+        boolean aboveBottomOccupied = !world.isEmptyBlock(middlePos);
+
         if (bottomAge < MAX_AGE) {
-            // Only allow progression past stage 3 if top is ready
-            if (bottomAge < 3 || topReady) {
-                int newAge = bottomAge + 1;
+            int newAge = bottomAge + 1;
+            if (newAge <= 2 || !aboveBottomOccupied || topReady) {
                 world.setBlock(bottomPos, bottom.setValue(AGE, newAge), 2);
                 BoneMealItem.addGrowthParticles(world, bottomPos, 0);
                 grew = true;
@@ -547,12 +542,14 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
             }
         }
 
-        // Grow middle
+        // === GROW MIDDLE ===
         if (middle.getBlock() instanceof CornStalkBlock) {
             int middleAge = middle.getValue(AGE);
+            boolean aboveMiddleOccupied = !world.isEmptyBlock(topPos);
+
             if (middleAge < MAX_AGE) {
-                if (middleAge < 3 || topReady) {
-                    int newAge = middleAge + 1;
+                int newAge = middleAge + 1;
+                if (newAge <= 2 || !aboveMiddleOccupied || topReady) {
                     world.setBlock(middlePos, middle.setValue(AGE, newAge), 2);
                     BoneMealItem.addGrowthParticles(world, middlePos, 0);
                     grew = true;
@@ -561,21 +558,25 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
             }
         }
 
-        // Grow top
+        // === GROW TOP ===
         if (top.getBlock() instanceof CornStalkBlock) {
             int topAge = top.getValue(AGE);
+            boolean aboveTopOccupied = !world.isEmptyBlock(topPos.above());
+
             if (topAge < MAX_AGE) {
                 int newAge = topAge + 1;
-                world.setBlock(topPos, top.setValue(AGE, newAge), 2);
-                BoneMealItem.addGrowthParticles(world, topPos, 0);
-                grew = true;
+                if (newAge <= 2 || !aboveTopOccupied || topReady) {
+                    world.setBlock(topPos, top.setValue(AGE, newAge), 2);
+                    BoneMealItem.addGrowthParticles(world, topPos, 0);
+                    grew = true;
+                }
             }
         }
 
         if (!grew) BoneMealItem.addGrowthParticles(world, pos, 0);
     }
 
-    public enum CornSection implements net.minecraft.util.StringRepresentable {
+    public enum CornSection implements StringRepresentable {
         BOTTOM("bottom"),
         MIDDLE("middle"),
         TOP("top");
