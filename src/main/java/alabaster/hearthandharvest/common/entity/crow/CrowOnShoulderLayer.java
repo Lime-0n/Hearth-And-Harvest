@@ -67,13 +67,13 @@ public class CrowOnShoulderLayer
 
         // Shoulder offsets (same as parrots)
         poseStack.translate(
-                left ? 0.4D : -0.4D,
+                left ? 0.4D : -0.35D,
                 player.isCrouching() ? -1.3D : -1.5D,
                 0.0D
         );
 
         // Rotate to face forward
-        poseStack.mulPose(Axis.YP.rotationDegrees(left ? 0F : 180F));
+        poseStack.mulPose(Axis.YP.rotationDegrees(0F));
 
         crowModel.root().getAllParts().forEach(part -> part.resetPose());
 

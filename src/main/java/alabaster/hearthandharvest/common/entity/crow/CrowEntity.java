@@ -1,215 +1,83 @@
 package alabaster.hearthandharvest.common.entity.crow;
 
-import alabaster.hearthandharvest.common.entity.crow.goals.*;
+import javax.annotation.Nullable;
+
+import alabaster.hearthandharvest.common.entity.crow.goals.CrowEatCropsGoal;
+import alabaster.hearthandharvest.common.entity.crow.goals.CrowFleePlayerGoal;
 import alabaster.hearthandharvest.common.registry.HHModEntities;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowMobGoal;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
+import net.minecraft.world.entity.ai.goal.LandOnOwnersShoulderGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.util.LandRandomPos;
+import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.animal.ShoulderRidingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
+import net.neoforged.neoforge.event.EventHooks;
 
-public class CrowEntity extends TamableAnimal {
+public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
+    public float flap;
+    public float flapSpeed;
+    public float oFlapSpeed;
+    public float oFlap;
+    private float flapping = 1.0F;
+    private float nextFlap = 1.0F;
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState flyingAnimationState = new AnimationState();
-    private int tameProgress = 0;
-    private int perchCooldown = 0;
 
-    public CrowEntity(EntityType<? extends CrowEntity> type, Level level) {
-        super(type, level);
-        this.moveControl = new FlyingMoveControl(this, 3, false);
+    public CrowEntity(EntityType<? extends ShoulderRidingEntity> entityType, Level level) {
+        super(entityType, level);
+        this.moveControl = new FlyingMoveControl(this, 10, false);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 6.0D)
-                .add(Attributes.ATTACK_DAMAGE, 1.0D)
-                .add(Attributes.FLYING_SPEED, 0.5D)
-                .add(Attributes.MOVEMENT_SPEED, 0.5D)
-                .add(Attributes.STEP_HEIGHT, 1.0D);
-    }
-
-    @Override
-    protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation nav = new FlyingPathNavigation(this, level);
-        nav.setCanFloat(false);
-        nav.setCanOpenDoors(false);
-        nav.setCanPassDoors(true);
-        return nav;
-    }
-
-    @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(1, new CrowAttackTargetGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new CrowFleePlayerGoal(this, 2.5D));
-        this.goalSelector.addGoal(3, new CrowPickUpShinyGoal(this));
-        this.goalSelector.addGoal(4, new CrowEatCropsGoal(this, 0.8D));
-        this.goalSelector.addGoal(5, new CrowPerchGoal(this));
-        this.goalSelector.addGoal(6, new CrowFlyRandomlyGoal(this));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-
-        if (!this.level().isClientSide() && this.isTame()) {
-            LivingEntity owner = this.getOwner();
-
-            if (owner instanceof Player player) {
-                // Only if player not already has a crow on shoulder
-                if (!player.hasPassenger(this) && this.distanceTo(player) < 1.5D && this.onGround()) {
-                    tryToSitOnShoulder(player);
-                }
-            }
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        if (spawnGroupData == null) {
+            spawnGroupData = new AgeableMob.AgeableMobGroupData(false);
         }
 
-        if (!this.isOrderedToSit()
-                && !this.onGround()
-                && this.getNavigation().isDone()) {
-
-            // gently fall towards ground
-            this.setDeltaMovement(
-                    this.getDeltaMovement().x * 0.8,
-                    -0.15,
-                    this.getDeltaMovement().z * 0.8
-            );
-        }
-
-        if (!this.level().isClientSide()) {
-            boolean flying = !this.onGround();
-            this.setNoGravity(flying);
-
-            // Sitting for tame crows
-            if (this.isOrderedToSit()) {
-                if (!this.onGround()) {
-                    Vec3 motion = this.getDeltaMovement();
-                    this.setDeltaMovement(motion.x * 0.8D, -0.2D, motion.z * 0.8D);
-                } else {
-                    this.setDeltaMovement(Vec3.ZERO);
-                }
-                return;
-            }
-
-            // Existing behavior for wild/flying crows
-            if (this.onGround()) {
-                Player player = this.level().getNearestPlayer(this, 10.0D);
-                if (player != null) {
-                    this.getLookControl().setLookAt(player, 30.0F, 30.0F);
-                }
-
-                Player closePlayer = this.level().getNearestPlayer(this, 10.0D);
-                if (closePlayer != null && this.distanceTo(closePlayer) < 3.0D && this.getRandom().nextInt(5) == 0) {
-                    this.setDeltaMovement(this.getDeltaMovement().add(0, 0.5D, 0));
-                }
-            }
-
-            if (perchCooldown > 0) perchCooldown--;
-        } else {
-            setupAnimationStates();
-        }
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
-    public boolean tryToSitOnShoulder(Player player) {
-        if (this.isPassenger() || this.isOrderedToSit()) return false;
-
-        // Make sure player has free shoulder slot
-        if (player.getShoulderEntityLeft().isEmpty() && player.getShoulderEntityRight().isEmpty()) {
-            this.playSound(SoundEvents.PARROT_FLY, 0.2F, 1.0F);
-
-           CompoundTag tag = this.saveWithoutId(new CompoundTag());
-            tag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(this.getType()).toString());
-
-            if (player.setEntityOnShoulder(tag)) {
-                this.discard();
-                return true;
-            }
-        }
-
+    public boolean isBaby() {
         return false;
-    }
-
-    public void increaseTameProgress(Player player) {
-        tameProgress++;
-        if (tameProgress >= 3) { // 3 shiny pickups to tame
-            this.tame(player);
-        }
-    }
-
-
-    @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-
-        // Feed to tame
-        if (!this.isTame() && this.isFood(stack)) {
-            if (!player.getAbilities().instabuild) stack.shrink(1);
-            if (this.random.nextInt(3) == 0) {
-                this.tame(player);
-                this.showHappyParticles();
-            } else {
-                this.level().broadcastEntityEvent(this, (byte)6);
-            }
-            return InteractionResult.SUCCESS;
-        }
-
-        // Sit or shoulder perch if tamed
-        if (this.isTame() && this.getOwner() == player) {
-            if (player.isShiftKeyDown()) {
-                this.setOrderedToSit(!this.isOrderedToSit());
-                return InteractionResult.SUCCESS;
-            } else {
-                if (this.tryToSitOnShoulder(player)) {
-                    return InteractionResult.SUCCESS;
-                }
-            }
-        }
-
-        return super.mobInteract(player, hand);
-    }
-
-    @Override
-    public void travel(Vec3 travelVector) {
-        if (this.isFlying()) {
-            this.moveRelative(0.05F, travelVector);
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            this.setDeltaMovement(this.getDeltaMovement().scale(0.91D));
-        } else {
-            super.travel(travelVector);
-        }
-    }
-
-    @Override
-    public boolean causeFallDamage(float distance, float multiplier, DamageSource source) {
-        return false;
-    }
-
-    @Override
-    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
     }
 
     private void setupAnimationStates() {
@@ -226,20 +94,109 @@ public class CrowEntity extends TamableAnimal {
         }
     }
 
-    public boolean isFlying() {
-        return !this.onGround() && !this.getNavigation().isInProgress();
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new TamableAnimalPanicGoal(1.25F));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new CrowFleePlayerGoal(this, 1.5F));
+        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(2, new CrowEatCropsGoal(this, 1.2F));
+        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0F, 5.0F, 1.0F));
+        this.goalSelector.addGoal(2, new CrowWanderGoal(this, 1.0F));
+        this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
+        this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0F, 3.0F, 7.0F));
     }
 
-    public void perchCooldown(int ticks) {
-        this.perchCooldown = ticks;
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 6.0F)
+                .add(Attributes.FLYING_SPEED, 0.8F)
+                .add(Attributes.MOVEMENT_SPEED, 0.4F)
+                .add(Attributes.ATTACK_DAMAGE, 3.0F);
     }
 
-    public boolean canPerch() {
-        return perchCooldown <= 0 && this.onGround();
+    protected PathNavigation createNavigation(Level level) {
+        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, level);
+        flyingpathnavigation.setCanOpenDoors(false);
+        flyingpathnavigation.setCanFloat(true);
+        flyingpathnavigation.setCanPassDoors(true);
+        return flyingpathnavigation;
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        this.calculateFlapping();
+    }
+
+    private void calculateFlapping() {
+        setupAnimationStates();
+        this.oFlap = this.flap;
+        this.oFlapSpeed = this.flapSpeed;
+        this.flapSpeed += (float)(!this.onGround() && !this.isPassenger() ? 4 : -1) * 0.3F;
+        this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
+        if (!this.onGround() && this.flapping < 1.0F) {
+            this.flapping = 1.0F;
+        }
+
+        this.flapping *= 0.9F;
+        Vec3 vec3 = this.getDeltaMovement();
+        if (!this.onGround() && vec3.y < (double)0.0F) {
+            this.setDeltaMovement(vec3.multiply((double)1.0F, 0.6, (double)1.0F));
+        }
+
+        this.flap += this.flapping * 2.0F;
+    }
+
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        if (!this.isTame() && itemstack.is(ItemTags.PARROT_FOOD)) {
+            itemstack.consume(1, player);
+            if (!this.isSilent()) {
+                this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+            }
+
+            if (!this.level().isClientSide) {
+                if (this.random.nextInt(10) == 0 && !EventHooks.onAnimalTame(this, player)) {
+                    this.tame(player);
+                    this.level().broadcastEntityEvent(this, (byte)7);
+                } else {
+                    this.level().broadcastEntityEvent(this, (byte)6);
+                }
+            }
+
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        } else if (!itemstack.is(ItemTags.PARROT_POISONOUS_FOOD)) {
+            if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
+                if (!this.level().isClientSide) {
+                    this.setOrderedToSit(!this.isOrderedToSit());
+                }
+
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            } else {
+                return super.mobInteract(player, hand);
+            }
+        } else {
+            itemstack.consume(1, player);
+            this.addEffect(new MobEffectInstance(MobEffects.POISON, 900));
+            if (player.isCreative() || !this.isInvulnerable()) {
+                this.hurt(this.damageSources().playerAttack(player), Float.MAX_VALUE);
+            }
+
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
     }
 
     public boolean isFood(ItemStack stack) {
         return stack.is(HHModTags.CROW_FOOD);
+    }
+
+
+    @Override
+    public boolean causeFallDamage(float distance, float multiplier, DamageSource source) {
+        return false;
+    }
+
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
     }
 
     @Nullable
@@ -248,46 +205,122 @@ public class CrowEntity extends TamableAnimal {
         return HHModEntities.CROW.get().create(level);
     }
 
-    @Nullable
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.PARROT_AMBIENT;
-    }
-
-    @Nullable
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.PARROT_HURT;
     }
 
-    @Nullable
-    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.PARROT_DEATH;
     }
 
-    @Override
-    protected void playStepSound(BlockPos pos, BlockState state) {
+    protected void playStepSound(BlockPos pos, BlockState block) {
         this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
     }
 
-    public void playPickupSound() {
-        this.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.4F, 1.2F);
+    protected boolean isFlapping() {
+        return this.flyDist > this.nextFlap;
     }
 
-    public void showHappyParticles() {
-        if (this.level() instanceof ServerLevel server) {
-            server.sendParticles(
-                    ParticleTypes.HEART, this.getX(), this.getY() + 0.8, this.getZ(), 3, 0.2, 0.2, 0.2, 0.0
-            );
+    protected void onFlap() {
+        this.playSound(SoundEvents.PARROT_FLY, 0.15F, 1.0F);
+        this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
+    }
+
+    public float getVoicePitch() {
+        return getPitch(this.random);
+    }
+
+    public static float getPitch(RandomSource random) {
+        return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
+    }
+
+    public SoundSource getSoundSource() {
+        return SoundSource.NEUTRAL;
+    }
+
+    public boolean isPushable() {
+        return true;
+    }
+
+    protected void doPush(Entity entity) {
+        if (!(entity instanceof Player)) {
+            super.doPush(entity);
+        }
+
+    }
+
+    public boolean hurt(DamageSource source, float amount) {
+        if (this.isInvulnerableTo(source)) {
+            return false;
+        } else {
+            if (!this.level().isClientSide) {
+                this.setOrderedToSit(false);
+            }
+
+            return super.hurt(source, amount);
         }
     }
 
-    public void showUnhappyParticles() {
-        if (this.level() instanceof ServerLevel server) {
-            server.sendParticles(
-                    ParticleTypes.SMOKE, this.getX(), this.getY() + 0.8, this.getZ(), 3, 0.2, 0.2, 0.2, 0.0
-            );
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+    }
+
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+    }
+
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+    }
+
+    public boolean isFlying() {
+        return !this.onGround();
+    }
+
+    protected boolean canFlyToOwner() {
+        return true;
+    }
+
+    public Vec3 getLeashOffset() {
+        return new Vec3(0.0F, (0.5F * this.getEyeHeight()), (this.getBbWidth() * 0.4F));
+    }
+
+    static class CrowWanderGoal extends WaterAvoidingRandomFlyingGoal {
+        public CrowWanderGoal(PathfinderMob mob, double speedModifier) {
+            super(mob, speedModifier);
+        }
+
+        @Nullable
+        protected Vec3 getPosition() {
+            Vec3 vec3 = null;
+            if (this.mob.isInWater()) {
+                vec3 = LandRandomPos.getPos(this.mob, 15, 15);
+            }
+
+            if (this.mob.getRandom().nextFloat() >= this.probability) {
+                vec3 = this.getTreePos();
+            }
+
+            return vec3 == null ? super.getPosition() : vec3;
+        }
+
+        @Nullable
+        private Vec3 getTreePos() {
+            BlockPos blockpos = this.mob.blockPosition();
+            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+            BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+
+            for(BlockPos blockpos1 : BlockPos.betweenClosed(Mth.floor(this.mob.getX() - (double)3.0F), Mth.floor(this.mob.getY() - (double)6.0F), Mth.floor(this.mob.getZ() - (double)3.0F), Mth.floor(this.mob.getX() + (double)3.0F), Mth.floor(this.mob.getY() + (double)6.0F), Mth.floor(this.mob.getZ() + (double)3.0F))) {
+                if (!blockpos.equals(blockpos1)) {
+                    BlockState blockstate = this.mob.level().getBlockState(blockpos$mutableblockpos1.setWithOffset(blockpos1, Direction.DOWN));
+                    boolean flag = blockstate.getBlock() instanceof LeavesBlock || blockstate.is(BlockTags.LOGS);
+                    if (flag && this.mob.level().isEmptyBlock(blockpos1) && this.mob.level().isEmptyBlock(blockpos$mutableblockpos.setWithOffset(blockpos1, Direction.UP))) {
+                        return Vec3.atBottomCenterOf(blockpos1);
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
