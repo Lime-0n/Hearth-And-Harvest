@@ -5,6 +5,7 @@
   "block.hearthandharvest.tree_tapper": "Tree Tapper",
 
   "item.hearthandharvest.crow_spawn_egg": "Crow Spawn Egg",
+  "entity.hearthandharvest.crow": "Crow",
 
   "block.hearthandharvest.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
@@ -141,6 +142,7 @@
   "item.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "item.hearthandharvest.cherry_wine": "Cherry Wine",
   "item.hearthandharvest.sweet_berry_wine": "Sweet Berry Wine",
+  "item.hearthandharvest.moonshine": "Moonshine",
   "item.hearthandharvest.goat_milk_bottle": "Goat Milk Bottle",
   "farmersdelight.tooltip.goat_milk_bottle": "Clears 1 Effect",
   "item.hearthandharvest.cherry_juice": "Cherry Juice",

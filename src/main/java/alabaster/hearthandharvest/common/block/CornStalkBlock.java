@@ -93,13 +93,26 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-        if (!this.canSurvive(state, world, pos)) {
-            if (world instanceof Level lvl && !lvl.isClientSide()) {
-                lvl.destroyBlock(pos, true);
-                return state;
+        // If the block below changes or is removed, verify survival
+        if (direction == Direction.DOWN || direction == Direction.UP) {
+            if (!this.canSurvive(state, world, pos)) {
+                if (world instanceof Level level && !level.isClientSide()) {
+                    // Drop items when middle or top pieces die from instability
+                    ItemStack drop = switch (state.getValue(SECTION)) {
+                        case MIDDLE, TOP -> new ItemStack(HHModItems.CORN.get());
+                        default -> ItemStack.EMPTY;
+                    };
+
+                    if (!drop.isEmpty()) {
+                        Block.popResource(level, pos, drop);
+                    }
+
+                    level.destroyBlock(pos, false);
+                }
+                return Blocks.AIR.defaultBlockState();
             }
-            return Blocks.AIR.defaultBlockState();
         }
+
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
@@ -113,16 +126,33 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
 
         if (!(hasSufficientLight(world, pos) && super.canSurvive(state, world, pos))) return false;
 
-        return switch (section) {
-            case BOTTOM -> (below.is(BlockTags.DIRT)
-                    || below.is(Blocks.FARMLAND)
-                    || below.is(Blocks.GRASS_BLOCK)
-                    || below.is(Blocks.COARSE_DIRT)
-                    || below.is(Blocks.PODZOL)
-                    || below.is(ModBlocks.RICH_SOIL_FARMLAND.get()));
-            case MIDDLE -> isSameCornSection(below, CornSection.BOTTOM);
-            case TOP -> isSameCornSection(below, CornSection.MIDDLE);
-        };
+        switch (section) {
+            case BOTTOM -> {
+                return below.is(BlockTags.DIRT)
+                        || below.is(Blocks.FARMLAND)
+                        || below.is(Blocks.GRASS_BLOCK)
+                        || below.is(Blocks.COARSE_DIRT)
+                        || below.is(Blocks.PODZOL)
+                        || below.is(ModBlocks.RICH_SOIL_FARMLAND.get());
+            }
+            case MIDDLE -> {
+                // Must sit on bottom corn with AGE >= 3
+                return below.getBlock() instanceof CornStalkBlock
+                        && below.hasProperty(SECTION)
+                        && below.getValue(SECTION) == CornSection.BOTTOM
+                        && below.hasProperty(AGE)
+                        && below.getValue(AGE) >= 3;
+            }
+            case TOP -> {
+                // Must sit on middle corn with AGE >= 3
+                return below.getBlock() instanceof CornStalkBlock
+                        && below.hasProperty(SECTION)
+                        && below.getValue(SECTION) == CornSection.MIDDLE
+                        && below.hasProperty(AGE)
+                        && below.getValue(AGE) >= 3;
+            }
+        }
+        return false;
     }
 
     public static boolean hasSufficientLight(LevelReader level, BlockPos pos) {

@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 import vectorwing.farmersdelight.common.tag.CompatibilityTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
@@ -41,7 +42,15 @@ public class HHBlockTags extends BlockTagsProvider {
         tag(HHModTags.CROW_EDIBLE_CROPS).add(
                 Blocks.WHEAT,
                 Blocks.PUMPKIN_STEM,
-                Blocks.POTATOES,
+                Blocks.SWEET_BERRY_BUSH,
+                Blocks.CAVE_VINES_PLANT,
+                ModBlocks.CABBAGE_CROP.get(),
+                ModBlocks.TOMATO_CROP.get(),
+                ModBlocks.BUDDING_TOMATO_CROP.get(),
+                HHModBlocks.BLUEBERRY_BUSH.get(),
+                HHModBlocks.RASPBERRY_BUSH.get(),
+                HHModBlocks.GREEN_GRAPE_CROP.get(),
+                HHModBlocks.RED_GRAPE_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
         );

@@ -328,6 +328,8 @@ public class HHModItems {
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
+    public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
+            () -> new WineBottleItem(()-> HHModFluids.SWEET_BERRY_WINE.get(), drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
 
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",
