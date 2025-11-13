@@ -125,13 +125,17 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CORN_KERNELS.get());
 
         tag(HHModTags.CROW_SHINY_ITEMS)
-                .add(Items.DIAMOND)
-                .add(Items.EMERALD)
-                .add(Items.IRON_INGOT)
-                .add(Items.IRON_NUGGET)
-                .add(Items.COPPER_INGOT)
-                .add(Items.GOLD_INGOT)
-                .add(Items.GOLD_NUGGET);
+                .addTag(Tags.Items.GEMS)
+                .addTag(Tags.Items.INGOTS)
+                .addTag(Tags.Items.NUGGETS)
+                .addTag(Tags.Items.ORES)
+                .addTag(Tags.Items.ARMORS)
+                .addTag(Tags.Items.TOOLS)
+                .add(Items.ENCHANTED_BOOK)
+                .add(Items.GLOWSTONE)
+                .add(Items.GLOWSTONE_DUST)
+                .add(Items.ENDER_PEARL)
+                .add(Items.ENDER_EYE);
 
         tag(ItemTags.CHICKEN_FOOD)
                 .add(HHModItems.CORN_KERNELS.get());
