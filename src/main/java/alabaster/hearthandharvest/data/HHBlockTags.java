@@ -54,6 +54,11 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
         );
+
+        tag(HHModTags.REPELS_CROWS).add(
+                Blocks.CARVED_PUMPKIN,
+                Blocks.JACK_O_LANTERN
+        );
     }
 
     protected void registerMinecraftTags() {

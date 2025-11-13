@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.entity.crow;
 
 import javax.annotation.Nullable;
 
+import alabaster.hearthandharvest.common.entity.crow.goals.CrowAvoidRepellingBlocksGoal;
 import alabaster.hearthandharvest.common.entity.crow.goals.CrowEatCropsGoal;
 import alabaster.hearthandharvest.common.entity.crow.goals.CrowFleePlayerGoal;
 import alabaster.hearthandharvest.common.registry.HHModEntities;
@@ -97,7 +98,8 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TamableAnimalPanicGoal(1.25F));
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new CrowFleePlayerGoal(this, 1.5F));
+        this.goalSelector.addGoal(1, new CrowFleePlayerGoal(this, 1.8F));
+        this.goalSelector.addGoal(1, new CrowAvoidRepellingBlocksGoal(this, 1.6F));
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(2, new CrowEatCropsGoal(this, 1.2F));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
