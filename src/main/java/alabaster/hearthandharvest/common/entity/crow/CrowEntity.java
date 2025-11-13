@@ -2,9 +2,7 @@ package alabaster.hearthandharvest.common.entity.crow;
 
 import javax.annotation.Nullable;
 
-import alabaster.hearthandharvest.common.entity.crow.goals.CrowAvoidRepellingBlocksGoal;
-import alabaster.hearthandharvest.common.entity.crow.goals.CrowEatCropsGoal;
-import alabaster.hearthandharvest.common.entity.crow.goals.CrowFleePlayerGoal;
+import alabaster.hearthandharvest.common.entity.crow.goals.*;
 import alabaster.hearthandharvest.common.registry.HHModEntities;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
@@ -86,12 +84,17 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
 
         boolean flying = isFlying();
 
-        if (flying && !flyingAnimationState.isStarted()) {
-            idleAnimationState.stop();
-            flyingAnimationState.start(this.tickCount);
-        } else if (!flying && !idleAnimationState.isStarted()) {
-            flyingAnimationState.stop();
-            idleAnimationState.start(this.tickCount);
+        // Start flying animation only if not already running
+        if (flying) {
+            if (!flyingAnimationState.isStarted()) {
+                idleAnimationState.stop();
+                flyingAnimationState.start(this.tickCount);
+            }
+        } else {
+            if (!idleAnimationState.isStarted()) {
+                flyingAnimationState.stop();
+                idleAnimationState.start(this.tickCount);
+            }
         }
     }
 
@@ -101,12 +104,14 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         this.goalSelector.addGoal(1, new CrowFleePlayerGoal(this, 1.8F));
         this.goalSelector.addGoal(1, new CrowAvoidRepellingBlocksGoal(this, 1.6F));
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(2, new CrowSeekShinyItemGoal(this, 1.2D));
         this.goalSelector.addGoal(2, new CrowEatCropsGoal(this, 1.2F));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0F, 5.0F, 1.0F));
-        this.goalSelector.addGoal(2, new CrowWanderGoal(this, 1.0F));
-        this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
-        this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0F, 3.0F, 7.0F));
+        this.goalSelector.addGoal(3, new CrowWanderGoal(this, 1.0F));
+        this.goalSelector.addGoal(3, new CrowRetrieveItemsGoal(this, 1.2D));
+        this.goalSelector.addGoal(4, new LandOnOwnersShoulderGoal(this));
+        this.goalSelector.addGoal(4, new FollowMobGoal(this, 1.0F, 3.0F, 7.0F));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -191,7 +196,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     public boolean isFood(ItemStack stack) {
         return stack.is(HHModTags.CROW_FOOD);
     }
-
 
     @Override
     public boolean causeFallDamage(float distance, float multiplier, DamageSource source) {
