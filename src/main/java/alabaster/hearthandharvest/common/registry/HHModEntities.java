@@ -14,5 +14,5 @@ public class HHModEntities {
 
     public static final Supplier<EntityType<CrowEntity>> CROW =
             ENTITY_TYPES.register("crow",
-                    () -> EntityType.Builder.of(CrowEntity::new, MobCategory.AMBIENT).sized(0.7f, 0.7f).build("crow"));
+                    () -> EntityType.Builder.of(CrowEntity::new, MobCategory.AMBIENT).sized(0.4f, 0.5f).build("crow"));
 }

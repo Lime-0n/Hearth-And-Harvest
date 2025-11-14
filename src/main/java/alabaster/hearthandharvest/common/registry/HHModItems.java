@@ -103,6 +103,9 @@ public class HHModItems {
     public static final Supplier<Item> BASIN = registerWithBlockTab("basin",
             () -> new BlockItem(HHModBlocks.BASIN.get(), basicItem()));
 
+    public static final Supplier<Item> NEST = registerWithBlockTab("nest",
+            () -> new BlockItem(HHModBlocks.NEST.get(), basicItem()));
+
     // Half-Cabinets
     public static final Supplier<Item> OAK_HALF_CABINET = registerWithBlockTab("oak_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.OAK_HALF_CABINET.get(), basicItem(), 300));
