@@ -72,8 +72,6 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.COTTON_BALE.get());
         dropSelf(HHModBlocks.SPOOL.get());
         dropSelf(HHModBlocks.ROPE_COIL.get());
-        dropOther(HHModBlocks.RED_GRAPE_CROP.get(), HHModItems.RED_GRAPES.get());
-        dropOther(HHModBlocks.GREEN_GRAPE_CROP.get(), HHModItems.GREEN_GRAPES.get());
         dropSelf(HHModBlocks.YELLOW_MUM.get());
         dropSelf(HHModBlocks.ORANGE_MUM.get());
         dropSelf(HHModBlocks.RED_MUM.get());
