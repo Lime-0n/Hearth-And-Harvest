@@ -37,6 +37,9 @@ public class HHModBlocks {
     public static final Supplier<Block> NEST = BLOCKS.register("nest",
             () -> new NestBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
 
+    public static final Supplier<Block> SCARECROW = BLOCKS.register("scarecrow",
+            () -> new ScarecrowBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));

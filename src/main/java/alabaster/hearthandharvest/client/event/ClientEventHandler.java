@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
+import alabaster.hearthandharvest.client.renderer.ScarecrowRenderer;
 import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
@@ -34,6 +35,11 @@ public class ClientEventHandler {
         event.registerBlockEntityRenderer(
                 HHModBlockEntities.WINE_RACK.get(),
                 WineRackRenderer::new
+        );
+
+        event.registerBlockEntityRenderer(
+                HHModBlockEntities.SCARECROW.get(),
+                ScarecrowRenderer::new
         );
     }
 

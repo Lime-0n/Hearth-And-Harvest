@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
+import alabaster.hearthandharvest.common.block.entity.ScarecrowBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.WineRackBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,6 +27,8 @@ public class HHModBlockEntities {
     public static final Supplier<BlockEntityType<CaskBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
             () -> BlockEntityType.Builder.of(CaskBlockEntity::new, HHModBlocks.CASK.get()).build(null));
 
+    public static final Supplier<BlockEntityType<ScarecrowBlockEntity>> SCARECROW = BLOCK_ENTITY_TYPES.register("scarecrow",
+            () -> BlockEntityType.Builder.of(ScarecrowBlockEntity::new, HHModBlocks.SCARECROW.get()).build(null));
 
     public static final Supplier<BlockEntityType<WineRackBlockEntity>> WINE_RACK = BLOCK_ENTITY_TYPES.register("wine_rack",
             () -> BlockEntityType.Builder.of(WineRackBlockEntity::new,
