@@ -27,9 +27,6 @@ public class HHModBlockEntities {
     public static final Supplier<BlockEntityType<CaskBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
             () -> BlockEntityType.Builder.of(CaskBlockEntity::new, HHModBlocks.CASK.get()).build(null));
 
-    public static final Supplier<BlockEntityType<ScarecrowBlockEntity>> SCARECROW = BLOCK_ENTITY_TYPES.register("scarecrow",
-            () -> BlockEntityType.Builder.of(ScarecrowBlockEntity::new, HHModBlocks.SCARECROW.get()).build(null));
-
     public static final Supplier<BlockEntityType<WineRackBlockEntity>> WINE_RACK = BLOCK_ENTITY_TYPES.register("wine_rack",
             () -> BlockEntityType.Builder.of(WineRackBlockEntity::new,
                             HHModBlocks.OAK_WINE_RACK.get(),

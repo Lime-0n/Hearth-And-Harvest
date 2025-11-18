@@ -36,11 +36,6 @@ public class ClientEventHandler {
                 HHModBlockEntities.WINE_RACK.get(),
                 WineRackRenderer::new
         );
-
-        event.registerBlockEntityRenderer(
-                HHModBlockEntities.SCARECROW.get(),
-                ScarecrowRenderer::new
-        );
     }
 
     @SubscribeEvent
