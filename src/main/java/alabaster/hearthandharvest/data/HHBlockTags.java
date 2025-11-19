@@ -157,7 +157,9 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COCOA_BEAN_BAG.get(),
                 HHModBlocks.COTTON_BALE.get(),
                 HHModBlocks.SPOOL.get(),
-                HHModBlocks.ROPE_COIL.get()
+                HHModBlocks.ROPE_COIL.get(),
+                HHModBlocks.CORN_HUSK_BUNDLE.get(),
+                HHModBlocks.CORN_KERNEL_BAG.get()
         );
     }
 

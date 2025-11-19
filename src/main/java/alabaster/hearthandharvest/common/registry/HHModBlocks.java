@@ -192,6 +192,8 @@ public class HHModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
     public static final Supplier<Block> GUNPOWDER_BAG = BLOCKS.register("gunpowder_bag",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final Supplier<Block> CORN_KERNEL_BAG = BLOCKS.register("corn_kernel_bag",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
     
     // Misc
     public static final Supplier<Block> COTTON_BALE = BLOCKS.register("cotton_bale",
@@ -200,6 +202,8 @@ public class HHModBlocks {
             () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL).strength(2.0F, 3.0F).sound(SoundType.WOOL)));
     public static final Supplier<Block> ROPE_COIL = BLOCKS.register("rope_coil",
             () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL).strength(2.0F, 3.0F).sound(SoundType.WOOL)));
+    public static final Supplier<Block> CORN_HUSK_BUNDLE = BLOCKS.register("corn_husk_bundle",
+            () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK).strength(2.0F, 3.0F).sound(SoundType.CROP)));
 
     // Half-Slab Crates
     public static final Supplier<Block> EGG_CRATE = BLOCKS.register("egg_crate",

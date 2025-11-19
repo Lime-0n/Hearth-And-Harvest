@@ -261,6 +261,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.COCOA_BEAN_BAG.get(), basicItem()));
     public static final Supplier<Item> GUNPOWDER_BAG = registerWithBlockTab("gunpowder_bag",
             () -> new BlockItem(HHModBlocks.GUNPOWDER_BAG.get(), basicItem()));
+    public static final Supplier<Item> CORN_KERNEL_BAG = registerWithBlockTab("corn_kernel_bag",
+            () -> new BlockItem(HHModBlocks.CORN_KERNEL_BAG.get(), basicItem()));
     
     // Misc
     public static final Supplier<Item> COTTON_BALE = registerWithBlockTab("cotton_bale",
@@ -269,6 +271,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.SPOOL.get(), basicItem()));
     public static final Supplier<Item> ROPE_COIL = registerWithBlockTab("rope_coil",
             () -> new BlockItem(HHModBlocks.ROPE_COIL.get(), basicItem()));
+    public static final Supplier<Item> CORN_HUSK_BUNDLE = registerWithBlockTab("corn_husk_bundle",
+            () -> new BlockItem(HHModBlocks.CORN_HUSK_BUNDLE.get(), basicItem()));
 
     // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithBlockTab("egg_crate",
