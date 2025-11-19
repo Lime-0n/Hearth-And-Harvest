@@ -31,6 +31,7 @@ public class ItemModels extends ItemModelProvider
 
         // Specific Cases
         items.remove(HHModItems.CROW_SPAWN_EGG.get());
+        items.remove(HHModItems.SCARECROW.get());
 
         // Workstations
         blockBasedModel(HHModItems.TREE_TAPPER.get(),"");

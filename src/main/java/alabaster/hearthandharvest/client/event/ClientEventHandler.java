@@ -2,7 +2,6 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
-import alabaster.hearthandharvest.client.renderer.ScarecrowRenderer;
 import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
