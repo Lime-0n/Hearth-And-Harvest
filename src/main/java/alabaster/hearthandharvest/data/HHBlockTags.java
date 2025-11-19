@@ -57,7 +57,8 @@ public class HHBlockTags extends BlockTagsProvider {
 
         tag(HHModTags.REPELS_CROWS).add(
                 Blocks.CARVED_PUMPKIN,
-                Blocks.JACK_O_LANTERN
+                Blocks.JACK_O_LANTERN,
+                HHModBlocks.SCARECROW.get()
         );
     }
 

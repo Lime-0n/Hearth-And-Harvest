@@ -21,6 +21,11 @@
   "block.hearthandharvest.drawer": "Drawer",
   "block.hearthandharvest.basin": "Sink",
 
+  "block.hearthandharvest.nest": "Nest",
+
+  "item.hearthandharvest.scarecrow": "Scarecrow",
+  "block.hearthandharvest.scarecrow": "Scarecrow",
+
   "block.hearthandharvest.oak_half_cabinet": "Oak Half Cabinet",
   "block.hearthandharvest.birch_half_cabinet": "Birch Half Cabinet",
   "block.hearthandharvest.spruce_half_cabinet": "Spruce Half Cabinet",
