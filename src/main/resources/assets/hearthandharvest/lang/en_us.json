@@ -6,7 +6,7 @@
 
   "item.hearthandharvest.crow_spawn_egg": "Crow Spawn Egg",
   "entity.hearthandharvest.crow": "Crow",
-  "item.hearthandharvest.crow_feather": "Crow Feater",
+  "item.hearthandharvest.crow_feather": "Crow Feather",
 
   "block.hearthandharvest.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
@@ -23,6 +23,7 @@
   "block.hearthandharvest.basin": "Sink",
 
   "block.hearthandharvest.nest": "Nest",
+  "block.hearthandharvest.hay_rug": "Hay Rug",
 
   "item.hearthandharvest.scarecrow": "Scarecrow",
   "block.hearthandharvest.scarecrow": "Scarecrow",
@@ -112,11 +113,12 @@
   "block.hearthandharvest.sugar_bag": "Sugar Bag",
   "block.hearthandharvest.cocoa_bean_bag": "Cocoa Bean Bag",
   "block.hearthandharvest.gunpowder_bag": "Gunpowder Bag",
-  "block.hearthandharvest.corn_kernel_bag": "Corn Kernel  Bag",
+  "block.hearthandharvest.corn_kernel_bag": "Corn Kernel Bag",
 
   "block.hearthandharvest.cotton_bale": "Cotton Bale",
   "block.hearthandharvest.spool": "Spool",
   "block.hearthandharvest.rope_coil": "Rope Coil",
+  "block.hearthandharvest.corn_husk_bundle": "Corn Husk Bundle",
 
   "block.hearthandharvest.egg_crate": "Egg Crate",
   "block.hearthandharvest.turtle_egg_crate": "Turtle Egg Crate",

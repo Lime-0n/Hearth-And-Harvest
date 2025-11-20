@@ -36,6 +36,8 @@ public class HHModBlocks {
             () -> new BasinBlock(Block.Properties.ofFullCopy(Blocks.BRICKS).randomTicks()));
     public static final Supplier<Block> NEST = BLOCKS.register("nest",
             () -> new NestBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final Supplier<Block> HAY_RUG = BLOCKS.register("hay_rug",
+            () -> new CarpetBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
 
     public static final Supplier<Block> SCARECROW = BLOCKS.register("scarecrow",
             () -> new ScarecrowBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
