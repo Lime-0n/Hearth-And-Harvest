@@ -6,6 +6,7 @@
 
   "item.hearthandharvest.crow_spawn_egg": "Crow Spawn Egg",
   "entity.hearthandharvest.crow": "Crow",
+  "item.hearthandharvest.crow_feather": "Crow Feater",
 
   "block.hearthandharvest.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",
@@ -111,7 +112,7 @@
   "block.hearthandharvest.sugar_bag": "Sugar Bag",
   "block.hearthandharvest.cocoa_bean_bag": "Cocoa Bean Bag",
   "block.hearthandharvest.gunpowder_bag": "Gunpowder Bag",
-  "block.hearthandharvest.corn_kernel_bag": "Corn Kernel Bag",
+  "block.hearthandharvest.corn_kernel_bag": "Corn Kernel  Bag",
 
   "block.hearthandharvest.cotton_bale": "Cotton Bale",
   "block.hearthandharvest.spool": "Spool",
@@ -226,6 +227,7 @@
   "item.hearthandharvest.popcorn": "Popcorn",
   "item.hearthandharvest.uncooked_corn_on_the_cob": "Uncooked Corn on the Cob",
   "item.hearthandharvest.cooked_corn_on_the_cob": "Cooked Corn on the Cob",
+  "item.hearthandharvest.corn_bread": "Corn Bread",
 
   "item.hearthandharvest.onion_soup": "Onion Soup",
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",

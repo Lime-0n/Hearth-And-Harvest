@@ -87,6 +87,8 @@ public class HHModItems {
     public static final Supplier<Item> CROW_SPAWN_EGG = registerWithTab("crow_spawn_egg",
             () -> new DeferredSpawnEggItem(HHModEntities.CROW, 0x1c2030,0x0d111c,
                     new Item.Properties()));
+    public static final Supplier<Item> CROW_FEATHER = registerWithTab("crow_feather",
+            () -> new Item(basicItem()));
 
     // Workstations
     public static final Supplier<Item> TREE_TAPPER = registerWithTab("tree_tapper",
@@ -508,6 +510,8 @@ public class HHModItems {
     public static final Supplier<Item> CIDER_DONUT = registerWithTab("cider_donut",
             () -> new Item(foodItem(HHFoodValues.CIDER_DONUT)));
     public static final Supplier<Item> CANDY_CORN = registerWithTab("candy_corn",
+            () -> new Item(foodItem(HHFoodValues.CANDY_CORN)));
+    public static final Supplier<Item> CORN_BREAD = registerWithTab("corn_bread",
             () -> new Item(foodItem(HHFoodValues.CANDY_CORN)));
 
     // Meals

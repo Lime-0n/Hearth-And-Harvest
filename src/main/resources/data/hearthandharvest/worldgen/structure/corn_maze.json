@@ -3,5 +3,6 @@
   "biomes": "#c:is_plains",
   "step": "surface_structures",
   "terrain_adaptation": "beard_thin",
+  "use_expansion_hack": true,
   "spawn_overrides": {}
 }

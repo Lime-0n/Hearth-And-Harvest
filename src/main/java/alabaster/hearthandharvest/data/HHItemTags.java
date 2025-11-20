@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
+import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.CompatibilityTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
@@ -183,5 +184,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.PURPLE_MUM.get())
                 .add(HHModItems.PINK_MUM.get())
                 .add(HHModItems.WHITE_MUM.get());
+
+        tag(Tags.Items.FEATHERS)
+                .add(HHModItems.CROW_FEATHER.get());
     }
 }
