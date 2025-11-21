@@ -6,6 +6,7 @@ import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.entity.crow.CrowModel;
 import alabaster.hearthandharvest.common.entity.crow.CrowRenderer;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
+import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
@@ -13,7 +14,10 @@ import alabaster.hearthandharvest.common.event.PigLitters;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.Dist;
@@ -103,6 +107,11 @@ public class HearthAndHarvest {
         }
         if (event.getEntity() instanceof Mob mob) {
             mob.goalSelector.addGoal(1, new TemptingEffectGoal(mob, 1.0D, 1.25D, 8.0D));
+        }
+        if (event.getEntity() instanceof Chicken chicken) {
+            if (chicken.goalSelector.getAvailableGoals().stream().noneMatch((goal) -> goal.getGoal() instanceof SeekNestGoal)) {
+                chicken.goalSelector.addGoal(3, new SeekNestGoal(chicken, 1.0D));
+            }
         }
     }
 
