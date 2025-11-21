@@ -109,9 +109,7 @@ public class HearthAndHarvest {
             mob.goalSelector.addGoal(1, new TemptingEffectGoal(mob, 1.0D, 1.25D, 8.0D));
         }
         if (event.getEntity() instanceof Chicken chicken) {
-            if (chicken.goalSelector.getAvailableGoals().stream().noneMatch((goal) -> goal.getGoal() instanceof SeekNestGoal)) {
-                chicken.goalSelector.addGoal(3, new SeekNestGoal(chicken, 1.0D));
-            }
+            chicken.goalSelector.addGoal(2, new SeekNestGoal(chicken, 1.0D));
         }
     }
 

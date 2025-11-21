@@ -2,93 +2,64 @@ package alabaster.hearthandharvest.common.entity.goal;
 
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
+
+import java.util.EnumSet;
 
 public class SeekNestGoal extends MoveToBlockGoal {
+
     private final Chicken chicken;
-    private int eggCounter;
 
     public SeekNestGoal(Chicken chicken, double speed) {
         super(chicken, speed, 16);
         this.chicken = chicken;
+        this.setFlags(EnumSet.of(Flag.MOVE));
     }
 
+    // Only run when close to egg-laying time
     @Override
     public boolean canUse() {
-        return canEggBeLaid() && super.canUse();
+        return shouldSeekNest() && super.canUse();
     }
 
     @Override
     public boolean canContinueToUse() {
-        return canEggBeLaid() && super.canContinueToUse();
-    }
-
-    @Override
-    protected int nextStartTick(PathfinderMob mob) {
-        return 40;
-    }
-
-    @Override
-    public void start() {
-        super.start();
-        this.eggCounter = this.adjustedTickDelay(40);
+        return shouldSeekNest() && super.canContinueToUse();
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        if (this.isReachedTarget() && canEggBeLaid()) {
-            eggCounter--;
-
-            if (eggCounter <= 0) {
-                BlockPos nestPos = this.blockPos.above();
-
-                layEggIntoNest(nestPos);
-
-                chicken.playSound(SoundEvents.CHICKEN_EGG, 1.0F,
-                        (chicken.getRandom().nextFloat() - chicken.getRandom().nextFloat()) * 0.2F + 1F
-                );
-            }
+        // If we reached the nest, stand centered so vanilla laying happens cleanly
+        if (this.isReachedTarget()) {
+            snapToNestCenter();
         }
     }
 
-    private void layEggIntoNest(BlockPos pos) {
-        if (!(chicken.level() instanceof ServerLevel server))
-            return;
+    // Center the chicken directly on top of the nest block
+    private void snapToNestCenter() {
+        double cx = blockPos.getX() + 0.5;
+        double cy = blockPos.getY() + 0.1;
+        double cz = blockPos.getZ() + 0.5;
 
-        // Create a vanilla egg
-        ItemStack egg = new ItemStack(Items.EGG);
-
-        // Centered above the nest
-        double x = pos.getX() + 0.5;
-        double y = pos.getY() + 0.25;
-        double z = pos.getZ() + 0.5;
-
-        ItemEntity eggEntity = new ItemEntity(server, x, y, z, egg);
-
-        eggEntity.setDeltaMovement(0, 0, 0);
-
-        server.addFreshEntity(eggEntity);
+        chicken.setPos(cx, cy, cz);
+        chicken.getNavigation().stop();
     }
 
-    private boolean canEggBeLaid() {
-        return !chicken.isBaby() && chicken.eggTime < 100; // can tune threshold
+    // Seek nest when there's only 10 seconds (200 ticks) left
+    private boolean shouldSeekNest() {
+        return !chicken.isBaby() && chicken.eggTime <= 200;
     }
 
+    // Valid nest target
     @Override
     protected boolean isValidTarget(LevelReader level, BlockPos pos) {
-        BlockState above = level.getBlockState(pos.above());
-        return above.is(HHModBlocks.NEST.get());
+        BlockState state = level.getBlockState(pos);
+        return state.is(HHModBlocks.NEST.get());
     }
 }
