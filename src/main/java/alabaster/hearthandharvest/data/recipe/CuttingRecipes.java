@@ -35,6 +35,8 @@ public class CuttingRecipes {
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.GRAPE_PIE.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.GRAPE_PIE_SLICE.get(), 4)
                 .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.PEANUT_BUTTER_PIE.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.PEANUT_BUTTER_PIE_SLICE.get(), 4)
+                .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.GOAT_CHEESE_WHEEL.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.GOAT_CHEESE_SLICE.get(), 4)
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CHEDDAR_CHEESE_WHEEL.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.CHEDDAR_CHEESE_SLICE.get(), 4)
@@ -48,6 +50,10 @@ public class CuttingRecipes {
                 .build(output);
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CORN.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.CORN_KERNELS.get(), 2)
                 .addResult(HHModItems.CORN_HUSK.get())
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CORN_KERNELS.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.CORN_MEAL.get(), 1)
+                .build(output);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.WHEAT), Ingredient.of(CommonTags.TOOLS_KNIFE), HHModItems.FLOUR.get(), 2)
                 .build(output);
     }
 

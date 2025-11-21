@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
+import vectorwing.farmersdelight.common.block.CanvasRugBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
 
@@ -37,7 +38,7 @@ public class HHModBlocks {
     public static final Supplier<Block> NEST = BLOCKS.register("nest",
             () -> new NestBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
     public static final Supplier<Block> HAY_RUG = BLOCKS.register("hay_rug",
-            () -> new CarpetBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+            () -> new CanvasRugBlock(Block.Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.GRASS).strength(0.2F)));
 
     public static final Supplier<Block> SCARECROW = BLOCKS.register("scarecrow",
             () -> new ScarecrowBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));

@@ -1,0 +1,12 @@
+{
+  "type": "brewinandchewin:keg_pouring",
+  "fluid": {
+    "amount": 500,
+    "id": "hearthandharvest:moonshine"
+  },
+  "output": {
+    "count": 1,
+    "id": "hearthandharvest:moonshine"
+  },
+  "unit": "millibuckets"
+}

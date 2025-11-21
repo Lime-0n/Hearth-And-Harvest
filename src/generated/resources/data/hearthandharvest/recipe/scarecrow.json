@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "c": {
+      "item": "farmersdelight:canvas"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "w": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "cwc",
+    "sHs",
+    " s "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:scarecrow"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 400,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "hearthandharvest:corn_meal"
+    },
+    {
+      "item": "hearthandharvest:corn_meal"
+    },
+    {
+      "item": "hearthandharvest:salt"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "c:foods/milk"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:corn_bread"
+  }
+}

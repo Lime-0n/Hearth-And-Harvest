@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:corn_meal"
+    },
+    {
+      "item": "hearthandharvest:corn_meal"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "type": "fluid_tag",
+      "amount": 500,
+      "fluid_tag": "c:water"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "hearthandharvest:moonshine"
+    }
+  ]
+}

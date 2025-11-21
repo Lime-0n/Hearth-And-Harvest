@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 500,
+      "fluid": "hearthandharvest:moonshine"
+    }
+  ],
+  "results": [
+    {
+      "id": "hearthandharvest:moonshine"
+    }
+  ]
+}

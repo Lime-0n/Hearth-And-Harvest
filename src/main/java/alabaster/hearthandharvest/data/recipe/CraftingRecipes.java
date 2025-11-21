@@ -93,8 +93,34 @@ public class CraftingRecipes
                 .define('B', Items.BRICK)
                 .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.NEST.get())
+                .pattern("SSS")
+                .pattern("sss")
+                .define('S', ModItems.STRAW.get())
+                .define('s', Items.STICK)
+                .unlockedBy("has_straw", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW.get()))
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.SCARECROW.get())
+                .pattern("cwc")
+                .pattern("sHs")
+                .pattern(" s ")
+                .define('c', ModItems.CANVAS.get())
+                .define('s', Items.STICK)
+                .define('H', Items.HAY_BLOCK)
+                .define('w', Items.WHEAT)
+                .unlockedBy("has_canvas", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CANVAS.get()))
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .unlockedBy("has_hay_block", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HAY_BLOCK))
+                .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.HAY_RUG.get(), 4)
+                .requires(Items.HAY_BLOCK)
+                .requires(Items.HAY_BLOCK)
+                .unlockedBy("has_hay_block", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HAY_BLOCK))
+                .save(output);
 
-
+        // Cabinets
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.OAK_CABINET.get(), 1)
                 .requires(HHModItems.OAK_HALF_CABINET.get())
                 .requires(HHModItems.OAK_HALF_CABINET.get())
@@ -151,6 +177,7 @@ public class CraftingRecipes
                 .unlockedBy("has_warped_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WARPED_HALF_CABINET.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_cabinet_from_halves"));
 
+        // Wine Racks
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.OAK_WINE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
@@ -261,6 +288,7 @@ public class CraftingRecipes
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(output);
 
+        // Storage Blocks
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BLUEBERRY_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -359,7 +387,6 @@ public class CraftingRecipes
                 .define('#', Items.SWEET_BERRIES)
                 .unlockedBy("has_sweet_berries", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SWEET_BERRIES))
                 .save(output);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.COTTON_BALE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -378,10 +405,23 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', vectorwing.farmersdelight.common.registry.ModItems.ROPE.get())
-                .unlockedBy("has_rope", InventoryChangeTrigger.TriggerInstance.hasItems(vectorwing.farmersdelight.common.registry.ModItems.ROPE.get()))
+                .define('#', ModItems.ROPE.get())
+                .unlockedBy("has_rope", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ROPE.get()))
                 .save(output);
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CORN_KERNEL_BAG.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.CORN_KERNELS.get())
+                .unlockedBy("has_corn_kernels", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_KERNELS.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CORN_HUSK_BUNDLE.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.CORN_HUSK.get())
+                .unlockedBy("has_corn_husk", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_HUSK.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_BAG.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -411,6 +451,7 @@ public class CraftingRecipes
                 .unlockedBy("has_gunpowder", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GUNPOWDER))
                 .save(output);
 
+        // Half Crates
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.EGG_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -561,7 +602,6 @@ public class CraftingRecipes
                 .requires(HHModItems.SWEET_BERRY_CRATE.get())
                 .unlockedBy("has_sweet_berry_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SWEET_BERRY_CRATE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sweet_berry_from_crate"));
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HHModItems.COTTON.get(), 9)
                 .requires(HHModItems.COTTON_BALE.get())
                 .unlockedBy("has_cotton_bale", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COTTON_BALE.get()))
@@ -570,11 +610,18 @@ public class CraftingRecipes
                 .requires(HHModItems.SPOOL.get())
                 .unlockedBy("has_spool", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SPOOL.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "string_from_spool"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, vectorwing.farmersdelight.common.registry.ModItems.ROPE.get(), 9)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.ROPE.get(), 9)
                 .requires(HHModItems.ROPE_COIL.get())
                 .unlockedBy("has_rope_coil", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROPE_COIL.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "rope_from_coil"));
-
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HHModItems.CORN_KERNELS.get(), 9)
+                .requires(HHModItems.CORN_KERNEL_BAG.get())
+                .unlockedBy("has_corn_kernel_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_KERNEL_BAG.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HHModItems.CORN_HUSK.get(), 9)
+                .requires(HHModItems.CORN_HUSK_BUNDLE.get())
+                .unlockedBy("has_corn_husk_bundle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_HUSK_BUNDLE.get()))
+                .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SALT.get(), 9)
                 .requires(HHModItems.SALT_BAG.get())
                 .unlockedBy("has_salt_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_BAG.get()))
@@ -591,7 +638,6 @@ public class CraftingRecipes
                 .requires(HHModItems.GUNPOWDER_BAG.get())
                 .unlockedBy("has_gunpowder_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GUNPOWDER_BAG.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "gunpowder_from_bag"));
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.EGG, 9)
                 .requires(HHModItems.EGG_CRATE.get())
                 .unlockedBy("has_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.EGG_CRATE.get()))

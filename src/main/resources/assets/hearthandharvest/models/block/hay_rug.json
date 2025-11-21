@@ -2,7 +2,7 @@
   "render_type": "minecraft:cutout",
   "parent": "block/thin_block",
   "textures": {
-    "particle": "block/hay_block_top",
+    "particle": "hearthandharvest:block/hay_rug_extrudes",
     "body": "block/hay_block_top",
     "extrudes": "hearthandharvest:block/hay_rug_extrudes"
   },

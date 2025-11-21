@@ -206,5 +206,16 @@ public class ClientEventHandler {
                 return FLOWING_MEAD;
             }
         }, HHModFluids.MEAD_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_MOONSHINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_still");
+            private static final ResourceLocation FLOWING_MOONSHINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {return STILL_MOONSHINE;}
+
+            @Override
+            public ResourceLocation getFlowingTexture() {return FLOWING_MOONSHINE;}
+        }, HHModFluids.MOONSHINE_TYPE.get());
     }
 }

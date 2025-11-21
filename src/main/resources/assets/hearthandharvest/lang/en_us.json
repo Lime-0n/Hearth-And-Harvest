@@ -231,6 +231,9 @@
   "item.hearthandharvest.cooked_corn_on_the_cob": "Cooked Corn on the Cob",
   "item.hearthandharvest.corn_bread": "Corn Bread",
 
+  "item.hearthandharvest.corn_meal": "Corn Meal",
+  "item.hearthandharvest.flour": "Flour",
+
   "item.hearthandharvest.onion_soup": "Onion Soup",
   "item.hearthandharvest.macaroni_and_cheese": "Macaroni and Cheese",
   "item.hearthandharvest.mashed_potatoes": "Mashed Potatoes",
@@ -274,6 +277,11 @@
   "item.minecraft.lingering_potion.effect.strong_tempting_potion": "Lingering Potion of Tempting",
   "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Arrow of Tempting",
 
+  "item.minecraft.potion.effect.strong_bad_omen_potion": "Potion of Bad Omen",
+  "item.minecraft.splash_potion.effect.strong_bad_omen_potion": "Splash Potion of Bad Omen",
+  "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Lingering Potion of Bad Omen",
+  "item.minecraft.tipped_arrow.effect.strong_bad_omen_potion": "Arrow of Bad Omen",
+
   "hearthandharvest.jei.aging": "Aging",
 
   "hearthandharvest.jei.info.watering_can": "Watering cans can be charged with bone meal by holding some in the off hand and clicking, and charged with water by clicking on a water source block. The watering can is used to apply a bone meal effect to a 3x3 area when clicked. It can also be used to extinguish fire and lit blocks.",
@@ -285,7 +293,6 @@
   "fluid_type.hearthandharvest.cooking_oil": "Cooking Oil",
   "fluid_type.hearthandharvest.sap": "Sap",
   "fluid_type.hearthandharvest.syrup": "Syrup",
-
   "fluid_type.hearthandharvest.blueberry_wine": "Blueberry Wine",
   "fluid_type.hearthandharvest.cherry_wine": "Cherry Wine",
   "fluid_type.hearthandharvest.green_grape_wine": "Green Grape Wine",
@@ -293,6 +300,7 @@
   "fluid_type.hearthandharvest.raspberry_wine": "Raspberry Wine",
   "fluid_type.hearthandharvest.sweet_berry_wine": "Sweet Berry Wine",
   "fluid_type.hearthandharvest.mead": "Mead",
+  "fluid_type.hearthandharvest.moonshine": "Moonshine",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips",

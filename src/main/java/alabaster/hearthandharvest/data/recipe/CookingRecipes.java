@@ -9,10 +9,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
+import vectorwing.farmersdelight.data.ItemTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 
 public class CookingRecipes
@@ -257,6 +259,15 @@ public class CookingRecipes
                 .addIngredient(Items.HONEY_BOTTLE)
                 .addIngredient(Items.SUGAR)
                 .unlockedByItems("has_corn_kernels", HHModItems.CORN_KERNELS.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CORN_BREAD.get(), 1, SLOW_COOKING, MEDIUM_EXP)
+                .addIngredient(HHModItems.CORN_MEAL.get())
+                .addIngredient(HHModItems.CORN_MEAL.get())
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(Items.EGG)
+                .addIngredient(CommonTags.FOODS_MILK)
+                .unlockedByItems("has_corn_meal", HHModItems.CORN_MEAL.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
     }

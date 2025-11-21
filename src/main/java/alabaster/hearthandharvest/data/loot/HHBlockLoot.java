@@ -29,6 +29,8 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropNamedContainer(HHModBlocks.DRAWER.get());
         dropSelf(HHModBlocks.BASIN.get());
         dropSelf(HHModBlocks.NEST.get());
+        dropSelf(HHModBlocks.HAY_RUG.get());
+        dropSelf(HHModBlocks.SCARECROW.get());
         dropNamedContainer(HHModBlocks.OAK_HALF_CABINET.get());
         dropNamedContainer(HHModBlocks.SPRUCE_HALF_CABINET.get());
         dropNamedContainer(HHModBlocks.BIRCH_HALF_CABINET.get());
@@ -69,6 +71,8 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.SUGAR_BAG.get());
         dropSelf(HHModBlocks.COCOA_BEAN_BAG.get());
         dropSelf(HHModBlocks.GUNPOWDER_BAG.get());
+        dropSelf(HHModBlocks.CORN_KERNEL_BAG.get());
+        dropSelf(HHModBlocks.CORN_HUSK_BUNDLE.get());
         dropSelf(HHModBlocks.COTTON_BALE.get());
         dropSelf(HHModBlocks.SPOOL.get());
         dropSelf(HHModBlocks.ROPE_COIL.get());

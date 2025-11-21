@@ -3,8 +3,13 @@ package alabaster.hearthandharvest.data.recipe;
 import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 public class AgingRecipes {
     public static final int FAST_AGING = 300;      // 1.25 minutes
@@ -14,6 +19,9 @@ public class AgingRecipes {
     public static final float SMALL_EXP = 0.35F;
     public static final float MEDIUM_EXP = 1.0F;
     public static final float LARGE_EXP = 2.0F;
+
+    public static final Ingredient WATER_BOTTLE = new Ingredient(DataComponentIngredient.of(false, DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION).getCustomIngredient());
+
 
     public static void register(RecipeOutput output) {
         ageCheese(output);
@@ -84,6 +92,15 @@ public class AgingRecipes {
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.HONEY_BOTTLE)
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.MOONSHINE.get(), 1, NORMAL_AGING, SMALL_EXP)
+                .addIngredient(WATER_BOTTLE)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(HHModItems.CORN_MEAL.get())
+                .addIngredient(HHModItems.CORN_MEAL.get())
+                .unlockedByAnyIngredient(HHModItems.CORN_MEAL.get())
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
     }

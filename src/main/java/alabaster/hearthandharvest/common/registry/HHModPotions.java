@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -29,5 +30,12 @@ public class HHModPotions {
     public static final DeferredHolder<Potion, Potion> LONG_TEMPTING_POTION = POTIONS.register("long_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING, 9600, 0)));
     // Strong Tempting Potion
     public static final DeferredHolder<Potion, Potion> STRONG_TEMPTING_POTION = POTIONS.register("strong_tempting_potion", () -> new Potion(new MobEffectInstance(HHModEffects.TEMPTING, 1800, 1)));
+
+    // Bad Omen Potion
+    public static final DeferredHolder<Potion, Potion> BAD_OMEN_POTION = POTIONS.register("bad_omen_potion", () -> new Potion(new MobEffectInstance(MobEffects.BAD_OMEN, 3600, 0)));
+    // Long Bad Omen Potion
+    public static final DeferredHolder<Potion, Potion> LONG_BAD_OMEN_POTION = POTIONS.register("long_bad_omen_potion", () -> new Potion(new MobEffectInstance(MobEffects.BAD_OMEN, 9600, 0)));
+    // Strong Bad Omen Potion
+    public static final DeferredHolder<Potion, Potion> STRONG_BAD_OMEN_POTION = POTIONS.register("strong_bad_omen_potion", () -> new Potion(new MobEffectInstance(MobEffects.BAD_OMEN, 1800, 1)));
 
 }

@@ -56,5 +56,9 @@ public class HHModFluids {
     public static final Supplier<FluidType> MEAD_TYPE = FLUID_TYPES.register("mead", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
     public static final Supplier<HHFluidType> MEAD = FLUIDS.register("mead", () -> new MeadFluid(true));
     public static final Supplier<HHFluidType> FLOWING_MEAD = FLUIDS.register("flowing_mead", () -> new MeadFluid(false));
+
+    public static final Supplier<FluidType> MOONSHINE_TYPE = FLUID_TYPES.register("moonshine", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> MOONSHINE = FLUIDS.register("moonshine", () -> new MoonshineFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_MOONSHINE = FLUIDS.register("flowing_moonshine", () -> new MoonshineFluid(false));
     
 }

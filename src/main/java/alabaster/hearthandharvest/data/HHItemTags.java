@@ -43,6 +43,9 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.GOLDEN_CLEAVER.get())
                 .add(HHModItems.NETHERITE_CLEAVER.get());
 
+        tag(ItemTags.PIGLIN_LOVED)
+                .add(HHModItems.GOLDEN_CLEAVER.get());
+
         tag(ModTags.KNIVES)
                 .addTag(HHModTags.CLEAVERS);
 
@@ -86,6 +89,14 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.COTTON_SEEDS.get())
                 .add(HHModItems.SUNFLOWER_SEEDS.get())
                 .add(HHModItems.CORN_KERNELS.get());
+
+        tag(ItemTags.VILLAGER_PLANTABLE_SEEDS)
+                .add(HHModItems.COTTON_SEEDS.get())
+                .add(HHModItems.SUNFLOWER_SEEDS.get())
+                .add(HHModItems.CORN_KERNELS.get())
+                .add(HHModItems.PEANUT.get())
+                .add(HHModItems.GREEN_GRAPES.get())
+                .add(HHModItems.RED_GRAPES.get());
 
         tag(Tags.Items.CROPS)
                 .add(HHModItems.BLUEBERRIES.get())
@@ -176,6 +187,10 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.WARPED_HALF_CABINET.get());
 
         tag(ItemTags.SMALL_FLOWERS)
+                .add(HHModItems.WILD_PEANUTS.get())
+                .add(HHModItems.WILD_COTTON.get())
+                .add(HHModItems.WILD_GREEN_GRAPES.get())
+                .add(HHModItems.WILD_RED_GRAPES.get())
                 .add(HHModItems.YELLOW_MUM.get())
                 .add(HHModItems.ORANGE_MUM.get())
                 .add(HHModItems.RED_MUM.get())

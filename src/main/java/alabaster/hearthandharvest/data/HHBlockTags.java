@@ -93,6 +93,10 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.WHITE_MUM.get());
 
         tag(BlockTags.SMALL_FLOWERS).add(
+                HHModBlocks.WILD_COTTON.get(),
+                HHModBlocks.WILD_PEANUTS.get(),
+                HHModBlocks.WILD_GREEN_GRAPES.get(),
+                HHModBlocks.WILD_RED_GRAPES.get(),
                 HHModBlocks.YELLOW_MUM.get(),
                 HHModBlocks.ORANGE_MUM.get(),
                 HHModBlocks.RED_MUM.get(),
@@ -247,6 +251,21 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COUNTER.get(),
                 HHModBlocks.DRAWER.get(),
                 HHModBlocks.BASIN.get()
+        );
+
+        tag(BlockTags.MINEABLE_WITH_HOE).add(
+                HHModBlocks.NEST.get(),
+                HHModBlocks.CORN_HUSK_BUNDLE.get(),
+                HHModBlocks.COTTON_BALE.get()
+        );
+
+        tag(ModTags.MINEABLE_WITH_KNIFE).add(
+                HHModBlocks.HAY_RUG.get(),
+                HHModBlocks.SALT_BAG.get(),
+                HHModBlocks.SUGAR_BAG.get(),
+                HHModBlocks.COCOA_BEAN_BAG.get(),
+                HHModBlocks.CORN_KERNEL_BAG.get(),
+                HHModBlocks.GUNPOWDER_BAG.get()
         );
     }
 }
