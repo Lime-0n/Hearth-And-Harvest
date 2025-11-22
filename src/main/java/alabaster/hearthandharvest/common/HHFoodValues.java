@@ -228,7 +228,8 @@ public class HHFoodValues {
             .nutrition(8).saturationModifier(0.6f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties ELOTE = new FoodProperties.Builder()
-            .nutrition(10).saturationModifier(0.8f).build();
+            .nutrition(10).saturationModifier(0.8f)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties TAMALE = new FoodProperties.Builder()
             .nutrition(7).saturationModifier(0.6f).build();
 }
