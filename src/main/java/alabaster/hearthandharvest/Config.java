@@ -14,6 +14,8 @@ public class Config {
     private static final Map<String, ModConfigSpec.BooleanValue> ITEMS = new HashMap<>();
 
     public static ModConfigSpec.DoubleValue TREE_TAPPER_BASE_CHANCE;
+    public static ModConfigSpec.IntValue CROW_SPAWN_NUMBER_OF_CROPS;
+    public static ModConfigSpec.IntValue CROW_SPAWN_RADIUS;
 
     public Config() {
     }
@@ -30,6 +32,16 @@ public class Config {
                 .comment("Base chance (0.0 - 1.0) per random tick for a Tree Tapper to increase sap when on a tappable block.\n"
                         + "Higher values make sap fill faster.")
                 .defineInRange("treeTapperBaseChance", 0.5D, 0.0D, 1.0D);
+
+        CROW_SPAWN_NUMBER_OF_CROPS = COMMON_BUILDER
+                .comment("Amount of crops that need to be in an area for a crow to spawn nearby. Used alongside the crowSpawnRadius config to control crow spawning.\n" +
+                        "Setting to 0 would prevent crow spawning")
+                .defineInRange("crow_", 8, 0, 192);
+
+        CROW_SPAWN_RADIUS = COMMON_BUILDER
+                .comment("Radius that crows check for crops to be in when trying to spawn. Larger radius means higher changes of spawning.\n" +
+                        "Setting to 0 would prevent crow spawning")
+                .defineInRange("crowSpawnRadius", 8, 0, 64);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

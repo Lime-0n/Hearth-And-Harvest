@@ -288,6 +288,31 @@ public class CraftingRecipes
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(output);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.ARROW, 4)
+                .pattern("F")
+                .pattern("S")
+                .pattern("C")
+                .define('F', Items.FLINT)
+                .define('S', Items.STICK)
+                .define('C', HHModItems.CROW_FEATHER.get())
+                .unlockedBy("has_crow_feather", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CROW_FEATHER.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "arrows_from_crow_feather"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, Items.WRITABLE_BOOK, 1)
+                .requires(Items.INK_SAC)
+                .requires(Items.BOOK)
+                .requires(HHModItems.CROW_FEATHER.get())
+                .unlockedBy("has_crow_feather", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CROW_FEATHER.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "book_and_quill_with_crow_feather"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.BRUSH, 1)
+                .pattern("F")
+                .pattern("C")
+                .pattern("S")
+                .define('C', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .define('F', HHModItems.CROW_FEATHER.get())
+                .unlockedBy("has_crow_feather", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CROW_FEATHER.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "brush_from_crow_feather"));
+
         // Storage Blocks
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BLUEBERRY_CRATE.get(), 1)
                 .pattern("###")

@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.entity.crow;
 
+import alabaster.hearthandharvest.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -23,10 +24,10 @@ public class CrowSpawnRules {
             return false;
 
         // Count crops near the spawn attempt
-        int cropCount = countNearbyCrops(level, pos, 8); // 8-block radius
+        int cropCount = countNearbyCrops(level, pos, Config.CROW_SPAWN_RADIUS.get());
 
         // Require at least X crops to allow crow spawns
-        return cropCount >= 8; // << adjust for tuning
+        return cropCount >= Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
     }
 
     private static int countNearbyCrops(ServerLevelAccessor level, BlockPos pos, int radius) {

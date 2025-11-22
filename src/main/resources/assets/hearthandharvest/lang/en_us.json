@@ -279,6 +279,16 @@
   "item.minecraft.lingering_potion.effect.strong_tempting_potion": "Lingering Potion of Tempting",
   "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Arrow of Tempting",
 
+  "item.minecraft.potion.effect.bad_omen_potion": "Potion of Bad Omen",
+  "item.minecraft.splash_potion.effect.bad_omen_potion": "Splash Potion of Bad Omen",
+  "item.minecraft.lingering_potion.effect.bad_omen_potion": "Lingering Potion of Bad Omen",
+  "item.minecraft.tipped_arrow.effect.bad_omen_potion": "Arrow of Bad Omen",
+
+  "item.minecraft.potion.effect.long_bad_omen_potion": "Potion of Bad Omen",
+  "item.minecraft.splash_potion.effect.long_bad_omen_potion": "Splash Potion of Bad Omen",
+  "item.minecraft.lingering_potion.effect.long_bad_omen_potion": "Lingering Potion of Bad Omen",
+  "item.minecraft.tipped_arrow.effect.long_bad_omen_potion": "Arrow of Bad Omen",
+
   "item.minecraft.potion.effect.strong_bad_omen_potion": "Potion of Bad Omen",
   "item.minecraft.splash_potion.effect.strong_bad_omen_potion": "Splash Potion of Bad Omen",
   "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Lingering Potion of Bad Omen",
