@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.entity.crow.CrowModel;
 import alabaster.hearthandharvest.common.entity.crow.CrowRenderer;
+import alabaster.hearthandharvest.common.entity.crow.CrowSpawnRules;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
@@ -16,10 +17,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -36,6 +40,7 @@ import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,6 +75,7 @@ public class HearthAndHarvest {
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModStructurePieces.STRUCTURE_PIECES.register(modEventBus);
         HHModStructures.STRUCTURES.register(modEventBus);
+        HHModSounds.SOUNDS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
@@ -129,6 +135,17 @@ public class HearthAndHarvest {
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(HHModEntities.CROW.get(), CrowRenderer::new);
         }
+
+        @SubscribeEvent
+        public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+            event.register(
+                    HHModEntities.CROW.get(),
+                    SpawnPlacementTypes.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    CrowSpawnRules::canSpawnCrow,
+                    RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        }
+
     }
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)

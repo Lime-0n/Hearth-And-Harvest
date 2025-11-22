@@ -1,0 +1,15 @@
+{
+  "entities.crow.squawking": {
+    "subtitle": "hearthandharvest.subtitles.crow.squawking",
+    "sounds": [
+      "hearthandharvest:entities/crow/crow_squawking_1",
+      "hearthandharvest:entities/crow/crow_squawking_2"
+    ]
+  },
+  "entities.crow.hurt": {
+    "subtitle": "hearthandharvest.subtitles.crow.hurt",
+    "sounds": [
+      "hearthandharvest:entities/crow/crow_hurt_1"
+    ]
+  }
+}

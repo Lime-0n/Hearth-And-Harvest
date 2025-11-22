@@ -40,6 +40,7 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     public static final BooleanProperty TRIM_EAST  = BooleanProperty.create("trim_east");
     public static final BooleanProperty TRIM_SOUTH = BooleanProperty.create("trim_south");
     public static final BooleanProperty TRIM_WEST  = BooleanProperty.create("trim_west");
+    public static final BooleanProperty CROW_PROOF = BooleanProperty.create("crow_proof");
 
     private static final int MAX_AGE = 5;
 
@@ -79,12 +80,13 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
                 .setValue(TRIM_NORTH, false)
                 .setValue(TRIM_EAST, false)
                 .setValue(TRIM_SOUTH, false)
-                .setValue(TRIM_WEST, false));
+                .setValue(TRIM_WEST, false)
+                .setValue(CROW_PROOF, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(SECTION, AGE, TRIM_NORTH, TRIM_EAST, TRIM_SOUTH, TRIM_WEST);
+        builder.add(SECTION, AGE, TRIM_NORTH, TRIM_EAST, TRIM_SOUTH, TRIM_WEST, CROW_PROOF);
     }
 
     protected ItemLike getBaseSeedId() {

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import alabaster.hearthandharvest.common.entity.crow.goals.*;
 import alabaster.hearthandharvest.common.registry.HHModEntities;
+import alabaster.hearthandharvest.common.registry.HHModSounds;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -211,12 +212,16 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         return HHModEntities.CROW.get().create(level);
     }
 
+    protected SoundEvent getAmbientSound() {
+        return HHModSounds.CROW_SQUAWK.get();
+    }
+
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.PARROT_HURT;
+        return HHModSounds.CROW_HURT.get();
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.PARROT_DEATH;
+        return HHModSounds.CROW_HURT.get();
     }
 
     protected void playStepSound(BlockPos pos, BlockState block) {
@@ -228,7 +233,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     protected void onFlap() {
-        this.playSound(SoundEvents.PARROT_FLY, 0.15F, 1.0F);
+        this.playSound(HHModSounds.CROW_SQUAWK.get(), 0.15F, 1.0F);
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 

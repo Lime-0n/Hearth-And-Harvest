@@ -191,16 +191,19 @@ public class CornMazeStructurePiece extends StructurePiece {
         level.setBlock(pos,
                 HHModBlocks.CORN_STALK.get().defaultBlockState()
                         .setValue(CornStalkBlock.SECTION, CornStalkBlock.CornSection.BOTTOM)
+                        .setValue(CornStalkBlock.CROW_PROOF, true)
                         .setValue(CornStalkBlock.AGE, 5), 3);
 
         level.setBlock(pos.above(),
                 HHModBlocks.CORN_STALK.get().defaultBlockState()
                         .setValue(CornStalkBlock.SECTION, CornStalkBlock.CornSection.MIDDLE)
+                        .setValue(CornStalkBlock.CROW_PROOF, true)
                         .setValue(CornStalkBlock.AGE, 5), 3);
 
         level.setBlock(pos.above(2),
                 HHModBlocks.CORN_STALK.get().defaultBlockState()
                         .setValue(CornStalkBlock.SECTION, CornStalkBlock.CornSection.TOP)
+                        .setValue(CornStalkBlock.CROW_PROOF, true)
                         .setValue(CornStalkBlock.AGE, 5), 3);
     }
 

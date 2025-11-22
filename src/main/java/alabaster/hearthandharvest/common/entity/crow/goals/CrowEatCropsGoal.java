@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.entity.crow.goals;
 
+import alabaster.hearthandharvest.common.block.CornStalkBlock;
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
@@ -51,6 +52,12 @@ public class CrowEatCropsGoal extends Goal {
         if (!crow.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) return false;
 
         BlockState state = crow.level().getBlockState(targetCropPos);
+
+        if (state.hasProperty(CornStalkBlock.CROW_PROOF) &&
+                state.getValue(CornStalkBlock.CROW_PROOF)) {
+            return false;
+        }
+
         return state.is(HHModTags.CROW_EDIBLE_CROPS) && targetCropPos.closerToCenterThan(crow.position(), SCAN_RADIUS + 2);
     }
 
@@ -131,6 +138,11 @@ public class CrowEatCropsGoal extends Goal {
                 for (int dz = -SCAN_RADIUS; dz <= SCAN_RADIUS; dz++) {
                     mutable.set(mobPos.getX() + dx, mobPos.getY() + dy, mobPos.getZ() + dz);
                     BlockState state = crow.level().getBlockState(mutable);
+
+                    // Skip if crop is marked crow-proof
+                    if (state.hasProperty(CornStalkBlock.CROW_PROOF) && state.getValue(CornStalkBlock.CROW_PROOF)) {
+                        continue;
+                    }
 
                     // Must match edible crop tag
                     if (!state.is(HHModTags.CROW_EDIBLE_CROPS)) continue;
