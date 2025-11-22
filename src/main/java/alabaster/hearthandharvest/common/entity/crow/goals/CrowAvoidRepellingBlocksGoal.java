@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.entity.crow.goals;
 import java.util.EnumSet;
 import javax.annotation.Nullable;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
@@ -18,9 +19,10 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
     private BlockPos repelSource;
     private Vec3 fleeTarget;
 
-    private static final double FLEE_DISTANCE = 6.0D;
-    private static final double STOP_DISTANCE = 10.0D;
-    private static final int SCAN_RADIUS = 8;
+    private static double FLEE_DISTANCE = Config.CROW_SCARE_RADIUS.get();
+    private static double STOP_DISTANCE = Config.CROW_SCARE_RADIUS.get() * 1.6;
+    private static int SCAN_RADIUS = (int) (Config.CROW_SCARE_RADIUS.get() * 1.3);
+
 
     public CrowAvoidRepellingBlocksGoal(CrowEntity crow, double speedModifier) {
         this.crow = crow;

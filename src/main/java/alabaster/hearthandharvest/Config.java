@@ -16,6 +16,7 @@ public class Config {
     public static ModConfigSpec.DoubleValue TREE_TAPPER_BASE_CHANCE;
     public static ModConfigSpec.IntValue CROW_SPAWN_NUMBER_OF_CROPS;
     public static ModConfigSpec.IntValue CROW_SPAWN_RADIUS;
+    public static ModConfigSpec.IntValue CROW_SCARE_RADIUS;
 
     public Config() {
     }
@@ -42,6 +43,11 @@ public class Config {
                 .comment("Radius that crows check for crops to be in when trying to spawn. Larger radius means higher changes of spawning.\n" +
                         "Setting to 0 would prevent crow spawning")
                 .defineInRange("crowSpawnRadius", 8, 0, 64);
+
+        CROW_SCARE_RADIUS = COMMON_BUILDER
+                .comment("Radius that crow-repelling blocks will be effective towards wild crows.\n" +
+                        "Setting to 0 would prevent crows from being scared")
+                .defineInRange("crowScareRadius", 6, 0, 192);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
