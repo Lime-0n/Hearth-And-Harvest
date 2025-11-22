@@ -516,6 +516,12 @@ public class HHModItems {
             () -> new Item(foodItem(HHFoodValues.CANDY_CORN)));
     public static final Supplier<Item> CORN_BREAD = registerWithTab("corn_bread",
             () -> new Item(foodItem(HHFoodValues.CORN_BREAD)));
+    public static final Supplier<Item> CORN_STEW = registerWithTab("corn_stew",
+            () -> new Item(foodItem(HHFoodValues.CORN_STEW)));
+    public static final Supplier<Item> TAMALE = registerWithTab("tamale",
+            () -> new Item(foodItem(HHFoodValues.TAMALE)));
+    public static final Supplier<Item> ELOTE = registerWithTab("elote",
+            () -> new Item(foodItem(HHFoodValues.ELOTE)));
 
     public static final Supplier<Item> FLOUR = registerWithTab("flour",
             () -> new Item(basicItem()));

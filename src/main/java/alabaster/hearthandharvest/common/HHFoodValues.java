@@ -224,4 +224,11 @@ public class HHFoodValues {
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties CORN_BREAD = new FoodProperties.Builder()
             .nutrition(6).saturationModifier(0.5f).build();
+    public static final FoodProperties CORN_STEW = new FoodProperties.Builder()
+            .nutrition(8).saturationModifier(0.6f)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+    public static final FoodProperties ELOTE = new FoodProperties.Builder()
+            .nutrition(10).saturationModifier(0.8f).build();
+    public static final FoodProperties TAMALE = new FoodProperties.Builder()
+            .nutrition(7).saturationModifier(0.6f).build();
 }

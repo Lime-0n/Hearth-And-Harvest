@@ -270,5 +270,27 @@ public class CookingRecipes
                 .unlockedByItems("has_corn_meal", HHModItems.CORN_MEAL.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CORN_STEW.get(), 1, SLOW_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(HHModItems.CORN.get())
+                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(Items.POTATO)
+                .addIngredient(CommonTags.FOODS_MILK)
+                .unlockedByItems("has_corn", HHModItems.CORN.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.TAMALE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, HHModItems.CORN_HUSK.get())
+                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
+                .addIngredient(Tags.Items.FOODS_VEGETABLE)
+                .addIngredient(HHModTags.CHEESE_SLICES)
+                .unlockedByItems("has_corn_husk", HHModItems.CORN_HUSK.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.ELOTE.get(), 1, FAST_COOKING, SMALL_EXP)
+                .addIngredient(HHModItems.COOKED_CORN_ON_THE_COB.get())
+                .addIngredient(Items.BLAZE_POWDER)
+                .addIngredient(HHModTags.CHEESE_SLICES)
+                .unlockedByItems("has_corn_on_the_cob", HHModItems.COOKED_CORN_ON_THE_COB.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
     }
 }

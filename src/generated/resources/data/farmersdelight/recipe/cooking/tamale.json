@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "container": {
+    "count": 1,
+    "id": "hearthandharvest:corn_husk"
+  },
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "tag": "c:foods/cooked_meat"
+    },
+    {
+      "tag": "c:foods/vegetable"
+    },
+    {
+      "tag": "hearthandharvest:cheese_slices"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:tamale"
+  }
+}

@@ -313,6 +313,20 @@ public class CraftingRecipes
                 .unlockedBy("has_crow_feather", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CROW_FEATHER.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "brush_from_crow_feather"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PAPER, 3)
+                .requires(HHModItems.CORN_HUSK.get())
+                .requires(HHModItems.CORN_HUSK.get())
+                .requires(HHModItems.CORN_HUSK.get())
+                .unlockedBy("has_corn_husk", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_HUSK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "paper_from_corn_husks"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CANVAS.get(), 2)
+                .requires(HHModItems.CORN_HUSK.get())
+                .requires(HHModItems.CORN_HUSK.get())
+                .requires(HHModItems.CORN_HUSK.get())
+                .requires(HHModItems.CORN_HUSK.get())
+                .unlockedBy("has_corn_husk", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN_HUSK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "canvas_from_corn_husks"));
+
         // Storage Blocks
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BLUEBERRY_CRATE.get(), 1)
                 .pattern("###")
