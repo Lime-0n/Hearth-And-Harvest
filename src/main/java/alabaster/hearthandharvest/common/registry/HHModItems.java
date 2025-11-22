@@ -521,7 +521,7 @@ public class HHModItems {
     public static final Supplier<Item> TAMALE = registerWithTab("tamale",
             () -> new Item(foodItem(HHFoodValues.TAMALE)));
     public static final Supplier<Item> ELOTE = registerWithTab("elote",
-            () -> new Item(foodItem(HHFoodValues.ELOTE)));
+            () -> new Item(foodItem(HHFoodValues.ELOTE).stacksTo(1).craftRemainder(Items.STICK)));
 
     public static final Supplier<Item> FLOUR = registerWithTab("flour",
             () -> new Item(basicItem()));
