@@ -8,7 +8,7 @@
     "AbstractHorseMixin"
   ],
   "client": [
-    "HideBlockBreakProgressMixin"
+    "HideBreakProgressMixin"
   ],
   "injectors": {
     "defaultRequire": 1

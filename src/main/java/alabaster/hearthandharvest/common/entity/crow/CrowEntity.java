@@ -102,7 +102,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TamableAnimalPanicGoal(1.25F));
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new CrowFleePlayerGoal(this, 1.8F));
+        this.goalSelector.addGoal(1, new CrowFleeEntityGoal(this, 1.8F));
         this.goalSelector.addGoal(1, new CrowAvoidRepellingBlocksGoal(this, 1.6F));
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(2, new CrowSeekShinyItemGoal(this, 1.2D));

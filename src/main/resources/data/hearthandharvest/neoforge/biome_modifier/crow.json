@@ -1,13 +1,10 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": [
-    "minecraft:plains",
-    "minecraft:forest"
-  ],
+  "biomes": "#hearthandharvest:has_crows",
   "spawners": {
     "type": "hearthandharvest:crow",
-    "weight": 10,
+    "weight": 40,
     "minCount": 2,
-    "maxCount": 3
+    "maxCount": 4
   }
 }

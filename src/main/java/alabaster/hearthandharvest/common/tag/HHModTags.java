@@ -1,11 +1,14 @@
 package alabaster.hearthandharvest.common.tag;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 public class HHModTags {
@@ -24,14 +27,18 @@ public class HHModTags {
     public static final TagKey<Block> CROW_EDIBLE_CROPS = modBlockTag("crow_edible_crops");
     public static final TagKey<Block> REPELS_CROWS = modBlockTag("repels_crows");
 
+    public static final TagKey<Biome> HAS_CROWS = modBiomeTag("has_crows");
 
     private static TagKey<Block> modBlockTag(String path) {
         return BlockTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
     }
 
-
     private static TagKey<Item> modItemTag(String path) {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
     }
 
+    private static TagKey<Biome> modBiomeTag(String path) {
+        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path)
+        );
+    }
 }
