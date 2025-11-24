@@ -11,5 +11,25 @@
     "sounds": [
       "hearthandharvest:entities/crow/crow_hurt_1"
     ]
+  },
+
+  "entities.crow.eat": {
+    "subtitle": "hearthandharvest.subtitles.crow.eat",
+    "sounds": [
+      {
+        "name": "entity.parrot.eat",
+        "type": "event"
+      }
+    ]
+  },
+
+  "entities.crow.step": {
+    "subtitle": "hearthandharvest.subtitles.crow.step",
+    "sounds": [
+      {
+        "name": "entity.parrot.step",
+        "type": "event"
+      }
+    ]
   }
 }

@@ -7,8 +7,10 @@
   "item.hearthandharvest.crow_spawn_egg": "Crow Spawn Egg",
   "entity.hearthandharvest.crow": "Crow",
   "item.hearthandharvest.crow_feather": "Crow Feather",
-  "hearthandharvest.subtitles.crow.squawking": "Crow Squawking",
-  "hearthandharvest.subtitles.crow.hurt": "Crow Hurt",
+  "hearthandharvest.subtitles.crow.squawking": "Crow squawking",
+  "hearthandharvest.subtitles.crow.hurt": "Crow hurts",
+  "hearthandharvest.subtitles.crow.eat": "Crow eats",
+  "hearthandharvest.subtitles.crow.step": "Crow flutters",
 
   "block.hearthandharvest.cask": "Cask",
   "hearthandharvest.container.cask.dim": "Surrounding light is dim, speed is 2x",

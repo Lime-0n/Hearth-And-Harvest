@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -23,7 +24,7 @@ public class HHBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
 
         // Target biomes explicitly
-        HolderSet<net.minecraft.world.level.biome.Biome> targetBiomes = HolderSet.direct(
+        HolderSet<Biome> targetBiomes = HolderSet.direct(
                 biomes.getOrThrow(Biomes.PLAINS),
                 biomes.getOrThrow(Biomes.FOREST),
                 biomes.getOrThrow(Biomes.FLOWER_FOREST),

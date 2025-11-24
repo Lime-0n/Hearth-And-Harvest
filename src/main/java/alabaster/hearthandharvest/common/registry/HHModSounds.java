@@ -17,4 +17,10 @@ public class HHModSounds {
 
     public static final Supplier<SoundEvent> CROW_HURT = SOUNDS.register("entities.crow.hurt",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.crow.hurt")));
+
+    public static final Supplier<SoundEvent> CROW_EAT = SOUNDS.register("entities.crow.eat",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.crow.eat")));
+
+    public static final Supplier<SoundEvent> CROW_STEP = SOUNDS.register("entities.crow.ste",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.crow.step")));
 }
