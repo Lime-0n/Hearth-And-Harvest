@@ -22,6 +22,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -260,7 +261,12 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
 
     }
 
+    @Override
     public boolean hurt(DamageSource source, float amount) {
+        if (source.is(DamageTypes.SWEET_BERRY_BUSH)) {
+            return false;
+        }
+
         if (this.isInvulnerableTo(source)) {
             return false;
         } else {
