@@ -206,7 +206,7 @@ public class HHModBlocks {
     public static final Supplier<Block> ROPE_COIL = BLOCKS.register("rope_coil",
             () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL).strength(2.0F, 3.0F).sound(SoundType.WOOL)));
     public static final Supplier<Block> CORN_HUSK_BUNDLE = BLOCKS.register("corn_husk_bundle",
-            () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK).strength(2.0F, 3.0F).sound(SoundType.CROP)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK).strength(2.0F, 3.0F).sound(SoundType.CROP)));
 
     // Half-Slab Crates
     public static final Supplier<Block> EGG_CRATE = BLOCKS.register("egg_crate",
