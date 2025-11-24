@@ -9,6 +9,8 @@
   "item.hearthandharvest.crow_feather": "Перо вороны",
   "hearthandharvest.subtitles.crow.squawking": "Ворона каркает",
   "hearthandharvest.subtitles.crow.hurt": "Ворона ранена",
+  "hearthandharvest.subtitles.crow.eat": "Ворона ест",
+  "hearthandharvest.subtitles.crow.step": "Ворона порхает",
   
   "block.hearthandharvest.cask": "Бочка",
   "hearthandharvest.container.cask.dim": "Освещение тусклый, скорость удвоена",
