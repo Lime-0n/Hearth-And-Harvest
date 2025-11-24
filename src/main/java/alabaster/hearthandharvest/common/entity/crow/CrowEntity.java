@@ -22,6 +22,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -160,7 +161,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         if (!this.isTame() && itemstack.is(ItemTags.PARROT_FOOD)) {
             itemstack.consume(1, player);
             if (!this.isSilent()) {
-                this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+                this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), HHModSounds.CROW_EAT.get(), this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             }
 
             if (!this.level().isClientSide) {
@@ -225,7 +226,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     protected void playStepSound(BlockPos pos, BlockState block) {
-        this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
+        this.playSound(HHModSounds.CROW_STEP.get(), 0.15F, 1.0F);
     }
 
     protected boolean isFlapping() {
@@ -260,7 +261,12 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
 
     }
 
+    @Override
     public boolean hurt(DamageSource source, float amount) {
+        if (source.is(DamageTypes.SWEET_BERRY_BUSH)) {
+            return false;
+        }
+
         if (this.isInvulnerableTo(source)) {
             return false;
         } else {

@@ -1,7 +1,7 @@
 {
   "type": "hearthandharvest:corn_maze",
   "biomes": "#c:is_plains",
-  "step": "surface_structures",
+  "step": "vegetal_decoration",
   "terrain_adaptation": "beard_thin",
   "use_expansion_hack": true,
   "spawn_overrides": {}

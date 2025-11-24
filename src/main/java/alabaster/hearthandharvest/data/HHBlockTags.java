@@ -42,6 +42,7 @@ public class HHBlockTags extends BlockTagsProvider {
         tag(HHModTags.CROW_EDIBLE_CROPS).add(
                 Blocks.WHEAT,
                 Blocks.PUMPKIN_STEM,
+                Blocks.MELON_STEM,
                 Blocks.SWEET_BERRY_BUSH,
                 Blocks.CAVE_VINES_PLANT,
                 ModBlocks.CABBAGE_CROP.get(),
