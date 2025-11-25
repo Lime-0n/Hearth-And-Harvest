@@ -30,8 +30,6 @@ public class CraftingRecipes
         recipesTools(output);
         recipesMaterials(output);
         recipesFoodstuffs(output);
-        recipesFoodBlocks(output);
-        recipesCraftedMeals(output);
     }
 
     private static void recipesBlocks(RecipeOutput output) {
@@ -513,9 +511,9 @@ public class CraftingRecipes
                 .unlockedBy("has_syrup_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.WATER_CRATE.get(), 1)
-                .pattern("   ")
-                .pattern(" # ")
-                .pattern("   ")
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
                 .define('#', WATER_BOTTLE)
                 .unlockedBy("has_water_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POTION))
                 .save(output);
@@ -953,13 +951,5 @@ public class CraftingRecipes
                 .requires(HHModItems.SYRUP_BOTTLE.get())
                 .unlockedBy("has_syrup", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sugar_from_syrup"));
-    }
-
-    private static void recipesFoodBlocks(RecipeOutput output) {
-
-    }
-
-    private static void recipesCraftedMeals(RecipeOutput output) {
-
     }
 }

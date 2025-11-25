@@ -37,7 +37,7 @@ public class Config {
         CROW_SPAWN_NUMBER_OF_CROPS = COMMON_BUILDER
                 .comment("Amount of crops that need to be in an area for a crow to spawn nearby. Used alongside the crowSpawnRadius config to control crow spawning.\n" +
                         "Setting to 0 would prevent crow spawning")
-                .defineInRange("crow_", 8, 0, 192);
+                .defineInRange("crowCropRequirement", 8, 0, 192);
 
         CROW_SPAWN_RADIUS = COMMON_BUILDER
                 .comment("Radius that crows check for crops to be in when trying to spawn. Larger radius means higher changes of spawning.\n" +
