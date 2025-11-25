@@ -234,6 +234,49 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.MEAD.get())
                 .add(HHModItems.MOONSHINE.get());
 
+        tag(Tags.Items.FOODS_SOUP)
+                .add(HHModItems.CORN_STEW.get())
+                .add(HHModItems.ONION_SOUP.get());
+
+        tag(Tags.Items.FOODS_EDIBLE_WHEN_PLACED)
+                .add(HHModItems.BLUEBERRY_PIE.get())
+                .add(HHModItems.RASPBERRY_PIE.get())
+                .add(HHModItems.GRAPE_PIE.get())
+                .add(HHModItems.PEANUT_BUTTER_PIE.get())
+                .add(HHModItems.CHICKEN_POT_PIE.get())
+                .add(HHModItems.CARROT_CAKE.get());
+
+        tag(Tags.Items.FOODS_COOKIE)
+                .add(HHModItems.PEANUT_BUTTER_COOKIE.get());
+
+        tag(Tags.Items.FOODS_PIE)
+                .add(HHModItems.BLUEBERRY_PIE.get())
+                .add(HHModItems.RASPBERRY_PIE.get())
+                .add(HHModItems.GRAPE_PIE.get())
+                .add(HHModItems.PEANUT_BUTTER_PIE.get())
+                .add(HHModItems.CHICKEN_POT_PIE.get());
+
+        tag(Tags.Items.FOODS_BERRY)
+                .add(HHModItems.BLUEBERRIES.get())
+                .add(HHModItems.RASPBERRY.get())
+                .add(HHModItems.CHERRY.get())
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get());
+
+        tag(Tags.Items.FOODS_FRUIT)
+                .add(HHModItems.BLUEBERRIES.get())
+                .add(HHModItems.RASPBERRY.get())
+                .add(HHModItems.CHERRY.get())
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get());
+
+        tag(Tags.Items.FOODS)
+                .add(HHModItems.BLUEBERRIES.get())
+                .add(HHModItems.RASPBERRY.get())
+                .add(HHModItems.CHERRY.get())
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get());
+
         tag(Tags.Items.FOODS)
                 .add(HHModItems.BLUEBERRIES.get())
                 .add(HHModItems.CHERRY.get())
