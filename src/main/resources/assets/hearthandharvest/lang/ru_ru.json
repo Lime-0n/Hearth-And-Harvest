@@ -11,7 +11,7 @@
   "hearthandharvest.subtitles.crow.hurt": "Ворона ранена",
   "hearthandharvest.subtitles.crow.eat": "Ворона ест",
   "hearthandharvest.subtitles.crow.step": "Ворона порхает",
-  
+
   "block.hearthandharvest.cask": "Бочка",
   "hearthandharvest.container.cask.dim": "Освещение тусклый, скорость удвоена",
   "hearthandharvest.container.cask.medium": "Освещение среднее, скорость стандартная",
@@ -31,7 +31,7 @@
 
   "item.hearthandharvest.scarecrow": "Пугало",
   "block.hearthandharvest.scarecrow": "Пугало",
-  
+
   "block.hearthandharvest.oak_half_cabinet": "Дубовая полукладовая",
   "block.hearthandharvest.birch_half_cabinet": "Березовая полукладовая",
   "block.hearthandharvest.spruce_half_cabinet": "Еловая полукладовая",
@@ -97,7 +97,7 @@
   "block.hearthandharvest.potted_purple_mum": "Фиоллетовая хризантема в горшке",
   "block.hearthandharvest.potted_pink_mum": "Розовая хризантема в горшке",
   "block.hearthandharvest.potted_white_mum": "Белая хризантема в горшке",
-  
+
   "block.hearthandharvest.blueberry_crate": "Ящик с черникой",
   "block.hearthandharvest.raspberry_crate": "Ящик с малиной",
   "block.hearthandharvest.cherry_crate": "Ящик с вишней",
@@ -195,7 +195,7 @@
   "item.hearthandharvest.smore": "Печенье с маршмэллоу и шоколадом",
   "item.hearthandharvest.cider_donut": "Сидровый пончик",
   "item.hearthandharvest.candy_corn": "Сладкая кукуруза",
-  
+
   "block.hearthandharvest.raspberry_pie": "Малиновый пирог",
   "item.hearthandharvest.raspberry_pie_slice": "Кусок малинового пирога",
   "block.hearthandharvest.blueberry_pie": "Черничный пирог",
@@ -293,12 +293,12 @@
   "item.minecraft.splash_potion.effect.long_bad_omen_potion": "Взрывное зелье дурного знака",
   "item.minecraft.lingering_potion.effect.long_bad_omen_potion": "Туманное зелье дурного знака",
   "item.minecraft.tipped_arrow.effect.long_bad_omen_potion": "Стрела дурного знака",
-  
+
   "item.minecraft.potion.effect.strong_bad_omen_potion": "Зелье дурного знака",
   "item.minecraft.splash_potion.effect.strong_bad_omen_potion": "Взрывное зелье дурного знака",
   "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Туманное зелье дурного знака",
   "item.minecraft.tipped_arrow.effect.strong_bad_omen_potion": "Стрела дурного знака",
-  
+
   "hearthandharvest.jei.aging": "Созревание",
 
   "hearthandharvest.jei.info.watering_can": "Лейку можно заряжать костной мукой, держа ее в левой руке и кликнув ЛКМ, и водой – нажав по источнику воды. Лейка накладывает эффект костной муки на область 3x3 при использовании. Также ей можно тушить огонь и горящие блоки.",
@@ -308,7 +308,7 @@
   "hearthandharvest.jei.info.wild_grapes": "Дикий виноград часто встречается в умеренных биомах, например, на равнинах и в лесах.",
   "hearthandharvest.jei.info.nest": "Гнёзда служат точками, где некоторые пернатые мобы сбрасывают предметы. Дикие вороны будут туда блестящие предметы, а курицы будут пытаться отложить в них яйца.",
   "hearthandharvest.jei.info.scarecrow": "Пугала помогают отпугивать ворон от посевов, как и вырезные тыквы со светильниками Джека.",
-  
+
   "fluid_type.hearthandharvest.cooking_oil": "Растительное масло",
   "fluid_type.hearthandharvest.sap": "Древесный сок",
   "fluid_type.hearthandharvest.syrup": "Сироп",
@@ -323,7 +323,7 @@
   "fluid_type.hearthandharvest.moonshine": "Самогон",
 
   "item.hearthandharvest.blueberry_pips": "Косточки черники",
-  "item.hearthandharvest.raspberry_pips": "Косточки малины"
+  "item.hearthandharvest.raspberry_pips": "Косточки малины",
   "tooltip.hearthandharvest.jug.empty": "Пусто",
   "tooltip.hearthandharvest.jug.amount": "%1$d mB"
 }
