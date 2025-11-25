@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.HolderLookup;
@@ -120,9 +121,22 @@ public class HHBlockTags extends BlockTagsProvider {
     }
 
     protected void registerCommonTags() {
-        tag(HHCommonTags.STORAGE_BLOCKS_CORN).add(
-                HHModBlocks.CORN_CRATE.get()
-        );
+        tag(HHCommonTags.STORAGE_BLOCKS_BLUEBERRY)
+                .add(HHModBlocks.BLUEBERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_RASPBERRY)
+                .add(HHModBlocks.RASPBERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GRAPE)
+                .add(HHModBlocks.GREEN_GRAPE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GRAPE)
+                .add(HHModBlocks.RED_GRAPE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_CHERRY)
+                .add(HHModBlocks.CHERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_PEANUT)
+                .add(HHModBlocks.PEANUT_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_COTTON)
+                .add(HHModBlocks.COTTON_BALE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_CORN)
+                .add(HHModBlocks.CORN_CRATE.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 HHModBlocks.RASPBERRY_CRATE.get(),

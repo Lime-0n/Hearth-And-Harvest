@@ -161,6 +161,20 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHCommonTags.CROPS_GRAIN)
                 .add(HHModItems.CORN.get());
 
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_BLUEBERRY)
+                .add(HHModItems.BLUEBERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_RASPBERRY)
+                .add(HHModItems.RASPBERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GRAPE)
+                .add(HHModItems.GREEN_GRAPE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GRAPE)
+                .add(HHModItems.RED_GRAPE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CHERRY)
+                .add(HHModItems.CHERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_PEANUT)
+                .add(HHModItems.PEANUT_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_COTTON)
+                .add(HHModItems.COTTON_BALE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CORN)
                 .add(HHModItems.CORN_CRATE.get());
 
@@ -202,6 +216,23 @@ public class HHItemTags extends ItemTagsProvider {
 
         tag(Tags.Items.FEATHERS)
                 .add(HHModItems.CROW_FEATHER.get());
+
+        tag(HHCommonTags.DRINKS_JUICE)
+                .add(HHModItems.BLUEBERRY_JUICE.get())
+                .add(HHModItems.RASPBERRY_JUICE.get())
+                .add(HHModItems.GREEN_GRAPE_JUICE.get())
+                .add(HHModItems.RED_GRAPE_JUICE.get())
+                .add(HHModItems.CHERRY_JUICE.get());
+
+        tag(HHCommonTags.DRINKS_ALCOHOL)
+                .add(HHModItems.BLUEBERRY_WINE.get())
+                .add(HHModItems.RASPBERRY_WINE.get())
+                .add(HHModItems.GREEN_GRAPE_WINE.get())
+                .add(HHModItems.RED_GRAPE_WINE.get())
+                .add(HHModItems.CHERRY_WINE.get())
+                .add(HHModItems.SWEET_BERRY_WINE.get())
+                .add(HHModItems.MEAD.get())
+                .add(HHModItems.MOONSHINE.get());
 
         tag(Tags.Items.FOODS)
                 .add(HHModItems.BLUEBERRIES.get())
@@ -272,7 +303,6 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.MASHED_POTATOES.get())
                 .add(HHModItems.PEANUT_BUTTER_AND_JELLY_SANDWICH.get())
                 .add(HHModItems.WAFFLE.get())
-                .add(HHModItems.BISCUITS_AND_GRAVY.get())
-        ;
+                .add(HHModItems.BISCUITS_AND_GRAVY.get());
     }
 }

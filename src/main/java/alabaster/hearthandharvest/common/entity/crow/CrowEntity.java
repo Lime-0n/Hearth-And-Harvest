@@ -158,14 +158,14 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
 
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        if (!this.isTame() && itemstack.is(ItemTags.PARROT_FOOD)) {
+        if (!this.isTame() && itemstack.is(HHModTags.CROW_FOOD)) {
             itemstack.consume(1, player);
             if (!this.isSilent()) {
                 this.level().playSound((Player)null, this.getX(), this.getY(), this.getZ(), HHModSounds.CROW_EAT.get(), this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             }
 
             if (!this.level().isClientSide) {
-                if (this.random.nextInt(10) == 0 && !EventHooks.onAnimalTame(this, player)) {
+                if (this.random.nextInt(5) == 0 && !EventHooks.onAnimalTame(this, player)) {
                     this.tame(player);
                     this.level().broadcastEntityEvent(this, (byte)7);
                 } else {
