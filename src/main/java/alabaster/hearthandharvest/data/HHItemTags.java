@@ -181,10 +181,24 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHCommonTags.SEEDS_CORN)
                 .add(HHModItems.CORN_KERNELS.get());
 
+        tag(CompatibilityTags.SERENE_SEASONS_SPRING_CROPS)
+                .add(HHModItems.BLUEBERRIES.get())
+                .add(HHModItems.RASPBERRY.get())
+                .add(HHModItems.PEANUT.get());
+
         tag(CompatibilityTags.SERENE_SEASONS_SUMMER_CROPS)
+                .add(HHModItems.BLUEBERRIES.get())
+                .add(HHModItems.RASPBERRY.get())
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get())
+                .add(HHModItems.COTTON_SEEDS.get())
+                .add(HHModItems.PEANUT.get())
                 .add(HHModItems.CORN_KERNELS.get());
 
         tag(CompatibilityTags.SERENE_SEASONS_AUTUMN_CROPS)
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get())
+                .add(HHModItems.COTTON_SEEDS.get())
                 .add(HHModItems.CORN_KERNELS.get());
 
         tag(ModTags.WOODEN_CABINETS)
