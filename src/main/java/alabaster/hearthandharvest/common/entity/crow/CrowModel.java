@@ -10,7 +10,6 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
 public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crow"), "main");
@@ -74,11 +73,11 @@ public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
 
         PartDefinition leftwing = wings.addOrReplaceChild("leftwing", CubeListBuilder.create(), PartPose.offset(2.5F, -1.6766F, -3.1459F));
 
-        PartDefinition leftwing_r1 = leftwing.addOrReplaceChild("leftwing_r1", CubeListBuilder.create().texOffs(12, 12).addBox(-4.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5F, 1.6766F, 3.1459F, -0.3054F, 0.0F, 0.0F));
+        PartDefinition leftwing_r1 = leftwing.addOrReplaceChild("leftwing_r1", CubeListBuilder.create().texOffs(12, 12).addBox(-4.0F, -2.0F, -4.25F, 1.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.5F, 2.6766F, 3.1459F, -0.3054F, 0.0F, 0.0F));
 
         PartDefinition rightwing = wings.addOrReplaceChild("rightwing", CubeListBuilder.create(), PartPose.offset(-2.5F, -1.6766F, -3.1459F));
 
-        PartDefinition rightwing_r1 = rightwing.addOrReplaceChild("rightwing_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-3.0F, -1.0F, -4.25F, 1.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5F, 1.6766F, 3.1459F, -0.3054F, 0.0F, 0.0F));
+        PartDefinition rightwing_r1 = rightwing.addOrReplaceChild("rightwing_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-3.0F, -2.0F, -4.25F, 1.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.5F, 2.6766F, 3.1459F, -0.3054F, 0.0F, 0.0F));
 
         PartDefinition head = crow.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 8).addBox(-1.5F, -1.75F, 0.0F, 3.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -2.25F, -5.25F, 0.3054F, 0.0F, 0.0F));
 
@@ -93,6 +92,16 @@ public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
         PartDefinition partlowerbeak_r1 = lowerbeak.addOrReplaceChild("partlowerbeak_r1", CubeListBuilder.create().texOffs(18, 4).addBox(-0.5F, 0.25F, -3.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.9962F, 0.0872F, -0.0873F, 0.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 32, 32);
+    }
+
+    @Override
+    public void setupAnim(CrowEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.applyHeadRotation(netHeadYaw, headPitch);
+        this.animateWalk(CrowAnimations.walking, limbSwing, limbSwingAmount, 2f, 5f);
+        this.animate(entity.idleAnimationState, CrowAnimations.idle, ageInTicks, 1f);
+        this.animate(entity.flyingAnimationState, CrowAnimations.flying, ageInTicks, 1f);
+        this.animate(entity.sittingAnimationState, CrowAnimations.sitting, ageInTicks, 1f);
     }
 
     @Override
@@ -111,14 +120,5 @@ public class CrowModel<T extends CrowEntity> extends HierarchicalModel<T> {
     @Override
     public ModelPart root() {
         return crow;
-    }
-
-    @Override
-    public void setupAnim(CrowEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-        this.applyHeadRotation(netHeadYaw, headPitch);
-        this.animateWalk(CrowAnimations.walking, limbSwing, limbSwingAmount, 2f, 5f);
-        this.animate(entity.idleAnimationState, CrowAnimations.idle, ageInTicks, 1f);
-        this.animate(entity.flyingAnimationState, CrowAnimations.flying, ageInTicks, 1f);
     }
 }

@@ -60,6 +60,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     private float nextFlap = 1.0F;
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState flyingAnimationState = new AnimationState();
+    public final AnimationState sittingAnimationState = new AnimationState();
 
     public CrowEntity(EntityType<? extends ShoulderRidingEntity> entityType, Level level) {
         super(entityType, level);
@@ -84,19 +85,31 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     private void setupAnimationStates() {
         if (!this.level().isClientSide()) return;
 
-        boolean flying = isFlying();
+        // SITTING
+        if (isInSittingPose()) {
+            if (!sittingAnimationState.isStarted()) {
+                idleAnimationState.stop();
+                flyingAnimationState.stop();
+                sittingAnimationState.start(this.tickCount);
+            }
+            return;
+        }
 
-        // Start flying animation only if not already running
-        if (flying) {
+        // FLYING
+        if (isFlying()) {
             if (!flyingAnimationState.isStarted()) {
                 idleAnimationState.stop();
+                sittingAnimationState.stop();
                 flyingAnimationState.start(this.tickCount);
             }
-        } else {
-            if (!idleAnimationState.isStarted()) {
-                flyingAnimationState.stop();
-                idleAnimationState.start(this.tickCount);
-            }
+            return;
+        }
+
+        // IDLE
+        if (!idleAnimationState.isStarted()) {
+            flyingAnimationState.stop();
+            sittingAnimationState.stop();
+            idleAnimationState.start(this.tickCount);
         }
     }
 
@@ -177,7 +190,9 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         } else if (!itemstack.is(ItemTags.PARROT_POISONOUS_FOOD)) {
             if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
                 if (!this.level().isClientSide) {
-                    this.setOrderedToSit(!this.isOrderedToSit());
+                    boolean sit = !this.isOrderedToSit();
+                    this.setOrderedToSit(sit);
+                    this.setInSittingPose(sit);
                 }
 
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
@@ -205,6 +220,15 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (level().isClientSide) {
+            setupAnimationStates();
+        }
     }
 
     @Nullable
@@ -291,7 +315,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     public boolean isFlying() {
-        return !this.onGround();
+        return !this.onGround() && !this.isInSittingPose();
     }
 
     protected boolean canFlyToOwner() {
