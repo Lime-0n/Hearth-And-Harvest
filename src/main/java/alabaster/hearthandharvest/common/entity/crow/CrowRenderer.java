@@ -25,10 +25,6 @@ public class CrowRenderer extends MobRenderer<CrowEntity, CrowModel<CrowEntity>>
             poseStack.scale(1f, 1f, 1f);
         }
 
-        if(entity.isInSittingPose()) {
-            poseStack.translate(0f, -0.0625f,0f);
-        }
-
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }
 }
