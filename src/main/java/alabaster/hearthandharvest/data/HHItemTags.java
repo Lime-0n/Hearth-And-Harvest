@@ -52,6 +52,17 @@ public class HHItemTags extends ItemTagsProvider {
         tag(CommonTags.TOOLS_KNIFE)
                 .addTag(HHModTags.CLEAVERS);
 
+        tag(HHCommonTags.DUSTS_SALT)
+                .add(HHModItems.SALT.get());
+
+        tag(HHCommonTags.FLOURS_WHEAT)
+                .add(HHModItems.FLOUR.get())
+                .add(HHModItems.CORN_MEAL.get());
+        tag(HHCommonTags.FLOURS_WHEAT)
+                .add(HHModItems.FLOUR.get());
+        tag(HHCommonTags.FLOURS_CORN)
+                .add(HHModItems.CORN_MEAL.get());
+
         tag(HHModTags.WINE_BOTTLES)
                 .add(HHModItems.BLUEBERRY_WINE.get())
                 .add(HHModItems.CHERRY_WINE.get())
@@ -155,6 +166,19 @@ public class HHItemTags extends ItemTagsProvider {
         tag(ItemTags.PARROT_FOOD)
                 .add(HHModItems.CORN_KERNELS.get());
 
+        tag(HHCommonTags.CROPS_BLUEBERRY)
+                .add(HHModItems.BLUEBERRIES.get());
+        tag(HHCommonTags.CROPS_RASPBERRY)
+                .add(HHModItems.RASPBERRY.get());
+        tag(HHCommonTags.CROPS_GRAPE)
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get());
+        tag(HHCommonTags.CROPS_CHERRY)
+                .add(HHModItems.CHERRY.get());
+        tag(HHCommonTags.CROPS_PEANUT)
+                .add(HHModItems.PEANUT.get());
+        tag(HHCommonTags.CROPS_COTTON)
+                .add(HHModItems.COTTON.get());
         tag(HHCommonTags.CROPS_CORN)
                 .add(HHModItems.CORN.get());
 

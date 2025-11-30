@@ -131,6 +131,7 @@ dependencies {
     // Farmers Delight
     implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
     implementation "curse.maven:brewin-and-chewin-637808:${brewinandchewin_version}"
+    implementation "curse.maven:thirst-was-taken-679270:7017923"
     implementation "curse.maven:jei-238222:6614392"
 
     // JEI
