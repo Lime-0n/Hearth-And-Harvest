@@ -17,7 +17,6 @@ public class Config {
     public static ModConfigSpec.IntValue CROW_SPAWN_NUMBER_OF_CROPS;
     public static ModConfigSpec.IntValue CROW_SPAWN_RADIUS;
     public static ModConfigSpec.IntValue CROW_SCARE_RADIUS;
-    public static ModConfigSpec.BooleanValue ENABLE_TWT_COMPAT;
 
     public Config() {
     }
@@ -49,10 +48,6 @@ public class Config {
                 .comment("Radius that players, villgers, and repelling blocks will be effective towards scaring wild crows.\n" +
                         "Setting to 0 would prevent crows from being scared")
                 .defineInRange("crowScareRadius", 6, 0, 192);
-
-        ENABLE_TWT_COMPAT = COMMON_BUILDER
-                .comment("Enable Thirst Was Taken Compat")
-                .define("enabled", true);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

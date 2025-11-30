@@ -13,8 +13,6 @@ import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import alabaster.hearthandharvest.integration.ThirstWasTakenCompat;
-import dev.ghen.thirst.Thirst;
-import dev.ghen.thirst.foundation.common.event.RegisterThirstValueEvent;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Mob;
@@ -52,6 +50,8 @@ public class HearthAndHarvest {
 
     public HearthAndHarvest(IEventBus modEventBus, ModContainer modContainer) {
 
+        NeoForge.EVENT_BUS.register(this);
+
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(this::registerScreens);
             modEventBus.addListener(this::registerRecipeBookCategories);
@@ -77,9 +77,12 @@ public class HearthAndHarvest {
         HHModStructures.STRUCTURES.register(modEventBus);
         HHModSounds.SOUNDS.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new PigLitters());
         NeoForge.EVENT_BUS.register(new RabbitLitters());
+
+        if (ModList.get().isLoaded("thirst")) {
+            NeoForge.EVENT_BUS.register(ThirstWasTakenCompat.class);
+        }
     }
 
     public void registerScreens(RegisterMenuScreensEvent event) {
