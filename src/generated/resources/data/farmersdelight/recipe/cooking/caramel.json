@@ -10,7 +10,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     }
   ],
   "recipe_book_tab": "meals",

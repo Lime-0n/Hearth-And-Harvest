@@ -10,7 +10,7 @@
       "item": "farmersdelight:raw_pasta"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "tag": "c:foods/milk"

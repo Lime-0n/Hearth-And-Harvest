@@ -10,7 +10,7 @@
       "item": "hearthandharvest:corn_meal"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "item": "minecraft:egg"

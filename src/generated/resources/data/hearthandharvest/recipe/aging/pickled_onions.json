@@ -4,7 +4,7 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "item": "farmersdelight:onion"

@@ -1,15 +1,21 @@
 package alabaster.hearthandharvest.data.recipe;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.recipebook.CaskRecipeBookTab;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.data.builder.CaskRecipeBuilder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
+import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 
 public class AgingRecipes {
     public static final int FAST_AGING = 300;      // 1.25 minutes
@@ -107,7 +113,7 @@ public class AgingRecipes {
 
     private static void agePickles(RecipeOutput output) {
         CaskRecipeBuilder.caskRecipe(HHModItems.PICKLED_CARROTS.get(), 1, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(Items.CARROT)
                 .addIngredient(Items.CARROT)
                 .addIngredient(HHModItems.JAR.get())
@@ -116,7 +122,7 @@ public class AgingRecipes {
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.PICKLED_POTATOES.get(), 1, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(Items.POTATO)
                 .addIngredient(Items.POTATO)
                 .addIngredient(HHModItems.JAR.get())
@@ -125,25 +131,25 @@ public class AgingRecipes {
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.PICKLED_ONIONS.get(), 1, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
-                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
-                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
+                .addIngredient(ModItems.ONION.get())
+                .addIngredient(ModItems.ONION.get())
                 .addIngredient(HHModItems.JAR.get())
-                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
+                .unlockedByAnyIngredient(ModItems.ONION.get())
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.PICKLED_CABBAGE.get(), 1, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
-                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
-                .addIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
+                .addIngredient(ModItems.CABBAGE.get())
+                .addIngredient(ModItems.CABBAGE.get())
                 .addIngredient(HHModItems.JAR.get())
-                .unlockedByAnyIngredient(vectorwing.farmersdelight.common.registry.ModItems.CABBAGE.get())
+                .unlockedByAnyIngredient(ModItems.CABBAGE.get())
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.PICKLED_BEETROOTS.get(), 1, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(Items.BEETROOT)
                 .addIngredient(HHModItems.JAR.get())
@@ -154,12 +160,30 @@ public class AgingRecipes {
 
     private static void ageMisc(RecipeOutput output) {
         CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHModItems.SALT.get())
+                .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(Items.ROTTEN_FLESH)
                 .addIngredient(Items.ROTTEN_FLESH)
                 .addIngredient(Items.ROTTEN_FLESH)
                 .unlockedByAnyIngredient(Items.ROTTEN_FLESH)
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
-                .build(output);
+                .build(output,"jerky_from_rotten_flesh");
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(HHCommonTags.DUSTS_SALT)
+                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
+                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
+                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
+                .unlockedByAnyIngredient()
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output,"jerky_from_cooked_meat");
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
+                .addIngredient(HHCommonTags.DUSTS_SALT)
+                .addIngredient(Tags.Items.FOODS_RAW_MEAT)
+                .addIngredient(Tags.Items.FOODS_RAW_MEAT)
+                .addIngredient(Tags.Items.FOODS_RAW_MEAT)
+                .unlockedByAnyIngredient()
+                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
+                .build(output,"jerky_from_raw_meat");
     }
 }

@@ -166,14 +166,14 @@ public class HHItemTags extends ItemTagsProvider {
         tag(ItemTags.PARROT_FOOD)
                 .add(HHModItems.CORN_KERNELS.get());
 
-        tag(HHCommonTags.CROPS_BLUEBERRY)
+        tag(HHCommonTags.FRUITS_BLUEBERRY)
                 .add(HHModItems.BLUEBERRIES.get());
-        tag(HHCommonTags.CROPS_RASPBERRY)
+        tag(HHCommonTags.FRUITS_RASPBERRY)
                 .add(HHModItems.RASPBERRY.get());
-        tag(HHCommonTags.CROPS_GRAPE)
+        tag(HHCommonTags.FRUITS_GRAPE)
                 .add(HHModItems.RED_GRAPES.get())
                 .add(HHModItems.GREEN_GRAPES.get());
-        tag(HHCommonTags.CROPS_CHERRY)
+        tag(HHCommonTags.FRUITS_CHERRY)
                 .add(HHModItems.CHERRY.get());
         tag(HHCommonTags.CROPS_PEANUT)
                 .add(HHModItems.PEANUT.get());

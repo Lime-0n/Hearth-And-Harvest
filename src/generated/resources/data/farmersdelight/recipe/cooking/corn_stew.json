@@ -11,7 +11,7 @@
       "item": "hearthandharvest:corn"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "item": "minecraft:potato"

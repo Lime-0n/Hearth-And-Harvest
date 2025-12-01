@@ -13,10 +13,10 @@
       "item": "minecraft:potato"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "tag": "c:foods/milk"

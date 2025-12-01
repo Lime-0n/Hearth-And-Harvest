@@ -8,10 +8,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class HHCommonTags {
-    public static final TagKey<Item> CROPS_BLUEBERRY = commonItemTag("crops/blueberry");
-    public static final TagKey<Item> CROPS_RASPBERRY = commonItemTag("crops/raspberry");
-    public static final TagKey<Item> CROPS_CHERRY = commonItemTag("crops/cherry");
-    public static final TagKey<Item> CROPS_GRAPE = commonItemTag("crops/grape");
+    public static final TagKey<Item> FRUITS_BLUEBERRY = commonItemTag("fruits/blueberry");
+    public static final TagKey<Item> FRUITS_RASPBERRY = commonItemTag("fruits/raspberry");
+    public static final TagKey<Item> FRUITS_CHERRY = commonItemTag("fruits/cherry");
+    public static final TagKey<Item> FRUITS_GRAPE = commonItemTag("fruits/grape");
     public static final TagKey<Item> CROPS_PEANUT = commonItemTag("crops/peanut");
     public static final TagKey<Item> CROPS_COTTON = commonItemTag("crops/cotton");
 

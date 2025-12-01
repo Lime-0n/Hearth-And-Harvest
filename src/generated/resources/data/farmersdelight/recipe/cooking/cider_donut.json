@@ -7,7 +7,7 @@
       "item": "farmersdelight:apple_cider"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "item": "minecraft:egg"

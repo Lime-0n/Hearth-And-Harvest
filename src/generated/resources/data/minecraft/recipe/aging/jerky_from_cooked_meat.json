@@ -4,16 +4,16 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
-      "item": "minecraft:rotten_flesh"
+      "tag": "c:foods/cooked_meat"
     },
     {
-      "item": "minecraft:rotten_flesh"
+      "tag": "c:foods/cooked_meat"
     },
     {
-      "item": "minecraft:rotten_flesh"
+      "tag": "c:foods/cooked_meat"
     }
   ],
   "recipe_book_tab": "meals",

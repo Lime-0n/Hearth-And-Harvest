@@ -7,18 +7,18 @@
       "tag": "c:dusts/salt"
     },
     {
-      "item": "minecraft:beetroot"
+      "tag": "c:foods/raw_meat"
     },
     {
-      "item": "minecraft:beetroot"
+      "tag": "c:foods/raw_meat"
     },
     {
-      "item": "hearthandharvest:jar"
+      "tag": "c:foods/raw_meat"
     }
   ],
   "recipe_book_tab": "meals",
   "result": {
-    "count": 1,
-    "id": "hearthandharvest:pickled_beetroots"
+    "count": 3,
+    "id": "hearthandharvest:jerky"
   }
 }

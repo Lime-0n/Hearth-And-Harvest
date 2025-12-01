@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:rotten_flesh"
+            "items": []
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:aging/jerky"
+        "recipe": "minecraft:aging/jerky_from_raw_meat"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:aging/jerky"
+      "minecraft:aging/jerky_from_raw_meat"
     ]
   }
 }

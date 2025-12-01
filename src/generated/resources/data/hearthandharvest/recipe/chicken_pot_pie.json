@@ -15,7 +15,7 @@
       "item": "farmersdelight:pie_crust"
     },
     "S": {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     "T": {
       "item": "minecraft:potato"

@@ -17,7 +17,7 @@
       "item": "hearthandharvest:peanut"
     },
     {
-      "item": "hearthandharvest:salt"
+      "tag": "c:dusts/salt"
     },
     {
       "item": "minecraft:sugar"

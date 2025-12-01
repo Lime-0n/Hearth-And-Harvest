@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.data.recipe;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
@@ -873,12 +874,12 @@ public class CraftingRecipes
                 .pattern("MPS")
                 .define('T', Items.POTATO)
                 .define('V', Items.CARROT)
-                .define('S', HHModItems.SALT.get())
+                .define('S', HHCommonTags.DUSTS_SALT)
                 .define('M', CommonTags.FOODS_MILK)
-                .define('C', vectorwing.farmersdelight.common.registry.ModItems.COOKED_CHICKEN_CUTS.get())
-                .define('O', vectorwing.farmersdelight.common.registry.ModItems.ONION.get())
-                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
-                .unlockedBy("has_chicken_cuts", InventoryChangeTrigger.TriggerInstance.hasItems(vectorwing.farmersdelight.common.registry.ModItems.COOKED_CHICKEN_CUTS.get()))
+                .define('C', ModItems.COOKED_CHICKEN_CUTS.get())
+                .define('O', ModItems.ONION.get())
+                .define('P', ModItems.PIE_CRUST.get())
+                .unlockedBy("has_chicken_cuts", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.COOKED_CHICKEN_CUTS.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.CHICKEN_POT_PIE.get(), 1)
                 .pattern("##")
