@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.common.item.CleaverItem;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,7 +32,7 @@ public class CleaverEvents {
     public static void onDrops(LivingDropsEvent event) {
         LivingEntity target = event.getEntity();
 
-        // Only affect animal mobs, nothing else
+        // Only affect entities in the tag
         if (!target.getType().is(HHModTags.CAN_BE_BUTCHERED))
             return;
 
