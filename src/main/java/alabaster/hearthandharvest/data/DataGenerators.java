@@ -32,6 +32,7 @@ public class DataGenerators {
         HHBlockTags blockTags = new HHBlockTags(output, lookupProvider, helper);
         generator.addProvider(event.includeServer(), blockTags);
         generator.addProvider(event.includeServer(), new HHItemTags(output, lookupProvider, blockTags.contentsGetter(), helper));
+        generator.addProvider(event.includeServer(), new HHEntityTags(output, lookupProvider, helper));
         generator.addProvider(event.includeServer(), new HHBiomeTags(output, lookupProvider, helper));
         generator.addProvider(event.includeServer(), new Recipes(output, lookupProvider));
         //generator.addProvider(event.includeServer(), new Advancements(output, lookupProvider, helper));

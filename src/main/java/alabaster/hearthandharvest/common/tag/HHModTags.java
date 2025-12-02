@@ -7,6 +7,8 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -29,6 +31,8 @@ public class HHModTags {
 
     public static final TagKey<Biome> HAS_CROWS = modBiomeTag("has_crows");
 
+    public static final TagKey<EntityType<?>> CAN_BE_BUTCHERED = modEntityTag("can_be_butchered");
+
     private static TagKey<Block> modBlockTag(String path) {
         return BlockTags.create(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
     }
@@ -40,5 +44,9 @@ public class HHModTags {
     private static TagKey<Biome> modBiomeTag(String path) {
         return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path)
         );
+    }
+
+    private static TagKey<EntityType<?>> modEntityTag(String path) {
+        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, path));
     }
 }

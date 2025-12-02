@@ -46,7 +46,7 @@ public class HHModItems {
     }
 
     public static Item.Properties cleaverItem(Tier tier) {
-        return new Item.Properties().attributes(KnifeItem.createAttributes(tier, 2.0F, -3.0F));
+        return new Item.Properties().attributes(CleaverItem.createAttributes(tier, 2.0F, -3.0F));
     }
 
     public static Item.Properties foodItem(FoodProperties food) {
@@ -68,15 +68,15 @@ public class HHModItems {
 
     // Tools
     public static final Supplier<Item> FLINT_CLEAVER = registerWithTab("flint_cleaver",
-            () -> new KnifeItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
+            () -> new CleaverItem(ModMaterials.FLINT, cleaverItem(ModMaterials.FLINT)));
     public static final Supplier<Item> IRON_CLEAVER = registerWithTab("iron_cleaver",
-            () -> new KnifeItem(Tiers.IRON, cleaverItem(Tiers.IRON)));
+            () -> new CleaverItem(Tiers.IRON, cleaverItem(Tiers.IRON)));
     public static final Supplier<Item> DIAMOND_CLEAVER = registerWithTab("diamond_cleaver",
-            () -> new KnifeItem(Tiers.DIAMOND, cleaverItem(Tiers.DIAMOND)));
+            () -> new CleaverItem(Tiers.DIAMOND, cleaverItem(Tiers.DIAMOND)));
     public static final Supplier<Item> NETHERITE_CLEAVER = registerWithTab("netherite_cleaver",
-            () -> new KnifeItem(Tiers.NETHERITE, cleaverItem(Tiers.NETHERITE).fireResistant()));
+            () -> new CleaverItem(Tiers.NETHERITE, cleaverItem(Tiers.NETHERITE).fireResistant()));
     public static final Supplier<Item> GOLDEN_CLEAVER = registerWithTab("golden_cleaver",
-            () -> new KnifeItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
+            () -> new CleaverItem(Tiers.GOLD, cleaverItem(Tiers.GOLD)));
 
     public static final Supplier<Item> WATERING_CAN = registerWithTab("watering_can",
             () -> new WateringCanItem(basicItem()));
