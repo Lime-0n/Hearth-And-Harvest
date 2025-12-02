@@ -55,7 +55,7 @@ public class CleaverEvents {
                 .mapToInt(e -> e.getItem().getCount())
                 .sum();
 
-        int bonus = Math.max(2, (int)Math.ceil(meatCount * 0.5));
+        int bonus = Math.max(0, (int)Math.ceil(meatCount * 0.5));
 
         ItemStack firstMeat = event.getDrops().stream()
                 .findFirst()
