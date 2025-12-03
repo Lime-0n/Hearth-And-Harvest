@@ -373,6 +373,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.POPCORN.get())
                 .add(HHModItems.UNCOOKED_CORN_ON_THE_COB.get())
                 .add(HHModItems.COOKED_CORN_ON_THE_COB.get())
+                .add(HHModItems.TORTILLA.get())
+                .add(HHModItems.TACO.get())
                 .add(HHModItems.CIDER_DONUT.get())
                 .add(HHModItems.CANDY_CORN.get())
                 .add(HHModItems.CORN_BREAD.get())

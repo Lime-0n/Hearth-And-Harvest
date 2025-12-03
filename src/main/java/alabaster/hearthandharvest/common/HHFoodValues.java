@@ -210,6 +210,10 @@ public class HHFoodValues {
             .nutrition(6).saturationModifier(0.6f).build();
     public static final FoodProperties COOKED_CORN_ON_THE_COB = new FoodProperties.Builder()
             .nutrition(8).saturationModifier(0.8f).build();
+    public static final FoodProperties TORTILLA = new FoodProperties.Builder()
+            .nutrition(5).saturationModifier(0.6f).build();
+    public static final FoodProperties TACO = new FoodProperties.Builder()
+            .nutrition(11).saturationModifier(0.8f).build();
     public static final FoodProperties JERKY = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.3f).build();
     public static final FoodProperties ONION_SOUP = new FoodProperties.Builder()

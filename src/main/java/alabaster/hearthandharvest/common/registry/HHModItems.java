@@ -491,6 +491,10 @@ public class HHModItems {
             () -> new Item(basicItem().craftRemainder(Items.BOWL)));
     public static final Supplier<Item> SALT = registerWithTab("salt",
             () -> new Item(basicItem()));
+    public static final Supplier<Item> TORTILLA = registerWithTab("tortilla",
+            () -> new Item(foodItem(HHFoodValues.TORTILLA)));
+    public static final Supplier<Item> TACO = registerWithTab("taco",
+            () -> new Item(foodItem(HHFoodValues.TACO)));
     public static final Supplier<Item> RAISINS = registerWithTab("raisins",
             () -> new Item(foodItem(HHFoodValues.RAISINS)));
     public static final Supplier<Item> SUNFLOWER_SEEDS = registerWithTab("sunflower_seeds",
@@ -510,6 +514,8 @@ public class HHModItems {
                     0,
                     Component.literal("Hot and buttery!").withStyle(ChatFormatting.GOLD))
     );
+    public static final Supplier<Item> BAKED_APPLE = registerWithTab("baked_apple",
+            () -> new Item(foodItem(HHFoodValues.CIDER_DONUT)));
     public static final Supplier<Item> CIDER_DONUT = registerWithTab("cider_donut",
             () -> new Item(foodItem(HHFoodValues.CIDER_DONUT)));
     public static final Supplier<Item> CANDY_CORN = registerWithTab("candy_corn",
