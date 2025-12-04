@@ -68,6 +68,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CHERRY_WINE.get())
                 .add(HHModItems.GREEN_GRAPE_WINE.get())
                 .add(HHModItems.MEAD.get())
+                .add(HHModItems.ROOT_BEER.get())
+                .add(HHModItems.HARD_CIDER.get())
                 .add(HHModItems.RASPBERRY_WINE.get())
                 .add(HHModItems.RED_GRAPE_WINE.get())
                 .add(HHModItems.SWEET_BERRY_WINE.get());
@@ -270,6 +272,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CHERRY_WINE.get())
                 .add(HHModItems.SWEET_BERRY_WINE.get())
                 .add(HHModItems.MEAD.get())
+                .add(HHModItems.ROOT_BEER.get())
+                .add(HHModItems.HARD_CIDER.get())
                 .add(HHModItems.MOONSHINE.get());
 
         tag(Tags.Items.FOODS_SOUP)

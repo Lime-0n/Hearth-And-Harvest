@@ -302,6 +302,10 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.SWEET_BERRY_WINE_CRATE.get(), basicItem()));
     public static final Supplier<Item> MEAD_CRATE = registerWithBlockTab("mead_crate",
             () -> new BlockItem(HHModBlocks.MEAD_CRATE.get(), basicItem()));
+    public static final Supplier<Item> ROOT_BEER_CRATE = registerWithBlockTab("root_beer_crate",
+            () -> new BlockItem(HHModBlocks.ROOT_BEER_CRATE.get(), basicItem()));
+    public static final Supplier<Item> HARD_CIDER_CRATE = registerWithBlockTab("hard_cider_crate",
+            () -> new BlockItem(HHModBlocks.HARD_CIDER_CRATE.get(), basicItem()));
     public static final Supplier<Item> WATER_CRATE = registerWithBlockTab("water_crate",
             () -> new BlockItem(HHModBlocks.WATER_CRATE.get(), basicItem()));
     public static final Supplier<Item> HONEY_CRATE = registerWithBlockTab("honey_crate",
@@ -320,6 +324,10 @@ public class HHModItems {
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
             () -> new WineBottleItem(()-> HHModFluids.MEAD.get(), drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> HARD_CIDER = registerWithTab("hard_cider",
+            () -> new WineBottleItem(()-> HHModFluids.HARD_CIDER.get(), drinkItem().food(HHFoodValues.HARD_CIDER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> ROOT_BEER = registerWithTab("root_beer",
+            () -> new WineBottleItem(()-> HHModFluids.ROOT_BEER.get(), drinkItem().food(HHFoodValues.ROOT_BEER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
             () -> new WineBottleItem(()-> HHModFluids.BLUEBERRY_WINE.get(), drinkItem().food(HHFoodValues.BLUEBERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> CHERRY_WINE = registerWithTab("cherry_wine",
@@ -332,6 +340,8 @@ public class HHModItems {
             () -> new WineBottleItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> SWEET_BERRY_WINE = registerWithTab("sweet_berry_wine",
             () -> new WineBottleItem(()-> HHModFluids.SWEET_BERRY_WINE.get(), drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
+            () -> new WineBottleItem(()-> HHModFluids.MOONSHINE.get(), drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
@@ -344,8 +354,6 @@ public class HHModItems {
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
-    public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
-            () -> new WineBottleItem(()-> HHModFluids.MOONSHINE.get(), drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
 
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",
@@ -498,7 +506,7 @@ public class HHModItems {
     public static final Supplier<Item> RAISINS = registerWithTab("raisins",
             () -> new Item(foodItem(HHFoodValues.RAISINS)));
     public static final Supplier<Item> SUNFLOWER_SEEDS = registerWithTab("sunflower_seeds",
-            () -> new ItemNameBlockItem(Blocks.SUNFLOWER, foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
+            () -> new SunflowerSeedItem(foodItem(HHFoodValues.SUNFLOWER_SEEDS)));
     public static final Supplier<Item> POPCORN = registerWithTab("popcorn",
             () -> new Item(foodItem(HHFoodValues.POPCORN)));
     public static final Supplier<Item> UNCOOKED_CORN_ON_THE_COB = registerWithTab("uncooked_corn_on_the_cob",

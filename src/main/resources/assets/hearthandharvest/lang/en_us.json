@@ -135,6 +135,8 @@
   "block.hearthandharvest.green_grape_wine_crate": "Green Grape Wine Crate",
   "block.hearthandharvest.sweet_berry_wine_crate": "Sweet Berry Wine Crate",
   "block.hearthandharvest.mead_crate": "Mead Crate",
+  "block.hearthandharvest.root_beer_crate": "Root Beer Crate",
+  "block.hearthandharvest.hard_cider_crate": "Hard Cider Crate",
   "block.hearthandharvest.water_crate": "Water Bottle Crate",
   "block.hearthandharvest.honey_crate": "Honey Bottle Crate",
   "block.hearthandharvest.syrup_crate": "Syrup Bottle Crate",
@@ -149,6 +151,8 @@
   "item.hearthandharvest.universal_feed": "Animal Feed",
 
   "item.hearthandharvest.mead": "Mead",
+  "item.hearthandharvest.root_beer": "Root Beer",
+  "item.hearthandharvest.hard_cider": "Hard Cider",
   "item.hearthandharvest.red_grape_wine": "Red Grape Wine",
   "item.hearthandharvest.green_grape_wine": "Green Grape Wine",
   "item.hearthandharvest.blueberry_wine": "Blueberry Wine",
@@ -194,6 +198,7 @@
   "item.hearthandharvest.charred_marshmallow_stick": "Charred Marshmallow",
   "item.hearthandharvest.smore": "Smore",
   "item.hearthandharvest.cider_donut": "Cider Donut",
+  "item.hearthandharvest.baked_apple": "Baked Apple",
   "item.hearthandharvest.candy_corn": "Candy Corn",
 
   "block.hearthandharvest.raspberry_pie": "Raspberry Pie",
@@ -228,6 +233,7 @@
   "item.hearthandharvest.jerky": "Jerky",
   "item.hearthandharvest.batter": "Batter",
   "item.hearthandharvest.salt": "Salt",
+  "item.hearthandharvest.butter": "Butter",
   "item.hearthandharvest.raisins": "Raisins",
   "item.hearthandharvest.sunflower_seeds": "Sunflower Seeds",
   "item.hearthandharvest.popcorn": "Popcorn",
@@ -237,6 +243,8 @@
   "item.hearthandharvest.corn_stew": "Corn Stew",
   "item.hearthandharvest.tamale": "Tamale",
   "item.hearthandharvest.elote": "Elote",
+  "item.hearthandharvest.tortilla": "Tortilla",
+  "item.hearthandharvest.taco": "Taco",
 
   "item.hearthandharvest.corn_meal": "Corn Meal",
   "item.hearthandharvest.flour": "Flour",
@@ -320,6 +328,8 @@
   "fluid_type.hearthandharvest.sweet_berry_wine": "Sweet Berry Wine",
   "fluid_type.hearthandharvest.mead": "Mead",
   "fluid_type.hearthandharvest.moonshine": "Moonshine",
+  "fluid_type.hearthandharvest.root_beer": "Root Beer",
+  "fluid_type.hearthandharvest.hard_cider": "Hard Cider",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips",

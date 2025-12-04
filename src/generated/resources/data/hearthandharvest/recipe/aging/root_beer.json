@@ -1,0 +1,24 @@
+{
+  "type": "hearthandharvest:aging",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "item": "minecraft:hanging_roots"
+    },
+    {
+      "item": "minecraft:hanging_roots"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:root_beer"
+  }
+}

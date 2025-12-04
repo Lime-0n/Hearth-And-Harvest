@@ -93,11 +93,27 @@ public class AgingRecipes {
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
+        CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, NORMAL_AGING, SMALL_EXP)
+                .addIngredient(ModItems.APPLE_CIDER.get())
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(Items.APPLE)
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
         CaskRecipeBuilder.caskRecipe(HHModItems.MEAD.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(Items.HONEY_BOTTLE)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.HONEY_BOTTLE)
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.ROOT_BEER.get(), 1, NORMAL_AGING, SMALL_EXP)
+                .addIngredient(Items.HANGING_ROOTS)
+                .addIngredient(Items.HANGING_ROOTS)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .unlockedByAnyIngredient(Items.HANGING_ROOTS)
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 

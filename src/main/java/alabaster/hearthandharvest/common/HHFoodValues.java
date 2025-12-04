@@ -96,6 +96,18 @@ public class HHFoodValues {
             .effect(() -> new MobEffectInstance(MobEffects.SATURATION, SHORT_DURATION, 2), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SHORT_DURATION, 1), 1.0F)
             .build();
+    public static final FoodProperties ROOT_BEER = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, SHORT_DURATION, 0), 1.0F)
+            .build();
+    public static final FoodProperties HARD_CIDER = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, SHORT_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, SHORT_DURATION, 1), 1.0F)
+            .build();
 
     // Jams & Spreads
     public static final FoodProperties RASPBERRY_JAM = new FoodProperties.Builder()

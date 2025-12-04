@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.MobSpawnType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -14,5 +15,5 @@ public class HHModEntities {
 
     public static final Supplier<EntityType<CrowEntity>> CROW =
             ENTITY_TYPES.register("crow",
-                    () -> EntityType.Builder.of(CrowEntity::new, MobCategory.AMBIENT).sized(0.4f, 0.5f).build("crow"));
+                    () -> EntityType.Builder.of(CrowEntity::new, MobCategory.CREATURE).sized(0.4f, 0.5f).build("crow"));
 }

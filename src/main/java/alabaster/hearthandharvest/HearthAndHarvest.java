@@ -12,6 +12,7 @@ import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
+import alabaster.hearthandharvest.common.worldgen.VillageCrops;
 import alabaster.hearthandharvest.integration.ThirstWasTakenCompat;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -79,6 +80,7 @@ public class HearthAndHarvest {
 
         NeoForge.EVENT_BUS.register(new PigLitters());
         NeoForge.EVENT_BUS.register(new RabbitLitters());
+        NeoForge.EVENT_BUS.addListener(VillageCrops::addVillageCrops);
 
         if (ModList.get().isLoaded("thirst")) {
             NeoForge.EVENT_BUS.register(ThirstWasTakenCompat.class);

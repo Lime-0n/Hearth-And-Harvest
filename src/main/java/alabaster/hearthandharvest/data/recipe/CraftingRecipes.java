@@ -720,6 +720,14 @@ public class CraftingRecipes
                 .requires(HHModItems.MEAD_CRATE.get())
                 .unlockedBy("has_mead_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MEAD_CRATE.get()))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.ROOT_BEER.get(), 9)
+                .requires(HHModItems.ROOT_BEER_CRATE.get())
+                .unlockedBy("has_root_beer_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROOT_BEER_CRATE.get()))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.HARD_CIDER.get(), 9)
+                .requires(HHModItems.HARD_CIDER_CRATE.get())
+                .unlockedBy("has_hard_cider_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.HARD_CIDER_CRATE.get()))
+                .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.HONEY_BOTTLE, 9)
                 .requires(HHModItems.HONEY_CRATE.get())
                 .unlockedBy("has_honey_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.HONEY_CRATE.get()))
