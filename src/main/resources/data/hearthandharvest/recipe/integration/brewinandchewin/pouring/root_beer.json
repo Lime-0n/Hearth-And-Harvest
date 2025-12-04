@@ -1,0 +1,12 @@
+{
+  "type": "brewinandchewin:keg_pouring",
+  "fluid": {
+    "amount": 500,
+    "id": "hearthandharvest:root_beer"
+  },
+  "output": {
+    "count": 1,
+    "id": "hearthandharvest:root_beer"
+  },
+  "unit": "millibuckets"
+}
