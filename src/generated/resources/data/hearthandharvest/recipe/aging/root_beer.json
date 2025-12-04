@@ -4,13 +4,19 @@
   "experience": 0.35,
   "ingredients": [
     {
-      "item": "minecraft:hanging_roots"
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "items": "minecraft:potion"
     },
     {
       "item": "minecraft:hanging_roots"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:hanging_roots"
     },
     {
       "item": "minecraft:sugar"

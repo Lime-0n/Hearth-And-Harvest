@@ -208,6 +208,36 @@ public class ClientEventHandler {
         }, HHModFluids.MEAD_TYPE.get());
 
         event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_ROOT_BEER   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/root_beer_still");
+            private static final ResourceLocation FLOWING_ROOT_BEER = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/root_beer_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_ROOT_BEER;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_ROOT_BEER;
+            }
+        }, HHModFluids.ROOT_BEER_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_HARD_CIDER   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/hard_cider_still");
+            private static final ResourceLocation FLOWING_HARD_CIDER = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/hard_cider_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_HARD_CIDER;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_HARD_CIDER;
+            }
+        }, HHModFluids.HARD_CIDER_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_MOONSHINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_still");
             private static final ResourceLocation FLOWING_MOONSHINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_flow");
 

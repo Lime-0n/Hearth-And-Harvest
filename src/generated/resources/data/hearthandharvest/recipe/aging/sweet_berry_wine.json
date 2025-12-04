@@ -4,6 +4,15 @@
   "experience": 0.35,
   "ingredients": [
     {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "items": "minecraft:potion"
+    },
+    {
       "item": "minecraft:sweet_berries"
     },
     {
