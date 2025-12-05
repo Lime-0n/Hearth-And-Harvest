@@ -3,7 +3,10 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "hearthandharvest:blueberries"
+      "item": "hearthandharvest:butter"
+    },
+    "R": {
+      "item": "hearthandharvest:raspberry"
     },
     "S": {
       "item": "minecraft:sugar"
@@ -14,11 +17,11 @@
   },
   "pattern": [
     " B ",
-    "BSB",
+    "RSR",
     " W "
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:blueberry_muffin"
+    "id": "hearthandharvest:raspberry_scone"
   }
 }

@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "B": {
+      "item": "hearthandharvest:batter"
+    },
     "C": {
       "item": "minecraft:carrot"
     },
@@ -13,15 +16,12 @@
     },
     "S": {
       "item": "minecraft:sugar"
-    },
-    "W": {
-      "item": "minecraft:wheat"
     }
   },
   "pattern": [
     "CMC",
     "SES",
-    "WWW"
+    " B "
   ],
   "result": {
     "count": 1,

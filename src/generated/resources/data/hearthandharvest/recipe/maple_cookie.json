@@ -9,11 +9,11 @@
       "item": "minecraft:wheat"
     },
     {
-      "item": "hearthandharvest:peanut_butter"
+      "item": "hearthandharvest:syrup_bottle"
     }
   ],
   "result": {
     "count": 8,
-    "id": "hearthandharvest:peanut_butter_cookie"
+    "id": "hearthandharvest:maple_cookie"
   }
 }

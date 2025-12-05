@@ -210,7 +210,7 @@ public class CookingRecipes
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.MASHED_POTATOES.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
                 .addIngredient(Items.POTATO)
                 .addIngredient(Items.POTATO)
-                .addIngredient(HHCommonTags.DUSTS_SALT)
+                .addIngredient(HHModItems.BUTTER.get())
                 .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(CommonTags.FOODS_MILK)
                 .unlockedByItems("has_potato", Items.POTATO)
@@ -220,6 +220,7 @@ public class CookingRecipes
                 .addIngredient(ModItems.RAW_PASTA.get())
                 .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(CommonTags.FOODS_MILK)
+                .addIngredient(HHModItems.BUTTER.get())
                 .addIngredient(HHModTags.CHEESE_SLICES)
                 .unlockedByItems("has_pasta", ModItems.RAW_PASTA.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -242,7 +243,7 @@ public class CookingRecipes
                 .addIngredient(HHModItems.COOKED_SAUSAGE.get())
                 .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(CommonTags.FOODS_MILK)
-                .addIngredient(Items.BREAD)
+                .addIngredient(HHCommonTags.FLOURS)
                 .unlockedByItems("has_cooked_sausage", HHModItems.COOKED_SAUSAGE.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
@@ -257,7 +258,7 @@ public class CookingRecipes
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CANDY_CORN.get(), 4, FAST_COOKING, SMALL_EXP)
                 .addIngredient(HHModItems.CORN_KERNELS.get())
                 .addIngredient(Items.ORANGE_DYE)
-                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(HHModItems.SYRUP_BOTTLE.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByItems("has_corn_kernels", HHModItems.CORN_KERNELS.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
@@ -291,6 +292,13 @@ public class CookingRecipes
                 .addIngredient(Items.BLAZE_POWDER)
                 .addIngredient(HHModTags.CHEESE_SLICES)
                 .unlockedByItems("has_corn_on_the_cob", HHModItems.COOKED_CORN_ON_THE_COB.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GLAZED_CARROTS.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
+                .addIngredient(Items.CARROT)
+                .addIngredient(Items.CARROT)
+                .addIngredient(HHModItems.SYRUP_BOTTLE.get())
+                .unlockedByItems("has_carrot", Items.CARROT)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
     }

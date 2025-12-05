@@ -7,21 +7,18 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:cooked_sausage"
+      "item": "minecraft:carrot"
     },
     {
-      "tag": "c:dusts/salt"
+      "item": "minecraft:carrot"
     },
     {
-      "tag": "c:foods/milk"
-    },
-    {
-      "tag": "c:flours"
+      "item": "hearthandharvest:syrup_bottle"
     }
   ],
   "recipe_book_tab": "meals",
   "result": {
     "count": 1,
-    "id": "hearthandharvest:biscuits_and_gravy"
+    "id": "hearthandharvest:glazed_carrots"
   }
 }

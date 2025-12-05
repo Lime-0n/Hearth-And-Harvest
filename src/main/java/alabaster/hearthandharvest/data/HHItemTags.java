@@ -55,13 +55,16 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHCommonTags.DUSTS_SALT)
                 .add(HHModItems.SALT.get());
 
-        tag(HHCommonTags.FLOURS_WHEAT)
+        tag(HHCommonTags.FLOURS)
                 .add(HHModItems.FLOUR.get())
                 .add(HHModItems.CORN_MEAL.get());
         tag(HHCommonTags.FLOURS_WHEAT)
                 .add(HHModItems.FLOUR.get());
         tag(HHCommonTags.FLOURS_CORN)
                 .add(HHModItems.CORN_MEAL.get());
+
+        tag(Tags.Items.FOODS_BREAD)
+                .add(HHModItems.TORTILLA.get());
 
         tag(HHModTags.WINE_BOTTLES)
                 .add(HHModItems.BLUEBERRY_WINE.get())
@@ -390,6 +393,11 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.MASHED_POTATOES.get())
                 .add(HHModItems.PEANUT_BUTTER_AND_JELLY_SANDWICH.get())
                 .add(HHModItems.WAFFLE.get())
-                .add(HHModItems.BISCUITS_AND_GRAVY.get());
+                .add(HHModItems.BISCUITS_AND_GRAVY.get())
+                .add(HHModItems.GLAZED_CARROTS.get())
+                .add(HHModItems.RASPBERRY_SCONE.get())
+                .add(HHModItems.MAPLE_COOKIE.get())
+                .add(HHModItems.TACO.get())
+                .add(HHModItems.BAKED_APPLE.get());
     }
 }

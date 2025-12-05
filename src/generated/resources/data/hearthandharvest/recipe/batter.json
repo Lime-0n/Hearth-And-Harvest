@@ -6,10 +6,7 @@
       "tag": "c:foods/milk"
     },
     {
-      "item": "minecraft:wheat"
-    },
-    {
-      "item": "minecraft:wheat"
+      "tag": "c:flours"
     },
     {
       "item": "minecraft:bowl"

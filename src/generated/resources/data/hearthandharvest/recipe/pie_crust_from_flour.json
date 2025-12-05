@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "hearthandharvest:butter"
+    },
+    "f": {
+      "item": "hearthandharvest:flour"
+    }
+  },
+  "pattern": [
+    "fbf"
+  ],
+  "result": {
+    "count": 2,
+    "id": "farmersdelight:pie_crust"
+  }
+}

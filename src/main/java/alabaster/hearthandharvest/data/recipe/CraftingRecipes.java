@@ -14,6 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
@@ -791,22 +792,30 @@ public class CraftingRecipes
                 .define('C', HHModItems.COTTON.get())
                 .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COTTON.get()))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_COOKIE.get(), 8)
-                .pattern("   ")
-                .pattern("WPW")
-                .pattern("   ")
-                .define('W', Items.WHEAT)
-                .define('P', HHModItems.PEANUT_BUTTER.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_COOKIE.get(), 8)
+                .requires(Items.WHEAT)
+                .requires(Items.WHEAT)
+                .requires(HHModItems.PEANUT_BUTTER.get())
                 .unlockedBy("has_peanut_butter", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT_BUTTER.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.BLUEBERRY_MUFFIN.get(), 1)
                 .pattern(" B ")
                 .pattern("BSB")
                 .pattern(" W ")
-                .define('W', Items.WHEAT)
+                .define('W', HHModItems.BATTER.get())
                 .define('S', Items.SUGAR)
                 .define('B', HHModItems.BLUEBERRIES.get())
                 .unlockedBy("has_blueberries", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRIES.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_SCONE.get(), 1)
+                .pattern(" B ")
+                .pattern("RSR")
+                .pattern(" W ")
+                .define('W', HHModItems.BATTER.get())
+                .define('S', Items.SUGAR)
+                .define('R', HHModItems.RASPBERRY.get())
+                .define('B', HHModItems.BUTTER.get())
+                .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_PIE.get(), 1)
                 .pattern("WWW")
@@ -815,7 +824,7 @@ public class CraftingRecipes
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
                 .define('F', HHModItems.RASPBERRY.get())
-                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
+                .define('P', ModItems.PIE_CRUST.get())
                 .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.BLUEBERRY_PIE.get(), 1)
@@ -825,7 +834,7 @@ public class CraftingRecipes
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
                 .define('F', HHModItems.BLUEBERRIES.get())
-                .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
+                .define('P', ModItems.PIE_CRUST.get())
                 .unlockedBy("has_blueberries", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRIES.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.GRAPE_PIE.get(), 1)
@@ -903,11 +912,35 @@ public class CraftingRecipes
                 .pattern("WWW")
                 .define('C', Items.CARROT)
                 .define('S', Items.SUGAR)
-                .define('W', Items.SUGAR)
+                .define('W', Items.WHEAT)
                 .define('E', Items.EGG)
                 .define('M', CommonTags.FOODS_MILK)
                 .unlockedBy("has_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CARROT))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.CARROT_CAKE.get())
+                .pattern("CMC")
+                .pattern("SES")
+                .pattern(" B ")
+                .define('C', Items.CARROT)
+                .define('S', Items.SUGAR)
+                .define('B', HHModItems.BATTER.get())
+                .define('E', Items.EGG)
+                .define('M', CommonTags.FOODS_MILK)
+                .unlockedBy("has_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CARROT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "carrot_cake_from_batter"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, Items.CAKE)
+                .pattern("CMC")
+                .pattern("SES")
+                .pattern(" B ")
+                .define('C', Items.CARROT)
+                .define('S', Items.SUGAR)
+                .define('B', HHModItems.BATTER.get())
+                .define('E', Items.EGG)
+                .define('M', CommonTags.FOODS_MILK)
+                .unlockedBy("has_milk", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MILK_BUCKET))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cake_from_batter"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TRAIL_MIX.get())
                 .requires(HHModItems.PEANUT.get())
@@ -937,6 +970,7 @@ public class CraftingRecipes
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.UNCOOKED_CORN_ON_THE_COB.get(), 1)
                 .requires(HHModItems.CORN.get())
+                .requires(HHModItems.BUTTER.get())
                 .requires(Items.STICK)
                 .unlockedBy("has_corn", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "uncooked_corn_on_the_cob"));
@@ -950,15 +984,77 @@ public class CraftingRecipes
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.BATTER.get(), 1)
                 .requires(CommonTags.FOODS_MILK)
-                .requires(Items.WHEAT)
-                .requires(Items.WHEAT)
+                .requires(HHCommonTags.FLOURS)
                 .requires(Items.BOWL)
                 .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "batter"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TORTILLA.get(), 2)
+                .requires(HHCommonTags.DUSTS_SALT)
+                .requires(HHCommonTags.FLOURS)
+                .requires(WATER_BOTTLE)
+                .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "tortilla"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.SUGAR, 4)
                 .requires(HHModItems.SYRUP_BOTTLE.get())
                 .unlockedBy("has_syrup", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sugar_from_syrup"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.PIE_CRUST.get(), 2)
+                .pattern("fbf")
+                .define('f', HHModItems.FLOUR.get())
+                .define('b', HHModItems.BUTTER.get())
+                .unlockedBy("has_flour", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.FLOUR.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "pie_crust_from_flour"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.BUTTER.get(), 2)
+                .requires(HHCommonTags.DUSTS_SALT)
+                .requires(CommonTags.FOODS_MILK)
+                .unlockedBy("has_milk", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MILK_BUCKET))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "butter"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.WHEAT_DOUGH.get(), 2)
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.SALT.get())
+                .requires(Tags.Items.EGGS)
+                .group("fd_dough")
+                .unlockedBy("has_flour", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.FLOUR.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "flour_dough_from_egg"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.WHEAT_DOUGH.get(), 2)
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.SALT.get())
+                .requires(WATER_BOTTLE)
+                .group("fd_dough")
+                .unlockedBy("has_flour", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.FLOUR.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "flour_dough_from_water_bottle"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.WHEAT_DOUGH.get(), 2)
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.FLOUR.get())
+                .requires(HHModItems.SALT.get())
+                .requires(Items.WATER_BUCKET)
+                .group("fd_dough")
+                .unlockedBy("has_flour", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.FLOUR.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "flour_dough_from_water_bucket"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.MAPLE_COOKIE.get(), 8)
+                .requires(Items.WHEAT)
+                .requires(Items.WHEAT)
+                .requires(HHModItems.SYRUP_BOTTLE.get())
+                .unlockedBy("has_syrup_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
+                .save(output);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TACO.get(), 1)
+                .requires(HHModItems.TORTILLA.get())
+                .requires(ModItems.BEEF_PATTY.get())
+                .requires(HHModTags.CHEESE_SLICES)
+                .requires(ModItems.TOMATO.get())
+                .requires(ModItems.CABBAGE_LEAF.get())
+                .unlockedBy("has_tortilla", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.TORTILLA.get()))
+                .save(output);
     }
 }

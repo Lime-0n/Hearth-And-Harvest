@@ -240,6 +240,8 @@ public class HHFoodValues {
     public static final FoodProperties BISCUITS_AND_GRAVY = new FoodProperties.Builder()
             .nutrition(10).saturationModifier(0.5f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+    public static final FoodProperties GLAZED_CARROTS = new FoodProperties.Builder()
+            .nutrition(10).saturationModifier(0.5f).build();
     public static final FoodProperties CORN_STEW = new FoodProperties.Builder()
             .nutrition(8).saturationModifier(0.6f)
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();

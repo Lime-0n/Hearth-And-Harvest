@@ -16,6 +16,9 @@
       "tag": "c:foods/milk"
     },
     {
+      "item": "hearthandharvest:butter"
+    },
+    {
       "tag": "hearthandharvest:cheese_slices"
     }
   ],
