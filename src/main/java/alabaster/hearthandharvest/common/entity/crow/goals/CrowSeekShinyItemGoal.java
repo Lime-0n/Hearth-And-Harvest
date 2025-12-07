@@ -5,8 +5,10 @@ import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -95,7 +97,18 @@ public class CrowSeekShinyItemGoal extends Goal {
             ItemStack stack = targetItem.getItem();
             ItemStack single = stack.split(1);
             crow.setItemInHand(crow.getUsedItemHand(), single);
-            if (stack.isEmpty()) targetItem.discard();
+
+
+            if (!crow.level().isClientSide) {
+                Entity owner = targetItem.getOwner();
+                if (owner instanceof Player player) {
+                    crow.tryTameFromPickup(player);
+                }
+            }
+
+            if (stack.isEmpty()) {
+                targetItem.discard();
+            }
 
             targetItem = null;
             dropTimer = 40;

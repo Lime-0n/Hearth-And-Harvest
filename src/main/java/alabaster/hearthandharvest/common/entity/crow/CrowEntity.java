@@ -12,7 +12,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -71,10 +70,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        if (spawnGroupData == null) {
-            spawnGroupData = new AgeableMob.AgeableMobGroupData(false);
-        }
-
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
@@ -207,6 +202,30 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
             }
 
             return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
+    }
+
+    public void tryTameFromPickup(@Nullable Player player) {
+        if (player == null || this.isTame())
+            return;
+
+        // 1-in-3 tame chance
+        if (!this.level().isClientSide) {
+            if (this.random.nextInt(3) == 0 && !EventHooks.onAnimalTame(this, player)) {
+
+                ItemStack held = this.getMainHandItem();
+
+                this.tame(player);
+                this.level().broadcastEntityEvent(this, (byte)7);
+
+                if (!held.isEmpty()) {
+                    this.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                    this.spawnAtLocation(held, 0.3F);
+                }
+
+            } else {
+                this.level().broadcastEntityEvent(this, (byte)6);
+            }
         }
     }
 
