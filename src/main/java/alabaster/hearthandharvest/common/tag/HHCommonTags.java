@@ -14,7 +14,7 @@ public class HHCommonTags {
     public static final TagKey<Item> FRUITS_GRAPE = commonItemTag("fruits/grape");
     public static final TagKey<Item> CROPS_PEANUT = commonItemTag("crops/peanut");
     public static final TagKey<Item> CROPS_COTTON = commonItemTag("crops/cotton");
-
+    public static final TagKey<Item> VEGETABLES_CORN = commonItemTag("vegetables/corn");
     public static final TagKey<Item> CROPS_CORN = commonItemTag("crops/corn");
     public static final TagKey<Item> CROPS_GRAIN = commonItemTag("crops/grain");
     public static final TagKey<Item> SEEDS_CORN = commonItemTag("seeds/corn");

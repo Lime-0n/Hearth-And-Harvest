@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
+import alabaster.hearthandharvest.common.tag.HHCompatibilityTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -219,6 +220,12 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
                 HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
                 HHModBlocks.COTTON_CROP.get(),
+                HHModBlocks.CORN_STALK.get()
+        );
+
+        tag(HHCompatibilityTags.SERENE_SEASONS_UNBREAKABLE_INFERTILE_CROPS).add(
+                HHModBlocks.BLUEBERRY_BUSH.get(),
+                HHModBlocks.RASPBERRY_BUSH.get(),
                 HHModBlocks.CORN_STALK.get()
         );
     }

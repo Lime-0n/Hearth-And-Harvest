@@ -180,6 +180,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.GREEN_GRAPES.get());
         tag(HHCommonTags.FRUITS_CHERRY)
                 .add(HHModItems.CHERRY.get());
+        tag(HHCommonTags.VEGETABLES_CORN)
+                .add(HHModItems.CORN.get());
         tag(HHCommonTags.CROPS_PEANUT)
                 .add(HHModItems.PEANUT.get());
         tag(HHCommonTags.CROPS_COTTON)
