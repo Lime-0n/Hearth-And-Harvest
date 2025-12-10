@@ -277,7 +277,7 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     protected void onFlap() {
-        this.playSound(HHModSounds.CROW_SQUAWK.get(), 0.15F, 1.0F);
+        //this.playSound(HHModSounds.CROW_SQUAWK.get(), 0.15F, 1.0F);
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 
