@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 public class CaskItemHandler implements IItemHandler {
     private static final int SLOT_OUTPUT = 4;
+    private static final int SLOTS_INPUT = 3;
     private final IItemHandler itemHandler;
     private final Direction side;
 
@@ -37,13 +38,14 @@ public class CaskItemHandler implements IItemHandler {
         return itemHandler.insertItem(slot, stack, simulate);
     }
 
-    @Nonnull
     @Override
+    @Nonnull
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (side == Direction.DOWN && slot == SLOT_OUTPUT) {
-            return itemHandler.extractItem(slot, amount, simulate);
+        if (side == null || side.equals(Direction.UP)) {
+            return slot < SLOTS_INPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        } else {
+            return slot == SLOT_OUTPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
-        return ItemStack.EMPTY;
     }
 
     @Override
