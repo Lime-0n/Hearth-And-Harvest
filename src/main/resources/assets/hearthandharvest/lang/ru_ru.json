@@ -1,6 +1,6 @@
 {
   "itemGroup.hearthandharvest": "Hearth and Harvest",
-  "itemGroup.hearthandharvest_blocks": "Hearth and Harvest Блоки",
+  "itemGroup.hearthandharvest_blocks": "Блоки Hearth and Harvest",
 
   "block.hearthandharvest.tree_tapper": "Подсочник",
 
@@ -135,6 +135,8 @@
   "block.hearthandharvest.green_grape_wine_crate": "Ящик белого вина",
   "block.hearthandharvest.sweet_berry_wine_crate": "Ящик вина из сладких ягод",
   "block.hearthandharvest.mead_crate": "Ящик медовухи",
+  "block.hearthandharvest.root_beer_crate": "Ящик корневого пива",
+  "block.hearthandharvest.hard_cider_crate": "Ящик крепкого сидра",
   "block.hearthandharvest.water_crate": "Ящик воды",
   "block.hearthandharvest.honey_crate": "Ящик меда",
   "block.hearthandharvest.syrup_crate": "Ящик сиропа",
@@ -149,6 +151,8 @@
   "item.hearthandharvest.universal_feed": "Универсальный корм",
 
   "item.hearthandharvest.mead": "Медовуха",
+  "item.hearthandharvest.root_beer": "Корневое пиво",
+  "item.hearthandharvest.hard_cider": "Крепкий сидр",
   "item.hearthandharvest.red_grape_wine": "Красное вино",
   "item.hearthandharvest.green_grape_wine": "Белое вино",
   "item.hearthandharvest.blueberry_wine": "Черничное вино",
@@ -184,8 +188,8 @@
   "item.hearthandharvest.chocolate_bar": "Шоколадный батончик",
   "item.hearthandharvest.cotton_candy": "Сахарная вата",
   "item.hearthandharvest.blueberry_muffin": "Черничный маффин",
+  "item.hearthandharvest.raspberry_scone": "Малиновая булочка",
   "item.hearthandharvest.peanut_butter_cookie": "Печенье с арахисовым маслом",
-  "item.hearthandharvest.roasted_peanuts": "Peanut Butter Cookie",
   "item.hearthandharvest.trail_mix": "Дорожная смесь",
   "item.hearthandharvest.roasted_peanuts": "Жареный арахис",
 
@@ -194,6 +198,7 @@
   "item.hearthandharvest.charred_marshmallow_stick": "Обугленный маршмеллоу",
   "item.hearthandharvest.smore": "Печенье с маршмэллоу и шоколадом",
   "item.hearthandharvest.cider_donut": "Сидровый пончик",
+  "item.hearthandharvest.baked_apple": "Запеченное яблоко",
   "item.hearthandharvest.candy_corn": "Сладкая кукуруза",
 
   "block.hearthandharvest.raspberry_pie": "Малиновый пирог",
@@ -211,6 +216,7 @@
 
   "item.hearthandharvest.sap_bucket": "Ведро древесного сока",
   "item.hearthandharvest.syrup_bottle": "Бутылка сиропа",
+  "item.hearthandharvest.maple_cookie": "Кленовое печенье",
 
   "item.hearthandharvest.cooking_oil": "Растительное масло",
 
@@ -228,6 +234,7 @@
   "item.hearthandharvest.jerky": "Вяленое мясо",
   "item.hearthandharvest.batter": "Тесто",
   "item.hearthandharvest.salt": "Соль",
+  "item.hearthandharvest.butter": "Масло",
   "item.hearthandharvest.raisins": "Изюм",
   "item.hearthandharvest.sunflower_seeds": "Семена подсолнуха",
   "item.hearthandharvest.popcorn": "Попкорн",
@@ -237,6 +244,8 @@
   "item.hearthandharvest.corn_stew": "Кукурузное рагу",
   "item.hearthandharvest.tamale": "Тамале",
   "item.hearthandharvest.elote": "Элоте",
+  "item.hearthandharvest.tortilla": "Тортилья",
+  "item.hearthandharvest.taco": "Тако",
 
   "item.hearthandharvest.corn_meal": "Кукурузная мука",
   "item.hearthandharvest.flour": "Мука",
@@ -247,6 +256,7 @@
   "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Сэндвич с арахисовым маслом и джемом",
   "item.hearthandharvest.waffle": "Вафли",
   "item.hearthandharvest.biscuits_and_gravy": "Булочка в соусе",
+  "item.hearthandharvest.glazed_carrots": "Морковь в глазури",
 
   "effect.hearthandharvest.pungent": "Вонючка",
   "effect.hearthandharvest.pungent.0.desc": "Заставляет существ избегать вас из-за мерзкого запаха",
@@ -312,7 +322,6 @@
   "fluid_type.hearthandharvest.cooking_oil": "Растительное масло",
   "fluid_type.hearthandharvest.sap": "Древесный сок",
   "fluid_type.hearthandharvest.syrup": "Сироп",
-
   "fluid_type.hearthandharvest.blueberry_wine": "Черничное вино",
   "fluid_type.hearthandharvest.cherry_wine": "Вишневое вино",
   "fluid_type.hearthandharvest.green_grape_wine": "Белое вино",
@@ -321,6 +330,8 @@
   "fluid_type.hearthandharvest.sweet_berry_wine": "Вино из сладких ягод",
   "fluid_type.hearthandharvest.mead": "Медовуха",
   "fluid_type.hearthandharvest.moonshine": "Самогон",
+  "fluid_type.hearthandharvest.root_beer": "Корневое пиво",
+  "fluid_type.hearthandharvest.hard_cider": "Крепкий сидр",
 
   "item.hearthandharvest.blueberry_pips": "Косточки черники",
   "item.hearthandharvest.raspberry_pips": "Косточки малины",
