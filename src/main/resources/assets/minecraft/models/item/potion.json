@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "particle": "minecraft:item/potion"
+  },
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "item/3d_potion"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/2d_potion"
+    },
+    "ground": {
+      "parent": "item/2d_potion"
+    },
+    "fixed": {
+      "parent": "item/2d_potion"
+    }
+  }
+}

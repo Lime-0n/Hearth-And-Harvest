@@ -8,6 +8,7 @@
     "hearthandharvest:hard_cider",
     "hearthandharvest:raspberry_wine",
     "hearthandharvest:red_grape_wine",
-    "hearthandharvest:sweet_berry_wine"
+    "hearthandharvest:sweet_berry_wine",
+    "minecraft:potion"
   ]
 }
