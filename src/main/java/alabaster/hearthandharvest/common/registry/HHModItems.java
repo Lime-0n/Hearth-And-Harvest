@@ -8,6 +8,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
@@ -139,29 +140,54 @@ public class HHModItems {
     public static final Supplier<Item> WARPED_HALF_CABINET = registerWithBlockTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
-    // Wine Racks
-    public static final Supplier<Item> OAK_WINE_RACK = registerWithBlockTab("oak_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.OAK_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> SPRUCE_WINE_RACK = registerWithBlockTab("spruce_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.SPRUCE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> BIRCH_WINE_RACK = registerWithBlockTab("birch_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.BIRCH_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> JUNGLE_WINE_RACK = registerWithBlockTab("jungle_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.JUNGLE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> ACACIA_WINE_RACK = registerWithBlockTab("acacia_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.ACACIA_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> DARK_OAK_WINE_RACK = registerWithBlockTab("dark_oak_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.DARK_OAK_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> MANGROVE_WINE_RACK = registerWithBlockTab("mangrove_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.MANGROVE_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> CHERRY_WINE_RACK = registerWithBlockTab("cherry_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.CHERRY_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> BAMBOO_WINE_RACK = registerWithBlockTab("bamboo_wine_rack",
-            () -> new FuelBlockItem(HHModBlocks.BAMBOO_WINE_RACK.get(), basicItem(), 300));
-    public static final Supplier<Item> CRIMSON_WINE_RACK = registerWithBlockTab("crimson_wine_rack",
-            () -> new BlockItem(HHModBlocks.CRIMSON_WINE_RACK.get(), basicItem()));
-    public static final Supplier<Item> WARPED_WINE_RACK = registerWithBlockTab("warped_wine_rack",
-            () -> new BlockItem(HHModBlocks.WARPED_WINE_RACK.get(), basicItem()));
+    // Bottle Racks
+    public static final Supplier<Item> OAK_BOTTLE_RACK = registerWithBlockTab("oak_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.OAK_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> SPRUCE_BOTTLE_RACK = registerWithBlockTab("spruce_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.SPRUCE_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BIRCH_BOTTLE_RACK = registerWithBlockTab("birch_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.BIRCH_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> JUNGLE_BOTTLE_RACK = registerWithBlockTab("jungle_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.JUNGLE_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> ACACIA_BOTTLE_RACK = registerWithBlockTab("acacia_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.ACACIA_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> DARK_OAK_BOTTLE_RACK = registerWithBlockTab("dark_oak_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.DARK_OAK_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> MANGROVE_BOTTLE_RACK = registerWithBlockTab("mangrove_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.MANGROVE_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CHERRY_BOTTLE_RACK = registerWithBlockTab("cherry_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.CHERRY_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> BAMBOO_BOTTLE_RACK = registerWithBlockTab("bamboo_bottle_rack",
+            () -> new FuelBlockItem(HHModBlocks.BAMBOO_BOTTLE_RACK.get(), basicItem(), 300));
+    public static final Supplier<Item> CRIMSON_BOTTLE_RACK = registerWithBlockTab("crimson_bottle_rack",
+            () -> new BlockItem(HHModBlocks.CRIMSON_BOTTLE_RACK.get(), basicItem()));
+    public static final Supplier<Item> WARPED_BOTTLE_RACK = registerWithBlockTab("warped_bottle_rack",
+            () -> new BlockItem(HHModBlocks.WARPED_BOTTLE_RACK.get(), basicItem()));
+
+    static {
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_bottle_rack"));
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
+    }
 
     // Crops
     public static final Supplier<Item> BLUEBERRIES = ModList.get().isLoaded("berry_good")

@@ -56,17 +56,17 @@ public class BlockStates extends BlockStateProvider
         this.halfCabinetBlock(HHModBlocks.CRIMSON_HALF_CABINET.get(), "crimson");
         this.halfCabinetBlock(HHModBlocks.WARPED_HALF_CABINET.get(), "warped");
 
-        this.wineRackBlock(HHModBlocks.OAK_WINE_RACK.get(), "oak");
-        this.wineRackBlock(HHModBlocks.BIRCH_WINE_RACK.get(), "birch");
-        this.wineRackBlock(HHModBlocks.SPRUCE_WINE_RACK.get(), "spruce");
-        this.wineRackBlock(HHModBlocks.JUNGLE_WINE_RACK.get(), "jungle");
-        this.wineRackBlock(HHModBlocks.ACACIA_WINE_RACK.get(), "acacia");
-        this.wineRackBlock(HHModBlocks.DARK_OAK_WINE_RACK.get(), "dark_oak");
-        this.wineRackBlock(HHModBlocks.MANGROVE_WINE_RACK.get(), "mangrove");
-        this.wineRackBlock(HHModBlocks.CHERRY_WINE_RACK.get(), "cherry");
-        this.wineRackBlock(HHModBlocks.BAMBOO_WINE_RACK.get(), "bamboo");
-        this.wineRackBlock(HHModBlocks.CRIMSON_WINE_RACK.get(), "crimson");
-        this.wineRackBlock(HHModBlocks.WARPED_WINE_RACK.get(), "warped");
+        this.bottleRackBlock(HHModBlocks.OAK_BOTTLE_RACK.get(), "oak");
+        this.bottleRackBlock(HHModBlocks.BIRCH_BOTTLE_RACK.get(), "birch");
+        this.bottleRackBlock(HHModBlocks.SPRUCE_BOTTLE_RACK.get(), "spruce");
+        this.bottleRackBlock(HHModBlocks.JUNGLE_BOTTLE_RACK.get(), "jungle");
+        this.bottleRackBlock(HHModBlocks.ACACIA_BOTTLE_RACK.get(), "acacia");
+        this.bottleRackBlock(HHModBlocks.DARK_OAK_BOTTLE_RACK.get(), "dark_oak");
+        this.bottleRackBlock(HHModBlocks.MANGROVE_BOTTLE_RACK.get(), "mangrove");
+        this.bottleRackBlock(HHModBlocks.CHERRY_BOTTLE_RACK.get(), "cherry");
+        this.bottleRackBlock(HHModBlocks.BAMBOO_BOTTLE_RACK.get(), "bamboo");
+        this.bottleRackBlock(HHModBlocks.CRIMSON_BOTTLE_RACK.get(), "crimson");
+        this.bottleRackBlock(HHModBlocks.WARPED_BOTTLE_RACK.get(), "warped");
         
         this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
@@ -175,12 +175,12 @@ public class BlockStates extends BlockStateProvider
         });
     }
 
-    public void wineRackBlock(Block block, String woodType) {
+    public void bottleRackBlock(Block block, String woodType) {
         this.horizontalBlock(block, state -> {
-            String modelName = woodType + "_wine_rack";
+            String modelName = woodType + "_bottle_rack";
 
             return models().getBuilder(modelName)
-                    .parent(existingModel("wine_rack"))
+                    .parent(existingModel("bottle_rack"))
                     .texture("side", resourceBlock(woodType + "_cabinet_side"))
                     .texture("rack_side", resourceBlock(woodType + "_half_cabinet_side"))
                     .texture("rack_top", resourceBlock(woodType + "_half_cabinet_top"));

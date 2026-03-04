@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -67,31 +68,57 @@ public class HHModBlocks {
     public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
-    // Wine Rack
-    public static final Supplier<Block> OAK_WINE_RACK = BLOCKS.register("oak_wine_rack",
+    // Bottle Racks
+    public static final Supplier<Block> OAK_BOTTLE_RACK = BLOCKS.register("oak_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> SPRUCE_WINE_RACK = BLOCKS.register("spruce_wine_rack",
+    public static final Supplier<Block> SPRUCE_BOTTLE_RACK = BLOCKS.register("spruce_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> BIRCH_WINE_RACK = BLOCKS.register("birch_wine_rack",
+    public static final Supplier<Block> BIRCH_BOTTLE_RACK = BLOCKS.register("birch_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> JUNGLE_WINE_RACK = BLOCKS.register("jungle_wine_rack",
+    public static final Supplier<Block> JUNGLE_BOTTLE_RACK = BLOCKS.register("jungle_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> ACACIA_WINE_RACK = BLOCKS.register("acacia_wine_rack",
+    public static final Supplier<Block> ACACIA_BOTTLE_RACK = BLOCKS.register("acacia_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> DARK_OAK_WINE_RACK = BLOCKS.register("dark_oak_wine_rack",
+    public static final Supplier<Block> DARK_OAK_BOTTLE_RACK = BLOCKS.register("dark_oak_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> MANGROVE_WINE_RACK = BLOCKS.register("mangrove_wine_rack",
+    public static final Supplier<Block> MANGROVE_BOTTLE_RACK = BLOCKS.register("mangrove_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
-    public static final Supplier<Block> CHERRY_WINE_RACK = BLOCKS.register("cherry_wine_rack",
+    public static final Supplier<Block> CHERRY_BOTTLE_RACK = BLOCKS.register("cherry_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.CHERRY_WOOD)));
-    public static final Supplier<Block> BAMBOO_WINE_RACK = BLOCKS.register("bamboo_wine_rack",
+    public static final Supplier<Block> BAMBOO_BOTTLE_RACK = BLOCKS.register("bamboo_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.BAMBOO_WOOD)));
-    public static final Supplier<Block> CRIMSON_WINE_RACK = BLOCKS.register("crimson_wine_rack",
+    public static final Supplier<Block> CRIMSON_BOTTLE_RACK = BLOCKS.register("crimson_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
-    public static final Supplier<Block> WARPED_WINE_RACK = BLOCKS.register("warped_wine_rack",
+    public static final Supplier<Block> WARPED_BOTTLE_RACK = BLOCKS.register("warped_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
-    // Wild Crops
+    static {
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_bottle_rack"));
+        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
+    }
+
+
+        // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
     public static final Supplier<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",

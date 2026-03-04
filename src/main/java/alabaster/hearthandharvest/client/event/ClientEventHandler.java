@@ -50,7 +50,7 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(
-                HHModBlockEntities.WINE_RACK.get(),
+                HHModBlockEntities.BOTTLE_RACK.get(),
                 BottleRackRenderer::new
         );
     }

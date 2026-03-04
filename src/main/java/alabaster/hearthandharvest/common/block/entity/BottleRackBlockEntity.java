@@ -22,7 +22,7 @@ public class BottleRackBlockEntity extends BlockEntity implements Clearable, Con
     private final NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
 
     public BottleRackBlockEntity(BlockPos pos, BlockState state) {
-        super(HHModBlockEntities.WINE_RACK.get(), pos, state);
+        super(HHModBlockEntities.BOTTLE_RACK.get(), pos, state);
     }
 
     @Override

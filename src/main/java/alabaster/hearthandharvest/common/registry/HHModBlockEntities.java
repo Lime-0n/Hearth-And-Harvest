@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -25,19 +26,19 @@ public class HHModBlockEntities {
     public static final Supplier<BlockEntityType<CaskBlockEntity>> CASK = BLOCK_ENTITY_TYPES.register("cask_tile",
             () -> BlockEntityType.Builder.of(CaskBlockEntity::new, HHModBlocks.CASK.get()).build(null));
 
-    public static final Supplier<BlockEntityType<BottleRackBlockEntity>> WINE_RACK = BLOCK_ENTITY_TYPES.register("wine_rack",
+    public static final Supplier<BlockEntityType<BottleRackBlockEntity>> BOTTLE_RACK = BLOCK_ENTITY_TYPES.register("bottle_rack",
             () -> BlockEntityType.Builder.of(BottleRackBlockEntity::new,
-                            HHModBlocks.OAK_WINE_RACK.get(),
-                            HHModBlocks.BIRCH_WINE_RACK.get(),
-                            HHModBlocks.SPRUCE_WINE_RACK.get(),
-                            HHModBlocks.JUNGLE_WINE_RACK.get(),
-                            HHModBlocks.ACACIA_WINE_RACK.get(),
-                            HHModBlocks.DARK_OAK_WINE_RACK.get(),
-                            HHModBlocks.MANGROVE_WINE_RACK.get(),
-                            HHModBlocks.BAMBOO_WINE_RACK.get(),
-                            HHModBlocks.CHERRY_WINE_RACK.get(),
-                            HHModBlocks.CRIMSON_WINE_RACK.get(),
-                            HHModBlocks.WARPED_WINE_RACK.get())
+                            HHModBlocks.OAK_BOTTLE_RACK.get(),
+                            HHModBlocks.BIRCH_BOTTLE_RACK.get(),
+                            HHModBlocks.SPRUCE_BOTTLE_RACK.get(),
+                            HHModBlocks.JUNGLE_BOTTLE_RACK.get(),
+                            HHModBlocks.ACACIA_BOTTLE_RACK.get(),
+                            HHModBlocks.DARK_OAK_BOTTLE_RACK.get(),
+                            HHModBlocks.MANGROVE_BOTTLE_RACK.get(),
+                            HHModBlocks.BAMBOO_BOTTLE_RACK.get(),
+                            HHModBlocks.CHERRY_BOTTLE_RACK.get(),
+                            HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
+                            HHModBlocks.WARPED_BOTTLE_RACK.get())
                     .build(null));
 
     @SubscribeEvent
@@ -56,5 +57,10 @@ public class HHModBlockEntities {
                 HHModBlocks.CRIMSON_HALF_CABINET.get(),
                 HHModBlocks.WARPED_HALF_CABINET.get()
         );
+    }
+
+    static {
+        BLOCK_ENTITY_TYPES.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "wine_rack"),
+                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bottle_rack"));
     }
 }

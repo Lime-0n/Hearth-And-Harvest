@@ -177,8 +177,8 @@ public class CraftingRecipes
                 .unlockedBy("has_warped_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WARPED_HALF_CABINET.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_cabinet_from_halves"));
 
-        // Wine Racks
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.OAK_WINE_RACK.get())
+        // Bottle Racks
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.OAK_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -186,7 +186,7 @@ public class CraftingRecipes
                 .define('H', Blocks.OAK_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BIRCH_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BIRCH_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -194,7 +194,7 @@ public class CraftingRecipes
                 .define('H', Blocks.BIRCH_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.SPRUCE_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.SPRUCE_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -202,7 +202,7 @@ public class CraftingRecipes
                 .define('H', Blocks.SPRUCE_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.JUNGLE_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.JUNGLE_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -210,7 +210,7 @@ public class CraftingRecipes
                 .define('H', Blocks.JUNGLE_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.ACACIA_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.ACACIA_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -218,7 +218,7 @@ public class CraftingRecipes
                 .define('H', Blocks.ACACIA_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DARK_OAK_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.DARK_OAK_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -226,7 +226,7 @@ public class CraftingRecipes
                 .define('H', Blocks.DARK_OAK_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.MANGROVE_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.MANGROVE_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -234,7 +234,7 @@ public class CraftingRecipes
                 .define('H', Blocks.MANGROVE_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CHERRY_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CHERRY_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -242,7 +242,7 @@ public class CraftingRecipes
                 .define('H', Blocks.CHERRY_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BAMBOO_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.BAMBOO_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -250,7 +250,7 @@ public class CraftingRecipes
                 .define('H', Blocks.BAMBOO_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CRIMSON_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CRIMSON_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
@@ -258,7 +258,7 @@ public class CraftingRecipes
                 .define('H', Blocks.CRIMSON_SLAB)
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.WARPED_WINE_RACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.WARPED_BOTTLE_RACK.get())
                 .pattern("HSH")
                 .pattern("SSS")
                 .pattern("HSH")
