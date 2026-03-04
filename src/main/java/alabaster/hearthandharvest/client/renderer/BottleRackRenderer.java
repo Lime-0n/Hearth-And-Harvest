@@ -1,6 +1,6 @@
 package alabaster.hearthandharvest.client.renderer;
 
-import alabaster.hearthandharvest.common.block.entity.WineRackBlockEntity;
+import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -17,18 +17,18 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity> {
+public class BottleRackRenderer implements BlockEntityRenderer<BottleRackBlockEntity> {
 
     private final ItemRenderer itemRenderer;
 
-    public WineRackRenderer(BlockEntityRendererProvider.Context context) {
+    public BottleRackRenderer(BlockEntityRendererProvider.Context context) {
         this.itemRenderer = context.getItemRenderer();
     }
 
     private BakedModel getWineRackModel(ItemStack stack) {
         ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
         ModelResourceLocation modelLoc = ModelResourceLocation.standalone(
-                ResourceLocation.fromNamespaceAndPath(itemId.getNamespace(), "wine_rack/" + itemId.getPath())
+                ResourceLocation.fromNamespaceAndPath(itemId.getNamespace(), "bottle_rack/" + itemId.getPath())
         );
         BakedModel model = Minecraft.getInstance().getModelManager().getModel(modelLoc);
         if (model == Minecraft.getInstance().getModelManager().getMissingModel()) return null;
@@ -36,7 +36,7 @@ public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity
     }
 
     @Override
-    public void render(WineRackBlockEntity rack, float pt, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
+    public void render(BottleRackBlockEntity rack, float pt, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
         Direction facing = rack.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
 
         pose.pushPose();
@@ -49,7 +49,7 @@ public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity
             if (stack.isEmpty()) continue;
 
             BakedModel model = getWineRackModel(stack);
-            if (model == null) continue; // No wine_rack/ model for this item, skip
+            if (model == null) continue;
 
             pose.pushPose();
             int row = slot / 3, col = slot % 3;

@@ -4,7 +4,7 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "item/3d_glass_bottle",
-		"1": "item/3d_potion_overlay",
+		"1": "hearthandharvest:item/3d_goat_milk_bottle",
 		"particle": "item/3d_glass_bottle"
 	},
 	"elements": [

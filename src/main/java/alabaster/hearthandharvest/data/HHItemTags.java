@@ -18,6 +18,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import vectorwing.farmersdelight.FarmersDelight;
+import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.CompatibilityTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
@@ -69,6 +70,9 @@ public class HHItemTags extends ItemTagsProvider {
 
         tag(HHModTags.BOTTLES)
                 .add(Items.POTION)
+                .add(ModItems.MILK_BOTTLE.get())
+                .add(Items.HONEY_BOTTLE)
+                .add(HHModItems.GOAT_MILK_BOTTLE.get())
                 .add(HHModItems.BLUEBERRY_WINE.get())
                 .add(HHModItems.CHERRY_WINE.get())
                 .add(HHModItems.GREEN_GRAPE_WINE.get())

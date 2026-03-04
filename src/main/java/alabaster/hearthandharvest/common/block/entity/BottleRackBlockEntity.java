@@ -17,11 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class WineRackBlockEntity extends BlockEntity implements Clearable, Container {
+public class BottleRackBlockEntity extends BlockEntity implements Clearable, Container {
 
     private final NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
 
-    public WineRackBlockEntity(BlockPos pos, BlockState state) {
+    public BottleRackBlockEntity(BlockPos pos, BlockState state) {
         super(HHModBlockEntities.WINE_RACK.get(), pos, state);
     }
 

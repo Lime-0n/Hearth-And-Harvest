@@ -2,7 +2,7 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
-import alabaster.hearthandharvest.client.renderer.WineRackRenderer;
+import alabaster.hearthandharvest.client.renderer.BottleRackRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
@@ -39,7 +39,6 @@ public class ClientEventHandler {
         rm.listResources("models/wine_rack", path -> path.getPath().endsWith(".json"))
                 .keySet()
                 .forEach(resourceLocation -> {
-                    // "models/wine_rack/wine_bottle.json" → "hearthandharvest:wine_rack/wine_bottle"
                     String path = resourceLocation.getPath();
                     String modelPath = path.substring("models/".length(), path.length() - ".json".length());
                     event.register(ModelResourceLocation.standalone(
@@ -52,7 +51,7 @@ public class ClientEventHandler {
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(
                 HHModBlockEntities.WINE_RACK.get(),
-                WineRackRenderer::new
+                BottleRackRenderer::new
         );
     }
 

@@ -1,7 +1,7 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.block.entity.WineRackBlockEntity;
-import alabaster.hearthandharvest.common.block.entity.container.WineRackSlotHelper;
+import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
+import alabaster.hearthandharvest.common.block.entity.container.BottleRackSlotHelper;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,11 +27,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class WineRackBlock extends Block implements EntityBlock {
+public class BottleRackBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public WineRackBlock(Properties properties) {
+    public BottleRackBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
@@ -73,11 +73,11 @@ public class WineRackBlock extends Block implements EntityBlock {
 
     @Override
     public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!(level.getBlockEntity(pos) instanceof WineRackBlockEntity rack)) {
+        if (!(level.getBlockEntity(pos) instanceof BottleRackBlockEntity rack)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        int slot = WineRackSlotHelper.getSlotFromHit(state, hit);
+        int slot = BottleRackSlotHelper.getSlotFromHit(state, hit);
         if (slot < 0 || slot >= rack.getContainerSize()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -115,7 +115,7 @@ public class WineRackBlock extends Block implements EntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        if (!(level.getBlockEntity(pos) instanceof WineRackBlockEntity rack)) {
+        if (!(level.getBlockEntity(pos) instanceof BottleRackBlockEntity rack)) {
             return 0;
         }
 
@@ -130,7 +130,7 @@ public class WineRackBlock extends Block implements EntityBlock {
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
-        if (blockEntity instanceof WineRackBlockEntity rack) {
+        if (blockEntity instanceof BottleRackBlockEntity rack) {
             for (int i = 0; i < rack.getContainerSize(); i++) {
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), rack.getItem(i));
             }
@@ -141,6 +141,6 @@ public class WineRackBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new WineRackBlockEntity(pos, state);
+        return new BottleRackBlockEntity(pos, state);
     }
 }

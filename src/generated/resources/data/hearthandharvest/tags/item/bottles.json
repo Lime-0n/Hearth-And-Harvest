@@ -1,6 +1,9 @@
 {
   "values": [
     "minecraft:potion",
+    "farmersdelight:milk_bottle",
+    "minecraft:honey_bottle",
+    "hearthandharvest:goat_milk_bottle",
     "hearthandharvest:blueberry_wine",
     "hearthandharvest:cherry_wine",
     "hearthandharvest:green_grape_wine",

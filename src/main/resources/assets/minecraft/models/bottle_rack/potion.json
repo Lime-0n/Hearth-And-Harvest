@@ -3,9 +3,9 @@
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "item/3d_potion",
+		"0": "item/3d_glass_bottle",
 		"1": "item/3d_potion_overlay",
-		"particle": "item/3d_potion"
+		"particle": "item/3d_glass_bottle"
 	},
 	"elements": [
 		{

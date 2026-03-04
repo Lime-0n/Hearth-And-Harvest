@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class WineRackSlotHelper {
+public class BottleRackSlotHelper {
 
     public static int getSlotFromHit(BlockState state, BlockHitResult hit) {
         Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
