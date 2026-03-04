@@ -69,7 +69,9 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.TORTILLA.get());
 
         tag(HHModTags.BOTTLES)
+                .add(Items.GLASS_BOTTLE)
                 .add(Items.POTION)
+                .add(Items.OMINOUS_BOTTLE)
                 .add(ModItems.MILK_BOTTLE.get())
                 .add(Items.HONEY_BOTTLE)
                 .add(HHModItems.GOAT_MILK_BOTTLE.get())

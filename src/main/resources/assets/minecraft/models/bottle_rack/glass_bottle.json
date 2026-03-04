@@ -3,9 +3,8 @@
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "hearthandharvest:item/3d_goat_milk_bottle",
-		"1": "hearthandharvest:item/3d_goat_milk_bottle_overlay",
-		"particle": "hearthandharvest:item/3d_goat_milk_bottle"
+		"0": "item/3d_glass_bottle",
+		"particle": "item/3d_glass_bottle"
 	},
 	"elements": [
 		{
@@ -32,19 +31,6 @@
 				"west": {"uv": [7, 6, 9, 7], "texture": "#0"},
 				"up": {"uv": [10, 3, 12, 5], "texture": "#0"},
 				"down": {"uv": [10, 6, 12, 8], "texture": "#0"}
-			}
-		},
-		{
-			"from": [6.5, 4.5, 6.5],
-			"to": [9.5, 8.5, 9.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 4, 7]},
-			"faces": {
-				"north": {"uv": [7, 10, 10, 14], "texture": "#1", "tintindex": 0},
-				"east": {"uv": [7, 10, 10, 14], "texture": "#1", "tintindex": 0},
-				"south": {"uv": [7, 10, 10, 14], "texture": "#1", "tintindex": 0},
-				"west": {"uv": [7, 10, 10, 14], "texture": "#1", "tintindex": 0},
-				"up": {"uv": [10, 13, 7, 10], "texture": "#1", "tintindex": 0},
-				"down": {"uv": [10, 11, 7, 14], "texture": "#1", "tintindex": 0}
 			}
 		},
 		{

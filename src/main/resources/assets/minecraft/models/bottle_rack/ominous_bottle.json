@@ -3,9 +3,9 @@
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "hearthandharvest:item/3d_goat_milk_bottle",
-		"1": "hearthandharvest:item/3d_goat_milk_bottle_overlay",
-		"particle": "hearthandharvest:item/3d_goat_milk_bottle"
+		"0": "item/3d_ominous_bottle",
+		"1": "item/3d_ominous_bottle_overlay",
+		"particle": "item/3d_ominous_bottle"
 	},
 	"elements": [
 		{

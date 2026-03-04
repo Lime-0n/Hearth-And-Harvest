@@ -61,7 +61,7 @@ public class BottleRackRenderer implements BlockEntityRenderer<BottleRackBlockEn
 
             double x = baseX + 2 * px;
             double y = baseY + 2 * px;
-            double z = baseZ + 8 * px;
+            double z = baseZ + 9 * px;
 
             pose.translate(x, y, z);
             pose.mulPose(Axis.XP.rotationDegrees(90));

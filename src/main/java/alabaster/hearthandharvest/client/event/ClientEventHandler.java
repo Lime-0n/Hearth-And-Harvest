@@ -36,7 +36,7 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
-        rm.listResources("models/wine_rack", path -> path.getPath().endsWith(".json"))
+        rm.listResources("models/bottle_rack", path -> path.getPath().endsWith(".json"))
                 .keySet()
                 .forEach(resourceLocation -> {
                     String path = resourceLocation.getPath();
