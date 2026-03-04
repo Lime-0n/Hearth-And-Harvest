@@ -11,6 +11,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -67,6 +68,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.TORTILLA.get());
 
         tag(HHModTags.WINE_BOTTLES)
+                .add(Items.POTION)
                 .add(HHModItems.BLUEBERRY_WINE.get())
                 .add(HHModItems.CHERRY_WINE.get())
                 .add(HHModItems.GREEN_GRAPE_WINE.get())

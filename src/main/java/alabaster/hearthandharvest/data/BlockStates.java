@@ -182,8 +182,8 @@ public class BlockStates extends BlockStateProvider
             return models().getBuilder(modelName)
                     .parent(existingModel("wine_rack"))
                     .texture("side", resourceBlock(woodType + "_cabinet_side"))
-                    .texture("rack_side", resourceBlock(woodType + "_wine_rack_side"))
-                    .texture("rack_top", resourceBlock(woodType + "_wine_rack_top"));
+                    .texture("rack_side", resourceBlock(woodType + "_half_cabinet_side"))
+                    .texture("rack_top", resourceBlock(woodType + "_half_cabinet_top"));
         });
     }
 

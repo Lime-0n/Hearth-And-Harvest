@@ -1,5 +1,6 @@
 {
   "values": [
+    "minecraft:potion",
     "hearthandharvest:blueberry_wine",
     "hearthandharvest:cherry_wine",
     "hearthandharvest:green_grape_wine",
@@ -8,7 +9,6 @@
     "hearthandharvest:hard_cider",
     "hearthandharvest:raspberry_wine",
     "hearthandharvest:red_grape_wine",
-    "hearthandharvest:sweet_berry_wine",
-    "minecraft:potion"
+    "hearthandharvest:sweet_berry_wine"
   ]
 }

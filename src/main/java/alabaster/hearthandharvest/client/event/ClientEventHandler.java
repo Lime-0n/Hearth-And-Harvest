@@ -9,13 +9,17 @@ import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -27,6 +31,21 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
         event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
+    }
+
+    @SubscribeEvent
+    public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
+        ResourceManager rm = Minecraft.getInstance().getResourceManager();
+        rm.listResources("models/wine_rack", path -> path.getPath().endsWith(".json"))
+                .keySet()
+                .forEach(resourceLocation -> {
+                    // "models/wine_rack/wine_bottle.json" → "hearthandharvest:wine_rack/wine_bottle"
+                    String path = resourceLocation.getPath();
+                    String modelPath = path.substring("models/".length(), path.length() - ".json".length());
+                    event.register(ModelResourceLocation.standalone(
+                            ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), modelPath)
+                    ));
+                });
     }
 
     @SubscribeEvent

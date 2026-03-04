@@ -57,16 +57,16 @@ public class WineRackBlock extends Block implements EntityBlock {
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
         if (direction == Direction.NORTH) {
-            return Block.box(0.0D, 0.0D, 4.0, 16.0D, 16.0D, 16.0D);
+            return Block.box(0.0D, 0.0D, 8.0, 16.0D, 16.0D, 16.0D);
         }
         if (direction == Direction.EAST) {
-            return Block.box(0.0D, 0.0D, 0.0, 12.0D, 16.0D, 16.0D);
+            return Block.box(0.0D, 0.0D, 0.0, 8.0D, 16.0D, 16.0D);
         }
         if (direction == Direction.SOUTH) {
-            return Block.box(0.0D, 0.0D, 0.0, 16.0D, 16.0D, 12.0D);
+            return Block.box(0.0D, 0.0D, 0.0, 16.0D, 16.0D, 8.0D);
         }
         if (direction == Direction.WEST) {
-            return Block.box(4.0D, 0.0D, 0.0, 16.0D, 16.0D, 16.0D);
+            return Block.box(8.0D, 0.0D, 0.0, 16.0D, 16.0D, 16.0D);
         }
         return super.getShape(state, level, pos, context);
     }
