@@ -67,7 +67,7 @@ public class HHItemTags extends ItemTagsProvider {
         tag(Tags.Items.FOODS_BREAD)
                 .add(HHModItems.TORTILLA.get());
 
-        tag(HHModTags.WINE_BOTTLES)
+        tag(HHModTags.BOTTLES)
                 .add(Items.POTION)
                 .add(HHModItems.BLUEBERRY_WINE.get())
                 .add(HHModItems.CHERRY_WINE.get())

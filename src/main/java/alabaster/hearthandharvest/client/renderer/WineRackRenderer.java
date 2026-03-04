@@ -61,7 +61,7 @@ public class WineRackRenderer implements BlockEntityRenderer<WineRackBlockEntity
 
             double x = baseX + 2 * px;
             double y = baseY + 2 * px;
-            double z = baseZ + 10 * px;
+            double z = baseZ + 8 * px;
 
             pose.translate(x, y, z);
             pose.mulPose(Axis.XP.rotationDegrees(90));

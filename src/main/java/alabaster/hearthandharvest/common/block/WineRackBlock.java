@@ -86,7 +86,7 @@ public class WineRackBlock extends Block implements EntityBlock {
 
         if (current.isEmpty()) {
             if (!heldStack.isEmpty() && ! (heldStack.getItem() instanceof BlockItem)
-                    && heldStack.is(HHModTags.WINE_BOTTLES)) {
+                    && heldStack.is(HHModTags.BOTTLES)) {
 
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);
