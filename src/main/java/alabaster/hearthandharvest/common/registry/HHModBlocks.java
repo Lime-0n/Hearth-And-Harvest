@@ -68,6 +68,9 @@ public class HHModBlocks {
     public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
+    public static final Supplier<Block> BOTTLE_CRATE = BLOCKS.register("bottle_crate",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+
     // Bottle Racks
     public static final Supplier<Block> OAK_BOTTLE_RACK = BLOCKS.register("oak_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));

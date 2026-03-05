@@ -86,6 +86,17 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.RED_GRAPE_WINE.get())
                 .add(HHModItems.SWEET_BERRY_WINE.get());
 
+        tag(HHModTags.TALL_BOTTLES)
+                .add(HHModItems.BLUEBERRY_WINE.get())
+                .add(HHModItems.CHERRY_WINE.get())
+                .add(HHModItems.GREEN_GRAPE_WINE.get())
+                .add(HHModItems.MEAD.get())
+                .add(HHModItems.ROOT_BEER.get())
+                .add(HHModItems.HARD_CIDER.get())
+                .add(HHModItems.RASPBERRY_WINE.get())
+                .add(HHModItems.RED_GRAPE_WINE.get())
+                .add(HHModItems.SWEET_BERRY_WINE.get());
+
         tag(HHModTags.JAMS)
                 .add(HHModItems.GRAPE_JAM.get())
                 .add(HHModItems.CHERRY_JAM.get())
