@@ -22,6 +22,7 @@ public class HHModTags {
     public static final TagKey<Item> JAMS = modItemTag("jelly");
     public static final TagKey<Item> BOTTLES = modItemTag("bottles");
     public static final TagKey<Item> TALL_BOTTLES = modItemTag("tall_bottles");
+    public static final TagKey<Item> SHORT_BOTTLES = modItemTag("short_bottles");
     public static final TagKey<Item> CHEESE_SLICES = modItemTag("cheese_slices");
 
     public static final TagKey<Item> CROW_FOOD = modItemTag("crow_food");

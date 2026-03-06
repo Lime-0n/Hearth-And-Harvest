@@ -140,8 +140,8 @@ public class HHModItems {
     public static final Supplier<Item> WARPED_HALF_CABINET = registerWithBlockTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
-    public static final Supplier<Item> BOTTLE_CRATE = registerWithBlockTab("bottle_crate",
-            () -> new FuelBlockItem(HHModBlocks.BOTTLE_CRATE.get(), basicItem(), 300));
+    public static final Supplier<Item> CRATE = registerWithBlockTab("crate",
+            () -> new FuelBlockItem(HHModBlocks.CRATE.get(), basicItem(), 300));
 
     // Bottle Racks
     public static final Supplier<Item> OAK_BOTTLE_RACK = registerWithBlockTab("oak_bottle_rack",

@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
@@ -40,6 +41,9 @@ public class HHModBlockEntities {
                             HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
                             HHModBlocks.WARPED_BOTTLE_RACK.get())
                     .build(null));
+
+    public static final Supplier<BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITY_TYPES.register("crate",
+            () -> BlockEntityType.Builder.of(CrateBlockEntity::new, HHModBlocks.CRATE.get()).build(null));
 
     @SubscribeEvent
     public static void addCabinetsBlockEntities(BlockEntityTypeAddBlocksEvent event) {

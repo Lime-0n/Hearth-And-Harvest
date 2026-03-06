@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -9,15 +8,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
-import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.CompatibilityTags;
@@ -68,23 +64,14 @@ public class HHItemTags extends ItemTagsProvider {
         tag(Tags.Items.FOODS_BREAD)
                 .add(HHModItems.TORTILLA.get());
 
-        tag(HHModTags.BOTTLES)
+        tag(HHModTags.SHORT_BOTTLES)
                 .add(Items.GLASS_BOTTLE)
                 .add(Items.POTION)
                 .add(Items.OMINOUS_BOTTLE)
                 .add(ModItems.MILK_BOTTLE.get())
                 .add(Items.HONEY_BOTTLE)
                 .add(HHModItems.SYRUP_BOTTLE.get())
-                .add(HHModItems.GOAT_MILK_BOTTLE.get())
-                .add(HHModItems.BLUEBERRY_WINE.get())
-                .add(HHModItems.CHERRY_WINE.get())
-                .add(HHModItems.GREEN_GRAPE_WINE.get())
-                .add(HHModItems.MEAD.get())
-                .add(HHModItems.ROOT_BEER.get())
-                .add(HHModItems.HARD_CIDER.get())
-                .add(HHModItems.RASPBERRY_WINE.get())
-                .add(HHModItems.RED_GRAPE_WINE.get())
-                .add(HHModItems.SWEET_BERRY_WINE.get());
+                .add(HHModItems.GOAT_MILK_BOTTLE.get());
 
         tag(HHModTags.TALL_BOTTLES)
                 .add(HHModItems.BLUEBERRY_WINE.get())
@@ -96,6 +83,10 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.RASPBERRY_WINE.get())
                 .add(HHModItems.RED_GRAPE_WINE.get())
                 .add(HHModItems.SWEET_BERRY_WINE.get());
+
+        tag(HHModTags.BOTTLES)
+                .addTags(HHModTags.SHORT_BOTTLES)
+                .addTags(HHModTags.TALL_BOTTLES);
 
         tag(HHModTags.JAMS)
                 .add(HHModItems.GRAPE_JAM.get())

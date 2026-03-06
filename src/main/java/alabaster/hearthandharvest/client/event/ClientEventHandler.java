@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
+import alabaster.hearthandharvest.client.renderer.CrateRenderer;
 import alabaster.hearthandharvest.client.renderer.BottleRackRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
@@ -52,6 +53,10 @@ public class ClientEventHandler {
         event.registerBlockEntityRenderer(
                 HHModBlockEntities.BOTTLE_RACK.get(),
                 BottleRackRenderer::new
+        );
+        event.registerBlockEntityRenderer(
+                HHModBlockEntities.CRATE.get(),
+                CrateRenderer::new
         );
     }
 
