@@ -2,10 +2,14 @@ package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.container.CrateSlotHelper;
+import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.Direction;
-import net.minecraft.world.Containers;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +31,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class CrateBlock extends Block implements EntityBlock {
@@ -158,7 +161,6 @@ public class CrateBlock extends Block implements EntityBlock {
                 return ItemInteractionResult.SUCCESS;
             }
         } else {
-            // Remove the bottle from the slot.
             if (!level.isClientSide) {
                 player.addItem(current.copy());
             }
@@ -180,7 +182,6 @@ public class CrateBlock extends Block implements EntityBlock {
         if (!(level.getBlockEntity(pos) instanceof CrateBlockEntity rack)) return 0;
 
         int filledSlots = 0;
-        // Only count slots that belong to the current slab configuration.
         int maxSlot = state.getValue(TYPE) == SlabType.DOUBLE
                 ? CrateBlockEntity.TOTAL_SLOTS
                 : CrateBlockEntity.SLOTS_PER_HALF;
@@ -192,14 +193,45 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos,
-                              BlockState state, BlockEntity blockEntity, ItemStack tool) {
-        if (blockEntity instanceof CrateBlockEntity rack) {
-            for (int i = 0; i < rack.getContainerSize(); i++) {
-                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), rack.getItem(i));
+    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
+        player.awardStat(Stats.BLOCK_MINED.get(this));
+        player.causeFoodExhaustion(0.005F);
+
+        if (level.isClientSide) return;
+
+        if (blockEntity instanceof CrateBlockEntity crate) {
+            boolean isDouble = state.getValue(TYPE) == SlabType.DOUBLE;
+
+            if (isDouble) {
+                popResource(level, pos, buildHalfDrop(crate, 0, level));
+                popResource(level, pos, buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, level));
+            } else {
+                popResource(level, pos, buildHalfDrop(crate, 0, level));
             }
+        } else {
+            popResource(level, pos, new ItemStack(this));
         }
-        super.playerDestroy(level, player, pos, state, blockEntity, tool);
+    }
+
+    private ItemStack buildHalfDrop(CrateBlockEntity crate, int slotOffset, Level level) {
+        ItemStack drop = new ItemStack(this);
+
+        NonNullList<ItemStack> halfItems =
+                NonNullList.withSize(CrateBlockEntity.SLOTS_PER_HALF, ItemStack.EMPTY);
+        boolean anyFilled = false;
+        for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
+            ItemStack s = crate.getItem(slotOffset + i);
+            halfItems.set(i, s.copy());
+            if (!s.isEmpty()) anyFilled = true;
+        }
+
+        if (anyFilled) {
+            CompoundTag tag = new CompoundTag();
+            ContainerHelper.saveAllItems(tag, halfItems, level.registryAccess());
+            BlockItem.setBlockEntityData(drop, HHModBlockEntities.CRATE.get(), tag);
+        }
+
+        return drop;
     }
 
     @Nullable

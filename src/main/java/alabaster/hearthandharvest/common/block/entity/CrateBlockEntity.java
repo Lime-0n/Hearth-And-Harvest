@@ -29,10 +29,6 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
         super(HHModBlockEntities.CRATE.get(), pos, state);
     }
 
-    // -------------------------------------------------------------------------
-    // Container
-    // -------------------------------------------------------------------------
-
     @Override
     public int getContainerSize() {
         return TOTAL_SLOTS;
@@ -80,10 +76,6 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
     public NonNullList<ItemStack> getItems() {
         return items;
     }
-
-    // -------------------------------------------------------------------------
-    // NBT / Sync
-    // -------------------------------------------------------------------------
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider lookup) {

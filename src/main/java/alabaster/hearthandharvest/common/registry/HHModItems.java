@@ -142,12 +142,12 @@ public class HHModItems {
 
     // Crabbers Delight Compat
     public static final Supplier<Item> PALM_HALF_CABINET = ModList.get().isLoaded("crabbersdelight")
-            ? registerWithTab("palm_half_cabinet",
+            ? registerWithBlockTab("palm_half_cabinet",
             () -> new BlockItem(HHModBlocks.PALM_HALF_CABINET.get(), basicItem()))
             : null;
 
     public static final Supplier<Item> CRATE = registerWithBlockTab("crate",
-            () -> new FuelBlockItem(HHModBlocks.CRATE.get(), basicItem(), 300));
+            () -> new CrateBlockItem(HHModBlocks.CRATE.get(), basicItem()));
 
     // Bottle Racks
     public static final Supplier<Item> OAK_BOTTLE_RACK = registerWithBlockTab("oak_bottle_rack",
@@ -175,7 +175,7 @@ public class HHModItems {
 
     // Crabbers Delight Compat
     public static final Supplier<Item> PALM_BOTTLE_RACK = ModList.get().isLoaded("crabbersdelight")
-            ? registerWithTab("palm_bottle_rack",
+            ? registerWithBlockTab("palm_bottle_rack",
             () -> new BlockItem(HHModBlocks.PALM_BOTTLE_RACK.get(), basicItem()))
             : null;
 
