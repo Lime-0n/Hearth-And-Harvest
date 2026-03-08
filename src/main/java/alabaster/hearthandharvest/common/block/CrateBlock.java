@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,9 +33,21 @@ public class CrateBlock extends Block implements EntityBlock {
 
     public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
 
-    private static final VoxelShape SHAPE_BOTTOM = Block.box(0, 0,  0, 16,  8, 16);
-    private static final VoxelShape SHAPE_TOP    = Block.box(0, 8,  0, 16, 16, 16);
-    private static final VoxelShape SHAPE_DOUBLE = Block.box(0, 0,  0, 16, 16, 16);
+    private static final VoxelShape SHAPE_BOTTOM = Shapes.or(
+            Block.box( 0, 0,  0, 16, 4, 16),  // floor
+            Block.box( 0, 4,  0, 16, 8,  2),  // north wall
+            Block.box( 0, 4, 14, 16, 8, 16),  // south wall
+            Block.box( 0, 4,  0,  2, 8, 16),  // west wall
+            Block.box(14, 4,  0, 16, 8, 16)   // east wall
+    );
+    private static final VoxelShape SHAPE_TOP = Shapes.or(
+            Block.box( 0,  8,  0, 16, 12, 16),
+            Block.box( 0, 12,  0, 16, 16,  2),
+            Block.box( 0, 12, 14, 16, 16, 16),
+            Block.box( 0, 12,  0,  2, 16, 16),
+            Block.box(14, 12,  0, 16, 16, 16)
+    );
+    private static final VoxelShape SHAPE_DOUBLE = Shapes.or(SHAPE_BOTTOM, SHAPE_TOP);
 
     public CrateBlock(Properties properties) {
         super(properties);
@@ -48,34 +61,44 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
+        ItemStack held     = context.getItemInHand();
+        SlabType  existing = state.getValue(TYPE);
+
+        if (existing == SlabType.DOUBLE || !held.is(this.asItem())) return false;
+
+        if (existing == SlabType.BOTTOM && hasTallBottle(context.getLevel(), context.getClickedPos(), existing)) {
+            return false;
+        }
+
+        if (context.replacingClickedOnBlock()) {
+            boolean clickedUpperHalf =
+                    context.getClickLocation().y - context.getClickedPos().getY() > 0.5;
+            Direction face = context.getClickedFace();
+            return existing == SlabType.BOTTOM
+                    ? (face == Direction.UP   || clickedUpperHalf)
+                    : (face == Direction.DOWN || !clickedUpperHalf);
+        }
+        return true;
+    }
+
+    @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos pos        = context.getClickedPos();
-        Level level         = context.getLevel();
-        BlockState existing = level.getBlockState(pos);
+        BlockState existing = context.getLevel().getBlockState(pos);
 
-        if (existing.is(this)) {
-            SlabType existingType = existing.getValue(TYPE);
-            if (existingType != SlabType.DOUBLE) {
-                if (hasTallBottle(level, pos, existingType)) {
-                    return null;
-                }
-                return existing.setValue(TYPE, SlabType.DOUBLE);
-            }
-            return null;
+        // Completing a double slab (canBeReplaced approved this already).
+        if (existing.is(this) && existing.getValue(TYPE) != SlabType.DOUBLE) {
+            return existing.setValue(TYPE, SlabType.DOUBLE);
         }
 
-        Direction clickedFace = context.getClickedFace();
-        if (clickedFace == Direction.DOWN) {
-            return this.defaultBlockState().setValue(TYPE, SlabType.TOP);
-        }
-        if (clickedFace == Direction.UP) {
-            return this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM);
-        }
-
+        // Fresh placement: face clicked determines top/bottom half.
+        Direction face = context.getClickedFace();
+        if (face == Direction.DOWN) return this.defaultBlockState().setValue(TYPE, SlabType.TOP);
+        if (face == Direction.UP)   return this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM);
         double hitY = context.getClickLocation().y - pos.getY();
-        SlabType half = hitY > 0.5 ? SlabType.TOP : SlabType.BOTTOM;
-        return this.defaultBlockState().setValue(TYPE, half);
+        return this.defaultBlockState().setValue(TYPE, hitY > 0.5 ? SlabType.TOP : SlabType.BOTTOM);
     }
 
     private boolean hasTallBottle(Level level, BlockPos pos, SlabType existingType) {

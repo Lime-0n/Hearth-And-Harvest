@@ -9,6 +9,9 @@ import net.minecraft.world.phys.Vec3;
 
 public class CrateSlotHelper {
 
+    private static final double BOTTOM_INNER_FLOOR = 4.0 / 16.0;
+    private static final double TOP_INNER_FLOOR = 12.0 / 16.0;
+
     public static int getSlotFromHit(BlockState state, BlockHitResult hit) {
         Vec3 local = hit.getLocation().subtract(
                 hit.getBlockPos().getX(),
@@ -16,20 +19,33 @@ public class CrateSlotHelper {
                 hit.getBlockPos().getZ()
         );
 
+        SlabType type = state.getValue(BlockStateProperties.SLAB_TYPE);
+        int baseSlot;
+
+        switch (type) {
+            case BOTTOM -> {
+                if (local.y < BOTTOM_INNER_FLOOR) return -1;
+                baseSlot = 0;
+            }
+            case TOP -> {
+                if (local.y < TOP_INNER_FLOOR) return -1;
+                baseSlot = 0;
+            }
+            case DOUBLE -> {
+                if (local.y >= TOP_INNER_FLOOR) {
+                    baseSlot = CrateBlockEntity.SLOTS_PER_HALF;
+                } else if (local.y >= BOTTOM_INNER_FLOOR && local.y < 0.5) {
+                    baseSlot = 0;
+                } else {
+                    return -1;
+                }
+            }
+            default -> { return -1; }
+        }
+
         int col = getSlotCoord(local.x);
         int row = getSlotCoord(local.z);
         if (col < 0 || row < 0) return -1;
-
-        // Determine which half was interacted with.
-        SlabType type = state.getValue(BlockStateProperties.SLAB_TYPE);
-        int baseSlot;
-        if (type == SlabType.DOUBLE) {
-            // Bottom half → slots 0–8; top half → slots 9–17.
-            baseSlot = (local.y < 0.5) ? 0 : CrateBlockEntity.SLOTS_PER_HALF;
-        } else {
-            // Single slab always uses the first bank of slots.
-            baseSlot = 0;
-        }
 
         return baseSlot + row * 3 + col;
     }

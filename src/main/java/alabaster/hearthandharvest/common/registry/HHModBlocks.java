@@ -5,8 +5,11 @@ import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.CanvasRugBlock;
@@ -68,6 +71,12 @@ public class HHModBlocks {
     public static final Supplier<Block> WARPED_HALF_CABINET = BLOCKS.register("warped_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
 
+    // Crabbers Delight Compat
+    public static final Supplier<Block> PALM_HALF_CABINET = ModList.get().isLoaded("crabbersdelight")
+            ? BLOCKS.register("palm_half_cabinet",
+            () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)))
+            : null;
+
     public static final Supplier<Block> CRATE = BLOCKS.register("crate",
             () -> new CrateBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
 
@@ -94,6 +103,12 @@ public class HHModBlocks {
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
     public static final Supplier<Block> WARPED_BOTTLE_RACK = BLOCKS.register("warped_bottle_rack",
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL).sound(SoundType.NETHER_WOOD)));
+
+    // Crabbers Delight Compat
+    public static final Supplier<Block> PALM_BOTTLE_RACK = ModList.get().isLoaded("crabbersdelight")
+            ? BLOCKS.register("palm_bottle_rack",
+            () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)))
+            : null;
 
     static {
         BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),

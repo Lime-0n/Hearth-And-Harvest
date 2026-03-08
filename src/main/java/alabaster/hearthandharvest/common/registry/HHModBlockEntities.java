@@ -39,7 +39,8 @@ public class HHModBlockEntities {
                             HHModBlocks.BAMBOO_BOTTLE_RACK.get(),
                             HHModBlocks.CHERRY_BOTTLE_RACK.get(),
                             HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
-                            HHModBlocks.WARPED_BOTTLE_RACK.get())
+                            HHModBlocks.WARPED_BOTTLE_RACK.get(),
+                            HHModBlocks.PALM_BOTTLE_RACK.get())
                     .build(null));
 
     public static final Supplier<BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITY_TYPES.register("crate",
@@ -59,7 +60,8 @@ public class HHModBlockEntities {
                 HHModBlocks.BAMBOO_HALF_CABINET.get(),
                 HHModBlocks.CHERRY_HALF_CABINET.get(),
                 HHModBlocks.CRIMSON_HALF_CABINET.get(),
-                HHModBlocks.WARPED_HALF_CABINET.get()
+                HHModBlocks.WARPED_HALF_CABINET.get(),
+                HHModBlocks.PALM_HALF_CABINET.get()
         );
     }
 

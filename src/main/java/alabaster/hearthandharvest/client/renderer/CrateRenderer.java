@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.client.renderer;
 
 import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
+import alabaster.hearthandharvest.common.tag.HHModTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -78,7 +79,7 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
 
             double x = SPACING + col * (SLOT_SIZE + SPACING) + SLOT_SIZE / 2.0;
             double z = SPACING + row * (SLOT_SIZE + SPACING) + SLOT_SIZE / 2.0;
-            double y = surfaceY;
+            double y = surfaceY - (stack.is(HHModTags.SHORT_BOTTLES) ? PX : 0);
 
             pose.pushPose();
             pose.translate(x, y, z);

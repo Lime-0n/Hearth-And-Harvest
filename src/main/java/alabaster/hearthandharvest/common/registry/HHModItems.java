@@ -140,6 +140,12 @@ public class HHModItems {
     public static final Supplier<Item> WARPED_HALF_CABINET = registerWithBlockTab("warped_half_cabinet",
             () -> new BlockItem(HHModBlocks.WARPED_HALF_CABINET.get(), basicItem()));
 
+    // Crabbers Delight Compat
+    public static final Supplier<Item> PALM_HALF_CABINET = ModList.get().isLoaded("crabbersdelight")
+            ? registerWithTab("palm_half_cabinet",
+            () -> new BlockItem(HHModBlocks.PALM_HALF_CABINET.get(), basicItem()))
+            : null;
+
     public static final Supplier<Item> CRATE = registerWithBlockTab("crate",
             () -> new FuelBlockItem(HHModBlocks.CRATE.get(), basicItem(), 300));
 
@@ -166,6 +172,12 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.CRIMSON_BOTTLE_RACK.get(), basicItem()));
     public static final Supplier<Item> WARPED_BOTTLE_RACK = registerWithBlockTab("warped_bottle_rack",
             () -> new BlockItem(HHModBlocks.WARPED_BOTTLE_RACK.get(), basicItem()));
+
+    // Crabbers Delight Compat
+    public static final Supplier<Item> PALM_BOTTLE_RACK = ModList.get().isLoaded("crabbersdelight")
+            ? registerWithTab("palm_bottle_rack",
+            () -> new BlockItem(HHModBlocks.PALM_BOTTLE_RACK.get(), basicItem()))
+            : null;
 
     static {
         ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),

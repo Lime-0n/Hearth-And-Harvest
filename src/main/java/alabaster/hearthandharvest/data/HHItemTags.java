@@ -254,7 +254,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CHERRY_HALF_CABINET.get())
                 .add(HHModItems.BAMBOO_HALF_CABINET.get())
                 .add(HHModItems.CRIMSON_HALF_CABINET.get())
-                .add(HHModItems.WARPED_HALF_CABINET.get());
+                .add(HHModItems.WARPED_HALF_CABINET.get())
+                .add(HHModItems.PALM_HALF_CABINET.get());
 
         tag(ItemTags.SMALL_FLOWERS)
                 .add(HHModItems.WILD_PEANUTS.get())

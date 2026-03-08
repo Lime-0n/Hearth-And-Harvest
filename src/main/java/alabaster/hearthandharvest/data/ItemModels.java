@@ -187,6 +187,9 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.WARPED_FUNGUS_CRATE.get(), "_bottom");
         items.remove(HHModItems.WARPED_FUNGUS_CRATE.get());
 
+        blockBasedModel(HHModItems.CRATE.get(), "_bottom");
+        items.remove(HHModItems.CRATE.get());
+
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
                 HHModItems.JAR.get(),
