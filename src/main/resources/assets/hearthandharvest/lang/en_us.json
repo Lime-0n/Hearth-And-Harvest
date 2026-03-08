@@ -46,8 +46,9 @@
   "block.hearthandharvest.warped_half_cabinet": "Warped Half Cabinet",
   "block.hearthandharvest.palm_half_cabinet": "Palm Half Cabinet",
 
-  "block.hearthandharvest.crate": "Crate",
+  "block.hearthandharvest.crate": "Empty Crate",
   "block.hearthandharvest.crate.named": "%s Crate",
+  "block.hearthandharvest.crate.mixed": "Mixed Crate",
 
   "block.hearthandharvest.oak_bottle_rack": "Oak Bottle Rack",
   "block.hearthandharvest.birch_bottle_rack": "Birch Bottle Rack",

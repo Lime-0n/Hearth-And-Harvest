@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.item;
 
 import alabaster.hearthandharvest.common.block.CrateBlock;
 import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -9,11 +10,14 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
@@ -25,7 +29,10 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CrateBlockItem extends BlockItem {
 
@@ -35,18 +42,16 @@ public class CrateBlockItem extends BlockItem {
         super(block, properties);
     }
 
-    public static void registerDispenseBehavior(net.minecraft.world.item.Item crateItem) {
+    public static void registerDispenseBehavior(Item crateItem) {
         DispenserBlock.registerBehavior(
                 crateItem,
                 new OptionalDispenseItemBehavior() {
                     @Override
                     protected ItemStack execute(BlockSource source, ItemStack stack) {
                         Direction facing = source.state().getValue(DispenserBlock.FACING);
-                        BlockPos target  = source.pos().relative(facing);
-
+                        BlockPos target = source.pos().relative(facing);
                         DirectionalPlaceContext ctx = new DirectionalPlaceContext(
                                 source.level(), target, facing, stack, facing.getOpposite());
-
                         InteractionResult result = ((CrateBlockItem) stack.getItem()).place(ctx);
                         setSuccess(result.consumesAction());
                         return stack;
@@ -99,14 +104,12 @@ public class CrateBlockItem extends BlockItem {
         CustomData data = stack.get(DataComponents.BLOCK_ENTITY_DATA);
         if (data == null) return super.getName(stack);
 
-        net.minecraft.core.NonNullList<ItemStack> items =
-                net.minecraft.core.NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
+        NonNullList<ItemStack> items = NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
 
-        net.minecraft.core.HolderLookup.Provider registries;
+        HolderLookup.Provider registries;
         try {
-            registries = net.minecraft.client.Minecraft.getInstance().level != null
-                    ? net.minecraft.client.Minecraft.getInstance().level.registryAccess()
-                    : null;
+            registries = Minecraft.getInstance().level != null
+                    ? Minecraft.getInstance().level.registryAccess() : null;
         } catch (Throwable t) {
             return super.getName(stack);
         }
@@ -117,20 +120,15 @@ public class CrateBlockItem extends BlockItem {
         ItemStack first = items.get(0);
         if (first.isEmpty()) return super.getName(stack);
 
-        net.minecraft.resources.ResourceLocation firstKey =
-                net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(first.getItem());
+        ResourceLocation firstKey = BuiltInRegistries.ITEM.getKey(first.getItem());
 
         for (int i = 1; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             ItemStack s = items.get(i);
-            if (s.isEmpty()) return super.getName(stack);
-            if (!net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(s.getItem()).equals(firstKey))
-                return super.getName(stack);
+            if (s.isEmpty() || !BuiltInRegistries.ITEM.getKey(s.getItem()).equals(firstKey))
+                return Component.translatable("block.hearthandharvest.crate.mixed");
         }
 
-        return Component.translatable(
-                getDescriptionId() + ".named",
-                first.getHoverName()
-        );
+        return Component.translatable("block.hearthandharvest.crate.named", first.getHoverName());
     }
 
     @Override
@@ -143,34 +141,34 @@ public class CrateBlockItem extends BlockItem {
         HolderLookup.Provider registries = context.registries();
         if (registries == null) return;
 
-        CompoundTag tag = data.copyTag();
         NonNullList<ItemStack> items =
                 NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(tag, items, registries);
+        ContainerHelper.loadAllItems(data.copyTag(), items, registries);
 
-        java.util.LinkedHashMap<net.minecraft.resources.ResourceLocation, Integer> grouped =
-                new java.util.LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, ItemStack> representatives =
+                new LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, Integer> grouped =
+                new LinkedHashMap<>();
         for (ItemStack s : items) {
             if (s.isEmpty()) continue;
-            net.minecraft.resources.ResourceLocation key =
-                    net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(s.getItem());
+            ResourceLocation key = BuiltInRegistries.ITEM.getKey(s.getItem());
+            representatives.putIfAbsent(key, s);
             grouped.merge(key, s.getCount(), Integer::sum);
         }
 
         if (grouped.isEmpty()) return;
 
-        List<java.util.Map.Entry<net.minecraft.resources.ResourceLocation, Integer>> entries =
-                new java.util.ArrayList<>(grouped.entrySet());
+        List<Map.Entry<ResourceLocation, Integer>> entries =
+                new ArrayList<>(grouped.entrySet());
 
         int shown = Math.min(entries.size(), MAX_TOOLTIP_LINES);
         for (int i = 0; i < shown; i++) {
             var e = entries.get(i);
-            net.minecraft.world.item.Item item =
-                    net.minecraft.core.registries.BuiltInRegistries.ITEM.get(e.getKey());
+            ItemStack rep = representatives.get(e.getKey());
             int count = e.getValue();
-            Component line = Component.literal("  ").append(new ItemStack(item).getHoverName());
+            Component line = Component.literal("  ").append(rep.getHoverName());
             if (count > 1) {
-                line = ((net.minecraft.network.chat.MutableComponent) line).append(
+                line = ((MutableComponent) line).append(
                         Component.literal(" \u00d7 " + count)
                                 .withStyle(style -> style.withColor(0xAAAAAA)));
             }
