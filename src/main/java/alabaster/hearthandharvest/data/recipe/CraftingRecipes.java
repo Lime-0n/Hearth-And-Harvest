@@ -119,6 +119,11 @@ public class CraftingRecipes
                 .requires(Items.HAY_BLOCK)
                 .unlockedBy("has_hay_block", InventoryChangeTrigger.TriggerInstance.hasItems(Items.HAY_BLOCK))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.STRAW_RUG.get(), 4)
+                .requires(ModItems.STRAW_BALE.get())
+                .requires(ModItems.STRAW_BALE.get())
+                .unlockedBy("has_straw_bale", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STRAW_BALE.get()))
+                .save(output);
 
         // Cabinets
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModItems.OAK_CABINET.get(), 1)

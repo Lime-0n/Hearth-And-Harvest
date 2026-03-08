@@ -20,5 +20,8 @@ public abstract class HideBreakProgressMixin
         if (blockStateIn.getBlock() == HHModBlocks.HAY_RUG.get()) {
             ci.cancel();
         }
+        if (blockStateIn.getBlock() == HHModBlocks.STRAW_RUG.get()) {
+            ci.cancel();
+        }
     }
 }

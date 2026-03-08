@@ -311,6 +311,7 @@ public class HHBlockTags extends BlockTagsProvider {
 
         tag(ModTags.MINEABLE_WITH_KNIFE).add(
                 HHModBlocks.HAY_RUG.get(),
+                HHModBlocks.STRAW_RUG.get(),
                 HHModBlocks.SALT_BAG.get(),
                 HHModBlocks.SUGAR_BAG.get(),
                 HHModBlocks.COCOA_BEAN_BAG.get(),

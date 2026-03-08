@@ -111,6 +111,8 @@ public class HHModItems {
 
     public static final Supplier<Item> HAY_RUG = registerWithBlockTab("hay_rug",
             () -> new BlockItem(HHModBlocks.HAY_RUG.get(), basicItem()));
+    public static final Supplier<Item> STRAW_RUG = registerWithBlockTab("straw_rug",
+            () -> new BlockItem(HHModBlocks.STRAW_RUG.get(), basicItem()));
 
     public static final Supplier<Item> SCARECROW = registerWithBlockTab("scarecrow",
             () -> new BlockItem(HHModBlocks.SCARECROW.get(), basicItem()));

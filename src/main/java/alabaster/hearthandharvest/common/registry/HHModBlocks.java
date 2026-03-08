@@ -43,6 +43,9 @@ public class HHModBlocks {
             () -> new NestBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
     public static final Supplier<Block> HAY_RUG = BLOCKS.register("hay_rug",
             () -> new CanvasRugBlock(Block.Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.GRASS).strength(0.2F)));
+    public static final Supplier<Block> STRAW_RUG = BLOCKS.register("straw_rug",
+            () -> new CanvasRugBlock(Block.Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.GRASS).strength(0.2F)));
+
 
     public static final Supplier<Block> SCARECROW = BLOCKS.register("scarecrow",
             () -> new ScarecrowBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
