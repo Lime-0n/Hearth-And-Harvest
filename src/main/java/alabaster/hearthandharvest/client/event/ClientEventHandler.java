@@ -2,15 +2,14 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
+import alabaster.hearthandharvest.client.renderer.CrateItemRenderer;
 import alabaster.hearthandharvest.client.renderer.CrateRenderer;
 import alabaster.hearthandharvest.client.renderer.BottleRackRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
-import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
-import alabaster.hearthandharvest.common.registry.HHModFluids;
-import alabaster.hearthandharvest.common.registry.HHModParticleTypes;
+import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -19,11 +18,13 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @SuppressWarnings("unused")
@@ -58,6 +59,7 @@ public class ClientEventHandler {
                 HHModBlockEntities.CRATE.get(),
                 CrateRenderer::new
         );
+
     }
 
     @SubscribeEvent
@@ -80,6 +82,16 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(
+                new IClientItemExtensions() {
+                    @Override
+                    public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                        return CrateItemRenderer.getInstance();
+                    }
+                },
+                HHModItems.CRATE.get()
+        );
+
         event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_COOKING_OIL   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cooking_oil_still");
             private static final ResourceLocation FLOWING_COOKING_OIL = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cooking_oil_flow");

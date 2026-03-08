@@ -60,7 +60,6 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.STRAW_RUG.get(),"");
         items.remove(HHModItems.STRAW_RUG.get());
 
-        blockBasedModel(HHModItems.CRATE.get(),"");
         items.remove(HHModItems.CRATE.get());
 
         blockBasedModel(HHModItems.OAK_HALF_CABINET.get(),"");

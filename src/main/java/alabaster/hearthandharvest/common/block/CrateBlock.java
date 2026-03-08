@@ -5,11 +5,12 @@ import alabaster.hearthandharvest.common.block.entity.container.CrateSlotHelper;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,11 +28,17 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CrateBlock extends Block implements EntityBlock {
 
@@ -62,6 +69,33 @@ public class CrateBlock extends Block implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
         super.createBlockStateDefinition(builder);
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        LootParams lootParams = params
+                .withParameter(LootContextParams.BLOCK_STATE, state)
+                .create(LootContextParamSets.BLOCK);
+
+        BlockEntity be   = lootParams.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        HolderLookup.Provider lookup = lootParams.getLevel().registryAccess();
+
+        if (be instanceof CrateBlockEntity crate) {
+            if (state.getValue(TYPE) == SlabType.DOUBLE) {
+                return List.of(
+                        buildHalfDrop(crate, 0,                            lookup),
+                        buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, lookup)
+                );
+            }
+            return List.of(buildHalfDrop(crate, 0, lookup));
+        }
+
+        return List.of(new ItemStack(this));
     }
 
     @Override
@@ -105,9 +139,7 @@ public class CrateBlock extends Block implements EntityBlock {
 
     private boolean hasTallBottle(Level level, BlockPos pos, SlabType existingType) {
         if (!(level.getBlockEntity(pos) instanceof CrateBlockEntity be)) return false;
-
         if (existingType == SlabType.TOP) return false;
-
         for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             if (be.getItem(i).is(HHModTags.TALL_BOTTLES)) return true;
         }
@@ -148,9 +180,7 @@ public class CrateBlock extends Block implements EntityBlock {
         ItemStack current = rack.getItem(slot);
 
         if (current.isEmpty()) {
-            if (!heldStack.isEmpty()
-                    && !(heldStack.getItem() instanceof BlockItem)
-                    && (heldStack.is(HHModTags.BOTTLES) || heldStack.is(HHModTags.CRATEABLE_ITEMS))) {
+            if (!heldStack.isEmpty() && (heldStack.is(HHModTags.BOTTLES) || heldStack.is(HHModTags.CRATEABLE_ITEMS))) {
 
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);
@@ -193,27 +223,27 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
+    public void playerDestroy(Level level, Player player, BlockPos pos,
+                              BlockState state, BlockEntity blockEntity, ItemStack tool) {
         player.awardStat(Stats.BLOCK_MINED.get(this));
         player.causeFoodExhaustion(0.005F);
 
         if (level.isClientSide) return;
 
         if (blockEntity instanceof CrateBlockEntity crate) {
-            boolean isDouble = state.getValue(TYPE) == SlabType.DOUBLE;
-
-            if (isDouble) {
-                popResource(level, pos, buildHalfDrop(crate, 0, level));
-                popResource(level, pos, buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, level));
+            if (state.getValue(TYPE) == SlabType.DOUBLE) {
+                popResource(level, pos, buildHalfDrop(crate, 0,                            level.registryAccess()));
+                popResource(level, pos, buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, level.registryAccess()));
             } else {
-                popResource(level, pos, buildHalfDrop(crate, 0, level));
+                popResource(level, pos, buildHalfDrop(crate, 0, level.registryAccess()));
             }
         } else {
             popResource(level, pos, new ItemStack(this));
         }
     }
 
-    private ItemStack buildHalfDrop(CrateBlockEntity crate, int slotOffset, Level level) {
+    private ItemStack buildHalfDrop(CrateBlockEntity crate, int slotOffset,
+                                    HolderLookup.Provider lookup) {
         ItemStack drop = new ItemStack(this);
 
         NonNullList<ItemStack> halfItems =
@@ -227,7 +257,7 @@ public class CrateBlock extends Block implements EntityBlock {
 
         if (anyFilled) {
             CompoundTag tag = new CompoundTag();
-            ContainerHelper.saveAllItems(tag, halfItems, level.registryAccess());
+            ContainerHelper.saveAllItems(tag, halfItems, lookup);
             BlockItem.setBlockEntityData(drop, HHModBlockEntities.CRATE.get(), tag);
         }
 

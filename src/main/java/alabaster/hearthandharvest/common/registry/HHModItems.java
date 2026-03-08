@@ -149,7 +149,7 @@ public class HHModItems {
             : null;
 
     public static final Supplier<Item> CRATE = registerWithBlockTab("crate",
-            () -> new CrateBlockItem(HHModBlocks.CRATE.get(), basicItem()));
+            () -> new CrateBlockItem(HHModBlocks.CRATE.get(), basicItem().stacksTo(16)));
 
     // Bottle Racks
     public static final Supplier<Item> OAK_BOTTLE_RACK = registerWithBlockTab("oak_bottle_rack",

@@ -10,6 +10,7 @@ import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
+import alabaster.hearthandharvest.common.item.CrateBlockItem;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import alabaster.hearthandharvest.common.worldgen.VillageCrops;
@@ -85,6 +86,14 @@ public class HearthAndHarvest {
         if (ModList.get().isLoaded("thirst")) {
             NeoForge.EVENT_BUS.register(ThirstWasTakenCompat.class);
         }
+
+        modEventBus.addListener(this::commonSetup);
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            CrateBlockItem.registerDispenseBehavior(HHModItems.CRATE.get());
+        });
     }
 
     public void registerScreens(RegisterMenuScreensEvent event) {
@@ -135,7 +144,6 @@ public class HearthAndHarvest {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(HHModEntities.CROW.get(), CrowRenderer::new);
-
         }
 
         @SubscribeEvent
@@ -147,7 +155,6 @@ public class HearthAndHarvest {
                     CrowSpawnRules::canSpawnCrow,
                     RegisterSpawnPlacementsEvent.Operation.REPLACE);
         }
-
     }
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
