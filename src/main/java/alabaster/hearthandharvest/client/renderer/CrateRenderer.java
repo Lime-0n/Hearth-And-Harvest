@@ -64,8 +64,7 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
             renderHalf(slab, 0, 1.0, pose, buf, light, overlay);
         }
     }
-    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY,
-                            PoseStack pose, MultiBufferSource buf, int light, int overlay) {
+    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
 
         for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             ItemStack stack = slab.getItem(slotOffset + i);
@@ -79,7 +78,7 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
 
             double x = SPACING + col * (SLOT_SIZE + SPACING) + SLOT_SIZE / 2.0;
             double z = SPACING + row * (SLOT_SIZE + SPACING) + SLOT_SIZE / 2.0;
-            double y = surfaceY - (stack.is(HHModTags.SHORT_BOTTLES) ? PX : 0);
+            double y = surfaceY + PX;
 
             pose.pushPose();
             pose.translate(x, y, z);

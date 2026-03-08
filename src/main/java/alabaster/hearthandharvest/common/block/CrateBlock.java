@@ -27,6 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class CrateBlock extends Block implements EntityBlock {
@@ -35,17 +36,17 @@ public class CrateBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE_BOTTOM = Shapes.or(
             Block.box( 0, 0,  0, 16, 4, 16),  // floor
-            Block.box( 0, 4,  0, 16, 8,  2),  // north wall
-            Block.box( 0, 4, 14, 16, 8, 16),  // south wall
-            Block.box( 0, 4,  0,  2, 8, 16),  // west wall
-            Block.box(14, 4,  0, 16, 8, 16)   // east wall
+            Block.box( 0, 4,  0, 16, 8,  1),  // north wall
+            Block.box( 0, 4, 15, 16, 8, 16),  // south wall
+            Block.box( 0, 4,  0,  1, 8, 16),  // west wall
+            Block.box(15, 4,  0, 16, 8, 16)   // east wall
     );
     private static final VoxelShape SHAPE_TOP = Shapes.or(
             Block.box( 0,  8,  0, 16, 12, 16),
-            Block.box( 0, 12,  0, 16, 16,  2),
-            Block.box( 0, 12, 14, 16, 16, 16),
-            Block.box( 0, 12,  0,  2, 16, 16),
-            Block.box(14, 12,  0, 16, 16, 16)
+            Block.box( 0, 12,  0, 16, 16,  1),
+            Block.box( 0, 12, 15, 16, 16, 16),
+            Block.box( 0, 12,  0,  1, 16, 16),
+            Block.box(15, 12,  0, 16, 16, 16)
     );
     private static final VoxelShape SHAPE_DOUBLE = Shapes.or(SHAPE_BOTTOM, SHAPE_TOP);
 
@@ -88,12 +89,10 @@ public class CrateBlock extends Block implements EntityBlock {
         BlockPos pos        = context.getClickedPos();
         BlockState existing = context.getLevel().getBlockState(pos);
 
-        // Completing a double slab (canBeReplaced approved this already).
         if (existing.is(this) && existing.getValue(TYPE) != SlabType.DOUBLE) {
             return existing.setValue(TYPE, SlabType.DOUBLE);
         }
 
-        // Fresh placement: face clicked determines top/bottom half.
         Direction face = context.getClickedFace();
         if (face == Direction.DOWN) return this.defaultBlockState().setValue(TYPE, SlabType.TOP);
         if (face == Direction.UP)   return this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM);
@@ -104,7 +103,6 @@ public class CrateBlock extends Block implements EntityBlock {
     private boolean hasTallBottle(Level level, BlockPos pos, SlabType existingType) {
         if (!(level.getBlockEntity(pos) instanceof CrateBlockEntity be)) return false;
 
-        // Only the bottom half has height-sensitive items.
         if (existingType == SlabType.TOP) return false;
 
         for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
@@ -133,9 +131,7 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public ItemInteractionResult useItemOn(
-            ItemStack heldStack, BlockState state, Level level,
-            BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
         if (!(level.getBlockEntity(pos) instanceof CrateBlockEntity rack)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -149,10 +145,9 @@ public class CrateBlock extends Block implements EntityBlock {
         ItemStack current = rack.getItem(slot);
 
         if (current.isEmpty()) {
-            // Place a bottle into the slot.
             if (!heldStack.isEmpty()
                     && !(heldStack.getItem() instanceof BlockItem)
-                    && heldStack.is(HHModTags.BOTTLES)) {
+                    && (heldStack.is(HHModTags.BOTTLES) || heldStack.is(HHModTags.CRATEABLE_ITEMS))) {
 
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);

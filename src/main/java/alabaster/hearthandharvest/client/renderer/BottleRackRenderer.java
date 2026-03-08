@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.client.renderer;
 
 import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
+import alabaster.hearthandharvest.common.tag.HHModTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -61,7 +62,7 @@ public class BottleRackRenderer implements BlockEntityRenderer<BottleRackBlockEn
 
             double x = baseX + 2 * px;
             double y = baseY + 2 * px;
-            double z = baseZ + 9 * px;
+            double z = baseZ + 9 * px + (stack.is(HHModTags.SHORT_BOTTLES) ? 3 * px : 0);
 
             pose.translate(x, y, z);
             pose.mulPose(Axis.XP.rotationDegrees(90));

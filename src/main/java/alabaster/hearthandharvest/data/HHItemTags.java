@@ -88,6 +88,10 @@ public class HHItemTags extends ItemTagsProvider {
                 .addTags(HHModTags.SHORT_BOTTLES)
                 .addTags(HHModTags.TALL_BOTTLES);
 
+        tag(HHModTags.CRATEABLE_ITEMS)
+                .add(Items.EGG)
+                .add(Items.TURTLE_EGG);
+
         tag(HHModTags.JAMS)
                 .add(HHModItems.GRAPE_JAM.get())
                 .add(HHModItems.CHERRY_JAM.get())
