@@ -9,6 +9,8 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -54,9 +56,24 @@ public class BottleRackBlockEntity extends BlockEntity implements Clearable, Con
 
     @Override
     public void setItem(int index, ItemStack stack) {
+        boolean wasEmpty = items.get(index).isEmpty();
+        boolean willBeEmpty = stack.isEmpty();
         items.set(index, stack);
         if (stack.getCount() > getMaxStackSize()) stack.setCount(getMaxStackSize());
         setChanged();
+        if (level != null && !level.isClientSide) {
+            if (wasEmpty && !willBeEmpty) {
+                level.playSound(null, worldPosition,
+                        SoundEvents.ITEM_FRAME_ADD_ITEM,
+                        SoundSource.BLOCKS, 0.6f,
+                        0.9f + level.random.nextFloat() * 0.2f);
+            } else if (!wasEmpty && willBeEmpty) {
+                level.playSound(null, worldPosition,
+                        SoundEvents.ITEM_FRAME_REMOVE_ITEM,
+                        SoundSource.BLOCKS, 0.6f,
+                        0.9f + level.random.nextFloat() * 0.2f);
+            }
+        }
     }
 
     @Override

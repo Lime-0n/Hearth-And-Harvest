@@ -12,6 +12,8 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -77,7 +79,9 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
             return ItemStack.EMPTY; // insert-only
         }
 
-        @Override public int  getSlotLimit(int slot)              { return 1; }
+        @Override public int  getSlotLimit(int slot) {
+            return 1;
+        }
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -115,11 +119,18 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
             return result;
         }
 
-        @Override public int     getSlotLimit(int slot)              { return 1; }
-        @Override public boolean isItemValid(int slot, ItemStack s)  { return false; }
+        @Override public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override public boolean isItemValid(int slot, ItemStack s) {
+            return false;
+        }
     };
 
-    public NonNullList<ItemStack> getItems() { return items; }
+    public NonNullList<ItemStack> getItems() {
+        return items;
+    }
 
     public void loadItemsFromTag(CompoundTag tag, HolderLookup.Provider lookup) {
         this.items.clear();
@@ -137,10 +148,21 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
                 && (stack.is(HHModTags.BOTTLES) || stack.is(HHModTags.CRATEABLE_ITEMS));
     }
 
-    @Override public int     getContainerSize()                { return TOTAL_SLOTS; }
-    @Override public boolean isEmpty()                         { return items.stream().allMatch(ItemStack::isEmpty); }
-    @Override public ItemStack getItem(int index)              { return items.get(index); }
-    @Override public boolean stillValid(Player player)         { return true; }
+    @Override public int getContainerSize() {
+        return TOTAL_SLOTS;
+    }
+
+    @Override public boolean isEmpty() {
+        return items.stream().allMatch(ItemStack::isEmpty);
+    }
+
+    @Override public ItemStack getItem(int index) {
+        return items.get(index);
+    }
+
+    @Override public boolean stillValid(Player player) {
+        return true;
+    }
 
     @Override
     public ItemStack removeItem(int index, int count) {
@@ -156,9 +178,24 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
     @Override
     public void setItem(int index, ItemStack stack) {
+        boolean wasEmpty = items.get(index).isEmpty();
+        boolean willBeEmpty = stack.isEmpty();
         items.set(index, stack);
         if (stack.getCount() > getMaxStackSize()) stack.setCount(getMaxStackSize());
         setChanged();
+        if (level != null && !level.isClientSide) {
+            if (wasEmpty && !willBeEmpty) {
+                level.playSound(null, worldPosition,
+                        SoundEvents.ITEM_FRAME_ADD_ITEM,
+                        SoundSource.BLOCKS, 0.6f,
+                        0.9f + level.random.nextFloat() * 0.2f);
+            } else if (!wasEmpty && willBeEmpty) {
+                level.playSound(null, worldPosition,
+                        SoundEvents.ITEM_FRAME_REMOVE_ITEM,
+                        SoundSource.BLOCKS, 0.6f,
+                        0.9f + level.random.nextFloat() * 0.2f);
+            }
+        }
     }
 
     @Override public void clearContent() { items.clear(); }
