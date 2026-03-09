@@ -17,10 +17,10 @@ public class Config {
     public static ModConfigSpec.IntValue CROW_SPAWN_NUMBER_OF_CROPS;
     public static ModConfigSpec.IntValue CROW_SPAWN_RADIUS;
     public static ModConfigSpec.IntValue CROW_SCARE_RADIUS;
+    public static ModConfigSpec.BooleanValue STACK_WATER_BOTTLES;
 
     public Config() {
     }
-
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -48,6 +48,10 @@ public class Config {
                 .comment("Radius that players, villgers, and repelling blocks will be effective towards scaring wild crows.\n" +
                         "Setting to 0 would prevent crows from being scared")
                 .defineInRange("crowScareRadius", 6, 0, 192);
+
+        STACK_WATER_BOTTLES = COMMON_BUILDER
+                .comment("Whether water bottles should stack up to 16")
+                .define("stackWaterBottles", true);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
