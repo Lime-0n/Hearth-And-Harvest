@@ -272,6 +272,14 @@ public class CraftingRecipes
                 .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
                 .save(output);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.CRATE.get(), 2)
+                .pattern("sss")
+                .pattern("www")
+                .define('s', Items.STICK)
+                .define('w', ItemTags.WOODEN_SLABS)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(output);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HHModItems.UNIVERSAL_FEED.get(), 8)
                 .pattern("   ")
                 .pattern("HCF")
@@ -496,34 +504,6 @@ public class CraftingRecipes
                 .save(output);
 
         // Half Crates
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.EGG_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', Items.EGG)
-                .unlockedBy("has_egg", InventoryChangeTrigger.TriggerInstance.hasItems(Items.EGG))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.TURTLE_EGG_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', Items.TURTLE_EGG)
-                .unlockedBy("has_turtle_egg", InventoryChangeTrigger.TriggerInstance.hasItems(Items.TURTLE_EGG))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SYRUP_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', HHModItems.SYRUP_BOTTLE.get())
-                .unlockedBy("has_syrup_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_BOTTLE.get()))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.WATER_CRATE.get(), 1)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .define('#', WATER_BOTTLE)
-                .unlockedBy("has_water_bottle", InventoryChangeTrigger.TriggerInstance.hasItems(Items.POTION))
-                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BROWN_MUSHROOM_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")

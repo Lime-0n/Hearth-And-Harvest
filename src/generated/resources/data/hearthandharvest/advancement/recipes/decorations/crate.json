@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_green_grape_wine": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:green_grape_wine"
+            "items": "minecraft:stick"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:green_grape_wine_crate"
+        "recipe": "hearthandharvest:crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_green_grape_wine"
+      "has_stick"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:green_grape_wine_crate"
+      "hearthandharvest:crate"
     ]
   }
 }
