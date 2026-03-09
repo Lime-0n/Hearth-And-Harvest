@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -71,6 +72,16 @@ public class CrateBlock extends Block implements EntityBlock {
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, SlabType.BOTTOM)
                 .setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+        return true;
+    }
+
+    @Override
+    public float getShadeBrightness(BlockState state, BlockGetter level, BlockPos pos) {
+        return 1.0f;
     }
 
     @Override
@@ -131,9 +142,9 @@ public class CrateBlock extends Block implements EntityBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockPos   pos      = context.getClickedPos();
+        BlockPos pos = context.getClickedPos();
         BlockState existing = context.getLevel().getBlockState(pos);
-        Direction  facing   = context.getHorizontalDirection().getOpposite();
+        Direction facing = context.getHorizontalDirection().getOpposite();
 
         if (existing.is(this) && existing.getValue(TYPE) != SlabType.DOUBLE) {
             return existing.setValue(TYPE, SlabType.DOUBLE);
@@ -141,8 +152,8 @@ public class CrateBlock extends Block implements EntityBlock {
 
         Direction face = context.getClickedFace();
         SlabType type;
-        if      (face == Direction.DOWN) type = SlabType.TOP;
-        else if (face == Direction.UP)   type = SlabType.BOTTOM;
+        if (face == Direction.DOWN) type = SlabType.TOP;
+        else if (face == Direction.UP) type = SlabType.BOTTOM;
         else {
             double hitY = context.getClickLocation().y - pos.getY();
             type = hitY > 0.5 ? SlabType.TOP : SlabType.BOTTOM;
@@ -164,7 +175,7 @@ public class CrateBlock extends Block implements EntityBlock {
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(TYPE)) {
             case BOTTOM -> SHAPE_BOTTOM;
-            case TOP    -> SHAPE_TOP;
+            case TOP -> SHAPE_TOP;
             case DOUBLE -> SHAPE_DOUBLE;
         };
     }
@@ -284,16 +295,13 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos,
-                                       Player player, boolean willHarvest,
-                                       net.minecraft.world.level.material.FluidState fluid) {
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         playerWillDestroy(level, pos, state, player);
         return level.removeBlock(pos, false);
     }
 
     @Override
-    public void playerDestroy(Level level, Player player, BlockPos pos,
-                              BlockState state, BlockEntity blockEntity, ItemStack tool) {
+    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
         player.awardStat(Stats.BLOCK_MINED.get(this));
         player.causeFoodExhaustion(0.005F);
 
