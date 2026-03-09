@@ -50,6 +50,9 @@
   "block.hearthandharvest.crate.named": "%s Crate",
   "block.hearthandharvest.crate.mixed": "Mixed Crate",
 
+  "tooltip.hearthandharvest.deprecated": "⚠ This item will be removed in a future update.",
+  "tooltip.hearthandharvest.deprecated.hint": "Convert it using a crate or turn it back into bottles before it disappears.",
+
   "block.hearthandharvest.oak_bottle_rack": "Oak Bottle Rack",
   "block.hearthandharvest.birch_bottle_rack": "Birch Bottle Rack",
   "block.hearthandharvest.spruce_bottle_rack": "Spruce Bottle Rack",
