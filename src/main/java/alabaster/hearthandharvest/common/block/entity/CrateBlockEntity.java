@@ -61,13 +61,12 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
             if (slot >= getSlots() || !isItemValid(slot, stack)) return stack;
-            if (!items.get(slot).isEmpty()) return stack; // slot occupied
+            if (!items.get(slot).isEmpty()) return stack;
 
             if (!simulate) {
                 items.set(slot, stack.copyWithCount(1));
                 setChanged();
             }
-            // Return the remainder (the item minus the one we took).
             if (stack.getCount() == 1) return ItemStack.EMPTY;
             ItemStack remainder = stack.copy();
             remainder.shrink(1);
@@ -76,12 +75,10 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return ItemStack.EMPTY; // insert-only
+            return ItemStack.EMPTY;
         }
 
-        @Override public int  getSlotLimit(int slot) {
-            return 1;
-        }
+        @Override public int getSlotLimit(int slot) { return 1; }
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -99,7 +96,7 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            return stack; // extract-only
+            return stack;
         }
 
         @Override
@@ -119,13 +116,8 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
             return result;
         }
 
-        @Override public int getSlotLimit(int slot) {
-            return 1;
-        }
-
-        @Override public boolean isItemValid(int slot, ItemStack s) {
-            return false;
-        }
+        @Override public int getSlotLimit(int slot) { return 1; }
+        @Override public boolean isItemValid(int slot, ItemStack s) { return false; }
     };
 
     public NonNullList<ItemStack> getItems() {
@@ -144,25 +136,15 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
     @Override
     public boolean canPlaceItem(int index, ItemStack stack) {
-        return items.get(index).isEmpty()
+        return index < activeSlots()
+                && items.get(index).isEmpty()
                 && (stack.is(HHModTags.BOTTLES) || stack.is(HHModTags.CRATEABLE_ITEMS));
     }
 
-    @Override public int getContainerSize() {
-        return TOTAL_SLOTS;
-    }
-
-    @Override public boolean isEmpty() {
-        return items.stream().allMatch(ItemStack::isEmpty);
-    }
-
-    @Override public ItemStack getItem(int index) {
-        return items.get(index);
-    }
-
-    @Override public boolean stillValid(Player player) {
-        return true;
-    }
+    @Override public int     getContainerSize()        { return activeSlots(); }
+    @Override public boolean isEmpty()                 { return items.stream().allMatch(ItemStack::isEmpty); }
+    @Override public ItemStack getItem(int index)      { return items.get(index); }
+    @Override public boolean stillValid(Player player) { return true; }
 
     @Override
     public ItemStack removeItem(int index, int count) {
@@ -178,7 +160,7 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
     @Override
     public void setItem(int index, ItemStack stack) {
-        boolean wasEmpty = items.get(index).isEmpty();
+        boolean wasEmpty   = items.get(index).isEmpty();
         boolean willBeEmpty = stack.isEmpty();
         items.set(index, stack);
         if (stack.getCount() > getMaxStackSize()) stack.setCount(getMaxStackSize());

@@ -9,6 +9,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
@@ -26,6 +28,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.PushReaction;
@@ -33,6 +36,8 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -42,14 +47,15 @@ import java.util.List;
 
 public class CrateBlock extends Block implements EntityBlock {
 
-    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
+    public static final EnumProperty<SlabType> TYPE   = BlockStateProperties.SLAB_TYPE;
+    public static final DirectionProperty      FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE_BOTTOM = Shapes.or(
-            Block.box( 0, 0,  0, 16, 4, 16),  // floor
-            Block.box( 0, 4,  0, 16, 8,  1),  // north wall
-            Block.box( 0, 4, 15, 16, 8, 16),  // south wall
-            Block.box( 0, 4,  0,  1, 8, 16),  // west wall
-            Block.box(15, 4,  0, 16, 8, 16)   // east wall
+            Block.box( 0, 0,  0, 16, 4, 16),
+            Block.box( 0, 4,  0, 16, 8,  1),
+            Block.box( 0, 4, 15, 16, 8, 16),
+            Block.box( 0, 4,  0,  1, 8, 16),
+            Block.box(15, 4,  0, 16, 8, 16)
     );
     private static final VoxelShape SHAPE_TOP = Shapes.or(
             Block.box( 0,  8,  0, 16, 12, 16),
@@ -62,12 +68,14 @@ public class CrateBlock extends Block implements EntityBlock {
 
     public CrateBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, SlabType.BOTTOM));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(TYPE, SlabType.BOTTOM)
+                .setValue(FACING, Direction.NORTH));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(TYPE);
+        builder.add(TYPE, FACING);
         super.createBlockStateDefinition(builder);
     }
 
@@ -82,13 +90,13 @@ public class CrateBlock extends Block implements EntityBlock {
                 .withParameter(LootContextParams.BLOCK_STATE, state)
                 .create(LootContextParamSets.BLOCK);
 
-        BlockEntity be   = lootParams.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        BlockEntity be = lootParams.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         HolderLookup.Provider lookup = lootParams.getLevel().registryAccess();
 
         if (be instanceof CrateBlockEntity crate) {
             if (state.getValue(TYPE) == SlabType.DOUBLE) {
                 return List.of(
-                        buildHalfDrop(crate, 0,                            lookup),
+                        buildHalfDrop(crate, 0, lookup),
                         buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, lookup)
                 );
             }
@@ -100,8 +108,8 @@ public class CrateBlock extends Block implements EntityBlock {
 
     @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        ItemStack held     = context.getItemInHand();
-        SlabType  existing = state.getValue(TYPE);
+        ItemStack held    = context.getItemInHand();
+        SlabType existing = state.getValue(TYPE);
 
         if (existing == SlabType.DOUBLE || !held.is(this.asItem())) return false;
 
@@ -123,18 +131,24 @@ public class CrateBlock extends Block implements EntityBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockPos pos        = context.getClickedPos();
+        BlockPos   pos      = context.getClickedPos();
         BlockState existing = context.getLevel().getBlockState(pos);
+        Direction  facing   = context.getHorizontalDirection().getOpposite();
 
         if (existing.is(this) && existing.getValue(TYPE) != SlabType.DOUBLE) {
             return existing.setValue(TYPE, SlabType.DOUBLE);
         }
 
         Direction face = context.getClickedFace();
-        if (face == Direction.DOWN) return this.defaultBlockState().setValue(TYPE, SlabType.TOP);
-        if (face == Direction.UP)   return this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM);
-        double hitY = context.getClickLocation().y - pos.getY();
-        return this.defaultBlockState().setValue(TYPE, hitY > 0.5 ? SlabType.TOP : SlabType.BOTTOM);
+        SlabType type;
+        if      (face == Direction.DOWN) type = SlabType.TOP;
+        else if (face == Direction.UP)   type = SlabType.BOTTOM;
+        else {
+            double hitY = context.getClickLocation().y - pos.getY();
+            type = hitY > 0.5 ? SlabType.TOP : SlabType.BOTTOM;
+        }
+
+        return this.defaultBlockState().setValue(TYPE, type).setValue(FACING, facing);
     }
 
     private boolean hasTallBottle(Level level, BlockPos pos, SlabType existingType) {
@@ -168,6 +182,54 @@ public class CrateBlock extends Block implements EntityBlock {
     @Override
     public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
+        // Sneak + empty hand = pick up this half of the crate
+        if (player.isShiftKeyDown() && heldStack.isEmpty() && hand == InteractionHand.MAIN_HAND) {
+            if (level.isClientSide) return ItemInteractionResult.SUCCESS;
+
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof CrateBlockEntity crate) {
+                SlabType type = state.getValue(TYPE);
+
+                if (type != SlabType.DOUBLE) {
+                    ItemStack drop = buildHalfDrop(crate, 0, level.registryAccess());
+                    level.removeBlock(pos, false);
+                    level.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.8f, 0.8f);
+                    if (!player.addItem(drop)) popResource(level, pos, drop);
+                } else {
+                    Vec3 eyes   = player.getEyePosition();
+                    Vec3 look   = player.getLookAngle();
+                    Vec3 target = eyes.add(look.scale(player.blockInteractionRange() + 1));
+                    var hitResult = level.clip(new ClipContext(
+                            eyes, target,
+                            ClipContext.Block.OUTLINE,
+                            ClipContext.Fluid.NONE,
+                            player));
+
+                    boolean topHalf = hitResult.getLocation().y - pos.getY() >= 0.5;
+                    int pickupOffset = topHalf ? CrateBlockEntity.SLOTS_PER_HALF : 0;
+                    int remainOffset = topHalf ? 0 : CrateBlockEntity.SLOTS_PER_HALF;
+                    SlabType remaining = topHalf ? SlabType.BOTTOM : SlabType.TOP;
+
+                    ItemStack drop = buildHalfDrop(crate, pickupOffset, level.registryAccess());
+
+                    NonNullList<ItemStack> items = crate.getItems();
+                    for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
+                        items.set(i, crate.getItem(remainOffset + i).copy());
+                    }
+                    for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
+                        items.set(CrateBlockEntity.SLOTS_PER_HALF + i, ItemStack.EMPTY);
+                    }
+                    crate.setChanged();
+                    level.setBlock(pos, state.setValue(TYPE, remaining), 3);
+
+                    level.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.8f, 0.8f);
+                    if (!player.addItem(drop)) popResource(level, pos, drop);
+                }
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+
         if (!(level.getBlockEntity(pos) instanceof CrateBlockEntity rack)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -181,7 +243,6 @@ public class CrateBlock extends Block implements EntityBlock {
 
         if (current.isEmpty()) {
             if (!heldStack.isEmpty() && (heldStack.is(HHModTags.BOTTLES) || heldStack.is(HHModTags.CRATEABLE_ITEMS))) {
-
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);
                 if (!player.getAbilities().instabuild) {
@@ -223,6 +284,14 @@ public class CrateBlock extends Block implements EntityBlock {
     }
 
     @Override
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos,
+                                       Player player, boolean willHarvest,
+                                       net.minecraft.world.level.material.FluidState fluid) {
+        playerWillDestroy(level, pos, state, player);
+        return level.removeBlock(pos, false);
+    }
+
+    @Override
     public void playerDestroy(Level level, Player player, BlockPos pos,
                               BlockState state, BlockEntity blockEntity, ItemStack tool) {
         player.awardStat(Stats.BLOCK_MINED.get(this));
@@ -232,7 +301,7 @@ public class CrateBlock extends Block implements EntityBlock {
 
         if (blockEntity instanceof CrateBlockEntity crate) {
             if (state.getValue(TYPE) == SlabType.DOUBLE) {
-                popResource(level, pos, buildHalfDrop(crate, 0,                            level.registryAccess()));
+                popResource(level, pos, buildHalfDrop(crate, 0, level.registryAccess()));
                 popResource(level, pos, buildHalfDrop(crate, CrateBlockEntity.SLOTS_PER_HALF, level.registryAccess()));
             } else {
                 popResource(level, pos, buildHalfDrop(crate, 0, level.registryAccess()));
@@ -242,8 +311,7 @@ public class CrateBlock extends Block implements EntityBlock {
         }
     }
 
-    private ItemStack buildHalfDrop(CrateBlockEntity crate, int slotOffset,
-                                    HolderLookup.Provider lookup) {
+    private ItemStack buildHalfDrop(CrateBlockEntity crate, int slotOffset, HolderLookup.Provider lookup) {
         ItemStack drop = new ItemStack(this);
 
         NonNullList<ItemStack> halfItems =

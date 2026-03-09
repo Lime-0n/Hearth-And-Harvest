@@ -81,7 +81,7 @@ public class HHModBlocks {
             : null;
 
     public static final Supplier<Block> CRATE = BLOCKS.register("crate",
-            () -> new CrateBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new CrateBlock(Block.Properties.ofFullCopy(Blocks.BARREL).noOcclusion()));
 
     // Bottle Racks
     public static final Supplier<Block> OAK_BOTTLE_RACK = BLOCKS.register("oak_bottle_rack",

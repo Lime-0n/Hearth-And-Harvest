@@ -1,7 +1,18 @@
 {
   "variants": {
-    "type=bottom": { "model": "hearthandharvest:block/crate_bottom" },
-    "type=top": { "model": "hearthandharvest:block/crate_top" },
-    "type=double": { "model": "hearthandharvest:block/crate" }
+    "facing=north,type=bottom": { "model": "hearthandharvest:block/crate_bottom" },
+    "facing=south,type=bottom": { "model": "hearthandharvest:block/crate_bottom", "y": 180 },
+    "facing=west,type=bottom":  { "model": "hearthandharvest:block/crate_bottom", "y": 270 },
+    "facing=east,type=bottom":  { "model": "hearthandharvest:block/crate_bottom", "y": 90 },
+
+    "facing=north,type=top": { "model": "hearthandharvest:block/crate_top" },
+    "facing=south,type=top": { "model": "hearthandharvest:block/crate_top", "y": 180 },
+    "facing=west,type=top":  { "model": "hearthandharvest:block/crate_top", "y": 270 },
+    "facing=east,type=top":  { "model": "hearthandharvest:block/crate_top", "y": 90 },
+
+    "facing=north,type=double": { "model": "hearthandharvest:block/crate" },
+    "facing=south,type=double": { "model": "hearthandharvest:block/crate", "y": 180 },
+    "facing=west,type=double":  { "model": "hearthandharvest:block/crate", "y": 270 },
+    "facing=east,type=double":  { "model": "hearthandharvest:block/crate", "y": 90 }
   }
 }

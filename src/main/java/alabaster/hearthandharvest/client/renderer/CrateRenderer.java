@@ -1,8 +1,9 @@
 package alabaster.hearthandharvest.client.renderer;
 
+import alabaster.hearthandharvest.common.block.CrateBlock;
 import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
-import alabaster.hearthandharvest.common.tag.HHModTags;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -10,21 +11,21 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
 import javax.annotation.Nullable;
 
 public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
 
-    // Pixel grid constants – must match BottleSlabSlotHelper.
     private static final double PX        = 1.0 / 16.0;
-    private static final double SPACING   = PX;          // 1 px border / gap
-    private static final double SLOT_SIZE = 4 * PX;      // 4 px wide slot
+    private static final double SPACING   = PX;
+    private static final double SLOT_SIZE = 4 * PX;
 
     private final ItemRenderer itemRenderer;
 
@@ -50,22 +51,37 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
     public void render(CrateBlockEntity slab, float partialTick,
                        PoseStack pose, MultiBufferSource buf, int light, int overlay) {
 
-        SlabType type = slab.getBlockState().getValue(BlockStateProperties.SLAB_TYPE);
+        BlockState state = slab.getBlockState();
+        SlabType type = state.getValue(CrateBlock.TYPE);
+
+        Direction facing = state.getValue(CrateBlock.FACING);
+        float yRot = switch (facing) {
+            case EAST  -> -90f;
+            case SOUTH ->  180f;
+            case WEST  ->  90f;
+            default    ->  0f;
+        };
+
+        pose.pushPose();
+        pose.translate(0.5, 0.0, 0.5);
+        pose.mulPose(Axis.YP.rotationDegrees(yRot));
+        pose.translate(-0.5, 0.0, -0.5);
 
         if (type == SlabType.BOTTOM || type == SlabType.DOUBLE) {
             renderHalf(slab, 0, 0.5, pose, buf, light, overlay);
         }
-
         if (type == SlabType.DOUBLE) {
             renderHalf(slab, CrateBlockEntity.SLOTS_PER_HALF, 1.0, pose, buf, light, overlay);
         }
-
         if (type == SlabType.TOP) {
             renderHalf(slab, 0, 1.0, pose, buf, light, overlay);
         }
-    }
-    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
 
+        pose.popPose();
+    }
+
+    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY,
+                            PoseStack pose, MultiBufferSource buf, int light, int overlay) {
         for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             ItemStack stack = slab.getItem(slotOffset + i);
             if (stack.isEmpty()) continue;

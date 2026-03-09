@@ -70,12 +70,20 @@ public class CrateBlockItem extends BlockItem {
                 && existing.getValue(CrateBlock.TYPE) != SlabType.DOUBLE;
 
         NonNullList<ItemStack> bottomSnapshot = null;
+        NonNullList<ItemStack> topContents    = null;
+
         if (willBeDouble && !level.isClientSide) {
             if (level.getBlockEntity(pos) instanceof CrateBlockEntity existingCrate) {
                 bottomSnapshot = NonNullList.withSize(CrateBlockEntity.SLOTS_PER_HALF, ItemStack.EMPTY);
                 for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
                     bottomSnapshot.set(i, existingCrate.getItem(i).copy());
                 }
+            }
+
+            topContents = NonNullList.withSize(CrateBlockEntity.SLOTS_PER_HALF, ItemStack.EMPTY);
+            CustomData itemData = context.getItemInHand().get(DataComponents.BLOCK_ENTITY_DATA);
+            if (itemData != null) {
+                ContainerHelper.loadAllItems(itemData.copyTag(), topContents, level.registryAccess());
             }
         }
 
@@ -84,8 +92,8 @@ public class CrateBlockItem extends BlockItem {
         if (willBeDouble && result.consumesAction() && !level.isClientSide) {
             if (level.getBlockEntity(pos) instanceof CrateBlockEntity newCrate) {
                 for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
-                    newCrate.setItem(CrateBlockEntity.SLOTS_PER_HALF + i, newCrate.getItem(i).copy());
-                    newCrate.setItem(i, ItemStack.EMPTY);
+                    newCrate.setItem(CrateBlockEntity.SLOTS_PER_HALF + i,
+                            topContents != null ? topContents.get(i) : ItemStack.EMPTY);
                 }
                 if (bottomSnapshot != null) {
                     for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
@@ -117,14 +125,18 @@ public class CrateBlockItem extends BlockItem {
 
         ContainerHelper.loadAllItems(data.copyTag(), items, registries);
 
-        ItemStack first = items.get(0);
+        ItemStack first = ItemStack.EMPTY;
+        ResourceLocation firstKey = null;
+        for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
+            ItemStack s = items.get(i);
+            if (!s.isEmpty()) { first = s; firstKey = BuiltInRegistries.ITEM.getKey(s.getItem()); break; }
+        }
         if (first.isEmpty()) return super.getName(stack);
 
-        ResourceLocation firstKey = BuiltInRegistries.ITEM.getKey(first.getItem());
-
-        for (int i = 1; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
+        for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             ItemStack s = items.get(i);
-            if (s.isEmpty() || !BuiltInRegistries.ITEM.getKey(s.getItem()).equals(firstKey))
+            if (s.isEmpty()) continue;
+            if (!BuiltInRegistries.ITEM.getKey(s.getItem()).equals(firstKey))
                 return Component.translatable("block.hearthandharvest.crate.mixed");
         }
 
@@ -141,14 +153,11 @@ public class CrateBlockItem extends BlockItem {
         HolderLookup.Provider registries = context.registries();
         if (registries == null) return;
 
-        NonNullList<ItemStack> items =
-                NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
+        NonNullList<ItemStack> items = NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
         ContainerHelper.loadAllItems(data.copyTag(), items, registries);
 
-        LinkedHashMap<ResourceLocation, ItemStack> representatives =
-                new LinkedHashMap<>();
-        LinkedHashMap<ResourceLocation, Integer> grouped =
-                new LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, ItemStack> representatives = new LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, Integer> grouped = new LinkedHashMap<>();
         for (ItemStack s : items) {
             if (s.isEmpty()) continue;
             ResourceLocation key = BuiltInRegistries.ITEM.getKey(s.getItem());
@@ -158,8 +167,7 @@ public class CrateBlockItem extends BlockItem {
 
         if (grouped.isEmpty()) return;
 
-        List<Map.Entry<ResourceLocation, Integer>> entries =
-                new ArrayList<>(grouped.entrySet());
+        List<Map.Entry<ResourceLocation, Integer>> entries = new ArrayList<>(grouped.entrySet());
 
         int shown = Math.min(entries.size(), MAX_TOOLTIP_LINES);
         for (int i = 0; i < shown; i++) {
