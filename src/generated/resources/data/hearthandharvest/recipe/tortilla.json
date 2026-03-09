@@ -1,6 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "hearthandharvest:shapeless_remainder",
   "ingredients": [
     {
       "tag": "c:dusts/salt"
@@ -16,6 +15,14 @@
         }
       },
       "items": "minecraft:potion"
+    }
+  ],
+  "remainders": [
+    {},
+    {},
+    {
+      "count": 1,
+      "id": "minecraft:glass_bottle"
     }
   ],
   "result": {

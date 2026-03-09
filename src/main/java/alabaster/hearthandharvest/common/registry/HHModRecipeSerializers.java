@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import alabaster.hearthandharvest.common.crafting.ShapelessRemainderRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
@@ -19,6 +20,9 @@ public class HHModRecipeSerializers {
 
     public static final Supplier<RecipeSerializer<?>> BOTTLE_CRATE =
             RECIPE_SERIALIZERS.register("bottle_crate", BottleCrateRecipe.Serializer::new);
+
+    public static final Supplier<RecipeSerializer<?>> SHAPELESS_REMAINDER =
+            RECIPE_SERIALIZERS.register("shapeless_remainder", ShapelessRemainderRecipe.Serializer::new);
 
 
 }

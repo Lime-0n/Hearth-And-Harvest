@@ -1,10 +1,12 @@
 package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.crafting.ShapelessRemainderRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import alabaster.hearthandharvest.data.builder.ShapelessRemainderRecipeBuilder;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.*;
@@ -974,10 +976,10 @@ public class CraftingRecipes
                 .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "batter"));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TORTILLA.get(), 2)
-                .requires(HHCommonTags.DUSTS_SALT)
-                .requires(HHCommonTags.FLOURS)
-                .requires(WATER_BOTTLE)
+        ShapelessRemainderRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TORTILLA.get(), 2)
+                .requires(Ingredient.of(HHCommonTags.DUSTS_SALT))
+                .requires(Ingredient.of(HHCommonTags.FLOURS))
+                .requires(WATER_BOTTLE, Items.GLASS_BOTTLE)
                 .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "tortilla"));
 
