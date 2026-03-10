@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -242,6 +241,34 @@ public class HHItemTags extends ItemTagsProvider {
 
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_APPLE)
                 .add(HHModItems.APPLE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GOLDEN_APPLE)
+                .add(HHModItems.GOLDEN_APPLE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GOLDEN_CARROT)
+                .add(HHModItems.GOLDEN_CARROT_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_POISONOUS_POTATO)
+                .add(HHModItems.POISONOUS_POTATO_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_ROTTEN_TOMATO)
+                .add(HHModItems.ROTTEN_TOMATO_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GLOW_BERRY)
+                .add(HHModItems.GLOW_BERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_SWEET_BERRY)
+                .add(HHModItems.SWEET_BERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_SUGAR)
+                .add(HHModItems.SUGAR_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_COCOA_BEAN)
+                .add(HHModItems.COCOA_BEAN_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GUNPOWDER)
+                .add(HHModItems.GUNPOWDER_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_STRING)
+                .add(HHModItems.SPOOL.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_BROWN_MUSHROOM)
+                .add(HHModItems.BROWN_MUSHROOM_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_RED_MUSHROOM)
+                .add(HHModItems.RED_MUSHROOM_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CRIMSON_FUNGUS)
+                .add(HHModItems.CRIMSON_FUNGUS_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_WARPED_FUNGUS)
+                .add(HHModItems.WARPED_FUNGUS_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_BLUEBERRY)
                 .add(HHModItems.BLUEBERRY_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_RASPBERRY)

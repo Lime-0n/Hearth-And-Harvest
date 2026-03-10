@@ -128,6 +128,34 @@ public class HHBlockTags extends BlockTagsProvider {
     protected void registerCommonTags() {
         tag(HHCommonTags.STORAGE_BLOCKS_APPLE)
                 .add(HHModBlocks.APPLE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GOLDEN_APPLE)
+                .add(HHModBlocks.GOLDEN_APPLE_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GOLDEN_CARROT)
+                .add(HHModBlocks.GOLDEN_CARROT_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_POISONOUS_POTATO)
+                .add(HHModBlocks.POISONOUS_POTATO_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ROTTEN_TOMATO)
+                .add(HHModBlocks.ROTTEN_TOMATO_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GLOW_BERRY)
+                .add(HHModBlocks.GLOW_BERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_SWEET_BERRY)
+                .add(HHModBlocks.SWEET_BERRY_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_SUGAR)
+                .add(HHModBlocks.SUGAR_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_COCOA_BEAN)
+                .add(HHModBlocks.COCOA_BEAN_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_GUNPOWDER)
+                .add(HHModBlocks.GUNPOWDER_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_STRING)
+                .add(HHModBlocks.SPOOL.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_BROWN_MUSHROOM)
+                .add(HHModBlocks.BROWN_MUSHROOM_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_RED_MUSHROOM)
+                .add(HHModBlocks.RED_MUSHROOM_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_WARPED_FUNGUS)
+                .add(HHModBlocks.WARPED_FUNGUS_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_CRIMSON_FUNGUS)
+                .add(HHModBlocks.CRIMSON_FUNGUS_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_BLUEBERRY)
                 .add(HHModBlocks.BLUEBERRY_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_RASPBERRY)
