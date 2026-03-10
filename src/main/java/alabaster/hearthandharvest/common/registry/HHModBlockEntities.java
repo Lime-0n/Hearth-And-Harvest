@@ -7,13 +7,17 @@ import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
 import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 @EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -28,27 +32,33 @@ public class HHModBlockEntities {
             () -> BlockEntityType.Builder.of(CaskBlockEntity::new, HHModBlocks.CASK.get()).build(null));
 
     public static final Supplier<BlockEntityType<BottleRackBlockEntity>> BOTTLE_RACK = BLOCK_ENTITY_TYPES.register("bottle_rack",
-            () -> BlockEntityType.Builder.of(BottleRackBlockEntity::new,
-                            HHModBlocks.OAK_BOTTLE_RACK.get(),
-                            HHModBlocks.BIRCH_BOTTLE_RACK.get(),
-                            HHModBlocks.SPRUCE_BOTTLE_RACK.get(),
-                            HHModBlocks.JUNGLE_BOTTLE_RACK.get(),
-                            HHModBlocks.ACACIA_BOTTLE_RACK.get(),
-                            HHModBlocks.DARK_OAK_BOTTLE_RACK.get(),
-                            HHModBlocks.MANGROVE_BOTTLE_RACK.get(),
-                            HHModBlocks.BAMBOO_BOTTLE_RACK.get(),
-                            HHModBlocks.CHERRY_BOTTLE_RACK.get(),
-                            HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
-                            HHModBlocks.WARPED_BOTTLE_RACK.get(),
-                            HHModBlocks.PALM_BOTTLE_RACK.get())
-                    .build(null));
+            () -> {
+                List<Block> blocks = new ArrayList<>(List.of(
+                        HHModBlocks.OAK_BOTTLE_RACK.get(),
+                        HHModBlocks.BIRCH_BOTTLE_RACK.get(),
+                        HHModBlocks.SPRUCE_BOTTLE_RACK.get(),
+                        HHModBlocks.JUNGLE_BOTTLE_RACK.get(),
+                        HHModBlocks.ACACIA_BOTTLE_RACK.get(),
+                        HHModBlocks.DARK_OAK_BOTTLE_RACK.get(),
+                        HHModBlocks.MANGROVE_BOTTLE_RACK.get(),
+                        HHModBlocks.BAMBOO_BOTTLE_RACK.get(),
+                        HHModBlocks.CHERRY_BOTTLE_RACK.get(),
+                        HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
+                        HHModBlocks.WARPED_BOTTLE_RACK.get()
+                ));
+                if (ModList.get().isLoaded("crabbersdelight")) {
+                    blocks.add(HHModBlocks.PALM_BOTTLE_RACK.get());
+                }
+                return BlockEntityType.Builder.of(BottleRackBlockEntity::new, blocks.toArray(Block[]::new)).build(null);
+            });
 
     public static final Supplier<BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITY_TYPES.register("crate",
             () -> BlockEntityType.Builder.of(CrateBlockEntity::new, HHModBlocks.CRATE.get()).build(null));
 
+
     @SubscribeEvent
     public static void addCabinetsBlockEntities(BlockEntityTypeAddBlocksEvent event) {
-        event.modify(ModBlockEntityTypes.CABINET.get(),
+        List<Block> cabinets = new ArrayList<>(List.of(
                 HHModBlocks.DRAWER.get(),
                 HHModBlocks.OAK_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_HALF_CABINET.get(),
@@ -60,9 +70,12 @@ public class HHModBlockEntities {
                 HHModBlocks.BAMBOO_HALF_CABINET.get(),
                 HHModBlocks.CHERRY_HALF_CABINET.get(),
                 HHModBlocks.CRIMSON_HALF_CABINET.get(),
-                HHModBlocks.WARPED_HALF_CABINET.get(),
-                HHModBlocks.PALM_HALF_CABINET.get()
-        );
+                HHModBlocks.WARPED_HALF_CABINET.get()
+        ));
+        if (ModList.get().isLoaded("crabbersdelight")) {
+            cabinets.add(HHModBlocks.PALM_HALF_CABINET.get());
+        }
+        event.modify(ModBlockEntityTypes.CABINET.get(), cabinets.toArray(Block[]::new));
     }
 
     static {
