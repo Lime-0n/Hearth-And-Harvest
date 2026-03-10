@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -8,9 +9,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -321,7 +324,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.BAMBOO_HALF_CABINET.get())
                 .add(HHModItems.CRIMSON_HALF_CABINET.get())
                 .add(HHModItems.WARPED_HALF_CABINET.get())
-                .add(HHModItems.PALM_HALF_CABINET.get());
+                .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_half_cabinet"));
 
         tag(ItemTags.SMALL_FLOWERS)
                 .add(HHModItems.WILD_PEANUTS.get())

@@ -14,7 +14,6 @@
     "hearthandharvest:bamboo_half_cabinet",
     "hearthandharvest:crimson_half_cabinet",
     "hearthandharvest:warped_half_cabinet",
-    "hearthandharvest:palm_half_cabinet",
     "hearthandharvest:birch_bottle_rack",
     "hearthandharvest:spruce_bottle_rack",
     "hearthandharvest:jungle_bottle_rack",
@@ -25,7 +24,6 @@
     "hearthandharvest:bamboo_bottle_rack",
     "hearthandharvest:crimson_bottle_rack",
     "hearthandharvest:warped_bottle_rack",
-    "hearthandharvest:palm_bottle_rack",
     "hearthandharvest:raspberry_crate",
     "hearthandharvest:blueberry_crate",
     "hearthandharvest:red_grape_crate",
@@ -60,6 +58,14 @@
     "hearthandharvest:water_crate",
     "hearthandharvest:honey_crate",
     "hearthandharvest:syrup_crate",
-    "hearthandharvest:corn_stalk"
+    "hearthandharvest:corn_stalk",
+    {
+      "id": "crabbersdelight:palm_half_cabinet",
+      "required": false
+    },
+    {
+      "id": "crabbersdelight:palm_bottle_rack",
+      "required": false
+    }
   ]
 }

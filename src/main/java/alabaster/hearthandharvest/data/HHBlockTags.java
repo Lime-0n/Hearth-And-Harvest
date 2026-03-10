@@ -8,8 +8,10 @@ import alabaster.hearthandharvest.common.tag.HHCompatibilityTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -264,7 +266,6 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.BAMBOO_HALF_CABINET.get(),
                 HHModBlocks.CRIMSON_HALF_CABINET.get(),
                 HHModBlocks.WARPED_HALF_CABINET.get(),
-                HHModBlocks.PALM_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_BOTTLE_RACK.get(),
                 HHModBlocks.SPRUCE_BOTTLE_RACK.get(),
                 HHModBlocks.JUNGLE_BOTTLE_RACK.get(),
@@ -275,7 +276,6 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.BAMBOO_BOTTLE_RACK.get(),
                 HHModBlocks.CRIMSON_BOTTLE_RACK.get(),
                 HHModBlocks.WARPED_BOTTLE_RACK.get(),
-                HHModBlocks.PALM_BOTTLE_RACK.get(),
                 HHModBlocks.RASPBERRY_CRATE.get(),
                 HHModBlocks.BLUEBERRY_CRATE.get(),
                 HHModBlocks.RED_GRAPE_CRATE.get(),
@@ -310,8 +310,9 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.WATER_CRATE.get(),
                 HHModBlocks.HONEY_CRATE.get(),
                 HHModBlocks.SYRUP_CRATE.get(),
-                HHModBlocks.CORN_STALK.get()
-        );
+                HHModBlocks.CORN_STALK.get())
+                .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_half_cabinet"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_bottle_rack"));
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 HHModBlocks.JUG.get(),
