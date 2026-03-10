@@ -48,8 +48,8 @@ import java.util.List;
 
 public class CrateBlock extends Block implements EntityBlock {
 
-    public static final EnumProperty<SlabType> TYPE   = BlockStateProperties.SLAB_TYPE;
-    public static final DirectionProperty      FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE_BOTTOM = Shapes.or(
             Block.box( 0, 0,  0, 16, 4, 16),
@@ -129,11 +129,10 @@ public class CrateBlock extends Block implements EntityBlock {
         }
 
         if (context.replacingClickedOnBlock()) {
-            boolean clickedUpperHalf =
-                    context.getClickLocation().y - context.getClickedPos().getY() > 0.5;
+            boolean clickedUpperHalf = context.getClickLocation().y - context.getClickedPos().getY() > 0.5;
             Direction face = context.getClickedFace();
             return existing == SlabType.BOTTOM
-                    ? (face == Direction.UP   || clickedUpperHalf)
+                    ? (face == Direction.UP || clickedUpperHalf)
                     : (face == Direction.DOWN || !clickedUpperHalf);
         }
         return true;

@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 public class CrateBlockEntity extends BlockEntity implements Clearable, Container {
 
     public static final int SLOTS_PER_HALF = 9;
-    public static final int TOTAL_SLOTS    = SLOTS_PER_HALF * 2;
+    public static final int TOTAL_SLOTS = SLOTS_PER_HALF * 2;
 
     private final NonNullList<ItemStack> items = NonNullList.withSize(TOTAL_SLOTS, ItemStack.EMPTY);
 
@@ -141,10 +141,21 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
                 && (stack.is(HHModTags.BOTTLES) || stack.is(HHModTags.CRATEABLE_ITEMS));
     }
 
-    @Override public int     getContainerSize()        { return activeSlots(); }
-    @Override public boolean isEmpty()                 { return items.stream().allMatch(ItemStack::isEmpty); }
-    @Override public ItemStack getItem(int index)      { return items.get(index); }
-    @Override public boolean stillValid(Player player) { return true; }
+    @Override public int getContainerSize() {
+        return activeSlots();
+    }
+
+    @Override public boolean isEmpty() {
+        return items.stream().allMatch(ItemStack::isEmpty);
+    }
+
+    @Override public ItemStack getItem(int index) {
+        return items.get(index);
+    }
+
+    @Override public boolean stillValid(Player player) {
+        return true;
+    }
 
     @Override
     public ItemStack removeItem(int index, int count) {
@@ -160,7 +171,7 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
 
     @Override
     public void setItem(int index, ItemStack stack) {
-        boolean wasEmpty   = items.get(index).isEmpty();
+        boolean wasEmpty = items.get(index).isEmpty();
         boolean willBeEmpty = stack.isEmpty();
         items.set(index, stack);
         if (stack.getCount() > getMaxStackSize()) stack.setCount(getMaxStackSize());
@@ -180,7 +191,9 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
         }
     }
 
-    @Override public void clearContent() { items.clear(); }
+    @Override public void clearContent() {
+        items.clear();
+    }
 
     @Override
     public void setChanged() {
@@ -221,8 +234,7 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt,
-                             HolderLookup.Provider registries) {
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider registries) {
         super.onDataPacket(net, pkt, registries);
     }
 }

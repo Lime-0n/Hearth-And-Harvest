@@ -48,8 +48,7 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
     }
 
     @Override
-    public void render(CrateBlockEntity slab, float partialTick,
-                       PoseStack pose, MultiBufferSource buf, int light, int overlay) {
+    public void render(CrateBlockEntity slab, float partialTick, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
 
         BlockState state = slab.getBlockState();
         SlabType type = state.getValue(CrateBlock.TYPE);
@@ -80,8 +79,7 @@ public class CrateRenderer implements BlockEntityRenderer<CrateBlockEntity> {
         pose.popPose();
     }
 
-    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY,
-                            PoseStack pose, MultiBufferSource buf, int light, int overlay) {
+    private void renderHalf(CrateBlockEntity slab, int slotOffset, double surfaceY, PoseStack pose, MultiBufferSource buf, int light, int overlay) {
         for (int i = 0; i < CrateBlockEntity.SLOTS_PER_HALF; i++) {
             ItemStack stack = slab.getItem(slotOffset + i);
             if (stack.isEmpty()) continue;
