@@ -30,6 +30,7 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.BASIN.get());
         dropSelf(HHModBlocks.NEST.get());
         dropSelf(HHModBlocks.HAY_RUG.get());
+        dropSelf(HHModBlocks.STRAW_RUG.get());
         dropSelf(HHModBlocks.SCARECROW.get());
         dropNamedContainer(HHModBlocks.OAK_HALF_CABINET.get());
         dropNamedContainer(HHModBlocks.SPRUCE_HALF_CABINET.get());

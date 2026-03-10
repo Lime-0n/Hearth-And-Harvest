@@ -19,6 +19,9 @@ public class HHCommonTags {
     public static final TagKey<Item> CROPS_GRAIN = commonItemTag("crops/grain");
     public static final TagKey<Item> SEEDS_CORN = commonItemTag("seeds/corn");
 
+    public static final TagKey<Item> STORAGE_BLOCKS_ITEM_APPLE = commonItemTag("storage_blocks/apple");
+    public static final TagKey<Block> STORAGE_BLOCKS_APPLE = commonBlockTag("storage_blocks/apple");
+    
     public static final TagKey<Item> STORAGE_BLOCKS_ITEM_BLUEBERRY = commonItemTag("storage_blocks/blueberry");
     public static final TagKey<Block> STORAGE_BLOCKS_BLUEBERRY = commonBlockTag("storage_blocks/blueberry");
 

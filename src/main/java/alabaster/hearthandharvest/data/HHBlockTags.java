@@ -76,6 +76,10 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.CORN_STALK.get()
         );
 
+        tag(ModTags.STRAW_BLOCKS).add(
+                HHModBlocks.STRAW_RUG.get()
+        );
+
         tag(BlockTags.MAINTAINS_FARMLAND).add(
                 HHModBlocks.RED_GRAPE_CROP.get(),
                 HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
@@ -122,6 +126,8 @@ public class HHBlockTags extends BlockTagsProvider {
     }
 
     protected void registerCommonTags() {
+        tag(HHCommonTags.STORAGE_BLOCKS_APPLE)
+                .add(HHModBlocks.APPLE_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_BLUEBERRY)
                 .add(HHModBlocks.BLUEBERRY_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_RASPBERRY)
@@ -153,26 +159,10 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.POISONOUS_POTATO_CRATE.get(),
                 HHModBlocks.GLOW_BERRY_CRATE.get(),
                 HHModBlocks.SWEET_BERRY_CRATE.get(),
-                HHModBlocks.EGG_CRATE.get(),
-                HHModBlocks.TURTLE_EGG_CRATE.get(),
-                HHModBlocks.MILK_CRATE.get(),
-                HHModBlocks.GOAT_MILK_CRATE.get(),
                 HHModBlocks.BROWN_MUSHROOM_CRATE.get(),
                 HHModBlocks.RED_MUSHROOM_CRATE.get(),
                 HHModBlocks.WARPED_FUNGUS_CRATE.get(),
                 HHModBlocks.CRIMSON_FUNGUS_CRATE.get(),
-                HHModBlocks.BLUEBERRY_WINE_CRATE.get(),
-                HHModBlocks.CHERRY_WINE_CRATE.get(),
-                HHModBlocks.RASPBERRY_WINE_CRATE.get(),
-                HHModBlocks.RED_GRAPE_WINE_CRATE.get(),
-                HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(),
-                HHModBlocks.SWEET_BERRY_WINE_CRATE.get(),
-                HHModBlocks.MEAD_CRATE.get(),
-                HHModBlocks.ROOT_BEER_CRATE.get(),
-                HHModBlocks.HARD_CIDER_CRATE.get(),
-                HHModBlocks.WATER_CRATE.get(),
-                HHModBlocks.HONEY_CRATE.get(),
-                HHModBlocks.SYRUP_CRATE.get(),
                 HHModBlocks.GUNPOWDER_BAG.get(),
                 HHModBlocks.SALT_BAG.get(),
                 HHModBlocks.SUGAR_BAG.get(),

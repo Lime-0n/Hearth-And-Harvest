@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -67,6 +68,10 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHModTags.SHORT_BOTTLES)
                 .add(Items.GLASS_BOTTLE)
                 .add(Items.POTION)
+                .add(Items.SPLASH_POTION)
+                .add(Items.LINGERING_POTION)
+                .add(Items.DRAGON_BREATH)
+                .add(Items.EXPERIENCE_BOTTLE)
                 .add(Items.OMINOUS_BOTTLE)
                 .add(ModItems.MILK_BOTTLE.get())
                 .add(Items.HONEY_BOTTLE)
@@ -207,6 +212,36 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHCommonTags.CROPS_GRAIN)
                 .add(HHModItems.CORN.get());
 
+        tag(Tags.Items.STORAGE_BLOCKS)
+                .add(HHModItems.RASPBERRY_CRATE.get())
+                .add(HHModItems.BLUEBERRY_CRATE.get())
+                .add(HHModItems.RED_GRAPE_CRATE.get())
+                .add(HHModItems.GREEN_GRAPE_CRATE.get())
+                .add(HHModItems.CHERRY_CRATE.get())
+                .add(HHModItems.PEANUT_CRATE.get())
+                .add(HHModItems.CORN_CRATE.get())
+                .add(HHModItems.APPLE_CRATE.get())
+                .add(HHModItems.GOLDEN_APPLE_CRATE.get())
+                .add(HHModItems.GOLDEN_CARROT_CRATE.get())
+                .add(HHModItems.POISONOUS_POTATO_CRATE.get())
+                .add(HHModItems.GLOW_BERRY_CRATE.get())
+                .add(HHModItems.SWEET_BERRY_CRATE.get())
+                .add(HHModItems.BROWN_MUSHROOM_CRATE.get())
+                .add(HHModItems.RED_MUSHROOM_CRATE.get())
+                .add(HHModItems.WARPED_FUNGUS_CRATE.get())
+                .add(HHModItems.CRIMSON_FUNGUS_CRATE.get())
+                .add(HHModItems.GUNPOWDER_BAG.get())
+                .add(HHModItems.SALT_BAG.get())
+                .add(HHModItems.SUGAR_BAG.get())
+                .add(HHModItems.COCOA_BEAN_BAG.get())
+                .add(HHModItems.COTTON_BALE.get())
+                .add(HHModItems.SPOOL.get())
+                .add(HHModItems.ROPE_COIL.get())
+                .add(HHModItems.CORN_HUSK_BUNDLE.get())
+                .add(HHModItems.CORN_KERNEL_BAG.get());
+
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_APPLE)
+                .add(HHModItems.APPLE_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_BLUEBERRY)
                 .add(HHModItems.BLUEBERRY_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_RASPBERRY)

@@ -2,6 +2,10 @@
   "values": [
     "minecraft:glass_bottle",
     "minecraft:potion",
+    "minecraft:splash_potion",
+    "minecraft:lingering_potion",
+    "minecraft:dragon_breath",
+    "minecraft:experience_bottle",
     "minecraft:ominous_bottle",
     "farmersdelight:milk_bottle",
     "minecraft:honey_bottle",
