@@ -38,10 +38,6 @@ public class HHBlockTags extends BlockTagsProvider {
     }
 
     protected void registerModTags() {
-        tag(HHModTags.TAPPABLE).add(
-                Blocks.SPRUCE_LOG,
-                Blocks.DARK_OAK_LOG
-        );
 
         tag(HHModTags.CROW_EDIBLE_CROPS).add(
                 Blocks.WHEAT,
