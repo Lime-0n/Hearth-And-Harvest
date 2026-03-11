@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.worldgen.structure.corn_maze;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.common.registry.HHModStructures;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -20,7 +21,11 @@ public class CornMazeStructure extends Structure {
 
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
-        // Sample surface height at the chunk origin
+        // Skip generation entirely if disabled in config
+        if (!Config.GENERATE_CORN_MAZES.get()) {
+            return Optional.empty();
+        }
+
         int surfaceY = context.chunkGenerator().getBaseHeight(
                 context.chunkPos().getMinBlockX(),
                 context.chunkPos().getMinBlockZ(),
@@ -29,7 +34,6 @@ public class CornMazeStructure extends Structure {
                 context.randomState()
         );
 
-        // Create a start position at surface
         BlockPos surfacePos = new BlockPos(
                 context.chunkPos().getMinBlockX(),
                 surfaceY,

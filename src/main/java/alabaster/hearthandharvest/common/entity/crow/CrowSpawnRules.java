@@ -14,18 +14,20 @@ import net.minecraft.world.level.block.state.BlockState;
 public class CrowSpawnRules {
 
     public static boolean canSpawnCrow(EntityType<? extends PathfinderMob> type, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+
+        if (MobSpawnType.isSpawner(spawnType)) return true;
+
+        if (!PathfinderMob.checkMobSpawnRules(type, level, spawnType, pos, random))
+            return false;
+
         if (!level.getBlockState(pos.below()).isSolid())
             return false;
 
         int radius = Config.CROW_SPAWN_RADIUS.get();
 
-        if (hasNearbyGeneratedNest(level, pos, radius)) {
-            return true;
-        }
+        if (hasNearbyGeneratedNest(level, pos, radius)) return true;
 
-        int cropCount = countNearbyCrops(level, pos, radius);
-
-        return cropCount >= Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
+        return countNearbyCrops(level, pos, radius) >= Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
     }
 
     private static boolean hasNearbyGeneratedNest(ServerLevelAccessor level, BlockPos pos, int radius) {
@@ -33,24 +35,23 @@ public class CrowSpawnRules {
 
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
-                for (int dy = -2; dy <= 2; dy++) {
+                for (int dy = -4; dy <= 8; dy++) {
                     cursor.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
-
                     BlockState state = level.getBlockState(cursor);
 
-                    if (state.getBlock() instanceof NestBlock nest &&
+                    if (state.getBlock() instanceof NestBlock &&
                             state.getValue(NestBlock.GENERATED)) {
                         return true;
                     }
                 }
             }
         }
-
         return false;
     }
 
     private static int countNearbyCrops(ServerLevelAccessor level, BlockPos pos, int radius) {
         int count = 0;
+        int needed = Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
         BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
 
         for (int dx = -radius; dx <= radius; dx++) {
@@ -58,15 +59,13 @@ public class CrowSpawnRules {
                 for (int dy = -2; dy <= 2; dy++) {
                     cursor.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
 
-                    BlockState state = level.getBlockState(cursor);
-
-                    if (state.is(BlockTags.CROPS)) {
+                    if (level.getBlockState(cursor).is(BlockTags.CROPS)) {
                         count++;
+                        if (count >= needed) return count;
                     }
                 }
             }
         }
-
         return count;
     }
 }

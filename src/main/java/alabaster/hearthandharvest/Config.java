@@ -19,6 +19,9 @@ public class Config {
     public static ModConfigSpec.IntValue CROW_SCARE_RADIUS;
     public static ModConfigSpec.BooleanValue STACK_WATER_BOTTLES;
 
+    public static ModConfigSpec.BooleanValue GENERATE_CORN_MAZES;
+
+
     public Config() {
     }
 
@@ -52,6 +55,10 @@ public class Config {
         STACK_WATER_BOTTLES = COMMON_BUILDER
                 .comment("Whether water bottles should stack up to 16")
                 .define("stackWaterBottles", true);
+
+        GENERATE_CORN_MAZES = COMMON_BUILDER
+                .comment("Whether corn mazes should spawn in the world")
+                .define("generateCornMazes", true);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
