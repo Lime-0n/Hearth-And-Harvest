@@ -105,7 +105,6 @@ public class BottleRackBlockEntity extends BlockEntity implements Clearable, Con
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        // Send NBT to client on chunk load
         CompoundTag tag = new CompoundTag();
         saveAdditional(tag, registries);
         return tag;
@@ -113,19 +112,17 @@ public class BottleRackBlockEntity extends BlockEntity implements Clearable, Con
 
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-        super.handleUpdateTag(tag, registries); // loads the data on client
+        super.handleUpdateTag(tag, registries);
     }
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        // Send NBT to client on block update
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider registries) {
         super.onDataPacket(net, pkt, registries);
-        // (now client inventory is loaded)
     }
 }
 

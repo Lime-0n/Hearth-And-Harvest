@@ -85,9 +85,7 @@ public class BottleRackBlock extends Block implements EntityBlock {
         ItemStack current = rack.getItem(slot);
 
         if (current.isEmpty()) {
-            if (!heldStack.isEmpty() && ! (heldStack.getItem() instanceof BlockItem)
-                    && heldStack.is(HHModTags.BOTTLES)) {
-
+            if (!heldStack.isEmpty() && heldStack.is(HHModTags.BOTTLES)) {
                 ItemStack placed = heldStack.copyWithCount(1);
                 rack.setItem(slot, placed);
                 if (!player.getAbilities().instabuild) {

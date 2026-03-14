@@ -26,7 +26,7 @@ public class BottleRackRenderer implements BlockEntityRenderer<BottleRackBlockEn
         this.itemRenderer = context.getItemRenderer();
     }
 
-    private BakedModel getWineRackModel(ItemStack stack) {
+    private BakedModel getBottleRackModel(ItemStack stack) {
         ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
         ModelResourceLocation modelLoc = ModelResourceLocation.standalone(
                 ResourceLocation.fromNamespaceAndPath(itemId.getNamespace(), "bottle_rack/" + itemId.getPath())
@@ -49,7 +49,7 @@ public class BottleRackRenderer implements BlockEntityRenderer<BottleRackBlockEn
             ItemStack stack = rack.getItem(slot);
             if (stack.isEmpty()) continue;
 
-            BakedModel model = getWineRackModel(stack);
+            BakedModel model = getBottleRackModel(stack);
             if (model == null) continue;
 
             pose.pushPose();
