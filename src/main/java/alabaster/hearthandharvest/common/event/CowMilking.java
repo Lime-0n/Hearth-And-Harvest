@@ -19,7 +19,7 @@ public class CowMilking {
 
     @SubscribeEvent
     public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {
-        if (!Config.DISABLE_BOTTLE_MILKING.get()) return;
+        if (Config.DISABLE_BOTTLE_MILKING.get()) return;
 
         Player player = event.getEntity();
         Level level = player.level();

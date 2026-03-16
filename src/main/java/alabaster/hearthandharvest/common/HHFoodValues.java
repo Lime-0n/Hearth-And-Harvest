@@ -35,7 +35,7 @@ public class HHFoodValues {
 
     // Drinks
     public static final FoodProperties GOAT_MILK_BOTTLE = new FoodProperties.Builder()
-            .nutrition(2).saturationModifier(0.3f).build();
+            .build();
 
     // Juices
     public static final FoodProperties BLUEBERRY_JUICE = new FoodProperties.Builder()
