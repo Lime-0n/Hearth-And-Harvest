@@ -1,8 +1,7 @@
 package alabaster.hearthandharvest.common.event;
 
-import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket;
+import alabaster.hearthandharvest.Config;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.Cow;
@@ -20,9 +19,10 @@ public class CowMilking {
 
     @SubscribeEvent
     public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {
+        if (!Config.DISABLE_BOTTLE_MILKING.get()) return;
+
         Player player = event.getEntity();
         Level level = player.level();
-
         InteractionHand hand = event.getHand();
         ItemStack heldItem = player.getItemInHand(hand);
 

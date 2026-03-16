@@ -18,9 +18,8 @@ public class Config {
     public static ModConfigSpec.IntValue CROW_SPAWN_RADIUS;
     public static ModConfigSpec.IntValue CROW_SCARE_RADIUS;
     public static ModConfigSpec.BooleanValue STACK_WATER_BOTTLES;
-
     public static ModConfigSpec.BooleanValue GENERATE_CORN_MAZES;
-
+    public static ModConfigSpec.BooleanValue DISABLE_BOTTLE_MILKING;
 
     public Config() {
     }
@@ -59,6 +58,11 @@ public class Config {
         GENERATE_CORN_MAZES = COMMON_BUILDER
                 .comment("Whether corn mazes should spawn in the world")
                 .define("generateCornMazes", true);
+
+        DISABLE_BOTTLE_MILKING = COMMON_BUILDER
+                .comment("Disables milking cows and goats with glass bottels. \n" +
+                        "Be aware that setting this can cause goat milk bottles to be unobtainable unless handled otherwise")
+                .define("disableBottleMilking", false);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

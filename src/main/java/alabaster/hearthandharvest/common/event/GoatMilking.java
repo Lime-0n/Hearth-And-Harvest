@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -18,6 +19,8 @@ public class GoatMilking {
 
     @SubscribeEvent
     public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {
+        if (!Config.DISABLE_BOTTLE_MILKING.get()) return;
+
         Player player = event.getEntity();
         Level level = player.level();
         InteractionHand hand = event.getHand();
