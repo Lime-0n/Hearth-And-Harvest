@@ -19,6 +19,9 @@
   "hearthandharvest.container.cask.default": "Surrounding light level not detected",
   "hearthandharvest.container.recipe_book.ageable": "Showing Ageables",
 
+  "block.hearthandharvest.stomping_basin": "Stomping Basin",
+  "block.hearthandharvest.stomping_basin.invalid_item": "I don't think I should stomp these...",
+
   "block.hearthandharvest.jar": "Jar",
   "block.hearthandharvest.jug": "Jug",
 

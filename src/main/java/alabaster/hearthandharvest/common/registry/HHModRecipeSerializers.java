@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
 import alabaster.hearthandharvest.common.crafting.ShapelessRemainderRecipe;
+import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
@@ -17,6 +18,9 @@ public class HHModRecipeSerializers {
 
     public static final Supplier<RecipeSerializer<?>> AGING =
             RECIPE_SERIALIZERS.register("aging", CaskRecipe.Serializer::new);
+
+    public static final Supplier<RecipeSerializer<?>> STOMPING =
+            RECIPE_SERIALIZERS.register("stomping", StompingBasinRecipe.Serializer::new);
 
     public static final Supplier<RecipeSerializer<?>> BOTTLE_CRATE =
             RECIPE_SERIALIZERS.register("bottle_crate", BottleCrateRecipe.Serializer::new);

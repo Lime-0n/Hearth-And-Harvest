@@ -5,8 +5,6 @@ import alabaster.hearthandharvest.common.block.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.fml.ModList;
@@ -46,9 +44,11 @@ public class HHModBlocks {
     public static final Supplier<Block> STRAW_RUG = BLOCKS.register("straw_rug",
             () -> new CanvasRugBlock(Block.Properties.ofFullCopy(Blocks.WHITE_CARPET).sound(SoundType.GRASS).strength(0.2F)));
 
-
     public static final Supplier<Block> SCARECROW = BLOCKS.register("scarecrow",
             () -> new ScarecrowBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+
+    public static final Supplier<Block> STOMPING_BASIN = BLOCKS.register("stomping_basin",
+            () -> new StompingBasinBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
 
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",

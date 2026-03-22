@@ -106,6 +106,16 @@ public class CookingRecipes
                 .unlockedByItems("has_melon_slice", Items.MELON_SLICE)
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
+        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CHERRY_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
+                .addIngredient(HHModItems.CHERRY.get())
+                .addIngredient(HHModItems.CHERRY.get())
+                .addIngredient(HHModItems.CHERRY.get())
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .unlockedByItems("has_cherry", HHModItems.CHERRY.get())
+                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                .build(output);
 
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.PEANUT_BUTTER.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
                 .addIngredient(HHModItems.PEANUT.get())

@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -16,6 +17,8 @@ public class HHModRecipeTypes
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, HearthAndHarvest.MODID);
 
     public static final Supplier<RecipeType<CaskRecipe>> AGING = RECIPE_TYPES.register("aging", () -> registerRecipeType("aging"));
+
+    public static final Supplier<RecipeType<StompingBasinRecipe>> STOMPING = RECIPE_TYPES.register("stomping", () -> registerRecipeType("stomping"));
 
     public static final Supplier<RecipeType<BottleCrateRecipe>> BOTTLE_CRATE =
             RECIPE_TYPES.register("bottle_crate", () -> registerRecipeType("bottle_crate"));

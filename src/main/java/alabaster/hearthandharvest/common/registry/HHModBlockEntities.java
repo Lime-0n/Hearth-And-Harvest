@@ -1,10 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.block.entity.CrateBlockEntity;
-import alabaster.hearthandharvest.common.block.entity.CaskBlockEntity;
-import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
-import alabaster.hearthandharvest.common.block.entity.BottleRackBlockEntity;
+import alabaster.hearthandharvest.common.block.entity.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -54,6 +51,9 @@ public class HHModBlockEntities {
 
     public static final Supplier<BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITY_TYPES.register("crate",
             () -> BlockEntityType.Builder.of(CrateBlockEntity::new, HHModBlocks.CRATE.get()).build(null));
+
+    public static final Supplier<BlockEntityType<StompingBasinBlockEntity>> STOMPING_BASIN = BLOCK_ENTITY_TYPES.register("stomping_basin_tile",
+            () -> BlockEntityType.Builder.of(StompingBasinBlockEntity::new, HHModBlocks.STOMPING_BASIN.get()).build(null));
 
 
     @SubscribeEvent

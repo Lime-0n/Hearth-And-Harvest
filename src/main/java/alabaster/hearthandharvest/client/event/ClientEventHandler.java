@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
 import alabaster.hearthandharvest.client.renderer.CrateItemRenderer;
 import alabaster.hearthandharvest.client.renderer.CrateRenderer;
 import alabaster.hearthandharvest.client.renderer.BottleRackRenderer;
+import alabaster.hearthandharvest.client.renderer.StompingBasinRenderer;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
@@ -57,6 +58,10 @@ public class ClientEventHandler {
         event.registerBlockEntityRenderer(
                 HHModBlockEntities.CRATE.get(),
                 CrateRenderer::new
+        );
+        event.registerBlockEntityRenderer(
+                HHModBlockEntities.STOMPING_BASIN.get(),
+                StompingBasinRenderer::new
         );
 
     }

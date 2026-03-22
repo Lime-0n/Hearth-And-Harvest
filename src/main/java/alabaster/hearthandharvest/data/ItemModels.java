@@ -40,6 +40,9 @@ public class ItemModels extends ItemModelProvider
         blockBasedModel(HHModItems.CASK.get(),"");
         items.remove(HHModItems.CASK.get());
 
+        blockBasedModel(HHModItems.STOMPING_BASIN.get(),"");
+        items.remove(HHModItems.STOMPING_BASIN.get());
+
         blockBasedModel(HHModItems.JUG.get(),"");
         items.remove(HHModItems.JUG.get());
 

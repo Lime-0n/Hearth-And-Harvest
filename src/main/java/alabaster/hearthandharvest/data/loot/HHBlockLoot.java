@@ -23,6 +23,7 @@ public class HHBlockLoot extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(HHModBlocks.TREE_TAPPER.get());
         dropSelf(HHModBlocks.CASK.get());
+        dropSelf(HHModBlocks.STOMPING_BASIN.get());
         dropSelf(HHModBlocks.JUG.get());
         dropOther(HHModBlocks.SAP_CAULDRON.get(), Items.CAULDRON);
         dropSelf(HHModBlocks.COUNTER.get());

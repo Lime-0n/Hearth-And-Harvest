@@ -93,6 +93,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.TREE_TAPPER.get(), basicItem()));
     public static final Supplier<Item> CASK = registerWithTab("cask",
             () -> new BlockItem(HHModBlocks.CASK.get(), basicItem()));
+    public static final Supplier<Item> STOMPING_BASIN = registerWithTab("stomping_basin",
+            () -> new BlockItem(HHModBlocks.STOMPING_BASIN.get(), basicItem()));
     public static final Supplier<Item> JUG = registerWithTab("jug",
             () -> new JugBlockItem(HHModBlocks.JUG.get(), basicItem()));
 

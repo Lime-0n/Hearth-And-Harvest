@@ -1,0 +1,21 @@
+{
+  "type": "hearthandharvest:stomping",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:blueberries"
+    },
+    {
+      "item": "hearthandharvest:blueberries"
+    },
+    {
+      "item": "hearthandharvest:blueberries"
+    },
+    {
+      "item": "hearthandharvest:blueberries"
+    }
+  ],
+  "result_fluid": {
+    "amount": 500,
+    "id": "hearthandharvest:blueberry_wine"
+  }
+}
