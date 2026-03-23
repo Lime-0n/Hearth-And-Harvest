@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.block.entity;
 
+import alabaster.hearthandharvest.common.block.MultiblockPart;
 import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
@@ -7,13 +8,16 @@ import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -24,6 +28,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,38 +37,69 @@ import java.util.UUID;
 
 public class StompingBasinBlockEntity extends BlockEntity {
 
-    public static final int ITEM_SLOTS    = 1;
-    public static final int TANK_CAPACITY = 8000;
+    public static final int ITEM_SLOTS = 1;
+
+    public static final int SOLO_ITEM_LIMIT     = 64;
+    public static final int COMBINED_ITEM_LIMIT = 256;
+
+    public static final int SOLO_TANK_CAPACITY     = 8_000;
+    public static final int COMBINED_TANK_CAPACITY = 32_000;
+
+    public static final TagKey<Item> VALID_INPUT_TAG = HHModTags.STOMPABLE;
+
+    private MultiblockPart role = MultiblockPart.NONE;
+    @Nullable private BlockPos controllerPos = null;
 
     private final Map<UUID, Long> stompCooldowns = new HashMap<>();
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(ITEM_SLOTS) {
+    private int itemSlotLimit = SOLO_ITEM_LIMIT;
+    private final VariableStackHandler itemHandler = new VariableStackHandler();
+    private final ResizableFluidTank fluidTank = new ResizableFluidTank(SOLO_TANK_CAPACITY);
+
+    private class VariableStackHandler extends ItemStackHandler {
+        VariableStackHandler() { super(ITEM_SLOTS); }
+
         @Override
         protected void onContentsChanged(int slot) {
-            setChanged();
-            syncToClient();
+            setChanged(); syncToClient();
         }
-    };
 
-    private final FluidTank fluidTank = new FluidTank(TANK_CAPACITY) {
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemSlotLimit;
+        }
+    }
+
+    private class ResizableFluidTank extends FluidTank {
+        ResizableFluidTank(int capacity) {
+            super(capacity);
+        }
+
         @Override
         protected void onContentsChanged() {
-            setChanged();
-            syncToClient();
+            setChanged(); syncToClient();
         }
-    };
+
+        void setEffectiveCapacity(int cap) {
+            this.capacity = cap;
+        }
+    }
 
     public StompingBasinBlockEntity(BlockPos pos, BlockState state) {
         super(HHModBlockEntities.STOMPING_BASIN.get(), pos, state);
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState state, StompingBasinBlockEntity be) {
-        // Reserved for future use (slow fermentation, particles, etc.)
-    }
+    public static void serverTick(Level level, BlockPos pos, BlockState state, StompingBasinBlockEntity be) { }
 
     public ItemStack insertItem(ItemStack toInsert) {
         if (toInsert.isEmpty()) return ItemStack.EMPTY;
-        if (!toInsert.is(HHModTags.STOMPABLE)) return toInsert;
+        if (!toInsert.is(VALID_INPUT_TAG)) return toInsert;
+
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) return controller.insertItem(toInsert);
+            return toInsert;
+        }
 
         for (int i = 0; i < itemHandler.getSlots() && !toInsert.isEmpty(); i++) {
             ItemStack inSlot = itemHandler.getStackInSlot(i);
@@ -71,46 +107,57 @@ public class StompingBasinBlockEntity extends BlockEntity {
                 toInsert = itemHandler.insertItem(i, toInsert, false);
             }
         }
-
         for (int i = 0; i < itemHandler.getSlots() && !toInsert.isEmpty(); i++) {
             if (itemHandler.getStackInSlot(i).isEmpty()) {
                 toInsert = itemHandler.insertItem(i, toInsert, false);
             }
         }
-
         return toInsert;
     }
 
     public void extractOne(Player player) {
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) controller.extractOne(player);
+            return;
+        }
         for (int i = itemHandler.getSlots() - 1; i >= 0; i--) {
             ItemStack inSlot = itemHandler.getStackInSlot(i);
             if (!inSlot.isEmpty()) {
-                ItemStack extracted = itemHandler.extractItem(i, 1, false);
-                giveOrDrop(player, extracted);
+                giveOrDrop(player, itemHandler.extractItem(i, 1, false));
                 return;
             }
         }
     }
 
     public void extractAll(Player player) {
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) controller.extractAll(player);
+            return;
+        }
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             ItemStack inSlot = itemHandler.getStackInSlot(i);
             if (!inSlot.isEmpty()) {
-                ItemStack extracted = itemHandler.extractItem(i, inSlot.getCount(), false);
-                giveOrDrop(player, extracted);
+                giveOrDrop(player, itemHandler.extractItem(i, inSlot.getCount(), false));
             }
         }
     }
 
     private void giveOrDrop(Player player, ItemStack stack) {
         if (stack.isEmpty()) return;
-        if (!player.addItem(stack)) {
-            dropAtBasin(stack);
-        }
+        if (!player.addItem(stack)) dropAtBasin(stack);
     }
 
     public void tryProcess(Player player) {
         if (level == null || level.isClientSide) return;
+
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) controller.tryProcess(player);
+            return;
+        }
+
         long now = level.getGameTime();
         if (stompCooldowns.getOrDefault(player.getUUID(), -1L) == now) return;
         stompCooldowns.put(player.getUUID(), now);
@@ -129,9 +176,8 @@ public class StompingBasinBlockEntity extends BlockEntity {
             level.playSound(null, worldPosition, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.6f, 0.7f);
             return;
         }
-        else {
-            level.playSound(null, worldPosition, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 0.6f, 0.7f);
-        }
+
+        level.playSound(null, worldPosition, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 0.6f, 0.7f);
 
         StompingBasinRecipe recipe = match.get();
 
@@ -156,9 +202,7 @@ public class StompingBasinBlockEntity extends BlockEntity {
         }
 
         ItemStack resultItem = recipe.getResultItem();
-        if (!resultItem.isEmpty()) {
-            dropAtBasin(resultItem.copy());
-        }
+        if (!resultItem.isEmpty()) dropAtBasin(resultItem.copy());
 
         setChanged();
         syncToClient();
@@ -166,14 +210,82 @@ public class StompingBasinBlockEntity extends BlockEntity {
 
     private void dropAtBasin(ItemStack stack) {
         if (level == null || stack.isEmpty()) return;
-
         double x = worldPosition.getX() + 0.5;
         double y = worldPosition.getY() + 0.25;
         double z = worldPosition.getZ() + 0.5;
-
         ItemEntity entity = new ItemEntity(level, x, y, z, stack, 0, 0, 0);
         entity.setPickUpDelay(10);
         level.addFreshEntity(entity);
+    }
+
+    public void formAsController(StompingBasinBlockEntity ne, StompingBasinBlockEntity sw, StompingBasinBlockEntity se) {
+        this.role = MultiblockPart.CONTROLLER;
+        this.itemSlotLimit = COMBINED_ITEM_LIMIT;
+        fluidTank.setEffectiveCapacity(COMBINED_TANK_CAPACITY);
+
+        for (StompingBasinBlockEntity member : new StompingBasinBlockEntity[]{ne, sw, se}) {
+            ItemStack memberItems = member.itemHandler.getStackInSlot(0);
+            if (!memberItems.isEmpty()) {
+                ItemStack existing = this.itemHandler.getStackInSlot(0);
+                if (existing.isEmpty()) {
+                    this.itemHandler.setStackInSlot(0, memberItems.copy());
+                } else if (ItemStack.isSameItemSameComponents(existing, memberItems)) {
+                    int merged = Math.min(existing.getCount() + memberItems.getCount(), itemSlotLimit);
+                    existing.setCount(merged);
+                    this.itemHandler.setStackInSlot(0, existing);
+                } else {
+                    if (level != null) dropAtBasin(memberItems.copy());
+                }
+                member.itemHandler.setStackInSlot(0, ItemStack.EMPTY);
+            }
+
+            FluidStack memberFluid = member.fluidTank.getFluid();
+            if (!memberFluid.isEmpty()) {
+                fluidTank.fill(memberFluid.copy(), IFluidHandler.FluidAction.EXECUTE);
+                member.fluidTank.setFluid(FluidStack.EMPTY);
+            }
+
+            member.setChanged();
+            member.syncToClient();
+        }
+
+        setChanged();
+        syncToClient();
+    }
+
+    public void formAsMember(BlockPos controllerPos) {
+        this.role = MultiblockPart.MEMBER;
+        this.controllerPos = controllerPos;
+        setChanged();
+        syncToClient();
+    }
+
+    public void dissolve() {
+        this.role = MultiblockPart.NONE;
+        this.controllerPos = null;
+        this.itemSlotLimit = SOLO_ITEM_LIMIT;
+
+        ItemStack stack = itemHandler.getStackInSlot(0);
+        if (!stack.isEmpty() && stack.getCount() > SOLO_ITEM_LIMIT) {
+            ItemStack overflow = stack.copyWithCount(stack.getCount() - SOLO_ITEM_LIMIT);
+            itemHandler.setStackInSlot(0, stack.copyWithCount(SOLO_ITEM_LIMIT));
+            if (level != null) dropAtBasin(overflow);
+        }
+
+        if (fluidTank.getFluidAmount() > SOLO_TANK_CAPACITY) {
+            fluidTank.setFluid(fluidTank.getFluid().copyWithAmount(SOLO_TANK_CAPACITY));
+        }
+        fluidTank.setEffectiveCapacity(SOLO_TANK_CAPACITY);
+
+        setChanged();
+        syncToClient();
+    }
+
+    public void dissolveAsMember() {
+        this.role = MultiblockPart.NONE;
+        this.controllerPos = null;
+        setChanged();
+        syncToClient();
     }
 
     public void dropContents() {
@@ -181,7 +293,8 @@ public class StompingBasinBlockEntity extends BlockEntity {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             ItemStack s = itemHandler.getStackInSlot(i);
             if (!s.isEmpty()) {
-                Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), s);
+                Containers.dropItemStack(level,
+                        worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), s);
             }
         }
     }
@@ -214,6 +327,12 @@ public class StompingBasinBlockEntity extends BlockEntity {
         super.saveAdditional(tag, registries);
         tag.put("Items", itemHandler.serializeNBT(registries));
         tag.put("Tank", fluidTank.writeToNBT(registries, new CompoundTag()));
+        tag.putString("MultiblockRole", role.getSerializedName());
+        tag.putInt("ItemSlotLimit", itemSlotLimit);
+        tag.putInt("FluidCapacity", fluidTank.getCapacity());
+        if (controllerPos != null) {
+            tag.put("MasterPos", NbtUtils.writeBlockPos(controllerPos));
+        }
     }
 
     @Override
@@ -221,6 +340,10 @@ public class StompingBasinBlockEntity extends BlockEntity {
         super.loadAdditional(tag, registries);
         if (tag.contains("Items")) itemHandler.deserializeNBT(registries, tag.getCompound("Items"));
         if (tag.contains("Tank")) fluidTank.readFromNBT(registries, tag.getCompound("Tank"));
+        if (tag.contains("MultiblockRole")) role = MultiblockPart.byName(tag.getString("MultiblockRole"));
+        if (tag.contains("ItemSlotLimit")) itemSlotLimit = tag.getInt("ItemSlotLimit");
+        if (tag.contains("FluidCapacity")) fluidTank.setEffectiveCapacity(tag.getInt("FluidCapacity"));
+        if (tag.contains("MasterPos")) controllerPos = NbtUtils.readBlockPos(tag, "MasterPos").orElse(null);
     }
 
     public ItemStackHandler getItemHandler() {
@@ -228,6 +351,26 @@ public class StompingBasinBlockEntity extends BlockEntity {
     }
 
     public FluidTank getFluidTank() {
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) return controller.fluidTank;
+        }
         return fluidTank;
+    }
+
+    public MultiblockPart getMultiblockRole() {
+        return role;
+    }
+
+    @Nullable
+    public BlockPos getControllerPos() {
+        return controllerPos;
+    }
+
+    @Nullable
+    public StompingBasinBlockEntity getControllerBE() {
+        if (controllerPos == null || level == null) return null;
+        BlockEntity be = level.getBlockEntity(controllerPos);
+        return be instanceof StompingBasinBlockEntity sbe ? sbe : null;
     }
 }
