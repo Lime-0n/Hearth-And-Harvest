@@ -37,6 +37,7 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
+        // Bottle Racks
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
         rm.listResources("models/bottle_rack", path -> path.getPath().endsWith(".json"))
                 .keySet()
@@ -47,6 +48,12 @@ public class ClientEventHandler {
                             ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), modelPath)
                     ));
                 });
+
+        // Big Stomping Basin Models
+        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/big_stomping_basin_nw")));
+        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/big_stomping_basin_ne")));
+        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/big_stomping_basin_sw")));
+        event.register(ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/big_stomping_basin_se")));
     }
 
     @SubscribeEvent
@@ -155,7 +162,7 @@ public class ClientEventHandler {
                 return FLOWING_BLUEBERRY_WINE;
             }
         }, HHModFluids.BLUEBERRY_WINE_TYPE.get());
-        
+
         event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_CHERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_wine_still");
             private static final ResourceLocation FLOWING_CHERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_wine_flow");

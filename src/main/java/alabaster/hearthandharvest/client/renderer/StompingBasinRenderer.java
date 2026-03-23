@@ -8,14 +8,21 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.joml.Matrix4f;
 
@@ -40,29 +47,75 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
     private static final float FLUID_MAX_Y = 11f / 16f;
     private static final float ITEM_Y_STEP = 0.001f;
 
+    private static final ModelResourceLocation MODEL_NW = ModelResourceLocation.standalone(
+            ResourceLocation.fromNamespaceAndPath("hearthandharvest", "block/big_stomping_basin_nw"));
+    private static final ModelResourceLocation MODEL_NE = ModelResourceLocation.standalone(
+            ResourceLocation.fromNamespaceAndPath("hearthandharvest", "block/big_stomping_basin_ne"));
+    private static final ModelResourceLocation MODEL_SW = ModelResourceLocation.standalone(
+            ResourceLocation.fromNamespaceAndPath("hearthandharvest", "block/big_stomping_basin_sw"));
+    private static final ModelResourceLocation MODEL_SE = ModelResourceLocation.standalone(
+            ResourceLocation.fromNamespaceAndPath("hearthandharvest", "block/big_stomping_basin_se"));
+
     public StompingBasinRenderer(BlockEntityRendererProvider.Context ctx) { }
 
     @Override
-    public void render(StompingBasinBlockEntity be, float partialTick, PoseStack ps, MultiBufferSource buf, int packedLight, int packedOverlay) {
+    public void render(StompingBasinBlockEntity be, float partialTick, PoseStack ps,
+                       MultiBufferSource buf, int packedLight, int packedOverlay) {
         MultiblockPart role = be.getMultiblockRole();
 
-        if (role == MultiblockPart.MEMBER) return;
-
-        StompingBasinBlockEntity source = (role == MultiblockPart.CONTROLLER) ? be : be;
+        if (role == MultiblockPart.MEMBER) {
+            // Each member renders its own quadrant model from its own block origin.
+            renderQuadrantModel(resolveQuadrantModel(be), ps, buf, packedLight, packedOverlay);
+            // Members also render the fluid surface (using controller's tank data).
+            StompingBasinBlockEntity controller = be.getControllerBE();
+            if (controller != null) renderFluidSurface(controller, ps, buf, packedLight, false);
+            return;
+        }
 
         if (role == MultiblockPart.CONTROLLER) {
-            renderBigModel(be, ps, buf, packedLight, packedOverlay);
-            renderScatteredItems(source, ps, buf, packedLight, packedOverlay, true);
-            renderFluidSurface(source, ps, buf, packedLight, true);
+            // Controller renders the NW quadrant model + items + fluid.
+            renderQuadrantModel(MODEL_NW, ps, buf, packedLight, packedOverlay);
+            renderScatteredItems(be, ps, buf, packedLight, packedOverlay, true);
+            renderFluidSurface(be, ps, buf, packedLight, true);
         } else {
-            renderScatteredItems(source, ps, buf, packedLight, packedOverlay, false);
-            renderFluidSurface(source, ps, buf, packedLight, false);
+            // Standalone single basin.
+            renderScatteredItems(be, ps, buf, packedLight, packedOverlay, false);
+            renderFluidSurface(be, ps, buf, packedLight, false);
         }
     }
 
-    private void renderBigModel(StompingBasinBlockEntity be, PoseStack ps, MultiBufferSource buf, int packedLight, int packedOverlay) {
-        Minecraft.getInstance()
-                .getBlockRenderer().renderSingleBlock(be.getBlockState(), ps, buf, packedLight, packedOverlay);
+    /**
+     * Determines which quadrant model a MEMBER block should render, based on its
+     * offset from the controller. Controller (dx=0,dz=0) is always NW.
+     */
+    private ModelResourceLocation resolveQuadrantModel(StompingBasinBlockEntity be) {
+        BlockPos controllerPos = be.getControllerPos();
+        if (controllerPos == null) return MODEL_NW;
+        BlockPos pos = be.getBlockPos();
+        int dx = pos.getX() - controllerPos.getX();
+        int dz = pos.getZ() - controllerPos.getZ();
+        if (dx == 1 && dz == 0) return MODEL_NE;
+        if (dx == 0 && dz == 1) return MODEL_SW;
+        if (dx == 1 && dz == 1) return MODEL_SE;
+        return MODEL_NW; // fallback
+    }
+
+    private void renderQuadrantModel(ModelResourceLocation modelId, PoseStack ps,
+                                     MultiBufferSource buf, int packedLight, int packedOverlay) {
+        BakedModel model = Minecraft.getInstance().getModelManager().getModel(modelId);
+        VertexConsumer vc = buf.getBuffer(RenderType.entitySolid(InventoryMenu.BLOCK_ATLAS));
+        RandomSource random = RandomSource.create();
+
+        for (Direction dir : Direction.values()) {
+            random.setSeed(42L);
+            for (BakedQuad quad : model.getQuads(null, dir, random, ModelData.EMPTY, null)) {
+                vc.putBulkData(ps.last(), quad, 1f, 1f, 1f, 1f, packedLight, packedOverlay);
+            }
+        }
+        random.setSeed(42L);
+        for (BakedQuad quad : model.getQuads(null, null, random, ModelData.EMPTY, null)) {
+            vc.putBulkData(ps.last(), quad, 1f, 1f, 1f, 1f, packedLight, packedOverlay);
+        }
     }
 
     private void renderScatteredItems(StompingBasinBlockEntity source, PoseStack ps, MultiBufferSource buf, int packedLight, int packedOverlay, boolean combined) {
@@ -107,11 +160,13 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
         return new float[]{ px, pz, rot };
     }
 
-    private void renderFluidSurface(StompingBasinBlockEntity source, PoseStack ps, MultiBufferSource buf, int packedLight, boolean combined) {
+    private void renderFluidSurface(StompingBasinBlockEntity source, PoseStack ps,
+                                    MultiBufferSource buf, int packedLight, boolean combined) {
         FluidStack fluid = source.getFluidTank().getFluid();
         if (fluid.isEmpty()) return;
 
-        float fill = (float) source.getFluidTank().getFluidAmount() / (float) source.getFluidTank().getCapacity();
+        float fill = (float) source.getFluidTank().getFluidAmount()
+                / (float) source.getFluidTank().getCapacity();
         if (fill <= 0f) return;
 
         float surfaceY = FLUID_MIN_Y + fill * (FLUID_MAX_Y - FLUID_MIN_Y);
@@ -135,22 +190,45 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
         Matrix4f m = ps.last().pose();
         int ov = OverlayTexture.NO_OVERLAY;
 
+        // Always use the full sprite UVs per quad so the texture tiles naturally.
+        // getU()/getV() with values outside [0,16] shoot outside the sprite region and
+        // sample the raw atlas — always use getU0/U1/V0/V1 directly.
         float u0 = sprite.getU0(), u1 = sprite.getU1();
         float v0 = sprite.getV0(), v1 = sprite.getV1();
 
-        float xMin = combined ? BIG_INNER_MIN : INNER_MIN;
-        float xMax = combined ? BIG_INNER_MAX : INNER_MAX;
-        float zMin = combined ? BIG_INNER_MIN : INNER_MIN;
-        float zMax = combined ? BIG_INNER_MAX : INNER_MAX;
+        if (!combined) {
+            emitFluidQuad(vc, m, INNER_MIN, INNER_MAX, INNER_MIN, INNER_MAX,
+                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight);
+        } else {
+            // 4 sub-quads, one per basin quadrant, each tiling the full sprite.
+            // Block boundary in controller-local space is at x=1, z=1.
+            float mid = 1f;
+            emitFluidQuad(vc, m, BIG_INNER_MIN, mid,          BIG_INNER_MIN, mid,
+                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NW
+            emitFluidQuad(vc, m, mid,           BIG_INNER_MAX, BIG_INNER_MIN, mid,
+                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NE
+            emitFluidQuad(vc, m, BIG_INNER_MIN, mid,           mid, BIG_INNER_MAX,
+                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SW
+            emitFluidQuad(vc, m, mid,           BIG_INNER_MAX, mid, BIG_INNER_MAX,
+                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SE
+        }
+    }
 
-        vc.addVertex(m, xMin, surfaceY, zMin).setColor(r,g,b,a).setUv(u0,v0).setOverlay(ov).setLight(packedLight).setNormal(0,1,0);
-        vc.addVertex(m, xMin, surfaceY, zMax).setColor(r,g,b,a).setUv(u0,v1).setOverlay(ov).setLight(packedLight).setNormal(0,1,0);
-        vc.addVertex(m, xMax, surfaceY, zMax).setColor(r,g,b,a).setUv(u1,v1).setOverlay(ov).setLight(packedLight).setNormal(0,1,0);
-        vc.addVertex(m, xMax, surfaceY, zMin).setColor(r,g,b,a).setUv(u1,v0).setOverlay(ov).setLight(packedLight).setNormal(0,1,0);
+    private static void emitFluidQuad(VertexConsumer vc, Matrix4f m,
+                                      float x0, float x1, float z0, float z1, float y,
+                                      float r, float g, float b, float a,
+                                      float u0, float u1, float v0, float v1,
+                                      int overlay, int light) {
+        vc.addVertex(m, x0, y, z0).setColor(r,g,b,a).setUv(u0,v0).setOverlay(overlay).setLight(light).setNormal(0,1,0);
+        vc.addVertex(m, x0, y, z1).setColor(r,g,b,a).setUv(u0,v1).setOverlay(overlay).setLight(light).setNormal(0,1,0);
+        vc.addVertex(m, x1, y, z1).setColor(r,g,b,a).setUv(u1,v1).setOverlay(overlay).setLight(light).setNormal(0,1,0);
+        vc.addVertex(m, x1, y, z0).setColor(r,g,b,a).setUv(u1,v0).setOverlay(overlay).setLight(light).setNormal(0,1,0);
     }
 
     @Override
     public boolean shouldRenderOffScreen(StompingBasinBlockEntity be) {
-        return be.getMultiblockRole() == MultiblockPart.CONTROLLER;
+        // Both controller and members should always render — members might be in an
+        // adjacent chunk to the controller that loaded the multiblock.
+        return be.getMultiblockRole() != MultiblockPart.NONE;
     }
 }

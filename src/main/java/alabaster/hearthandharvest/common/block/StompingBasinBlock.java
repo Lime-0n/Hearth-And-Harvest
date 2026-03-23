@@ -47,13 +47,17 @@ public class StompingBasinBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() { return CODEC; }
 
-    public static final VoxelShape SHAPE = Shapes.or(
-            box(0,  0,  0,  16, 1,  16),
-            box(0,  1,  0,  2,  12, 16),
-            box(14, 1,  0,  16, 12, 16),
-            box(2,  1,  0,  14, 12, 2),
-            box(2,  1,  14, 14, 12, 16)
-    );
+    private static final VoxelShape FLOOR = box(0,  0,  0,  16, 1,  16);
+    private static final VoxelShape WEST_WALL = box(0,  1,  0,  2,  12, 16);
+    private static final VoxelShape EAST_WALL = box(14, 1,  0,  16, 12, 16);
+    private static final VoxelShape NORTH_WALL = box(2,  1,  0,  14, 12, 2);
+    private static final VoxelShape SOUTH_WALL = box(2,  1,  14, 14, 12, 16);
+    public static final VoxelShape SHAPE = Shapes.or(FLOOR, WEST_WALL, EAST_WALL, NORTH_WALL, SOUTH_WALL);
+
+    private static final VoxelShape SHAPE_NW = Shapes.or(FLOOR, WEST_WALL, box(2,  1,  0,  16, 12, 2));
+    private static final VoxelShape SHAPE_NE = Shapes.or(FLOOR, EAST_WALL, box(0,  1,  0,  14, 12, 2));
+    private static final VoxelShape SHAPE_SW = Shapes.or(FLOOR, WEST_WALL, box(2,  1,  14, 16, 12, 16));
+    private static final VoxelShape SHAPE_SE = Shapes.or(FLOOR, EAST_WALL, box(0,  1,  14, 14, 12, 16));
 
     public StompingBasinBlock(Properties properties) {
         super(properties);
@@ -74,14 +78,31 @@ public class StompingBasinBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+        MultiblockPart part = state.getValue(MULTIBLOCK_PART);
+        if (part == MultiblockPart.NONE) return SHAPE;
+
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof StompingBasinBlockEntity basin)) return SHAPE;
+
+        BlockPos controllerPos = (part == MultiblockPart.CONTROLLER)
+                ? pos
+                : basin.getControllerPos();
+        if (controllerPos == null) return SHAPE;
+
+        int dx = pos.getX() - controllerPos.getX();
+        int dz = pos.getZ() - controllerPos.getZ();
+
+        if (dx == 0 && dz == 0) return SHAPE_NW; // controller = NW
+        if (dx == 1 && dz == 0) return SHAPE_NE;
+        if (dx == 0 && dz == 1) return SHAPE_SW;
+        if (dx == 1 && dz == 1) return SHAPE_SE;
         return SHAPE;
     }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return switch (state.getValue(MULTIBLOCK_PART)) {
-            case CONTROLLER -> RenderShape.ENTITYBLOCK_ANIMATED;
-            case MEMBER -> RenderShape.INVISIBLE;
+            case CONTROLLER, MEMBER -> RenderShape.ENTITYBLOCK_ANIMATED;
             case NONE -> RenderShape.MODEL;
         };
     }
