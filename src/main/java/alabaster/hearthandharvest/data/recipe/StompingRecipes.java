@@ -17,27 +17,27 @@ public class StompingRecipes {
     }
 
     private static void stompJuices(RecipeOutput output) {
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_WINE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.BLUEBERRIES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.CHERRY_WINE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.CHERRY_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.CHERRY.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.CHERRY.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RASPBERRY_WINE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RASPBERRY_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.RASPBERRY.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.RASPBERRY.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RED_GRAPE_WINE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RED_GRAPE_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.RED_GRAPES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.RED_GRAPES.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GREEN_GRAPE_WINE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GREEN_GRAPE_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.GREEN_GRAPES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
                 .build(output);

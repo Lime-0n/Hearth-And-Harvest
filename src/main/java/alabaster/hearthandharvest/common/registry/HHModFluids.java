@@ -68,5 +68,29 @@ public class HHModFluids {
     public static final Supplier<FluidType> ROOT_BEER_TYPE = FLUID_TYPES.register("root_beer", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
     public static final Supplier<HHFluidType> ROOT_BEER = FLUIDS.register("root_beer", () -> new RootBeerFluid(true));
     public static final Supplier<HHFluidType> FLOWING_ROOT_BEER = FLUIDS.register("flowing_root_beer", () -> new RootBeerFluid(false));
-    
+
+    public static final Supplier<FluidType> BLUEBERRY_JUICE_TYPE = FLUID_TYPES.register("blueberry_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> BLUEBERRY_JUICE = FLUIDS.register("blueberry_juice", () -> new BlueberryJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_BLUEBERRY_JUICE = FLUIDS.register("flowing_blueberry_juice", () -> new BlueberryJuiceFluid(false));
+
+    public static final Supplier<FluidType> CHERRY_JUICE_TYPE = FLUID_TYPES.register("cherry_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> CHERRY_JUICE = FLUIDS.register("cherry_juice", () -> new CherryJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_CHERRY_JUICE = FLUIDS.register("flowing_cherry_juice", () -> new CherryJuiceFluid(false));
+
+    public static final Supplier<FluidType> GREEN_GRAPE_JUICE_TYPE = FLUID_TYPES.register("green_grape_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> GREEN_GRAPE_JUICE = FLUIDS.register("green_grape_juice", () -> new GreenGrapeJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_GREEN_GRAPE_JUICE = FLUIDS.register("flowing_green_grape_juice", () -> new GreenGrapeJuiceFluid(false));
+
+    public static final Supplier<FluidType> RASPBERRY_JUICE_TYPE = FLUID_TYPES.register("raspberry_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> RASPBERRY_JUICE = FLUIDS.register("raspberry_juice", () -> new RaspberryJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_RASPBERRY_JUICE = FLUIDS.register("flowing_raspberry_juice", () -> new RaspberryJuiceFluid(false));
+
+    public static final Supplier<FluidType> RED_GRAPE_JUICE_TYPE = FLUID_TYPES.register("red_grape_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> RED_GRAPE_JUICE = FLUIDS.register("red_grape_juice", () -> new RedGrapeJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_RED_GRAPE_JUICE = FLUIDS.register("flowing_red_grape_juice", () -> new RedGrapeJuiceFluid(false));
+
+    public static final Supplier<FluidType> SWEET_BERRY_JUICE_TYPE = FLUID_TYPES.register("sweet_berry_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> SWEET_BERRY_JUICE = FLUIDS.register("sweet_berry_juice", () -> new SweetBerryJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_SWEET_BERRY_JUICE = FLUIDS.register("flowing_sweet_berry_juice", () -> new SweetBerryJuiceFluid(false));
+
 }

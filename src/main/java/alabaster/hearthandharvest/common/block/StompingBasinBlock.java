@@ -47,17 +47,20 @@ public class StompingBasinBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() { return CODEC; }
 
-    private static final VoxelShape FLOOR = box(0,  0,  0,  16, 1,  16);
-    private static final VoxelShape WEST_WALL = box(0,  1,  0,  2,  12, 16);
-    private static final VoxelShape EAST_WALL = box(14, 1,  0,  16, 12, 16);
+    private static final VoxelShape FLOOR      = box(0,  0,  0,  16, 1,  16);
+    private static final VoxelShape WEST_WALL  = box(0,  1,  0,  2,  12, 16);
+    private static final VoxelShape EAST_WALL  = box(14, 1,  0,  16, 12, 16);
     private static final VoxelShape NORTH_WALL = box(2,  1,  0,  14, 12, 2);
     private static final VoxelShape SOUTH_WALL = box(2,  1,  14, 14, 12, 16);
     public static final VoxelShape SHAPE = Shapes.or(FLOOR, WEST_WALL, EAST_WALL, NORTH_WALL, SOUTH_WALL);
 
-    private static final VoxelShape SHAPE_NW = Shapes.or(FLOOR, WEST_WALL, box(2,  1,  0,  16, 12, 2));
-    private static final VoxelShape SHAPE_NE = Shapes.or(FLOOR, EAST_WALL, box(0,  1,  0,  14, 12, 2));
-    private static final VoxelShape SHAPE_SW = Shapes.or(FLOOR, WEST_WALL, box(2,  1,  14, 16, 12, 16));
-    private static final VoxelShape SHAPE_SE = Shapes.or(FLOOR, EAST_WALL, box(0,  1,  14, 14, 12, 16));
+    private static final VoxelShape SHAPE_NW = Shapes.or(FLOOR, WEST_WALL,  box(2,  1,  0,  16, 12, 2));
+    // NE: east + north walls. North wall runs x:0→14.
+    private static final VoxelShape SHAPE_NE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  0,  14, 12, 2));
+    // SW: west + south walls. South wall runs x:2→16.
+    private static final VoxelShape SHAPE_SW = Shapes.or(FLOOR, WEST_WALL,  box(2,  1,  14, 16, 12, 16));
+    // SE: east + south walls. South wall runs x:0→14.
+    private static final VoxelShape SHAPE_SE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  14, 14, 12, 16));
 
     public StompingBasinBlock(Properties properties) {
         super(properties);
@@ -130,11 +133,40 @@ public class StompingBasinBlock extends BaseEntityBlock {
         if (!(level.getBlockEntity(pos) instanceof StompingBasinBlockEntity basin))
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        if (FluidUtil.interactWithFluidHandler(player, hand, basin.getFluidTank())) {
-            return ItemInteractionResult.CONSUME;
+        ItemStack inHand = player.getItemInHand(hand);
+
+        if (!inHand.isEmpty() && !basin.getFluidTank().getFluid().isEmpty()) {
+            net.neoforged.neoforge.fluids.FluidStack tankFluid = basin.getFluidTank().getFluid();
+            java.util.Optional<alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe> extraction =
+                    level.getRecipeManager()
+                            .getAllRecipesFor(alabaster.hearthandharvest.common.registry.HHModRecipeTypes.FLUID_EXTRACTION.get())
+                            .stream()
+                            .map(h -> h.value())
+                            .filter(r -> r.matches(tankFluid, inHand))
+                            .findFirst();
+
+            if (extraction.isPresent()) {
+                alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe recipe = extraction.get();
+                basin.getFluidTank().drain(recipe.getFluid().getAmount(),
+                        net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
+                inHand.shrink(1);
+                ItemStack result = recipe.getResult().copy();
+                if (!player.addItem(result)) {
+                    level.addFreshEntity(new net.minecraft.world.entity.item.ItemEntity(
+                            level, player.getX(), player.getY(), player.getZ(), result));
+                }
+                return ItemInteractionResult.CONSUME;
+            }
+
+            if (inHand.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null) {
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
         }
 
-        ItemStack inHand = player.getItemInHand(hand);
+        if (!inHand.isEmpty() && inHand.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
         if (!inHand.isEmpty()) {
             if (!inHand.is(HHModTags.STOMPABLE)) {
                 player.displayClientMessage(Component.translatable(
@@ -144,7 +176,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
             ItemStack remainder = basin.insertItem(inHand.copy());
             if (remainder.getCount() < inHand.getCount()) {
                 player.setItemInHand(hand, remainder.isEmpty() ? ItemStack.EMPTY : remainder);
-                level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.4f, 0.8f + level.random.nextFloat() * 0.4f);
+                level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
+                        0.4f, 0.8f + level.random.nextFloat() * 0.4f);
                 return ItemInteractionResult.CONSUME;
             }
         }

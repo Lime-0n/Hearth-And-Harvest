@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.data;
 
+import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.data.recipe.*;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
@@ -27,5 +28,6 @@ public class Recipes extends RecipeProvider
         CuttingRecipes.register(output);
         AgingRecipes.register(output);
         StompingRecipes.register(output);
+        FluidExtractionRecipes.register(output);
     }
 }

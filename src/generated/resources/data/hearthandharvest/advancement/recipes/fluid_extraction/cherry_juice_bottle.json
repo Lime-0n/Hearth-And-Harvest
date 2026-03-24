@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:green_grapes"
+            "items": "hearthandharvest:cherry"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:stomping/green_grape_wine"
+        "recipe": "hearthandharvest:fluid_extraction/cherry_juice_bottle"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:stomping/green_grape_wine"
+      "hearthandharvest:fluid_extraction/cherry_juice_bottle"
     ]
   }
 }

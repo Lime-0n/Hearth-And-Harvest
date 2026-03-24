@@ -345,6 +345,12 @@
   "fluid_type.hearthandharvest.moonshine": "Moonshine",
   "fluid_type.hearthandharvest.root_beer": "Root Beer",
   "fluid_type.hearthandharvest.hard_cider": "Hard Cider",
+  "fluid_type.hearthandharvest.blueberry_juice": "Blueberry Juice",
+  "fluid_type.hearthandharvest.cherry_juice": "Cherry Juice",
+  "fluid_type.hearthandharvest.green_grape_juice": "Green Grape Juice",
+  "fluid_type.hearthandharvest.red_grape_juice": "Red Grape Juice",
+  "fluid_type.hearthandharvest.raspberry_juice": "Raspberry Juice",
+  "fluid_type.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips",

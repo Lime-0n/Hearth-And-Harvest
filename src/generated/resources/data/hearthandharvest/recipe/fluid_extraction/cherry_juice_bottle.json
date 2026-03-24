@@ -1,0 +1,14 @@
+{
+  "type": "hearthandharvest:fluid_extraction",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "fluid": {
+    "amount": 250,
+    "id": "hearthandharvest:cherry_juice"
+  },
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:cherry_juice"
+  }
+}

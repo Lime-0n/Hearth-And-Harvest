@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:red_grapes"
+            "items": "hearthandharvest:blueberries"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:stomping/red_grape_wine"
+        "recipe": "hearthandharvest:stomping/blueberry_juice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:stomping/red_grape_wine"
+      "hearthandharvest:stomping/blueberry_juice"
     ]
   }
 }
