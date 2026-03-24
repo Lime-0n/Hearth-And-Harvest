@@ -8,7 +8,9 @@ import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
@@ -67,6 +69,58 @@ public class StompingBasinBlockEntity extends BlockEntity {
         @Override
         public int getSlotLimit(int slot) {
             return itemSlotLimit;
+        }
+
+        @Override
+        protected int getStackLimit(int slot, ItemStack stack) {
+            return getSlotLimit(slot);
+        }
+
+        private static final String KEY_ITEMS = "Items";
+        private static final String KEY_SLOT = "Slot";
+        private static final String KEY_STACK = "Stack";
+        private static final String KEY_EXTRA_COUNT = "ExtraCount";
+
+        @Override
+        public CompoundTag serializeNBT(HolderLookup.Provider registries) {
+            ListTag listTag = new ListTag();
+            for (int i = 0; i < getSlots(); i++) {
+                ItemStack stack = getStackInSlot(i);
+                if (stack.isEmpty()) continue;
+                CompoundTag entry = new CompoundTag();
+                entry.putByte(KEY_SLOT, (byte) i);
+                ItemStack single = stack.copyWithCount(1);
+                entry.put(KEY_STACK, single.save(registries));
+                entry.putInt(KEY_EXTRA_COUNT, stack.getCount());
+                listTag.add(entry);
+            }
+            CompoundTag tag = new CompoundTag();
+            tag.put(KEY_ITEMS, listTag);
+            tag.putInt("Size", getSlots());
+            return tag;
+        }
+
+        @Override
+        public void deserializeNBT(HolderLookup.Provider registries, CompoundTag tag) {
+            ListTag listTag = tag.getList(KEY_ITEMS, Tag.TAG_COMPOUND);
+            for (int i = 0; i < listTag.size(); i++) {
+                CompoundTag entry = listTag.getCompound(i);
+                int slot = entry.getByte(KEY_SLOT) & 0xFF;
+                if (slot >= getSlots()) continue;
+
+                if (entry.contains(KEY_STACK)) {
+                    ItemStack stack = ItemStack.parseOptional(registries, entry.getCompound(KEY_STACK));
+                    if (!stack.isEmpty()) {
+                        int count = entry.contains(KEY_EXTRA_COUNT)
+                                ? entry.getInt(KEY_EXTRA_COUNT)
+                                : stack.getCount();
+                        stack.setCount(count);
+                        setStackInSlot(slot, stack);
+                    }
+                } else {
+                    setStackInSlot(slot, ItemStack.parseOptional(registries, entry));
+                }
+            }
         }
     }
 

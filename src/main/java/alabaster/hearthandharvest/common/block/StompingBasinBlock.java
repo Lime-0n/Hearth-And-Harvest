@@ -183,8 +183,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
                 player.setItemInHand(hand, remainder.isEmpty() ? ItemStack.EMPTY : remainder);
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
                         0.4f, 0.8f + level.random.nextFloat() * 0.4f);
-                return ItemInteractionResult.CONSUME;
             }
+            return ItemInteractionResult.CONSUME;
         }
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

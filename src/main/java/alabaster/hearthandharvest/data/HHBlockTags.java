@@ -211,7 +211,6 @@ public class HHBlockTags extends BlockTagsProvider {
     }
 
     protected void registerCompatTags() {
-
         tag(CompatibilityTags.SERENE_SEASONS_SPRING_CROPS_BLOCK).add(
                 HHModBlocks.BLUEBERRY_BUSH.get(),
                 HHModBlocks.RASPBERRY_BUSH.get(),
@@ -250,6 +249,7 @@ public class HHBlockTags extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_AXE).add(
                 HHModBlocks.TREE_TAPPER.get(),
                 HHModBlocks.CASK.get(),
+                HHModBlocks.STOMPING_BASIN.get(),
                 HHModBlocks.CRATE.get(),
                 HHModBlocks.OAK_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_HALF_CABINET.get(),
