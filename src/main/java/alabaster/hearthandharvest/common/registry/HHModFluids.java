@@ -97,4 +97,8 @@ public class HHModFluids {
     public static final Supplier<HHFluidType> MELON_JUICE = FLUIDS.register("melon_juice", () -> new MelonJuiceFluid(true));
     public static final Supplier<HHFluidType> FLOWING_MELON_JUICE = FLUIDS.register("flowing_melon_juice", () -> new MelonJuiceFluid(false));
 
+    public static final Supplier<FluidType> GLOW_BERRY_JUICE_TYPE = FLUID_TYPES.register("glow_berry_juice", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400).lightLevel(8)));
+    public static final Supplier<HHFluidType> GLOW_BERRY_JUICE = FLUIDS.register("glow_berry_juice", () -> new GlowBerryJuiceFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_GLOW_BERRY_JUICE = FLUIDS.register("flowing_glow_berry_juice", () -> new GlowBerryJuiceFluid(false));
+
 }

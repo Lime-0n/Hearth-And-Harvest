@@ -344,11 +344,14 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CROW_FEATHER.get());
 
         tag(HHCommonTags.DRINKS_JUICE)
+                .add(ModItems.MELON_JUICE.get())
                 .add(HHModItems.BLUEBERRY_JUICE.get())
                 .add(HHModItems.RASPBERRY_JUICE.get())
                 .add(HHModItems.GREEN_GRAPE_JUICE.get())
                 .add(HHModItems.RED_GRAPE_JUICE.get())
-                .add(HHModItems.CHERRY_JUICE.get());
+                .add(HHModItems.CHERRY_JUICE.get())
+                .add(HHModItems.GLOW_BERRY_JUICE.get())
+                .add(HHModItems.SWEET_BERRY_JUICE.get());
 
         tag(HHCommonTags.DRINKS_ALCOHOL)
                 .add(HHModItems.BLUEBERRY_WINE.get())

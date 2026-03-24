@@ -49,8 +49,13 @@ public class StompingRecipes {
                 .build(output);
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.MELON_JUICE.get(), HALF_BUCKET))
-                .addIngredient(Items.MELON, 4)
-                .unlockedByAnyIngredient(Items.MELON)
+                .addIngredient(Items.MELON_SLICE, 4)
+                .unlockedByAnyIngredient(Items.MELON_SLICE)
+                .build(output);
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GLOW_BERRY_JUICE.get(), HALF_BUCKET))
+                .addIngredient(Items.GLOW_BERRIES, 4)
+                .unlockedByAnyIngredient(Items.GLOW_BERRIES)
                 .build(output);
     }
 }

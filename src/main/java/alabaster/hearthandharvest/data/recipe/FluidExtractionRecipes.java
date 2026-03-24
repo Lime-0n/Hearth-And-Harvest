@@ -52,14 +52,20 @@ public class FluidExtractionRecipes {
 
         FluidExtractionRecipeBuilder
                 .extraction(new FluidStack(HHModFluids.SWEET_BERRY_JUICE.get(), BOTTLE),
-                        Items.GLASS_BOTTLE, HHModItems.SWEET_BERRY_WINE.get())
+                        Items.GLASS_BOTTLE, HHModItems.SWEET_BERRY_JUICE.get())
                 .unlockedByAnyIngredient(Items.SWEET_BERRIES)
                 .build(output, "sweet_berry_juice_bottle");
 
         FluidExtractionRecipeBuilder
+                .extraction(new FluidStack(HHModFluids.GLOW_BERRY_JUICE.get(), BOTTLE),
+                        Items.GLASS_BOTTLE, HHModItems.GLOW_BERRY_JUICE.get())
+                .unlockedByAnyIngredient(Items.GLOW_BERRIES)
+                .build(output, "glow_berry_juice_bottle");
+
+        FluidExtractionRecipeBuilder
                 .extraction(new FluidStack(HHModFluids.MELON_JUICE.get(), BOTTLE),
                         Items.GLASS_BOTTLE, ModItems.MELON_JUICE.get())
-                .unlockedByAnyIngredient(Items.MELON)
+                .unlockedByAnyIngredient(Items.MELON_SLICE)
                 .build(output, "melon_juice_bottle");
     }
 

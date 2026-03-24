@@ -387,15 +387,19 @@ public class HHModItems {
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.BLUEBERRY_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.BLUEBERRY_JUICE), false, false));
     public static final Supplier<Item> CHERRY_JUICE = registerWithTab("cherry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.CHERRY_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.CHERRY_JUICE), false, false));
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), false, false));
     public static final Supplier<Item> RED_GRAPE_JUICE = registerWithTab("red_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), true, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+    public static final Supplier<Item> SWEET_BERRY_JUICE = registerWithTab("sweet_berry_juice",
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.SWEET_BERRY_JUICE), false, false));
+    public static final Supplier<Item> GLOW_BERRY_JUICE = registerWithTab("glow_berry_juice",
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GLOW_BERRY_JUICE), true, false));
 
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",

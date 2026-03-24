@@ -46,6 +46,12 @@ public class HHFoodValues {
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties GRAPE_JUICE = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.3f).build();
+    public static final FoodProperties SWEET_BERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(3).saturationModifier(0.3f).build();
+    public static final FoodProperties GLOW_BERRY_JUICE = new FoodProperties.Builder()
+            .nutrition(3).saturationModifier(0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.GLOWING, 1200, 0), 1.0F)
+            .build();
 
     // Alcoholic Beverages
     public static final FoodProperties MEAD = new FoodProperties.Builder()

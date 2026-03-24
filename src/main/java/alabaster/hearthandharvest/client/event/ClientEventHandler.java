@@ -398,5 +398,20 @@ public class ClientEventHandler {
                 return FLOWING_MELON_JUICE;
             }
         }, HHModFluids.MELON_JUICE_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_GLOW_BERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_juice_still");
+            private static final ResourceLocation FLOWING_GLOW_BERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_juice_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_GLOW_BERRY_JUICE;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_GLOW_BERRY_JUICE;
+            }
+        }, HHModFluids.GLOW_BERRY_JUICE_TYPE.get());
     }
 }

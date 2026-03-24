@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:melon_slice"
+            "items": "minecraft:glow_berries"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:fluid_extraction/melon_juice_bottle"
+        "recipe": "hearthandharvest:stomping/glow_berry_juice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:fluid_extraction/melon_juice_bottle"
+      "hearthandharvest:stomping/glow_berry_juice"
     ]
   }
 }

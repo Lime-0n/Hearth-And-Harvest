@@ -179,6 +179,8 @@
   "item.hearthandharvest.blueberry_juice": "Blueberry Juice",
   "item.hearthandharvest.red_grape_juice": "Red Grape Juice",
   "item.hearthandharvest.green_grape_juice": "Green Grape Juice",
+  "item.hearthandharvest.glow_berry_juice": "Glow Berry Juice",
+  "item.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
 
   "block.hearthandharvest.raspberry_jam": "Raspberry Jam",
   "block.hearthandharvest.cherry_jam": "Cherry Jam",
@@ -351,6 +353,7 @@
   "fluid_type.hearthandharvest.raspberry_juice": "Raspberry Juice",
   "fluid_type.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
   "fluid_type.hearthandharvest.melon_juice": "Melon Juice",
+  "fluid_type.hearthandharvest.glow_berry_juice": "Glow Berry Juice",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips",
