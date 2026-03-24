@@ -1,7 +1,9 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.StompingBasinBlockEntity;
+import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -13,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -33,7 +36,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -47,9 +53,9 @@ public class StompingBasinBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() { return CODEC; }
 
-    private static final VoxelShape FLOOR      = box(0,  0,  0,  16, 1,  16);
-    private static final VoxelShape WEST_WALL  = box(0,  1,  0,  2,  12, 16);
-    private static final VoxelShape EAST_WALL  = box(14, 1,  0,  16, 12, 16);
+    private static final VoxelShape FLOOR = box(0,  0,  0,  16, 1,  16);
+    private static final VoxelShape WEST_WALL = box(0,  1,  0,  2,  12, 16);
+    private static final VoxelShape EAST_WALL = box(14, 1,  0,  16, 12, 16);
     private static final VoxelShape NORTH_WALL = box(2,  1,  0,  14, 12, 2);
     private static final VoxelShape SOUTH_WALL = box(2,  1,  14, 14, 12, 16);
     public static final VoxelShape SHAPE = Shapes.or(FLOOR, WEST_WALL, EAST_WALL, NORTH_WALL, SOUTH_WALL);
@@ -136,34 +142,33 @@ public class StompingBasinBlock extends BaseEntityBlock {
         ItemStack inHand = player.getItemInHand(hand);
 
         if (!inHand.isEmpty() && !basin.getFluidTank().getFluid().isEmpty()) {
-            net.neoforged.neoforge.fluids.FluidStack tankFluid = basin.getFluidTank().getFluid();
-            java.util.Optional<alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe> extraction =
+            FluidStack tankFluid = basin.getFluidTank().getFluid();
+            java.util.Optional<FluidExtractionRecipe> extraction =
                     level.getRecipeManager()
-                            .getAllRecipesFor(alabaster.hearthandharvest.common.registry.HHModRecipeTypes.FLUID_EXTRACTION.get())
+                            .getAllRecipesFor(HHModRecipeTypes.FLUID_EXTRACTION.get())
                             .stream()
                             .map(h -> h.value())
                             .filter(r -> r.matches(tankFluid, inHand))
                             .findFirst();
 
             if (extraction.isPresent()) {
-                alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe recipe = extraction.get();
-                basin.getFluidTank().drain(recipe.getFluid().getAmount(),
-                        net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
+                FluidExtractionRecipe recipe = extraction.get();
+                basin.getFluidTank().drain(recipe.getFluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
                 inHand.shrink(1);
                 ItemStack result = recipe.getResult().copy();
                 if (!player.addItem(result)) {
-                    level.addFreshEntity(new net.minecraft.world.entity.item.ItemEntity(
+                    level.addFreshEntity(new ItemEntity(
                             level, player.getX(), player.getY(), player.getZ(), result));
                 }
                 return ItemInteractionResult.CONSUME;
             }
 
-            if (inHand.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null) {
+            if (inHand.getCapability(Capabilities.FluidHandler.ITEM) != null) {
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
 
-        if (!inHand.isEmpty() && inHand.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null) {
+        if (!inHand.isEmpty() && inHand.getCapability(Capabilities.FluidHandler.ITEM) != null) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
@@ -235,9 +240,9 @@ public class StompingBasinBlock extends BaseEntityBlock {
         BlockPos sePos = nwPos.east().south();
 
         StompingBasinBlockEntity controllerBE = getBE(level, nwPos);
-        StompingBasinBlockEntity neBE     = getBE(level, nePos);
-        StompingBasinBlockEntity swBE     = getBE(level, swPos);
-        StompingBasinBlockEntity seBE     = getBE(level, sePos);
+        StompingBasinBlockEntity neBE = getBE(level, nePos);
+        StompingBasinBlockEntity swBE = getBE(level, swPos);
+        StompingBasinBlockEntity seBE = getBE(level, sePos);
         if (controllerBE == null || neBE == null || swBE == null || seBE == null) return;
 
         level.setBlock(nwPos, level.getBlockState(nwPos).setValue(MULTIBLOCK_PART, MultiblockPart.CONTROLLER), 3);
@@ -308,8 +313,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(
-            Level level, BlockState state, BlockEntityType<T> type) {
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide) return null;
         return createTickerHelper(type, HHModBlockEntities.STOMPING_BASIN.get(),
                 StompingBasinBlockEntity::serverTick);

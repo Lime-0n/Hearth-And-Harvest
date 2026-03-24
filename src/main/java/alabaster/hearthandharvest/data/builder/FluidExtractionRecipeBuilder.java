@@ -26,43 +26,26 @@ public class FluidExtractionRecipeBuilder implements RecipeBuilder {
 
     private final FluidStack fluid;
     private final Ingredient container;
-    private final ItemStack  result;
+    private final ItemStack result;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
     private FluidExtractionRecipeBuilder(FluidStack fluid, Ingredient container, ItemStack result) {
-        this.fluid     = fluid;
+        this.fluid = fluid;
         this.container = container;
-        this.result    = result;
+        this.result = result;
     }
 
-    // ── Factory ───────────────────────────────────────────────────────────────
-
-    /**
-     * Drain {@code fluid} from the basin when the player holds {@code container},
-     * producing {@code result}.
-     */
-    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid,
-                                                          ItemLike container,
-                                                          ItemLike result) {
+    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid, ItemLike container, ItemLike result) {
         return extraction(fluid, container, result, 1);
     }
 
-    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid,
-                                                          ItemLike container,
-                                                          ItemLike result,
-                                                          int count) {
-        return new FluidExtractionRecipeBuilder(fluid, Ingredient.of(container),
-                new ItemStack(result, count));
+    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid, ItemLike container, ItemLike result, int count) {
+        return new FluidExtractionRecipeBuilder(fluid, Ingredient.of(container), new ItemStack(result, count));
     }
 
-    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid,
-                                                          Ingredient container,
-                                                          ItemLike result,
-                                                          int count) {
+    public static FluidExtractionRecipeBuilder extraction(FluidStack fluid, Ingredient container, ItemLike result, int count) {
         return new FluidExtractionRecipeBuilder(fluid, container, new ItemStack(result, count));
     }
-
-    // ── RecipeBuilder contract ────────────────────────────────────────────────
 
     @Override
     public RecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
@@ -71,18 +54,19 @@ public class FluidExtractionRecipeBuilder implements RecipeBuilder {
     }
 
     public FluidExtractionRecipeBuilder unlockedByAnyIngredient(ItemLike... items) {
-        criteria.put("has_any_ingredient",
-                InventoryChangeTrigger.TriggerInstance.hasItems(items));
+        criteria.put("has_any_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(items));
         return this;
     }
 
     @Override
-    public RecipeBuilder group(@Nullable String group) { return this; }
+    public RecipeBuilder group(@Nullable String group) {
+        return this;
+    }
 
     @Override
-    public Item getResult() { return result.getItem(); }
-
-    // ── Build ─────────────────────────────────────────────────────────────────
+    public Item getResult() {
+        return result.getItem();
+    }
 
     public void build(RecipeOutput output) {
         ResourceLocation loc = BuiltInRegistries.ITEM.getKey(result.getItem());

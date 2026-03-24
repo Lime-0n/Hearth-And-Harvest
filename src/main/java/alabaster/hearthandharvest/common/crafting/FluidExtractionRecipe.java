@@ -17,25 +17,6 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
-/**
- * Defines how a container item collects fluid from a Stomping Basin.
- *
- * <p>JSON example:
- * <pre>{@code
- * {
- *   "type": "hearthandarvest:fluid_extraction",
- *   "fluid": { "id": "hearthandarvest:blueberry_juice", "amount": 250 },
- *   "container": { "item": "minecraft:glass_bottle" },
- *   "result": { "id": "hearthandarvest:blueberry_juice_bottle", "count": 1 }
- * }
- * }</pre>
- *
- * <ul>
- *   <li>{@code fluid}     — the fluid that must be in the basin, and how many mB to drain.</li>
- *   <li>{@code container} — the item the player must be holding (bottle, bucket, jug, etc.).</li>
- *   <li>{@code result}    — the item produced and given to the player.</li>
- * </ul>
- */
 public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
 
     private final FluidStack fluid;
@@ -43,34 +24,22 @@ public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
     private final ItemStack result;
 
     public FluidExtractionRecipe(FluidStack fluid, Ingredient container, ItemStack result) {
-        this.fluid     = fluid;
+        this.fluid = fluid;
         this.container = container;
-        this.result    = result;
+        this.result = result;
     }
 
-    // ── Matching ──────────────────────────────────────────────────────────────
-
-    /**
-     * Not used for extraction — matching is done in the block directly because we
-     * need both the basin's tank and the player's held item.
-     */
     @Override
     public boolean matches(RecipeWrapper wrapper, Level level) {
         return false;
     }
 
-    /**
-     * Returns true if this recipe applies for the given fluid stack in the basin
-     * and the given container item in the player's hand.
-     */
     public boolean matches(FluidStack tankFluid, ItemStack heldItem) {
         if (!container.test(heldItem)) return false;
         if (tankFluid.isEmpty()) return false;
         if (!tankFluid.is(fluid.getFluid())) return false;
         return tankFluid.getAmount() >= fluid.getAmount();
     }
-
-    // ── Recipe contract ───────────────────────────────────────────────────────
 
     @Override
     public ItemStack assemble(RecipeWrapper wrapper, HolderLookup.Provider registries) {
@@ -81,7 +50,9 @@ public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
     public boolean canCraftInDimensions(int w, int h) { return true; }
 
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider registries) { return result; }
+    public ItemStack getResultItem(HolderLookup.Provider registries) {
+        return result;
+    }
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
@@ -100,16 +71,15 @@ public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
         return HHModRecipeTypes.FLUID_EXTRACTION.get();
     }
 
-    // ── Accessors ─────────────────────────────────────────────────────────────
-
-    /** The fluid to drain from the basin (type + amount). */
-    public FluidStack getFluid()     { return fluid; }
-    /** The container item the player must hold. */
-    public Ingredient getContainer() { return container; }
-    /** The item produced and given to the player. */
-    public ItemStack  getResult()    { return result; }
-
-    // ── Serializer ────────────────────────────────────────────────────────────
+    public FluidStack getFluid() {
+        return fluid;
+    }
+    public Ingredient getContainer() {
+        return container;
+    }
+    public ItemStack  getResult() {
+        return result;
+    }
 
     public static class Serializer implements RecipeSerializer<FluidExtractionRecipe> {
 
@@ -132,7 +102,9 @@ public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
         public Serializer() {}
 
         @Override
-        public MapCodec<FluidExtractionRecipe> codec() { return CODEC; }
+        public MapCodec<FluidExtractionRecipe> codec() {
+            return CODEC;
+        }
 
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, FluidExtractionRecipe> streamCodec() {
@@ -140,9 +112,9 @@ public class FluidExtractionRecipe implements Recipe<RecipeWrapper> {
         }
 
         private static FluidExtractionRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-            FluidStack fluid     = FluidStack.STREAM_CODEC.decode(buf);
+            FluidStack fluid = FluidStack.STREAM_CODEC.decode(buf);
             Ingredient container = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-            ItemStack  result    = ItemStack.STREAM_CODEC.decode(buf);
+            ItemStack result = ItemStack.STREAM_CODEC.decode(buf);
             return new FluidExtractionRecipe(fluid, container, result);
         }
 
