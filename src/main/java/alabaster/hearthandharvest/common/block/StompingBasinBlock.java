@@ -4,11 +4,9 @@ import alabaster.hearthandharvest.common.block.entity.StompingBasinBlockEntity;
 import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
-import alabaster.hearthandharvest.common.tag.HHModTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -38,7 +36,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -173,11 +170,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
         }
 
         if (!inHand.isEmpty()) {
-            if (!inHand.is(HHModTags.STOMPABLE)) {
-                player.displayClientMessage(Component.translatable(
-                        "block.hearthandharvest.stomping_basin.invalid_item"), true);
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
             ItemStack remainder = basin.insertItem(inHand.copy());
             if (remainder.getCount() < inHand.getCount()) {
                 player.setItemInHand(hand, remainder.isEmpty() ? ItemStack.EMPTY : remainder);

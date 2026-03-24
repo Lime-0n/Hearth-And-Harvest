@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.data.builder.StompingBasinRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class StompingRecipes {
@@ -40,6 +41,16 @@ public class StompingRecipes {
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GREEN_GRAPE_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.GREEN_GRAPES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
+                .build(output);
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.SWEET_BERRY_JUICE.get(), HALF_BUCKET))
+                .addIngredient(Items.SWEET_BERRIES, 4)
+                .unlockedByAnyIngredient(Items.SWEET_BERRIES)
+                .build(output);
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.MELON_JUICE.get(), HALF_BUCKET))
+                .addIngredient(Items.MELON, 4)
+                .unlockedByAnyIngredient(Items.MELON)
                 .build(output);
     }
 }

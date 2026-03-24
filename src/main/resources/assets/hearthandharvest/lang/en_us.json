@@ -20,7 +20,6 @@
   "hearthandharvest.container.recipe_book.ageable": "Showing Ageables",
 
   "block.hearthandharvest.stomping_basin": "Stomping Basin",
-  "block.hearthandharvest.stomping_basin.invalid_item": "I don't think I should stomp these...",
 
   "block.hearthandharvest.jar": "Jar",
   "block.hearthandharvest.jug": "Jug",
@@ -351,6 +350,7 @@
   "fluid_type.hearthandharvest.red_grape_juice": "Red Grape Juice",
   "fluid_type.hearthandharvest.raspberry_juice": "Raspberry Juice",
   "fluid_type.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
+  "fluid_type.hearthandharvest.melon_juice": "Melon Juice",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
   "item.hearthandharvest.raspberry_pips": "Raspberry Pips",

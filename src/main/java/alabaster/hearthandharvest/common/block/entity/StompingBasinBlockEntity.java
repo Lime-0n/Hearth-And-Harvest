@@ -47,8 +47,6 @@ public class StompingBasinBlockEntity extends BlockEntity {
     public static final int SOLO_TANK_CAPACITY     = 8_000;
     public static final int COMBINED_TANK_CAPACITY = 32_000;
 
-    public static final TagKey<Item> VALID_INPUT_TAG = HHModTags.STOMPABLE;
-
     private MultiblockPart role = MultiblockPart.NONE;
     @Nullable private BlockPos controllerPos = null;
 
@@ -147,7 +145,6 @@ public class StompingBasinBlockEntity extends BlockEntity {
 
     public ItemStack insertItem(ItemStack toInsert) {
         if (toInsert.isEmpty()) return ItemStack.EMPTY;
-        if (!toInsert.is(VALID_INPUT_TAG)) return toInsert;
 
         if (role == MultiblockPart.MEMBER) {
             StompingBasinBlockEntity controller = getControllerBE();

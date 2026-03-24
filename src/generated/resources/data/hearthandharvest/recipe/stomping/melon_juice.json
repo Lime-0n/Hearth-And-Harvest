@@ -1,0 +1,21 @@
+{
+  "type": "hearthandharvest:stomping",
+  "ingredients": [
+    {
+      "item": "minecraft:melon"
+    },
+    {
+      "item": "minecraft:melon"
+    },
+    {
+      "item": "minecraft:melon"
+    },
+    {
+      "item": "minecraft:melon"
+    }
+  ],
+  "result_fluid": {
+    "amount": 500,
+    "id": "hearthandharvest:melon_juice"
+  }
+}

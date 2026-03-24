@@ -6,6 +6,7 @@ import alabaster.hearthandharvest.data.builder.FluidExtractionRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class FluidExtractionRecipes {
 
@@ -48,6 +49,18 @@ public class FluidExtractionRecipes {
                         Items.GLASS_BOTTLE, HHModItems.GREEN_GRAPE_JUICE.get())
                 .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
                 .build(output, "green_grape_juice_bottle");
+
+        FluidExtractionRecipeBuilder
+                .extraction(new FluidStack(HHModFluids.SWEET_BERRY_JUICE.get(), BOTTLE),
+                        Items.GLASS_BOTTLE, HHModItems.SWEET_BERRY_WINE.get())
+                .unlockedByAnyIngredient(Items.SWEET_BERRIES)
+                .build(output, "sweet_berry_juice_bottle");
+
+        FluidExtractionRecipeBuilder
+                .extraction(new FluidStack(HHModFluids.MELON_JUICE.get(), BOTTLE),
+                        Items.GLASS_BOTTLE, ModItems.MELON_JUICE.get())
+                .unlockedByAnyIngredient(Items.MELON)
+                .build(output, "melon_juice_bottle");
     }
 
     private static void bucketJuices(RecipeOutput output) {

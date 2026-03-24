@@ -99,13 +99,6 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(Items.EGG)
                 .add(Items.TURTLE_EGG);
 
-        tag(HHModTags.STOMPABLE)
-                .add(HHModItems.GREEN_GRAPES.get())
-                .add(HHModItems.RED_GRAPES.get())
-                .add(HHModItems.BLUEBERRIES.get())
-                .add(HHModItems.RASPBERRY.get())
-                .add(HHModItems.CHERRY.get());
-
         tag(HHModTags.JAMS)
                 .add(HHModItems.GRAPE_JAM.get())
                 .add(HHModItems.CHERRY_JAM.get())
