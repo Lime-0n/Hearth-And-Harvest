@@ -5,17 +5,19 @@
     "C": {
       "item": "minecraft:copper_ingot"
     },
+    "P": {
+      "tag": "minecraft:planks"
+    },
     "S": {
       "tag": "minecraft:wooden_slabs"
     }
   },
   "pattern": [
-    "SSS",
     "C C",
-    "SSS"
+    "PSP"
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:cask"
+    "id": "hearthandharvest:stomping_basin"
   }
 }

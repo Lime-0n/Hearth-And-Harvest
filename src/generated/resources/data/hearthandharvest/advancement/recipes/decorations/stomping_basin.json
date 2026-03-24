@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_red_grapes": {
+    "has_copper": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:red_grapes"
+            "items": "minecraft:copper_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "farmersdelight:cooking/red_grape_juice"
+        "recipe": "hearthandharvest:stomping_basin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_red_grapes"
+      "has_copper"
     ]
   ],
   "rewards": {
     "recipes": [
-      "farmersdelight:cooking/red_grape_juice"
+      "hearthandharvest:stomping_basin"
     ]
   }
 }

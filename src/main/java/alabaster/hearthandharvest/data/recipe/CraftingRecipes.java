@@ -48,10 +48,18 @@ public class CraftingRecipes
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.CASK.get(), 1)
                 .pattern("SSS")
-                .pattern("CCC")
+                .pattern("C C")
                 .pattern("SSS")
                 .define('C', Items.COPPER_INGOT)
                 .define('S', ItemTags.WOODEN_SLABS)
+                .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.STOMPING_BASIN.get(), 1)
+                .pattern("C C")
+                .pattern("PSP")
+                .define('C', Items.COPPER_INGOT)
+                .define('S', ItemTags.WOODEN_SLABS)
+                .define('P', ItemTags.PLANKS)
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.JAR.get(), 4)
