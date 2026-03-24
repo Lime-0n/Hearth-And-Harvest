@@ -9,18 +9,9 @@
   "heat_requirement": "heated",
   "ingredients": [
     {
-      "item": "hearthandharvest:green_grapes"
-    },
-    {
-      "item": "hearthandharvest:green_grapes"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "type": "fluid_tag",
+      "type": "neoforge:single",
       "amount": 500,
-      "fluid_tag": "c:water"
+      "fluid": "hearthandharvest:green_grape_juice"
     }
   ],
   "results": [

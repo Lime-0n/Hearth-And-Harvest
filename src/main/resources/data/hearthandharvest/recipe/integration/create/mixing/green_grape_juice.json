@@ -1,0 +1,29 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:green_grapes"
+    },
+    {
+      "item": "hearthandharvest:green_grapes"
+    },
+    {
+      "item": "hearthandharvest:green_grapes"
+    },
+    {
+      "item": "hearthandharvest:green_grapes"
+    }
+  ],
+  "results": [
+    {
+      "amount": 500,
+      "id": "hearthandharvest:green_grape_juice"
+    }
+  ]
+}

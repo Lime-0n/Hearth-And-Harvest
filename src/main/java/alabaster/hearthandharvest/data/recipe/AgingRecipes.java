@@ -51,50 +51,6 @@ public class AgingRecipes {
     }
 
     private static void ageDrinks(RecipeOutput output) {
-        CaskRecipeBuilder.caskRecipe(HHModItems.BLUEBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.BLUEBERRY_JUICE.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.CHERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.CHERRY_JUICE.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.CHERRY.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.RASPBERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.RASPBERRY_JUICE.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.RASPBERRY.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.RED_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.RED_GRAPE_JUICE.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.RED_GRAPES.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.GREEN_GRAPE_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.SWEET_BERRY_WINE.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(WATER_BOTTLE)
-                .addIngredient(Items.SWEET_BERRIES)
-                .addIngredient(Items.SWEET_BERRIES)
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(Items.SWEET_BERRIES)
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
         CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, NORMAL_AGING, SMALL_EXP)
                 .addIngredient(ModItems.APPLE_CIDER.get())
                 .addIngredient(Items.SUGAR)
@@ -103,10 +59,10 @@ public class AgingRecipes {
                 .build(output);
 
         CaskRecipeBuilder.caskRecipe(HHModItems.MEAD.get(), 1, NORMAL_AGING, SMALL_EXP)
-                .addIngredient(Items.HONEY_BOTTLE)
+                .addIngredient(WATER_BOTTLE)
+                .addIngredient(Items.HONEY_BLOCK)
                 .addIngredient(Items.SUGAR)
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(Items.HONEY_BOTTLE)
+                .unlockedByAnyIngredient(Items.HONEY_BLOCK)
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 

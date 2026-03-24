@@ -6,24 +6,24 @@
     }
   ],
   "type": "create:mixing",
-  "heat_requirement": "heated",
   "ingredients": [
     {
-      "item": "minecraft:honey_block"
+      "item": "minecraft:melon_slice"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:melon_slice"
     },
     {
-      "type": "fluid_tag",
-      "amount": 500,
-      "fluid_tag": "c:water"
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "minecraft:melon_slice"
     }
   ],
   "results": [
     {
       "amount": 500,
-      "id": "hearthandharvest:mead"
+      "id": "hearthandharvest:melon_juice"
     }
   ]
 }

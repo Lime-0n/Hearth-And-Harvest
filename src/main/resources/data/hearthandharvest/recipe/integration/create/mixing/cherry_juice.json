@@ -6,24 +6,24 @@
     }
   ],
   "type": "create:mixing",
-  "heat_requirement": "heated",
   "ingredients": [
     {
-      "item": "minecraft:honey_block"
+      "item": "hearthandharvest:cherry"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "hearthandharvest:cherry"
     },
     {
-      "type": "fluid_tag",
-      "amount": 500,
-      "fluid_tag": "c:water"
+      "item": "hearthandharvest:cherry"
+    },
+    {
+      "item": "hearthandharvest:cherry"
     }
   ],
   "results": [
     {
       "amount": 500,
-      "id": "hearthandharvest:mead"
+      "id": "hearthandharvest:cherry_juice"
     }
   ]
 }

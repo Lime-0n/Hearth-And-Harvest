@@ -13,12 +13,12 @@
     {
       "type": "fluid_stack",
       "amount": 250,
-      "fluid": "hearthandharvest:moonshine"
+      "fluid": "hearthandharvest:melon_juice"
     }
   ],
   "results": [
     {
-      "id": "hearthandharvest:moonshine"
+      "id": "farmersdelight:melon_juice"
     }
   ]
 }

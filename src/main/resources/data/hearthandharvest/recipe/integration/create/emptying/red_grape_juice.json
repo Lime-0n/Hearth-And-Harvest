@@ -11,7 +11,7 @@
       "type": "neoforge:compound",
       "ingredients": [
         {
-          "item": "hearthandharvest:red_grape_wine"
+          "item": "hearthandharvest:red_grape_juice"
         }
       ]
     }
@@ -22,7 +22,7 @@
     },
     {
       "amount": 250,
-      "id": "hearthandharvest:red_grape_wine"
+      "id": "hearthandharvest:red_grape_juice"
     }
   ]
 }

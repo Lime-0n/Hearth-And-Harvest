@@ -4,10 +4,16 @@
   "experience": 0.35,
   "ingredients": [
     {
-      "item": "minecraft:honey_bottle"
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "items": "minecraft:potion"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:honey_block"
     },
     {
       "item": "minecraft:sugar"

@@ -13,12 +13,12 @@
     {
       "type": "fluid_stack",
       "amount": 250,
-      "fluid": "hearthandharvest:moonshine"
+      "fluid": "hearthandharvest:glow_berry_juice"
     }
   ],
   "results": [
     {
-      "id": "hearthandharvest:moonshine"
+      "id": "hearthandharvest:glow_berry_juice"
     }
   ]
 }
