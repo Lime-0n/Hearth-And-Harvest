@@ -1,6 +1,6 @@
 {
   "type": "hearthandharvest:aging",
-  "cookingtime": 600,
+  "cookingtime": 1200,
   "experience": 0.35,
   "ingredients": [
     {

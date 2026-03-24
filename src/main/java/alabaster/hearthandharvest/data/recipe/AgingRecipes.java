@@ -21,6 +21,7 @@ public class AgingRecipes {
     public static final int FAST_AGING = 300;      // 1.25 minutes
     public static final int NORMAL_AGING = 600;    // 2.5 minutes
     public static final int SLOW_AGING = 1200;     // 5 minutes
+    public static final int VERY_SLOW = 2400;      // 10 minutes
 
     public static final float SMALL_EXP = 0.35F;
     public static final float MEDIUM_EXP = 1.0F;
@@ -51,14 +52,50 @@ public class AgingRecipes {
     }
 
     private static void ageDrinks(RecipeOutput output) {
-        CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, NORMAL_AGING, SMALL_EXP)
+        CaskRecipeBuilder.caskRecipe(HHModItems.BLUEBERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.BLUEBERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.BLUEBERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.CHERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.CHERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.CHERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.RASPBERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.RASPBERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RASPBERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.RED_GRAPE_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.RED_GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.RED_GRAPE_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.GREEN_GRAPE_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.GREEN_GRAPE_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.SWEET_BERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.SWEET_BERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.SWEET_BERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, SLOW_AGING, SMALL_EXP)
                 .addIngredient(ModItems.APPLE_CIDER.get())
                 .addIngredient(Items.SUGAR)
                 .unlockedByAnyIngredient(Items.APPLE)
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
-        CaskRecipeBuilder.caskRecipe(HHModItems.MEAD.get(), 1, NORMAL_AGING, SMALL_EXP)
+        CaskRecipeBuilder.caskRecipe(HHModItems.MEAD.get(), 1, SLOW_AGING, SMALL_EXP)
                 .addIngredient(WATER_BOTTLE)
                 .addIngredient(Items.HONEY_BLOCK)
                 .addIngredient(Items.SUGAR)
@@ -66,7 +103,7 @@ public class AgingRecipes {
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
-        CaskRecipeBuilder.caskRecipe(HHModItems.ROOT_BEER.get(), 1, NORMAL_AGING, SMALL_EXP)
+        CaskRecipeBuilder.caskRecipe(HHModItems.ROOT_BEER.get(), 1, SLOW_AGING, SMALL_EXP)
                 .addIngredient(WATER_BOTTLE)
                 .addIngredient(Items.HANGING_ROOTS)
                 .addIngredient(Items.HANGING_ROOTS)
@@ -75,7 +112,7 @@ public class AgingRecipes {
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
-        CaskRecipeBuilder.caskRecipe(HHModItems.MOONSHINE.get(), 1, NORMAL_AGING, SMALL_EXP)
+        CaskRecipeBuilder.caskRecipe(HHModItems.MOONSHINE.get(), 1, SLOW_AGING, SMALL_EXP)
                 .addIngredient(WATER_BOTTLE)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(HHModItems.CORN_MEAL.get())
