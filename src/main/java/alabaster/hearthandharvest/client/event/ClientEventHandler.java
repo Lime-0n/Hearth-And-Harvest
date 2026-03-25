@@ -239,6 +239,36 @@ public class ClientEventHandler {
         }, HHModFluids.SWEET_BERRY_WINE_TYPE.get());
 
         event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_GLOW_BERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_wine_still");
+            private static final ResourceLocation FLOWING_GLOW_BERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_wine_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_GLOW_BERRY_WINE;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_GLOW_BERRY_WINE;
+            }
+        }, HHModFluids.GLOW_BERRY_WINE_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            private static final ResourceLocation STILL_MELON_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_wine_still");
+            private static final ResourceLocation FLOWING_MELON_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_wine_flow");
+
+            @Override
+            public ResourceLocation getStillTexture() {
+                return STILL_MELON_WINE;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return FLOWING_MELON_WINE;
+            }
+        }, HHModFluids.MELON_WINE_TYPE.get());
+
+        event.registerFluidType(new IClientFluidTypeExtensions() {
             private static final ResourceLocation STILL_MEAD   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_still");
             private static final ResourceLocation FLOWING_MEAD = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_flow");
 

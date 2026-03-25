@@ -88,6 +88,18 @@ public class AgingRecipes {
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
+        CaskRecipeBuilder.caskRecipe(HHModItems.GLOW_BERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(HHModItems.GLOW_BERRY_JUICE.get())
+                .unlockedByAnyIngredient(HHModItems.GLOW_BERRY_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+        CaskRecipeBuilder.caskRecipe(HHModItems.MELON_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(ModItems.MELON_JUICE.get())
+                .unlockedByAnyIngredient(ModItems.MELON_JUICE.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
         CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, SLOW_AGING, SMALL_EXP)
                 .addIngredient(ModItems.APPLE_CIDER.get())
                 .addIngredient(Items.SUGAR)

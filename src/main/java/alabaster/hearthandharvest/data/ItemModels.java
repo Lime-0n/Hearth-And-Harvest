@@ -123,6 +123,8 @@ public class ItemModels extends ItemModelProvider
         items.remove(HHModItems.GREEN_GRAPE_WINE.get());
         items.remove(HHModItems.RED_GRAPE_WINE.get());
         items.remove(HHModItems.SWEET_BERRY_WINE.get());
+        items.remove(HHModItems.GLOW_BERRY_WINE.get());
+        items.remove(HHModItems.MELON_WINE.get());
         items.remove(HHModItems.MEAD.get());
         items.remove(HHModItems.HARD_CIDER.get());
         items.remove(HHModItems.ROOT_BEER.get());

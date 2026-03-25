@@ -4,10 +4,11 @@ import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.FluidState;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
-public class GlowBerryJuiceFluid extends HHFluidType {
-    public GlowBerryJuiceFluid(boolean source) {
-        super(new Properties(HHModFluids.GLOW_BERRY_JUICE_TYPE, HHModFluids.GLOW_BERRY_JUICE, HHModFluids.FLOWING_GLOW_BERRY_JUICE), source);
+public class MelonWineFluid extends HHFluidType {
+    public MelonWineFluid(boolean source) {
+        super(new Properties(HHModFluids.MELON_WINE_TYPE, HHModFluids.MELON_WINE, HHModFluids.FLOWING_MELON_WINE), source);
     }
 
     @Override
@@ -16,6 +17,6 @@ public class GlowBerryJuiceFluid extends HHFluidType {
     }
 
     public Item getBucket() {
-        return HHModItems.GLOW_BERRY_JUICE.get();
+        return HHModItems.MELON_WINE.get();
     }
 }

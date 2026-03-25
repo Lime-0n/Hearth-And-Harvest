@@ -96,6 +96,17 @@ public class HHFoodValues {
             .effect(() -> new MobEffectInstance(MobEffects.HEAL, 0, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, BRIEF_DURATION, 0), 0.5F)
             .build();
+    public static final FoodProperties GLOW_BERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.GLOWING, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, BRIEF_DURATION, 0), 0.5F)
+            .build();
+    public static final FoodProperties MELON_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, SHORT_DURATION, 0), 1.0F)
+            .build();
     public static final FoodProperties MOONSHINE = new FoodProperties.Builder()
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)

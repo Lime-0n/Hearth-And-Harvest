@@ -382,6 +382,10 @@ public class HHModItems {
             () -> new WineBottleItem(()-> HHModFluids.GREEN_GRAPE_WINE.get(), drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> SWEET_BERRY_WINE = registerWithTab("sweet_berry_wine",
             () -> new WineBottleItem(()-> HHModFluids.SWEET_BERRY_WINE.get(), drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> GLOW_BERRY_WINE = registerWithTab("glow_berry_wine",
+            () -> new WineBottleItem(()-> HHModFluids.GLOW_BERRY_WINE.get(), drinkItem().food(HHFoodValues.GLOW_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> MELON_WINE = registerWithTab("melon_wine",
+            () -> new WineBottleItem(()-> HHModFluids.MELON_WINE.get(), drinkItem().food(HHFoodValues.MELON_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
             () -> new WineBottleItem(()-> HHModFluids.MOONSHINE.get(), drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
