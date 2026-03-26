@@ -54,76 +54,91 @@ public class HHFoodValues {
             .build();
 
     // Alcoholic Beverages
-    public static final FoodProperties MEAD = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, SHORT_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, SHORT_DURATION, 0), 1.0F)
-            .build();
-    public static final FoodProperties BLUEBERRY_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, SHORT_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.LUCK, SHORT_DURATION, 0), 1.0F)
-            .build();
-    public static final FoodProperties CHERRY_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 600, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 0), 1.0F)
-            .build();
-    public static final FoodProperties GREEN_GRAPE_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 900, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.JUMP, 900, 0), 1.0F)
-            .build();
-    public static final FoodProperties RASPBERRY_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, BRIEF_DURATION, 0), 0.5F)
-            .build();
-    public static final FoodProperties RED_GRAPE_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, BRIEF_DURATION, 0), 0.5F)
-            .build();
-    public static final FoodProperties SWEET_BERRY_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 0, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, BRIEF_DURATION, 0), 0.5F)
-            .build();
-    public static final FoodProperties GLOW_BERRY_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.GLOWING, BRIEF_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, BRIEF_DURATION, 0), 0.5F)
-            .build();
-    public static final FoodProperties MELON_WINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, SHORT_DURATION, 0), 1.0F)
-            .build();
-    public static final FoodProperties MOONSHINE = new FoodProperties.Builder()
-            .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.SATURATION, BRIEF_DURATION, 1), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SHORT_DURATION, 1), 1.0F)
-            .build();
+
+    // --- Light Drinks ---
     public static final FoodProperties ROOT_BEER = new FoodProperties.Builder()
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, SHORT_DURATION, 0), 0.5F)
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, BRIEF_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, BRIEF_DURATION, 0), 1.0F)
             .build();
+
     public static final FoodProperties HARD_CIDER = new FoodProperties.Builder()
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, SHORT_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, SHORT_DURATION, 0), 0.5F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
+            .build();
+
+    // --- Medium Drinks (Wines & Mead) ---
+    public static final FoodProperties MEAD = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, BRIEF_DURATION, 0), 1.0F)
+            .build();
+
+    public static final FoodProperties BLUEBERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.LUCK, BRIEF_DURATION, 0), 0.75F)
+            .build();
+
+    public static final FoodProperties CHERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, BRIEF_DURATION, 0), 1.0F)
+            .build();
+
+    public static final FoodProperties GREEN_GRAPE_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.JUMP, BRIEF_DURATION, 0), 1.0F)
+            .build();
+
+    public static final FoodProperties RASPBERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, SHORT_DURATION, 0), 0.5F)
+            .build();
+
+    public static final FoodProperties RED_GRAPE_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, BRIEF_DURATION, 0), 0.5F)
+            .build();
+
+    public static final FoodProperties SWEET_BERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEAL, 0, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, BRIEF_DURATION, 0), 0.5F)
+            .build();
+
+    public static final FoodProperties GLOW_BERRY_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.GLOWING, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, BRIEF_DURATION, 0), 0.5F)
+            .build();
+
+    public static final FoodProperties MELON_WINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, BRIEF_DURATION, 1), 1.0F)
+            .build();
+
+    // --- Strong Drinks ---
+    public static final FoodProperties MOONSHINE = new FoodProperties.Builder()
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(HHModEffects.JUICED, MEDIUM_DURATION, 1), 1.0F) // Starts at Drunk II
+            .effect(() -> new MobEffectInstance(MobEffects.SATURATION, SHORT_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SHORT_DURATION, 1), 1.0F) // Penalty baked in
             .build();
 
     // Jams & Spreads

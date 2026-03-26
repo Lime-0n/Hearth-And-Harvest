@@ -325,6 +325,9 @@
   "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Lingering Potion of Bad Omen",
   "item.minecraft.tipped_arrow.effect.strong_bad_omen_potion": "Arrow of Bad Omen",
 
+  "effect.hearthandharvest.juiced": "Juiced",
+  "effect.hearthandharvest.juiced.0.desc": "Will gradually cause worse effects as the level goes up",
+
   "hearthandharvest.jei.aging": "Aging",
 
   "hearthandharvest.jei.info.watering_can": "Watering cans can be charged with bone meal by holding some in the off hand and clicking, and charged with water by clicking on a water source block. The watering can is used to apply a bone meal effect to a 3x3 area when clicked. It can also be used to extinguish fire and lit blocks.",

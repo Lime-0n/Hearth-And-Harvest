@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.item;
 
+import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -88,7 +89,25 @@ public class WineBottleItem extends Item {
                 }
             }
         }
+
         Player player = consumer instanceof Player ? (Player) consumer : null;
+
+        // Escalate Tipsy level on each drink
+        if (!level.isClientSide) {
+            int currentAmplifier = -1;
+            MobEffectInstance existing = consumer.getEffect(HHModEffects.JUICED);
+            if (existing != null) {
+                currentAmplifier = existing.getAmplifier();
+            }
+            int newAmplifier = Math.min(currentAmplifier + 1, 4);
+            consumer.addEffect(new MobEffectInstance(
+                    HHModEffects.JUICED,
+                    2400,
+                    newAmplifier,
+                    false,
+                    true
+            ));
+        }
 
         if (food != null) {
             super.finishUsingItem(stack, level, consumer);
