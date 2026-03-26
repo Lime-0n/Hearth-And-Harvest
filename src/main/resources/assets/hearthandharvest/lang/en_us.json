@@ -22,7 +22,12 @@
   "block.hearthandharvest.stomping_basin": "Stomping Basin",
 
   "block.hearthandharvest.jar": "Jar",
+
   "block.hearthandharvest.jug": "Jug",
+  "tooltip.hearthandharvest.jug.empty": "Empty",
+  "tooltip.hearthandharvest.jug.amount": "%1$d mB",
+  "tooltip.hearthandharvest.jug.full": "Jug is full!",
+  "tooltip.hearthandharvest.jug.wrong_fluid": "Fluid does not match!",
 
   "block.hearthandharvest.counter": "Counter",
   "block.hearthandharvest.drawer": "Drawer",
@@ -363,8 +368,5 @@
   "fluid_type.hearthandharvest.glow_berry_juice": "Glow Berry Juice",
 
   "item.hearthandharvest.blueberry_pips": "Blueberry Pips",
-  "item.hearthandharvest.raspberry_pips": "Raspberry Pips",
-
-  "tooltip.hearthandharvest.jug.empty": "Empty",
-  "tooltip.hearthandharvest.jug.amount": "%1$d mB"
+  "item.hearthandharvest.raspberry_pips": "Raspberry Pips"
 }

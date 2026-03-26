@@ -1,59 +1,241 @@
 package alabaster.hearthandharvest.common.item;
 
+import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import java.util.List;
 
 public class JugBlockItem extends BlockItem {
+
+    public static final int JUG_CAPACITY = 8000;
+
     public JugBlockItem(Block block, Properties properties) {
         super(block, properties);
+    }
+
+    @Override
+    public InteractionResult place(BlockPlaceContext context) {
+        InteractionResult result = super.place(context);
+
+        if (result.consumesAction() && !context.getLevel().isClientSide) {
+            BlockPos pos = context.getClickedPos();
+            Level level = context.getLevel();
+
+            if (level.getBlockEntity(pos) instanceof JugBlockEntity jug) {
+                var data = context.getItemInHand().get(DataComponents.CUSTOM_DATA);
+                if (data != null && !data.isEmpty()) {
+                    CompoundTag tag = data.copyTag();
+                    if (tag.contains("FluidTank")) {
+                        jug.getFluidTank().readFromNBT(level.registryAccess(), tag.getCompound("FluidTank"));
+                        jug.setChanged();
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+
+        BlockHitResult fluidHit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
+        if (fluidHit.getType() != HitResult.Type.MISS) {
+            BlockPos pos = fluidHit.getBlockPos();
+            FluidState fluidState = level.getFluidState(pos);
+
+            if (fluidState.isSource()) {
+                FluidStack incoming = new FluidStack(fluidState.getType(), 1000);
+                FluidTank tank = readTank(stack, level);
+
+                if (tank.fill(incoming, IFluidHandler.FluidAction.SIMULATE) == 1000) {
+                    if (!level.isClientSide) {
+                        tank.fill(incoming, IFluidHandler.FluidAction.EXECUTE);
+                        level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                        writeTank(stack, tank, level);
+                        level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    }
+                    return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+                } else {
+                    if (level.isClientSide) {
+                        player.displayClientMessage(
+                                Component.translatable("tooltip.hearthandharvest.jug.full")
+                                        .withStyle(ChatFormatting.RED), true);
+                    }
+                    return InteractionResultHolder.fail(stack);
+                }
+            }
+        }
+
+        return super.use(level, player, hand);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Player player = context.getPlayer();
+        ItemStack stack = context.getItemInHand();
+
+        if (player == null) return InteractionResult.PASS;
+
+        IFluidHandler fluidHandler = level.getCapability(
+                Capabilities.FluidHandler.BLOCK, pos, context.getClickedFace());
+
+        if (fluidHandler != null) {
+            FluidTank jugTank = readTank(stack, level);
+            int space = JUG_CAPACITY - jugTank.getFluidAmount();
+
+            if (space <= 0) {
+                if (level.isClientSide) {
+                    player.displayClientMessage(
+                            Component.translatable("tooltip.hearthandharvest.jug.full")
+                                    .withStyle(ChatFormatting.RED), true);
+                }
+                return InteractionResult.FAIL;
+            }
+
+            if (fluidHandler.getTanks() == 0) return InteractionResult.PASS;
+
+            FluidStack inSource = fluidHandler.getFluidInTank(0);
+            if (inSource.isEmpty()) return InteractionResult.PASS;
+
+            FluidStack drainRequest = new FluidStack(inSource.getFluid(), space);
+            FluidStack simDrain = fluidHandler.drain(drainRequest, IFluidHandler.FluidAction.SIMULATE);
+
+            if (!simDrain.isEmpty()) {
+                int simFill = jugTank.fill(simDrain, IFluidHandler.FluidAction.SIMULATE);
+
+                if (simFill > 0) {
+                    if (!level.isClientSide) {
+                        FluidStack toDrain = new FluidStack(inSource.getFluid(), simFill);
+                        FluidStack actualDrain = fluidHandler.drain(toDrain, IFluidHandler.FluidAction.EXECUTE);
+                        jugTank.fill(actualDrain, IFluidHandler.FluidAction.EXECUTE);
+                        writeTank(stack, jugTank, level);
+                        level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    }
+                    return InteractionResult.sidedSuccess(level.isClientSide);
+                } else {
+                    if (level.isClientSide) {
+                        player.displayClientMessage(
+                                Component.translatable("tooltip.hearthandharvest.jug.wrong_fluid")
+                                        .withStyle(ChatFormatting.RED), true);
+                    }
+                    return InteractionResult.FAIL;
+                }
+            }
+
+            return InteractionResult.PASS;
+        }
+
+        return super.useOn(context);
+    }
+
+    private FluidTank readTank(ItemStack stack, Level level) {
+        FluidTank tank = new FluidTank(JUG_CAPACITY);
+        var data = stack.get(DataComponents.CUSTOM_DATA);
+        if (data == null || data.isEmpty()) return tank;
+
+        CompoundTag tag = data.copyTag();
+        if (!tag.contains("FluidTank", Tag.TAG_COMPOUND)) return tank;
+
+        tank.readFromNBT(level.registryAccess(), tag.getCompound("FluidTank"));
+        return tank;
+    }
+
+    private void writeTank(ItemStack stack, FluidTank tank, Level level) {
+        var existing = stack.get(DataComponents.CUSTOM_DATA);
+        CompoundTag tag = (existing != null && !existing.isEmpty())
+                ? existing.copyTag()
+                : new CompoundTag();
+
+        CompoundTag tankTag = new CompoundTag();
+        tank.writeToNBT(level.registryAccess(), tankTag);
+        tag.put("FluidTank", tankTag);
+
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    }
+
+    public static FluidTank readTankStatic(ItemStack stack) {
+        FluidTank tank = new FluidTank(JUG_CAPACITY);
+        var data = stack.get(DataComponents.CUSTOM_DATA);
+        if (data == null || data.isEmpty()) return tank;
+        CompoundTag tag = data.copyTag();
+        if (!tag.contains("FluidTank", Tag.TAG_COMPOUND)) return tank;
+
+        CompoundTag fluidTag = tag.getCompound("FluidTank");
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        HolderLookup.Provider registries = server != null
+                ? server.registryAccess()
+                : RegistryAccess.EMPTY;
+
+        tank.readFromNBT(registries, fluidTag);
+        return tank;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext ctx, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, ctx, tooltip, flag);
 
-        var data = stack.get(DataComponents.BLOCK_ENTITY_DATA);
-        if (data == null || data.isEmpty()) {
-            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty")
-                    .withStyle(ChatFormatting.GRAY));
-            return;
-        }
-
-        CompoundTag beTag = data.copyTag();
-        if (!beTag.contains("FluidTank", Tag.TAG_COMPOUND)) {
-            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty")
-                    .withStyle(ChatFormatting.GRAY));
-            return;
-        }
-
-        CompoundTag tankTag = beTag.getCompound("FluidTank");
         HolderLookup.Provider lookup = ctx.registries();
+        if (lookup == null) return;
 
-        var tmp = new FluidTank(8000);
-        tmp.readFromNBT(lookup, tankTag);
+        var data = stack.get(DataComponents.CUSTOM_DATA);
+        boolean isEmpty = data == null || data.isEmpty()
+                || !data.copyTag().contains("FluidTank", Tag.TAG_COMPOUND);
 
-        FluidStack fs = tmp.getFluid();
-        if (fs.isEmpty()) {
-            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty")
-                    .withStyle(ChatFormatting.GRAY));
+        if (isEmpty) {
+            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty").withStyle(ChatFormatting.GRAY));
             return;
         }
 
-        tooltip.add(Component.literal(fs.getHoverName().getString()).withStyle(ChatFormatting.BLUE)); // e.g., "Water"
-        tooltip.add(Component.literal(fs.getAmount() + " mB")
-                .withStyle(ChatFormatting.GRAY));
+        FluidTank tank = new FluidTank(JUG_CAPACITY);
+        tank.readFromNBT(lookup, data.copyTag().getCompound("FluidTank"));
+
+        FluidStack fs = tank.getFluid();
+        if (fs.isEmpty()) {
+            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty").withStyle(ChatFormatting.GRAY));
+            return;
+        }
+
+        int percent = (fs.getAmount() * 100) / JUG_CAPACITY;
+        ChatFormatting fillColor = percent > 66 ? ChatFormatting.GREEN : percent > 33 ? ChatFormatting.YELLOW : ChatFormatting.RED;
+
+        tooltip.add(fs.getHoverName().copy().withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.literal(percent + "% full (" + fs.getAmount() + " mB)").withStyle(fillColor));
     }
 }

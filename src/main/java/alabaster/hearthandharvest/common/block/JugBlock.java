@@ -1,10 +1,15 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
+import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModRecipeSerializers;
+import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -14,6 +19,7 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -34,6 +40,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -126,38 +133,52 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         Block block = tile.getBlockState().getBlock();
         ItemStack stack = new ItemStack(block.asItem());
         tile.saveToItem(stack, tile.getLevel().registryAccess());
+
+        if (tile instanceof JugBlockEntity jug && !jug.getFluidTank().isEmpty()) {
+            CompoundTag customTag = new CompoundTag();
+            CompoundTag tankTag = new CompoundTag();
+            jug.getFluidTank().writeToNBT(tile.getLevel().registryAccess(), tankTag);
+            customTag.put("FluidTank", tankTag);
+            stack.set(DataComponents.CUSTOM_DATA, CustomData.of(customTag));
+        }
+
         return stack;
     }
 
     @Override
     public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.isClientSide()) {
-            return ItemInteractionResult.SUCCESS;
-        }
+        if (level.isClientSide()) return ItemInteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (!(blockEntity instanceof JugBlockEntity jugBlockEntity)) {
-            return ItemInteractionResult.SUCCESS;
-        }
+        if (!(blockEntity instanceof JugBlockEntity jugBlockEntity)) return ItemInteractionResult.SUCCESS;
 
-        // Get fluid handler for the held item
-        IFluidHandlerItem itemHandler = stack.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM);
+        IFluidHandlerItem itemHandler = stack.getCapability(Capabilities.FluidHandler.ITEM);
         if (itemHandler != null) {
             boolean didSomething = false;
 
-            // Try draining from the container into the jug
             FluidStack simulatedDrain = itemHandler.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
             if (!simulatedDrain.isEmpty()) {
-                int filled = jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.EXECUTE);
+                int filled = jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.SIMULATE);
                 if (filled > 0) {
-                    itemHandler.drain(filled, IFluidHandler.FluidAction.EXECUTE);
-                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    player.setItemInHand(hand, itemHandler.getContainer());
+                    if (!level.isClientSide) {
+                        jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.EXECUTE);
+                        stack.shrink(1);
+                        ItemStack container = itemHandler.getContainer();
+                        if (stack.isEmpty()) {
+                            player.setItemInHand(hand, container);
+                        } else {
+                            if (!player.addItem(container)) {
+                                player.drop(container, false);
+                            }
+                        }
+
+                        level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        blockEntity.setChanged();
+                    }
                     didSomething = true;
                 }
             }
 
-            // If nothing transferred into the jug, try filling container from the jug
             if (!didSomething) {
                 FluidStack simulatedFill = jugBlockEntity.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
                 if (!simulatedFill.isEmpty()) {
@@ -172,6 +193,7 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             }
 
             if (didSomething) {
+                blockEntity.setChanged();
                 return ItemInteractionResult.CONSUME;
             }
         }

@@ -33,6 +33,10 @@ public class JugBlockEntity extends BlockEntity {
         return fluidTank.getCapacity();
     }
 
+    public FluidTank getFluidTank() {
+        return fluidTank;
+    }
+
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
         super.loadAdditional(compound, provider);
