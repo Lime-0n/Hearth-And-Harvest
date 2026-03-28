@@ -17,6 +17,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -204,18 +205,13 @@ public class StompingBasinBlockEntity extends BlockEntity {
         if (!player.addItem(stack)) dropAtBasin(stack);
     }
 
-    public void tryProcess(Player player) {
+    public void tryProcess(LivingEntity entity) {
         if (level == null || level.isClientSide) return;
 
-        if (role == MultiblockPart.MEMBER) {
-            StompingBasinBlockEntity controller = getControllerBE();
-            if (controller != null) controller.tryProcess(player);
-            return;
-        }
-
         long now = level.getGameTime();
-        if (stompCooldowns.getOrDefault(player.getUUID(), -1L) == now) return;
-        stompCooldowns.put(player.getUUID(), now);
+        Long last = stompCooldowns.get(entity.getUUID());
+        if (last != null && now - last < 20) return;
+        stompCooldowns.put(entity.getUUID(), now);
 
         RecipeWrapper wrapper = new RecipeWrapper(itemHandler);
         if (wrapper.isEmpty()) return;

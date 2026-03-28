@@ -13,6 +13,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +40,10 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class StompingBasinBlock extends BaseEntityBlock {
 
@@ -115,17 +119,28 @@ public class StompingBasinBlock extends BaseEntityBlock {
 
     private static final float MIN_STOMP_FALL = 0.05f;
     private static final float RIM_Y = 12f / 16f;
+    private static final Set<UUID> AIRBORNE_IN_BASIN = new HashSet<>();
 
-    @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!(entity instanceof Player player) || level.isClientSide) return;
-        if (!player.onGround() || player.fallDistance < MIN_STOMP_FALL) return;
+        if (level.isClientSide) return;
+        if (!(entity instanceof LivingEntity living)) return;
 
-        double feetY = player.getY() - pos.getY();
+        double feetY = living.getY() - pos.getY();
         if (feetY >= RIM_Y) return;
 
-        if (level.getBlockEntity(pos) instanceof StompingBasinBlockEntity basin) {
-            basin.tryProcess(player);
+        UUID id = living.getUUID();
+
+        if (!living.onGround()) {
+            // Entity is airborne inside the basin — track it
+            AIRBORNE_IN_BASIN.add(id);
+            return;
+        }
+
+        // Entity just landed — only process if it was previously airborne
+        if (AIRBORNE_IN_BASIN.remove(id)) {
+            if (level.getBlockEntity(pos) instanceof StompingBasinBlockEntity basin) {
+                basin.tryProcess(living);
+            }
         }
     }
 
