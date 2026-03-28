@@ -24,6 +24,7 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
+import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public class CraftingRecipes
 {
@@ -961,6 +962,31 @@ public class CraftingRecipes
                 .group("carrot_cake")
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "carrot_cake_from_slices"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),3)
+                .requires(HHModTags.CLEAVERS)
+                .requires(Items.BEEF)
+                .unlockedBy("has_beef", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BEEF))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_beef"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),2)
+                .requires(HHModTags.CLEAVERS)
+                .requires(Items.PORKCHOP)
+                .unlockedBy("has_porkchop", InventoryChangeTrigger.TriggerInstance.hasItems(Items.PORKCHOP))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_porkchop"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),2)
+                .requires(HHModTags.CLEAVERS)
+                .requires(Items.MUTTON)
+                .unlockedBy("has_mutton", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MUTTON))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_mutton"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),1)
+                .requires(HHModTags.CLEAVERS)
+                .requires(Items.CHICKEN)
+                .unlockedBy("has_chicken", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CHICKEN))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_chicken"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),1)
+                .requires(HHModTags.CLEAVERS)
+                .requires(Items.RABBIT)
+                .unlockedBy("has_rabbit", InventoryChangeTrigger.TriggerInstance.hasItems(Items.RABBIT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_rabbit"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SKEWERED_SAUSAGE.get(), 1)
                 .requires(HHModItems.COOKED_SAUSAGE.get())
                 .requires(Items.STICK)

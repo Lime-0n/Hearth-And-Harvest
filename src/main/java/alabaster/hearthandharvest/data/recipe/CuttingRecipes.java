@@ -77,16 +77,7 @@ public class CuttingRecipes {
     }
 
     private static void choppingAnimalItems(RecipeOutput output) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.BEEF), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 3)
-                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_beef"));
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.PORKCHOP), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 2)
-                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID,"sausage_from_porkchop"));
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.MUTTON), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 3)
-                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_mutton"));
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.CHICKEN), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 1)
-                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_chicken"));
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.RABBIT), Ingredient.of(HHModTags.CLEAVERS), HHModItems.RAW_SAUSAGE.get(), 1)
-                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_rabbit"));
+
     }
 
     private static void halfCabinets(RecipeOutput output) {
