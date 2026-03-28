@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:jug"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:jug"
+  }
+}

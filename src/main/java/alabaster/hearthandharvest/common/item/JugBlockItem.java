@@ -48,6 +48,10 @@ public class JugBlockItem extends BlockItem {
 
     @Override
     public InteractionResult place(BlockPlaceContext context) {
+        ItemStack stack = context.getItemInHand();
+
+        CompoundTag fluidTag = findFluidTag(stack);
+
         InteractionResult result = super.place(context);
 
         if (result.consumesAction() && !context.getLevel().isClientSide) {
@@ -55,18 +59,37 @@ public class JugBlockItem extends BlockItem {
             Level level = context.getLevel();
 
             if (level.getBlockEntity(pos) instanceof JugBlockEntity jug) {
-                var data = context.getItemInHand().get(DataComponents.CUSTOM_DATA);
-                if (data != null && !data.isEmpty()) {
-                    CompoundTag tag = data.copyTag();
-                    if (tag.contains("FluidTank")) {
-                        jug.getFluidTank().readFromNBT(level.registryAccess(), tag.getCompound("FluidTank"));
-                        jug.setChanged();
-                    }
+                if (fluidTag != null) {
+                    jug.getFluidTank().readFromNBT(level.registryAccess(), fluidTag);
+                    jug.setChanged();
+                    jug.syncToClient();
                 }
+                stack.remove(DataComponents.CUSTOM_DATA);
+                stack.remove(DataComponents.BLOCK_ENTITY_DATA);
             }
         }
 
         return result;
+    }
+
+    private CompoundTag findFluidTag(ItemStack stack) {
+        var customData = stack.get(DataComponents.CUSTOM_DATA);
+        if (customData != null && !customData.isEmpty()) {
+            CompoundTag tag = customData.copyTag();
+            if (tag.contains("FluidTank", Tag.TAG_COMPOUND)) {
+                return tag.getCompound("FluidTank");
+            }
+        }
+
+        var beData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
+        if (beData != null && !beData.isEmpty()) {
+            CompoundTag tag = beData.copyTag();
+            if (tag.contains("FluidTank", Tag.TAG_COMPOUND)) {
+                return tag.getCompound("FluidTank");
+            }
+        }
+
+        return null;
     }
 
     @Override
@@ -117,7 +140,9 @@ public class JugBlockItem extends BlockItem {
                 Capabilities.FluidHandler.BLOCK, pos, context.getClickedFace());
 
         if (fluidHandler != null) {
-            FluidTank jugTank = readTank(stack, level);
+            // Work on a single jug, not the whole stack
+            ItemStack singleJug = stack.copyWithCount(1);
+            FluidTank jugTank = readTank(singleJug, level);
             int space = JUG_CAPACITY - jugTank.getFluidAmount();
 
             if (space <= 0) {
@@ -145,7 +170,16 @@ public class JugBlockItem extends BlockItem {
                         FluidStack toDrain = new FluidStack(inSource.getFluid(), simFill);
                         FluidStack actualDrain = fluidHandler.drain(toDrain, IFluidHandler.FluidAction.EXECUTE);
                         jugTank.fill(actualDrain, IFluidHandler.FluidAction.EXECUTE);
-                        writeTank(stack, jugTank, level);
+                        writeTank(singleJug, jugTank, level);
+                        stack.shrink(1);
+                        if (stack.isEmpty()) {
+                            player.setItemInHand(context.getHand(), singleJug);
+                        } else {
+                            if (!player.addItem(singleJug)) {
+                                player.drop(singleJug, false);
+                            }
+                        }
+
                         level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                     }
                     return InteractionResult.sidedSuccess(level.isClientSide);
@@ -158,10 +192,8 @@ public class JugBlockItem extends BlockItem {
                     return InteractionResult.FAIL;
                 }
             }
-
             return InteractionResult.PASS;
         }
-
         return super.useOn(context);
     }
 
@@ -210,32 +242,41 @@ public class JugBlockItem extends BlockItem {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext ctx, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, ctx, tooltip, flag);
-
         HolderLookup.Provider lookup = ctx.registries();
         if (lookup == null) return;
 
-        var data = stack.get(DataComponents.CUSTOM_DATA);
-        boolean isEmpty = data == null || data.isEmpty()
-                || !data.copyTag().contains("FluidTank", Tag.TAG_COMPOUND);
+        FluidStack fs = readFluidForTooltip(stack, lookup);
 
-        if (isEmpty) {
-            tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty").withStyle(ChatFormatting.GRAY));
-            return;
-        }
-
-        FluidTank tank = new FluidTank(JUG_CAPACITY);
-        tank.readFromNBT(lookup, data.copyTag().getCompound("FluidTank"));
-
-        FluidStack fs = tank.getFluid();
         if (fs.isEmpty()) {
             tooltip.add(Component.translatable("tooltip.hearthandharvest.jug.empty").withStyle(ChatFormatting.GRAY));
             return;
         }
 
-        int percent = (fs.getAmount() * 100) / JUG_CAPACITY;
-        ChatFormatting fillColor = percent > 66 ? ChatFormatting.GREEN : percent > 33 ? ChatFormatting.YELLOW : ChatFormatting.RED;
-
         tooltip.add(fs.getHoverName().copy().withStyle(ChatFormatting.BLUE));
-        tooltip.add(Component.literal(percent + "% full (" + fs.getAmount() + " mB)").withStyle(fillColor));
+        tooltip.add(Component.literal(fs.getAmount() + " mB").withStyle(ChatFormatting.GRAY));
+    }
+
+    private FluidStack readFluidForTooltip(ItemStack stack, HolderLookup.Provider lookup) {
+        var customData = stack.get(DataComponents.CUSTOM_DATA);
+        if (customData != null && !customData.isEmpty()) {
+            CompoundTag tag = customData.copyTag();
+            if (tag.contains("FluidTank", Tag.TAG_COMPOUND)) {
+                FluidTank tank = new FluidTank(JUG_CAPACITY);
+                tank.readFromNBT(lookup, tag.getCompound("FluidTank"));
+                if (!tank.getFluid().isEmpty()) return tank.getFluid();
+            }
+        }
+
+        var beData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
+        if (beData != null && !beData.isEmpty()) {
+            CompoundTag tag = beData.copyTag();
+            if (tag.contains("FluidTank", Tag.TAG_COMPOUND)) {
+                FluidTank tank = new FluidTank(JUG_CAPACITY);
+                tank.readFromNBT(lookup, tag.getCompound("FluidTank"));
+                return tank.getFluid();
+            }
+        }
+
+        return FluidStack.EMPTY;
     }
 }

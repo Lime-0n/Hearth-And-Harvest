@@ -72,11 +72,15 @@ public class CraftingRecipes
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.JUG.get(), 1)
                 .pattern(" I ")
                 .pattern("IBI")
-                .pattern("III")
+                .pattern("IBI")
                 .define('I', Items.IRON_INGOT)
                 .define('B', Items.BUCKET)
                 .unlockedBy("has_iron", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
                 .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.JUG.get(), 1)
+                .requires(HHModItems.JUG.get())
+                .unlockedBy("has_jug", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.JUG.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "jug_cleaning"));
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.COUNTER.get())
                 .pattern("ii")
                 .pattern("BB")

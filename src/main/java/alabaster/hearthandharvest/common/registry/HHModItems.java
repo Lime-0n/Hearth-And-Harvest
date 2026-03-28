@@ -402,9 +402,9 @@ public class HHModItems {
     public static final Supplier<Item> RASPBERRY_JUICE = registerWithTab("raspberry_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.RASPBERRY_JUICE), false, false));
     public static final Supplier<Item> RED_GRAPE_JUICE = registerWithTab("red_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.RED_GRAPE_JUICE), false, false));
     public static final Supplier<Item> GREEN_GRAPE_JUICE = registerWithTab("green_grape_juice",
-            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GRAPE_JUICE), false, false));
+            () -> new DrinkableItem(drinkItem().food(HHFoodValues.GREEN_GRAPE_JUICE), false, false));
     public static final Supplier<Item> SWEET_BERRY_JUICE = registerWithTab("sweet_berry_juice",
             () -> new DrinkableItem(drinkItem().food(HHFoodValues.SWEET_BERRY_JUICE), false, false));
     public static final Supplier<Item> GLOW_BERRY_JUICE = registerWithTab("glow_berry_juice",

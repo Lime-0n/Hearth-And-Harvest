@@ -44,14 +44,14 @@ public class HHFoodValues {
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties CHERRY_JUICE = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.3f).build();
-    public static final FoodProperties GRAPE_JUICE = new FoodProperties.Builder()
+    public static final FoodProperties RED_GRAPE_JUICE = new FoodProperties.Builder()
+            .nutrition(3).saturationModifier(0.3f).build();
+    public static final FoodProperties GREEN_GRAPE_JUICE = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties SWEET_BERRY_JUICE = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.3f).build();
     public static final FoodProperties GLOW_BERRY_JUICE = new FoodProperties.Builder()
-            .nutrition(3).saturationModifier(0.3f)
-            .effect(() -> new MobEffectInstance(MobEffects.GLOWING, 1200, 0), 1.0F)
-            .build();
+            .nutrition(3).saturationModifier(0.3f).build();
 
     // Alcoholic Beverages
 

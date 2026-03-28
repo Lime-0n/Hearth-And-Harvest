@@ -1,10 +1,9 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.JugBlockEntity;
-import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
+import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
-import alabaster.hearthandharvest.common.registry.HHModRecipeSerializers;
-import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModFluids;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,8 +13,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -32,7 +31,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -40,11 +38,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -54,6 +51,8 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     public static final MapCodec<JugBlock> CODEC = simpleCodec(JugBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    private static final int BOTTLE_VOLUME = 250;
 
     protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
 
@@ -71,7 +70,6 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level level = context.getLevel();
         FluidState fluid = level.getFluidState(context.getClickedPos());
-
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection())
                 .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
@@ -86,10 +84,9 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof JugBlockEntity jug) {
-            int amount = jug.getFluidAmount();       // Current fluid in mB
-            int bucketSize = 1000;                   // 1 bucket = 1000 mB
-            int signal = amount / bucketSize;        // Integer division: 1 per full bucket
-            return Math.min(signal, 8);              // Cap at 8
+            int amount = jug.getFluidAmount();
+            int signal = amount / 1000;
+            return Math.min(signal, 8);
         }
         return 0;
     }
@@ -132,7 +129,6 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     public static ItemStack saveTileToItem(BlockEntity tile) {
         Block block = tile.getBlockState().getBlock();
         ItemStack stack = new ItemStack(block.asItem());
-        tile.saveToItem(stack, tile.getLevel().registryAccess());
 
         if (tile instanceof JugBlockEntity jug && !jug.getFluidTank().isEmpty()) {
             CompoundTag customTag = new CompoundTag();
@@ -152,50 +148,73 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (!(blockEntity instanceof JugBlockEntity jugBlockEntity)) return ItemInteractionResult.SUCCESS;
 
-        IFluidHandlerItem itemHandler = stack.getCapability(Capabilities.FluidHandler.ITEM);
-        if (itemHandler != null) {
-            boolean didSomething = false;
+        FluidStack tankFluid = jugBlockEntity.getFluidTank().getFluid();
 
-            FluidStack simulatedDrain = itemHandler.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
-            if (!simulatedDrain.isEmpty()) {
-                int filled = jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.SIMULATE);
-                if (filled > 0) {
-                    if (!level.isClientSide) {
-                        jugBlockEntity.fill(simulatedDrain, IFluidHandler.FluidAction.EXECUTE);
-                        stack.shrink(1);
-                        ItemStack container = itemHandler.getContainer();
-                        if (stack.isEmpty()) {
-                            player.setItemInHand(hand, container);
-                        } else {
-                            if (!player.addItem(container)) {
-                                player.drop(container, false);
-                            }
-                        }
+        // Glass bottle filling via reverse fluid registry lookup
+        if (stack.is(Items.GLASS_BOTTLE) && !tankFluid.isEmpty() && tankFluid.getAmount() >= BOTTLE_VOLUME) {
+            Item bottleResult = HHModFluids.FLUIDS.getEntries().stream()
+                    .map(h -> h.get())
+                    .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
+                    .filter(f -> f.isSame(tankFluid.getFluid()))
+                    .map(f -> ((HHFluidType) f).getBucket())
+                    .filter(item -> item != Items.AIR && item != null)
+                    .findFirst()
+                    .orElse(null);
 
-                        level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        blockEntity.setChanged();
-                    }
-                    didSomething = true;
-                }
-            }
-
-            if (!didSomething) {
-                FluidStack simulatedFill = jugBlockEntity.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.SIMULATE);
-                if (!simulatedFill.isEmpty()) {
-                    int filled = itemHandler.fill(simulatedFill, IFluidHandler.FluidAction.EXECUTE);
-                    if (filled > 0) {
-                        jugBlockEntity.drain(filled, IFluidHandler.FluidAction.EXECUTE);
-                        level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        player.setItemInHand(hand, itemHandler.getContainer());
-                        didSomething = true;
+            if (bottleResult != null) {
+                jugBlockEntity.getFluidTank().drain(BOTTLE_VOLUME, IFluidHandler.FluidAction.EXECUTE);
+                stack.shrink(1);
+                ItemStack result = new ItemStack(bottleResult);
+                if (stack.isEmpty()) {
+                    player.setItemInHand(hand, result);
+                } else {
+                    if (!player.addItem(result)) {
+                        level.addFreshEntity(new ItemEntity(
+                                level, player.getX(), player.getY(), player.getZ(), result));
                     }
                 }
-            }
-
-            if (didSomething) {
+                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 blockEntity.setChanged();
                 return ItemInteractionResult.CONSUME;
             }
+        }
+
+        // Fill held container FROM the jug (buckets, mod containers, etc.)
+        FluidActionResult fillResult = FluidUtil.tryFillContainer(
+                stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
+
+        if (fillResult.isSuccess()) {
+            ItemStack filled = fillResult.getResult();
+            stack.shrink(1);
+            if (stack.isEmpty()) {
+                player.setItemInHand(hand, filled);
+            } else {
+                if (!player.addItem(filled)) {
+                    player.drop(filled, false);
+                }
+            }
+            level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+            blockEntity.setChanged();
+            return ItemInteractionResult.CONSUME;
+        }
+
+        // Empty held container INTO the jug (buckets, mod containers, etc.)
+        FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
+                stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
+
+        if (emptyResult.isSuccess()) {
+            ItemStack emptied = emptyResult.getResult();
+            stack.shrink(1);
+            if (stack.isEmpty()) {
+                player.setItemInHand(hand, emptied);
+            } else {
+                if (!player.addItem(emptied)) {
+                    player.drop(emptied, false);
+                }
+            }
+            level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+            blockEntity.setChanged();
+            return ItemInteractionResult.CONSUME;
         }
 
         return ItemInteractionResult.SUCCESS;

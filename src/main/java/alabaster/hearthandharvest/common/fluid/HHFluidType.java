@@ -24,14 +24,6 @@ public class HHFluidType extends BaseFlowingFluid {
         return source ? super.getFlowing() : this;
     }
 
-    public Item getBucket() {
-        return Items.AIR;
-    }
-
-    protected BlockState createLegacyBlock(FluidState fluidState) {
-        return Blocks.AIR.defaultBlockState();
-    }
-
     public boolean isSource(FluidState fluidState) {
         return source;
     }

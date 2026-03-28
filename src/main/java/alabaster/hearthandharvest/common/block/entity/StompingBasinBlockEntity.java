@@ -100,6 +100,10 @@ public class StompingBasinBlockEntity extends BlockEntity {
 
         @Override
         public void deserializeNBT(HolderLookup.Provider registries, CompoundTag tag) {
+            for (int i = 0; i < getSlots(); i++) {
+                setStackInSlot(i, ItemStack.EMPTY);
+            }
+
             ListTag listTag = tag.getList(KEY_ITEMS, Tag.TAG_COMPOUND);
             for (int i = 0; i < listTag.size(); i++) {
                 CompoundTag entry = listTag.getCompound(i);
