@@ -396,64 +396,35 @@ public class CornStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    @NotNull
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        // Immature corn has no collision at all
-        if (state.getValue(AGE) < 3) {
+        if (state.getValue(AGE) < 3) return Shapes.empty();
+        if (!(context instanceof EntityCollisionContext entityCtx)) return Shapes.empty();
+
+        Entity entity = entityCtx.getEntity();
+        if (entity == null || entity instanceof ItemEntity) return Shapes.empty();
+
+        if (entity instanceof Player player && player.getY() > pos.getY() + 0.05) {
             return Shapes.empty();
         }
 
-        if (context instanceof EntityCollisionContext entityCtx) {
-            Entity entity = entityCtx.getEntity();
+        double h = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
 
-            // Items
-            if (entity instanceof ItemEntity) {
-                return Shapes.empty();
-            }
+        double wallH = Math.min(h, 14.0);
 
-            // Players
-            if (entity instanceof Player player) {
-                double playerFeetY = player.getY();
-                double playerEyeY = player.getEyeY();
-                double blockTopY = pos.getY() + 1.0;
+        VoxelShape stalk = Shapes.or(
+                Block.box(6, 0, 6,  10, wallH, 7),
+                Block.box(6, 0, 9,  10, wallH, 10),
+                Block.box(6, 0, 7,  7,  wallH, 9),
+                Block.box(9, 0, 7,  10, wallH, 9)
+        );
 
-                if (playerFeetY > blockTopY - 0.4 || playerEyeY > blockTopY + 0.2) {
-                    return Shapes.empty();
-                }
-
-                if (player.getDeltaMovement().y < -0.2) {
-                    if (playerFeetY > pos.getY() + 0.3) {
-                        return Shapes.empty();
-                    }
-                }
-
-                double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
-                VoxelShape stalk = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
-
-                for (Direction dir : Direction.Plane.HORIZONTAL) {
-                    if (canConnectTo(level, pos, dir)) {
-                        stalk = Shapes.or(stalk, connectionShape(dir, height));
-                    }
-                }
-                return stalk;
-            }
-
-            // Other mobs
-            if (entity instanceof Mob) {
-                double height = getVoxelHeight(state.getValue(SECTION), state.getValue(AGE));
-                VoxelShape stalk = Block.box(6.0, 0.0, 6.0, 10.0, height, 10.0);
-
-                for (Direction dir : Direction.Plane.HORIZONTAL) {
-                    if (canConnectTo(level, pos, dir)) {
-                        stalk = Shapes.or(stalk, connectionShape(dir, height));
-                    }
-                }
-                return stalk;
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            if (canConnectTo(level, pos, dir)) {
+                stalk = Shapes.or(stalk, connectionShape(dir, wallH));
             }
         }
 
-        // Default collision for projectiles or others
-        return Shapes.empty();
+        return stalk;
     }
 
     protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {

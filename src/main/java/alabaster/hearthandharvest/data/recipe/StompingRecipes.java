@@ -4,12 +4,15 @@ import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.data.builder.StompingBasinRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class StompingRecipes {
 
-    public static final int BOTTLE = 250;   // one glass bottle worth
+    public static final int HALF_BOTTLE = 125;
+    public static final int BOTTLE = 250;
     public static final int HALF_BUCKET = 500;
     public static final int BUCKET = 1000;
 
@@ -57,5 +60,20 @@ public class StompingRecipes {
                 .addIngredient(Items.GLOW_BERRIES, 4)
                 .unlockedByAnyIngredient(Items.GLOW_BERRIES)
                 .build(output);
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BUCKET))
+                .addIngredient(HHModItems.PEANUT.get(), 4)
+                .unlockedByAnyIngredient(HHModItems.PEANUT.get())
+                .build(output,"cooking_oil_from_peanuts");
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BOTTLE))
+                .addIngredient(Tags.Items.SEEDS, 8)
+                .unlockedByAnyIngredient()
+                .build(output,"cooking_oil_from_seeds");
+
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), BUCKET))
+                .addIngredient(HHModItems.CORN.get(), 4)
+                .unlockedByAnyIngredient(HHModItems.CORN.get())
+                .build(output,"cooking_oil_from_corn");
     }
 }

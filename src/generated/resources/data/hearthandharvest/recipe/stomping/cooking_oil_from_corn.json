@@ -1,0 +1,21 @@
+{
+  "type": "hearthandharvest:stomping",
+  "ingredients": [
+    {
+      "item": "hearthandharvest:corn"
+    },
+    {
+      "item": "hearthandharvest:corn"
+    },
+    {
+      "item": "hearthandharvest:corn"
+    },
+    {
+      "item": "hearthandharvest:corn"
+    }
+  ],
+  "result_fluid": {
+    "amount": 1000,
+    "id": "hearthandharvest:cooking_oil"
+  }
+}
