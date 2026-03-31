@@ -78,6 +78,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(ModItems.MILK_BOTTLE.get())
                 .add(Items.HONEY_BOTTLE)
                 .add(HHModItems.SYRUP_BOTTLE.get())
+                .add(HHModItems.CHOCOLATE_MILK_BOTTLE.get())
                 .add(HHModItems.GOAT_MILK_BOTTLE.get());
 
         tag(HHModTags.TALL_BOTTLES)
@@ -111,7 +112,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.SWEET_BERRY_JAM.get())
                 .add(HHModItems.MELON_JAM.get());
 
-        tag(CommonTags.FOODS_MILK)
+        tag(Tags.Items.DRINKS_MILK)
+                .add(HHModItems.CHOCOLATE_MILK_BOTTLE.get())
                 .add(HHModItems.GOAT_MILK_BOTTLE.get());
 
         tag(HHModTags.CHEESE_SLICES)

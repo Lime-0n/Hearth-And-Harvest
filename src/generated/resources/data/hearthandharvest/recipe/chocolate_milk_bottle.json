@@ -6,14 +6,14 @@
       "tag": "c:drinks/milk"
     },
     {
-      "tag": "c:flours"
+      "item": "minecraft:cocoa_beans"
     },
     {
-      "item": "minecraft:bowl"
+      "item": "minecraft:sugar"
     }
   ],
   "result": {
     "count": 1,
-    "id": "hearthandharvest:batter"
+    "id": "hearthandharvest:chocolate_milk_bottle"
   }
 }

@@ -34,6 +34,9 @@ public class HHFoodValues {
             .nutrition(1).saturationModifier(0.3f).fast().build();
 
     // Drinks
+    public static final FoodProperties CHOCOLATE_MILK_BOTTLE = new FoodProperties.Builder()
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, BRIEF_DURATION, 0), 1.0F)
+            .build();
     public static final FoodProperties GOAT_MILK_BOTTLE = new FoodProperties.Builder()
             .build();
 

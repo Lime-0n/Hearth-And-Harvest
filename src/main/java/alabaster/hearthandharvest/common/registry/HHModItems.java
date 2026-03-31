@@ -393,6 +393,8 @@ public class HHModItems {
             () -> new WineBottleItem(()-> HHModFluids.MELON_WINE.get(), drinkItem().food(HHFoodValues.MELON_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
             () -> new WineBottleItem(()-> HHModFluids.MOONSHINE.get(), drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+    public static final Supplier<Item> CHOCOLATE_MILK_BOTTLE = registerWithTab("chocolate_milk_bottle",
+            () -> new MilkBottleItem(drinkItem().food(HHFoodValues.CHOCOLATE_MILK_BOTTLE)));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.GOAT_MILK_BOTTLE)));
     public static final Supplier<Item> BLUEBERRY_JUICE = registerWithTab("blueberry_juice",

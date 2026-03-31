@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.crafting.ShapelessRemainderRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
@@ -16,15 +15,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
-import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
-import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public class CraftingRecipes
 {
@@ -892,7 +887,7 @@ public class CraftingRecipes
                 .define('T', Items.POTATO)
                 .define('V', Items.CARROT)
                 .define('S', HHCommonTags.DUSTS_SALT)
-                .define('M', CommonTags.FOODS_MILK)
+                .define('M', Tags.Items.DRINKS_MILK)
                 .define('C', ModItems.COOKED_CHICKEN_CUTS.get())
                 .define('O', ModItems.ONION.get())
                 .define('P', ModItems.PIE_CRUST.get())
@@ -914,7 +909,7 @@ public class CraftingRecipes
                 .define('S', Items.SUGAR)
                 .define('W', Items.WHEAT)
                 .define('E', Items.EGG)
-                .define('M', CommonTags.FOODS_MILK)
+                .define('M', Tags.Items.DRINKS_MILK)
                 .unlockedBy("has_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CARROT))
                 .save(output);
 
@@ -926,7 +921,7 @@ public class CraftingRecipes
                 .define('S', Items.SUGAR)
                 .define('B', HHModItems.BATTER.get())
                 .define('E', Items.EGG)
-                .define('M', CommonTags.FOODS_MILK)
+                .define('M', Tags.Items.DRINKS_MILK)
                 .unlockedBy("has_carrot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CARROT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "carrot_cake_from_batter"));
 
@@ -938,7 +933,7 @@ public class CraftingRecipes
                 .define('S', Items.SUGAR)
                 .define('B', HHModItems.BATTER.get())
                 .define('E', Items.EGG)
-                .define('M', CommonTags.FOODS_MILK)
+                .define('M', Tags.Items.DRINKS_MILK)
                 .unlockedBy("has_milk", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MILK_BUCKET))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cake_from_batter"));
 
@@ -961,6 +956,13 @@ public class CraftingRecipes
                 .unlockedBy("has_carrot_cake_slice", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CARROT_CAKE_SLICE.get()))
                 .group("carrot_cake")
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "carrot_cake_from_slices"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.CHOCOLATE_MILK_BOTTLE.get(),1)
+                .requires(Tags.Items.DRINKS_MILK)
+                .requires(Items.COCOA_BEANS)
+                .requires(Items.SUGAR)
+                .unlockedBy("has_cocoa_beans", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COCOA_BEANS))
+                .save(output);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SAUSAGE.get(),3)
                 .requires(HHModTags.CLEAVERS)
@@ -1008,7 +1010,7 @@ public class CraftingRecipes
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "peanut_butter_and_jelly_sandwich"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.BATTER.get(), 1)
-                .requires(CommonTags.FOODS_MILK)
+                .requires(Tags.Items.DRINKS_MILK)
                 .requires(HHCommonTags.FLOURS)
                 .requires(Items.BOWL)
                 .unlockedBy("has_wheat", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WHEAT))
@@ -1035,7 +1037,7 @@ public class CraftingRecipes
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.BUTTER.get(), 2)
                 .requires(HHCommonTags.DUSTS_SALT)
-                .requires(CommonTags.FOODS_MILK)
+                .requires(Tags.Items.DRINKS_MILK)
                 .unlockedBy("has_milk", InventoryChangeTrigger.TriggerInstance.hasItems(Items.MILK_BUCKET))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "butter"));
 

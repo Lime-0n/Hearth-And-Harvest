@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class SmeltingRecipes
 {
@@ -21,6 +22,7 @@ public class SmeltingRecipes
         foodSmeltingRecipes("roasted_peanuts", HHModItems.PEANUT.get(), HHModItems.ROASTED_PEANUTS.get(), 0.35F, output);
         foodSmeltingRecipes("popcorn", HHModItems.CORN_KERNELS.get(), HHModItems.POPCORN.get(), 0.35F, output);
         foodSmeltingRecipes("baked_apple", Items.APPLE, HHModItems.BAKED_APPLE.get(), 0.35F, output);
+        foodSmeltingRecipes("hot_chocolate", HHModItems.CHOCOLATE_MILK_BOTTLE.get(), ModItems.HOT_COCOA.get(), 0.35F, output);
 
         // Items with only a campfire recipe
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,

@@ -7,7 +7,6 @@
       "item": "minecraft:water_bucket"
     }
   ],
-  "recipe_book_tab": "misc",
   "result": {
     "count": 8,
     "id": "hearthandharvest:salt"
