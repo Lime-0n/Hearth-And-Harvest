@@ -10,13 +10,13 @@
     {
       "type": "neoforge:single",
       "amount": 500,
-      "fluid": "hearthandharvest:cherry_juice"
+      "fluid": "hearthandharvest:glow_berry_juice"
     }
   ],
   "results": [
     {
       "amount": 500,
-      "id": "hearthandharvest:cherry_wine"
+      "id": "hearthandharvest:glow_berry_wine"
     }
   ]
 }
