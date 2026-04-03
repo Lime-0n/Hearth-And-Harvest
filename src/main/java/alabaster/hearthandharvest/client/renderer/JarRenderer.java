@@ -18,28 +18,13 @@ import java.util.List;
 
 public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
 
-    /**
-     * 4 slot positions in block-local space for NORTH facing.
-     * Laid out as a 2×2 grid centred in the block, matching the VoxelShape footprint.
-     *
-     * Viewed from above (NORTH = -Z direction):
-     *
-     *   [2] back-left   [3] back-right      +Z (south)
-     *   [0] front-left  [1] front-right      -Z (north)
-     *
-     * Adjust these offsets if your jar models need different spacing.
-     */
     private static final float[][] SLOTS = {
-            { -0.25f, 0f, -0.25f },   // slot 0 — front-left
-            {  0.25f, 0f, -0.25f },   // slot 1 — front-right
-            { -0.25f, 0f,  0.25f },   // slot 2 — back-left
-            {  0.25f, 0f,  0.25f },   // slot 3 — back-right
+            { -0.25f, 0f, -0.25f },
+            {  0.25f, 0f, -0.25f },
+            { -0.25f, 0f,  0.25f },
+            {  0.25f, 0f,  0.25f },
     };
 
-    /**
-     * Scale for each rendered jar.
-     * 0.5 makes the jar roughly half a block tall, matching the 10px VoxelShape height.
-     */
     private static final float JAR_SCALE = 1f;
 
     public JarRenderer(BlockEntityRendererProvider.Context ctx) { }
@@ -68,7 +53,6 @@ public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
             poseStack.translate(slot[0], slot[1], slot[2]);
             poseStack.scale(JAR_SCALE, JAR_SCALE, JAR_SCALE);
 
-            // FIXED display context renders the item's 3D block model
             itemRenderer.renderStatic(
                     new ItemStack(jar),
                     ItemDisplayContext.NONE,
@@ -87,9 +71,9 @@ public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
     private static float facingToRotationY(Direction facing) {
         return switch (facing) {
             case SOUTH -> 180f;
-            case WEST  ->  90f;
-            case EAST  -> -90f;
-            default    ->   0f;
+            case WEST -> 90f;
+            case EAST -> -90f;
+            default -> 0f;
         };
     }
 }

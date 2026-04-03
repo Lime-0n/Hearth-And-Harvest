@@ -36,22 +36,18 @@ public class JarBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty JARS = IntegerProperty.create("jars", 1, MAX_JARS);
 
-    // ─────── VoxelShapes ───────
+    protected static final VoxelShape ONE_NORTH = box(1, 0,  1,  7, 10,  7);
+    protected static final VoxelShape ONE_EAST = box(9, 0,  1, 15, 10,  7);
+    protected static final VoxelShape ONE_SOUTH = box(9, 0,  9, 15, 10, 15);
+    protected static final VoxelShape ONE_WEST = box(1, 0,  9,  7, 10, 15);
 
-    protected static final VoxelShape ONE_NORTH  = box(1, 0,  1,  7, 10,  7);
-    protected static final VoxelShape ONE_EAST   = box(9, 0,  1, 15, 10,  7);
-    protected static final VoxelShape ONE_SOUTH  = box(9, 0,  9, 15, 10, 15);
-    protected static final VoxelShape ONE_WEST   = box(1, 0,  9,  7, 10, 15);
-
-    protected static final VoxelShape TWO_NORTH  = box(1, 0,  1, 15, 10,  7);
-    protected static final VoxelShape TWO_EAST   = box(9, 0,  1, 15, 10, 15);
-    protected static final VoxelShape TWO_SOUTH  = box(1, 0,  9, 15, 10, 15);
-    protected static final VoxelShape TWO_WEST   = box(1, 0,  1,  7, 10, 15);
+    protected static final VoxelShape TWO_NORTH = box(1, 0,  1, 15, 10,  7);
+    protected static final VoxelShape TWO_EAST = box(9, 0,  1, 15, 10, 15);
+    protected static final VoxelShape TWO_SOUTH = box(1, 0,  9, 15, 10, 15);
+    protected static final VoxelShape TWO_WEST = box(1, 0,  1,  7, 10, 15);
 
     protected static final VoxelShape THREE_NORTH = box(1, 0, 1, 15, 10, 15);
-    protected static final VoxelShape FOUR_NORTH  = box(1, 0, 1, 15, 10, 15);
-
-    // ─────── Constructor ───────
+    protected static final VoxelShape FOUR_NORTH = box(1, 0, 1, 15, 10, 15);
 
     public JarBlock(Properties properties) {
         super(properties);
@@ -65,8 +61,6 @@ public class JarBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-    // ─────── Block Entity ───────
-
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -78,8 +72,6 @@ public class JarBlock extends BaseEntityBlock {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
-    // ─────── Placement ───────
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         for (Direction d : ctx.getNearestLookingDirections()) {
@@ -90,12 +82,8 @@ public class JarBlock extends BaseEntityBlock {
         return defaultBlockState();
     }
 
-    // ─────── Adding jars via right-click ───────
-
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
-                                              BlockPos pos, Player player, InteractionHand hand,
-                                              BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!(stack.getItem() instanceof JarBlockItem)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -117,11 +105,8 @@ public class JarBlock extends BaseEntityBlock {
         return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    // ─────── Removal ───────
-
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos,
-                         BlockState newState, boolean movedByPiston) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
                 be.dropAllJars(level, pos);
@@ -134,8 +119,6 @@ public class JarBlock extends BaseEntityBlock {
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
         return Collections.emptyList();
     }
-
-    // ─────── Shapes ───────
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {

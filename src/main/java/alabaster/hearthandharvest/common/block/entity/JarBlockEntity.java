@@ -30,8 +30,6 @@ public class JarBlockEntity extends BlockEntity {
         super(HHModBlockEntities.JAR.get(), pos, state);
     }
 
-    // ─────── Data access ───────
-
     public void addJar(Item jar) {
         if (jars.size() < 4) {
             jars.add(jar);
@@ -47,8 +45,6 @@ public class JarBlockEntity extends BlockEntity {
         return jars.size();
     }
 
-    // ─────── Drop all jars into the world ───────
-
     public void dropAllJars(Level level, BlockPos pos) {
         for (Item jar : jars) {
             if (jar != null && jar != Items.AIR) {
@@ -58,8 +54,6 @@ public class JarBlockEntity extends BlockEntity {
             }
         }
     }
-
-    // ─────── NBT persistence ───────
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
@@ -88,8 +82,6 @@ public class JarBlockEntity extends BlockEntity {
         }
     }
 
-    // ─────── Client sync ───────
-
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
@@ -103,8 +95,7 @@ public class JarBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt,
-                             HolderLookup.Provider registries) {
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider registries) {
         CompoundTag tag = pkt.getTag();
         if (tag != null) {
             loadAdditional(tag, registries);
