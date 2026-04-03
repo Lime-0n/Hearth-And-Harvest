@@ -1,6 +1,20 @@
 {
-  "parent": "minecraft:item/generated",
+  "base": {
+    "parent": "hearthandharvest:block/pickled_carrots"
+  },
+  "loader": "neoforge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "hearthandharvest:item/2d_pickled_carrots"
+    },
+    "ground": {
+      "parent": "hearthandharvest:item/2d_pickled_carrots"
+    },
+    "gui": {
+      "parent": "hearthandharvest:item/2d_pickled_carrots"
+    }
+  },
   "textures": {
-    "layer0": "hearthandharvest:item/pickled_carrots"
+    "particle": "hearthandharvest:item/pickled_carrots"
   }
 }

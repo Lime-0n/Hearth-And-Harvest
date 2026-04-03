@@ -414,7 +414,7 @@ public class HHModItems {
 
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",
-            () -> new BlockItem(HHModBlocks.JAR.get(), basicItem()));
+            () -> new JarBlockItem(HHModBlocks.JAR.get(), basicItem()));
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
             () -> new JarBlockItem(HHModBlocks.BLUEBERRY_JAM.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> CHERRY_JAM = registerWithTab("cherry_jam",

@@ -1,116 +1,161 @@
 package alabaster.hearthandharvest.common.block;
 
+import alabaster.hearthandharvest.common.block.entity.JarBlockEntity;
+import alabaster.hearthandharvest.common.item.JarBlockItem;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class JarBlock extends Block {
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+
+public class JarBlock extends BaseEntityBlock {
+
+    public static final MapCodec<JugBlock> CODEC = simpleCodec(JugBlock::new);
     public static final int MAX_JARS = 4;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final IntegerProperty JARS  = IntegerProperty.create("jars", 1, MAX_JARS);
+    public static final IntegerProperty JARS = IntegerProperty.create("jars", 1, MAX_JARS);
 
-    // ─────── Hard-coded AABBs ───────
-    protected static final VoxelShape ONE_NORTH = Block.box(1, 0, 1,  7, 10,  7);
-    protected static final VoxelShape ONE_EAST  = Block.box(9, 0, 1, 15, 10,  7);
-    protected static final VoxelShape ONE_SOUTH = Block.box(9, 0, 9, 15, 10, 15);
-    protected static final VoxelShape ONE_WEST  = Block.box(1, 0, 9,  7, 10, 15);
+    // ─────── VoxelShapes ───────
 
-    protected static final VoxelShape TWO_NORTH = Block.box(1, 0, 1, 15, 10,  7);
-    protected static final VoxelShape TWO_EAST  = Block.box(9, 0, 1, 15, 10, 15);
-    protected static final VoxelShape TWO_SOUTH = Block.box(1, 0, 9, 15, 10, 15);
-    protected static final VoxelShape TWO_WEST  = Block.box(1, 0, 1,  7, 10, 15);
+    protected static final VoxelShape ONE_NORTH  = box(1, 0,  1,  7, 10,  7);
+    protected static final VoxelShape ONE_EAST   = box(9, 0,  1, 15, 10,  7);
+    protected static final VoxelShape ONE_SOUTH  = box(9, 0,  9, 15, 10, 15);
+    protected static final VoxelShape ONE_WEST   = box(1, 0,  9,  7, 10, 15);
 
-    protected static final VoxelShape THREE_NORTH = Block.box(1, 0, 1, 15, 10, 15);
-    protected static final VoxelShape THREE_EAST  = THREE_NORTH;
-    protected static final VoxelShape THREE_SOUTH = THREE_NORTH;
-    protected static final VoxelShape THREE_WEST  = THREE_NORTH;
+    protected static final VoxelShape TWO_NORTH  = box(1, 0,  1, 15, 10,  7);
+    protected static final VoxelShape TWO_EAST   = box(9, 0,  1, 15, 10, 15);
+    protected static final VoxelShape TWO_SOUTH  = box(1, 0,  9, 15, 10, 15);
+    protected static final VoxelShape TWO_WEST   = box(1, 0,  1,  7, 10, 15);
 
-    protected static final VoxelShape FOUR_NORTH  = Block.box(1, 0, 1, 15, 10, 15);
-    protected static final VoxelShape FOUR_EAST   = FOUR_NORTH;
-    protected static final VoxelShape FOUR_SOUTH  = FOUR_NORTH;
-    protected static final VoxelShape FOUR_WEST   = FOUR_NORTH;
+    protected static final VoxelShape THREE_NORTH = box(1, 0, 1, 15, 10, 15);
+    protected static final VoxelShape FOUR_NORTH  = box(1, 0, 1, 15, 10, 15);
+
+    // ─────── Constructor ───────
 
     public JarBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any()
+        registerDefaultState(stateDefinition.any()
                 .setValue(JARS, 1)
                 .setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        LevelReader world = ctx.getLevel();
-        BlockPos pos = ctx.getClickedPos();
-        BlockState here = world.getBlockState(pos);
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
 
-        if (here.is(this)) {
-            int c = here.getValue(JARS);
-            return here.setValue(JARS, Math.min(MAX_JARS, c + 1));
-        }
+    // ─────── Block Entity ───────
 
-        for (Direction d : ctx.getNearestLookingDirections()) {
-            if (d.getAxis().isHorizontal()) {
-                return this.defaultBlockState()
-                        .setValue(FACING, d)
-                        .setValue(JARS, 1);
-            }
-        }
-        return this.defaultBlockState();
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new JarBlockEntity(pos, state);
     }
 
     @Override
-    protected boolean canBeReplaced(BlockState state, BlockPlaceContext ctx) {
-        return !ctx.isSecondaryUseActive()
-                && ctx.getItemInHand().is(this.asItem())
-                && state.getValue(JARS) < MAX_JARS
-                || super.canBeReplaced(state, ctx);
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
+
+    // ─────── Placement ───────
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        for (Direction d : ctx.getNearestLookingDirections()) {
+            if (d.getAxis().isHorizontal()) {
+                return defaultBlockState().setValue(FACING, d).setValue(JARS, 1);
+            }
+        }
+        return defaultBlockState();
+    }
+
+    // ─────── Adding jars via right-click ───────
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
+                                              BlockPos pos, Player player, InteractionHand hand,
+                                              BlockHitResult hit) {
+        if (!(stack.getItem() instanceof JarBlockItem)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        int current = state.getValue(JARS);
+        if (current >= MAX_JARS) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        if (!level.isClientSide) {
+            if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
+                be.addJar(stack.getItem());
+                BlockState newState = state.setValue(JARS, current + 1);
+                level.setBlock(pos, newState, 3);
+                level.sendBlockUpdated(pos, state, newState, 3);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+        }
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    // ─────── Removal ───────
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos,
+                         BlockState newState, boolean movedByPiston) {
+        if (!state.is(newState.getBlock())) {
+            if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
+                be.dropAllJars(level, pos);
+            }
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        return Collections.emptyList();
+    }
+
+    // ─────── Shapes ───────
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
         int jars = state.getValue(JARS);
         Direction face = state.getValue(FACING);
-        switch (jars) {
-            case 2:
-                switch (face) {
-                    case EAST:  return TWO_EAST;
-                    case SOUTH: return TWO_SOUTH;
-                    case WEST:  return TWO_WEST;
-                    default:    return TWO_NORTH;
-                }
-            case 3:
-                switch (face) {
-                    case EAST:  return THREE_EAST;
-                    case SOUTH: return THREE_SOUTH;
-                    case WEST:  return THREE_WEST;
-                    default:    return THREE_NORTH;
-                }
-            case 4:
-                switch (face) {
-                    case EAST:  return FOUR_EAST;
-                    case SOUTH: return FOUR_SOUTH;
-                    case WEST:  return FOUR_WEST;
-                    default:    return FOUR_NORTH;
-                }
-            case 1:
-            default:
-                switch (face) {
-                    case EAST:  return ONE_EAST;
-                    case SOUTH: return ONE_SOUTH;
-                    case WEST:  return ONE_WEST;
-                    default:    return ONE_NORTH;
-                }
-        }
+        return switch (jars) {
+            case 2 -> switch (face) {
+                case EAST  -> TWO_EAST;
+                case SOUTH -> TWO_SOUTH;
+                case WEST  -> TWO_WEST;
+                default    -> TWO_NORTH;
+            };
+            case 3, 4 -> THREE_NORTH;
+            default -> switch (face) {
+                case EAST  -> ONE_EAST;
+                case SOUTH -> ONE_SOUTH;
+                case WEST  -> ONE_WEST;
+                default    -> ONE_NORTH;
+            };
+        };
     }
 
     @Override
@@ -119,7 +164,7 @@ public class JarBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<net.minecraft.world.level.block.Block, BlockState> b) {
         b.add(JARS, FACING);
     }
 }
