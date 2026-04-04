@@ -414,35 +414,35 @@ public class HHModItems {
 
     // Jar Items
     public static final Supplier<Item> JAR = registerWithTab("jar",
-            () -> new JarBlockItem(HHModBlocks.JAR.get(), basicItem()));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.JAR.get(), basicItem()));
     public static final Supplier<Item> BLUEBERRY_JAM = registerWithTab("blueberry_jam",
-            () -> new JarBlockItem(HHModBlocks.BLUEBERRY_JAM.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.BLUEBERRY_JAM.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> CHERRY_JAM = registerWithTab("cherry_jam",
-            () -> new JarBlockItem(HHModBlocks.CHERRY_JAM.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.CHERRY_JAM.get(), jarItem(HHFoodValues.BLUEBERRY_JAM)));
     public static final Supplier<Item> RASPBERRY_JAM = registerWithTab("raspberry_jam",
-            () -> new JarBlockItem(HHModBlocks.RASPBERRY_JAM.get(), jarItem(HHFoodValues.RASPBERRY_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.RASPBERRY_JAM.get(), jarItem(HHFoodValues.RASPBERRY_JAM)));
     public static final Supplier<Item> GRAPE_JAM = registerWithTab("grape_jam",
-            () -> new JarBlockItem(HHModBlocks.GRAPE_JAM.get(), jarItem(HHFoodValues.GRAPE_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.GRAPE_JAM.get(), jarItem(HHFoodValues.GRAPE_JAM)));
     public static final Supplier<Item> APPLE_JAM = registerWithTab("apple_jam",
-            () -> new JarBlockItem(HHModBlocks.APPLE_JAM.get(), jarItem(HHFoodValues.APPLE_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.APPLE_JAM.get(), jarItem(HHFoodValues.APPLE_JAM)));
     public static final Supplier<Item> SWEET_BERRY_JAM = registerWithTab("sweet_berry_jam",
-            () -> new JarBlockItem(HHModBlocks.SWEET_BERRY_JAM.get(), jarItem(HHFoodValues.SWEET_BERRY_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.SWEET_BERRY_JAM.get(), jarItem(HHFoodValues.SWEET_BERRY_JAM)));
     public static final Supplier<Item> GLOW_BERRY_JAM = registerWithTab("glow_berry_jam",
-            () -> new JarBlockItem(HHModBlocks.GLOW_BERRY_JAM.get(), jarItem(HHFoodValues.GLOW_BERRY_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.GLOW_BERRY_JAM.get(), jarItem(HHFoodValues.GLOW_BERRY_JAM)));
     public static final Supplier<Item> MELON_JAM = registerWithTab("melon_jam",
-            () -> new JarBlockItem(HHModBlocks.MELON_JAM.get(), jarItem(HHFoodValues.MELON_JAM)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.MELON_JAM.get(), jarItem(HHFoodValues.MELON_JAM)));
     public static final Supplier<Item> PEANUT_BUTTER = registerWithTab("peanut_butter",
-            () -> new JarBlockItem(HHModBlocks.PEANUT_BUTTER.get(), jarItem(HHFoodValues.PEANUT_BUTTER)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PEANUT_BUTTER.get(), jarItem(HHFoodValues.PEANUT_BUTTER)));
     public static final Supplier<Item> PICKLED_BEETROOTS = registerWithTab("pickled_beetroots",
-            () -> new JarBlockItem(HHModBlocks.PICKLED_BEETROOTS.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PICKLED_BEETROOTS.get(), jarItem(HHFoodValues.PICKLED_BEETROOTS)));
     public static final Supplier<Item> PICKLED_CABBAGE = registerWithTab("pickled_cabbage",
-            () -> new JarBlockItem(HHModBlocks.PICKLED_CABBAGE.get(), jarItem(HHFoodValues.PICKLED_CABBAGE)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PICKLED_CABBAGE.get(), jarItem(HHFoodValues.PICKLED_CABBAGE)));
     public static final Supplier<Item> PICKLED_CARROTS = registerWithTab("pickled_carrots",
-            () -> new JarBlockItem(HHModBlocks.PICKLED_CARROTS.get(), jarItem(HHFoodValues.PICKLED_CARROTS)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PICKLED_CARROTS.get(), jarItem(HHFoodValues.PICKLED_CARROTS)));
     public static final Supplier<Item> PICKLED_ONIONS = registerWithTab("pickled_onions",
-            () -> new JarBlockItem(HHModBlocks.PICKLED_ONIONS.get(), jarItem(HHFoodValues.PICKLED_ONIONS)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PICKLED_ONIONS.get(), jarItem(HHFoodValues.PICKLED_ONIONS)));
     public static final Supplier<Item> PICKLED_POTATOES = registerWithTab("pickled_potatoes",
-            () -> new JarBlockItem(HHModBlocks.PICKLED_POTATOES.get(), jarItem(HHFoodValues.PICKLED_POTATOES)));
+            () -> new JarBlockItem(HHModBlocks.EMPTY_JAR_DISPLAY.get(), HHModBlocks.PICKLED_POTATOES.get(), jarItem(HHFoodValues.PICKLED_POTATOES)));
 
     // Sweets
     public static final Supplier<Item> CARAMEL = registerWithTab("caramel",

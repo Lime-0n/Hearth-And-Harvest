@@ -5,52 +5,52 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import javax.annotation.Nullable;
+import java.util.Arrays;
 
 public class JarBlockEntity extends BlockEntity {
 
-    private final List<Item> jars = new ArrayList<>(4);
+    private final Block[] slots = new Block[4];
 
     public JarBlockEntity(BlockPos pos, BlockState state) {
         super(HHModBlockEntities.JAR.get(), pos, state);
     }
 
-    public void addJar(Item jar) {
-        if (jars.size() < 4) {
-            jars.add(jar);
-            setChanged();
-        }
+    public void setSlot(int index, @Nullable Block displayBlock) {
+        if (index < 0 || index >= 4) return;
+        slots[index] = (displayBlock == Blocks.AIR) ? null : displayBlock;
+        setChanged();
     }
 
-    public List<Item> getJars() {
-        return Collections.unmodifiableList(jars);
+    @Nullable
+    public Block getSlot(int index) {
+        if (index < 0 || index >= 4) return null;
+        return slots[index];
     }
 
     public int getCount() {
-        return jars.size();
+        int count = 0;
+        for (Block slot : slots) if (slot != null) count++;
+        return count;
     }
 
     public void dropAllJars(Level level, BlockPos pos) {
-        for (Item jar : jars) {
-            if (jar != null && jar != Items.AIR) {
+        for (Block block : slots) {
+            if (block != null && block != Blocks.AIR) {
                 Containers.dropItemStack(level,
                         pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        new ItemStack(jar));
+                        new ItemStack(block.asItem()));
             }
         }
     }
@@ -58,26 +58,26 @@ public class JarBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        ListTag list = new ListTag();
-        for (Item jar : jars) {
-            CompoundTag entry = new CompoundTag();
-            entry.putString("item", BuiltInRegistries.ITEM.getKey(jar).toString());
-            list.add(entry);
+        CompoundTag slotsTag = new CompoundTag();
+        for (int i = 0; i < 4; i++) {
+            if (slots[i] != null) {
+                slotsTag.putString("slot_" + i, BuiltInRegistries.BLOCK.getKey(slots[i]).toString());
+            }
         }
-        tag.put("jars", list);
+        tag.put("slots", slotsTag);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        jars.clear();
-        ListTag list = tag.getList("jars", Tag.TAG_COMPOUND);
-        for (int i = 0; i < list.size() && i < 4; i++) {
-            CompoundTag entry = list.getCompound(i);
-            ResourceLocation key = ResourceLocation.parse(entry.getString("item"));
-            Item item = BuiltInRegistries.ITEM.get(key);
-            if (item != Items.AIR) {
-                jars.add(item);
+        Arrays.fill(slots, null);
+        CompoundTag slotsTag = tag.getCompound("slots");
+        for (int i = 0; i < 4; i++) {
+            String key = "slot_" + i;
+            if (slotsTag.contains(key)) {
+                ResourceLocation rl = ResourceLocation.parse(slotsTag.getString(key));
+                Block block = BuiltInRegistries.BLOCK.get(rl);
+                if (block != Blocks.AIR) slots[i] = block;
             }
         }
     }

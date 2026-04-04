@@ -50,26 +50,7 @@ public class HHModBlockEntities {
             });
 
     public static final Supplier<BlockEntityType<JarBlockEntity>> JAR = BLOCK_ENTITY_TYPES.register("jar_tile",
-            () -> {
-                List<Block> blocks = new ArrayList<>(List.of(
-                        HHModBlocks.JAR.get(),
-                        HHModBlocks.APPLE_JAM.get(),
-                        HHModBlocks.CHERRY_JAM.get(),
-                        HHModBlocks.BLUEBERRY_JAM.get(),
-                        HHModBlocks.RASPBERRY_JAM.get(),
-                        HHModBlocks.GRAPE_JAM.get(),
-                        HHModBlocks.GLOW_BERRY_JAM.get(),
-                        HHModBlocks.SWEET_BERRY_JAM.get(),
-                        HHModBlocks.MELON_JAM.get(),
-                        HHModBlocks.PEANUT_BUTTER.get(),
-                        HHModBlocks.PICKLED_BEETROOTS.get(),
-                        HHModBlocks.PICKLED_CABBAGE.get(),
-                        HHModBlocks.PICKLED_CARROTS.get(),
-                        HHModBlocks.PICKLED_ONIONS.get(),
-                        HHModBlocks.PICKLED_POTATOES.get()
-                ));
-                return BlockEntityType.Builder.of(JarBlockEntity::new, blocks.toArray(Block[]::new)).build(null);
-            });
+            () -> BlockEntityType.Builder.of(JarBlockEntity::new, HHModBlocks.EMPTY_JAR_DISPLAY.get()).build(null));
 
     public static final Supplier<BlockEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITY_TYPES.register("crate",
             () -> BlockEntityType.Builder.of(CrateBlockEntity::new, HHModBlocks.CRATE.get()).build(null));

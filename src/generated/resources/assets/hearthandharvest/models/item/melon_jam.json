@@ -1,4 +1,5 @@
 {
+  "parent": "minecraft:item/generated",
   "base": {
     "parent": "hearthandharvest:block/melon_jam"
   },
@@ -15,6 +16,7 @@
     }
   },
   "textures": {
+    "layer0": "hearthandharvest:item/melon_jam",
     "particle": "hearthandharvest:item/melon_jam"
   }
 }

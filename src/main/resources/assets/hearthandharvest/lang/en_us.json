@@ -21,7 +21,7 @@
 
   "block.hearthandharvest.stomping_basin": "Stomping Basin",
 
-  "block.hearthandharvest.jar": "Jar",
+  "block.hearthandharvest.empty_jar_display": "Jars",
 
   "block.hearthandharvest.jug": "Jug",
   "tooltip.hearthandharvest.jug.empty": "Empty",
@@ -163,7 +163,6 @@
   "block.hearthandharvest.warped_fungus_crate": "Warped Fungus Crate",
 
   "item.hearthandharvest.wooden_bucket": "Wooden Bucket",
-  "item.hearthandharvest.jar": "Jar",
   "item.hearthandharvest.watering_can": "Watering Can",
   "item.hearthandharvest.universal_feed": "Animal Feed",
 
@@ -191,20 +190,21 @@
   "item.hearthandharvest.glow_berry_juice": "Glow Berry Juice",
   "item.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
 
-  "block.hearthandharvest.raspberry_jam": "Raspberry Jam",
-  "block.hearthandharvest.cherry_jam": "Cherry Jam",
-  "block.hearthandharvest.blueberry_jam": "Blueberry Jam",
-  "block.hearthandharvest.grape_jam": "Grape Jam",
-  "block.hearthandharvest.apple_jam": "Apple Jam",
-  "block.hearthandharvest.sweet_berry_jam": "Sweet Berry Jam",
-  "block.hearthandharvest.glow_berry_jam": "Glow Berry Jam",
-  "block.hearthandharvest.melon_jam": "Melon Jam",
-  "block.hearthandharvest.peanut_butter": "Peanut Butter",
-  "block.hearthandharvest.pickled_beetroots": "Pickled Beetroots",
-  "block.hearthandharvest.pickled_cabbage": "Pickled Cabbage",
-  "block.hearthandharvest.pickled_carrots": "Pickled Carrots",
-  "block.hearthandharvest.pickled_onions": "Pickled Onions",
-  "block.hearthandharvest.pickled_potatoes": "Pickled Potatoes",
+  "item.hearthandharvest.jar": "Jar",
+  "item.hearthandharvest.raspberry_jam": "Raspberry Jam",
+  "item.hearthandharvest.cherry_jam": "Cherry Jam",
+  "item.hearthandharvest.blueberry_jam": "Blueberry Jam",
+  "item.hearthandharvest.grape_jam": "Grape Jam",
+  "item.hearthandharvest.apple_jam": "Apple Jam",
+  "item.hearthandharvest.sweet_berry_jam": "Sweet Berry Jam",
+  "item.hearthandharvest.glow_berry_jam": "Glow Berry Jam",
+  "item.hearthandharvest.melon_jam": "Melon Jam",
+  "item.hearthandharvest.peanut_butter": "Peanut Butter",
+  "item.hearthandharvest.pickled_beetroots": "Pickled Beetroots",
+  "item.hearthandharvest.pickled_cabbage": "Pickled Cabbage",
+  "item.hearthandharvest.pickled_carrots": "Pickled Carrots",
+  "item.hearthandharvest.pickled_onions": "Pickled Onions",
+  "item.hearthandharvest.pickled_potatoes": "Pickled Potatoes",
 
   "item.hearthandharvest.caramel": "Caramel",
   "item.hearthandharvest.caramel_apple": "Caramel Apple",

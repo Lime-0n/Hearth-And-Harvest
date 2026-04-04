@@ -129,6 +129,7 @@ public class BlockStates extends BlockStateProvider
         this.pottedFlower(HHModBlocks.POTTED_PINK_MUM.get(), HHModBlocks.PINK_MUM.get());
         this.pottedFlower(HHModBlocks.POTTED_WHITE_MUM.get(), HHModBlocks.WHITE_MUM.get());
 
+        this.jarBlock(HHModBlocks.JAR.get(), "jar");
         this.jarBlock(HHModBlocks.BLUEBERRY_JAM.get(), "blueberry_jam");
         this.jarBlock(HHModBlocks.CHERRY_JAM.get(), "cherry_jam");
         this.jarBlock(HHModBlocks.GRAPE_JAM.get(), "grape_jam");
@@ -241,52 +242,7 @@ public class BlockStates extends BlockStateProvider
     }
 
     public void jarBlock(Block block, String jarType) {
-        String baseModelPath = HearthAndHarvest.MODID + ":block/" + jarType;
-        String modelTexture = HearthAndHarvest.MODID + ":block/" + jarType + "_jar";
-
-        for (int i = 1; i <= 4; i++) {
-            String modelName = jarType + "_jar_" + i;
-            String parentModel = HearthAndHarvest.MODID + ":block/generic_jar_" + i;
-
-            // Generate model file
-            models().withExistingParent(modelName, parentModel)
-                    .texture("lid", modelTexture);
-        }
-
-        // Generate blockstate JSON with multipart rotations
-        for (int i = 1; i <= 4; i++) {
-            String modelPath = HearthAndHarvest.MODID + ":block/" + jarType + "_jar_" + i;
-
-            ModelFile model = models().getExistingFile(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, jarType + "_jar_" + i));
-
-            for (Direction dir : Direction.Plane.HORIZONTAL) {
-                getMultipartBuilder(block)
-                        .part()
-                        .modelFile(model)
-                        .rotationY(getYRotation(dir))
-                        .addModel()
-                        .condition(HorizontalDirectionalBlock.FACING, dir)
-                        .condition(JarBlock.JARS, i, 4);
-            }
-        }
-    }
-
-    private int getYRotation(Direction direction) {
-        return switch (direction) {
-            case EAST -> 90;
-            case SOUTH -> 180;
-            case WEST -> 270;
-            default -> 0;
-        };
-    }
-
-    private String buildJarsCondition(int minLevel) {
-        StringBuilder builder = new StringBuilder();
-        for (int j = minLevel; j <= 4; j++) {
-            if (builder.length() > 0) builder.append("|");
-            builder.append(j);
-        }
-        return builder.toString();
+        simpleBlock(block, models().getExistingFile(resourceBlock(jarType)));
     }
 
 }

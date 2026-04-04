@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.common.block.entity.JarBlockEntity;
 import alabaster.hearthandharvest.common.item.JarBlockItem;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -13,16 +12,17 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
@@ -31,29 +31,41 @@ import java.util.List;
 
 public class JarBlock extends BaseEntityBlock {
 
-    public static final MapCodec<JugBlock> CODEC = simpleCodec(JugBlock::new);
-    public static final int MAX_JARS = 4;
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final IntegerProperty JARS = IntegerProperty.create("jars", 1, MAX_JARS);
+    public static final MapCodec<JarBlock> CODEC = simpleCodec(JarBlock::new);
+    public static final BooleanProperty SLOT_0 = BooleanProperty.create("slot_0"); // NW (-x, -z)
+    public static final BooleanProperty SLOT_1 = BooleanProperty.create("slot_1"); // NE (+x, -z)
+    public static final BooleanProperty SLOT_2 = BooleanProperty.create("slot_2"); // SW (-x, +z)
+    public static final BooleanProperty SLOT_3 = BooleanProperty.create("slot_3"); // SE (+x, +z)
 
-    protected static final VoxelShape ONE_NORTH = box(1, 0,  1,  7, 10,  7);
-    protected static final VoxelShape ONE_EAST = box(9, 0,  1, 15, 10,  7);
-    protected static final VoxelShape ONE_SOUTH = box(9, 0,  9, 15, 10, 15);
-    protected static final VoxelShape ONE_WEST = box(1, 0,  9,  7, 10, 15);
+    public static final BooleanProperty[] SLOTS = { SLOT_0, SLOT_1, SLOT_2, SLOT_3 };
 
-    protected static final VoxelShape TWO_NORTH = box(1, 0,  1, 15, 10,  7);
-    protected static final VoxelShape TWO_EAST = box(9, 0,  1, 15, 10, 15);
-    protected static final VoxelShape TWO_SOUTH = box(1, 0,  9, 15, 10, 15);
-    protected static final VoxelShape TWO_WEST = box(1, 0,  1,  7, 10, 15);
+    private static final VoxelShape SHAPE_NW = box(1, 0,  1,  7, 10,  7);
+    private static final VoxelShape SHAPE_NE = box(9, 0,  1, 15, 10,  7);
+    private static final VoxelShape SHAPE_SW = box(1, 0,  9,  7, 10, 15);
+    private static final VoxelShape SHAPE_SE = box(9, 0,  9, 15, 10, 15);
 
-    protected static final VoxelShape THREE_NORTH = box(1, 0, 1, 15, 10, 15);
-    protected static final VoxelShape FOUR_NORTH = box(1, 0, 1, 15, 10, 15);
+    private static final VoxelShape[] CORNER_SHAPES = { SHAPE_NW, SHAPE_NE, SHAPE_SW, SHAPE_SE };
+
+    private static final VoxelShape[] COMBINED_SHAPES = new VoxelShape[16];
+    static {
+        for (int mask = 0; mask < 16; mask++) {
+            VoxelShape shape = Shapes.empty();
+            for (int i = 0; i < 4; i++) {
+                if ((mask & (1 << i)) != 0) {
+                    shape = Shapes.or(shape, CORNER_SHAPES[i]);
+                }
+            }
+            COMBINED_SHAPES[mask] = mask == 0 ? SHAPE_NW : shape;
+        }
+    }
 
     public JarBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any()
-                .setValue(JARS, 1)
-                .setValue(FACING, Direction.NORTH));
+                .setValue(SLOT_0, false)
+                .setValue(SLOT_1, false)
+                .setValue(SLOT_2, false)
+                .setValue(SLOT_3, false));
     }
 
     @Override
@@ -74,27 +86,29 @@ public class JarBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        for (Direction d : ctx.getNearestLookingDirections()) {
-            if (d.getAxis().isHorizontal()) {
-                return defaultBlockState().setValue(FACING, d).setValue(JARS, 1);
-            }
-        }
         return defaultBlockState();
     }
 
+
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!(stack.getItem() instanceof JarBlockItem)) {
+        if (!(stack.getItem() instanceof JarBlockItem jarItem)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        int current = state.getValue(JARS);
-        if (current >= MAX_JARS) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        int targetSlot = quadrantFromHit(hit.getLocation(), pos);
+
+        if (state.getValue(SLOTS[targetSlot])) {
+            targetSlot = firstEmptySlot(state);
+            if (targetSlot == -1) {
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
         }
+
         if (!level.isClientSide) {
             if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
-                be.addJar(stack.getItem());
-                BlockState newState = state.setValue(JARS, current + 1);
+                be.setSlot(targetSlot, jarItem.getDisplayBlock());
+                BlockState newState = state.setValue(SLOTS[targetSlot], true);
                 level.setBlock(pos, newState, 3);
                 level.sendBlockUpdated(pos, state, newState, 3);
                 if (!player.getAbilities().instabuild) {
@@ -122,23 +136,7 @@ public class JarBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
-        int jars = state.getValue(JARS);
-        Direction face = state.getValue(FACING);
-        return switch (jars) {
-            case 2 -> switch (face) {
-                case EAST  -> TWO_EAST;
-                case SOUTH -> TWO_SOUTH;
-                case WEST  -> TWO_WEST;
-                default    -> TWO_NORTH;
-            };
-            case 3, 4 -> THREE_NORTH;
-            default -> switch (face) {
-                case EAST  -> ONE_EAST;
-                case SOUTH -> ONE_SOUTH;
-                case WEST  -> ONE_WEST;
-                default    -> ONE_NORTH;
-            };
-        };
+        return COMBINED_SHAPES[slotMask(state)];
     }
 
     @Override
@@ -147,7 +145,30 @@ public class JarBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<net.minecraft.world.level.block.Block, BlockState> b) {
-        b.add(JARS, FACING);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
+        b.add(SLOT_0, SLOT_1, SLOT_2, SLOT_3);
+    }
+
+    public static int quadrantFromHit(Vec3 hitLocation, BlockPos blockPos) {
+        double localX = hitLocation.x - blockPos.getX();
+        double localZ = hitLocation.z - blockPos.getZ();
+        int east  = localX >= 0.5 ? 1 : 0;
+        int south = localZ >= 0.5 ? 2 : 0;
+        return south + east;
+    }
+
+    public static int firstEmptySlot(BlockState state) {
+        for (int i = 0; i < SLOTS.length; i++) {
+            if (!state.getValue(SLOTS[i])) return i;
+        }
+        return -1;
+    }
+
+    public static int slotMask(BlockState state) {
+        int mask = 0;
+        for (int i = 0; i < SLOTS.length; i++) {
+            if (state.getValue(SLOTS[i])) mask |= (1 << i);
+        }
+        return mask;
     }
 }
