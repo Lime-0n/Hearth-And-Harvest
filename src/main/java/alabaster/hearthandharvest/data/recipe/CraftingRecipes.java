@@ -59,10 +59,11 @@ public class CraftingRecipes
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.JAR.get(), 4)
-                .pattern("G G")
+                .pattern(" C ")
                 .pattern("G G")
                 .pattern("GGG")
                 .define('G', Items.GLASS_PANE)
+                .define('C', ModItems.CANVAS.get())
                 .unlockedBy("has_glass_pane", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GLASS_PANE))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.JUG.get(), 1)
