@@ -16,6 +16,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nullable;
+
 public class JarBlockItem extends BlockItem {
 
     private final Block displayBlock;
@@ -35,6 +37,24 @@ public class JarBlockItem extends BlockItem {
     }
 
     @Override
+    protected boolean updateCustomBlockEntityTag(BlockPos pos, Level level, @Nullable Player player, ItemStack stack, BlockState state) {
+        boolean result = super.updateCustomBlockEntityTag(pos, level, player, stack, state);
+        if (!level.isClientSide) {
+            if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
+                for (int i = 0; i < JarBlock.SLOTS.length; i++) {
+                    if (state.getValue(JarBlock.SLOTS[i])) {
+                        be.setSlot(i, this);
+                        be.setChanged();
+                        level.sendBlockUpdated(pos, state, state, 3);
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
     public InteractionResult place(BlockPlaceContext ctx) {
         Level level = ctx.getLevel();
         BlockPos clickedPos = ctx.getClickedPos();
@@ -44,22 +64,7 @@ public class JarBlockItem extends BlockItem {
             return InteractionResult.PASS;
         }
 
-        int slot = JarBlock.quadrantFromHit(ctx.getClickLocation(), clickedPos);
-
-        InteractionResult result = super.place(ctx);
-
-        if (result.consumesAction() && !level.isClientSide()) {
-            if (level.getBlockEntity(clickedPos) instanceof JarBlockEntity be) {
-                be.setSlot(slot, displayBlock);
-                be.setChanged();
-                BlockState placed = level.getBlockState(clickedPos);
-                BlockState updated = placed.setValue(JarBlock.SLOTS[slot], true);
-                level.setBlock(clickedPos, updated, 3);
-                level.sendBlockUpdated(clickedPos, placed, updated, 3);
-            }
-        }
-
-        return result;
+        return super.place(ctx);
     }
 
     @Override

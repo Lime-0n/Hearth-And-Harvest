@@ -9,10 +9,10 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,36 +21,36 @@ import java.util.Arrays;
 
 public class JarBlockEntity extends BlockEntity {
 
-    private final Block[] slots = new Block[4];
+    private final Item[] slots = new Item[4];
 
     public JarBlockEntity(BlockPos pos, BlockState state) {
         super(HHModBlockEntities.JAR.get(), pos, state);
     }
 
-    public void setSlot(int index, @Nullable Block displayBlock) {
+    public void setSlot(int index, @Nullable Item item) {
         if (index < 0 || index >= 4) return;
-        slots[index] = (displayBlock == Blocks.AIR) ? null : displayBlock;
+        slots[index] = (item == Items.AIR) ? null : item;
         setChanged();
     }
 
     @Nullable
-    public Block getSlot(int index) {
+    public Item getSlot(int index) {
         if (index < 0 || index >= 4) return null;
         return slots[index];
     }
 
     public int getCount() {
         int count = 0;
-        for (Block slot : slots) if (slot != null) count++;
+        for (Item slot : slots) if (slot != null) count++;
         return count;
     }
 
     public void dropAllJars(Level level, BlockPos pos) {
-        for (Block block : slots) {
-            if (block != null && block != Blocks.AIR) {
+        for (Item item : slots) {
+            if (item != null && item != Items.AIR) {
                 Containers.dropItemStack(level,
                         pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        new ItemStack(block.asItem()));
+                        new ItemStack(item));
             }
         }
     }
@@ -61,7 +61,7 @@ public class JarBlockEntity extends BlockEntity {
         CompoundTag slotsTag = new CompoundTag();
         for (int i = 0; i < 4; i++) {
             if (slots[i] != null) {
-                slotsTag.putString("slot_" + i, BuiltInRegistries.BLOCK.getKey(slots[i]).toString());
+                slotsTag.putString("slot_" + i, BuiltInRegistries.ITEM.getKey(slots[i]).toString());
             }
         }
         tag.put("slots", slotsTag);
@@ -76,8 +76,8 @@ public class JarBlockEntity extends BlockEntity {
             String key = "slot_" + i;
             if (slotsTag.contains(key)) {
                 ResourceLocation rl = ResourceLocation.parse(slotsTag.getString(key));
-                Block block = BuiltInRegistries.BLOCK.get(rl);
-                if (block != Blocks.AIR) slots[i] = block;
+                Item item = BuiltInRegistries.ITEM.get(rl);
+                if (item != Items.AIR) slots[i] = item;
             }
         }
     }

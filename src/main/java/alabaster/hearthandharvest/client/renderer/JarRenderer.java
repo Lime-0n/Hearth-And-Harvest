@@ -7,8 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import alabaster.hearthandharvest.common.item.JarBlockItem;
+import net.minecraft.world.item.Item;
 
 public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
 
@@ -29,8 +29,8 @@ public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
         for (int i = 0; i < 4; i++) {
             if (!be.getBlockState().getValue(JarBlock.SLOTS[i])) continue;
 
-            Block jar = be.getSlot(i);
-            if (jar == null || jar == Blocks.AIR) continue;
+            Item item = be.getSlot(i);
+            if (!(item instanceof JarBlockItem jarItem)) continue;
 
             float[] offset = SLOT_OFFSETS[i];
 
@@ -38,7 +38,7 @@ public class JarRenderer implements BlockEntityRenderer<JarBlockEntity> {
             poseStack.translate(offset[0], offset[1], offset[2]);
 
             blockRenderer.renderSingleBlock(
-                    jar.defaultBlockState(),
+                    jarItem.getDisplayBlock().defaultBlockState(),
                     poseStack,
                     bufferSource,
                     packedLight,

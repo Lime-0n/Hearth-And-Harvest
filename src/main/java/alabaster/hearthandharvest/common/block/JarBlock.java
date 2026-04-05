@@ -4,13 +4,17 @@ import alabaster.hearthandharvest.common.block.entity.JarBlockEntity;
 import alabaster.hearthandharvest.common.item.JarBlockItem;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -32,10 +36,10 @@ import java.util.List;
 public class JarBlock extends BaseEntityBlock {
 
     public static final MapCodec<JarBlock> CODEC = simpleCodec(JarBlock::new);
-    public static final BooleanProperty SLOT_0 = BooleanProperty.create("slot_0"); // NW (-x, -z)
-    public static final BooleanProperty SLOT_1 = BooleanProperty.create("slot_1"); // NE (+x, -z)
-    public static final BooleanProperty SLOT_2 = BooleanProperty.create("slot_2"); // SW (-x, +z)
-    public static final BooleanProperty SLOT_3 = BooleanProperty.create("slot_3"); // SE (+x, +z)
+    public static final BooleanProperty SLOT_0 = BooleanProperty.create("slot_0");
+    public static final BooleanProperty SLOT_1 = BooleanProperty.create("slot_1");
+    public static final BooleanProperty SLOT_2 = BooleanProperty.create("slot_2");
+    public static final BooleanProperty SLOT_3 = BooleanProperty.create("slot_3");
 
     public static final BooleanProperty[] SLOTS = { SLOT_0, SLOT_1, SLOT_2, SLOT_3 };
 
@@ -51,13 +55,13 @@ public class JarBlock extends BaseEntityBlock {
         for (int mask = 0; mask < 16; mask++) {
             VoxelShape shape = Shapes.empty();
             for (int i = 0; i < 4; i++) {
-                if ((mask & (1 << i)) != 0) {
-                    shape = Shapes.or(shape, CORNER_SHAPES[i]);
-                }
+                if ((mask & (1 << i)) != 0) shape = Shapes.or(shape, CORNER_SHAPES[i]);
             }
             COMBINED_SHAPES[mask] = mask == 0 ? SHAPE_NW : shape;
         }
     }
+
+    private static final VoxelShape FULL_FOOTPRINT = box(1, 0, 1, 15, 10, 15);
 
     public JarBlock(Properties properties) {
         super(properties);
@@ -86,18 +90,63 @@ public class JarBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return defaultBlockState();
+        int slot = quadrantFromHit(ctx.getClickLocation(), ctx.getClickedPos());
+        return defaultBlockState().setValue(SLOTS[slot], true);
     }
 
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        if (player.isShiftKeyDown()) {
+            return tryRemoveJar(state, level, pos, player, hit)
+                    ? InteractionResult.sidedSuccess(level.isClientSide)
+                    : InteractionResult.PASS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    private boolean tryRemoveJar(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        int slot = quadrantFromHit(hit.getLocation(), pos);
+        if (!state.getValue(SLOTS[slot])) {
+            slot = firstOccupiedSlot(state);
+            if (slot == -1) return false;
+        }
+
+        if (!level.isClientSide) {
+            if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
+                Item item = be.getSlot(slot);
+                if (item != null) {
+                    ItemStack drop = new ItemStack(item);
+                    if (!player.getInventory().add(drop)) {
+                        player.drop(drop, false);
+                    }
+                }
+                be.setSlot(slot, null);
+                BlockState newState = state.setValue(SLOTS[slot], false);
+
+                if (slotMask(newState) == 0) {
+                    level.removeBlock(pos, false);
+                } else {
+                    level.setBlock(pos, newState, 3);
+                    level.sendBlockUpdated(pos, state, newState, 3);
+                }
+            }
+        }
+        return true;
+    }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (player.isShiftKeyDown()) {
+            return tryRemoveJar(state, level, pos, player, hit)
+                    ? ItemInteractionResult.sidedSuccess(level.isClientSide)
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
         if (!(stack.getItem() instanceof JarBlockItem jarItem)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         int targetSlot = quadrantFromHit(hit.getLocation(), pos);
-
         if (state.getValue(SLOTS[targetSlot])) {
             targetSlot = firstEmptySlot(state);
             if (targetSlot == -1) {
@@ -107,7 +156,7 @@ public class JarBlock extends BaseEntityBlock {
 
         if (!level.isClientSide) {
             if (level.getBlockEntity(pos) instanceof JarBlockEntity be) {
-                be.setSlot(targetSlot, jarItem.getDisplayBlock());
+                be.setSlot(targetSlot, jarItem);
                 BlockState newState = state.setValue(SLOTS[targetSlot], true);
                 level.setBlock(pos, newState, 3);
                 level.sendBlockUpdated(pos, state, newState, 3);
@@ -136,12 +185,12 @@ public class JarBlock extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
-        return COMBINED_SHAPES[slotMask(state)];
+        return FULL_FOOTPRINT;
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext ctx) {
-        return getShape(state, world, pos, ctx);
+        return COMBINED_SHAPES[slotMask(state)];
     }
 
     @Override
@@ -164,11 +213,23 @@ public class JarBlock extends BaseEntityBlock {
         return -1;
     }
 
+    public static int firstOccupiedSlot(BlockState state) {
+        for (int i = 0; i < SLOTS.length; i++) {
+            if (state.getValue(SLOTS[i])) return i;
+        }
+        return -1;
+    }
+
     public static int slotMask(BlockState state) {
         int mask = 0;
         for (int i = 0; i < SLOTS.length; i++) {
             if (state.getValue(SLOTS[i])) mask |= (1 << i);
         }
         return mask;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return canSupportCenter(level, pos.below(), Direction.UP);
     }
 }
