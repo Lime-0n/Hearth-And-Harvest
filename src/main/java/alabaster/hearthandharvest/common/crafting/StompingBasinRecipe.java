@@ -134,7 +134,7 @@ public class StompingBasinRecipe implements Recipe<RecipeWrapper> {
             NonNullList<Ingredient> ingredients = NonNullList.withSize(count, Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
 
-            FluidStack fluid = FluidStack.STREAM_CODEC.decode(buf);
+            FluidStack fluid = FluidStack.OPTIONAL_STREAM_CODEC.decode(buf);
             ItemStack  item  = ItemStack.OPTIONAL_STREAM_CODEC.decode(buf);
 
             return new StompingBasinRecipe(ingredients, fluid, item);
@@ -145,7 +145,7 @@ public class StompingBasinRecipe implements Recipe<RecipeWrapper> {
             for (Ingredient ingredient : recipe.ingredients) {
                 Ingredient.CONTENTS_STREAM_CODEC.encode(buf, ingredient);
             }
-            FluidStack.STREAM_CODEC.encode(buf, recipe.resultFluid);
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.resultFluid);
             ItemStack.OPTIONAL_STREAM_CODEC.encode(buf, recipe.resultItem);
         }
     }

@@ -18,6 +18,7 @@ public class StompingRecipes {
 
     public static void register(RecipeOutput output) {
         stompJuices(output);
+        stompMaterials(output);
     }
 
     private static void stompJuices(RecipeOutput output) {
@@ -64,16 +65,23 @@ public class StompingRecipes {
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BUCKET))
                 .addIngredient(HHModItems.PEANUT.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.PEANUT.get())
-                .build(output,"cooking_oil_from_peanuts");
+                .build(output, "cooking_oil_from_peanuts");
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BOTTLE))
                 .addIngredient(Tags.Items.SEEDS, 8)
                 .unlockedByAnyIngredient()
-                .build(output,"cooking_oil_from_seeds");
+                .build(output, "cooking_oil_from_seeds");
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), BUCKET))
                 .addIngredient(HHModItems.CORN.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.CORN.get())
-                .build(output,"cooking_oil_from_corn");
+                .build(output, "cooking_oil_from_corn");
+    }
+
+    private static void stompMaterials(RecipeOutput output) {
+        StompingBasinRecipeBuilder.stomping(Items.SLIME_BALL, 9)
+                .addIngredient(Items.SLIME_BLOCK, 1)
+                .unlockedByAnyIngredient(Items.SLIME_BLOCK)
+                .build(output);
     }
 }

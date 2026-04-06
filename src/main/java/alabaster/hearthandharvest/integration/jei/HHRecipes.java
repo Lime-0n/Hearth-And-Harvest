@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.integration.jei;
 
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -27,5 +28,9 @@ public class HHRecipes
 
     public List<RecipeHolder<CaskRecipe>> getCaskRecipes() {
         return recipeManager.getAllRecipesFor(HHModRecipeTypes.AGING.get());
+    }
+
+    public List<RecipeHolder<StompingBasinRecipe>> getStompingRecipes() {
+        return recipeManager.getAllRecipesFor(HHModRecipeTypes.STOMPING.get());
     }
 }
