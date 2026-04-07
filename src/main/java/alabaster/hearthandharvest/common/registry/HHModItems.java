@@ -120,6 +120,9 @@ public class HHModItems {
     public static final Supplier<Item> SCARECROW = registerWithBlockTab("scarecrow",
             () -> new BlockItem(HHModBlocks.SCARECROW.get(), basicItem()));
 
+    public static final Supplier<Item> TRELLIS = registerWithBlockTab("trellis",
+            () -> new BlockItem(HHModBlocks.TRELLIS.get(), basicItem()));
+
 
     // Half-Cabinets
     public static final Supplier<Item> OAK_HALF_CABINET = registerWithBlockTab("oak_half_cabinet",

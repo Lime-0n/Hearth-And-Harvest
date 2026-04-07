@@ -1,0 +1,40 @@
+{
+  "multipart": [
+    {
+      "when": { "shape": "middle", "facing": "north" },
+      "apply": { "model": "hearthandharvest:block/trellis"}
+    },
+    {
+      "when": { "shape": "middle", "facing": "south" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 180}
+    },
+    {
+      "when": { "shape": "middle", "facing": "east" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 270}
+    },
+    {
+      "when": { "shape": "middle", "facing": "west" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 90}
+    },
+    {
+      "when": { "shape": "side", "facing": "north" },
+      "apply": { "model": "hearthandharvest:block/trellis_side" }
+    },
+    {
+      "when": { "shape": "side", "facing": "south" },
+      "apply": { "model": "hearthandharvest:block/trellis_side", "y": 180 }
+    },
+    {
+      "when": { "shape": "side", "facing": "east" },
+      "apply": { "model": "hearthandharvest:block/trellis_side", "y": 90 }
+    },
+    {
+      "when": { "shape": "side", "facing": "west" },
+      "apply": { "model": "hearthandharvest:block/trellis_side", "y": 270 }
+    },
+    {
+      "when": { "shape": "flat" },
+      "apply": { "model": "hearthandharvest:block/trellis_flat" }
+    }
+  ]
+}

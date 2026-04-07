@@ -50,6 +50,10 @@ public class HHModBlocks {
     public static final Supplier<Block> STOMPING_BASIN = BLOCKS.register("stomping_basin",
             () -> new StompingBasinBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
 
+    public static final Supplier<Block> TRELLIS = BLOCKS.register("trellis",
+            () -> new TrellisBlock(Block.Properties.ofFullCopy(Blocks.OAK_FENCE).strength(2.0F).sound(SoundType.WOOD)));
+
+
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",
             () -> new HalfCabinetBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));

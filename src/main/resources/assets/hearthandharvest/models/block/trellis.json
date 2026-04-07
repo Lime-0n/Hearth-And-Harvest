@@ -1,6 +1,7 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "hearthandharvest:block/trellis",
 		"particle": "hearthandharvest:block/trellis"
@@ -9,7 +10,7 @@
 		{
 			"from": [11, 0, 7],
 			"to": [13, 16, 9],
-			"rotation": {"x": 0, "y": 0, "z": 0, "origin": [11, 0, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 0, 7]},
 			"faces": {
 				"north": {"uv": [3, 0, 5, 16], "texture": "#0"},
 				"east": {"uv": [11, 0, 13, 16], "texture": "#0"},
@@ -22,7 +23,7 @@
 		{
 			"from": [3, 0, 7],
 			"to": [5, 16, 9],
-			"rotation": {"x": 0, "y": 0, "z": 0, "origin": [3, 0, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 7]},
 			"faces": {
 				"north": {"uv": [11, 0, 13, 16], "texture": "#0"},
 				"east": {"uv": [3, 0, 5, 16], "texture": "#0"},
