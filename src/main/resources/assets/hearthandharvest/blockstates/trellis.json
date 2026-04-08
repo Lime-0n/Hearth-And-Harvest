@@ -1,22 +1,56 @@
 {
   "multipart": [
     {
-      "when": { "shape": "middle", "facing": "north" },
-      "apply": { "model": "hearthandharvest:block/trellis"}
+      "comment": "MIDDLE isolated — no connections, show panel based on player-placed FACING.",
+      "when": { "shape": "middle", "north": "false", "south": "false", "east": "false", "west": "false", "facing": "north" },
+      "apply": { "model": "hearthandharvest:block/trellis" }
     },
     {
-      "when": { "shape": "middle", "facing": "south" },
-      "apply": { "model": "hearthandharvest:block/trellis", "y": 180}
+      "when": { "shape": "middle", "north": "false", "south": "false", "east": "false", "west": "false", "facing": "south" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 180 }
     },
     {
-      "when": { "shape": "middle", "facing": "east" },
-      "apply": { "model": "hearthandharvest:block/trellis", "y": 270}
+      "when": { "shape": "middle", "north": "false", "south": "false", "east": "false", "west": "false", "facing": "east" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 90 }
     },
     {
-      "when": { "shape": "middle", "facing": "west" },
-      "apply": { "model": "hearthandharvest:block/trellis", "y": 90}
+      "when": { "shape": "middle", "north": "false", "south": "false", "east": "false", "west": "false", "facing": "west" },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 270 }
     },
     {
+      "comment": "MIDDLE EW-only — east or west connected, no N/S. Always EW panel.",
+      "when": {
+        "OR": [
+          { "shape": "middle", "east": "true", "north": "false", "south": "false" },
+          { "shape": "middle", "west": "true", "north": "false", "south": "false" }
+        ]
+      },
+      "apply": { "model": "hearthandharvest:block/trellis" }
+    },
+    {
+      "comment": "MIDDLE NS-only — north or south connected, no E/W. Always NS panel (y=90).",
+      "when": {
+        "OR": [
+          { "shape": "middle", "north": "true", "east": "false", "west": "false" },
+          { "shape": "middle", "south": "true", "east": "false", "west": "false" }
+        ]
+      },
+      "apply": { "model": "hearthandharvest:block/trellis", "y": 90 }
+    },
+    {
+      "comment": "MIDDLE cross — both axes connected.",
+      "when": {
+        "OR": [
+          { "shape": "middle", "north": "true", "east": "true"  },
+          { "shape": "middle", "north": "true", "west": "true"  },
+          { "shape": "middle", "south": "true", "east": "true"  },
+          { "shape": "middle", "south": "true", "west": "true"  }
+        ]
+      },
+      "apply": { "model": "hearthandharvest:block/trellis_cross" }
+    },
+    {
+      "comment": "SIDE — four facing directions.",
       "when": { "shape": "side", "facing": "north" },
       "apply": { "model": "hearthandharvest:block/trellis_side" }
     },
@@ -33,6 +67,7 @@
       "apply": { "model": "hearthandharvest:block/trellis_side", "y": 270 }
     },
     {
+      "comment": "FLAT — single model, no rotation needed.",
       "when": { "shape": "flat" },
       "apply": { "model": "hearthandharvest:block/trellis_flat" }
     }

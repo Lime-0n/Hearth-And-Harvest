@@ -3,9 +3,11 @@ package alabaster.hearthandharvest.common.block;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -34,9 +36,7 @@ public class TrellisBlock extends Block {
         TrellisShape(String name) { this.name = name; }
 
         @Override
-        public String getSerializedName() {
-            return name;
-        }
+        public String getSerializedName() { return name; }
     }
 
     public static final EnumProperty<TrellisShape> SHAPE = EnumProperty.create("shape", TrellisShape.class);
@@ -46,41 +46,19 @@ public class TrellisBlock extends Block {
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
 
-    private static final VoxelShape MIDDLE_POSTS_EW = Shapes.or(
-            Block.box( 3, 0, 7, 5, 16, 9),
-            Block.box(11, 0, 7, 13, 16, 9));
-
-    private static final VoxelShape MIDDLE_POSTS_NS = Shapes.or(
-            Block.box(7, 0,  3, 9, 16,  5),
-            Block.box(7, 0, 11, 9, 16, 13));
-
-    private static final VoxelShape MIDDLE_POSTS_BOTH = Shapes.or(MIDDLE_POSTS_EW, MIDDLE_POSTS_NS);
+    private static final VoxelShape MIDDLE_PLANE_EW = Block.box( 0, 0, 7, 16, 16,  9);
+    private static final VoxelShape MIDDLE_PLANE_NS = Block.box( 7, 0, 0,  9, 16, 16);
+    private static final VoxelShape MIDDLE_PLANE_BOTH = Shapes.or(MIDDLE_PLANE_EW, MIDDLE_PLANE_NS);
 
     private static final VoxelShape FLAT_SHAPE = Block.box(0, 0, 0, 16, 2, 16);
 
     private static final Map<Direction, VoxelShape> SIDE_SHAPE = new EnumMap<>(Direction.class);
 
     static {
-        SIDE_SHAPE.put(Direction.NORTH, Shapes.or(
-                Block.box( 3, 0, 14,  5, 16, 16),
-                Block.box(11, 0, 14, 13, 16, 16),
-                Block.box( 0, 12, 14, 16, 14, 16),
-                Block.box( 0,  4, 14, 16,  6, 16)));
-        SIDE_SHAPE.put(Direction.SOUTH, Shapes.or(
-                Block.box( 3, 0, 0,  5, 16, 2),
-                Block.box(11, 0, 0, 13, 16, 2),
-                Block.box( 0, 12, 0, 16, 14, 2),
-                Block.box( 0,  4, 0, 16,  6, 2)));
-        SIDE_SHAPE.put(Direction.EAST, Shapes.or(
-                Block.box(0, 0,  3, 2, 16,  5),
-                Block.box(0, 0, 11, 2, 16, 13),
-                Block.box(0, 12,  0, 2, 14, 16),
-                Block.box(0,  4,  0, 2,  6, 16)));
-        SIDE_SHAPE.put(Direction.WEST, Shapes.or(
-                Block.box(14, 0,  3, 16, 16,  5),
-                Block.box(14, 0, 11, 16, 16, 13),
-                Block.box(14, 12, 0, 16, 14, 16),
-                Block.box(14,  4, 0, 16,  6, 16)));
+        SIDE_SHAPE.put(Direction.NORTH, Block.box( 0, 0, 14, 16, 16, 16));
+        SIDE_SHAPE.put(Direction.SOUTH, Block.box( 0, 0,  0, 16, 16,  2));
+        SIDE_SHAPE.put(Direction.EAST, Block.box( 0, 0,  0,  2, 16, 16));
+        SIDE_SHAPE.put(Direction.WEST, Block.box(14, 0,  0, 16, 16, 16));
     }
 
     public TrellisBlock(Properties properties) {
@@ -128,7 +106,7 @@ public class TrellisBlock extends Block {
 
             case MIDDLE -> {
                 BlockState below = level.getBlockState(pos.below());
-                yield below.isFaceSturdy(level, pos.below(), Direction.UP)
+                yield !below.isAir() && !below.canBeReplaced()
                         || (below.getBlock() instanceof TrellisBlock
                         && below.getValue(SHAPE) == TrellisShape.MIDDLE);
             }
@@ -182,9 +160,9 @@ public class TrellisBlock extends Block {
                 boolean w = state.getValue(WEST);
                 boolean showEW = (e || w) || (!n && !s);
                 boolean showNS = (n || s);
-                if (showEW && showNS) yield MIDDLE_POSTS_BOTH;
-                if (showNS) yield MIDDLE_POSTS_NS;
-                yield MIDDLE_POSTS_EW;
+                if (showEW && showNS) yield MIDDLE_PLANE_BOTH;
+                if (showNS) yield MIDDLE_PLANE_NS;
+                yield MIDDLE_PLANE_EW;
             }
 
             case FLAT -> FLAT_SHAPE;

@@ -85,7 +85,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
-                HHModBlocks.CORN_STALK.get());
+                HHModBlocks.CORN_STALK.get(),
+                HHModBlocks.TRELLIS.get());
 
         tag(BlockTags.FLOWERS).add(
                 HHModBlocks.YELLOW_MUM.get(),
