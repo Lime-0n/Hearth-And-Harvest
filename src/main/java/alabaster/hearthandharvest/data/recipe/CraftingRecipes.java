@@ -58,6 +58,13 @@ public class CraftingRecipes
                 .define('P', ItemTags.PLANKS)
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.TRELLIS.get(), 4)
+                .pattern(" S ")
+                .pattern("SSS")
+                .pattern(" S ")
+                .define('S', Items.STICK)
+                .unlockedBy("has_stick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.STICK))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModItems.JAR.get(), 4)
                 .pattern(" C ")
                 .pattern("G G")
