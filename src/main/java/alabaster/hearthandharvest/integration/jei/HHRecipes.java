@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.integration.jei;
 
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
+import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import net.minecraft.client.Minecraft;
@@ -32,5 +33,9 @@ public class HHRecipes
 
     public List<RecipeHolder<StompingBasinRecipe>> getStompingRecipes() {
         return recipeManager.getAllRecipesFor(HHModRecipeTypes.STOMPING.get());
+    }
+
+    public List<RecipeHolder<FluidExtractionRecipe>> getFluidExtractionRecipes() {
+        return recipeManager.getAllRecipesFor(HHModRecipeTypes.FLUID_EXTRACTION.get());
     }
 }

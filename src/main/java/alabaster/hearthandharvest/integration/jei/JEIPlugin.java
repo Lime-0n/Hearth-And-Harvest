@@ -9,6 +9,7 @@ import alabaster.hearthandharvest.common.registry.HHModMenuTypes;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
 import alabaster.hearthandharvest.common.utilities.HHTextUtils;
 import alabaster.hearthandharvest.integration.jei.category.AgingRecipeCategory;
+import alabaster.hearthandharvest.integration.jei.category.FluidExtractionRecipeCategory;
 import alabaster.hearthandharvest.integration.jei.category.StompingRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -40,6 +41,7 @@ public class JEIPlugin implements IModPlugin
     public void registerCategories(IRecipeCategoryRegistration registry) {
         registry.addRecipeCategories(new AgingRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new StompingRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+        registry.addRecipeCategories(new FluidExtractionRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -47,6 +49,7 @@ public class JEIPlugin implements IModPlugin
         HHRecipes modRecipes = new HHRecipes();
         registration.addRecipes(HHRecipeTypes.AGING, modRecipes.getCaskRecipes());
         registration.addRecipes(HHRecipeTypes.STOMPING, modRecipes.getStompingRecipes());
+        registration.addRecipes(HHRecipeTypes.FLUID_EXTRACTION, modRecipes.getFluidExtractionRecipes());
 
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) return;
@@ -70,6 +73,7 @@ public class JEIPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(HHModItems.CASK.get()), HHRecipeTypes.AGING);
         registration.addRecipeCatalyst(new ItemStack(HHModItems.STOMPING_BASIN.get()), HHRecipeTypes.STOMPING);
+        registration.addRecipeCatalyst(new ItemStack(HHModItems.STOMPING_BASIN.get()), HHRecipeTypes.FLUID_EXTRACTION);
     }
 
     @Override
