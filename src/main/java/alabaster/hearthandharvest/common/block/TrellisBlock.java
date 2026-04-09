@@ -82,12 +82,33 @@ public class TrellisBlock extends Block {
         Direction clickedFace = context.getClickedFace();
         boolean sneaking = context.getPlayer() != null && context.getPlayer().isShiftKeyDown();
         BlockPos pos = context.getClickedPos();
+        LevelAccessor level = context.getLevel();
+
+        BlockPos sourcePos = pos.relative(clickedFace.getOpposite());
+        BlockState sourceState = level.getBlockState(sourcePos);
+        if (!(sourceState.getBlock() instanceof TrellisBlock)) {
+            BlockState atPos = level.getBlockState(pos);
+            if (atPos.getBlock() instanceof TrellisBlock) {
+                sourceState = atPos;
+            }
+        }
 
         TrellisShape shape;
-        Direction facing = Direction.NORTH;
+        Direction facing = context.getHorizontalDirection();
 
-        if (clickedFace.getAxis().isHorizontal()) {
-            shape  = TrellisShape.SIDE;
+        if (sourceState.getBlock() instanceof TrellisBlock) {
+            if (sneaking && clickedFace == Direction.UP) {
+                shape = TrellisShape.FLAT;
+                facing = context.getHorizontalDirection();
+            } else {
+                shape = sourceState.getValue(SHAPE);
+                facing = switch (shape) {
+                    case SIDE -> sourceState.getValue(FACING);
+                    default   -> context.getHorizontalDirection();
+                };
+            }
+        } else if (clickedFace.getAxis().isHorizontal()) {
+            shape = TrellisShape.SIDE;
             facing = clickedFace;
         } else if (clickedFace == Direction.UP && !sneaking) {
             shape = TrellisShape.MIDDLE;
@@ -97,40 +118,16 @@ public class TrellisBlock extends Block {
 
         return computeConnections(
                 this.defaultBlockState().setValue(SHAPE, shape).setValue(FACING, facing),
-                context.getLevel(), pos);
+                level, pos);
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return switch (state.getValue(SHAPE)) {
-
-            case MIDDLE -> {
-                BlockState below = level.getBlockState(pos.below());
-                yield !below.isAir() && !below.canBeReplaced()
-                        || (below.getBlock() instanceof TrellisBlock
-                        && below.getValue(SHAPE) == TrellisShape.MIDDLE);
-            }
-
-            case SIDE -> {
-                Direction wallDir = state.getValue(FACING).getOpposite();
-                BlockPos  wallPos = pos.relative(wallDir);
-                yield level.getBlockState(wallPos)
-                        .isFaceSturdy(level, wallPos, state.getValue(FACING));
-            }
-
-            case FLAT -> {
-                BlockState below = level.getBlockState(pos.below());
-                yield below.isFaceSturdy(level, pos.below(), Direction.UP)
-                        || below.getBlock() instanceof TrellisBlock;
-            }
-        };
+        return true;
     }
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        if (!canSurvive(state, level, pos)) {
-            return Blocks.AIR.defaultBlockState();
-        }
         if (direction.getAxis().isHorizontal()) {
             return computeConnections(state, level, pos);
         }
@@ -154,15 +151,13 @@ public class TrellisBlock extends Block {
         return switch (state.getValue(SHAPE)) {
 
             case MIDDLE -> {
-                boolean n = state.getValue(NORTH);
-                boolean s = state.getValue(SOUTH);
-                boolean e = state.getValue(EAST);
-                boolean w = state.getValue(WEST);
-                boolean showEW = (e || w) || (!n && !s);
-                boolean showNS = (n || s);
-                if (showEW && showNS) yield MIDDLE_PLANE_BOTH;
-                if (showNS) yield MIDDLE_PLANE_NS;
-                yield MIDDLE_PLANE_EW;
+                boolean hasNS = state.getValue(NORTH) || state.getValue(SOUTH);
+                boolean hasEW = state.getValue(EAST)  || state.getValue(WEST);
+                if (hasNS && hasEW) yield MIDDLE_PLANE_BOTH;
+                if (hasNS) yield MIDDLE_PLANE_NS;
+                if (hasEW) yield MIDDLE_PLANE_EW;
+                Direction facing = state.getValue(FACING);
+                yield (facing == Direction.NORTH || facing == Direction.SOUTH) ? MIDDLE_PLANE_EW : MIDDLE_PLANE_NS;
             }
 
             case FLAT -> FLAT_SHAPE;

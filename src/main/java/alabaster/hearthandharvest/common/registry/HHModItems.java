@@ -121,7 +121,7 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.SCARECROW.get(), basicItem()));
 
     public static final Supplier<Item> TRELLIS = registerWithBlockTab("trellis",
-            () -> new BlockItem(HHModBlocks.TRELLIS.get(), basicItem()));
+            () -> new TrellisBlockItem(HHModBlocks.TRELLIS.get(), basicItem()));
 
 
     // Half-Cabinets

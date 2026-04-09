@@ -252,6 +252,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.CASK.get(),
                 HHModBlocks.STOMPING_BASIN.get(),
                 HHModBlocks.CRATE.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.OAK_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_HALF_CABINET.get(),
                 HHModBlocks.SPRUCE_HALF_CABINET.get(),
