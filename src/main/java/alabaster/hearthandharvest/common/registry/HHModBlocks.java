@@ -52,6 +52,10 @@ public class HHModBlocks {
 
     public static final Supplier<Block> TRELLIS = BLOCKS.register("trellis",
             () -> new TrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.WOOD).noOcclusion().forceSolidOff()));
+    public static final Supplier<Block> BAMBOO_TRELLIS = BLOCKS.register("bamboo_trellis",
+            () -> new TrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.BAMBOO_WOOD).noOcclusion().forceSolidOff()));
+    public static final Supplier<Block> STRIPPED_BAMBOO_TRELLIS = BLOCKS.register("stripped_bamboo_trellis",
+            () -> new TrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.BAMBOO_WOOD).noOcclusion().forceSolidOff()));
 
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",

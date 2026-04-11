@@ -26,6 +26,7 @@ public class CuttingRecipes {
 
         // Axe
         halfCabinets(output);
+        strippingBlocks(output);
     }
 
     private static void cuttingFoods(RecipeOutput output) {
@@ -103,5 +104,10 @@ public class CuttingRecipes {
                 .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crimson_half_cabinet_from_full"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(ModItems.WARPED_CABINET.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.WARPED_HALF_CABINET.get(), 2)
                 .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_half_cabinet_from_full"));
+    }
+
+    private static void strippingBlocks(RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.BAMBOO_TRELLIS.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.STRIPPED_BAMBOO_TRELLIS.get())
+                .build(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "stripped_bamboo_trellis"));
     }
 }

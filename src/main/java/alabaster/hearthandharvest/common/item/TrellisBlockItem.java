@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class TrellisBlockItem extends BlockItem {
 
@@ -30,42 +29,31 @@ public class TrellisBlockItem extends BlockItem {
             }
         }
 
-        if (sourceState.getBlock() instanceof TrellisBlock) {
+        if (sourceState.getBlock() instanceof TrellisBlock trellis) {
             boolean sneaking = context.getPlayer() != null && context.getPlayer().isShiftKeyDown();
             if (sneaking) return context;
-            return switch (sourceState.getValue(TrellisBlock.SHAPE)) {
-                case MIDDLE, SIDE -> {
-                    Direction facing = sourceState.getValue(TrellisBlock.FACING);
-                    double hitY = context.getClickLocation().y - sourcePos.getY() - 0.5;
-                    double hitPerp = facing.getAxis() == Direction.Axis.Z
-                            ? context.getClickLocation().x - sourcePos.getX() - 0.5
-                            : context.getClickLocation().z - sourcePos.getZ() - 0.5;
 
-                    Direction dir;
-                    if (Math.abs(hitY) >= Math.abs(hitPerp)) {
-                        dir = hitY > 0 ? Direction.UP : Direction.DOWN;
-                    } else {
-                        Direction clockwise = facing.getClockWise();
-                        dir = hitPerp > 0 ? clockwise : clockwise.getOpposite();
-                    }
+            double hitX = context.getClickLocation().x - sourcePos.getX() - 0.5;
+            double hitY = context.getClickLocation().y - sourcePos.getY() - 0.5;
+            double hitZ = context.getClickLocation().z - sourcePos.getZ() - 0.5;
 
-                    BlockPos target = sourcePos.relative(dir);
-                    if (!context.getLevel().getBlockState(target).canBeReplaced())
-                        yield context;
-                    yield BlockPlaceContext.at(context, target, dir);
-                }
-                case FLAT -> {
-                    double hitX = context.getClickLocation().x - sourcePos.getX() - 0.5;
-                    double hitZ = context.getClickLocation().z - sourcePos.getZ() - 0.5;
-                    Direction dir = Math.abs(hitX) > Math.abs(hitZ)
-                            ? (hitX > 0 ? Direction.EAST : Direction.WEST)
-                            : (hitZ > 0 ? Direction.SOUTH : Direction.NORTH);
-                    BlockPos target = sourcePos.relative(dir);
-                    if (!context.getLevel().getBlockState(target).canBeReplaced())
-                        yield context;
-                    yield BlockPlaceContext.at(context, target, dir);
-                }
-            };
+            double absX = Math.abs(hitX);
+            double absY = Math.abs(hitY);
+            double absZ = Math.abs(hitZ);
+
+            Direction dir;
+            if (absY >= absX && absY >= absZ) {
+                dir = hitY > 0 ? Direction.UP : Direction.DOWN;
+            } else {
+                dir = absX >= absZ
+                        ? (hitX > 0 ? Direction.EAST : Direction.WEST)
+                        : (hitZ > 0 ? Direction.SOUTH : Direction.NORTH);
+            }
+
+            BlockPos target = sourcePos.relative(dir);
+            if (!context.getLevel().getBlockState(target).canBeReplaced())
+                return context;
+            return BlockPlaceContext.at(context, target, dir);
         }
         return context;
     }

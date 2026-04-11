@@ -7,6 +7,8 @@
     "hearthandharvest:cotton",
     "hearthandharvest:peanuts",
     "hearthandharvest:corn_stalk",
-    "hearthandharvest:trellis"
+    "hearthandharvest:trellis",
+    "hearthandharvest:bamboo_trellis",
+    "hearthandharvest:stripped_bamboo_trellis"
   ]
 }

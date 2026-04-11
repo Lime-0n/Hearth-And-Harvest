@@ -86,7 +86,9 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get(),
-                HHModBlocks.TRELLIS.get());
+                HHModBlocks.TRELLIS.get(),
+                HHModBlocks.BAMBOO_TRELLIS.get(),
+                HHModBlocks.STRIPPED_BAMBOO_TRELLIS.get());
 
         tag(BlockTags.FLOWERS).add(
                 HHModBlocks.YELLOW_MUM.get(),
@@ -253,6 +255,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.STOMPING_BASIN.get(),
                 HHModBlocks.CRATE.get(),
                 HHModBlocks.TRELLIS.get(),
+                HHModBlocks.BAMBOO_TRELLIS.get(),
+                HHModBlocks.STRIPPED_BAMBOO_TRELLIS.get(),
                 HHModBlocks.OAK_HALF_CABINET.get(),
                 HHModBlocks.BIRCH_HALF_CABINET.get(),
                 HHModBlocks.SPRUCE_HALF_CABINET.get(),

@@ -122,7 +122,10 @@ public class HHModItems {
 
     public static final Supplier<Item> TRELLIS = registerWithBlockTab("trellis",
             () -> new TrellisBlockItem(HHModBlocks.TRELLIS.get(), basicItem()));
-
+    public static final Supplier<Item> BAMBOO_TRELLIS = registerWithBlockTab("bamboo_trellis",
+            () -> new TrellisBlockItem(HHModBlocks.BAMBOO_TRELLIS.get(), basicItem()));
+    public static final Supplier<Item> STRIPPED_BAMBOO_TRELLIS = registerWithBlockTab("stripped_bamboo_trellis",
+            () -> new TrellisBlockItem(HHModBlocks.STRIPPED_BAMBOO_TRELLIS.get(), basicItem()));
 
     // Half-Cabinets
     public static final Supplier<Item> OAK_HALF_CABINET = registerWithBlockTab("oak_half_cabinet",
