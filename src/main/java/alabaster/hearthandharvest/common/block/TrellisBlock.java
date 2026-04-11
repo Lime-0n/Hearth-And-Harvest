@@ -98,7 +98,13 @@ public class TrellisBlock extends Block {
     @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
         if (!context.getItemInHand().is(this.asItem())) return false;
-        return !state.getValue(HAS_MIDDLE);
+        if (state.getValue(HAS_MIDDLE)) return false;
+        boolean hasSideOrSurface = state.getValue(SIDE_NORTH) || state.getValue(SIDE_SOUTH)
+                || state.getValue(SIDE_EAST) || state.getValue(SIDE_WEST)
+                || state.getValue(HAS_FLAT) || state.getValue(HAS_TOP);
+        boolean placingMiddle = !context.getPlayer().isShiftKeyDown();
+        if (placingMiddle && hasSideOrSurface) return false;
+        return true;
     }
 
     @Override
