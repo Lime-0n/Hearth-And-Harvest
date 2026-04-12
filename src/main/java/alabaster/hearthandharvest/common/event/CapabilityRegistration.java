@@ -1,6 +1,8 @@
 package alabaster.hearthandharvest.common.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.block.MultiblockPart;
+import alabaster.hearthandharvest.common.block.entity.StompingBasinBlockEntity;
 import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.item.JugBlockItem;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
@@ -27,9 +29,15 @@ public class CapabilityRegistration {
 
         // Stomping Basin
         event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
+                Capabilities.ItemHandler.BLOCK,
                 HHModBlockEntities.STOMPING_BASIN.get(),
-                (be, side) -> be.getFluidTank()
+                (be, side) -> {
+                    if (be.getMultiblockRole() == MultiblockPart.MEMBER) {
+                        StompingBasinBlockEntity controller = be.getControllerBE();
+                        return controller != null ? controller.getItemHandler() : be.getItemHandler();
+                    }
+                    return be.getItemHandler();
+                }
         );
 
         // Jug block entity

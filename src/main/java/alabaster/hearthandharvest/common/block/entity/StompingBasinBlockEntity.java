@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.common.block.MultiblockPart;
 import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
-import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -15,12 +14,10 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -208,6 +205,12 @@ public class StompingBasinBlockEntity extends BlockEntity {
     public void tryProcess(LivingEntity entity) {
         if (level == null || level.isClientSide) return;
 
+        if (role == MultiblockPart.MEMBER) {
+            StompingBasinBlockEntity controller = getControllerBE();
+            if (controller != null) controller.tryProcess(entity);
+            return;
+        }
+
         long now = level.getGameTime();
         Long last = stompCooldowns.get(entity.getUUID());
         if (last != null && now - last < 20) return;
@@ -228,8 +231,6 @@ public class StompingBasinBlockEntity extends BlockEntity {
             return;
         }
 
-        level.playSound(null, worldPosition, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 0.6f, 0.7f);
-
         StompingBasinRecipe recipe = match.get();
 
         FluidStack resultFluid = recipe.getResultFluid();
@@ -237,6 +238,8 @@ public class StompingBasinBlockEntity extends BlockEntity {
             int accepted = fluidTank.fill(resultFluid.copy(), IFluidHandler.FluidAction.SIMULATE);
             if (accepted < resultFluid.getAmount()) return;
         }
+
+        level.playSound(null, worldPosition, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 0.6f, 0.7f);
 
         for (Ingredient ingredient : recipe.getIngredients()) {
             for (int slot = 0; slot < itemHandler.getSlots(); slot++) {

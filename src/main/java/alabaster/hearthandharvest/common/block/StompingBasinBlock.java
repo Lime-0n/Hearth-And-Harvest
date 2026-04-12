@@ -20,9 +20,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -62,11 +64,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Shapes.or(FLOOR, WEST_WALL, EAST_WALL, NORTH_WALL, SOUTH_WALL);
 
     private static final VoxelShape SHAPE_NW = Shapes.or(FLOOR, WEST_WALL,  box(2,  1,  0,  16, 12, 2));
-    // NE: east + north walls. North wall runs x:0→14.
     private static final VoxelShape SHAPE_NE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  0,  14, 12, 2));
-    // SW: west + south walls. South wall runs x:2→16.
     private static final VoxelShape SHAPE_SW = Shapes.or(FLOOR, WEST_WALL,  box(2,  1,  14, 16, 12, 16));
-    // SE: east + south walls. South wall runs x:0→14.
     private static final VoxelShape SHAPE_SE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  14, 14, 12, 16));
 
     public StompingBasinBlock(Properties properties) {
@@ -117,10 +116,12 @@ public class StompingBasinBlock extends BaseEntityBlock {
         };
     }
 
-    private static final float MIN_STOMP_FALL = 0.05f;
+    private static final float MIN_STOMP_FALL = 0.3f;
     private static final float RIM_Y = 12f / 16f;
     private static final Set<UUID> AIRBORNE_IN_BASIN = new HashSet<>();
+    private static final java.util.Map<UUID, Double> AIRBORNE_PEAK_Y = new java.util.HashMap<>();
 
+    @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (level.isClientSide) return;
         if (!(entity instanceof LivingEntity living)) return;
@@ -131,17 +132,33 @@ public class StompingBasinBlock extends BaseEntityBlock {
         UUID id = living.getUUID();
 
         if (!living.onGround()) {
-            // Entity is airborne inside the basin — track it
             AIRBORNE_IN_BASIN.add(id);
+            AIRBORNE_PEAK_Y.merge(id, living.getY(), Math::max);
             return;
         }
 
-        // Entity just landed — only process if it was previously airborne
         if (AIRBORNE_IN_BASIN.remove(id)) {
-            if (level.getBlockEntity(pos) instanceof StompingBasinBlockEntity basin) {
-                basin.tryProcess(living);
+            Double peakY = AIRBORNE_PEAK_Y.remove(id);
+            double fallHeight = (peakY != null ? peakY : living.getY()) - living.getY();
+            if (fallHeight >= MIN_STOMP_FALL) {
+                if (level.getBlockEntity(pos) instanceof StompingBasinBlockEntity basin) {
+                    basin.tryProcess(living);
+                }
+            }
+        } else {
+            AIRBORNE_PEAK_Y.remove(id);
+        }
+    }
+
+    @Override
+    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
+        if (entity != null) {
+            double feetY = entity.getY() - pos.getY();
+            if (feetY >= 0 && feetY < RIM_Y) {
+                return SoundType.EMPTY;
             }
         }
+        return super.getSoundType(state, level, pos, entity);
     }
 
     @Override
