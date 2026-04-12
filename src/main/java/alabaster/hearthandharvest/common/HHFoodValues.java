@@ -47,7 +47,7 @@ public class HHFoodValues {
             .build();
     public static final FoodProperties RASPBERRY_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(HHModEffects.THORNS, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.PRICKLY, BRIEF_DURATION, 0), 1.0F)
             .build();
     public static final FoodProperties CHERRY_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
@@ -119,7 +119,7 @@ public class HHFoodValues {
     public static final FoodProperties RASPBERRY_WINE = new FoodProperties.Builder()
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 0), 0.75F)
-            .effect(() -> new MobEffectInstance(HHModEffects.THORNS, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.PRICKLY, SHORT_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, SHORT_DURATION, 0), 0.5F)
             .build();
 

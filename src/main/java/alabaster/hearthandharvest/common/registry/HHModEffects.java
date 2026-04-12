@@ -1,10 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.effect.ClarityEffect;
-import alabaster.hearthandharvest.common.effect.DrunkEffect;
-import alabaster.hearthandharvest.common.effect.PungentEffect;
-import alabaster.hearthandharvest.common.effect.TemptingEffect;
+import alabaster.hearthandharvest.common.effect.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
@@ -17,6 +14,6 @@ public class HHModEffects {
     public static final Holder<MobEffect> PUNGENT = EFFECTS.register("pungent", PungentEffect::new);
     public static final Holder<MobEffect> TEMPTING = EFFECTS.register("tempting", TemptingEffect::new);
     public static final Holder<MobEffect> DRUNK = EFFECTS.register("drunk", DrunkEffect::new);
-    public static final Holder<MobEffect> THORNS = EFFECTS.register("thorns", DrunkEffect::new);
+    public static final Holder<MobEffect> PRICKLY = EFFECTS.register("prickly", PricklyEffect::new);
     public static final Holder<MobEffect> CLARITY = EFFECTS.register("clarity", ClarityEffect::new);
 }

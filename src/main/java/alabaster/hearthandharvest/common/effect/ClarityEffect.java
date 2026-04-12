@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class ClarityEffect extends MobEffect {
 
     public ClarityEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xFFE87A); // warm golden tint
+        super(MobEffectCategory.BENEFICIAL, 0x64b1f1);
     }
 
     @Override

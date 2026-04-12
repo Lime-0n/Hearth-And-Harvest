@@ -347,6 +347,9 @@
   "effect.hearthandharvest.clarity": "Clarity",
   "effect.hearthandharvest.clarity.0.desc": "Prevents the player from being inflicted with Blindess and Darkness",
 
+  "effect.hearthandharvest.prickly": "Prickly",
+  "effect.hearthandharvest.prickly.0.desc": "Inflicts damage to entities that collide with the affected entity",
+
   "hearthandharvest.jei.aging": "Aging",
   "hearthandharvest.jei.stomping": "Stomping",
   "hearthandharvest.jei.stomping.tooltip": "Jump in the Stomping Basin to process!",
