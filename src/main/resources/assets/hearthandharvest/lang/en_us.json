@@ -345,7 +345,7 @@
   "effect.hearthandharvest.drunk.0.desc": "Will gradually cause worse effects as the level goes up",
 
   "effect.hearthandharvest.clarity": "Clarity",
-  "effect.hearthandharvest.clarity.0.desc": "Prevents the player from being inflicted with Blindess",
+  "effect.hearthandharvest.clarity.0.desc": "Prevents the player from being inflicted with Blindess and Darkness",
 
   "hearthandharvest.jei.aging": "Aging",
   "hearthandharvest.jei.stomping": "Stomping",
