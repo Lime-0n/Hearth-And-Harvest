@@ -83,6 +83,7 @@ public class WineBottleItem extends Item {
         if (food != null) {
             if (!level.isClientSide && food != null) {
                 for (FoodProperties.PossibleEffect possible : food.effects()) {
+                    if (possible.effect().getEffect().equals(HHModEffects.DRUNK)) continue;
                     if (level.random.nextFloat() < possible.probability()) {
                         consumer.addEffect(new MobEffectInstance(possible.effect()));
                     }
@@ -93,20 +94,30 @@ public class WineBottleItem extends Item {
         Player player = consumer instanceof Player ? (Player) consumer : null;
 
         // Escalate Tipsy level on each drink
-        if (!level.isClientSide) {
-            int currentAmplifier = -1;
-            MobEffectInstance existing = consumer.getEffect(HHModEffects.DRUNK);
-            if (existing != null) {
-                currentAmplifier = existing.getAmplifier();
+        if (!level.isClientSide && food != null) {
+            float drunkProbability = 0.0F;
+            for (FoodProperties.PossibleEffect possible : food.effects()) {
+                if (possible.effect().getEffect().equals(HHModEffects.DRUNK)) {
+                    drunkProbability = possible.probability();
+                    break;
+                }
             }
-            int newAmplifier = Math.min(currentAmplifier + 1, 4);
-            consumer.addEffect(new MobEffectInstance(
-                    HHModEffects.DRUNK,
-                    2400,
-                    newAmplifier,
-                    false,
-                    true
-            ));
+
+            if (drunkProbability > 0.0F && level.random.nextFloat() < drunkProbability) {
+                int currentAmplifier = -1;
+                MobEffectInstance existing = consumer.getEffect(HHModEffects.DRUNK);
+                if (existing != null) {
+                    currentAmplifier = existing.getAmplifier();
+                }
+                int newAmplifier = Math.min(currentAmplifier + 1, 4);
+                consumer.addEffect(new MobEffectInstance(
+                        HHModEffects.DRUNK,
+                        2400,
+                        newAmplifier,
+                        false,
+                        true
+                ));
+            }
         }
 
         if (food != null) {
