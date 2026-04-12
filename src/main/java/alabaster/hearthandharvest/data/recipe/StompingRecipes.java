@@ -83,5 +83,9 @@ public class StompingRecipes {
                 .addIngredient(Items.SLIME_BLOCK, 1)
                 .unlockedByAnyIngredient(Items.SLIME_BLOCK)
                 .build(output);
+        StompingBasinRecipeBuilder.stomping(Items.SUGAR, 1)
+                .addIngredient(Items.BEETROOT, 1)
+                .unlockedByAnyIngredient(Items.BEETROOT)
+                .build(output);
     }
 }
