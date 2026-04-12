@@ -11,7 +11,7 @@ import java.util.List;
 public class PricklyEffect extends MobEffect {
 
     public PricklyEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0xc1bb6d);
+        super(MobEffectCategory.BENEFICIAL, 0xbf2529);
     }
 
     @Override
