@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
+import alabaster.hearthandharvest.common.effect.ClarityEffect;
 import alabaster.hearthandharvest.common.effect.DrunkEffect;
 import alabaster.hearthandharvest.common.effect.PungentEffect;
 import alabaster.hearthandharvest.common.effect.TemptingEffect;
@@ -17,5 +18,5 @@ public class HHModEffects {
     public static final Holder<MobEffect> TEMPTING = EFFECTS.register("tempting", TemptingEffect::new);
     public static final Holder<MobEffect> DRUNK = EFFECTS.register("drunk", DrunkEffect::new);
     public static final Holder<MobEffect> THORNS = EFFECTS.register("thorns", DrunkEffect::new);
-    public static final Holder<MobEffect> IMMUNITY = EFFECTS.register("immunity", DrunkEffect::new);
+    public static final Holder<MobEffect> CLARITY = EFFECTS.register("clarity", ClarityEffect::new);
 }

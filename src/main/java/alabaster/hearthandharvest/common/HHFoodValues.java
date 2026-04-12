@@ -140,7 +140,7 @@ public class HHFoodValues {
     public static final FoodProperties GLOW_BERRY_WINE = new FoodProperties.Builder()
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 0), 0.75F)
-            .effect(() -> new MobEffectInstance(HHModEffects.IMMUNITY, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.CLARITY, SHORT_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, SHORT_DURATION, 0), 0.5F)
             .build();
 

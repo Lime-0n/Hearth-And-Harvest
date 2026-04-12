@@ -9,6 +9,7 @@ import alabaster.hearthandharvest.common.entity.crow.CrowSpawnRules;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
+import alabaster.hearthandharvest.common.event.EffectEvents;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.item.CrateBlockItem;
 import alabaster.hearthandharvest.common.registry.*;
@@ -79,6 +80,7 @@ public class HearthAndHarvest {
         HHModStructures.STRUCTURES.register(modEventBus);
         HHModSounds.SOUNDS.register(modEventBus);
 
+        NeoForge.EVENT_BUS.register(EffectEvents.class);
         NeoForge.EVENT_BUS.register(new PigLitters());
         NeoForge.EVENT_BUS.register(new RabbitLitters());
         NeoForge.EVENT_BUS.addListener(VillageCrops::addVillageCrops);

@@ -344,6 +344,9 @@
   "effect.hearthandharvest.drunk": "Drunk",
   "effect.hearthandharvest.drunk.0.desc": "Will gradually cause worse effects as the level goes up",
 
+  "effect.hearthandharvest.clarity": "Clarity",
+  "effect.hearthandharvest.clarity.0.desc": "Prevents the player from being inflicted with Blindess",
+
   "hearthandharvest.jei.aging": "Aging",
   "hearthandharvest.jei.stomping": "Stomping",
   "hearthandharvest.jei.stomping.tooltip": "Jump in the Stomping Basin to process!",
