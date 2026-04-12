@@ -341,8 +341,8 @@
   "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Lingering Potion of Bad Omen",
   "item.minecraft.tipped_arrow.effect.strong_bad_omen_potion": "Arrow of Bad Omen",
 
-  "effect.hearthandharvest.juiced": "Juiced",
-  "effect.hearthandharvest.juiced.0.desc": "Will gradually cause worse effects as the level goes up",
+  "effect.hearthandharvest.drunk": "Drunk",
+  "effect.hearthandharvest.drunk.0.desc": "Will gradually cause worse effects as the level goes up",
 
   "hearthandharvest.jei.aging": "Aging",
   "hearthandharvest.jei.stomping": "Stomping",

@@ -1,6 +1,5 @@
 package alabaster.hearthandharvest.common.effect;
 
-import alabaster.hearthandharvest.common.registry.HHModEffects;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -10,11 +9,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.List;
+public class DrunkEffect extends MobEffect {
 
-public class JuicedEffect extends MobEffect {
-
-    public JuicedEffect() {
+    public DrunkEffect() {
         super(MobEffectCategory.HARMFUL, 0x7d4b2c);
     }
 
