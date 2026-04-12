@@ -17,11 +17,11 @@ public class JuicedEventHandler {
         LivingEntity entity = event.getEntity();
         MobEffectInstance incoming = event.getEffectInstance();
 
-        if (incoming.getEffect().is(HHModEffects.JUICED.getKey())) return;
+        if (incoming.getEffect().is(HHModEffects.DRUNK.getKey())) return;
         if (incoming.getEffect().value().getCategory() != MobEffectCategory.BENEFICIAL) return;
 
         MobEffectInstance drunkInstance = entity.getActiveEffects().stream()
-                .filter(e -> e.getEffect().is(HHModEffects.JUICED.getKey()))
+                .filter(e -> e.getEffect().is(HHModEffects.DRUNK.getKey()))
                 .findFirst()
                 .orElse(null);
 

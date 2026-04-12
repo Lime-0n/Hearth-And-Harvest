@@ -95,13 +95,13 @@ public class WineBottleItem extends Item {
         // Escalate Tipsy level on each drink
         if (!level.isClientSide) {
             int currentAmplifier = -1;
-            MobEffectInstance existing = consumer.getEffect(HHModEffects.JUICED);
+            MobEffectInstance existing = consumer.getEffect(HHModEffects.DRUNK);
             if (existing != null) {
                 currentAmplifier = existing.getAmplifier();
             }
             int newAmplifier = Math.min(currentAmplifier + 1, 4);
             consumer.addEffect(new MobEffectInstance(
-                    HHModEffects.JUICED,
+                    HHModEffects.DRUNK,
                     2400,
                     newAmplifier,
                     false,
