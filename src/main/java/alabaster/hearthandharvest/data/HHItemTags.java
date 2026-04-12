@@ -114,7 +114,6 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.MELON_JAM.get());
 
         tag(Tags.Items.DRINKS_MILK)
-                .add(HHModItems.CHOCOLATE_MILK_BOTTLE.get())
                 .add(HHModItems.GOAT_MILK_BOTTLE.get());
 
         tag(HHModTags.CHEESE_SLICES)
