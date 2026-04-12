@@ -63,7 +63,7 @@ public class HHFoodValues {
             .build();
     public static final FoodProperties SWEET_BERRY_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
-            //.effect(() -> new MobEffectInstance(MobEffects.LUCK, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(HHModEffects.TEMPTING, SHORT_DURATION, 0), 1.0F)
             .build();
     public static final FoodProperties GLOW_BERRY_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
@@ -120,7 +120,7 @@ public class HHFoodValues {
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 0), 0.75F)
             .effect(() -> new MobEffectInstance(HHModEffects.THORNS, SHORT_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, SHORT_DURATION, 0), 0.5F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, SHORT_DURATION, 0), 0.5F)
             .build();
 
     public static final FoodProperties RED_GRAPE_WINE = new FoodProperties.Builder()
@@ -134,7 +134,7 @@ public class HHFoodValues {
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 0), 0.75F)
             .effect(() -> new MobEffectInstance(MobEffects.HEAL, 0, 0), 1.0F)
-            //.effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, BRIEF_DURATION, 0), 0.5F)
+            .effect(() -> new MobEffectInstance(HHModEffects.TEMPTING, MEDIUM_DURATION, 0), 1.0F)
             .build();
 
     public static final FoodProperties GLOW_BERRY_WINE = new FoodProperties.Builder()
@@ -155,7 +155,8 @@ public class HHFoodValues {
     public static final FoodProperties MOONSHINE = new FoodProperties.Builder()
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 1), 1.0F) // Starts at Drunk II
-            .effect(() -> new MobEffectInstance(MobEffects.SATURATION, SHORT_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.SATURATION, MEDIUM_DURATION, 1), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, SHORT_DURATION, 1), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SHORT_DURATION, 1), 1.0F) // Penalty baked in
             .build();
 
