@@ -1,3 +1,6 @@
 {
-  "parent": "hearthandharvest:block/bamboo_trellis"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hearthandharvest:item/bamboo_trellis"
+  }
 }
