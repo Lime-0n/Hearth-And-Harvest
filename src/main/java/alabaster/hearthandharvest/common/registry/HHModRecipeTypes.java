@@ -3,11 +3,8 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.crafting.BottleCrateRecipe;
 import alabaster.hearthandharvest.common.crafting.CaskRecipe;
-import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
 import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
-import alabaster.hearthandharvest.data.builder.FluidExtractionRecipeBuilder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -21,9 +18,6 @@ public class HHModRecipeTypes
     public static final Supplier<RecipeType<CaskRecipe>> AGING = RECIPE_TYPES.register("aging", () -> registerRecipeType("aging"));
 
     public static final Supplier<RecipeType<StompingBasinRecipe>> STOMPING = RECIPE_TYPES.register("stomping", () -> registerRecipeType("stomping"));
-
-    public static final Supplier<RecipeType<FluidExtractionRecipe>> FLUID_EXTRACTION = RECIPE_TYPES.register("fluid_extraction", () -> registerRecipeType("fluid_extraction"));
-
     public static final Supplier<RecipeType<BottleCrateRecipe>> BOTTLE_CRATE = RECIPE_TYPES.register("bottle_crate", () -> registerRecipeType("bottle_crate"));
 
     public static <T extends Recipe<?>> RecipeType<T> registerRecipeType(final String identifier) {

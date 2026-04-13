@@ -353,7 +353,6 @@
   "hearthandharvest.jei.aging": "Aging",
   "hearthandharvest.jei.stomping": "Stomping",
   "hearthandharvest.jei.stomping.tooltip": "Jump in the Stomping Basin to process!",
-  "hearthandharvest.jei.fluid_extraction": "Fluid Extraction",
 
   "hearthandharvest.jei.info.watering_can": "Watering cans can be charged with bone meal by holding some in the off hand and clicking, and charged with water by clicking on a water source block. The watering can is used to apply a bone meal effect to a 3x3 area when clicked. It can also be used to extinguish fire and lit blocks.",
   "hearthandharvest.jei.info.tree_tapper": "Tree tappers can be placed on Spruce and Dark Oak trees to collect sap over time. Collect the sap with a bucket when full.",

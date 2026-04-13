@@ -6,6 +6,9 @@ import alabaster.hearthandharvest.data.builder.StompingBasinRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.WaterFluid;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -86,6 +89,10 @@ public class StompingRecipes {
         StompingBasinRecipeBuilder.stomping(Items.SUGAR, 1)
                 .addIngredient(Items.BEETROOT, 1)
                 .unlockedByAnyIngredient(Items.BEETROOT)
+                .build(output);
+        StompingBasinRecipeBuilder.stomping(new FluidStack(Fluids.WATER, BUCKET), Items.SPONGE, 1)
+                .addIngredient(Items.WET_SPONGE, 1)
+                .unlockedByAnyIngredient(Items.WET_SPONGE)
                 .build(output);
     }
 }

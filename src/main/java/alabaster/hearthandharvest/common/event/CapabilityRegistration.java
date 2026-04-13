@@ -39,6 +39,11 @@ public class CapabilityRegistration {
                     return be.getItemHandler();
                 }
         );
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                HHModBlockEntities.STOMPING_BASIN.get(),
+                (be, side) -> be.getMultiblockRole() == MultiblockPart.MEMBER ? null : be.getFluidTank()
+        );
 
         // Jug block entity
         event.registerBlockEntity(

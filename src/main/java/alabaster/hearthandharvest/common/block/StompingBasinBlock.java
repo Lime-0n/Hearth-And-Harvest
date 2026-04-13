@@ -1,12 +1,15 @@
 package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.block.entity.StompingBasinBlockEntity;
-import alabaster.hearthandharvest.common.crafting.FluidExtractionRecipe;
+import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
-import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModFluids;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -16,7 +19,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,12 +41,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,6 +77,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
     private static final VoxelShape SHAPE_NE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  0,  14, 12, 2));
     private static final VoxelShape SHAPE_SW = Shapes.or(FLOOR, WEST_WALL,  box(2,  1,  14, 16, 12, 16));
     private static final VoxelShape SHAPE_SE = Shapes.or(FLOOR, EAST_WALL,  box(0,  1,  14, 14, 12, 16));
+
+    private static final int BOTTLE_VOLUME = 250;
 
     public StompingBasinBlock(Properties properties) {
         super(properties);
@@ -161,6 +173,14 @@ public class StompingBasinBlock extends BaseEntityBlock {
         return super.getSoundType(state, level, pos, entity);
     }
 
+    private static boolean isWaterBottle(ItemStack stack) {
+        if (!stack.is(Items.POTION)) return false;
+        PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
+        return contents != null
+                && contents.potion().isPresent()
+                && contents.potion().get().is(Potions.WATER);
+    }
+
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) return ItemInteractionResult.SUCCESS;
@@ -169,36 +189,81 @@ public class StompingBasinBlock extends BaseEntityBlock {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         ItemStack inHand = player.getItemInHand(hand);
+        FluidStack tankFluid = basin.getFluidTank().getFluid();
 
-        if (!inHand.isEmpty() && !basin.getFluidTank().getFluid().isEmpty()) {
-            FluidStack tankFluid = basin.getFluidTank().getFluid();
-            java.util.Optional<FluidExtractionRecipe> extraction =
-                    level.getRecipeManager()
-                            .getAllRecipesFor(HHModRecipeTypes.FLUID_EXTRACTION.get())
-                            .stream()
-                            .map(h -> h.value())
-                            .filter(r -> r.matches(tankFluid, inHand))
-                            .findFirst();
+        if (inHand.is(Items.GLASS_BOTTLE) && !tankFluid.isEmpty() && tankFluid.getAmount() >= BOTTLE_VOLUME) {
+            ItemStack result = null;
 
-            if (extraction.isPresent()) {
-                FluidExtractionRecipe recipe = extraction.get();
-                basin.getFluidTank().drain(recipe.getFluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
-                inHand.shrink(1);
-                ItemStack result = recipe.getResult().copy();
-                if (!player.addItem(result)) {
-                    level.addFreshEntity(new ItemEntity(
-                            level, player.getX(), player.getY(), player.getZ(), result));
-                }
-                return ItemInteractionResult.CONSUME;
+            if (tankFluid.getFluid().isSame(Fluids.WATER)) {
+                result = new ItemStack(Items.POTION);
+                result.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER));
+            } else {
+                Item bottleItem = HHModFluids.FLUIDS.getEntries().stream()
+                        .map(h -> h.get())
+                        .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
+                        .filter(f -> f.isSame(tankFluid.getFluid()))
+                        .map(f -> ((HHFluidType) f).getBucket())
+                        .filter(item -> item != Items.AIR && item != null)
+                        .findFirst()
+                        .orElse(null);
+                if (bottleItem != null) result = new ItemStack(bottleItem);
             }
 
-            if (inHand.getCapability(Capabilities.FluidHandler.ITEM) != null) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            if (result != null) {
+                basin.getFluidTank().drain(BOTTLE_VOLUME, IFluidHandler.FluidAction.EXECUTE);
+                inHand.shrink(1);
+                if (inHand.isEmpty()) {
+                    player.setItemInHand(hand, result);
+                } else if (!player.addItem(result)) {
+                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), result));
+                }
+                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
+                return ItemInteractionResult.CONSUME;
             }
         }
 
-        if (!inHand.isEmpty() && inHand.getCapability(Capabilities.FluidHandler.ITEM) != null) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        FluidActionResult fillResult = FluidUtil.tryFillContainer(
+                inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
+        if (fillResult.isSuccess()) {
+            ItemStack filled = fillResult.getResult();
+            inHand.shrink(1);
+            if (inHand.isEmpty()) {
+                player.setItemInHand(hand, filled);
+            } else if (!player.addItem(filled)) {
+                player.drop(filled, false);
+            }
+            level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
+            return ItemInteractionResult.CONSUME;
+        }
+
+        if (isWaterBottle(inHand)) {
+            int accepted = basin.getFluidTank().fill(new FluidStack(Fluids.WATER, BOTTLE_VOLUME), IFluidHandler.FluidAction.SIMULATE);
+            if (accepted == BOTTLE_VOLUME) {
+                basin.getFluidTank().fill(new FluidStack(Fluids.WATER, BOTTLE_VOLUME), IFluidHandler.FluidAction.EXECUTE);
+                inHand.shrink(1);
+                ItemStack glass = new ItemStack(Items.GLASS_BOTTLE);
+                if (inHand.isEmpty()) {
+                    player.setItemInHand(hand, glass);
+                } else if (!player.addItem(glass)) {
+                    player.drop(glass, false);
+                }
+                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
+                return ItemInteractionResult.CONSUME;
+            }
+        }
+
+        FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
+                inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
+        if (emptyResult.isSuccess()) {
+            ItemStack emptied = emptyResult.getResult();
+            inHand.shrink(1);
+            if (inHand.isEmpty()) {
+                player.setItemInHand(hand, emptied);
+            } else if (!player.addItem(emptied)) {
+                player.drop(emptied, false);
+            }
+            level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
+            return ItemInteractionResult.CONSUME;
         }
 
         if (!inHand.isEmpty()) {
@@ -207,8 +272,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
                 player.setItemInHand(hand, remainder.isEmpty() ? ItemStack.EMPTY : remainder);
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
                         0.4f, 0.8f + level.random.nextFloat() * 0.4f);
+                return ItemInteractionResult.CONSUME;
             }
-            return ItemInteractionResult.CONSUME;
         }
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

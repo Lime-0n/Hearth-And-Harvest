@@ -3,10 +3,8 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 
 import alabaster.hearthandharvest.common.crafting.*;
-import alabaster.hearthandharvest.data.builder.FluidExtractionRecipeBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -19,9 +17,6 @@ public class HHModRecipeSerializers {
 
     public static final Supplier<RecipeSerializer<?>> STOMPING =
             RECIPE_SERIALIZERS.register("stomping", StompingBasinRecipe.Serializer::new);
-
-    public static final Supplier<RecipeSerializer<?>> FLUID_EXTRACTION =
-            RECIPE_SERIALIZERS.register("fluid_extraction", FluidExtractionRecipe.Serializer::new);
 
     public static final Supplier<RecipeSerializer<?>> BOTTLE_CRATE =
             RECIPE_SERIALIZERS.register("bottle_crate", BottleCrateRecipe.Serializer::new);
