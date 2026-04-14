@@ -76,6 +76,10 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.STRAW_RUG.get()
         );
 
+        tag(ModTags.CAMPFIRE_SIGNAL_SMOKE).add(
+                HHModBlocks.STICK_BRUSH.get()
+        );
+
         tag(BlockTags.MAINTAINS_FARMLAND).add(
                 HHModBlocks.RED_GRAPE_CROP.get(),
                 HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
