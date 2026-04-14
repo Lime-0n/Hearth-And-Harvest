@@ -329,7 +329,9 @@ public class HHModItems {
     public static final Supplier<Item> ROPE_COIL = registerWithBlockTab("rope_coil",
             () -> new BlockItem(HHModBlocks.ROPE_COIL.get(), basicItem()));
     public static final Supplier<Item> CORN_HUSK_BUNDLE = registerWithBlockTab("corn_husk_bundle",
-            () -> new BlockItem(HHModBlocks.CORN_HUSK_BUNDLE.get(), basicItem()));
+            () -> new FuelBlockItem(HHModBlocks.CORN_HUSK_BUNDLE.get(), basicItem(), 4000 ));
+    public static final Supplier<Item> CHARCOAL_BLOCK = registerWithBlockTab("charcoal_block",
+            () -> new FuelBlockItem(HHModBlocks.CHARCOAL_BLOCK.get(), basicItem(), 16000));
 
     // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithNoTab("egg_crate",

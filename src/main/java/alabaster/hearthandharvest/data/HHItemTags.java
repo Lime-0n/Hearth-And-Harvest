@@ -244,7 +244,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.SPOOL.get())
                 .add(HHModItems.ROPE_COIL.get())
                 .add(HHModItems.CORN_HUSK_BUNDLE.get())
-                .add(HHModItems.CORN_KERNEL_BAG.get());
+                .add(HHModItems.CORN_KERNEL_BAG.get())
+                .add(HHModItems.CHARCOAL_BLOCK.get());
 
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_APPLE)
                 .add(HHModItems.APPLE_CRATE.get());
@@ -292,6 +293,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.COTTON_BALE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CORN)
                 .add(HHModItems.CORN_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CHARCOAL)
+                .add(HHModItems.CHARCOAL_BLOCK.get());
 
         tag(HHCommonTags.SEEDS_CORN)
                 .add(HHModItems.CORN_KERNELS.get());
@@ -364,6 +367,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.RED_GRAPE_WINE.get())
                 .add(HHModItems.CHERRY_WINE.get())
                 .add(HHModItems.SWEET_BERRY_WINE.get())
+                .add(HHModItems.GLOW_BERRY_WINE.get())
+                .add(HHModItems.MELON_WINE.get())
                 .add(HHModItems.MEAD.get())
                 .add(HHModItems.ROOT_BEER.get())
                 .add(HHModItems.HARD_CIDER.get())

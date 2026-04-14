@@ -37,13 +37,13 @@ import java.util.UUID;
 
 public class StompingBasinBlockEntity extends BlockEntity {
 
-    public static final int ITEM_SLOTS = 1;
+    public static final int ITEM_SLOTS = 4;
 
-    public static final int SOLO_ITEM_LIMIT     = 64;
+    public static final int SOLO_ITEM_LIMIT = 64;
     public static final int COMBINED_ITEM_LIMIT = 256;
 
-    public static final int SOLO_TANK_CAPACITY     = 8_000;
-    public static final int COMBINED_TANK_CAPACITY = 32_000;
+    public static final int SOLO_TANK_CAPACITY = 8000;
+    public static final int COMBINED_TANK_CAPACITY = 32000;
 
     private MultiblockPart role = MultiblockPart.NONE;
     @Nullable private BlockPos controllerPos = null;
@@ -278,19 +278,12 @@ public class StompingBasinBlockEntity extends BlockEntity {
         fluidTank.setEffectiveCapacity(COMBINED_TANK_CAPACITY);
 
         for (StompingBasinBlockEntity member : new StompingBasinBlockEntity[]{ne, sw, se}) {
-            ItemStack memberItems = member.itemHandler.getStackInSlot(0);
-            if (!memberItems.isEmpty()) {
-                ItemStack existing = this.itemHandler.getStackInSlot(0);
-                if (existing.isEmpty()) {
-                    this.itemHandler.setStackInSlot(0, memberItems.copy());
-                } else if (ItemStack.isSameItemSameComponents(existing, memberItems)) {
-                    int merged = Math.min(existing.getCount() + memberItems.getCount(), itemSlotLimit);
-                    existing.setCount(merged);
-                    this.itemHandler.setStackInSlot(0, existing);
-                } else {
-                    if (level != null) dropAtBasin(memberItems.copy());
-                }
-                member.itemHandler.setStackInSlot(0, ItemStack.EMPTY);
+            for (int s = 0; s < member.itemHandler.getSlots(); s++) {
+                ItemStack memberItems = member.itemHandler.getStackInSlot(s);
+                if (memberItems.isEmpty()) continue;
+                ItemStack remainder = insertItem(memberItems.copy());
+                if (!remainder.isEmpty() && level != null) dropAtBasin(remainder.copy());
+                member.itemHandler.setStackInSlot(s, ItemStack.EMPTY);
             }
 
             FluidStack memberFluid = member.fluidTank.getFluid();

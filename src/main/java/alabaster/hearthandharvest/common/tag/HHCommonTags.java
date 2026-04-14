@@ -85,6 +85,9 @@ public class HHCommonTags {
     public static final TagKey<Item> STORAGE_BLOCKS_ITEM_CORN = commonItemTag("storage_blocks/corn");
     public static final TagKey<Block> STORAGE_BLOCKS_CORN = commonBlockTag("storage_blocks/corn");
 
+    public static final TagKey<Item> STORAGE_BLOCKS_ITEM_CHARCOAL = commonItemTag("storage_blocks/charcoal");
+    public static final TagKey<Block> STORAGE_BLOCKS_CHARCOAL = commonBlockTag("storage_blocks/charcoal");
+
     public static final TagKey<Item> DRINKS_JUICE = commonItemTag("drinks/juice");
     public static final TagKey<Item> DRINKS_ALCOHOL = commonItemTag("drinks/alcohol");
 

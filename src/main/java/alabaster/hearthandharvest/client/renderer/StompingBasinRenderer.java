@@ -37,10 +37,10 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
     private static final float SCATTER_SIZE = SCATTER_MAX - SCATTER_MIN;
 
     private static final float BIG_INNER_MIN   = 2f  / 16f;
-    private static final float BIG_INNER_MAX   = 30f / 16f;   // 1 block + 14px
+    private static final float BIG_INNER_MAX   = 30f / 16f;
 
     private static final float BIG_SCATTER_MIN  = 5f  / 16f;
-    private static final float BIG_SCATTER_MAX  = 27f / 16f;   // 1 block + 11px
+    private static final float BIG_SCATTER_MAX  = 27f / 16f;
     private static final float BIG_SCATTER_SIZE = BIG_SCATTER_MAX - BIG_SCATTER_MIN;
 
     private static final float FLOOR_Y     = 1f / 16f + 0.002f;
@@ -67,14 +67,13 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
             renderQuadrantModel(resolveQuadrantModel(be), ps, buf, packedLight, packedOverlay);
             return;
         }
-        if (role == MultiblockPart.CONTROLLER) {
-            renderQuadrantModel(MODEL_NW, ps, buf, packedLight, packedOverlay);
-            renderScatteredItems(be, ps, buf, packedLight, packedOverlay, true);
-            renderFluidSurface(be, ps, buf, packedLight, false);  // was: true
-        } else {
-            renderScatteredItems(be, ps, buf, packedLight, packedOverlay, false);
-            renderFluidSurface(be, ps, buf, packedLight, true);   // was: false
-        }
+
+        boolean combined = role == MultiblockPart.CONTROLLER;
+
+        if (combined) renderQuadrantModel(MODEL_NW, ps, buf, packedLight, packedOverlay);
+
+        renderScatteredItems(be, ps, buf, packedLight, packedOverlay, combined);
+        renderFluidSurface(be, ps, buf, packedLight, combined);
     }
 
     private ModelResourceLocation resolveQuadrantModel(StompingBasinBlockEntity be) {
@@ -106,31 +105,43 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
         }
     }
 
+    private static MultiBufferSource wrapSolid(MultiBufferSource buf) {
+        return renderType -> {
+            if (renderType == RenderType.translucent()
+                    || renderType == RenderType.translucentMovingBlock()
+                    || renderType.toString().contains("translucent")) {
+                return buf.getBuffer(RenderType.entityCutoutNoCull(InventoryMenu.BLOCK_ATLAS));
+            }
+            return buf.getBuffer(renderType);
+        };
+    }
+
     private void renderScatteredItems(StompingBasinBlockEntity source, PoseStack ps, MultiBufferSource buf, int packedLight, int packedOverlay, boolean combined) {
-        ItemStack stack = source.getItemHandler().getStackInSlot(0);
-        if (stack.isEmpty()) return;
-
-        int  count = stack.getCount();
-        long seed  = source.getBlockPos().asLong();
-
         float scatterMin  = combined ? BIG_SCATTER_MIN  : SCATTER_MIN;
         float scatterSize = combined ? BIG_SCATTER_SIZE : SCATTER_SIZE;
+        long seed = source.getBlockPos().asLong();
+        int renderIndex = 0;
 
-        for (int i = 0; i < count; i++) {
-            float[] pos    = itemPosition(seed, i);
-            float offsetX  = scatterMin + pos[0] * scatterSize;
-            float offsetZ  = scatterMin + pos[1] * scatterSize;
-            float rotation = pos[2] * 360f;
-            float itemY    = FLOOR_Y + i * ITEM_Y_STEP;
+        MultiBufferSource solidBuf = wrapSolid(buf);
 
-            ps.pushPose();
-            ps.translate(offsetX, itemY, offsetZ);
-            ps.mulPose(Axis.YP.rotationDegrees(rotation));
-            ps.mulPose(Axis.XP.rotationDegrees(-90f));
+        for (int slot = 0; slot < source.getItemHandler().getSlots(); slot++) {
+            ItemStack stack = source.getItemHandler().getStackInSlot(slot);
+            if (stack.isEmpty()) continue;
 
-            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GROUND, packedLight, packedOverlay, ps, buf, null, i);
+            for (int i = 0; i < stack.getCount(); i++, renderIndex++) {
+                float[] pos    = itemPosition(seed, renderIndex);
+                float offsetX  = scatterMin + pos[0] * scatterSize;
+                float offsetZ  = scatterMin + pos[1] * scatterSize;
+                float rotation = pos[2] * 360f;
+                float itemY    = FLOOR_Y + renderIndex * ITEM_Y_STEP;
 
-            ps.popPose();
+                ps.pushPose();
+                ps.translate(offsetX, itemY, offsetZ);
+                ps.mulPose(Axis.YP.rotationDegrees(rotation));
+                ps.mulPose(Axis.XP.rotationDegrees(-90f));
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GROUND, packedLight, packedOverlay, ps, solidBuf, null, renderIndex);
+                ps.popPose();
+            }
         }
     }
 
@@ -166,7 +177,7 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
         int color = ext.getTintColor(fluid);
         float r = ((color >> 16) & 0xFF) / 255f;
         float g = ((color >>  8) & 0xFF) / 255f;
-        float b = ( color & 0xFF) / 255f;
+        float b = ( color        & 0xFF) / 255f;
         float a = ((color >> 24) & 0xFF) / 255f;
         if (a == 0f) a = 0.75f;
 
@@ -177,18 +188,14 @@ public class StompingBasinRenderer implements BlockEntityRenderer<StompingBasinB
         float v0 = sprite.getV0(), v1 = sprite.getV1();
 
         if (combined) {
+            float mid = 1f;
+            emitFluidQuad(vc, m, BIG_INNER_MIN, mid,           BIG_INNER_MIN, mid,          surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NW
+            emitFluidQuad(vc, m, mid,           BIG_INNER_MAX, BIG_INNER_MIN, mid,           surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NE
+            emitFluidQuad(vc, m, BIG_INNER_MIN, mid,           mid,           BIG_INNER_MAX, surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SW
+            emitFluidQuad(vc, m, mid,           BIG_INNER_MAX, mid,           BIG_INNER_MAX, surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SE
+        } else {
             emitFluidQuad(vc, m, INNER_MIN, INNER_MAX, INNER_MIN, INNER_MAX,
                     surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight);
-        } else {
-            float mid = 1f;
-            emitFluidQuad(vc, m, BIG_INNER_MIN, mid, BIG_INNER_MIN, mid,
-                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NW
-            emitFluidQuad(vc, m, mid, BIG_INNER_MAX, BIG_INNER_MIN, mid,
-                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // NE
-            emitFluidQuad(vc, m, BIG_INNER_MIN, mid, mid, BIG_INNER_MAX,
-                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SW
-            emitFluidQuad(vc, m, mid, BIG_INNER_MAX, mid, BIG_INNER_MAX,
-                    surfaceY, r, g, b, a, u0, u1, v0, v1, ov, packedLight); // SE
         }
     }
 

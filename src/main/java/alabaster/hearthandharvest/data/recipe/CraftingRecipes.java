@@ -527,6 +527,13 @@ public class CraftingRecipes
                 .define('#', Items.GUNPOWDER)
                 .unlockedBy("has_gunpowder", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GUNPOWDER))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CHARCOAL_BLOCK.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', Items.CHARCOAL)
+                .unlockedBy("has_charcoal", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CHARCOAL))
+                .save(output);
 
         // Half Crates
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.BROWN_MUSHROOM_CRATE.get(), 1)
@@ -687,6 +694,10 @@ public class CraftingRecipes
                 .requires(HHModItems.GUNPOWDER_BAG.get())
                 .unlockedBy("has_gunpowder_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GUNPOWDER_BAG.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "gunpowder_from_bag"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.CHARCOAL, 9)
+                .requires(HHModItems.CHARCOAL_BLOCK.get())
+                .unlockedBy("has_charcoal_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHARCOAL_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_block"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.EGG, 9)
                 .requires(HHModItems.EGG_CRATE.get())
                 .unlockedBy("has_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.EGG_CRATE.get()))

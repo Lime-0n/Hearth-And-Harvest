@@ -173,6 +173,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 .add(HHModBlocks.COTTON_BALE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_CORN)
                 .add(HHModBlocks.CORN_CRATE.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_CHARCOAL)
+                .add(HHModBlocks.CHARCOAL_BLOCK.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 HHModBlocks.RASPBERRY_CRATE.get(),
@@ -200,7 +202,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.SPOOL.get(),
                 HHModBlocks.ROPE_COIL.get(),
                 HHModBlocks.CORN_HUSK_BUNDLE.get(),
-                HHModBlocks.CORN_KERNEL_BAG.get()
+                HHModBlocks.CORN_KERNEL_BAG.get(),
+                HHModBlocks.CHARCOAL_BLOCK.get()
         );
     }
 
@@ -321,7 +324,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.SAP_CAULDRON.get(),
                 HHModBlocks.COUNTER.get(),
                 HHModBlocks.DRAWER.get(),
-                HHModBlocks.BASIN.get()
+                HHModBlocks.BASIN.get(),
+                HHModBlocks.CHARCOAL_BLOCK.get()
         );
 
         tag(BlockTags.MINEABLE_WITH_HOE).add(

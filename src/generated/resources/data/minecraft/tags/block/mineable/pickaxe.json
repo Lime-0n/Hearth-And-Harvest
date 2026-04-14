@@ -4,6 +4,7 @@
     "hearthandharvest:sap_cauldron",
     "hearthandharvest:counter",
     "hearthandharvest:drawer",
-    "hearthandharvest:basin"
+    "hearthandharvest:basin",
+    "hearthandharvest:charcoal_block"
   ]
 }

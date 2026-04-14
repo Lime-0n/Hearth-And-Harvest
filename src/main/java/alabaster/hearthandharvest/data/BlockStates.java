@@ -106,6 +106,8 @@ public class BlockStates extends BlockStateProvider
         this.bagBlock(HHModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
         this.bagBlock(HHModBlocks.CORN_KERNEL_BAG.get(), "corn_kernel");
 
+        this.simpleBlock(HHModBlocks.CHARCOAL_BLOCK.get());
+
         this.wildCropBlock(HHModBlocks.WILD_RED_GRAPES.get());
         this.wildCropBlock(HHModBlocks.WILD_GREEN_GRAPES.get());
         this.wildCropBlock(HHModBlocks.WILD_COTTON.get());
