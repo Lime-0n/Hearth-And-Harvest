@@ -6,23 +6,25 @@
     }
   ],
   "type": "brewinandchewin:fermenting",
-  "category": "meals",
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "farmersdelight:milk_bottle"
+      "item": "minecraft:glow_berries"
     },
     {
-      "item": "farmersdelight:milk_bottle"
+      "item": "minecraft:glow_berries"
     },
     {
-      "item": "hearthandharvest:salt"
+      "item": "minecraft:glow_berries"
+    },
+    {
+      "item": "minecraft:glow_berries"
     },
     []
   ],
   "result": {
-    "count": 1,
-    "id": "hearthandharvest:unripe_cheddar_cheese_wheel"
+    "amount": 500,
+    "id": "hearthandharvest:glow_berry_wine"
   },
-  "temperature": 5
+  "unit": "millibuckets"
 }

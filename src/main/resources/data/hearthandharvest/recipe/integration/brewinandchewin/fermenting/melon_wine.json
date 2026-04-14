@@ -6,23 +6,25 @@
     }
   ],
   "type": "brewinandchewin:fermenting",
-  "category": "meals",
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "farmersdelight:milk_bottle"
+      "item": "minecraft:melon_slice"
     },
     {
-      "item": "farmersdelight:milk_bottle"
+      "item": "minecraft:melon_slice"
     },
     {
-      "item": "hearthandharvest:salt"
+      "item": "minecraft:melon_slice"
+    },
+    {
+      "item": "minecraft:melon_slice"
     },
     []
   ],
   "result": {
-    "count": 1,
-    "id": "hearthandharvest:unripe_cheddar_cheese_wheel"
+    "amount": 500,
+    "id": "hearthandharvest:melon_wine"
   },
-  "temperature": 5
+  "unit": "millibuckets"
 }

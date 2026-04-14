@@ -8,11 +8,11 @@
   "type": "brewinandchewin:keg_pouring",
   "fluid": {
     "amount": 500,
-    "id": "hearthandharvest:cherry_wine"
+    "id": "hearthandharvest:melon_wine"
   },
   "output": {
     "count": 1,
-    "id": "hearthandharvest:cherry_wine"
+    "id": "hearthandharvest:melon_wine"
   },
   "unit": "millibuckets"
 }

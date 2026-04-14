@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "brewinandchewin"
+    }
+  ],
   "type": "brewinandchewin:keg_pouring",
   "fluid": {
     "amount": 500,
