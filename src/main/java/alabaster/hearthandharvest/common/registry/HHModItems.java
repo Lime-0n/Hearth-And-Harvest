@@ -3,7 +3,6 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
 import alabaster.hearthandharvest.common.item.*;
-import com.electronwill.nightconfig.core.concurrent.StampedConfig;
 import com.google.common.collect.Sets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
@@ -11,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -332,6 +330,8 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.CORN_HUSK_BUNDLE.get(), basicItem(), 4000 ));
     public static final Supplier<Item> CHARCOAL_BLOCK = registerWithBlockTab("charcoal_block",
             () -> new FuelBlockItem(HHModBlocks.CHARCOAL_BLOCK.get(), basicItem(), 16000));
+    public static final Supplier<Item> STICK_BUNDLE = registerWithBlockTab("stick_bundle",
+            () -> new FuelBlockItem(HHModBlocks.STICK_BUNDLE.get(), basicItem(), 1000));
 
     // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithNoTab("egg_crate",

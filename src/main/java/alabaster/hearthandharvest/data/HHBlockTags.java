@@ -2,7 +2,6 @@ package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
-import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHCompatibilityTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -11,7 +10,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -175,6 +173,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 .add(HHModBlocks.CORN_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_CHARCOAL)
                 .add(HHModBlocks.CHARCOAL_BLOCK.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_STICK)
+                .add(HHModBlocks.STICK_BUNDLE.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 HHModBlocks.RASPBERRY_CRATE.get(),
@@ -315,7 +315,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.WATER_CRATE.get(),
                 HHModBlocks.HONEY_CRATE.get(),
                 HHModBlocks.SYRUP_CRATE.get(),
-                HHModBlocks.CORN_STALK.get())
+                HHModBlocks.CORN_STALK.get(),
+                HHModBlocks.STICK_BUNDLE.get())
                 .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_half_cabinet"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_bottle_rack"));
 

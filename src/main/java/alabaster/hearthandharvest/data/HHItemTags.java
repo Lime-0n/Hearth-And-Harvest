@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
@@ -13,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -245,7 +243,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.ROPE_COIL.get())
                 .add(HHModItems.CORN_HUSK_BUNDLE.get())
                 .add(HHModItems.CORN_KERNEL_BAG.get())
-                .add(HHModItems.CHARCOAL_BLOCK.get());
+                .add(HHModItems.CHARCOAL_BLOCK.get())
+                .add(HHModItems.STICK_BUNDLE.get());
 
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_APPLE)
                 .add(HHModItems.APPLE_CRATE.get());
@@ -295,6 +294,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CORN_CRATE.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CHARCOAL)
                 .add(HHModItems.CHARCOAL_BLOCK.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_STICK)
+                .add(HHModItems.STICK_BUNDLE.get());
 
         tag(HHCommonTags.SEEDS_CORN)
                 .add(HHModItems.CORN_KERNELS.get());

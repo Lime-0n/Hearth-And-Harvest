@@ -99,6 +99,7 @@ public class BlockStates extends BlockStateProvider
         this.axisBlock((RotatedPillarBlock) HHModBlocks.ROPE_COIL.get());
         this.axisBlock((RotatedPillarBlock) HHModBlocks.COTTON_BALE.get());
         this.axisBlock((RotatedPillarBlock) HHModBlocks.SPOOL.get());
+        this.axisBlock((RotatedPillarBlock) HHModBlocks.STICK_BUNDLE.get());
 
         this.bagBlock(HHModBlocks.SALT_BAG.get(), "salt");
         this.bagBlock(HHModBlocks.SUGAR_BAG.get(), "sugar");

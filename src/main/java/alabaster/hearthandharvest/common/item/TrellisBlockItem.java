@@ -31,7 +31,7 @@ public class TrellisBlockItem extends BlockItem {
 
         if (sourceState.getBlock() instanceof TrellisBlock trellis) {
             boolean sneaking = context.getPlayer() != null && context.getPlayer().isShiftKeyDown();
-            if (sneaking) return context;
+            if (!sneaking) return context;
 
             double hitX = context.getClickLocation().x - sourcePos.getX() - 0.5;
             double hitY = context.getClickLocation().y - sourcePos.getY() - 0.5;

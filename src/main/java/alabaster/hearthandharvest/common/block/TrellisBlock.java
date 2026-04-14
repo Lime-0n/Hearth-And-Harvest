@@ -98,13 +98,18 @@ public class TrellisBlock extends Block {
     @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
         if (!context.getItemInHand().is(this.asItem())) return false;
-        if (state.getValue(HAS_MIDDLE)) return false;
-        boolean hasSideOrSurface = state.getValue(SIDE_NORTH) || state.getValue(SIDE_SOUTH)
-                || state.getValue(SIDE_EAST) || state.getValue(SIDE_WEST)
-                || state.getValue(HAS_FLAT) || state.getValue(HAS_TOP);
-        boolean placingMiddle = !context.getPlayer().isShiftKeyDown();
-        if (placingMiddle && hasSideOrSurface) return false;
-        return true;
+        boolean sneaking = context.getPlayer() != null && context.getPlayer().isShiftKeyDown();
+        if (sneaking) {
+            return !state.getValue(HAS_MIDDLE);
+        }
+        Direction clickedFace = context.getClickedFace();
+        if (clickedFace.getAxis().isHorizontal()) {
+            return !state.getValue(sidePropForFacing(clickedFace));
+        } else if (clickedFace == Direction.UP) {
+            return !state.getValue(HAS_FLAT);
+        } else {
+            return !state.getValue(HAS_TOP);
+        }
     }
 
     @Override
@@ -120,33 +125,18 @@ public class TrellisBlock extends Block {
                 : this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
 
         if (sneaking) {
-            if (clickedFace.getAxis().isHorizontal()) {
-                return computeConnections(base.setValue(sidePropForFacing(clickedFace), true), level, pos);
-            } else if (clickedFace == Direction.UP) {
-                return computeConnections(base.setValue(HAS_FLAT, true), level, pos);
-            } else {
-                return computeConnections(base.setValue(HAS_TOP, true), level, pos);
-            }
+            return computeConnections(
+                    base.setValue(HAS_MIDDLE, true).setValue(FACING, context.getHorizontalDirection()),
+                    level, pos);
         }
 
-        BlockPos sourcePos = pos.relative(clickedFace.getOpposite());
-        BlockState sourceState = level.getBlockState(sourcePos);
-        if (sourceState.getBlock() == this && existing.getBlock() != this) {
-            BlockState copy = base
-                    .setValue(HAS_MIDDLE, sourceState.getValue(HAS_MIDDLE))
-                    .setValue(SIDE_NORTH, sourceState.getValue(SIDE_NORTH))
-                    .setValue(SIDE_SOUTH, sourceState.getValue(SIDE_SOUTH))
-                    .setValue(SIDE_EAST, sourceState.getValue(SIDE_EAST))
-                    .setValue(SIDE_WEST, sourceState.getValue(SIDE_WEST))
-                    .setValue(HAS_FLAT, sourceState.getValue(HAS_FLAT))
-                    .setValue(HAS_TOP, sourceState.getValue(HAS_TOP))
-                    .setValue(FACING, sourceState.getValue(FACING));
-            return computeConnections(copy, level, pos);
+        if (clickedFace.getAxis().isHorizontal()) {
+            return computeConnections(base.setValue(sidePropForFacing(clickedFace), true), level, pos);
+        } else if (clickedFace == Direction.UP) {
+            return computeConnections(base.setValue(HAS_FLAT, true), level, pos);
+        } else {
+            return computeConnections(base.setValue(HAS_TOP, true), level, pos);
         }
-
-        return computeConnections(
-                base.setValue(HAS_MIDDLE, true).setValue(FACING, context.getHorizontalDirection()),
-                level, pos);
     }
 
     @Override
