@@ -244,7 +244,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CORN_HUSK_BUNDLE.get())
                 .add(HHModItems.CORN_KERNEL_BAG.get())
                 .add(HHModItems.CHARCOAL_BLOCK.get())
-                .add(HHModItems.STICK_BUNDLE.get());
+                .add(HHModItems.STICK_BRUSH.get());
 
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_APPLE)
                 .add(HHModItems.APPLE_CRATE.get());
@@ -295,7 +295,7 @@ public class HHItemTags extends ItemTagsProvider {
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_CHARCOAL)
                 .add(HHModItems.CHARCOAL_BLOCK.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_STICK)
-                .add(HHModItems.STICK_BUNDLE.get());
+                .add(HHModItems.STICK_BRUSH.get());
 
         tag(HHCommonTags.SEEDS_CORN)
                 .add(HHModItems.CORN_KERNELS.get());

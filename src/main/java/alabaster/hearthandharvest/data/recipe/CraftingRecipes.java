@@ -5,7 +5,6 @@ import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
-import alabaster.hearthandharvest.data.HHItemTags;
 import alabaster.hearthandharvest.data.builder.ShapelessRemainderRecipeBuilder;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
@@ -535,7 +534,7 @@ public class CraftingRecipes
                 .define('#', Items.CHARCOAL)
                 .unlockedBy("has_charcoal", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CHARCOAL))
                 .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.STICK_BUNDLE.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.STICK_BRUSH.get(), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
@@ -707,8 +706,8 @@ public class CraftingRecipes
                 .unlockedBy("has_charcoal_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHARCOAL_BLOCK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_block"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.STICK, 9)
-                .requires(HHModItems.STICK_BUNDLE.get())
-                .unlockedBy("has_stick_bundle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.STICK_BUNDLE.get()))
+                .requires(HHModItems.STICK_BRUSH.get())
+                .unlockedBy("has_stick_bundle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.STICK_BRUSH.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "stick_from_bundle"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.EGG, 9)
                 .requires(HHModItems.EGG_CRATE.get())

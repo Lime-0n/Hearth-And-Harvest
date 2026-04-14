@@ -264,8 +264,8 @@ public class HHModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK).strength(2.0F, 3.0F).sound(SoundType.CROP)));
     public static final Supplier<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
-    public static final Supplier<Block> STICK_BUNDLE = BLOCKS.register("stick_bundle",
-            () -> new RotatedPillarBlock(Block.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final Supplier<Block> STICK_BRUSH = BLOCKS.register("stick_brush",
+            () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
 
     // Half-Slab Crates
     public static final Supplier<Block> EGG_CRATE = BLOCKS.register("egg_crate",

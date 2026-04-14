@@ -330,8 +330,8 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.CORN_HUSK_BUNDLE.get(), basicItem(), 4000 ));
     public static final Supplier<Item> CHARCOAL_BLOCK = registerWithBlockTab("charcoal_block",
             () -> new FuelBlockItem(HHModBlocks.CHARCOAL_BLOCK.get(), basicItem(), 16000));
-    public static final Supplier<Item> STICK_BUNDLE = registerWithBlockTab("stick_bundle",
-            () -> new FuelBlockItem(HHModBlocks.STICK_BUNDLE.get(), basicItem(), 1000));
+    public static final Supplier<Item> STICK_BRUSH = registerWithBlockTab("stick_brush",
+            () -> new FuelBlockItem(HHModBlocks.STICK_BRUSH.get(), basicItem(), 1000));
 
     // Half-Slab Crates
     public static final Supplier<Item> EGG_CRATE = registerWithNoTab("egg_crate",

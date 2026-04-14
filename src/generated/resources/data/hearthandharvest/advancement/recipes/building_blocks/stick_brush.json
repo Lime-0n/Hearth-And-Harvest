@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:stick_bundle"
+        "recipe": "hearthandharvest:stick_brush"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:stick_bundle"
+      "hearthandharvest:stick_brush"
     ]
   }
 }

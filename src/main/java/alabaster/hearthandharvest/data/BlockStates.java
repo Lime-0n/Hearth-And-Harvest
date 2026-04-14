@@ -3,7 +3,6 @@ package alabaster.hearthandharvest.data;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -99,7 +98,7 @@ public class BlockStates extends BlockStateProvider
         this.axisBlock((RotatedPillarBlock) HHModBlocks.ROPE_COIL.get());
         this.axisBlock((RotatedPillarBlock) HHModBlocks.COTTON_BALE.get());
         this.axisBlock((RotatedPillarBlock) HHModBlocks.SPOOL.get());
-        this.axisBlock((RotatedPillarBlock) HHModBlocks.STICK_BUNDLE.get());
+        this.axisBlock((RotatedPillarBlock) HHModBlocks.STICK_BRUSH.get());
 
         this.bagBlock(HHModBlocks.SALT_BAG.get(), "salt");
         this.bagBlock(HHModBlocks.SUGAR_BAG.get(), "sugar");

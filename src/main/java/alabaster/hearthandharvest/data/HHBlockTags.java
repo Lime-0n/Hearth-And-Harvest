@@ -174,7 +174,7 @@ public class HHBlockTags extends BlockTagsProvider {
         tag(HHCommonTags.STORAGE_BLOCKS_CHARCOAL)
                 .add(HHModBlocks.CHARCOAL_BLOCK.get());
         tag(HHCommonTags.STORAGE_BLOCKS_STICK)
-                .add(HHModBlocks.STICK_BUNDLE.get());
+                .add(HHModBlocks.STICK_BRUSH.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 HHModBlocks.RASPBERRY_CRATE.get(),
@@ -316,7 +316,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.HONEY_CRATE.get(),
                 HHModBlocks.SYRUP_CRATE.get(),
                 HHModBlocks.CORN_STALK.get(),
-                HHModBlocks.STICK_BUNDLE.get())
+                HHModBlocks.STICK_BRUSH.get())
                 .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_half_cabinet"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("crabbersdelight", "palm_bottle_rack"));
 
