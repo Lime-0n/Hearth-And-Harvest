@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "hearthandharvest:corn"
+      "tag": "c:vegetables/corn"
     }
   },
   "pattern": [

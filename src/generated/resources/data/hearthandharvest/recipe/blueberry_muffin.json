@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "hearthandharvest:blueberries"
+      "tag": "c:fruits/blueberry"
     },
     "S": {
       "item": "minecraft:sugar"

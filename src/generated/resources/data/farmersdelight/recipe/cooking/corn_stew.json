@@ -8,7 +8,7 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:corn"
+      "tag": "c:vegetables/corn"
     },
     {
       "tag": "c:dusts/salt"

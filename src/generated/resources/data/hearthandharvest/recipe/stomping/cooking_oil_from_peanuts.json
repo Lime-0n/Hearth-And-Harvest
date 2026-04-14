@@ -2,16 +2,7 @@
   "type": "hearthandharvest:stomping",
   "ingredients": [
     {
-      "item": "hearthandharvest:peanut"
-    },
-    {
-      "item": "hearthandharvest:peanut"
-    },
-    {
-      "item": "hearthandharvest:peanut"
-    },
-    {
-      "item": "hearthandharvest:peanut"
+      "tag": "c:crops/peanut"
     }
   ],
   "result_fluid": {

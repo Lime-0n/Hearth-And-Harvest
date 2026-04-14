@@ -2,16 +2,7 @@
   "type": "hearthandharvest:stomping",
   "ingredients": [
     {
-      "item": "hearthandharvest:raspberry"
-    },
-    {
-      "item": "hearthandharvest:raspberry"
-    },
-    {
-      "item": "hearthandharvest:raspberry"
-    },
-    {
-      "item": "hearthandharvest:raspberry"
+      "tag": "c:fruits/raspberry"
     }
   ],
   "result_fluid": {

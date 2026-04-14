@@ -6,7 +6,7 @@
       "item": "hearthandharvest:butter"
     },
     "R": {
-      "item": "hearthandharvest:raspberry"
+      "tag": "c:fruits/raspberry"
     },
     "S": {
       "item": "minecraft:sugar"

@@ -2,16 +2,7 @@
   "type": "hearthandharvest:stomping",
   "ingredients": [
     {
-      "item": "hearthandharvest:corn"
-    },
-    {
-      "item": "hearthandharvest:corn"
-    },
-    {
-      "item": "hearthandharvest:corn"
-    },
-    {
-      "item": "hearthandharvest:corn"
+      "tag": "c:vegetables/corn"
     }
   ],
   "result_fluid": {

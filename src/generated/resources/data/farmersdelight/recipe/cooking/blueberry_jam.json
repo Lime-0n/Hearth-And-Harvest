@@ -8,13 +8,13 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:blueberries"
+      "tag": "c:fruits/blueberry"
     },
     {
-      "item": "hearthandharvest:blueberries"
+      "tag": "c:fruits/blueberry"
     },
     {
-      "item": "hearthandharvest:blueberries"
+      "tag": "c:fruits/blueberry"
     },
     {
       "item": "minecraft:sugar"

@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.data.recipe;
 
 import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.data.builder.StompingBasinRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -26,17 +27,17 @@ public class StompingRecipes {
 
     private static void stompJuices(RecipeOutput output) {
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_JUICE.get(), HALF_BUCKET))
-                .addIngredient(HHModItems.BLUEBERRIES.get(), 4)
+                .addIngredient(HHCommonTags.FRUITS_BLUEBERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())
                 .build(output);
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.CHERRY_JUICE.get(), HALF_BUCKET))
-                .addIngredient(HHModItems.CHERRY.get(), 4)
+                .addIngredient(HHCommonTags.FRUITS_CHERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.CHERRY.get())
                 .build(output);
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RASPBERRY_JUICE.get(), HALF_BUCKET))
-                .addIngredient(HHModItems.RASPBERRY.get(), 4)
+                .addIngredient(HHCommonTags.FRUITS_RASPBERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.RASPBERRY.get())
                 .build(output);
 
@@ -66,7 +67,7 @@ public class StompingRecipes {
                 .build(output);
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BUCKET))
-                .addIngredient(HHModItems.PEANUT.get(), 4)
+                .addIngredient(HHCommonTags.CROPS_PEANUT, 4)
                 .unlockedByAnyIngredient(HHModItems.PEANUT.get())
                 .build(output, "cooking_oil_from_peanuts");
 
@@ -76,7 +77,7 @@ public class StompingRecipes {
                 .build(output, "cooking_oil_from_seeds");
 
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), BUCKET))
-                .addIngredient(HHModItems.CORN.get(), 4)
+                .addIngredient(HHCommonTags.VEGETABLES_CORN, 4)
                 .unlockedByAnyIngredient(HHModItems.CORN.get())
                 .build(output, "cooking_oil_from_corn");
     }

@@ -2,16 +2,7 @@
   "type": "hearthandharvest:stomping",
   "ingredients": [
     {
-      "item": "hearthandharvest:blueberries"
-    },
-    {
-      "item": "hearthandharvest:blueberries"
-    },
-    {
-      "item": "hearthandharvest:blueberries"
-    },
-    {
-      "item": "hearthandharvest:blueberries"
+      "tag": "c:fruits/blueberry"
     }
   ],
   "result_fluid": {

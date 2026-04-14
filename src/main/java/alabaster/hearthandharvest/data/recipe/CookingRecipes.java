@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.data.recipe;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import alabaster.hearthandharvest.data.HHItemTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -37,9 +38,9 @@ public class CookingRecipes
 
     private static void jarFoods(RecipeOutput output) {
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.RASPBERRY_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
-                .addIngredient(HHModItems.RASPBERRY.get())
-                .addIngredient(HHModItems.RASPBERRY.get())
-                .addIngredient(HHModItems.RASPBERRY.get())
+                .addIngredient(HHCommonTags.FRUITS_RASPBERRY)
+                .addIngredient(HHCommonTags.FRUITS_RASPBERRY)
+                .addIngredient(HHCommonTags.FRUITS_RASPBERRY)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
@@ -47,9 +48,9 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.BLUEBERRY_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
-                .addIngredient(HHModItems.BLUEBERRIES.get())
-                .addIngredient(HHModItems.BLUEBERRIES.get())
-                .addIngredient(HHModItems.BLUEBERRIES.get())
+                .addIngredient(HHCommonTags.FRUITS_BLUEBERRY)
+                .addIngredient(HHCommonTags.FRUITS_BLUEBERRY)
+                .addIngredient(HHCommonTags.FRUITS_BLUEBERRY)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
@@ -57,9 +58,9 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.GRAPE_JAM.get(), 1, SLOW_COOKING, MEDIUM_EXP, HHModItems.JAR.get())
-                .addIngredient(HHModItems.RED_GRAPES.get())
-                .addIngredient(HHModItems.RED_GRAPES.get())
-                .addIngredient(HHModItems.RED_GRAPES.get())
+                .addIngredient(HHCommonTags.FRUITS_GRAPE)
+                .addIngredient(HHCommonTags.FRUITS_GRAPE)
+                .addIngredient(HHCommonTags.FRUITS_GRAPE)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.SUGAR)
@@ -248,7 +249,7 @@ public class CookingRecipes
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .build(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.CORN_STEW.get(), 1, SLOW_COOKING, MEDIUM_EXP, Items.BOWL)
-                .addIngredient(HHModItems.CORN.get())
+                .addIngredient(HHCommonTags.VEGETABLES_CORN)
                 .addIngredient(HHCommonTags.DUSTS_SALT)
                 .addIngredient(Items.POTATO)
                 .addIngredient(Tags.Items.DRINKS_MILK)

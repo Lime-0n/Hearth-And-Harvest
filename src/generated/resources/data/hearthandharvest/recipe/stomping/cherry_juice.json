@@ -2,16 +2,7 @@
   "type": "hearthandharvest:stomping",
   "ingredients": [
     {
-      "item": "hearthandharvest:cherry"
-    },
-    {
-      "item": "hearthandharvest:cherry"
-    },
-    {
-      "item": "hearthandharvest:cherry"
-    },
-    {
-      "item": "hearthandharvest:cherry"
+      "tag": "c:fruits/cherry"
     }
   ],
   "result_fluid": {

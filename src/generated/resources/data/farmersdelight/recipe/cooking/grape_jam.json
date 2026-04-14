@@ -8,13 +8,13 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "hearthandharvest:red_grapes"
+      "tag": "c:fruits/grape"
     },
     {
-      "item": "hearthandharvest:red_grapes"
+      "tag": "c:fruits/grape"
     },
     {
-      "item": "hearthandharvest:red_grapes"
+      "tag": "c:fruits/grape"
     },
     {
       "item": "minecraft:sugar"

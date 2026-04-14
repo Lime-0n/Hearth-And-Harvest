@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import alabaster.hearthandharvest.common.tag.HHCommonTags;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import alabaster.hearthandharvest.data.HHItemTags;
 import alabaster.hearthandharvest.data.builder.ShapelessRemainderRecipeBuilder;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.component.DataComponents;
@@ -370,21 +371,21 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.BLUEBERRIES.get())
+                .define('#', HHCommonTags.FRUITS_BLUEBERRY)
                 .unlockedBy("has_blueberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRIES.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CHERRY_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.CHERRY.get())
+                .define('#', HHCommonTags.FRUITS_CHERRY)
                 .unlockedBy("has_cherry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHERRY.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.RASPBERRY_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.RASPBERRY.get())
+                .define('#', HHCommonTags.FRUITS_RASPBERRY)
                 .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.RED_GRAPE_CRATE.get(), 1)
@@ -405,14 +406,14 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.PEANUT.get())
+                .define('#', HHCommonTags.CROPS_PEANUT)
                 .unlockedBy("has_peanut", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.PEANUT.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CORN_CRATE.get(), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.CORN.get())
+                .define('#', HHCommonTags.VEGETABLES_CORN)
                 .unlockedBy("has_corn", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.APPLE_CRATE.get(), 1)
@@ -468,7 +469,7 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.COTTON.get())
+                .define('#', HHCommonTags.CROPS_COTTON)
                 .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COTTON.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SPOOL.get(), 1)
@@ -503,7 +504,7 @@ public class CraftingRecipes
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', HHModItems.SALT.get())
+                .define('#', HHCommonTags.DUSTS_SALT)
                 .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SUGAR_BAG.get(), 1)
@@ -776,9 +777,9 @@ public class CraftingRecipes
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_fungus_from_crate"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.STRING, 2)
-                .requires(HHModItems.COTTON.get())
-                .requires(HHModItems.COTTON.get())
-                .requires(HHModItems.COTTON.get())
+                .requires(HHCommonTags.CROPS_COTTON)
+                .requires(HHCommonTags.CROPS_COTTON)
+                .requires(HHCommonTags.CROPS_COTTON)
                 .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COTTON.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "string_from_cotton"));
 
@@ -810,7 +811,7 @@ public class CraftingRecipes
                 .define('#', Items.SUGAR)
                 .define('S', Items.STICK)
                 .define('W', Items.WIND_CHARGE)
-                .define('C', HHModItems.COTTON.get())
+                .define('C', HHCommonTags.CROPS_COTTON)
                 .unlockedBy("has_cotton", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.COTTON.get()))
                 .save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.PEANUT_BUTTER_COOKIE.get(), 8)
@@ -825,7 +826,7 @@ public class CraftingRecipes
                 .pattern(" W ")
                 .define('W', HHModItems.BATTER.get())
                 .define('S', Items.SUGAR)
-                .define('B', HHModItems.BLUEBERRIES.get())
+                .define('B', HHCommonTags.FRUITS_BLUEBERRY)
                 .unlockedBy("has_blueberries", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRIES.get()))
                 .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, HHModItems.RASPBERRY_SCONE.get(), 1)
@@ -834,7 +835,7 @@ public class CraftingRecipes
                 .pattern(" W ")
                 .define('W', HHModItems.BATTER.get())
                 .define('S', Items.SUGAR)
-                .define('R', HHModItems.RASPBERRY.get())
+                .define('R', HHCommonTags.FRUITS_RASPBERRY)
                 .define('B', HHModItems.BUTTER.get())
                 .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY.get()))
                 .save(output);
@@ -844,7 +845,7 @@ public class CraftingRecipes
                 .pattern("SPS")
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
-                .define('F', HHModItems.RASPBERRY.get())
+                .define('F', HHCommonTags.FRUITS_RASPBERRY)
                 .define('P', ModItems.PIE_CRUST.get())
                 .unlockedBy("has_raspberry", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY.get()))
                 .save(output);
@@ -854,7 +855,7 @@ public class CraftingRecipes
                 .pattern("SPS")
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
-                .define('F', HHModItems.BLUEBERRIES.get())
+                .define('F', HHCommonTags.FRUITS_BLUEBERRY)
                 .define('P', ModItems.PIE_CRUST.get())
                 .unlockedBy("has_blueberries", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRIES.get()))
                 .save(output);
@@ -864,7 +865,7 @@ public class CraftingRecipes
                 .pattern("SPS")
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
-                .define('F', HHModItems.RED_GRAPES.get())
+                .define('F', HHCommonTags.FRUITS_GRAPE)
                 .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy("has_grapes", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPES.get()))
                 .save(output);
@@ -874,7 +875,7 @@ public class CraftingRecipes
                 .pattern("SPS")
                 .define('W', Items.WHEAT)
                 .define('S', Items.SUGAR)
-                .define('F', HHModItems.ROASTED_PEANUTS.get())
+                .define('F', HHCommonTags.CROPS_PEANUT)
                 .define('P', vectorwing.farmersdelight.common.registry.ModItems.PIE_CRUST.get())
                 .unlockedBy("has_peanut_butters", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROASTED_PEANUTS.get()))
                 .save(output);
@@ -964,7 +965,7 @@ public class CraftingRecipes
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cake_from_batter"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.TRAIL_MIX.get())
-                .requires(HHModItems.PEANUT.get())
+                .requires(HHCommonTags.CROPS_PEANUT)
                 .requires(HHModItems.RAISINS.get())
                 .requires(Items.COCOA_BEANS)
                 .requires(Tags.Items.SEEDS)
@@ -1022,7 +1023,7 @@ public class CraftingRecipes
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "skewered_sausage"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.UNCOOKED_CORN_ON_THE_COB.get(), 1)
-                .requires(HHModItems.CORN.get())
+                .requires(HHCommonTags.VEGETABLES_CORN)
                 .requires(HHModItems.BUTTER.get())
                 .requires(Items.STICK)
                 .unlockedBy("has_corn", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CORN.get()))
