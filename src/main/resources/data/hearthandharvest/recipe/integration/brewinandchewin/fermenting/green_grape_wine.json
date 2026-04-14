@@ -7,10 +7,14 @@
   ],
   "type": "brewinandchewin:fermenting",
   "experience": 1.0,
-  "ingredients": [
-    {
-      "item": "hearthandharvest:green_grapes"
+  "base_fluid": {
+    "amount": 500,
+    "ingredient": {
+      "tag": "#c:water"
     },
+    "unit": "millibuckets"
+  },
+  "ingredients": [
     {
       "item": "hearthandharvest:green_grapes"
     },

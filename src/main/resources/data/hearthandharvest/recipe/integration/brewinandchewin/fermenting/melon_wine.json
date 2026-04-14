@@ -7,10 +7,14 @@
   ],
   "type": "brewinandchewin:fermenting",
   "experience": 1.0,
-  "ingredients": [
-    {
-      "item": "minecraft:melon_slice"
+  "base_fluid": {
+    "amount": 500,
+    "ingredient": {
+      "tag": "#c:water"
     },
+    "unit": "millibuckets"
+  },
+  "ingredients": [
     {
       "item": "minecraft:melon_slice"
     },
