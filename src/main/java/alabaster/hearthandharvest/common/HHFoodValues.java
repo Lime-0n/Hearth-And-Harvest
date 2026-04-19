@@ -223,7 +223,7 @@ public class HHFoodValues {
             .nutrition(2).saturationModifier(0.3f).alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
     public static final FoodProperties ROASTED_MARSHMALLOW_STICK = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.6f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, SHORT_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, SHORT_DURATION, 0), 1.0F)
             .alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
     public static final FoodProperties CHARRED_MARSHMALLOW_STICK = new FoodProperties.Builder()
             .nutrition(1).saturationModifier(0.1f)
@@ -231,7 +231,7 @@ public class HHFoodValues {
             .alwaysEdible().fast().usingConvertsTo(Items.STICK).build();
     public static final FoodProperties SMORE = new FoodProperties.Builder()
             .nutrition(5).saturationModifier(0.5f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 200, 0), 1.0F)
             .alwaysEdible().fast().build();
 
     // Baked Goods
@@ -251,7 +251,7 @@ public class HHFoodValues {
             .nutrition(6).saturationModifier(0.3f).build();
     public static final FoodProperties CIDER_DONUT = new FoodProperties.Builder()
             .nutrition(5).saturationModifier(0.5f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, 200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, 200, 0), 1.0F)
             .build();
     public static final FoodProperties CORN_BREAD = new FoodProperties.Builder()
             .nutrition(6).saturationModifier(0.5f).build();
@@ -290,12 +290,12 @@ public class HHFoodValues {
             .nutrition(8).saturationModifier(0.3f).build();
     public static final FoodProperties BISCUITS_AND_GRAVY = new FoodProperties.Builder()
             .nutrition(10).saturationModifier(0.5f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties GLAZED_CARROTS = new FoodProperties.Builder()
             .nutrition(10).saturationModifier(0.5f).build();
     public static final FoodProperties CORN_STEW = new FoodProperties.Builder()
             .nutrition(8).saturationModifier(0.6f)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, MEDIUM_DURATION, 1), 1.0F).build();
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, MEDIUM_DURATION, 1), 1.0F).build();
     public static final FoodProperties ELOTE = new FoodProperties.Builder()
             .nutrition(10).saturationModifier(0.8f)
             .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, MEDIUM_DURATION, 1), 1.0F).build();

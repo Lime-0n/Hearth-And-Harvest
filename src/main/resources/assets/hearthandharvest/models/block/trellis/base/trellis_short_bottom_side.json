@@ -1,0 +1,143 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "#wood"
+	},
+	"elements": [
+		{
+			"from": [13, 4, 14],
+			"to": [16, 6, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 4, 14]},
+			"faces": {
+				"north": {"uv": [0, 10, 3, 12], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [13, 10, 16, 12], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [13, 10, 16, 12], "texture": "#wood"},
+				"down": {"uv": [13, 10, 16, 12], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [5, 4, 14],
+			"to": [11, 6, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 4, 14]},
+			"faces": {
+				"north": {"uv": [5, 10, 11, 12], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [5, 10, 11, 12], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [5, 10, 11, 12], "texture": "#wood"},
+				"down": {"uv": [5, 10, 11, 12], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [0, 4, 14],
+			"to": [3, 6, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 4, 14]},
+			"faces": {
+				"north": {"uv": [13, 10, 16, 12], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [0, 10, 3, 12], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [0, 10, 3, 12], "texture": "#wood"},
+				"down": {"uv": [0, 10, 3, 12], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [13, 12, 14],
+			"to": [16, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 12, 14]},
+			"faces": {
+				"north": {"uv": [0, 2, 3, 4], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [13, 2, 16, 4], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [13, 2, 16, 4], "texture": "#wood"},
+				"down": {"uv": [13, 2, 16, 4], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [5, 12, 14],
+			"to": [11, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 12, 14]},
+			"faces": {
+				"north": {"uv": [5, 2, 11, 4], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [5, 2, 11, 4], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [5, 2, 11, 4], "texture": "#wood"},
+				"down": {"uv": [5, 2, 11, 4], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [0, 12, 14],
+			"to": [3, 14, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 12, 14]},
+			"faces": {
+				"north": {"uv": [13, 2, 16, 4], "texture": "#wood"},
+				"east": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"south": {"uv": [0, 2, 3, 4], "texture": "#wood"},
+				"west": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"up": {"uv": [0, 2, 3, 4], "texture": "#wood"},
+				"down": {"uv": [0, 2, 3, 4], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [3, 2, 14],
+			"to": [5, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 14]},
+			"faces": {
+				"north": {"uv": [11, 0, 13, 14], "texture": "#wood"},
+				"east": {"uv": [3, 0, 5, 14], "texture": "#wood"},
+				"south": {"uv": [3, 0, 5, 14], "texture": "#wood"},
+				"west": {"uv": [11, 0, 13, 14], "texture": "#wood"},
+				"up": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"down": {"uv": [6, 5, 8, 7], "texture": "#wood"}
+			}
+		},
+		{
+			"from": [11, 2, 14],
+			"to": [13, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 2, 14]},
+			"faces": {
+				"north": {"uv": [3, 0, 5, 14], "texture": "#wood"},
+				"east": {"uv": [11, 0, 13, 14], "texture": "#wood"},
+				"south": {"uv": [11, 0, 13, 14], "texture": "#wood"},
+				"west": {"uv": [3, 0, 5, 14], "texture": "#wood"},
+				"up": {"uv": [6, 5, 8, 7], "texture": "#wood"},
+				"down": {"uv": [6, 5, 8, 7], "texture": "#wood"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

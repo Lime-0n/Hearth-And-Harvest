@@ -33,6 +33,10 @@ repositories {
     maven {
         url "https://maven.ryanliptak.com/"
     }
+    maven {
+        name = "Greenhouse"
+        url = "https://maven.greenhouse.lgbt/snapshots"
+    }
 }
 
 base {
@@ -129,10 +133,8 @@ configurations {
 dependencies {
 
     // Farmers Delight
-    implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
-
-    // Brewin and Chewin
-    implementation "curse.maven:brewin-and-chewin-637808:${brewinandchewin_version}"
+    implementation "vectorwing.farmersdelight:FarmersDelight:1.21.1-1.3.0-rc1" // 1.21.1
+    //implementation "curse.maven:farmers-delight-398521:${farmersdelight_version}"
 
     // JEI
     implementation "curse.maven:jei-238222:6614392"

@@ -45,5 +45,6 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new JarItemModelProvider(output));
         generator.addProvider(event.includeServer(), new DatapackProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new DataMaps(output, lookupProvider));
+        generator.addProvider(event.includeClient(), new SoundDefinitions(output, helper));
     }
 }

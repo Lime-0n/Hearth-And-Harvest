@@ -105,7 +105,7 @@ public class CraftingRecipes
                 .pattern("BCB")
                 .pattern("BBB")
                 .define('i', Tags.Items.INGOTS_IRON)
-                .define('C', ModTags.WOODEN_CABINETS)
+                .define('C', ModTags.Items.CABINETS_WOODEN)
                 .define('B', Items.BRICK)
                 .unlockedBy("has_brick", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BRICK))
                 .save(output);
@@ -206,6 +206,63 @@ public class CraftingRecipes
                 .requires(HHModItems.WARPED_HALF_CABINET.get())
                 .unlockedBy("has_warped_half_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WARPED_HALF_CABINET.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_cabinet_from_halves"));
+        
+        // Half-Cabinets
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.OAK_HALF_CABINET.get(), 2)
+                .requires(ModItems.OAK_CABINET.get())
+                .requires(ModItems.OAK_CABINET.get())
+                .unlockedBy("has_oak_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.OAK_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "oak_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.SPRUCE_HALF_CABINET.get(), 2)
+                .requires(ModItems.SPRUCE_CABINET.get())
+                .requires(ModItems.SPRUCE_CABINET.get())
+                .unlockedBy("has_spruce_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SPRUCE_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "spruce_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.BIRCH_HALF_CABINET.get(), 2)
+                .requires(ModItems.BIRCH_CABINET.get())
+                .requires(ModItems.BIRCH_CABINET.get())
+                .unlockedBy("has_birch_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BIRCH_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "birch_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.JUNGLE_HALF_CABINET.get(), 2)
+                .requires(ModItems.JUNGLE_CABINET.get())
+                .requires(ModItems.JUNGLE_CABINET.get())
+                .unlockedBy("has_jungle_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.JUNGLE_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "jungle_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.ACACIA_HALF_CABINET.get(), 2)
+                .requires(ModItems.ACACIA_CABINET.get())
+                .requires(ModItems.ACACIA_CABINET.get())
+                .unlockedBy("has_acacia_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ACACIA_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "acacia_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.DARK_OAK_HALF_CABINET.get(), 2)
+                .requires(ModItems.DARK_OAK_CABINET.get())
+                .requires(ModItems.DARK_OAK_CABINET.get())
+                .unlockedBy("has_dark_oak_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.DARK_OAK_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "dark_oak_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.MANGROVE_HALF_CABINET.get(), 2)
+                .requires(ModItems.MANGROVE_CABINET.get())
+                .requires(ModItems.MANGROVE_CABINET.get())
+                .unlockedBy("has_mangrove_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.MANGROVE_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "mangrove_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.CHERRY_HALF_CABINET.get(), 2)
+                .requires(ModItems.CHERRY_CABINET.get())
+                .requires(ModItems.CHERRY_CABINET.get())
+                .unlockedBy("has_cherry_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CHERRY_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cherry_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.BAMBOO_HALF_CABINET.get(), 2)
+                .requires(ModItems.BAMBOO_CABINET.get())
+                .requires(ModItems.BAMBOO_CABINET.get())
+                .unlockedBy("has_bamboo_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.BAMBOO_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "bamboo_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.CRIMSON_HALF_CABINET.get(), 2)
+                .requires(ModItems.CRIMSON_CABINET.get())
+                .requires(ModItems.CRIMSON_CABINET.get())
+                .unlockedBy("has_crimson_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CRIMSON_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "crimson_cabinet_into_halves"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, HHModItems.WARPED_HALF_CABINET.get(), 2)
+                .requires(ModItems.WARPED_CABINET.get())
+                .requires(ModItems.WARPED_CABINET.get())
+                .unlockedBy("has_warped_cabinet", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.WARPED_CABINET.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "warped_cabinet_into_halves"));
 
         // Bottle Racks
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, HHModBlocks.OAK_BOTTLE_RACK.get())

@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "hearthandharvest:trellis"
+          "name": "hearthandharvest:stripped_bamboo_trellis"
         }
       ],
       "rolls": 1.0

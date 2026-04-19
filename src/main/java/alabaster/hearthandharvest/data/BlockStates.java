@@ -2,16 +2,23 @@ package alabaster.hearthandharvest.data;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
+import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
+import alabaster.hearthandharvest.common.block.trellis.TrellisMaterial;
+import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
+import alabaster.hearthandharvest.common.block.trellis.TrellisShape;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
@@ -20,9 +27,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockStates extends BlockStateProvider
-{
-    private static final int DEFAULT_ANGLE_OFFSET = 180;
+public class BlockStates extends BlockStateProvider {
 
     public BlockStates(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, HearthAndHarvest.MODID, existingFileHelper);
@@ -42,7 +47,6 @@ public class BlockStates extends BlockStateProvider
 
     @Override
     protected void registerStatesAndModels() {
-
         this.halfCabinetBlock(HHModBlocks.OAK_HALF_CABINET.get(), "oak");
         this.halfCabinetBlock(HHModBlocks.BIRCH_HALF_CABINET.get(), "birch");
         this.halfCabinetBlock(HHModBlocks.SPRUCE_HALF_CABINET.get(), "spruce");
@@ -66,7 +70,7 @@ public class BlockStates extends BlockStateProvider
         this.bottleRackBlock(HHModBlocks.BAMBOO_BOTTLE_RACK.get(), "bamboo");
         this.bottleRackBlock(HHModBlocks.CRIMSON_BOTTLE_RACK.get(), "crimson");
         this.bottleRackBlock(HHModBlocks.WARPED_BOTTLE_RACK.get(), "warped");
-        
+
         this.crateBlock(HHModBlocks.CHERRY_CRATE.get(), "cherry");
         this.crateBlock(HHModBlocks.BLUEBERRY_CRATE.get(), "blueberry");
         this.crateBlock(HHModBlocks.RASPBERRY_CRATE.get(), "raspberry");
@@ -147,6 +151,125 @@ public class BlockStates extends BlockStateProvider
         this.jarBlock(HHModBlocks.PICKLED_ONIONS.get(), "pickled_onions");
         this.jarBlock(HHModBlocks.PICKLED_POTATOES.get(), "pickled_potatoes");
 
+        this.trellisBlock();
+    }
+
+    // --- Trellis ---
+
+    private static final BooleanProperty[] SIDE_PROPS = {
+            TrellisBlock.SIDE_NORTH, TrellisBlock.SIDE_SOUTH,
+            TrellisBlock.SIDE_EAST,  TrellisBlock.SIDE_WEST
+    };
+    // North=180, South=0, East=90, West=270
+// Base side model sits at z=14-16 (south face); rotate to reach other faces
+    private static final int[] SIDE_ROTS = {180, 0, 90, 270};
+
+    private ModelFile trellisModel(String suffix, TrellisMaterial material) {
+        boolean isFlat = suffix.equals("flat") || suffix.equals("top");
+        String name = "trellis_" + material.id + "_" + suffix;
+        BlockModelBuilder builder = models().getBuilder(name)
+                .parent(models().getExistingFile(resourceBlock("trellis/base/trellis_" + suffix)));
+        if (isFlat) {
+            builder.texture("wood_flat", resourceBlock(material.flatTexture));
+        } else {
+            builder.texture("wood", resourceBlock(material.woodTexture));
+        }
+        return builder;
+    }
+
+    private ModelFile plantOverlay(String textureId, String shapeSuffix) {
+        String modelName = "trellis_" + textureId + "_overlay_" + shapeSuffix;
+        return models().getBuilder(modelName)
+                .parent(models().getExistingFile(
+                        resourceBlock("trellis/base/vine_overlay_" + shapeSuffix)))
+                .texture("vine", resourceBlock(textureId));
+    }
+
+    private void trellisBlock() {
+        MultiPartBlockStateBuilder b = getMultipartBuilder(HHModBlocks.TRELLIS.get());
+
+        // --- Structure: middle panels ---
+        for (TrellisMaterial m : TrellisMaterial.values()) {
+            b.part().modelFile(trellisModel("middle_ew", m)).addModel()
+                    .condition(TrellisBlock.MIDDLE_EW, true).condition(TrellisBlock.MATERIAL, m).end();
+            b.part().modelFile(trellisModel("middle_ns", m)).addModel()
+                    .condition(TrellisBlock.MIDDLE_NS, true).condition(TrellisBlock.MATERIAL, m).end();
+        }
+
+        // --- Structure: side panels (4 flat/top combos each) ---
+        for (int i = 0; i < SIDE_PROPS.length; i++) {
+            BooleanProperty prop = SIDE_PROPS[i];
+            int rot = SIDE_ROTS[i];
+            for (TrellisMaterial m : TrellisMaterial.values()) {
+                b.part().modelFile(trellisModel("side", m)).rotationY(rot).addModel()
+                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, false)
+                        .condition(TrellisBlock.HAS_TOP, false).condition(TrellisBlock.MATERIAL, m).end();
+                b.part().modelFile(trellisModel("short_bottom_side", m)).rotationY(rot).addModel()
+                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, true)
+                        .condition(TrellisBlock.HAS_TOP, false).condition(TrellisBlock.MATERIAL, m).end();
+                b.part().modelFile(trellisModel("short_top_side", m)).rotationY(rot).addModel()
+                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, false)
+                        .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
+                b.part().modelFile(trellisModel("short_both_side", m)).rotationY(rot).addModel()
+                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, true)
+                        .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
+            }
+        }
+
+        // --- Structure: horizontal ---
+        for (TrellisMaterial m : TrellisMaterial.values()) {
+            b.part().modelFile(trellisModel("flat", m)).addModel()
+                    .condition(TrellisBlock.HAS_FLAT, true).condition(TrellisBlock.MATERIAL, m).end();
+            b.part().modelFile(trellisModel("top", m)).addModel()
+                    .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
+        }
+
+        // --- Plants ---
+        addAllPlantOverlays(b, TrellisPlant.VINE,  "vine");
+        addAllPlantOverlays(b, TrellisPlant.ROSE,  "rose_vine");
+
+        for (TrellisPlant grape : new TrellisPlant[]{TrellisPlant.RED_GRAPE, TrellisPlant.GREEN_GRAPE}) {
+            addGrapeStageOverlays(b, grape, "grape_vine", 0);
+            for (int age = 1; age <= 3; age++) {
+                addGrapeStageOverlays(b, grape, grape.getSerializedName() + "_vine_stage" + age, age);
+            }
+        }
+    }
+
+    private void addAllPlantOverlays(MultiPartBlockStateBuilder b, TrellisPlant plant, String textureId) {
+        b.part().modelFile(plantOverlay(textureId, "middle_ew")).addModel()
+                .condition(TrellisBlock.PLANT, plant).condition(TrellisBlock.MIDDLE_EW, true).end();
+        b.part().modelFile(plantOverlay(textureId, "middle_ns")).addModel()
+                .condition(TrellisBlock.PLANT, plant).condition(TrellisBlock.MIDDLE_NS, true).end();
+        for (int i = 0; i < SIDE_PROPS.length; i++) {
+            b.part().modelFile(plantOverlay(textureId, "side")).rotationY(SIDE_ROTS[i]).addModel()
+                    .condition(TrellisBlock.PLANT, plant).condition(SIDE_PROPS[i], true).end();
+        }
+        b.part().modelFile(plantOverlay(textureId, "flat")).addModel()
+                .condition(TrellisBlock.PLANT, plant).condition(TrellisBlock.HAS_FLAT, true).end();
+        b.part().modelFile(plantOverlay(textureId, "top")).addModel()
+                .condition(TrellisBlock.PLANT, plant).condition(TrellisBlock.HAS_TOP, true).end();
+    }
+
+    private void addGrapeStageOverlays(MultiPartBlockStateBuilder b, TrellisPlant grape,
+                                       String textureId, int age) {
+        b.part().modelFile(plantOverlay(textureId, "middle_ew")).addModel()
+                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_EW, true)
+                .condition(TrellisBlock.AGE, age).end();
+        b.part().modelFile(plantOverlay(textureId, "middle_ns")).addModel()
+                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_NS, true)
+                .condition(TrellisBlock.AGE, age).end();
+        for (int i = 0; i < SIDE_PROPS.length; i++) {
+            b.part().modelFile(plantOverlay(textureId, "side")).rotationY(SIDE_ROTS[i]).addModel()
+                    .condition(TrellisBlock.PLANT, grape).condition(SIDE_PROPS[i], true)
+                    .condition(TrellisBlock.AGE, age).end();
+        }
+        b.part().modelFile(plantOverlay(textureId, "flat")).addModel()
+                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_FLAT, true)
+                .condition(TrellisBlock.AGE, age).end();
+        b.part().modelFile(plantOverlay(textureId, "top")).addModel()
+                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_TOP, true)
+                .condition(TrellisBlock.AGE, age).end();
     }
 
     public void customStageBlock(Block block, @Nullable ResourceLocation parent, String textureKey, IntegerProperty ageProperty, List<Integer> suffixes, Property<?>... ignored) {
@@ -168,7 +291,6 @@ public class BlockStates extends BlockStateProvider
         this.horizontalBlock(block, state -> {
             String suffix = state.getValue(CabinetBlock.OPEN) ? "_open" : "";
             String modelName = woodType + "_half_cabinet" + suffix;
-
             return models().getBuilder(modelName)
                     .parent(existingModel("half_cabinet"))
                     .texture("front", resourceBlock(woodType + "_cabinet_front" + suffix))
@@ -181,7 +303,6 @@ public class BlockStates extends BlockStateProvider
     public void bottleRackBlock(Block block, String woodType) {
         this.horizontalBlock(block, state -> {
             String modelName = woodType + "_bottle_rack";
-
             return models().getBuilder(modelName)
                     .parent(existingModel("bottle_rack"))
                     .texture("side", resourceBlock(woodType + "_cabinet_side"))
@@ -220,31 +341,28 @@ public class BlockStates extends BlockStateProvider
     public void bagBlock(Block block, String cropName) {
         this.simpleBlock(block,
                 models().cube(blockName(block),
-                        resourceBlock("bag_bottom"),
-                        resourceBlock(cropName + "_bag_top"),
-                        resourceBlock("bag_side_tied"),
-                        resourceBlock("bag_side_tied"),
-                        resourceBlock("bag_side"),
-                        resourceBlock("bag_side"))
-                        .texture("particle", resourceBlock(cropName + "_bag_top")
-                ));
+                                resourceBlock("bag_bottom"),
+                                resourceBlock(cropName + "_bag_top"),
+                                resourceBlock("bag_side_tied"),
+                                resourceBlock("bag_side_tied"),
+                                resourceBlock("bag_side"),
+                                resourceBlock("bag_side"))
+                        .texture("particle", resourceBlock(cropName + "_bag_top")));
     }
 
     public void pieBlock(Block block) {
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                            int bites = state.getValue(PieBlock.BITES);
-                            String suffix = bites > 0 ? "_slice" + bites : "";
-                            return ConfiguredModel.builder()
-                                    .modelFile(existingModel(blockName(block) + suffix))
-                                    .rotationY(((int) state.getValue(PieBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
-                                    .build();
-                        }
-                );
+                    int bites = state.getValue(PieBlock.BITES);
+                    String suffix = bites > 0 ? "_slice" + bites : "";
+                    return ConfiguredModel.builder()
+                            .modelFile(existingModel(blockName(block) + suffix))
+                            .rotationY(((int) state.getValue(PieBlock.FACING).toYRot() + 180) % 360)
+                            .build();
+                });
     }
 
     public void jarBlock(Block block, String jarType) {
         simpleBlock(block, models().getExistingFile(resourceBlock(jarType)));
     }
-
 }

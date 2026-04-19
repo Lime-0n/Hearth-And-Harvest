@@ -49,7 +49,7 @@ public class Config {
         CROW_SCARE_RADIUS = COMMON_BUILDER
                 .comment("Radius that players, villgers, and repelling blocks will be effective towards scaring wild crows.\n" +
                         "Setting to 0 would prevent crows from being scared")
-                .defineInRange("crowScareRadius", 6, 0, 192);
+                .defineInRange("crowScareRadius", 6, 0, 64);
 
         STACK_WATER_BOTTLES = COMMON_BUILDER
                 .comment("Whether water bottles should stack up to 16")

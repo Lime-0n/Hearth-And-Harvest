@@ -45,10 +45,10 @@ public class HHItemTags extends ItemTagsProvider {
         tag(ItemTags.PIGLIN_LOVED)
                 .add(HHModItems.GOLDEN_CLEAVER.get());
 
-        tag(ModTags.KNIVES)
+        tag(ModTags.Items.KNIVES)
                 .addTag(HHModTags.CLEAVERS);
 
-        tag(CommonTags.TOOLS_KNIFE)
+        tag(CommonTags.Items.TOOLS_KNIFE)
                 .addTag(HHModTags.CLEAVERS);
 
         tag(HHCommonTags.DUSTS_SALT)
@@ -320,7 +320,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.COTTON_SEEDS.get())
                 .add(HHModItems.CORN_KERNELS.get());
 
-        tag(ModTags.WOODEN_CABINETS)
+        tag(ModTags.Items.CABINETS_WOODEN)
                 .add(HHModItems.OAK_HALF_CABINET.get())
                 .add(HHModItems.SPRUCE_HALF_CABINET.get())
                 .add(HHModItems.BIRCH_HALF_CABINET.get())
