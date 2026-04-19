@@ -56,6 +56,138 @@
     },
     {
       "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "false",
+        "material": "trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "false",
+        "material": "trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_short_top_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "true",
+        "material": "trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_short_both_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "true",
+        "material": "trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "false",
+        "material": "bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "false",
+        "material": "bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "true",
+        "material": "bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "true",
+        "material": "bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "false",
+        "material": "stripped_bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "false",
+        "material": "stripped_bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side"
+      },
+      "when": {
+        "has_flat": "false",
+        "has_top": "true",
+        "material": "stripped_bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side"
+      },
+      "when": {
+        "has_flat": "true",
+        "has_top": "true",
+        "material": "stripped_bamboo_trellis",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
         "model": "hearthandharvest:block/trellis_trellis_side",
         "y": 180
       },
@@ -63,7 +195,7 @@
         "has_flat": "false",
         "has_top": "false",
         "material": "trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -75,7 +207,7 @@
         "has_flat": "true",
         "has_top": "false",
         "material": "trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -87,7 +219,7 @@
         "has_flat": "false",
         "has_top": "true",
         "material": "trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -99,7 +231,7 @@
         "has_flat": "true",
         "has_top": "true",
         "material": "trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -111,7 +243,7 @@
         "has_flat": "false",
         "has_top": "false",
         "material": "bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -123,7 +255,7 @@
         "has_flat": "true",
         "has_top": "false",
         "material": "bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -135,7 +267,7 @@
         "has_flat": "false",
         "has_top": "true",
         "material": "bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -147,7 +279,7 @@
         "has_flat": "true",
         "has_top": "true",
         "material": "bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -159,7 +291,7 @@
         "has_flat": "false",
         "has_top": "false",
         "material": "stripped_bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -171,7 +303,7 @@
         "has_flat": "true",
         "has_top": "false",
         "material": "stripped_bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
@@ -183,145 +315,13 @@
         "has_flat": "false",
         "has_top": "true",
         "material": "stripped_bamboo_trellis",
-        "side_north": "true"
+        "side_south": "true"
       }
     },
     {
       "apply": {
         "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side",
         "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_both_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side"
       },
       "when": {
         "has_flat": "true",
@@ -692,8 +692,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_vine_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_vine_overlay_side"
       },
       "when": {
         "plant": "vine",
@@ -702,7 +701,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_vine_overlay_side"
+        "model": "hearthandharvest:block/trellis_vine_overlay_side",
+        "y": 180
       },
       "when": {
         "plant": "vine",
@@ -767,8 +767,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_rose_vine_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_rose_vine_overlay_side"
       },
       "when": {
         "plant": "rose",
@@ -777,7 +776,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_rose_vine_overlay_side"
+        "model": "hearthandharvest:block/trellis_rose_vine_overlay_side",
+        "y": 180
       },
       "when": {
         "plant": "rose",
@@ -844,8 +844,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side"
       },
       "when": {
         "age": "0",
@@ -855,7 +854,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side"
+        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "0",
@@ -927,8 +927,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_side"
       },
       "when": {
         "age": "1",
@@ -938,7 +937,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_side"
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "1",
@@ -1010,8 +1010,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_side"
       },
       "when": {
         "age": "2",
@@ -1021,7 +1020,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_side"
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "2",
@@ -1093,8 +1093,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_side"
       },
       "when": {
         "age": "3",
@@ -1104,7 +1103,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_side"
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "3",
@@ -1176,8 +1176,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side"
       },
       "when": {
         "age": "0",
@@ -1187,7 +1186,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side"
+        "model": "hearthandharvest:block/trellis_grape_vine_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "0",
@@ -1259,8 +1259,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_side"
       },
       "when": {
         "age": "1",
@@ -1270,7 +1269,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_side"
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "1",
@@ -1342,8 +1342,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_side"
       },
       "when": {
         "age": "2",
@@ -1353,7 +1352,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_side"
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "2",
@@ -1425,8 +1425,7 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_side",
-        "y": 180
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_side"
       },
       "when": {
         "age": "3",
@@ -1436,7 +1435,8 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_side"
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_side",
+        "y": 180
       },
       "when": {
         "age": "3",

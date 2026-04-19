@@ -160,9 +160,8 @@ public class BlockStates extends BlockStateProvider {
             TrellisBlock.SIDE_NORTH, TrellisBlock.SIDE_SOUTH,
             TrellisBlock.SIDE_EAST,  TrellisBlock.SIDE_WEST
     };
-    // North=180, South=0, East=90, West=270
-// Base side model sits at z=14-16 (south face); rotate to reach other faces
-    private static final int[] SIDE_ROTS = {180, 0, 90, 270};
+
+    private static final int[] SIDE_ROTS = {0, 180, 90, 270};
 
     private ModelFile trellisModel(String suffix, TrellisMaterial material) {
         boolean isFlat = suffix.equals("flat") || suffix.equals("top");
@@ -179,10 +178,13 @@ public class BlockStates extends BlockStateProvider {
 
     private ModelFile plantOverlay(String textureId, String shapeSuffix) {
         String modelName = "trellis_" + textureId + "_overlay_" + shapeSuffix;
+        ResourceLocation texture = textureId.equals("vine")
+                ? ResourceLocation.fromNamespaceAndPath("minecraft", "block/vine")
+                : resourceBlock(textureId);
         return models().getBuilder(modelName)
                 .parent(models().getExistingFile(
                         resourceBlock("trellis/base/vine_overlay_" + shapeSuffix)))
-                .texture("vine", resourceBlock(textureId));
+                .texture("vine", texture);
     }
 
     private void trellisBlock() {
@@ -251,8 +253,7 @@ public class BlockStates extends BlockStateProvider {
                 .condition(TrellisBlock.PLANT, plant).condition(TrellisBlock.HAS_TOP, true).end();
     }
 
-    private void addGrapeStageOverlays(MultiPartBlockStateBuilder b, TrellisPlant grape,
-                                       String textureId, int age) {
+    private void addGrapeStageOverlays(MultiPartBlockStateBuilder b, TrellisPlant grape, String textureId, int age) {
         b.part().modelFile(plantOverlay(textureId, "middle_ew")).addModel()
                 .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_EW, true)
                 .condition(TrellisBlock.AGE, age).end();
