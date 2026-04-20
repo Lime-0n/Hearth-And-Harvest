@@ -907,10 +907,93 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_middle_ew"
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_middle_ew"
       },
       "when": {
         "age": "1",
+        "middle_ew": "true",
+        "plant": "red_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_middle_ns"
+      },
+      "when": {
+        "age": "1",
+        "middle_ns": "true",
+        "plant": "red_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_side"
+      },
+      "when": {
+        "age": "1",
+        "plant": "red_grape",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_side",
+        "y": 180
+      },
+      "when": {
+        "age": "1",
+        "plant": "red_grape",
+        "side_south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_side",
+        "y": 90
+      },
+      "when": {
+        "age": "1",
+        "plant": "red_grape",
+        "side_east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_side",
+        "y": 270
+      },
+      "when": {
+        "age": "1",
+        "plant": "red_grape",
+        "side_west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_flat"
+      },
+      "when": {
+        "age": "1",
+        "has_flat": "true",
+        "plant": "red_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage0_overlay_top"
+      },
+      "when": {
+        "age": "1",
+        "has_top": "true",
+        "plant": "red_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_middle_ew"
+      },
+      "when": {
+        "age": "2",
         "middle_ew": "true",
         "plant": "red_grape"
       }
@@ -920,7 +1003,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_middle_ns"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "middle_ns": "true",
         "plant": "red_grape"
       }
@@ -930,7 +1013,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_side"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "red_grape",
         "side_north": "true"
       }
@@ -941,7 +1024,7 @@
         "y": 180
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "red_grape",
         "side_south": "true"
       }
@@ -952,7 +1035,7 @@
         "y": 90
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "red_grape",
         "side_east": "true"
       }
@@ -963,7 +1046,7 @@
         "y": 270
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "red_grape",
         "side_west": "true"
       }
@@ -973,7 +1056,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_flat"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "has_flat": "true",
         "plant": "red_grape"
       }
@@ -983,7 +1066,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage1_overlay_top"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "has_top": "true",
         "plant": "red_grape"
       }
@@ -993,7 +1076,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_middle_ew"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "middle_ew": "true",
         "plant": "red_grape"
       }
@@ -1003,7 +1086,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_middle_ns"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "middle_ns": "true",
         "plant": "red_grape"
       }
@@ -1013,7 +1096,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_side"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "red_grape",
         "side_north": "true"
       }
@@ -1024,7 +1107,7 @@
         "y": 180
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "red_grape",
         "side_south": "true"
       }
@@ -1035,7 +1118,7 @@
         "y": 90
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "red_grape",
         "side_east": "true"
       }
@@ -1046,7 +1129,7 @@
         "y": 270
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "red_grape",
         "side_west": "true"
       }
@@ -1056,7 +1139,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_flat"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "has_flat": "true",
         "plant": "red_grape"
       }
@@ -1066,7 +1149,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage2_overlay_top"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "has_top": "true",
         "plant": "red_grape"
       }
@@ -1076,7 +1159,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_middle_ew"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "middle_ew": "true",
         "plant": "red_grape"
       }
@@ -1086,7 +1169,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_middle_ns"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "middle_ns": "true",
         "plant": "red_grape"
       }
@@ -1096,7 +1179,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_side"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "red_grape",
         "side_north": "true"
       }
@@ -1107,7 +1190,7 @@
         "y": 180
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "red_grape",
         "side_south": "true"
       }
@@ -1118,7 +1201,7 @@
         "y": 90
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "red_grape",
         "side_east": "true"
       }
@@ -1129,7 +1212,7 @@
         "y": 270
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "red_grape",
         "side_west": "true"
       }
@@ -1139,7 +1222,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_flat"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "has_flat": "true",
         "plant": "red_grape"
       }
@@ -1149,7 +1232,7 @@
         "model": "hearthandharvest:block/trellis_red_grape_vine_stage3_overlay_top"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "has_top": "true",
         "plant": "red_grape"
       }
@@ -1239,10 +1322,93 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_middle_ew"
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_middle_ew"
       },
       "when": {
         "age": "1",
+        "middle_ew": "true",
+        "plant": "green_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_middle_ns"
+      },
+      "when": {
+        "age": "1",
+        "middle_ns": "true",
+        "plant": "green_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_side"
+      },
+      "when": {
+        "age": "1",
+        "plant": "green_grape",
+        "side_north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_side",
+        "y": 180
+      },
+      "when": {
+        "age": "1",
+        "plant": "green_grape",
+        "side_south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_side",
+        "y": 90
+      },
+      "when": {
+        "age": "1",
+        "plant": "green_grape",
+        "side_east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_side",
+        "y": 270
+      },
+      "when": {
+        "age": "1",
+        "plant": "green_grape",
+        "side_west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_flat"
+      },
+      "when": {
+        "age": "1",
+        "has_flat": "true",
+        "plant": "green_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage0_overlay_top"
+      },
+      "when": {
+        "age": "1",
+        "has_top": "true",
+        "plant": "green_grape"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_middle_ew"
+      },
+      "when": {
+        "age": "2",
         "middle_ew": "true",
         "plant": "green_grape"
       }
@@ -1252,7 +1418,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_middle_ns"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "middle_ns": "true",
         "plant": "green_grape"
       }
@@ -1262,7 +1428,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_side"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "green_grape",
         "side_north": "true"
       }
@@ -1273,7 +1439,7 @@
         "y": 180
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "green_grape",
         "side_south": "true"
       }
@@ -1284,7 +1450,7 @@
         "y": 90
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "green_grape",
         "side_east": "true"
       }
@@ -1295,7 +1461,7 @@
         "y": 270
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "plant": "green_grape",
         "side_west": "true"
       }
@@ -1305,7 +1471,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_flat"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "has_flat": "true",
         "plant": "green_grape"
       }
@@ -1315,7 +1481,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage1_overlay_top"
       },
       "when": {
-        "age": "1",
+        "age": "2",
         "has_top": "true",
         "plant": "green_grape"
       }
@@ -1325,7 +1491,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_middle_ew"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "middle_ew": "true",
         "plant": "green_grape"
       }
@@ -1335,7 +1501,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_middle_ns"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "middle_ns": "true",
         "plant": "green_grape"
       }
@@ -1345,7 +1511,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_side"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "green_grape",
         "side_north": "true"
       }
@@ -1356,7 +1522,7 @@
         "y": 180
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "green_grape",
         "side_south": "true"
       }
@@ -1367,7 +1533,7 @@
         "y": 90
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "green_grape",
         "side_east": "true"
       }
@@ -1378,7 +1544,7 @@
         "y": 270
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "plant": "green_grape",
         "side_west": "true"
       }
@@ -1388,7 +1554,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_flat"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "has_flat": "true",
         "plant": "green_grape"
       }
@@ -1398,7 +1564,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage2_overlay_top"
       },
       "when": {
-        "age": "2",
+        "age": "3",
         "has_top": "true",
         "plant": "green_grape"
       }
@@ -1408,7 +1574,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_middle_ew"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "middle_ew": "true",
         "plant": "green_grape"
       }
@@ -1418,7 +1584,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_middle_ns"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "middle_ns": "true",
         "plant": "green_grape"
       }
@@ -1428,7 +1594,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_side"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "green_grape",
         "side_north": "true"
       }
@@ -1439,7 +1605,7 @@
         "y": 180
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "green_grape",
         "side_south": "true"
       }
@@ -1450,7 +1616,7 @@
         "y": 90
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "green_grape",
         "side_east": "true"
       }
@@ -1461,7 +1627,7 @@
         "y": 270
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "plant": "green_grape",
         "side_west": "true"
       }
@@ -1471,7 +1637,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_flat"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "has_flat": "true",
         "plant": "green_grape"
       }
@@ -1481,7 +1647,7 @@
         "model": "hearthandharvest:block/trellis_green_grape_vine_stage3_overlay_top"
       },
       "when": {
-        "age": "3",
+        "age": "4",
         "has_top": "true",
         "plant": "green_grape"
       }

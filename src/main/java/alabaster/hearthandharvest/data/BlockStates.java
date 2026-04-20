@@ -232,8 +232,8 @@ public class BlockStates extends BlockStateProvider {
 
         for (TrellisPlant grape : new TrellisPlant[]{TrellisPlant.RED_GRAPE, TrellisPlant.GREEN_GRAPE}) {
             addGrapeStageOverlays(b, grape, "grape_vine", 0);
-            for (int age = 1; age <= 3; age++) {
-                addGrapeStageOverlays(b, grape, grape.getSerializedName() + "_vine_stage" + age, age);
+            for (int age = 1; age <= 4; age++) {
+                addGrapeStageOverlays(b, grape, grape.getSerializedName() + "_vine_stage" + (age - 1), age);
             }
         }
     }

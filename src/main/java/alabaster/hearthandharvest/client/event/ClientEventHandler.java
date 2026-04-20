@@ -3,16 +3,20 @@ package alabaster.hearthandharvest.client.event;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
 import alabaster.hearthandharvest.client.renderer.*;
+import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
+import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.world.level.FoliageColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -30,6 +34,18 @@ public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {
         event.register(new BasinBlockColor(), HHModBlocks.BASIN.get());
+    }
+
+    @SubscribeEvent
+    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        event.register((state, level, pos, tintIndex) -> {
+            if (tintIndex != 0) return -1;
+            if (state.getValue(TrellisBlock.PLANT) != TrellisPlant.VINE) return -1;
+            if (level != null && pos != null) {
+                return BiomeColors.getAverageFoliageColor(level, pos);
+            }
+            return FoliageColor.getDefaultColor();
+        }, HHModBlocks.TRELLIS.get());
     }
 
     @SubscribeEvent

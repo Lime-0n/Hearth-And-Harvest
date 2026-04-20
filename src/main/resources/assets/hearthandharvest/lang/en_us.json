@@ -42,12 +42,13 @@
 
   "item.hearthandharvest.trellis": "Trellis",
   "block.hearthandharvest.trellis": "Trellis",
-
   "item.hearthandharvest.bamboo_trellis": "Bamboo Trellis",
   "block.hearthandharvest.bamboo_trellis": "Bamboo Trellis",
-
   "item.hearthandharvest.stripped_bamboo_trellis": "Stripped Bamboo Trellis",
   "block.hearthandharvest.stripped_bamboo_trellis": "Stripped Bamboo Trellis",
+  "block.hearthandharvest.trellis.remove_plant_first": "Use shears to remove this plant first!",
+  "block.hearthandharvest.trellis.growth_blocked": "Growth will be blocked on this trellis",
+  "block.hearthandharvest.trellis.growth_allowed": "Growth will be allowed on this trellis",
 
   "block.hearthandharvest.oak_half_cabinet": "Oak Half Cabinet",
   "block.hearthandharvest.birch_half_cabinet": "Birch Half Cabinet",
