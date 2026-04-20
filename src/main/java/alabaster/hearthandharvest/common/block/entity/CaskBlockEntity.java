@@ -21,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Clearable;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -55,7 +56,7 @@ import java.util.List;
 import java.util.Optional;
 
 @EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder
+public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder, Clearable
 {
     public static final int MEAL_DISPLAY_SLOT = 4;
     public static final int OUTPUT_SLOT = 4;
@@ -412,5 +413,12 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
                 return 2;
             }
         };
+    }
+
+    @Override
+    public void clearContent() {
+        for (int i = 0; i < inventory.getSlots(); i++) {
+            inventory.setStackInSlot(i, ItemStack.EMPTY);
+        }
     }
 }

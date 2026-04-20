@@ -766,66 +766,6 @@ public class CraftingRecipes
                 .requires(HHModItems.STICK_BRUSH.get())
                 .unlockedBy("has_stick_bundle", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.STICK_BRUSH.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "stick_from_bundle"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.EGG, 9)
-                .requires(HHModItems.EGG_CRATE.get())
-                .unlockedBy("has_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.EGG_CRATE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "egg_from_crate"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.TURTLE_EGG, 9)
-                .requires(HHModItems.TURTLE_EGG_CRATE.get())
-                .unlockedBy("has_turtle_egg_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.TURTLE_EGG_CRATE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "turtle_egg_from_crate"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.MILK_BOTTLE.get(), 9)
-                .requires(HHModItems.MILK_CRATE.get())
-                .unlockedBy("has_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MILK_CRATE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "milk_from_crate"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.GOAT_MILK_BOTTLE.get(), 9)
-                .requires(HHModItems.GOAT_MILK_CRATE.get())
-                .unlockedBy("has_goat_milk_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GOAT_MILK_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.BLUEBERRY_WINE.get(), 9)
-                .requires(HHModItems.BLUEBERRY_WINE_CRATE.get())
-                .unlockedBy("has_blueberry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BLUEBERRY_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.CHERRY_WINE.get(), 9)
-                .requires(HHModItems.CHERRY_WINE_CRATE.get())
-                .unlockedBy("has_cherry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHERRY_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RASPBERRY_WINE.get(), 9)
-                .requires(HHModItems.RASPBERRY_WINE_CRATE.get())
-                .unlockedBy("has_raspberry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RASPBERRY_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RED_GRAPE_WINE.get(), 9)
-                .requires(HHModItems.RED_GRAPE_WINE_CRATE.get())
-                .unlockedBy("has_red_grape_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RED_GRAPE_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.GREEN_GRAPE_WINE.get(), 9)
-                .requires(HHModItems.GREEN_GRAPE_WINE_CRATE.get())
-                .unlockedBy("has_green_grape_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GREEN_GRAPE_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SWEET_BERRY_WINE.get(), 9)
-                .requires(HHModItems.SWEET_BERRY_WINE_CRATE.get())
-                .unlockedBy("has_sweet_berry_wine_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SWEET_BERRY_WINE_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.MEAD.get(), 9)
-                .requires(HHModItems.MEAD_CRATE.get())
-                .unlockedBy("has_mead_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MEAD_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.ROOT_BEER.get(), 9)
-                .requires(HHModItems.ROOT_BEER_CRATE.get())
-                .unlockedBy("has_root_beer_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.ROOT_BEER_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.HARD_CIDER.get(), 9)
-                .requires(HHModItems.HARD_CIDER_CRATE.get())
-                .unlockedBy("has_hard_cider_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.HARD_CIDER_CRATE.get()))
-                .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.HONEY_BOTTLE, 9)
-                .requires(HHModItems.HONEY_CRATE.get())
-                .unlockedBy("has_honey_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.HONEY_CRATE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "honey_from_crate"));
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SYRUP_BOTTLE.get(), 9)
-                .requires(HHModItems.SYRUP_CRATE.get())
-                .unlockedBy("has_syrup_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SYRUP_CRATE.get()))
-                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "syrup_from_crate"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.BROWN_MUSHROOM, 9)
                 .requires(HHModItems.BROWN_MUSHROOM_CRATE.get())
                 .unlockedBy("has_brown_mushroom_crate", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.BROWN_MUSHROOM_CRATE.get()))

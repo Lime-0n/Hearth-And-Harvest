@@ -133,54 +133,6 @@ public class ItemModels extends ItemModelProvider
         items.remove(HHModItems.WATERING_CAN.get());
 
         // Slab Crates
-        blockBasedModel(HHModItems.EGG_CRATE.get(), "_bottom");
-        items.remove(HHModItems.EGG_CRATE.get());
-
-        blockBasedModel(HHModItems.TURTLE_EGG_CRATE.get(), "_bottom");
-        items.remove(HHModItems.TURTLE_EGG_CRATE.get());
-
-        blockBasedModel(HHModItems.MILK_CRATE.get(), "_bottom");
-        items.remove(HHModItems.MILK_CRATE.get());
-
-        blockBasedModel(HHModItems.GOAT_MILK_CRATE.get(), "_bottom");
-        items.remove(HHModItems.GOAT_MILK_CRATE.get());
-
-        blockBasedModel(HHModItems.BLUEBERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.BLUEBERRY_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.CHERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.CHERRY_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.RASPBERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.RASPBERRY_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.RED_GRAPE_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.RED_GRAPE_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.GREEN_GRAPE_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.GREEN_GRAPE_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.SWEET_BERRY_WINE_CRATE.get(), "_bottom");
-        items.remove(HHModItems.SWEET_BERRY_WINE_CRATE.get());
-
-        blockBasedModel(HHModItems.MEAD_CRATE.get(), "_bottom");
-        items.remove(HHModItems.MEAD_CRATE.get());
-
-        blockBasedModel(HHModItems.ROOT_BEER_CRATE.get(), "_bottom");
-        items.remove(HHModItems.ROOT_BEER_CRATE.get());
-
-        blockBasedModel(HHModItems.HARD_CIDER_CRATE.get(), "_bottom");
-        items.remove(HHModItems.HARD_CIDER_CRATE.get());
-
-        blockBasedModel(HHModItems.WATER_CRATE.get(), "_bottom");
-        items.remove(HHModItems.WATER_CRATE.get());
-
-        blockBasedModel(HHModItems.HONEY_CRATE.get(), "_bottom");
-        items.remove(HHModItems.HONEY_CRATE.get());
-
-        blockBasedModel(HHModItems.SYRUP_CRATE.get(), "_bottom");
-        items.remove(HHModItems.SYRUP_CRATE.get());
-
         blockBasedModel(HHModItems.BROWN_MUSHROOM_CRATE.get(), "_bottom");
         items.remove(HHModItems.BROWN_MUSHROOM_CRATE.get());
 

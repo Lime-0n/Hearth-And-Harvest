@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class StompingBasinBlockEntity extends BlockEntity {
+public class StompingBasinBlockEntity extends BlockEntity  {
 
     public static final int ITEM_SLOTS = 4;
 

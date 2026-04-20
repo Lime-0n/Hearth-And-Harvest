@@ -20,22 +20,6 @@ public class DeprecationTooltipHandler {
     private static Set<Item> getDeprecatedItems() {
         if (deprecatedItems == null) {
             deprecatedItems = Set.of(
-                    HHModItems.MILK_CRATE.get(),
-                    HHModItems.BLUEBERRY_WINE_CRATE.get(),
-                    HHModItems.CHERRY_WINE_CRATE.get(),
-                    HHModItems.RASPBERRY_WINE_CRATE.get(),
-                    HHModItems.GREEN_GRAPE_WINE_CRATE.get(),
-                    HHModItems.RED_GRAPE_WINE_CRATE.get(),
-                    HHModItems.MEAD_CRATE.get(),
-                    HHModItems.SYRUP_CRATE.get(),
-                    HHModItems.GOAT_MILK_CRATE.get(),
-                    HHModItems.WATER_CRATE.get(),
-                    HHModItems.HONEY_CRATE.get(),
-                    HHModItems.EGG_CRATE.get(),
-                    HHModItems.TURTLE_EGG_CRATE.get(),
-                    HHModItems.ROOT_BEER_CRATE.get(),
-                    HHModItems.HARD_CIDER_CRATE.get(),
-                    HHModItems.SWEET_BERRY_WINE_CRATE.get()
             );
         }
         return deprecatedItems;

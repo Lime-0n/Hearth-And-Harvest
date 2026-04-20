@@ -345,39 +345,6 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.STICK_BRUSH.get(), basicItem(), 1000));
 
     // Half-Slab Crates
-    public static final Supplier<Item> EGG_CRATE = registerWithNoTab("egg_crate",
-            () -> new BlockItem(HHModBlocks.EGG_CRATE.get(), basicItem()));
-    public static final Supplier<Item> TURTLE_EGG_CRATE = registerWithNoTab("turtle_egg_crate",
-            () -> new BlockItem(HHModBlocks.TURTLE_EGG_CRATE.get(), basicItem()));
-    public static final Supplier<Item> MILK_CRATE = registerWithNoTab("milk_crate",
-            () -> new BlockItem(HHModBlocks.MILK_CRATE.get(), basicItem()));
-    public static final Supplier<Item> GOAT_MILK_CRATE = registerWithNoTab("goat_milk_crate",
-            () -> new BlockItem(HHModBlocks.GOAT_MILK_CRATE.get(), basicItem()));
-    public static final Supplier<Item> BLUEBERRY_WINE_CRATE = registerWithNoTab("blueberry_wine_crate",
-            () -> new BlockItem(HHModBlocks.BLUEBERRY_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> CHERRY_WINE_CRATE = registerWithNoTab("cherry_wine_crate",
-            () -> new BlockItem(HHModBlocks.CHERRY_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> RASPBERRY_WINE_CRATE = registerWithNoTab("raspberry_wine_crate",
-            () -> new BlockItem(HHModBlocks.RASPBERRY_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> RED_GRAPE_WINE_CRATE = registerWithNoTab("red_grape_wine_crate",
-            () -> new BlockItem(HHModBlocks.RED_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> GREEN_GRAPE_WINE_CRATE = registerWithNoTab("green_grape_wine_crate",
-            () -> new BlockItem(HHModBlocks.GREEN_GRAPE_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> SWEET_BERRY_WINE_CRATE = registerWithNoTab("sweet_berry_wine_crate",
-            () -> new BlockItem(HHModBlocks.SWEET_BERRY_WINE_CRATE.get(), basicItem()));
-    public static final Supplier<Item> MEAD_CRATE = registerWithNoTab("mead_crate",
-            () -> new BlockItem(HHModBlocks.MEAD_CRATE.get(), basicItem()));
-    public static final Supplier<Item> ROOT_BEER_CRATE = registerWithNoTab("root_beer_crate",
-            () -> new BlockItem(HHModBlocks.ROOT_BEER_CRATE.get(), basicItem()));
-    public static final Supplier<Item> HARD_CIDER_CRATE = registerWithNoTab("hard_cider_crate",
-            () -> new BlockItem(HHModBlocks.HARD_CIDER_CRATE.get(), basicItem()));
-    public static final Supplier<Item> WATER_CRATE = registerWithNoTab("water_crate",
-            () -> new BlockItem(HHModBlocks.WATER_CRATE.get(), basicItem()));
-    public static final Supplier<Item> HONEY_CRATE = registerWithNoTab("honey_crate",
-            () -> new BlockItem(HHModBlocks.HONEY_CRATE.get(), basicItem()));
-    public static final Supplier<Item> SYRUP_CRATE = registerWithNoTab("syrup_crate",
-            () -> new BlockItem(HHModBlocks.SYRUP_CRATE.get(), basicItem()));
-
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));
     public static final Supplier<Item> RED_MUSHROOM_CRATE = registerWithBlockTab("red_mushroom_crate",
