@@ -3,6 +3,7 @@ package alabaster.hearthandharvest.common.block.trellis;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -206,6 +207,10 @@ public class TrellisBlock extends Block implements BonemealableBlock {
                 boolean nowBlocked = !state.getValue(GROWTH_BLOCKED);
                 level.setBlock(pos, state.setValue(GROWTH_BLOCKED, nowBlocked), Block.UPDATE_ALL);
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1f, 1f);
+                ((ServerLevel) level).sendParticles(ParticleTypes.CRIT,
+                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        5, 0.3, 0.3, 0.3, 0.0
+                );
                 player.displayClientMessage(Component.translatable(nowBlocked
                         ? "block.hearthandharvest.trellis.growth_blocked"
                         : "block.hearthandharvest.trellis.growth_allowed"), true);
