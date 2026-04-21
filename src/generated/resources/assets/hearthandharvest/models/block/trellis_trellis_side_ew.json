@@ -1,5 +1,5 @@
 {
-  "parent": "hearthandharvest:block/trellis/base/trellis_side",
+  "parent": "hearthandharvest:block/trellis/base/trellis_side_ew",
   "textures": {
     "wood": "hearthandharvest:block/trellis"
   }

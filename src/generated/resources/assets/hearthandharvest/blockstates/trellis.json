@@ -56,564 +56,120 @@
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_side"
+        "model": "hearthandharvest:block/trellis_trellis_side_ns",
+        "y": 90
       },
       "when": {
-        "has_flat": "false",
-        "has_top": "false",
         "material": "trellis",
         "side_north": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_both_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side"
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side"
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_top_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_both_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side",
-        "y": 180
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_top_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_both_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "stripped_bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side",
-        "y": 90
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "stripped_bamboo_trellis",
-        "side_east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_side",
+        "model": "hearthandharvest:block/trellis_trellis_side_ns",
         "y": 270
       },
       "when": {
-        "has_flat": "false",
-        "has_top": "false",
+        "material": "trellis",
+        "side_south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_side_ew",
+        "y": 90
+      },
+      "when": {
+        "material": "trellis",
+        "side_east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hearthandharvest:block/trellis_trellis_side_ew",
+        "y": 270
+      },
+      "when": {
         "material": "trellis",
         "side_west": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_bottom_side",
-        "y": 270
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_side_ns",
+        "y": 90
       },
       "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "trellis",
-        "side_west": "true"
+        "material": "bamboo_trellis",
+        "side_north": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_top_side",
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_side_ns",
         "y": 270
       },
       "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "trellis",
-        "side_west": "true"
+        "material": "bamboo_trellis",
+        "side_south": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_trellis_short_both_side",
-        "y": 270
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_side_ew",
+        "y": 90
       },
       "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "trellis",
-        "side_west": "true"
+        "material": "bamboo_trellis",
+        "side_east": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_side",
+        "model": "hearthandharvest:block/trellis_bamboo_trellis_side_ew",
         "y": 270
       },
       "when": {
-        "has_flat": "false",
-        "has_top": "false",
         "material": "bamboo_trellis",
         "side_west": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_bottom_side",
-        "y": 270
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side_ns",
+        "y": 90
       },
       "when": {
-        "has_flat": "true",
-        "has_top": "false",
-        "material": "bamboo_trellis",
-        "side_west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_top_side",
-        "y": 270
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_bamboo_trellis_short_both_side",
-        "y": 270
-      },
-      "when": {
-        "has_flat": "true",
-        "has_top": "true",
-        "material": "bamboo_trellis",
-        "side_west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side",
-        "y": 270
-      },
-      "when": {
-        "has_flat": "false",
-        "has_top": "false",
         "material": "stripped_bamboo_trellis",
-        "side_west": "true"
+        "side_north": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_bottom_side",
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side_ns",
         "y": 270
       },
       "when": {
-        "has_flat": "true",
-        "has_top": "false",
         "material": "stripped_bamboo_trellis",
-        "side_west": "true"
+        "side_south": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_top_side",
-        "y": 270
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side_ew",
+        "y": 90
       },
       "when": {
-        "has_flat": "false",
-        "has_top": "true",
         "material": "stripped_bamboo_trellis",
-        "side_west": "true"
+        "side_east": "true"
       }
     },
     {
       "apply": {
-        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_short_both_side",
+        "model": "hearthandharvest:block/trellis_stripped_bamboo_trellis_side_ew",
         "y": 270
       },
       "when": {
-        "has_flat": "true",
-        "has_top": "true",
         "material": "stripped_bamboo_trellis",
         "side_west": "true"
       }

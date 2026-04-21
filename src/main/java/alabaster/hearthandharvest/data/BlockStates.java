@@ -198,24 +198,16 @@ public class BlockStates extends BlockStateProvider {
                     .condition(TrellisBlock.MIDDLE_NS, true).condition(TrellisBlock.MATERIAL, m).end();
         }
 
-        // --- Structure: side panels (4 flat/top combos each) ---
-        for (int i = 0; i < SIDE_PROPS.length; i++) {
-            BooleanProperty prop = SIDE_PROPS[i];
-            int rot = SIDE_ROTS[i];
-            for (TrellisMaterial m : TrellisMaterial.values()) {
-                b.part().modelFile(trellisModel("side", m)).rotationY(rot).addModel()
-                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, false)
-                        .condition(TrellisBlock.HAS_TOP, false).condition(TrellisBlock.MATERIAL, m).end();
-                b.part().modelFile(trellisModel("short_bottom_side", m)).rotationY(rot).addModel()
-                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, true)
-                        .condition(TrellisBlock.HAS_TOP, false).condition(TrellisBlock.MATERIAL, m).end();
-                b.part().modelFile(trellisModel("short_top_side", m)).rotationY(rot).addModel()
-                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, false)
-                        .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
-                b.part().modelFile(trellisModel("short_both_side", m)).rotationY(rot).addModel()
-                        .condition(prop, true).condition(TrellisBlock.HAS_FLAT, true)
-                        .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
-            }
+        // --- Structure: side panels ---
+        for (TrellisMaterial m : TrellisMaterial.values()) {
+            b.part().modelFile(trellisModel("side_ns", m)).rotationY(90).addModel()
+                    .condition(TrellisBlock.SIDE_NORTH, true).condition(TrellisBlock.MATERIAL, m).end();
+            b.part().modelFile(trellisModel("side_ns", m)).rotationY(270).addModel()
+                    .condition(TrellisBlock.SIDE_SOUTH, true).condition(TrellisBlock.MATERIAL, m).end();
+            b.part().modelFile(trellisModel("side_ew", m)).rotationY(90).addModel()
+                    .condition(TrellisBlock.SIDE_EAST, true).condition(TrellisBlock.MATERIAL, m).end();
+            b.part().modelFile(trellisModel("side_ew", m)).rotationY(270).addModel()
+                    .condition(TrellisBlock.SIDE_WEST, true).condition(TrellisBlock.MATERIAL, m).end();
         }
 
         // --- Structure: horizontal ---

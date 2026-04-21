@@ -48,8 +48,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 ModBlocks.BUDDING_TOMATO_CROP.get(),
                 HHModBlocks.BLUEBERRY_BUSH.get(),
                 HHModBlocks.RASPBERRY_BUSH.get(),
-                HHModBlocks.GREEN_GRAPE_CROP.get(),
-                HHModBlocks.RED_GRAPE_CROP.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
         );
@@ -63,10 +62,7 @@ public class HHBlockTags extends BlockTagsProvider {
 
     protected void registerMinecraftTags() {
         tag(BlockTags.CROPS).add(
-                HHModBlocks.RED_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
-                HHModBlocks.GREEN_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
@@ -222,26 +218,21 @@ public class HHBlockTags extends BlockTagsProvider {
         tag(CompatibilityTags.SERENE_SEASONS_SPRING_CROPS_BLOCK).add(
                 HHModBlocks.BLUEBERRY_BUSH.get(),
                 HHModBlocks.RASPBERRY_BUSH.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.PEANUT_CROP.get()
         );
 
         tag(CompatibilityTags.SERENE_SEASONS_SUMMER_CROPS_BLOCK).add(
                 HHModBlocks.BLUEBERRY_BUSH.get(),
                 HHModBlocks.RASPBERRY_BUSH.get(),
-                HHModBlocks.RED_GRAPE_CROP.get(),
-                HHModBlocks.GREEN_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.PEANUT_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
         );
 
         tag(CompatibilityTags.SERENE_SEASONS_AUTUMN_CROPS_BLOCK).add(
-                HHModBlocks.RED_GRAPE_CROP.get(),
-                HHModBlocks.GREEN_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(),
-                HHModBlocks.BUDDING_RED_GRAPE_CROP.get(),
+                HHModBlocks.TRELLIS.get(),
                 HHModBlocks.COTTON_CROP.get(),
                 HHModBlocks.CORN_STALK.get()
         );
