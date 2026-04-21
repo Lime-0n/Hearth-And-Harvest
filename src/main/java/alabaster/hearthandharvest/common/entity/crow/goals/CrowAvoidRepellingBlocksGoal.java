@@ -18,6 +18,7 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
 
     private BlockPos repelSource;
     private Vec3 fleeTarget;
+    private int scanCooldown = 0;
 
     private static double FLEE_DISTANCE = Config.CROW_SCARE_RADIUS.get();
     private static double STOP_DISTANCE = Config.CROW_SCARE_RADIUS.get() * 1.6;
@@ -32,9 +33,9 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        if (crow.isTame() || crow.isOrderedToSit() || crow.isPassenger()) {
-            return false;
-        }
+        if (crow.isTame() || crow.isOrderedToSit() || crow.isPassenger()) return false;
+        if (--scanCooldown > 0) return false;
+        scanCooldown = 10 + crow.getRandom().nextInt(10);
 
         BlockPos found = findNearestRepellingBlock();
         if (found == null) return false;

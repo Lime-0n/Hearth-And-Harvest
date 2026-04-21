@@ -80,7 +80,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     private void setupAnimationStates() {
         if (!this.level().isClientSide()) return;
 
-        // SITTING
         if (isInSittingPose()) {
             if (!sittingAnimationState.isStarted()) {
                 idleAnimationState.stop();
@@ -90,7 +89,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
             return;
         }
 
-        // FLYING
         if (isFlying()) {
             if (!flyingAnimationState.isStarted()) {
                 idleAnimationState.stop();
@@ -100,7 +98,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
             return;
         }
 
-        // IDLE
         if (!idleAnimationState.isStarted()) {
             flyingAnimationState.stop();
             sittingAnimationState.stop();
@@ -209,7 +206,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         if (player == null || this.isTame())
             return;
 
-        // 1-in-3 tame chance
         if (!this.level().isClientSide) {
             if (this.random.nextInt(3) == 0 && !EventHooks.onAnimalTame(this, player)) {
 
@@ -244,10 +240,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     @Override
     public void tick() {
         super.tick();
-
-        if (level().isClientSide) {
-            setupAnimationStates();
-        }
     }
 
     @Nullable
@@ -277,7 +269,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
     }
 
     protected void onFlap() {
-        //this.playSound(HHModSounds.CROW_SQUAWK.get(), 0.15F, 1.0F);
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 
@@ -301,7 +292,6 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         if (!(entity instanceof Player)) {
             super.doPush(entity);
         }
-
     }
 
     @Override

@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.common.entity.crow.goals;
 
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
-import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;

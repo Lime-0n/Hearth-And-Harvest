@@ -39,20 +39,18 @@ public class CrowSeekShinyItemGoal extends Goal {
         if (crow.isTame() || crow.isOrderedToSit() || crow.isPassenger())
             return false;
 
-        // Already carrying a shiny? Continue goal.
         if (!crow.getMainHandItem().isEmpty() && crow.getMainHandItem().is(HHModTags.CROW_SHINY_ITEMS))
             return true;
 
         if (--cooldown > 0)
             return false;
 
-        // Search for shiny items around
         List<ItemEntity> nearby = crow.level().getEntitiesOfClass(
                 ItemEntity.class,
                 crow.getBoundingBox().inflate(10),
                 e -> e.isAlive()
                         && e.getItem().is(HHModTags.CROW_SHINY_ITEMS)
-                        && !isNearNest(e.blockPosition(), IGNORE_RADIUS_AROUND_NEST) // <-- skip near nests
+                        && !isNearNest(e.blockPosition(), IGNORE_RADIUS_AROUND_NEST)
         );
 
         if (nearby.isEmpty())
@@ -73,12 +71,14 @@ public class CrowSeekShinyItemGoal extends Goal {
     public void start() {
         dropTimer = 0;
         nestTarget = null;
+        nestArrivalTimer = -1;
     }
 
     @Override
     public void stop() {
         targetItem = null;
         nestTarget = null;
+        nestArrivalTimer = -1;
         cooldown = 100 + crow.getRandom().nextInt(80);
     }
 
@@ -93,11 +93,9 @@ public class CrowSeekShinyItemGoal extends Goal {
                 return;
             }
 
-            // Pickup
             ItemStack stack = targetItem.getItem();
             ItemStack single = stack.split(1);
             crow.setItemInHand(crow.getUsedItemHand(), single);
-
 
             if (!crow.level().isClientSide) {
                 Entity owner = targetItem.getOwner();
@@ -117,24 +115,28 @@ public class CrowSeekShinyItemGoal extends Goal {
 
         if (!crow.getMainHandItem().isEmpty() && crow.getMainHandItem().is(HHModTags.CROW_SHINY_ITEMS)) {
 
-            // Delay before seeking nest
             if (dropTimer > 0) {
                 dropTimer--;
                 return;
             }
 
-            // Find nest if we don't have one
+            // Only scan for nest once; reuse cached nestTarget for the remainder of this goal
             if (nestTarget == null) {
                 nestTarget = findNearestNest(16);
             }
 
-            // No nest: fallback to old drop-behavior
             if (nestTarget == null) {
                 fallbackDropBehavior();
                 return;
             }
 
-            // Move toward nest
+            // Invalidate cached nest if it was broken
+            BlockState nestState = crow.level().getBlockState(nestTarget);
+            if (!nestState.is(HHModBlocks.NEST.get())) {
+                nestTarget = null;
+                return;
+            }
+
             crow.getNavigation().moveTo(
                     nestTarget.getX() + 0.5,
                     nestTarget.getY() + 1.1,
@@ -148,20 +150,16 @@ public class CrowSeekShinyItemGoal extends Goal {
                     nestTarget.getZ() + 0.5
             );
 
-            // Close enough → drop into nest
             if (dist < 1.5) {
                 crow.getNavigation().stop();
 
-                // First tick of arrival → start 2-second timer
                 if (nestArrivalTimer < 0) {
-                    nestArrivalTimer = 40; // 2 seconds
+                    nestArrivalTimer = 40;
                     return;
                 }
 
-                // Count down
                 nestArrivalTimer--;
 
-                // Time to drop!
                 if (nestArrivalTimer <= 0) {
                     depositIntoNest(nestTarget);
                     crow.setItemInHand(crow.getUsedItemHand(), ItemStack.EMPTY);
@@ -173,7 +171,6 @@ public class CrowSeekShinyItemGoal extends Goal {
 
                 return;
             } else {
-                // Not close yet → ensure timer resets while flying
                 nestArrivalTimer = -1;
             }
         }
@@ -183,11 +180,9 @@ public class CrowSeekShinyItemGoal extends Goal {
         BlockPos crowPos = crow.blockPosition();
         BlockPos.MutableBlockPos check = new BlockPos.MutableBlockPos();
 
-        int r = radius;
-
-        for (int dx = -r; dx <= r; dx++) {
+        for (int dx = -radius; dx <= radius; dx++) {
             for (int dy = -3; dy <= 3; dy++) {
-                for (int dz = -r; dz <= r; dz++) {
+                for (int dz = -radius; dz <= radius; dz++) {
                     check.set(crowPos.getX() + dx, crowPos.getY() + dy, crowPos.getZ() + dz);
 
                     BlockState state = crow.level().getBlockState(check);
@@ -221,16 +216,13 @@ public class CrowSeekShinyItemGoal extends Goal {
 
         ItemStack stack = crow.getMainHandItem().copy();
 
-        // Spawn item exactly centered on the nest
         double x = pos.getX() + 0.5;
         double y = pos.getY() + 0.25;
         double z = pos.getZ() + 0.5;
 
         ItemEntity itemEntity = new ItemEntity(server, x, y, z, stack);
-
         itemEntity.setDefaultPickUpDelay();
         itemEntity.setDeltaMovement(0, 0, 0);
-
         server.addFreshEntity(itemEntity);
     }
 
