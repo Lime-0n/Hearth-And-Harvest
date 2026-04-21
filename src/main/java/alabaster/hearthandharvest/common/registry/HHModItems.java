@@ -591,8 +591,6 @@ public class HHModItems {
             () -> new ConsumableItem(foodItem(HHFoodValues.ELOTE).stacksTo(1).craftRemainder(Items.STICK)));
 
     // Meals
-    public static final Supplier<Item> ONION_SOUP = registerWithTab("onion_soup",
-            () -> new ConsumableItem(bowlFoodItem(HHFoodValues.ONION_SOUP)));
     public static final Supplier<Item> MACARONI_AND_CHEESE = registerWithTab("macaroni_and_cheese",
             () -> new ConsumableItem(bowlFoodItem(HHFoodValues.MACARONI_AND_CHEESE)));
     public static final Supplier<Item> MASHED_POTATOES = registerWithTab("mashed_potatoes",

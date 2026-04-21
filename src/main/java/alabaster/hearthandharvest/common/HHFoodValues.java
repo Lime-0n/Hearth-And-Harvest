@@ -279,9 +279,6 @@ public class HHFoodValues {
             .nutrition(11).saturationModifier(0.8f).build();
     public static final FoodProperties JERKY = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.3f).build();
-    public static final FoodProperties ONION_SOUP = new FoodProperties.Builder()
-            .nutrition(10).saturationModifier(0.4f)
-            .effect(() -> new MobEffectInstance(HHModEffects.PUNGENT, MEDIUM_DURATION, 0), 1.0F).build();
     public static final FoodProperties MACARONI_AND_CHEESE = new FoodProperties.Builder()
             .nutrition(11).saturationModifier(0.3f).build();
     public static final FoodProperties MASHED_POTATOES = new FoodProperties.Builder()

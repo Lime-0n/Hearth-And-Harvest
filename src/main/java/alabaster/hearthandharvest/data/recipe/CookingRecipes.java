@@ -198,14 +198,6 @@ public class CookingRecipes
                 .unlockedByItems("has_pasta", ModItems.RAW_PASTA.get())
                 .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
                 .save(output);
-        CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.ONION_SOUP.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.BOWL)
-                .addIngredient(ModItems.ONION.get())
-                .addIngredient(ModItems.ONION.get())
-                .addIngredient(Tags.Items.DRINKS_MILK)
-                .addIngredient(HHModTags.CHEESE_SLICES)
-                .unlockedByItems("has_onion", ModItems.ONION.get())
-                .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
-                .save(output);
         CookingPotRecipeBuilder.cookingPotRecipe(HHModItems.WAFFLE.get(), 1, FAST_COOKING, SMALL_EXP)
                 .addIngredient(HHModItems.BATTER.get())
                 .addIngredient(HHModItems.SYRUP_BOTTLE.get())

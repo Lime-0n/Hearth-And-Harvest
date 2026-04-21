@@ -376,8 +376,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.MOONSHINE.get());
 
         tag(Tags.Items.FOODS_SOUP)
-                .add(HHModItems.CORN_STEW.get())
-                .add(HHModItems.ONION_SOUP.get());
+                .add(HHModItems.CORN_STEW.get());
 
         tag(Tags.Items.FOODS_EDIBLE_WHEN_PLACED)
                 .add(HHModItems.BLUEBERRY_PIE.get())
@@ -484,7 +483,6 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.CORN_STEW.get())
                 .add(HHModItems.TAMALE.get())
                 .add(HHModItems.ELOTE.get())
-                .add(HHModItems.ONION_SOUP.get())
                 .add(HHModItems.MACARONI_AND_CHEESE.get())
                 .add(HHModItems.MASHED_POTATOES.get())
                 .add(HHModItems.PEANUT_BUTTER_AND_JELLY_SANDWICH.get())
