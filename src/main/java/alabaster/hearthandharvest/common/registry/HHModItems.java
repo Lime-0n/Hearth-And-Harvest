@@ -127,15 +127,6 @@ public class HHModItems {
     public static final Supplier<Item> STRIPPED_BAMBOO_TRELLIS = registerWithBlockTab("stripped_bamboo_trellis",
             () -> new TrellisBlockItem(HHModBlocks.TRELLIS.get(), TrellisMaterial.STRIPPED_BAMBOO, basicItem()));
 
-//    public static final Supplier<PlantApplicationItem> VINE_CUTTING = ITEMS.register("vine_cutting",
-//            () -> new PlantApplicationItem(TrellisPlant.VINE, basicItem()));
-//    public static final Supplier<PlantApplicationItem> ROSE_CUTTING = ITEMS.register("rose_cutting",
-//            () -> new PlantApplicationItem(TrellisPlant.ROSE, basicItem()));
-//    public static final Supplier<PlantApplicationItem> RED_GRAPE_CUTTING = ITEMS.register("red_grape_cutting",
-//            () -> new PlantApplicationItem(TrellisPlant.RED_GRAPE, basicItem()));
-//    public static final Supplier<PlantApplicationItem> GREEN_GRAPE_CUTTING = ITEMS.register("green_grape_cutting",
-//            () -> new PlantApplicationItem(TrellisPlant.GREEN_GRAPE, basicItem()));
-
     // Half-Cabinets
     public static final Supplier<Item> OAK_HALF_CABINET = registerWithBlockTab("oak_half_cabinet",
             () -> new FuelBlockItem(HHModBlocks.OAK_HALF_CABINET.get(), basicItem(), 300));
@@ -163,7 +154,7 @@ public class HHModItems {
     // Crabbers Delight Compat
     public static final Supplier<Item> PALM_HALF_CABINET = ModList.get().isLoaded("crabbersdelight")
             ? registerWithBlockTab("palm_half_cabinet",
-            () -> new BlockItem(HHModBlocks.PALM_HALF_CABINET.get(), basicItem()))
+            () -> new FuelBlockItem(HHModBlocks.PALM_HALF_CABINET.get(), basicItem(), 300))
             : null;
 
     public static final Supplier<Item> CRATE = registerWithBlockTab("crate",
@@ -196,7 +187,7 @@ public class HHModItems {
     // Crabbers Delight Compat
     public static final Supplier<Item> PALM_BOTTLE_RACK = ModList.get().isLoaded("crabbersdelight")
             ? registerWithBlockTab("palm_bottle_rack",
-            () -> new BlockItem(HHModBlocks.PALM_BOTTLE_RACK.get(), basicItem()))
+            () -> new FuelBlockItem(HHModBlocks.PALM_BOTTLE_RACK.get(), basicItem(), 300))
             : null;
 
     static {
@@ -222,6 +213,10 @@ public class HHModItems {
                 ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_bottle_rack"));
         ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_wine_rack"),
                 ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
+
+        // This should convert any onion soups to new onion soups. Fingers crossed!
+        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "onion_soup"),
+                ResourceLocation.fromNamespaceAndPath("farmersdelight", "onion_soup"));
     }
 
     // Crops
