@@ -65,6 +65,13 @@ public class HHItemTags extends ItemTagsProvider {
         tag(Tags.Items.FOODS_BREAD)
                 .add(HHModItems.TORTILLA.get());
 
+        tag(HHModTags.TRELLIS_PLANTABLE)
+                .add(Items.ROSE_BUSH)
+                .add(Items.VINE)
+                .add(HHModItems.RED_GRAPES.get())
+                .add(HHModItems.GREEN_GRAPES.get());
+
+
         tag(HHModTags.SHORT_BOTTLES)
                 .add(Items.GLASS_BOTTLE)
                 .add(Items.POTION)

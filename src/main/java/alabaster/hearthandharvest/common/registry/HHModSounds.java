@@ -21,6 +21,20 @@ public class HHModSounds {
     public static final Supplier<SoundEvent> CROW_EAT = SOUNDS.register("entities.crow.eat",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.crow.eat")));
 
-    public static final Supplier<SoundEvent> CROW_STEP = SOUNDS.register("entities.crow.ste",
+    public static final Supplier<SoundEvent> CROW_STEP = SOUNDS.register("entities.crow.step",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.crow.step")));
+
+    // Wine Drink
+    public static final Supplier<SoundEvent> WINE_DRINK = SOUNDS.register("items.wine.drink",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "items.wine.drink")));
+
+    // Bottle Place
+    public static final Supplier<SoundEvent> BOTTLE_INSERT = SOUNDS.register("blocks.bottle.insert",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.bottle.insert")));
+
+    public static final Supplier<SoundEvent> BOTTLE_REMOVE = SOUNDS.register("blocks.bottle.remove",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.bottle.remove")));
+
+    public static final Supplier<SoundEvent> STOMPING_BASIN_STOMP = SOUNDS.register("blocks.stomping_basin.stomp",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.stomping_basin.stomp")));
 }

@@ -79,8 +79,8 @@ public class BasinBlock extends Block {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 1, 3)), 3);
                 if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand ,ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.GLASS_BOTTLE)));
-                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
+                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
             }
         } else if (heldItem.is(Items.WATER_BUCKET)) {
@@ -88,8 +88,8 @@ public class BasinBlock extends Block {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 3, 3)), 3);
                 if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand, ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.BUCKET)));
-                    level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
+                level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
             }
         } else if (heldItem.is(Items.GLASS_BOTTLE)) {
@@ -97,8 +97,8 @@ public class BasinBlock extends Block {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, currentLevel - 1), 3);
                 if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand, ItemUtils.createFilledResult(heldItem, player, waterBottle));
-                    level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
+                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
             }
         } else if (heldItem.is(Items.BUCKET)) {
@@ -106,8 +106,8 @@ public class BasinBlock extends Block {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, currentLevel - 3), 3);
                 if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand , ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.WATER_BUCKET)));
-                    level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
+                level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
             }
         }

@@ -20,6 +20,7 @@
   "hearthandharvest.container.recipe_book.ageable": "Showing Ageables",
 
   "block.hearthandharvest.stomping_basin": "Stomping Basin",
+  "hearthandharvest.subtitles.stomping_basin.stomp": "Stomping Basin stomp",
 
   "block.hearthandharvest.empty_jar_display": "Jars",
 
@@ -82,6 +83,9 @@
   "block.hearthandharvest.crimson_bottle_rack": "Crimson Bottle Rack",
   "block.hearthandharvest.warped_bottle_rack": "Warped Bottle Rack",
   "block.hearthandharvest.palm_bottle_rack": "Palm Bottle Rack",
+
+  "hearthandharvest.subtitles.bottle.insert": "Bottle Inserted",
+  "hearthandharvest.subtitles.bottle.remove": "Bottle Removed",
 
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
@@ -184,6 +188,8 @@
   "item.hearthandharvest.green_grape_juice": "Green Grape Juice",
   "item.hearthandharvest.glow_berry_juice": "Glow Berry Juice",
   "item.hearthandharvest.sweet_berry_juice": "Sweet Berry Juice",
+
+  "hearthandharvest.subtitles.wine.drink": "Drank Wine",
 
   "item.hearthandharvest.jar": "Jar",
   "item.hearthandharvest.raspberry_jam": "Raspberry Jam",

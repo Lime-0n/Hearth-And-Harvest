@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.item;
 
 import alabaster.hearthandharvest.common.registry.HHModEffects;
+import alabaster.hearthandharvest.common.registry.HHModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -72,7 +73,7 @@ public class WineBottleItem extends Item {
 
     @Override
     public SoundEvent getEatingSound() {
-        return SoundEvents.BREWING_STAND_BREW;
+        return HHModSounds.WINE_DRINK.get();
     }
 
     @Override

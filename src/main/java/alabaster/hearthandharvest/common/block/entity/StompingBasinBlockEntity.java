@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.common.block.MultiblockPart;
 import alabaster.hearthandharvest.common.crafting.StompingBasinRecipe;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
 import alabaster.hearthandharvest.common.registry.HHModRecipeTypes;
+import alabaster.hearthandharvest.common.registry.HHModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -12,7 +13,6 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.LivingEntity;
@@ -227,7 +227,7 @@ public class StompingBasinBlockEntity extends BlockEntity  {
                 .findFirst();
 
         if (match.isEmpty()) {
-            level.playSound(null, worldPosition, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.6f, 0.7f);
+            level.playSound(null, worldPosition, HHModSounds.STOMPING_BASIN_STOMP.get(), SoundSource.BLOCKS, 0.6f, 0.7f);
             return;
         }
 
@@ -239,7 +239,7 @@ public class StompingBasinBlockEntity extends BlockEntity  {
             if (accepted < resultFluid.getAmount()) return;
         }
 
-        level.playSound(null, worldPosition, SoundEvents.SLIME_SQUISH, SoundSource.BLOCKS, 0.6f, 0.7f);
+        level.playSound(null, worldPosition, HHModSounds.STOMPING_BASIN_STOMP.get(), SoundSource.BLOCKS, 0.6f, 0.7f);
 
         for (Ingredient ingredient : recipe.getIngredients()) {
             for (int slot = 0; slot < itemHandler.getSlots(); slot++) {

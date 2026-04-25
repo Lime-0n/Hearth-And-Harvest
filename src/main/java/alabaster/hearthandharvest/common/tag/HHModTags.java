@@ -25,6 +25,7 @@ public class HHModTags {
     public static final TagKey<Item> SHORT_BOTTLES = modItemTag("short_bottles");
     public static final TagKey<Item> CRATEABLE_ITEMS = modItemTag("crateable_items");
     public static final TagKey<Item> CHEESE_SLICES = modItemTag("cheese_slices");
+    public static final TagKey<Item> TRELLIS_PLANTABLE = modItemTag("trellis_plantable");
 
     public static final TagKey<Item> CROW_FOOD = modItemTag("crow_food");
     public static final TagKey<Item> CROW_TEMPT_ITEMS = modItemTag("crow_tempt_items");

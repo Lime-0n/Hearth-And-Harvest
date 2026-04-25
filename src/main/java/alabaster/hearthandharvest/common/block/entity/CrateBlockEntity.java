@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.block.entity;
 
 import alabaster.hearthandharvest.common.block.CrateBlock;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModSounds;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +13,6 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Clearable;
 import net.minecraft.world.Container;
@@ -179,12 +179,12 @@ public class CrateBlockEntity extends BlockEntity implements Clearable, Containe
         if (level != null && !level.isClientSide) {
             if (wasEmpty && !willBeEmpty) {
                 level.playSound(null, worldPosition,
-                        SoundEvents.ITEM_FRAME_ADD_ITEM,
+                        HHModSounds.BOTTLE_INSERT.get(),
                         SoundSource.BLOCKS, 0.6f,
                         0.9f + level.random.nextFloat() * 0.2f);
             } else if (!wasEmpty && willBeEmpty) {
                 level.playSound(null, worldPosition,
-                        SoundEvents.ITEM_FRAME_REMOVE_ITEM,
+                        HHModSounds.BOTTLE_REMOVE.get(),
                         SoundSource.BLOCKS, 0.6f,
                         0.9f + level.random.nextFloat() * 0.2f);
             }
