@@ -29,8 +29,8 @@ public class VillageCrops {
             ));
 
             StructureProcessor aridCropProcessor = new RuleProcessor(List.of(
-                    new ProcessorRule(new RandomBlockMatchTest(Blocks.CARROTS, 0.3F), AlwaysTrueTest.INSTANCE, HHModBlocks.CORN_STALK.get().defaultBlockState()),
-                    new ProcessorRule(new RandomBlockMatchTest(Blocks.POTATOES, 0.3F), AlwaysTrueTest.INSTANCE, HHModBlocks.COTTON_CROP.get().defaultBlockState())
+                    new ProcessorRule(new RandomBlockMatchTest(Blocks.WHEAT, 0.3F), AlwaysTrueTest.INSTANCE, HHModBlocks.CORN_STALK.get().defaultBlockState()),
+                    new ProcessorRule(new RandomBlockMatchTest(Blocks.WHEAT, 0.3F), AlwaysTrueTest.INSTANCE, HHModBlocks.COTTON_CROP.get().defaultBlockState())
             ));
 
             addNewRuleToProcessorList(ResourceLocation.parse("minecraft:farm_plains"), temperateCropProcessor, processorLists);
