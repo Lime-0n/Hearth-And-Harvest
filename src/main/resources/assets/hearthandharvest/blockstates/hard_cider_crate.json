@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "hearthandharvest:block/hard_cider_crate_bottom" },
-    "type=top": { "model": "hearthandharvest:block/hard_cider_crate_top" },
-    "type=double": { "model": "hearthandharvest:block/hard_cider_crate" }
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "hearthandharvest:block/cherry_wine_crate_bottom" },
-    "type=top": { "model": "hearthandharvest:block/cherry_wine_crate_top" },
-    "type=double": { "model": "hearthandharvest:block/cherry_wine_crate" }
-  }
-}
