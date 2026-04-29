@@ -83,7 +83,7 @@ public class HHFoodValues {
     public static final FoodProperties HARD_CIDER = new FoodProperties.Builder()
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, SHORT_DURATION, 0), 0.5F)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, SHORT_DURATION, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, BRIEF_DURATION, 0), 1.0F)
             .build();
 
