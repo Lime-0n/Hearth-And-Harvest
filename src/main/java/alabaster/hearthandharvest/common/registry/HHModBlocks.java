@@ -4,6 +4,7 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.block.trellis.GrapeTrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
+import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
@@ -204,14 +205,28 @@ public class HHModBlocks {
             () -> new RaspberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
     public static final Supplier<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush",
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
-    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
-            () -> new BuddingRedGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
-    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
-            () -> new RedGrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
-    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
-            () -> new BuddingGreenGrapeBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
-    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
-            () -> new GreenGrapeVineBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+
+    // Migration stubs — remove after one further version
+    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grape_crop",
+            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
+                    .setValue(TrellisBlock.PLANT, TrellisPlant.RED_GRAPE)
+                    .setValue(TrellisBlock.AGE, 4)));
+
+    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grape_crop",
+            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
+                    .setValue(TrellisBlock.PLANT, TrellisPlant.GREEN_GRAPE)
+                    .setValue(TrellisBlock.AGE, 4)));
+
+    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grape_crop",
+            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
+                    .setValue(TrellisBlock.PLANT, TrellisPlant.RED_GRAPE)
+                    .setValue(TrellisBlock.AGE, 0)));
+
+    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grape_crop",
+            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
+                    .setValue(TrellisBlock.PLANT, TrellisPlant.GREEN_GRAPE)
+                    .setValue(TrellisBlock.AGE, 0)));
+
     public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final Supplier<Block> COTTON_CROP = BLOCKS.register("cotton",
