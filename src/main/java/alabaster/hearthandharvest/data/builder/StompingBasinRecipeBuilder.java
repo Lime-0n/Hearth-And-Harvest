@@ -59,8 +59,12 @@ public class StompingBasinRecipeBuilder implements RecipeBuilder {
 
     // ── Ingredient helpers ────────────────────────────────────────────────────
 
-    public StompingBasinRecipeBuilder addIngredient(TagKey<Item> tag, int quantity) {
-        return addIngredient(Ingredient.of(tag));
+    public StompingBasinRecipeBuilder addIngredient(TagKey<Item> tag, int count) {
+        Ingredient ingredient = Ingredient.of(tag);
+        for (int i = 0; i < count; i++) {
+            this.ingredients.add(ingredient);
+        }
+        return this;
     }
 
     public StompingBasinRecipeBuilder addIngredient(ItemLike item) {

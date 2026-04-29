@@ -52,6 +52,13 @@ public class AgingRecipes {
     }
 
     private static void ageDrinks(RecipeOutput output) {
+        CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, VERY_SLOW, MEDIUM_EXP)
+                .addIngredient(ModItems.APPLE_CIDER.get())
+                .unlockedByAnyIngredient(ModItems.APPLE_CIDER.get())
+                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
+                .build(output);
+
+
         CaskRecipeBuilder.caskRecipe(HHModItems.BLUEBERRY_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
                 .addIngredient(HHModItems.BLUEBERRY_JUICE.get())
                 .unlockedByAnyIngredient(HHModItems.BLUEBERRY_JUICE.get())
@@ -97,13 +104,6 @@ public class AgingRecipes {
         CaskRecipeBuilder.caskRecipe(HHModItems.MELON_WINE.get(), 1, VERY_SLOW, MEDIUM_EXP)
                 .addIngredient(ModItems.MELON_JUICE.get())
                 .unlockedByAnyIngredient(ModItems.MELON_JUICE.get())
-                .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
-                .build(output);
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.HARD_CIDER.get(), 1, SLOW_AGING, SMALL_EXP)
-                .addIngredient(ModItems.APPLE_CIDER.get())
-                .addIngredient(Items.SUGAR)
-                .unlockedByAnyIngredient(Items.APPLE)
                 .setRecipeBookTab(CaskRecipeBookTab.DRINKS)
                 .build(output);
 
@@ -190,15 +190,6 @@ public class AgingRecipes {
                 .unlockedByAnyIngredient(Items.ROTTEN_FLESH)
                 .setRecipeBookTab(CaskRecipeBookTab.MEALS)
                 .build(output,"jerky_from_rotten_flesh");
-
-        CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
-                .addIngredient(HHCommonTags.DUSTS_SALT)
-                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
-                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
-                .addIngredient(Tags.Items.FOODS_COOKED_MEAT)
-                .unlockedByAnyIngredient()
-                .setRecipeBookTab(CaskRecipeBookTab.MEALS)
-                .build(output,"jerky_from_cooked_meat");
 
         CaskRecipeBuilder.caskRecipe(HHModItems.JERKY.get(), 3, SLOW_AGING, MEDIUM_EXP)
                 .addIngredient(HHCommonTags.DUSTS_SALT)

@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.registry;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
+import alabaster.hearthandharvest.common.block.trellis.GrapeTrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -51,8 +52,18 @@ public class HHModBlocks {
     public static final Supplier<Block> STOMPING_BASIN = BLOCKS.register("stomping_basin",
             () -> new StompingBasinBlock(Block.Properties.ofFullCopy(Blocks.BARREL)));
 
+    // Trellises
     public static final Supplier<TrellisBlock> TRELLIS = BLOCKS.register("trellis",
-            () -> new TrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.WOOD).noOcclusion().forceSolidOff()));
+            () -> new TrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.WOOD).noOcclusion().forceSolidOff(),
+                    HHModBlocks::getGrapeTrellis));
+
+    public static final Supplier<GrapeTrellisBlock> GRAPE_TRELLIS = BLOCKS.register("grape_trellis",
+            () -> new GrapeTrellisBlock(Block.Properties.of().strength(2.0F).sound(SoundType.WOOD).noOcclusion().forceSolidOff(),
+                    HHModBlocks::getTrellis));
+
+    // This portion is needed to map transforming from trellis/grape trellises
+    private static Block getTrellis() { return TRELLIS.get(); }
+    private static Block getGrapeTrellis() { return GRAPE_TRELLIS.get(); }
 
     // Half-Cabinets
     public static final Supplier<Block> OAK_HALF_CABINET = BLOCKS.register("oak_half_cabinet",

@@ -26,6 +26,11 @@ public class StompingRecipes {
     }
 
     private static void stompJuices(RecipeOutput output) {
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.APPLE_CIDER.get(), HALF_BUCKET))
+                .addIngredient(Items.APPLE, 4)
+                .unlockedByAnyIngredient(Items.APPLE)
+                .build(output);
+
         StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_JUICE.get(), HALF_BUCKET))
                 .addIngredient(HHCommonTags.FRUITS_BLUEBERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_any_ingredient": {
+    "has_raw_sausage": {
       "conditions": {
         "items": [
           {
-            "items": []
+            "items": "hearthandharvest:raw_sausage"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:aging/jerky_from_cooked_meat"
+        "recipe": "hearthandharvest:raw_skewered_sausage"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_any_ingredient"
+      "has_raw_sausage"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:aging/jerky_from_cooked_meat"
+      "hearthandharvest:raw_skewered_sausage"
     ]
   }
 }

@@ -5,7 +5,6 @@ import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisMaterial;
 import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
-import alabaster.hearthandharvest.common.block.trellis.TrellisShape;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -88,8 +87,6 @@ public class BlockStates extends BlockStateProvider {
 
         this.customStageBlock(HHModBlocks.RASPBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", RaspberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
         this.customStageBlock(HHModBlocks.BLUEBERRY_BUSH.get(), resourceBlock("crop_cross"), "cross", BlueberryBushBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(HHModBlocks.BUDDING_RED_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingRedGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
-        this.customStageBlock(HHModBlocks.BUDDING_GREEN_GRAPE_CROP.get(), resourceBlock("crop_cross"), "cross", BuddingRedGrapeBlock.AGE, Arrays.asList(0, 1, 2, 3, 3));
         this.customStageBlock(HHModBlocks.PEANUT_CROP.get(), mcLoc("crop"), "crop", PeanutBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
         this.customStageBlock(HHModBlocks.COTTON_CROP.get(), resourceBlock("crop_cross"), "cross", CottonBlock.AGE, Arrays.asList(0, 0, 1, 1, 2, 2, 2, 3));
 
@@ -152,6 +149,7 @@ public class BlockStates extends BlockStateProvider {
         this.jarBlock(HHModBlocks.PICKLED_POTATOES.get(), "pickled_potatoes");
 
         this.trellisBlock();
+        this.grapeTrellisBlock();
     }
 
     // --- Trellis ---
@@ -187,18 +185,13 @@ public class BlockStates extends BlockStateProvider {
                 .texture("vine", texture);
     }
 
-    private void trellisBlock() {
-        MultiPartBlockStateBuilder b = getMultipartBuilder(HHModBlocks.TRELLIS.get());
-
-        // --- Structure: middle panels ---
+    private void addTrellisStructureParts(MultiPartBlockStateBuilder b) {
         for (TrellisMaterial m : TrellisMaterial.values()) {
             b.part().modelFile(trellisModel("middle_ew", m)).addModel()
                     .condition(TrellisBlock.MIDDLE_EW, true).condition(TrellisBlock.MATERIAL, m).end();
             b.part().modelFile(trellisModel("middle_ns", m)).addModel()
                     .condition(TrellisBlock.MIDDLE_NS, true).condition(TrellisBlock.MATERIAL, m).end();
         }
-
-        // --- Structure: side panels ---
         for (TrellisMaterial m : TrellisMaterial.values()) {
             b.part().modelFile(trellisModel("side_ns", m)).rotationY(90).addModel()
                     .condition(TrellisBlock.SIDE_NORTH, true).condition(TrellisBlock.MATERIAL, m).end();
@@ -209,19 +202,24 @@ public class BlockStates extends BlockStateProvider {
             b.part().modelFile(trellisModel("side_ew", m)).rotationY(270).addModel()
                     .condition(TrellisBlock.SIDE_WEST, true).condition(TrellisBlock.MATERIAL, m).end();
         }
-
-        // --- Structure: horizontal ---
         for (TrellisMaterial m : TrellisMaterial.values()) {
             b.part().modelFile(trellisModel("flat", m)).addModel()
                     .condition(TrellisBlock.HAS_FLAT, true).condition(TrellisBlock.MATERIAL, m).end();
             b.part().modelFile(trellisModel("top", m)).addModel()
                     .condition(TrellisBlock.HAS_TOP, true).condition(TrellisBlock.MATERIAL, m).end();
         }
+    }
 
-        // --- Plants ---
-        addAllPlantOverlays(b, TrellisPlant.VINE,  "vine");
-        addAllPlantOverlays(b, TrellisPlant.ROSE,  "rose_vine");
+    private void trellisBlock() {
+        MultiPartBlockStateBuilder b = getMultipartBuilder(HHModBlocks.TRELLIS.get());
+        addTrellisStructureParts(b);
+        addAllPlantOverlays(b, TrellisPlant.VINE, "vine");
+        addAllPlantOverlays(b, TrellisPlant.ROSE, "rose_vine");
+    }
 
+    private void grapeTrellisBlock() {
+        MultiPartBlockStateBuilder b = getMultipartBuilder(HHModBlocks.GRAPE_TRELLIS.get());
+        addTrellisStructureParts(b);
         for (TrellisPlant grape : new TrellisPlant[]{TrellisPlant.RED_GRAPE, TrellisPlant.GREEN_GRAPE}) {
             addGrapeStageOverlays(b, grape, "grape_vine", 0);
             for (int age = 1; age <= 4; age++) {

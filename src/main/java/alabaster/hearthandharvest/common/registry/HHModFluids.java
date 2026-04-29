@@ -69,6 +69,10 @@ public class HHModFluids {
     public static final Supplier<HHFluidType> MOONSHINE = FLUIDS.register("moonshine", () -> new MoonshineFluid(true));
     public static final Supplier<HHFluidType> FLOWING_MOONSHINE = FLUIDS.register("flowing_moonshine", () -> new MoonshineFluid(false));
 
+    public static final Supplier<FluidType> APPLE_CIDER_TYPE = FLUID_TYPES.register("apple_cider", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
+    public static final Supplier<HHFluidType> APPLE_CIDER = FLUIDS.register("apple_cider", () -> new AppleCiderFluid(true));
+    public static final Supplier<HHFluidType> FLOWING_APPLE_CIDER = FLUIDS.register("flowing_apple_cider", () -> new AppleCiderFluid(false));
+    
     public static final Supplier<FluidType> HARD_CIDER_TYPE = FLUID_TYPES.register("hard_cider", () -> new FluidType(FluidType.Properties.create().viscosity(2000).density(1400)));
     public static final Supplier<HHFluidType> HARD_CIDER = FLUIDS.register("hard_cider", () -> new HardCiderFluid(true));
     public static final Supplier<HHFluidType> FLOWING_HARD_CIDER = FLUIDS.register("flowing_hard_cider", () -> new HardCiderFluid(false));

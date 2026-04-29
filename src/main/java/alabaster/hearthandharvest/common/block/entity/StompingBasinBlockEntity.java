@@ -213,7 +213,7 @@ public class StompingBasinBlockEntity extends BlockEntity  {
 
         long now = level.getGameTime();
         Long last = stompCooldowns.get(entity.getUUID());
-        if (last != null && now - last < 20) return;
+        if (last != null && now - last < 5) return;
         stompCooldowns.put(entity.getUUID(), now);
 
         RecipeWrapper wrapper = new RecipeWrapper(itemHandler);
@@ -226,10 +226,7 @@ public class StompingBasinBlockEntity extends BlockEntity  {
                 .filter(r -> r.matches(wrapper, level))
                 .findFirst();
 
-        if (match.isEmpty()) {
-            level.playSound(null, worldPosition, HHModSounds.STOMPING_BASIN_STOMP.get(), SoundSource.BLOCKS, 0.6f, 0.7f);
-            return;
-        }
+        if (match.isEmpty()) return;
 
         StompingBasinRecipe recipe = match.get();
 
@@ -239,7 +236,10 @@ public class StompingBasinBlockEntity extends BlockEntity  {
             if (accepted < resultFluid.getAmount()) return;
         }
 
-        level.playSound(null, worldPosition, HHModSounds.STOMPING_BASIN_STOMP.get(), SoundSource.BLOCKS, 0.6f, 0.7f);
+        double soundX = worldPosition.getX() + (role == MultiblockPart.CONTROLLER ? 1.0 : 0.5);
+        double soundY = worldPosition.getY() + 0.5;
+        double soundZ = worldPosition.getZ() + (role == MultiblockPart.CONTROLLER ? 1.0 : 0.5);
+        level.playSound(null, soundX, soundY, soundZ, HHModSounds.STOMPING_BASIN_STOMP.get(), SoundSource.BLOCKS, 0.6f, 0.7f);
 
         for (Ingredient ingredient : recipe.getIngredients()) {
             for (int slot = 0; slot < itemHandler.getSlots(); slot++) {

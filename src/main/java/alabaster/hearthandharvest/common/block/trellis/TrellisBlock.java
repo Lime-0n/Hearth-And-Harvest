@@ -21,7 +21,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -33,10 +32,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.ItemAbilities;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class TrellisBlock extends Block implements BonemealableBlock {
 
@@ -48,6 +49,7 @@ public class TrellisBlock extends Block implements BonemealableBlock {
     public static final BooleanProperty SIDE_WEST = BooleanProperty.create("side_west");
     public static final BooleanProperty HAS_FLAT = BooleanProperty.create("has_flat");
     public static final BooleanProperty HAS_TOP = BooleanProperty.create("has_top");
+    public static final BooleanProperty GROWTH_BLOCKED = BooleanProperty.create("growth_blocked");
     public static final EnumProperty<TrellisMaterial> MATERIAL = EnumProperty.create("material", TrellisMaterial.class);
     public static final EnumProperty<TrellisPlant> PLANT = EnumProperty.create("plant", TrellisPlant.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
@@ -61,12 +63,12 @@ public class TrellisBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SIDE_E_SHAPE = Block.box( 0, 0,  0, 2, 16, 16);
     private static final VoxelShape SIDE_W_SHAPE = Block.box(14, 0,  0, 16, 16, 16);
 
-    public static final BooleanProperty GROWTH_BLOCKED = BooleanProperty.create("growth_blocked");
+    @Nullable
+    private final Supplier<Block> grapeVariant;
 
-    private static final int MAX_GRAPE_HEIGHT = 5;
-
-    public TrellisBlock(Properties props) {
+    public TrellisBlock(Properties props, @Nullable Supplier<Block> grapeVariant) {
         super(props);
+        this.grapeVariant = grapeVariant;
         registerDefaultState(defaultBlockState()
                 .setValue(MIDDLE_EW, false)
                 .setValue(MIDDLE_NS, false)
@@ -107,70 +109,19 @@ public class TrellisBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(PLANT) != TrellisPlant.NONE;
+        TrellisPlant plant = state.getValue(PLANT);
+        return plant == TrellisPlant.VINE || plant == TrellisPlant.ROSE;
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        switch (state.getValue(PLANT)) {
-            case VINE, ROSE -> { if (random.nextInt(5) == 0) trySpread(state, level, pos); }
-            case RED_GRAPE, GREEN_GRAPE -> tickGrape(state, level, pos, random);
-            default -> {}
-        }
-    }
-
-    private void tickGrape(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        BlockPos base = findGrapeColumnBase(level, pos, state.getValue(PLANT));
-        if (!level.getBlockState(base.below()).is(Blocks.FARMLAND)) return;
-
-        int heightFromBase = pos.getY() - base.getY();
-        int age = state.getValue(AGE);
-
-        if (age < 4) {
-            if (random.nextInt(5) == 0) {
-                level.setBlock(pos, state.setValue(AGE, age + 1), Block.UPDATE_CLIENTS);
-            }
-        } else if (random.nextInt(7) == 0) {
-            tryGrapeSpread(state, level, pos, heightFromBase);
-        }
-    }
-
-    private BlockPos findGrapeColumnBase(ServerLevel level, BlockPos pos, TrellisPlant plant) {
-        BlockPos current = pos;
-        while (true) {
-            BlockPos below = current.below();
-            BlockState belowState = level.getBlockState(below);
-            if (belowState.getBlock() instanceof TrellisBlock && belowState.getValue(PLANT) == plant) {
-                current = below;
-            } else {
-                break;
-            }
-        }
-        return current;
-    }
-
-    private void tryGrapeSpread(BlockState state, ServerLevel level, BlockPos pos, int heightFromBase) {
         TrellisPlant plant = state.getValue(PLANT);
-
-        if (heightFromBase < MAX_GRAPE_HEIGHT) {
-            BlockPos above = pos.above();
-            BlockState aboveState = level.getBlockState(above);
-            if (aboveState.getBlock() instanceof TrellisBlock && aboveState.getValue(PLANT) == TrellisPlant.NONE) {
-                level.setBlock(above, aboveState.setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
-                return;
-            }
-        }
-
-        Direction[] dirs = {Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
-        Direction dir = dirs[level.random.nextInt(4)];
-        BlockPos side = pos.relative(dir);
-        BlockState sideState = level.getBlockState(side);
-        if (sideState.getBlock() instanceof TrellisBlock && sideState.getValue(PLANT) == TrellisPlant.NONE) {
-            level.setBlock(side, sideState.setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
+        if ((plant == TrellisPlant.VINE || plant == TrellisPlant.ROSE) && random.nextInt(5) == 0) {
+            trySpread(state, level, pos);
         }
     }
 
-    private void trySpread(BlockState state, ServerLevel level, BlockPos pos) {
+    protected void trySpread(BlockState state, ServerLevel level, BlockPos pos) {
         TrellisPlant plant = state.getValue(PLANT);
         List<BlockPos> candidates = new ArrayList<>();
 
@@ -187,11 +138,10 @@ public class TrellisBlock extends Block implements BonemealableBlock {
 
         if (candidates.isEmpty()) return;
         BlockPos target = candidates.get(level.random.nextInt(candidates.size()));
-        BlockState targetState = level.getBlockState(target);
-        level.setBlock(target, targetState.setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
+        level.setBlock(target, level.getBlockState(target).setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
     }
 
-    private boolean isEmptyTrellis(ServerLevel level, BlockPos pos) {
+    protected boolean isEmptyTrellis(ServerLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
         return state.getBlock() instanceof TrellisBlock
                 && state.getValue(PLANT) == TrellisPlant.NONE
@@ -209,8 +159,7 @@ public class TrellisBlock extends Block implements BonemealableBlock {
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1f, 1f);
                 ((ServerLevel) level).sendParticles(ParticleTypes.CRIT,
                         pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        5, 0.3, 0.3, 0.3, 0.0
-                );
+                        5, 0.3, 0.3, 0.3, 0.0);
                 player.displayClientMessage(Component.translatable(nowBlocked
                         ? "block.hearthandharvest.trellis.growth_blocked"
                         : "block.hearthandharvest.trellis.growth_allowed"), true);
@@ -219,18 +168,26 @@ public class TrellisBlock extends Block implements BonemealableBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide());
         }
 
-        if (stack.is(Items.SHEARS) && currentPlant != TrellisPlant.NONE) {
+        if (stack.is(Items.SHEARS) && !currentPlant.isGrape() && currentPlant != TrellisPlant.NONE) {
             if (!level.isClientSide()) {
                 ItemStack drop = switch (currentPlant) {
                     case VINE -> new ItemStack(Items.VINE);
                     case ROSE -> new ItemStack(Items.ROSE_BUSH);
-                    case RED_GRAPE -> new ItemStack(HHModItems.RED_GRAPES.get());
-                    case GREEN_GRAPE -> new ItemStack(HHModItems.GREEN_GRAPES.get());
                     default -> ItemStack.EMPTY;
                 };
                 if (!drop.isEmpty()) popResource(level, pos, drop);
                 level.setBlock(pos, state.setValue(PLANT, TrellisPlant.NONE).setValue(AGE, 0), Block.UPDATE_ALL);
                 level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1f, 1f);
+                stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+            }
+            return ItemInteractionResult.sidedSuccess(level.isClientSide());
+        }
+
+        if (stack.canPerformAction(ItemAbilities.AXE_STRIP)
+                && state.getValue(MATERIAL) == TrellisMaterial.BAMBOO) {
+            if (!level.isClientSide()) {
+                level.setBlock(pos, state.setValue(MATERIAL, TrellisMaterial.STRIPPED_BAMBOO), Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1f, 1f);
                 stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide());
@@ -242,21 +199,18 @@ public class TrellisBlock extends Block implements BonemealableBlock {
         if (stack.is(Items.ROSE_BUSH) && currentPlant == TrellisPlant.NONE) {
             return applyPlant(stack, state, level, pos, player, TrellisPlant.ROSE);
         }
-        if (stack.is(HHModItems.RED_GRAPES.get()) && currentPlant == TrellisPlant.NONE) {
-            return applyPlant(stack, state, level, pos, player, TrellisPlant.RED_GRAPE);
-        }
-        if (stack.is(HHModItems.GREEN_GRAPES.get()) && currentPlant == TrellisPlant.NONE) {
-            return applyPlant(stack, state, level, pos, player, TrellisPlant.GREEN_GRAPE);
-        }
 
-        if (currentPlant.isGrape() && state.getValue(AGE) == 4) {
+        if ((stack.is(HHModItems.RED_GRAPES.get()) || stack.is(HHModItems.GREEN_GRAPES.get()))
+                && currentPlant == TrellisPlant.NONE && grapeVariant != null) {
+            TrellisPlant plant = stack.is(HHModItems.RED_GRAPES.get())
+                    ? TrellisPlant.RED_GRAPE : TrellisPlant.GREEN_GRAPE;
             if (!level.isClientSide()) {
-                Item drop = currentPlant == TrellisPlant.RED_GRAPE
-                        ? HHModItems.RED_GRAPES.get() : HHModItems.GREEN_GRAPES.get();
-                popResource(level, pos, new ItemStack(drop, 1 + level.random.nextInt(2)));
-                level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_ALL);
-                level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES,
-                        SoundSource.BLOCKS, 1f, 0.8f + level.random.nextFloat() * 0.4f);
+                BlockState converted = copyStructure(state, grapeVariant.get())
+                        .setValue(PLANT, plant)
+                        .setValue(AGE, 0);
+                level.setBlock(pos, converted, Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 1f, 1f);
+                if (!player.isCreative()) stack.shrink(1);
             }
             return ItemInteractionResult.sidedSuccess(level.isClientSide());
         }
@@ -264,13 +218,27 @@ public class TrellisBlock extends Block implements BonemealableBlock {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    private ItemInteractionResult applyPlant(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, TrellisPlant plant) {
+    protected ItemInteractionResult applyPlant(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, TrellisPlant plant) {
         if (!level.isClientSide()) {
             level.setBlock(pos, state.setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
             level.playSound(null, pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 1f, 1f);
             if (!player.isCreative()) stack.shrink(1);
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    public static BlockState copyStructure(BlockState from, Block target) {
+        return target.defaultBlockState()
+                .setValue(MATERIAL, from.getValue(MATERIAL))
+                .setValue(MIDDLE_EW, from.getValue(MIDDLE_EW))
+                .setValue(MIDDLE_NS, from.getValue(MIDDLE_NS))
+                .setValue(SIDE_NORTH, from.getValue(SIDE_NORTH))
+                .setValue(SIDE_SOUTH, from.getValue(SIDE_SOUTH))
+                .setValue(SIDE_EAST, from.getValue(SIDE_EAST))
+                .setValue(SIDE_WEST, from.getValue(SIDE_WEST))
+                .setValue(HAS_FLAT, from.getValue(HAS_FLAT))
+                .setValue(HAS_TOP, from.getValue(HAS_TOP))
+                .setValue(GROWTH_BLOCKED, from.getValue(GROWTH_BLOCKED));
     }
 
     @Override
@@ -289,10 +257,10 @@ public class TrellisBlock extends Block implements BonemealableBlock {
             case BAMBOO -> HHModItems.BAMBOO_TRELLIS.get();
             case STRIPPED_BAMBOO -> HHModItems.STRIPPED_BAMBOO_TRELLIS.get();
         };
-        int count = (state.getValue(MIDDLE_EW) ? 1 : 0) + (state.getValue(MIDDLE_NS) ? 1 : 0)
+        int count = (state.getValue(MIDDLE_EW)  ? 1 : 0) + (state.getValue(MIDDLE_NS) ? 1 : 0)
                 + (state.getValue(SIDE_NORTH) ? 1 : 0) + (state.getValue(SIDE_SOUTH) ? 1 : 0)
-                + (state.getValue(SIDE_EAST) ? 1 : 0) + (state.getValue(SIDE_WEST) ? 1 : 0)
-                + (state.getValue(HAS_FLAT) ? 1 : 0) + (state.getValue(HAS_TOP) ? 1 : 0);
+                + (state.getValue(SIDE_EAST)  ? 1 : 0) + (state.getValue(SIDE_WEST)  ? 1 : 0)
+                + (state.getValue(HAS_FLAT)   ? 1 : 0) + (state.getValue(HAS_TOP)    ? 1 : 0);
         List<ItemStack> drops = new ArrayList<>();
         for (int i = 0; i < count; i++) drops.add(new ItemStack(item));
         return drops;
@@ -312,26 +280,17 @@ public class TrellisBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        TrellisPlant plant = state.getValue(PLANT);
-        if (!plant.isGrape()) return false;
-        if (level instanceof ServerLevel serverLevel) {
-            BlockPos base = findGrapeColumnBase(serverLevel, pos, plant);
-            if (!serverLevel.getBlockState(base.below()).is(Blocks.FARMLAND)) return false;
-        }
-        return state.getValue(AGE) < 4;
+        return false;
     }
 
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
-        return true;
+        return false;
     }
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        int age = state.getValue(AGE);
-        if (age < 4) {
-            level.setBlock(pos, state.setValue(AGE, age + 1), Block.UPDATE_CLIENTS);
-        }
+
     }
 
     @Override
@@ -347,12 +306,10 @@ public class TrellisBlock extends Block implements BonemealableBlock {
         }
 
         BooleanProperty toRemove = componentFromHit(state, hit);
-        if (toRemove == null) return InteractionResult.PASS;
-        if (!state.getValue(toRemove)) return InteractionResult.PASS;
+        if (toRemove == null || !state.getValue(toRemove)) return InteractionResult.PASS;
 
         if (!level.isClientSide()) {
             BlockState newState = state.setValue(toRemove, false);
-
             boolean anyLeft = newState.getValue(MIDDLE_EW)  || newState.getValue(MIDDLE_NS)
                     || newState.getValue(SIDE_NORTH) || newState.getValue(SIDE_SOUTH)
                     || newState.getValue(SIDE_EAST) || newState.getValue(SIDE_WEST)
@@ -370,10 +327,7 @@ public class TrellisBlock extends Block implements BonemealableBlock {
                 case STRIPPED_BAMBOO -> HHModItems.STRIPPED_BAMBOO_TRELLIS.get();
             };
             ItemStack returned = new ItemStack(item);
-            if (!player.getInventory().add(returned)) {
-                popResource(level, pos, returned);
-            }
-
+            if (!player.getInventory().add(returned)) popResource(level, pos, returned);
             level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 0.8f, 1.2f);
         }
         return InteractionResult.sidedSuccess(level.isClientSide());

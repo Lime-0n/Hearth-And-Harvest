@@ -51,7 +51,7 @@ public class HHFoodValues {
             .build();
     public static final FoodProperties CHERRY_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, BRIEF_DURATION, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, BRIEF_DURATION, 0), 1.0F)
             .build();
     public static final FoodProperties RED_GRAPE_JUICE = new FoodProperties.Builder()
             .alwaysEdible()
@@ -99,7 +99,7 @@ public class HHFoodValues {
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(HHModEffects.DRUNK, MEDIUM_DURATION, 0), 0.75F)
             .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, SHORT_DURATION, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(MobEffects.LUCK, BRIEF_DURATION, 0), 0.75F)
+            .effect(() -> new MobEffectInstance(MobEffects.LUCK, BRIEF_DURATION, 1), 0.75F)
             .build();
 
     public static final FoodProperties CHERRY_WINE = new FoodProperties.Builder()

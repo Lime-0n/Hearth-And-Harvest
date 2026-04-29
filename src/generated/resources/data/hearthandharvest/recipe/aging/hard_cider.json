@@ -1,13 +1,10 @@
 {
   "type": "hearthandharvest:aging",
-  "cookingtime": 1200,
-  "experience": 0.35,
+  "cookingtime": 2400,
+  "experience": 1.0,
   "ingredients": [
     {
       "item": "farmersdelight:apple_cider"
-    },
-    {
-      "item": "minecraft:sugar"
     }
   ],
   "recipe_book_tab": "drinks",

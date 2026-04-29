@@ -358,7 +358,10 @@ public class HHItemTags extends ItemTagsProvider {
         tag(Tags.Items.FEATHERS)
                 .add(HHModItems.CROW_FEATHER.get());
 
-        tag(HHCommonTags.DRINKS_JUICE)
+        tag(Tags.Items.DRINKS)
+                .add(HHModItems.CHOCOLATE_MILK_BOTTLE.get());
+
+        tag(Tags.Items.DRINKS_JUICE)
                 .add(ModItems.MELON_JUICE.get())
                 .add(HHModItems.BLUEBERRY_JUICE.get())
                 .add(HHModItems.RASPBERRY_JUICE.get())

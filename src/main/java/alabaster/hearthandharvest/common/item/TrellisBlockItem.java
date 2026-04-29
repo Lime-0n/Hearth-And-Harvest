@@ -33,96 +33,146 @@ public class TrellisBlockItem extends BlockItem {
     @Override
     public InteractionResult useOn(UseOnContext ctx) {
         Level level = ctx.getLevel();
-        BlockPos clickedPos = ctx.getClickedPos();
-        BlockState state = level.getBlockState(clickedPos);
+        BlockPos pos = ctx.getClickedPos();
+        BlockState state = level.getBlockState(pos);
         Direction face = ctx.getClickedFace();
         boolean sneaking = ctx.getPlayer() != null && ctx.getPlayer().isShiftKeyDown();
+        Vec3 hit = ctx.getClickLocation();
+        double lx = hit.x - pos.getX();
+        double ly = hit.y - pos.getY();
+        double lz = hit.z - pos.getZ();
 
         if (state.getBlock() instanceof TrellisBlock) {
-            if (sneaking && face == Direction.UP) {
-                return handleAddToBlock(ctx, state, clickedPos, level, face);
-            }
+            return handleTrellisClick(ctx, state, pos, level, face, sneaking, lx, ly, lz);
+        }
+        return handleFreshPlacement(ctx, level, pos, face, sneaking, lx, lz);
+    }
 
-            BooleanProperty componentOnFace = primaryPropertyOnFace(state, face);
-            if (componentOnFace != null) {
-                return handleExtension(ctx, state, clickedPos, level, face, componentOnFace);
-            } else {
-                return handleAddToBlock(ctx, state, clickedPos, level, face);
+    private InteractionResult handleTrellisClick(UseOnContext ctx, BlockState state, BlockPos pos, Level level, Direction face, boolean sneaking, double lx, double ly, double lz) {
+        return switch (face) {
+            case UP    -> handleTrellisTopFace(ctx, state, pos, level, sneaking, lx, lz);
+            case DOWN  -> handleTrellisBottomFace(ctx, state, pos, level, sneaking, lx, lz);
+            case NORTH -> handleTrellisSideFace(ctx, state, pos, level, Direction.NORTH,
+                    TrellisBlock.SIDE_SOUTH, TrellisBlock.SIDE_NORTH, TrellisBlock.MIDDLE_EW, sneaking, ly, lx, lz);
+            case SOUTH -> handleTrellisSideFace(ctx, state, pos, level, Direction.SOUTH,
+                    TrellisBlock.SIDE_NORTH, TrellisBlock.SIDE_SOUTH, TrellisBlock.MIDDLE_EW, sneaking, ly, lx, lz);
+            case EAST  -> handleTrellisSideFace(ctx, state, pos, level, Direction.EAST,
+                    TrellisBlock.SIDE_WEST, TrellisBlock.SIDE_EAST, TrellisBlock.MIDDLE_NS, sneaking, ly, lx, lz);
+            case WEST  -> handleTrellisSideFace(ctx, state, pos, level, Direction.WEST,
+                    TrellisBlock.SIDE_EAST, TrellisBlock.SIDE_WEST, TrellisBlock.MIDDLE_NS, sneaking, ly, lx, lz);
+        };
+    }
+
+    private InteractionResult handleTrellisTopFace(UseOnContext ctx, BlockState state, BlockPos pos, Level level, boolean sneaking, double lx, double lz) {
+        if (sneaking) {
+            return placeOrMerge(ctx, level, pos.above(), state.getValue(TrellisBlock.MATERIAL), TrellisBlock.HAS_FLAT);
+        }
+
+        if (hasSide(state) && !state.getValue(TrellisBlock.HAS_TOP)) {
+            return mergeIntoBlock(ctx, state, pos, level, TrellisBlock.HAS_TOP);
+        }
+
+        if (state.getValue(TrellisBlock.HAS_FLAT) || state.getValue(TrellisBlock.HAS_TOP)) {
+            BooleanProperty toExtend = state.getValue(TrellisBlock.HAS_FLAT) ? TrellisBlock.HAS_FLAT : TrellisBlock.HAS_TOP;
+            Direction extDir = horizontalDirectionFromHit(lx, lz);
+            if (extDir != null) {
+                return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), toExtend);
             }
         }
 
-        return handleFreshPlacement(ctx, level, clickedPos, face);
+        BooleanProperty component = componentFromTopHit(lx, lz, ctx);
+        if (component == null) return InteractionResult.FAIL;
+        if (isMiddle(component) && hasSide(state)) return InteractionResult.FAIL;
+        if (isSide(component) && hasMiddle(state)) return InteractionResult.FAIL;
+        return mergeIntoBlock(ctx, state, pos, level, component);
     }
 
-    private InteractionResult handleExtension(UseOnContext ctx, BlockState state, BlockPos clickedPos, Level level, Direction face, BooleanProperty component) {
-        Vec3 hit = ctx.getClickLocation();
-        double lx = hit.x - clickedPos.getX();
-        double ly = hit.y - clickedPos.getY();
-        double lz = hit.z - clickedPos.getZ();
+    private InteractionResult handleTrellisBottomFace(UseOnContext ctx, BlockState state, BlockPos pos, Level level, boolean sneaking, double lx, double lz) {
+        if (sneaking) {
+            return placeOrMerge(ctx, level, pos.below(), state.getValue(TrellisBlock.MATERIAL), TrellisBlock.HAS_TOP);
+        }
 
-        Direction extDir = extensionDirection(face, lx, ly, lz);
-        BlockPos targetPos = clickedPos.relative(extDir);
+        if (state.getValue(TrellisBlock.HAS_TOP) || state.getValue(TrellisBlock.HAS_FLAT)) {
+            BooleanProperty toExtend = state.getValue(TrellisBlock.HAS_TOP) ? TrellisBlock.HAS_TOP : TrellisBlock.HAS_FLAT;
+            Direction extDir = horizontalDirectionFromHit(lx, lz);
+            if (extDir != null) {
+                return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), toExtend);
+            }
+        }
+
+        return InteractionResult.PASS;
+    }
+
+    private InteractionResult handleTrellisSideFace(UseOnContext ctx, BlockState state, BlockPos pos, Level level, Direction dir, BooleanProperty sideProp, BooleanProperty oppSideProp, BooleanProperty middleProp, boolean sneaking, double vert, double lx, double lz) {
+
+        boolean hasSideProp = state.getValue(sideProp);
+        boolean hasOppSide = state.getValue(oppSideProp);
+        boolean hasMiddleProp = state.getValue(middleProp);
+
+        if (sneaking && hasSideProp) {
+            return placeOrMerge(ctx, level, pos.relative(dir), state.getValue(TrellisBlock.MATERIAL), oppSideProp);
+        }
+
+        if (sneaking && hasOppSide) {
+            BooleanProperty toPlace = vert > 0.5 ? TrellisBlock.HAS_TOP : TrellisBlock.HAS_FLAT;
+            return mergeIntoBlock(ctx, state, pos, level, toPlace);
+        }
+
+        if (!sneaking && hasSideProp) {
+            Direction extDir = extensionDirection(dir, vert, lx, lz);
+            return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), sideProp);
+        }
+
+        if (!sneaking && hasMiddleProp) {
+            Direction extDir = extensionDirection(dir, vert, lx, lz);
+            return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), middleProp);
+        }
+
+        if (!sneaking) {
+            if (hasMiddle(state)) return InteractionResult.FAIL;
+            return mergeIntoBlock(ctx, state, pos, level, sideProp);
+        }
+
+        return InteractionResult.PASS;
+    }
+
+    private InteractionResult handleFreshPlacement(UseOnContext ctx, Level level, BlockPos clickedPos, Direction face, boolean sneaking, double lx, double lz) {
+        BlockPos targetPos = clickedPos.relative(face);
+
+        BooleanProperty component = switch (face) {
+            case UP -> sneaking ? TrellisBlock.HAS_FLAT : componentFromTopHit(lx, lz, ctx);
+            case DOWN -> TrellisBlock.HAS_TOP;
+            case NORTH -> TrellisBlock.SIDE_NORTH;
+            case SOUTH -> TrellisBlock.SIDE_SOUTH;
+            case EAST -> TrellisBlock.SIDE_EAST;
+            case WEST -> TrellisBlock.SIDE_WEST;
+        };
+
+        if (component == null) return InteractionResult.FAIL;
+        return placeOrMerge(ctx, level, targetPos, material, component);
+    }
+
+    private InteractionResult placeOrMerge(UseOnContext ctx, Level level, BlockPos targetPos, TrellisMaterial mat, BooleanProperty component) {
         BlockState targetState = level.getBlockState(targetPos);
 
         if (targetState.getBlock() instanceof TrellisBlock) {
+            if (targetState.getValue(TrellisBlock.MATERIAL) != material) return InteractionResult.FAIL;
             if (targetState.getValue(component)) return InteractionResult.FAIL;
+            if (isSide(component) && hasMiddle(targetState)) return InteractionResult.FAIL;
+            if (isMiddle(component) && hasSide(targetState)) return InteractionResult.FAIL;
             if (!level.isClientSide()) {
                 level.setBlock(targetPos, targetState.setValue(component, true), Block.UPDATE_ALL);
                 playSoundAt(level, targetPos);
                 consumeItem(ctx);
             }
-        } else if (targetState.isAir() || targetState.canBeReplaced()) {
-            BlockState newState = getBlock().defaultBlockState()
-                    .setValue(TrellisBlock.MATERIAL, state.getValue(TrellisBlock.MATERIAL))
-                    .setValue(component, true);
-            if (!level.isClientSide()) {
-                level.setBlock(targetPos, newState, Block.UPDATE_ALL);
-                playSoundAt(level, targetPos);
-                consumeItem(ctx);
-            }
-        } else {
-            return InteractionResult.FAIL;
-        }
-
-        return InteractionResult.sidedSuccess(level.isClientSide());
-    }
-
-    private InteractionResult handleAddToBlock(UseOnContext ctx, BlockState state, BlockPos pos, Level level, Direction face) {
-        BooleanProperty toAdd = componentForFace(face, ctx);
-        if (toAdd == null || state.getValue(toAdd)) return InteractionResult.FAIL;
-
-        if (!level.isClientSide()) {
-            level.setBlock(pos, state.setValue(toAdd, true), Block.UPDATE_ALL);
-            playSoundAt(level, pos);
-            consumeItem(ctx);
-        }
-        return InteractionResult.sidedSuccess(level.isClientSide());
-    }
-
-    private InteractionResult handleFreshPlacement(UseOnContext ctx, Level level, BlockPos clickedPos, Direction face) {
-        BlockPos targetPos = clickedPos.relative(face);
-        BlockState targetState = level.getBlockState(targetPos);
-
-        BooleanProperty component = componentForFace(face, ctx);
-
-        if (targetState.getBlock() instanceof TrellisBlock) {
-            if (component != null && !targetState.getValue(component)) {
-                if (!level.isClientSide()) {
-                    level.setBlock(targetPos, targetState.setValue(component, true), Block.UPDATE_ALL);
-                    playSoundAt(level, targetPos);
-                    consumeItem(ctx);
-                }
-                return InteractionResult.sidedSuccess(level.isClientSide());
-            }
-            return InteractionResult.FAIL;
+            return InteractionResult.sidedSuccess(level.isClientSide());
         }
 
         if (!targetState.isAir() && !targetState.canBeReplaced()) return InteractionResult.FAIL;
 
         BlockState newState = getBlock().defaultBlockState()
-                .setValue(TrellisBlock.MATERIAL, material);
-        if (component != null) newState = newState.setValue(component, true);
-
+                .setValue(TrellisBlock.MATERIAL, mat)
+                .setValue(component, true);
         if (!level.isClientSide()) {
             level.setBlock(targetPos, newState, Block.UPDATE_ALL);
             playSoundAt(level, targetPos);
@@ -131,82 +181,65 @@ public class TrellisBlockItem extends BlockItem {
         return InteractionResult.sidedSuccess(level.isClientSide());
     }
 
-    @Nullable
-    private static BooleanProperty primaryPropertyOnFace(BlockState state, Direction face) {
-        return switch (face) {
-            case NORTH -> {
-                if (state.getValue(TrellisBlock.SIDE_NORTH)) yield TrellisBlock.SIDE_NORTH;
-                if (state.getValue(TrellisBlock.MIDDLE_EW)) yield TrellisBlock.MIDDLE_EW;
-                yield null;
-            }
-            case SOUTH -> {
-                if (state.getValue(TrellisBlock.SIDE_SOUTH)) yield TrellisBlock.SIDE_SOUTH;
-                if (state.getValue(TrellisBlock.MIDDLE_EW)) yield TrellisBlock.MIDDLE_EW;
-                yield null;
-            }
-            case EAST -> {
-                if (state.getValue(TrellisBlock.SIDE_EAST)) yield TrellisBlock.SIDE_EAST;
-                if (state.getValue(TrellisBlock.MIDDLE_NS)) yield TrellisBlock.MIDDLE_NS;
-                yield null;
-            }
-            case WEST -> {
-                if (state.getValue(TrellisBlock.SIDE_WEST)) yield TrellisBlock.SIDE_WEST;
-                if (state.getValue(TrellisBlock.MIDDLE_NS)) yield TrellisBlock.MIDDLE_NS;
-                yield null;
-            }
-            case UP -> state.getValue(TrellisBlock.HAS_TOP) ? TrellisBlock.HAS_TOP :
-                    (state.getValue(TrellisBlock.HAS_FLAT) ? TrellisBlock.HAS_FLAT : null);
-            case DOWN -> state.getValue(TrellisBlock.HAS_FLAT) ? TrellisBlock.HAS_FLAT :
-                    (state.getValue(TrellisBlock.HAS_TOP) ? TrellisBlock.HAS_TOP : null);
-        };
-    }
-
-    @Nullable
-    private static BooleanProperty componentForFace(Direction face, UseOnContext ctx) {
-        boolean sneaking = ctx.getPlayer() != null && ctx.getPlayer().isShiftKeyDown();
-        if (sneaking && face == Direction.UP) {
-            Direction horiz = ctx.getHorizontalDirection();
-            return (horiz == Direction.NORTH || horiz == Direction.SOUTH)
-                    ? TrellisBlock.MIDDLE_EW : TrellisBlock.MIDDLE_NS;
+    private InteractionResult mergeIntoBlock(UseOnContext ctx, BlockState state, BlockPos pos, Level level, BooleanProperty component) {
+        if (state.getValue(TrellisBlock.MATERIAL) != material) return InteractionResult.FAIL;
+        if (state.getValue(component)) return InteractionResult.FAIL;
+        if (!level.isClientSide()) {
+            level.setBlock(pos, state.setValue(component, true), Block.UPDATE_ALL);
+            playSoundAt(level, pos);
+            consumeItem(ctx);
         }
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Nullable
+    private BooleanProperty componentFromTopHit(double lx, double lz, UseOnContext ctx) {
+        if (lz < 0.25) return TrellisBlock.SIDE_SOUTH;
+        if (lz > 0.75) return TrellisBlock.SIDE_NORTH;
+        if (lx < 0.25) return TrellisBlock.SIDE_EAST;
+        if (lx > 0.75) return TrellisBlock.SIDE_WEST;
+        Direction horiz = ctx.getHorizontalDirection();
+        return (horiz == Direction.NORTH || horiz == Direction.SOUTH)
+                ? TrellisBlock.MIDDLE_EW : TrellisBlock.MIDDLE_NS;
+    }
+
+    @Nullable
+    private static Direction horizontalDirectionFromHit(double lx, double lz) {
+        if (lz < 0.25) return Direction.NORTH;
+        if (lz > 0.75) return Direction.SOUTH;
+        if (lx < 0.25) return Direction.WEST;
+        if (lx > 0.75) return Direction.EAST;
+        return null;
+    }
+
+    private static Direction extensionDirection(Direction face, double vert, double lx, double lz) {
+        if (vert > 0.75) return Direction.UP;
+        if (vert < 0.25) return Direction.DOWN;
         return switch (face) {
-            case NORTH -> TrellisBlock.SIDE_NORTH;
-            case SOUTH -> TrellisBlock.SIDE_SOUTH;
-            case EAST -> TrellisBlock.SIDE_EAST;
-            case WEST -> TrellisBlock.SIDE_WEST;
-            case UP -> TrellisBlock.HAS_FLAT;
-            case DOWN -> TrellisBlock.HAS_TOP;
+            case NORTH -> lx < 0.5 ? Direction.WEST : Direction.EAST;
+            case SOUTH -> lx < 0.5 ? Direction.EAST : Direction.WEST;
+            case EAST -> lz < 0.5 ? Direction.NORTH : Direction.SOUTH;
+            case WEST -> lz < 0.5 ? Direction.SOUTH : Direction.NORTH;
+            default -> Direction.NORTH;
         };
     }
 
-    private static Direction extensionDirection(Direction face, double lx, double ly, double lz) {
-        return switch (face) {
-            case NORTH -> {
-                if (ly > 0.75) yield Direction.UP;
-                if (ly < 0.25) yield Direction.DOWN;
-                yield lx < 0.5 ? Direction.WEST : Direction.EAST;
-            }
-            case SOUTH -> {
-                if (ly > 0.75) yield Direction.UP;
-                if (ly < 0.25) yield Direction.DOWN;
-                yield lx < 0.5 ? Direction.EAST : Direction.WEST;
-            }
-            case EAST -> {
-                if (ly > 0.75) yield Direction.UP;
-                if (ly < 0.25) yield Direction.DOWN;
-                yield lz < 0.5 ? Direction.NORTH : Direction.SOUTH;
-            }
-            case WEST -> {
-                if (ly > 0.75) yield Direction.UP;
-                if (ly < 0.25) yield Direction.DOWN;
-                yield lz < 0.5 ? Direction.SOUTH : Direction.NORTH;
-            }
-            case UP, DOWN -> {
-                if (lz < 0.25) yield Direction.NORTH;
-                if (lz > 0.75) yield Direction.SOUTH;
-                yield lx < 0.5 ? Direction.WEST : Direction.EAST;
-            }
-        };
+    private static boolean hasMiddle(BlockState state) {
+        return state.getValue(TrellisBlock.MIDDLE_EW) || state.getValue(TrellisBlock.MIDDLE_NS);
+    }
+
+    private static boolean hasSide(BlockState state) {
+        return state.getValue(TrellisBlock.SIDE_NORTH) || state.getValue(TrellisBlock.SIDE_SOUTH)
+                || state.getValue(TrellisBlock.SIDE_EAST) || state.getValue(TrellisBlock.SIDE_WEST);
+    }
+
+    private static boolean isMiddle(BooleanProperty p) {
+        return p == TrellisBlock.MIDDLE_EW || p == TrellisBlock.MIDDLE_NS;
+    }
+
+    private static boolean isSide(BooleanProperty p) {
+        return p == TrellisBlock.SIDE_NORTH || p == TrellisBlock.SIDE_SOUTH
+                || p == TrellisBlock.SIDE_EAST || p == TrellisBlock.SIDE_WEST;
     }
 
     private void playSoundAt(Level level, BlockPos pos) {

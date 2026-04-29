@@ -3,6 +3,15 @@
   "ingredients": [
     {
       "tag": "c:crops/peanut"
+    },
+    {
+      "tag": "c:crops/peanut"
+    },
+    {
+      "tag": "c:crops/peanut"
+    },
+    {
+      "tag": "c:crops/peanut"
     }
   ],
   "result_fluid": {

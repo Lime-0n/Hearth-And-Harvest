@@ -1023,6 +1023,11 @@ public class CraftingRecipes
                 .requires(Items.RABBIT)
                 .unlockedBy("has_rabbit", InventoryChangeTrigger.TriggerInstance.hasItems(Items.RABBIT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "sausage_from_rabbit"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.RAW_SKEWERED_SAUSAGE.get(), 1)
+                .requires(HHModItems.RAW_SAUSAGE.get())
+                .requires(Items.STICK)
+                .unlockedBy("has_raw_sausage", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.RAW_SAUSAGE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "raw_skewered_sausage"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, HHModItems.SKEWERED_SAUSAGE.get(), 1)
                 .requires(HHModItems.COOKED_SAUSAGE.get())
                 .requires(Items.STICK)

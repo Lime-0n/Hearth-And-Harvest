@@ -20,7 +20,7 @@
   "hearthandharvest.container.recipe_book.ageable": "Showing Ageables",
 
   "block.hearthandharvest.stomping_basin": "Stomping Basin",
-  "hearthandharvest.subtitles.stomping_basin.stomp": "Stomping Basin stomp",
+  "hearthandharvest.subtitles.stomping_basin.stomp": "Items stomped",
 
   "block.hearthandharvest.empty_jar_display": "Jars",
 
@@ -367,6 +367,7 @@
   "fluid_type.hearthandharvest.mead": "Mead",
   "fluid_type.hearthandharvest.moonshine": "Moonshine",
   "fluid_type.hearthandharvest.root_beer": "Root Beer",
+  "fluid_type.hearthandharvest.apple_cider": "Apple Cider",
   "fluid_type.hearthandharvest.hard_cider": "Hard Cider",
   "fluid_type.hearthandharvest.blueberry_juice": "Blueberry Juice",
   "fluid_type.hearthandharvest.cherry_juice": "Cherry Juice",

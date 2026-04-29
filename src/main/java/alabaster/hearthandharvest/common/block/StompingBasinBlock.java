@@ -162,17 +162,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
         }
     }
 
-    @Override
-    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
-        if (entity != null) {
-            double feetY = entity.getY() - pos.getY();
-            if (feetY >= 0 && feetY < RIM_Y) {
-                return SoundType.EMPTY;
-            }
-        }
-        return super.getSoundType(state, level, pos, entity);
-    }
-
     private static boolean isWaterBottle(ItemStack stack) {
         if (!stack.is(Items.POTION)) return false;
         PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);

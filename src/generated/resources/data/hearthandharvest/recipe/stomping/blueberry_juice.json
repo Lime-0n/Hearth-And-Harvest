@@ -3,6 +3,15 @@
   "ingredients": [
     {
       "tag": "c:fruits/blueberry"
+    },
+    {
+      "tag": "c:fruits/blueberry"
+    },
+    {
+      "tag": "c:fruits/blueberry"
+    },
+    {
+      "tag": "c:fruits/blueberry"
     }
   ],
   "result_fluid": {

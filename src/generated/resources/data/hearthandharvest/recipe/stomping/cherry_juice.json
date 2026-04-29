@@ -3,6 +3,15 @@
   "ingredients": [
     {
       "tag": "c:fruits/cherry"
+    },
+    {
+      "tag": "c:fruits/cherry"
+    },
+    {
+      "tag": "c:fruits/cherry"
+    },
+    {
+      "tag": "c:fruits/cherry"
     }
   ],
   "result_fluid": {
