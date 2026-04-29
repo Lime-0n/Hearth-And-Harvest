@@ -5,18 +5,20 @@
       "modid": "create"
     }
   ],
-  "type": "create:mixing",
+  "type": "create:filling",
   "ingredients": [
     {
-      "type": "neoforge:single",
-      "amount": 500,
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "type": "fluid_stack",
+      "amount": 250,
       "fluid": "hearthandharvest:apple_cider"
     }
   ],
   "results": [
     {
-      "amount": 500,
-      "id": "hearthandharvest:hard_cider"
+      "id": "farmersdelight:apple_cider"
     }
   ]
 }

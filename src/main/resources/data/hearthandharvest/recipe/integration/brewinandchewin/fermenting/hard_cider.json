@@ -6,6 +6,7 @@
     }
   ],
   "type": "brewinandchewin:fermenting",
+  "experience": 1.0,
   "base_fluid": {
     "amount": 500,
     "ingredient": {
@@ -13,7 +14,6 @@
     },
     "unit": "millibuckets"
   },
-  "experience": 1.0,
   "ingredients": [
     {
       "item": "minecraft:apple"
@@ -22,7 +22,7 @@
       "item": "minecraft:apple"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:apple"
     },
     []
   ],
