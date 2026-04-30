@@ -208,16 +208,13 @@ public class HHModBlocks {
 
     // Migration stubs — remove after one further version
     public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
-            () -> new MigrationBlock(TrellisPlant.RED_GRAPE, HHModBlocks::getTrellis));
-
+            () -> new MigrationBlock(TrellisPlant.RED_GRAPE));
     public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
-            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE, HHModBlocks::getTrellis));
-
+            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE));
     public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
-            () -> new MigrationBlock(TrellisPlant.RED_GRAPE, HHModBlocks::getTrellis));
-
+            () -> new MigrationBlock(TrellisPlant.RED_GRAPE));
     public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
-            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE, HHModBlocks::getTrellis));
+            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE));
 
     public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));

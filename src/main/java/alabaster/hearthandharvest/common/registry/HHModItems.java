@@ -229,9 +229,9 @@ public class HHModItems {
             ? registerWithTab("raspberry", () -> new Item(foodItem(HHFoodValues.RASPBERRY)))
             :  registerWithTab("raspberry", () -> new ItemNameBlockItem(HHModBlocks.RASPBERRY_BUSH.get(), foodItem(HHFoodValues.RASPBERRY)));
     public static final Supplier<Item> RED_GRAPES = registerWithTab("red_grapes",
-            () -> new PlantApplicationItem(TrellisPlant.RED_GRAPE, foodItem(HHFoodValues.GRAPES)));
+            () -> new Item(foodItem(HHFoodValues.GRAPES)));
     public static final Supplier<Item> GREEN_GRAPES = registerWithTab("green_grapes",
-            () -> new PlantApplicationItem(TrellisPlant.GREEN_GRAPE, foodItem(HHFoodValues.GRAPES)));
+            () -> new Item(foodItem(HHFoodValues.GRAPES)));
     public static final Supplier<Item> PEANUT = registerWithTab("peanut",
             () -> new ItemNameBlockItem(HHModBlocks.PEANUT_CROP.get(), foodItem(HHFoodValues.PEANUT)));
     public static final Supplier<Item> COTTON_SEEDS = registerWithTab("cotton_seeds",

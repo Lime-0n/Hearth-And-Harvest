@@ -10,48 +10,33 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-import java.util.function.Supplier;
+public class MigrationBlock extends Block {
 
-public class MigrationBlock extends GrapeTrellisBlock {
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
     private final TrellisPlant targetPlant;
 
-    public MigrationBlock(TrellisPlant targetPlant, Supplier<Block> regularVariant) {
-        super(Block.Properties.of().randomTicks().noLootTable().noOcclusion(), regularVariant);
+    public MigrationBlock(TrellisPlant targetPlant) {
+        super(Block.Properties.of().randomTicks().noLootTable().noOcclusion());
         this.targetPlant = targetPlant;
-        registerDefaultState(stateDefinition.any()
-                .setValue(MIDDLE_EW, true)
-                .setValue(MIDDLE_NS, true)
-                .setValue(SIDE_NORTH, false)
-                .setValue(SIDE_SOUTH, false)
-                .setValue(SIDE_EAST, false)
-                .setValue(SIDE_WEST, false)
-                .setValue(HAS_FLAT, false)
-                .setValue(HAS_TOP, false)
-                .setValue(GROWTH_BLOCKED, false)
-                .setValue(MATERIAL, alabaster.hearthandharvest.common.block.trellis.TrellisMaterial.STICK)
-                .setValue(PLANT, targetPlant)
-                .setValue(AGE, 0));
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return true;
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
     }
 
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        if (!level.isClientSide) {
-            level.scheduleTick(pos, this, 1);
-        }
+        if (!level.isClientSide) level.scheduleTick(pos, this, 1);
     }
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        if (!level.isClientSide) {
-            level.scheduleTick(pos, this, 1);
-        }
+        if (!level.isClientSide) level.scheduleTick(pos, this, 1);
     }
 
     @Override
@@ -69,7 +54,7 @@ public class MigrationBlock extends GrapeTrellisBlock {
         level.setBlock(pos, HHModBlocks.GRAPE_TRELLIS.get().defaultBlockState()
                 .setValue(TrellisBlock.MIDDLE_EW, true)
                 .setValue(TrellisBlock.MIDDLE_NS, true)
-                .setValue(TrellisBlock.PLANT, targetPlant)
-                .setValue(TrellisBlock.AGE, age), Block.UPDATE_ALL);
+                .setValue(GrapeTrellisBlock.PLANT, targetPlant)
+                .setValue(GrapeTrellisBlock.AGE, age), Block.UPDATE_ALL);
     }
 }

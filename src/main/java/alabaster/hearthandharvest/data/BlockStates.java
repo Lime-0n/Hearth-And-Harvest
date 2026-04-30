@@ -5,6 +5,7 @@ import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisMaterial;
 import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
+import alabaster.hearthandharvest.common.block.trellis.GrapeTrellisBlock;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -245,22 +246,22 @@ public class BlockStates extends BlockStateProvider {
 
     private void addGrapeStageOverlays(MultiPartBlockStateBuilder b, TrellisPlant grape, String textureId, int age) {
         b.part().modelFile(plantOverlay(textureId, "middle_ew")).addModel()
-                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_EW, true)
-                .condition(TrellisBlock.AGE, age).end();
+                .condition(GrapeTrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_EW, true)
+                .condition(GrapeTrellisBlock.AGE, age).end();
         b.part().modelFile(plantOverlay(textureId, "middle_ns")).addModel()
-                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_NS, true)
-                .condition(TrellisBlock.AGE, age).end();
+                .condition(GrapeTrellisBlock.PLANT, grape).condition(TrellisBlock.MIDDLE_NS, true)
+                .condition(GrapeTrellisBlock.AGE, age).end();
         for (int i = 0; i < SIDE_PROPS.length; i++) {
             b.part().modelFile(plantOverlay(textureId, "side")).rotationY(SIDE_ROTS[i]).addModel()
-                    .condition(TrellisBlock.PLANT, grape).condition(SIDE_PROPS[i], true)
-                    .condition(TrellisBlock.AGE, age).end();
+                    .condition(GrapeTrellisBlock.PLANT, grape).condition(SIDE_PROPS[i], true)
+                    .condition(GrapeTrellisBlock.AGE, age).end();
         }
         b.part().modelFile(plantOverlay(textureId, "flat")).addModel()
-                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_FLAT, true)
-                .condition(TrellisBlock.AGE, age).end();
+                .condition(GrapeTrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_FLAT, true)
+                .condition(GrapeTrellisBlock.AGE, age).end();
         b.part().modelFile(plantOverlay(textureId, "top")).addModel()
-                .condition(TrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_TOP, true)
-                .condition(TrellisBlock.AGE, age).end();
+                .condition(GrapeTrellisBlock.PLANT, grape).condition(TrellisBlock.HAS_TOP, true)
+                .condition(GrapeTrellisBlock.AGE, age).end();
     }
 
     public void customStageBlock(Block block, @Nullable ResourceLocation parent, String textureKey, IntegerProperty ageProperty, List<Integer> suffixes, Property<?>... ignored) {

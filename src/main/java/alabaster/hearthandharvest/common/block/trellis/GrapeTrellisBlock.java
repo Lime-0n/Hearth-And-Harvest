@@ -17,14 +17,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Supplier;
 
 public class GrapeTrellisBlock extends TrellisBlock {
+
+    public static final EnumProperty<TrellisPlant> PLANT = EnumProperty.create("plant", TrellisPlant.class,
+            TrellisPlant.NONE, TrellisPlant.RED_GRAPE, TrellisPlant.GREEN_GRAPE);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
     private static final int MAX_GRAPE_HEIGHT = 5;
 
@@ -33,6 +39,27 @@ public class GrapeTrellisBlock extends TrellisBlock {
     public GrapeTrellisBlock(Properties props, Supplier<Block> regularVariant) {
         super(props, null);
         this.regularVariant = regularVariant;
+        registerDefaultState(defaultBlockState().setValue(AGE, 0));
+    }
+
+    @Override
+    protected void addPlantAndAgeProperties(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(PLANT, AGE);
+    }
+
+    @Override
+    protected EnumProperty<TrellisPlant> getPlantProperty() {
+        return PLANT;
+    }
+
+    @Override
+    public TrellisPlant getPlant(BlockState state) {
+        return state.getValue(PLANT);
+    }
+
+    @Override
+    protected BlockState applyPlantToState(BlockState state, TrellisPlant plant) {
+        return state.setValue(PLANT, plant).setValue(AGE, 0);
     }
 
     @Override
@@ -68,7 +95,7 @@ public class GrapeTrellisBlock extends TrellisBlock {
         while (true) {
             BlockPos below = current.below();
             BlockState belowState = level.getBlockState(below);
-            if (belowState.getBlock() instanceof TrellisBlock && belowState.getValue(PLANT) == plant) {
+            if (belowState.getBlock() instanceof GrapeTrellisBlock && belowState.getValue(PLANT) == plant) {
                 current = below;
             } else {
                 break;
@@ -83,7 +110,7 @@ public class GrapeTrellisBlock extends TrellisBlock {
         if (heightFromBase < MAX_GRAPE_HEIGHT) {
             BlockPos above = pos.above();
             BlockState aboveState = level.getBlockState(above);
-            if (aboveState.getBlock() instanceof TrellisBlock && aboveState.getValue(PLANT) == TrellisPlant.NONE) {
+            if (aboveState.getBlock() instanceof TrellisBlock tb && tb.getPlant(aboveState) == TrellisPlant.NONE) {
                 level.setBlock(above, copyStructure(aboveState, this).setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
                 return;
             }
@@ -93,7 +120,7 @@ public class GrapeTrellisBlock extends TrellisBlock {
         Direction dir = dirs[level.random.nextInt(4)];
         BlockPos side = pos.relative(dir);
         BlockState sideState = level.getBlockState(side);
-        if (sideState.getBlock() instanceof TrellisBlock && sideState.getValue(PLANT) == TrellisPlant.NONE) {
+        if (sideState.getBlock() instanceof TrellisBlock tb && tb.getPlant(sideState) == TrellisPlant.NONE) {
             level.setBlock(side, copyStructure(sideState, this).setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
         }
     }
