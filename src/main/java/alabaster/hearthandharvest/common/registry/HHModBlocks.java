@@ -207,25 +207,17 @@ public class HHModBlocks {
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
     // Migration stubs — remove after one further version
-    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grape_crop",
-            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
-                    .setValue(TrellisBlock.PLANT, TrellisPlant.RED_GRAPE)
-                    .setValue(TrellisBlock.AGE, 4)));
+    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
+            () -> new MigrationBlock(TrellisPlant.RED_GRAPE, HHModBlocks::getTrellis));
 
-    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grape_crop",
-            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
-                    .setValue(TrellisBlock.PLANT, TrellisPlant.GREEN_GRAPE)
-                    .setValue(TrellisBlock.AGE, 4)));
+    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
+            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE, HHModBlocks::getTrellis));
 
-    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grape_crop",
-            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
-                    .setValue(TrellisBlock.PLANT, TrellisPlant.RED_GRAPE)
-                    .setValue(TrellisBlock.AGE, 0)));
+    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
+            () -> new MigrationBlock(TrellisPlant.RED_GRAPE, HHModBlocks::getTrellis));
 
-    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grape_crop",
-            () -> new MigrationBlock(() -> GRAPE_TRELLIS.get().defaultBlockState()
-                    .setValue(TrellisBlock.PLANT, TrellisPlant.GREEN_GRAPE)
-                    .setValue(TrellisBlock.AGE, 0)));
+    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
+            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE, HHModBlocks::getTrellis));
 
     public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
