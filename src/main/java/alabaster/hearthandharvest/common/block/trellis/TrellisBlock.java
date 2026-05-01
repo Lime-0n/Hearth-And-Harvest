@@ -283,9 +283,21 @@ public class TrellisBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
-        return state.getValue(SIDE_NORTH) || state.getValue(SIDE_SOUTH)
+        if (state.getValue(SIDE_NORTH) || state.getValue(SIDE_SOUTH)
                 || state.getValue(SIDE_EAST) || state.getValue(SIDE_WEST)
-                || state.getValue(MIDDLE_EW) || state.getValue(MIDDLE_NS);
+                || state.getValue(MIDDLE_EW) || state.getValue(MIDDLE_NS)) {
+            return true;
+        }
+        // Back-face case: entity is in the adjacent block pressed against the outer face of a panel
+        BlockState n = level.getBlockState(pos.north());
+        if (n.getBlock() instanceof TrellisBlock && n.getValue(SIDE_SOUTH)) return true;
+        BlockState s = level.getBlockState(pos.south());
+        if (s.getBlock() instanceof TrellisBlock && s.getValue(SIDE_NORTH)) return true;
+        BlockState e = level.getBlockState(pos.east());
+        if (e.getBlock() instanceof TrellisBlock && e.getValue(SIDE_WEST)) return true;
+        BlockState w = level.getBlockState(pos.west());
+        if (w.getBlock() instanceof TrellisBlock && w.getValue(SIDE_EAST)) return true;
+        return false;
     }
 
     @Override

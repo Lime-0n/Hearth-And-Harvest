@@ -65,7 +65,7 @@ public class TrellisBlockItem extends BlockItem {
 
     private InteractionResult handleTrellisTopFace(UseOnContext ctx, BlockState state, BlockPos pos, Level level, boolean sneaking, double lx, double lz) {
         if (sneaking) {
-            return placeOrMerge(ctx, level, pos.above(), state.getValue(TrellisBlock.MATERIAL), TrellisBlock.HAS_FLAT);
+            return placeOrMerge(ctx, level, pos.above(), material, TrellisBlock.HAS_FLAT);
         }
 
         if (hasSide(state) && !state.getValue(TrellisBlock.HAS_TOP)) {
@@ -76,7 +76,7 @@ public class TrellisBlockItem extends BlockItem {
             BooleanProperty toExtend = state.getValue(TrellisBlock.HAS_FLAT) ? TrellisBlock.HAS_FLAT : TrellisBlock.HAS_TOP;
             Direction extDir = horizontalDirectionFromHit(lx, lz);
             if (extDir != null) {
-                return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), toExtend);
+                return placeOrMerge(ctx, level, pos.relative(extDir), material, toExtend);
             }
         }
 
@@ -89,14 +89,14 @@ public class TrellisBlockItem extends BlockItem {
 
     private InteractionResult handleTrellisBottomFace(UseOnContext ctx, BlockState state, BlockPos pos, Level level, boolean sneaking, double lx, double lz) {
         if (sneaking) {
-            return placeOrMerge(ctx, level, pos.below(), state.getValue(TrellisBlock.MATERIAL), TrellisBlock.HAS_TOP);
+            return placeOrMerge(ctx, level, pos.below(), material, TrellisBlock.HAS_TOP);
         }
 
         if (state.getValue(TrellisBlock.HAS_TOP) || state.getValue(TrellisBlock.HAS_FLAT)) {
             BooleanProperty toExtend = state.getValue(TrellisBlock.HAS_TOP) ? TrellisBlock.HAS_TOP : TrellisBlock.HAS_FLAT;
             Direction extDir = horizontalDirectionFromHit(lx, lz);
             if (extDir != null) {
-                return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), toExtend);
+                return placeOrMerge(ctx, level, pos.relative(extDir), material, toExtend);
             }
         }
 
@@ -110,7 +110,10 @@ public class TrellisBlockItem extends BlockItem {
         boolean hasMiddleProp = state.getValue(middleProp);
 
         if (sneaking && hasSideProp) {
-            return placeOrMerge(ctx, level, pos.relative(dir), state.getValue(TrellisBlock.MATERIAL), oppSideProp);
+            if (hasOppSide) {
+                return mergeIntoBlock(ctx, state, pos, level, vert > 0.5 ? TrellisBlock.HAS_TOP : TrellisBlock.HAS_FLAT);
+            }
+            return placeOrMerge(ctx, level, pos.relative(dir), material, oppSideProp);
         }
 
         if (sneaking && hasOppSide) {
@@ -120,12 +123,17 @@ public class TrellisBlockItem extends BlockItem {
 
         if (!sneaking && hasSideProp) {
             Direction extDir = extensionDirection(dir, vert, lx, lz);
-            return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), sideProp);
+            return placeOrMerge(ctx, level, pos.relative(extDir), material, sideProp);
+        }
+
+        if (!sneaking && hasOppSide) {
+            Direction extDir = extensionDirection(dir, vert, lx, lz);
+            return placeOrMerge(ctx, level, pos.relative(extDir), material, oppSideProp);
         }
 
         if (!sneaking && hasMiddleProp) {
             Direction extDir = extensionDirection(dir, vert, lx, lz);
-            return placeOrMerge(ctx, level, pos.relative(extDir), state.getValue(TrellisBlock.MATERIAL), middleProp);
+            return placeOrMerge(ctx, level, pos.relative(extDir), material, middleProp);
         }
 
         if (!sneaking) {
@@ -216,10 +224,8 @@ public class TrellisBlockItem extends BlockItem {
         if (vert > 0.75) return Direction.UP;
         if (vert < 0.25) return Direction.DOWN;
         return switch (face) {
-            case NORTH -> lx < 0.5 ? Direction.WEST : Direction.EAST;
-            case SOUTH -> lx < 0.5 ? Direction.EAST : Direction.WEST;
-            case EAST -> lz < 0.5 ? Direction.NORTH : Direction.SOUTH;
-            case WEST -> lz < 0.5 ? Direction.SOUTH : Direction.NORTH;
+            case NORTH, SOUTH -> lx < 0.5 ? Direction.WEST : Direction.EAST;
+            case EAST, WEST   -> lz < 0.5 ? Direction.NORTH : Direction.SOUTH;
             default -> Direction.NORTH;
         };
     }

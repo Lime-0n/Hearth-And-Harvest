@@ -84,6 +84,11 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.GRAPE_TRELLIS.get()
         );
 
+        tag(BlockTags.CLIMBABLE).add(
+                HHModBlocks.TRELLIS.get(),
+                HHModBlocks.GRAPE_TRELLIS.get()
+        );
+
         tag(BlockTags.FLOWERS).add(
                 HHModBlocks.YELLOW_MUM.get(),
                 HHModBlocks.ORANGE_MUM.get(),
