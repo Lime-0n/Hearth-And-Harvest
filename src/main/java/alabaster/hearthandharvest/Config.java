@@ -20,6 +20,7 @@ public class Config {
     public static ModConfigSpec.BooleanValue STACK_WATER_BOTTLES;
     public static ModConfigSpec.BooleanValue GENERATE_CORN_MAZES;
     public static ModConfigSpec.BooleanValue DISABLE_BOTTLE_MILKING;
+    public static ModConfigSpec.BooleanValue TRELLIS_PLACEMENT_PREVIEW;
 
     public Config() {
     }
@@ -63,6 +64,10 @@ public class Config {
                 .comment("Disables milking cows and goats with glass bottels. \n" +
                         "Be aware that setting this can cause goat milk bottles to be unobtainable unless handled otherwise")
                 .define("disableBottleMilking", false);
+
+        TRELLIS_PLACEMENT_PREVIEW = COMMON_BUILDER
+                .comment("Whether a ghost preview of the trellis piece is shown before placing")
+                .define("trellisPlacementPreview", true);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

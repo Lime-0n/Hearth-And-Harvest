@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.client.renderer;
 
+import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.item.TrellisBlockItem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -36,6 +37,7 @@ public class TrellisGhostRenderer {
 
         ItemStack held = player.getMainHandItem();
         if (!(held.getItem() instanceof TrellisBlockItem trellisItem)) return;
+        if (!Config.TRELLIS_PLACEMENT_PREVIEW.get()) return;
 
         BlockHitResult hit = event.getTarget();
         UseOnContext ctx = new UseOnContext(clientLevel, player, InteractionHand.MAIN_HAND, held, hit);
