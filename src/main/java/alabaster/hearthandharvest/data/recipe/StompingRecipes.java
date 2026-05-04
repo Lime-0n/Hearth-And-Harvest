@@ -26,62 +26,62 @@ public class StompingRecipes {
     }
 
     private static void stompJuices(RecipeOutput output) {
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.APPLE_CIDER.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.APPLE_CIDER.source().get(), HALF_BUCKET))
                 .addIngredient(Items.APPLE, 4)
                 .unlockedByAnyIngredient(Items.APPLE)
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.BLUEBERRY_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(HHCommonTags.FRUITS_BLUEBERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.BLUEBERRIES.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.CHERRY_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.CHERRY_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(HHCommonTags.FRUITS_CHERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.CHERRY.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RASPBERRY_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RASPBERRY_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(HHCommonTags.FRUITS_RASPBERRY, 4)
                 .unlockedByAnyIngredient(HHModItems.RASPBERRY.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RED_GRAPE_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.RED_GRAPE_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(HHModItems.RED_GRAPES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.RED_GRAPES.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GREEN_GRAPE_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GREEN_GRAPE_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(HHModItems.GREEN_GRAPES.get(), 4)
                 .unlockedByAnyIngredient(HHModItems.GREEN_GRAPES.get())
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.SWEET_BERRY_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.SWEET_BERRY_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(Items.SWEET_BERRIES, 4)
                 .unlockedByAnyIngredient(Items.SWEET_BERRIES)
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.MELON_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.MELON_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(Items.MELON_SLICE, 4)
                 .unlockedByAnyIngredient(Items.MELON_SLICE)
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GLOW_BERRY_JUICE.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.GLOW_BERRY_JUICE.source().get(), HALF_BUCKET))
                 .addIngredient(Items.GLOW_BERRIES, 4)
                 .unlockedByAnyIngredient(Items.GLOW_BERRIES)
                 .build(output);
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.source().get(), HALF_BUCKET))
                 .addIngredient(HHCommonTags.CROPS_PEANUT, 4)
                 .unlockedByAnyIngredient(HHModItems.PEANUT.get())
                 .build(output, "cooking_oil_from_peanuts");
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), HALF_BOTTLE))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.source().get(), HALF_BOTTLE))
                 .addIngredient(Tags.Items.SEEDS, 8)
                 .unlockedByAnyIngredient()
                 .build(output, "cooking_oil_from_seeds");
 
-        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.get(), BUCKET))
+        StompingBasinRecipeBuilder.stomping(new FluidStack(HHModFluids.COOKING_OIL.source().get(), BUCKET))
                 .addIngredient(HHCommonTags.VEGETABLES_CORN, 4)
                 .unlockedByAnyIngredient(HHModItems.CORN.get())
                 .build(output, "cooking_oil_from_corn");

@@ -27,6 +27,7 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.fluids.FluidType;
 
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = "hearthandharvest", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -120,360 +121,39 @@ public class ClientEventHandler {
                 HHModItems.CRATE.get()
         );
 
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_COOKING_OIL   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cooking_oil_still");
-            private static final ResourceLocation FLOWING_COOKING_OIL = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cooking_oil_flow");
+        registerFluidTextures(event, "cooking_oil", HHModFluids.COOKING_OIL.type().get());
+        registerFluidTextures(event, "sap", HHModFluids.SAP.type().get());
+        registerFluidTextures(event, "syrup", HHModFluids.SYRUP.type().get());
+        registerFluidTextures(event, "apple_cider", HHModFluids.APPLE_CIDER.type().get());
+        registerFluidTextures(event, "hard_cider", HHModFluids.HARD_CIDER.type().get());
+        registerFluidTextures(event, "root_beer", HHModFluids.ROOT_BEER.type().get());
+        registerFluidTextures(event, "mead", HHModFluids.MEAD.type().get());
+        registerFluidTextures(event, "moonshine", HHModFluids.MOONSHINE.type().get());
+        registerFluidTextures(event, "blueberry_juice", HHModFluids.BLUEBERRY_JUICE.type().get());
+        registerFluidTextures(event, "cherry_juice", HHModFluids.CHERRY_JUICE.type().get());
+        registerFluidTextures(event, "green_grape_juice",HHModFluids.GREEN_GRAPE_JUICE.type().get());
+        registerFluidTextures(event, "raspberry_juice", HHModFluids.RASPBERRY_JUICE.type().get());
+        registerFluidTextures(event, "red_grape_juice", HHModFluids.RED_GRAPE_JUICE.type().get());
+        registerFluidTextures(event, "sweet_berry_juice",HHModFluids.SWEET_BERRY_JUICE.type().get());
+        registerFluidTextures(event, "melon_juice", HHModFluids.MELON_JUICE.type().get());
+        registerFluidTextures(event, "glow_berry_juice", HHModFluids.GLOW_BERRY_JUICE.type().get());
+        registerFluidTextures(event, "blueberry_wine", HHModFluids.BLUEBERRY_WINE.type().get());
+        registerFluidTextures(event, "cherry_wine", HHModFluids.CHERRY_WINE.type().get());
+        registerFluidTextures(event, "green_grape_wine", HHModFluids.GREEN_GRAPE_WINE.type().get());
+        registerFluidTextures(event, "raspberry_wine", HHModFluids.RASPBERRY_WINE.type().get());
+        registerFluidTextures(event, "red_grape_wine", HHModFluids.RED_GRAPE_WINE.type().get());
+        registerFluidTextures(event, "sweet_berry_wine", HHModFluids.SWEET_BERRY_WINE.type().get());
+        registerFluidTextures(event, "glow_berry_wine", HHModFluids.GLOW_BERRY_WINE.type().get());
+        registerFluidTextures(event, "melon_wine", HHModFluids.MELON_WINE.type().get());
+    }
 
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_COOKING_OIL;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_COOKING_OIL;
-            }
-        }, HHModFluids.COOKING_OIL_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_SAP   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sap_still");
-            private static final ResourceLocation FLOWING_SAP = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sap_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_SAP;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_SAP;
-            }
-        }, HHModFluids.SAP_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_SYRUP   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/syrup_still");
-            private static final ResourceLocation FLOWING_SYRUP = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/syrup_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_SYRUP;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_SYRUP;
-            }
-        }, HHModFluids.SYRUP_TYPE.get());
+    private static void registerFluidTextures(RegisterClientExtensionsEvent event, String name, FluidType type) {
+        ResourceLocation still   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/" + name + "_still");
+        ResourceLocation flowing = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/" + name + "_flow");
 
         event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_BLUEBERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/blueberry_wine_still");
-            private static final ResourceLocation FLOWING_BLUEBERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/blueberry_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_BLUEBERRY_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_BLUEBERRY_WINE;
-            }
-        }, HHModFluids.BLUEBERRY_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_CHERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_wine_still");
-            private static final ResourceLocation FLOWING_CHERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_CHERRY_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_CHERRY_WINE;
-            }
-        }, HHModFluids.CHERRY_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_GREEN_GRAPE_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/green_grape_wine_still");
-            private static final ResourceLocation FLOWING_GREEN_GRAPE_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/green_grape_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_GREEN_GRAPE_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_GREEN_GRAPE_WINE;
-            }
-        }, HHModFluids.GREEN_GRAPE_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_RASPBERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/raspberry_wine_still");
-            private static final ResourceLocation FLOWING_RASPBERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/raspberry_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_RASPBERRY_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_RASPBERRY_WINE;
-            }
-        }, HHModFluids.RASPBERRY_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_RED_GRAPE_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/red_grape_wine_still");
-            private static final ResourceLocation FLOWING_RED_GRAPE_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/red_grape_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_RED_GRAPE_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_RED_GRAPE_WINE;
-            }
-        }, HHModFluids.RED_GRAPE_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_SWEET_BERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_still");
-            private static final ResourceLocation FLOWING_SWEET_BERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_SWEET_BERRY_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_SWEET_BERRY_WINE;
-            }
-        }, HHModFluids.SWEET_BERRY_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_GLOW_BERRY_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_wine_still");
-            private static final ResourceLocation FLOWING_GLOW_BERRY_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_GLOW_BERRY_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_GLOW_BERRY_WINE;
-            }
-        }, HHModFluids.GLOW_BERRY_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_MELON_WINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_wine_still");
-            private static final ResourceLocation FLOWING_MELON_WINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_wine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_MELON_WINE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_MELON_WINE;
-            }
-        }, HHModFluids.MELON_WINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_MEAD   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_still");
-            private static final ResourceLocation FLOWING_MEAD = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/mead_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_MEAD;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_MEAD;
-            }
-        }, HHModFluids.MEAD_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_ROOT_BEER   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/root_beer_still");
-            private static final ResourceLocation FLOWING_ROOT_BEER = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/root_beer_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_ROOT_BEER;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_ROOT_BEER;
-            }
-        }, HHModFluids.ROOT_BEER_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_HARD_CIDER   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/hard_cider_still");
-            private static final ResourceLocation FLOWING_HARD_CIDER = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/hard_cider_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_HARD_CIDER;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_HARD_CIDER;
-            }
-        }, HHModFluids.HARD_CIDER_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_MOONSHINE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_still");
-            private static final ResourceLocation FLOWING_MOONSHINE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/moonshine_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {return STILL_MOONSHINE;}
-
-            @Override
-            public ResourceLocation getFlowingTexture() {return FLOWING_MOONSHINE;}
-        }, HHModFluids.MOONSHINE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_BLUEBERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/blueberry_juice_still");
-            private static final ResourceLocation FLOWING_BLUEBERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/blueberry_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_BLUEBERRY_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_BLUEBERRY_JUICE;
-            }
-        }, HHModFluids.BLUEBERRY_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_CHERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_juice_still");
-            private static final ResourceLocation FLOWING_CHERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/cherry_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_CHERRY_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_CHERRY_JUICE;
-            }
-        }, HHModFluids.CHERRY_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_GREEN_GRAPE_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/green_grape_juice_still");
-            private static final ResourceLocation FLOWING_GREEN_GRAPE_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/green_grape_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_GREEN_GRAPE_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_GREEN_GRAPE_JUICE;
-            }
-        }, HHModFluids.GREEN_GRAPE_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_RASPBERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/raspberry_juice_still");
-            private static final ResourceLocation FLOWING_RASPBERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/raspberry_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_RASPBERRY_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_RASPBERRY_JUICE;
-            }
-        }, HHModFluids.RASPBERRY_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_RED_GRAPE_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/red_grape_juice_still");
-            private static final ResourceLocation FLOWING_RED_GRAPE_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/red_grape_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_RED_GRAPE_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_RED_GRAPE_JUICE;
-            }
-        }, HHModFluids.RED_GRAPE_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_SWEET_BERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_juice_still");
-            private static final ResourceLocation FLOWING_SWEET_BERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/sweet_berry_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_SWEET_BERRY_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_SWEET_BERRY_JUICE;
-            }
-        }, HHModFluids.SWEET_BERRY_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_MELON_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_juice_still");
-            private static final ResourceLocation FLOWING_MELON_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/melon_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_MELON_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_MELON_JUICE;
-            }
-        }, HHModFluids.MELON_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_GLOW_BERRY_JUICE   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_juice_still");
-            private static final ResourceLocation FLOWING_GLOW_BERRY_JUICE = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/glow_berry_juice_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_GLOW_BERRY_JUICE;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_GLOW_BERRY_JUICE;
-            }
-        }, HHModFluids.GLOW_BERRY_JUICE_TYPE.get());
-
-        event.registerFluidType(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation STILL_APPLE_CIDER   = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/apple_cider_still");
-            private static final ResourceLocation FLOWING_APPLE_CIDER = ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "block/apple_cider_flow");
-
-            @Override
-            public ResourceLocation getStillTexture() {
-                return STILL_APPLE_CIDER;
-            }
-
-            @Override
-            public ResourceLocation getFlowingTexture() {
-                return FLOWING_APPLE_CIDER;
-            }
-        }, HHModFluids.APPLE_CIDER_TYPE.get());
+            @Override public ResourceLocation getStillTexture()   { return still; }
+            @Override public ResourceLocation getFlowingTexture() { return flowing; }
+        }, type);
     }
 }

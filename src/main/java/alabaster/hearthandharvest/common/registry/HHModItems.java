@@ -351,29 +351,29 @@ public class HHModItems {
 
     // Drinks
     public static final Supplier<Item> MEAD = registerWithTab("mead",
-            () -> new WineBottleItem(HHModFluids.MEAD::get, drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.MEAD.source()::get, drinkItem().food(HHFoodValues.MEAD).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> HARD_CIDER = registerWithTab("hard_cider",
-            () -> new WineBottleItem(HHModFluids.HARD_CIDER::get, drinkItem().food(HHFoodValues.HARD_CIDER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.HARD_CIDER.source()::get, drinkItem().food(HHFoodValues.HARD_CIDER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> ROOT_BEER = registerWithTab("root_beer",
-            () -> new WineBottleItem(HHModFluids.ROOT_BEER::get, drinkItem().food(HHFoodValues.ROOT_BEER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.ROOT_BEER.source()::get, drinkItem().food(HHFoodValues.ROOT_BEER).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> BLUEBERRY_WINE = registerWithTab("blueberry_wine",
-            () -> new WineBottleItem(HHModFluids.BLUEBERRY_WINE::get, drinkItem().food(HHFoodValues.BLUEBERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.BLUEBERRY_WINE.source()::get, drinkItem().food(HHFoodValues.BLUEBERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> CHERRY_WINE = registerWithTab("cherry_wine",
-            () -> new WineBottleItem(HHModFluids.CHERRY_WINE::get, drinkItem().food(HHFoodValues.CHERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.CHERRY_WINE.source()::get, drinkItem().food(HHFoodValues.CHERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> RASPBERRY_WINE = registerWithTab("raspberry_wine",
-            () -> new WineBottleItem(HHModFluids.RASPBERRY_WINE::get, drinkItem().food(HHFoodValues.RASPBERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.RASPBERRY_WINE.source()::get, drinkItem().food(HHFoodValues.RASPBERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> RED_GRAPE_WINE = registerWithTab("red_grape_wine",
-            () -> new WineBottleItem(HHModFluids.RED_GRAPE_WINE::get, drinkItem().food(HHFoodValues.RED_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.RED_GRAPE_WINE.source()::get, drinkItem().food(HHFoodValues.RED_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GREEN_GRAPE_WINE = registerWithTab("green_grape_wine",
-            () -> new WineBottleItem(HHModFluids.GREEN_GRAPE_WINE::get, drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.GREEN_GRAPE_WINE.source()::get, drinkItem().food(HHFoodValues.GREEN_GRAPE_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> SWEET_BERRY_WINE = registerWithTab("sweet_berry_wine",
-            () -> new WineBottleItem(HHModFluids.SWEET_BERRY_WINE::get, drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.SWEET_BERRY_WINE.source()::get, drinkItem().food(HHFoodValues.SWEET_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> GLOW_BERRY_WINE = registerWithTab("glow_berry_wine",
-            () -> new WineBottleItem(HHModFluids.GLOW_BERRY_WINE::get, drinkItem().food(HHFoodValues.GLOW_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.GLOW_BERRY_WINE.source()::get, drinkItem().food(HHFoodValues.GLOW_BERRY_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> MELON_WINE = registerWithTab("melon_wine",
-            () -> new WineBottleItem(HHModFluids.MELON_WINE::get, drinkItem().food(HHFoodValues.MELON_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.MELON_WINE.source()::get, drinkItem().food(HHFoodValues.MELON_WINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> MOONSHINE = registerWithTab("moonshine",
-            () -> new WineBottleItem(HHModFluids.MOONSHINE::get, drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
+            () -> new WineBottleItem(HHModFluids.MOONSHINE.source()::get, drinkItem().food(HHFoodValues.MOONSHINE).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, false));
     public static final Supplier<Item> CHOCOLATE_MILK_BOTTLE = registerWithTab("chocolate_milk_bottle",
             () -> new MilkBottleItem(drinkItem().food(HHFoodValues.CHOCOLATE_MILK_BOTTLE)));
     public static final Supplier<Item> GOAT_MILK_BOTTLE = registerWithTab("goat_milk_bottle",
@@ -473,7 +473,7 @@ public class HHModItems {
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",
-            () -> new BucketItem(HHModFluids.SAP.get(), basicItem().craftRemainder(Items.BUCKET).stacksTo(1)));
+            () -> new BucketItem(HHModFluids.SAP.source().get(), basicItem().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final Supplier<Item> SYRUP_BOTTLE = registerWithTab("syrup_bottle",
             () -> new Item(basicItem().craftRemainder(Items.GLASS_BOTTLE)));
     public static final Supplier<Item> MAPLE_COOKIE = registerWithTab("maple_cookie",
@@ -507,7 +507,7 @@ public class HHModItems {
 
     // Ingredients
     public static final Supplier<Item> COOKING_OIL = registerWithTab("cooking_oil",
-            () -> new BucketItem(HHModFluids.COOKING_OIL.get(), basicItem().craftRemainder(Items.GLASS_BOTTLE)));
+            () -> new BucketItem(HHModFluids.COOKING_OIL.source().get(), basicItem().craftRemainder(Items.GLASS_BOTTLE)));
     public static final Supplier<Item> BUTTER = registerWithTab("butter",
             () -> new Item(basicItem()));
     public static final Supplier<Item> FLOUR = registerWithTab("flour",
