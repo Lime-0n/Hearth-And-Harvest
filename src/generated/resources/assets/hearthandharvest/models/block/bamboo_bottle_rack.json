@@ -3,6 +3,6 @@
   "textures": {
     "rack_side": "hearthandharvest:block/bamboo_half_cabinet_side",
     "rack_top": "hearthandharvest:block/bamboo_half_cabinet_top",
-    "side": "hearthandharvest:block/bamboo_cabinet_side"
+    "side": "farmersdelight:block/bamboo_cabinet_side"
   }
 }

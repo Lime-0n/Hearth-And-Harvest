@@ -3,6 +3,6 @@
   "textures": {
     "rack_side": "hearthandharvest:block/crimson_half_cabinet_side",
     "rack_top": "hearthandharvest:block/crimson_half_cabinet_top",
-    "side": "hearthandharvest:block/crimson_cabinet_side"
+    "side": "farmersdelight:block/crimson_cabinet_side"
   }
 }

@@ -3,6 +3,6 @@
   "textures": {
     "rack_side": "hearthandharvest:block/dark_oak_half_cabinet_side",
     "rack_top": "hearthandharvest:block/dark_oak_half_cabinet_top",
-    "side": "hearthandharvest:block/dark_oak_cabinet_side"
+    "side": "farmersdelight:block/dark_oak_cabinet_side"
   }
 }

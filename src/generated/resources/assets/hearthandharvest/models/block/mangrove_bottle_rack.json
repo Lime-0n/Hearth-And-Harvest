@@ -3,6 +3,6 @@
   "textures": {
     "rack_side": "hearthandharvest:block/mangrove_half_cabinet_side",
     "rack_top": "hearthandharvest:block/mangrove_half_cabinet_top",
-    "side": "hearthandharvest:block/mangrove_cabinet_side"
+    "side": "farmersdelight:block/mangrove_cabinet_side"
   }
 }

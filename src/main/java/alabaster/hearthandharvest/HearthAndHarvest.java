@@ -16,6 +16,7 @@ import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import alabaster.hearthandharvest.common.worldgen.VillageCrops;
 import alabaster.hearthandharvest.integration.ThirstWasTakenCompat;
+import alabaster.hearthandharvest.integration.everycompat.EveryCompatPlugin;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Mob;
@@ -35,6 +36,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
@@ -87,6 +89,14 @@ public class HearthAndHarvest {
 
         if (ModList.get().isLoaded("thirst")) {
             NeoForge.EVENT_BUS.register(ThirstWasTakenCompat.class);
+        }
+
+        if (ModList.get().isLoaded("everycomp")) {
+            try {
+                EveryCompatPlugin.register(MODID);
+            } catch (Exception e) {
+                LOGGER.debug("Every Compat registration skipped: {}", e.getMessage());
+            }
         }
 
         modEventBus.addListener(this::commonSetup);

@@ -279,16 +279,20 @@ public class BlockStates extends BlockStateProvider {
                 }, ignored);
     }
 
+    public ResourceLocation fdBlock(String path) {
+        return ResourceLocation.fromNamespaceAndPath("farmersdelight", "block/" + path);
+    }
+
     public void halfCabinetBlock(Block block, String woodType) {
         this.horizontalBlock(block, state -> {
             String suffix = state.getValue(CabinetBlock.OPEN) ? "_open" : "";
             String modelName = woodType + "_half_cabinet" + suffix;
             return models().getBuilder(modelName)
                     .parent(existingModel("half_cabinet"))
-                    .texture("front", resourceBlock(woodType + "_cabinet_front" + suffix))
-                    .texture("side", resourceBlock(woodType + "_half_cabinet_side"))
-                    .texture("top", resourceBlock(woodType + "_half_cabinet_top"))
-                    .texture("back", resourceBlock(woodType + "_cabinet_side"));
+                    .texture("front",  fdBlock(woodType + "_cabinet_front" + suffix))
+                    .texture("side",   resourceBlock(woodType + "_half_cabinet_side"))
+                    .texture("top",    resourceBlock(woodType + "_half_cabinet_top"))
+                    .texture("back",   fdBlock(woodType + "_cabinet_side"));
         });
     }
 
@@ -297,9 +301,9 @@ public class BlockStates extends BlockStateProvider {
             String modelName = woodType + "_bottle_rack";
             return models().getBuilder(modelName)
                     .parent(existingModel("bottle_rack"))
-                    .texture("side", resourceBlock(woodType + "_cabinet_side"))
+                    .texture("side",      fdBlock(woodType + "_cabinet_side"))
                     .texture("rack_side", resourceBlock(woodType + "_half_cabinet_side"))
-                    .texture("rack_top", resourceBlock(woodType + "_half_cabinet_top"));
+                    .texture("rack_top",  resourceBlock(woodType + "_half_cabinet_top"));
         });
     }
 

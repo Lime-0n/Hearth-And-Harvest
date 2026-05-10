@@ -90,6 +90,8 @@ neoForge {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--existing-mod', 'farmersdelight'
+            programArguments.addAll '--existing-mod', 'crabbersdelight'
         }
 
         // applies to all the run configs above
@@ -147,6 +149,12 @@ dependencies {
 
     // Thirst Was Taken
     compileOnly "curse.maven:thirst-was-taken-679270:${twt_version}"
+
+    // Every Compat
+    compileOnly "curse.maven:selene-499980:${moonlight_version}"
+    runtimeOnly "curse.maven:selene-499980:${moonlight_version}"
+    compileOnly "curse.maven:every-compat-628539:${ec_version}"
+    runtimeOnly "curse.maven:every-compat-628539:${ec_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

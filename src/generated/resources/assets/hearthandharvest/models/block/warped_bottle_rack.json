@@ -3,6 +3,6 @@
   "textures": {
     "rack_side": "hearthandharvest:block/warped_half_cabinet_side",
     "rack_top": "hearthandharvest:block/warped_half_cabinet_top",
-    "side": "hearthandharvest:block/warped_cabinet_side"
+    "side": "farmersdelight:block/warped_cabinet_side"
   }
 }
