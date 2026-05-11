@@ -3,6 +3,8 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -12,6 +14,11 @@ import java.util.function.Supplier;
 public class HHModCreativeTabs
 {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HearthAndHarvest.MODID);
+
+    public static final ResourceKey<CreativeModeTab> BLOCKS_TAB_KEY = ResourceKey.create(
+            Registries.CREATIVE_MODE_TAB,
+            ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, HearthAndHarvest.MODID + "_blocks")
+    );
 
     public static final Supplier<CreativeModeTab> TAB_HEARTH_AND_HARVEST = CREATIVE_TABS.register(HearthAndHarvest.MODID,
             () -> CreativeModeTab.builder()

@@ -87,6 +87,9 @@
   "hearthandharvest.subtitles.bottle.insert": "Bottle Inserted",
   "hearthandharvest.subtitles.bottle.remove": "Bottle Removed",
 
+  "block_type.hearthandharvest.half_cabinet": "%s Half Cabinet",
+  "block_type.hearthandharvest.bottle_rack": "%s Bottle Rack",
+
   "item.hearthandharvest.flint_cleaver": "Flint Cleaver",
   "item.hearthandharvest.iron_cleaver": "Iron Cleaver",
   "item.hearthandharvest.golden_cleaver": "Golden Cleaver",

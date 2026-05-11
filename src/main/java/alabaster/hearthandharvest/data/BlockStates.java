@@ -287,21 +287,26 @@ public class BlockStates extends BlockStateProvider {
         this.horizontalBlock(block, state -> {
             String suffix = state.getValue(CabinetBlock.OPEN) ? "_open" : "";
             String modelName = woodType + "_half_cabinet" + suffix;
+            boolean isOak = woodType.equals("oak");
             return models().getBuilder(modelName)
                     .parent(existingModel("half_cabinet"))
-                    .texture("front",  fdBlock(woodType + "_cabinet_front" + suffix))
-                    .texture("side",   resourceBlock(woodType + "_half_cabinet_side"))
-                    .texture("top",    resourceBlock(woodType + "_half_cabinet_top"))
-                    .texture("back",   fdBlock(woodType + "_cabinet_side"));
+                    .texture("front", isOak ? resourceBlock(woodType + "_cabinet_front" + suffix)
+                            : fdBlock(woodType + "_cabinet_front" + suffix))
+                    .texture("side",  resourceBlock(woodType + "_half_cabinet_side"))
+                    .texture("top",   resourceBlock(woodType + "_half_cabinet_top"))
+                    .texture("back",  isOak ? resourceBlock(woodType + "_cabinet_side")
+                            : fdBlock(woodType + "_cabinet_side"));
         });
     }
 
     public void bottleRackBlock(Block block, String woodType) {
         this.horizontalBlock(block, state -> {
             String modelName = woodType + "_bottle_rack";
+            boolean isOak = woodType.equals("oak");
             return models().getBuilder(modelName)
                     .parent(existingModel("bottle_rack"))
-                    .texture("side",      fdBlock(woodType + "_cabinet_side"))
+                    .texture("side",     isOak ? resourceBlock(woodType + "_cabinet_side")
+                            : fdBlock(woodType + "_cabinet_side"))
                     .texture("rack_side", resourceBlock(woodType + "_half_cabinet_side"))
                     .texture("rack_top",  resourceBlock(woodType + "_half_cabinet_top"));
         });

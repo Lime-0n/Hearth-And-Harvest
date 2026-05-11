@@ -24,10 +24,13 @@ public class CrowSpawnRules {
             return false;
 
         int radius = Config.CROW_SPAWN_RADIUS.get();
+        int cropRequirement = Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
+
+        if (cropRequirement == 0) return false;
 
         if (hasNearbyGeneratedNest(level, pos, radius)) return true;
 
-        return countNearbyCrops(level, pos, radius) >= Config.CROW_SPAWN_NUMBER_OF_CROPS.get();
+        return countNearbyCrops(level, pos, radius) >= cropRequirement;
     }
 
     private static boolean hasNearbyGeneratedNest(ServerLevelAccessor level, BlockPos pos, int radius) {
