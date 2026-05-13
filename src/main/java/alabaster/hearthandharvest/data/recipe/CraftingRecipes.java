@@ -634,7 +634,13 @@ public class CraftingRecipes
                 .pattern("##")
                 .define('#', HHModItems.SALT.get())
                 .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT.get()))
-                .save(output);
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "salt_block_from_salt"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_BLOCK.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.SALT_DRIP.get())
+                .unlockedBy("has_salt_drip", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_DRIP.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "salt_block_from_salt_drips"));
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_STAIRS.get(), 4)
                 .pattern("#  ")
                 .pattern("## ")

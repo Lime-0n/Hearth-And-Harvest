@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_salt": {
+    "has_salt_drip": {
       "conditions": {
         "items": [
           {
-            "items": "hearthandharvest:salt"
+            "items": "hearthandharvest:salt_drip"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "hearthandharvest:salt_block"
+        "recipe": "hearthandharvest:salt_block_from_salt_drips"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_salt"
+      "has_salt_drip"
     ]
   ],
   "rewards": {
     "recipes": [
-      "hearthandharvest:salt_block"
+      "hearthandharvest:salt_block_from_salt_drips"
     ]
   }
 }

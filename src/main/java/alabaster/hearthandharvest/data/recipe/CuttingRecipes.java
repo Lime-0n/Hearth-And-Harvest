@@ -91,6 +91,9 @@ public class CuttingRecipes {
     private static void miningBlocks(RecipeOutput output) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.SALT_BLOCK.get()), new ItemAbilityIngredient(ItemAbilities.PICKAXE_DIG).toVanilla(), HHModItems.SALT.get(), 4)
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "salt_from_salt_block"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.SALT_DRIP.get()), new ItemAbilityIngredient(ItemAbilities.PICKAXE_DIG).toVanilla(), HHModItems.SALT.get(), 1)
+                .addResultWithChance(HHModItems.SALT.get(), 0.5F, 1)
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "salt_from_salt_drip"));
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CHARCOAL_BLOCK.get()), new ItemAbilityIngredient(ItemAbilities.PICKAXE_DIG).toVanilla(), Items.CHARCOAL, 9)
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_charcoal_block"));
     }

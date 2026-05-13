@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -13,9 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
-                      { "enchantment": "minecraft:silk_touch", "levels": { "min": 1 } }
-                    ]
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
               ],
@@ -23,21 +30,42 @@
             },
             {
               "type": "minecraft:item",
-              "name": "hearthandharvest:salt",
               "functions": [
                 {
-                  "function": "minecraft:set_count",
-                  "count": { "type": "minecraft:uniform", "min": 2, "max": 4 }
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 4,
+                    "min": 2
+                  },
+                  "function": "minecraft:set_count"
                 },
                 {
-                  "function": "minecraft:looting_enchant",
-                  "count": { "min": 0, "max": 1 }
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
+                },
+                {
+                  "function": "minecraft:limit_count",
+                  "limit": {
+                    "max": 4,
+                    "min": 1
+                  }
+                },
+                {
+                  "function": "minecraft:explosion_decay"
                 }
-              ]
+              ],
+              "name": "hearthandharvest:salt"
             }
           ]
         }
-      ]
+      ],
+      "rolls": 1
     }
-  ]
+  ],
+  "random_sequence": "minecraft:blocks/salt_block"
 }
