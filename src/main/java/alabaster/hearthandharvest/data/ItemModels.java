@@ -32,6 +32,7 @@ public class ItemModels extends ItemModelProvider
         // Specific Cases
         items.remove(HHModItems.CROW_SPAWN_EGG.get());
         items.remove(HHModItems.SCARECROW.get());
+        items.remove(HHModItems.SALT_DRIP.get());
 
         // Workstations
         blockBasedModel(HHModItems.TREE_TAPPER.get(),"");
@@ -163,6 +164,11 @@ public class ItemModels extends ItemModelProvider
         items.remove(HHModItems.PICKLED_ONIONS.get());
         items.remove(HHModItems.PICKLED_POTATOES.get());
 
+        wallItemModel(HHModItems.SALT_WALL.get(), resourceBlock("salt_block"));
+        items.remove(HHModItems.SALT_WALL.get());
+        wallItemModel(HHModItems.POLISHED_SALT_WALL.get(), resourceBlock("polished_salt_block"));
+        items.remove(HHModItems.POLISHED_SALT_WALL.get());
+
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
                 HHModItems.TRELLIS.get(),
@@ -249,6 +255,11 @@ public class ItemModels extends ItemModelProvider
 
     public ResourceLocation resourceItem(String path) {
         return ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "item/" + path);
+    }
+
+    public void wallItemModel(Item item, ResourceLocation wallTexture) {
+        withExistingParent(itemName(item), "minecraft:block/wall_inventory")
+                .texture("wall", wallTexture);
     }
 
     @SafeVarargs

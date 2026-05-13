@@ -7,6 +7,7 @@ import alabaster.hearthandharvest.common.block.trellis.TrellisMaterial;
 import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import alabaster.hearthandharvest.common.block.trellis.GrapeTrellisBlock;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,7 @@ import vectorwing.farmersdelight.common.block.PieBlock;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class BlockStates extends BlockStateProvider {
 
@@ -151,6 +153,20 @@ public class BlockStates extends BlockStateProvider {
 
         this.trellisBlock();
         this.grapeTrellisBlock();
+
+        this.simpleBlock(HHModBlocks.SALT_BLOCK.get());
+        this.simpleBlock(HHModBlocks.POLISHED_SALT_BLOCK.get());
+
+        this.stairsBlock((StairBlock) HHModBlocks.SALT_STAIRS.get(), resourceBlock("salt_block"));
+        this.stairsBlock((StairBlock) HHModBlocks.POLISHED_SALT_STAIRS.get(), resourceBlock("polished_salt_block"));
+
+        this.slabBlock((SlabBlock) HHModBlocks.SALT_SLAB.get(), resourceBlock("salt_block"), resourceBlock("salt_block"));
+        this.slabBlock((SlabBlock) HHModBlocks.POLISHED_SALT_SLAB.get(), resourceBlock("polished_salt_block"), resourceBlock("polished_salt_block"));
+
+        this.wallBlock((WallBlock) HHModBlocks.SALT_WALL.get(), resourceBlock("salt_block"));
+        this.wallBlock((WallBlock) HHModBlocks.POLISHED_SALT_WALL.get(), resourceBlock("polished_salt_block"));
+
+        this.saltDripBlock(HHModBlocks.SALT_DRIP.get());
     }
 
     // --- Trellis ---
@@ -365,5 +381,26 @@ public class BlockStates extends BlockStateProvider {
 
     public void jarBlock(Block block, String jarType) {
         simpleBlock(block, models().getExistingFile(resourceBlock(jarType)));
+    }
+
+    public void saltDripBlock(Block block) {
+        Map<SaltDripBlock.SaltDripThickness, ModelFile> dripModels =
+                new java.util.EnumMap<>(SaltDripBlock.SaltDripThickness.class);
+
+        for (SaltDripBlock.SaltDripThickness thickness : SaltDripBlock.SaltDripThickness.values()) {
+            String name = "salt_drip_" + thickness.getSerializedName();
+            dripModels.put(thickness,
+                    models().cross(name, resourceBlock(name)).renderType("cutout"));
+        }
+
+        getVariantBuilder(block).forAllStates(state -> {
+            SaltDripBlock.SaltDripThickness thickness = state.getValue(SaltDripBlock.THICKNESS);
+            Direction tipDir = state.getValue(SaltDripBlock.TIP_DIRECTION);
+
+            return ConfiguredModel.builder()
+                    .modelFile(dripModels.get(thickness))
+                    .rotationX(tipDir == Direction.UP ? 180 : 0)
+                    .build();
+        });
     }
 }

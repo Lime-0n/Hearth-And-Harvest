@@ -26,6 +26,9 @@ public class CuttingRecipes {
 
         // Axe
         strippingBlocks(output);
+
+        // Pickaxe
+        miningBlocks(output);
     }
 
     private static void cuttingFoods(RecipeOutput output) {
@@ -83,5 +86,12 @@ public class CuttingRecipes {
     private static void strippingBlocks(RecipeOutput output) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.BAMBOO_TRELLIS.get()), new ItemAbilityIngredient(ItemAbilities.AXE_DIG).toVanilla(), HHModItems.STRIPPED_BAMBOO_TRELLIS.get())
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "stripped_bamboo_trellis"));
+    }
+
+    private static void miningBlocks(RecipeOutput output) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.SALT_BLOCK.get()), new ItemAbilityIngredient(ItemAbilities.PICKAXE_DIG).toVanilla(), HHModItems.SALT.get(), 4)
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "salt_from_salt_block"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(HHModItems.CHARCOAL_BLOCK.get()), new ItemAbilityIngredient(ItemAbilities.PICKAXE_DIG).toVanilla(), Items.CHARCOAL, 9)
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_charcoal_block"));
     }
 }

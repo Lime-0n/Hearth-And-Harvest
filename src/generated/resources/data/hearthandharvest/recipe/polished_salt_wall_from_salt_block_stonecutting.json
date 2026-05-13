@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "hearthandharvest:salt_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "hearthandharvest:polished_salt_wall"
+  }
+}

@@ -245,6 +245,17 @@
   "item.hearthandharvest.syrup_bottle": "Syrup Bottle",
   "item.hearthandharvest.maple_cookie": "Maple Cookie",
 
+  "item.hearthandharvest.salt": "Salt",
+  "block.hearthandharvest.salt_block": "Salt Block",
+  "block.hearthandharvest.polished_salt_block": "Polished Salt Block",
+  "block.hearthandharvest.salt_slab": "Salt Slab",
+  "block.hearthandharvest.polished_salt_slab": "Polished Salt Slab",
+  "block.hearthandharvest.salt_wall": "Salt Wall",
+  "block.hearthandharvest.polished_salt_wall": "Polished Salt Wall",
+  "block.hearthandharvest.salt_stairs": "Salt Stairs",
+  "block.hearthandharvest.polished_salt_stairs": "Polished Salt Stairs",
+  "block.hearthandharvest.salt_drip": "Salt Drip",
+
   "item.hearthandharvest.cooking_oil": "Cooking Oil",
 
   "block.hearthandharvest.unripe_cheddar_cheese_wheel": "Unripe Cheddar Cheese Wheel",
@@ -260,7 +271,6 @@
   "item.hearthandharvest.skewered_sausage": "Skewered Sausage",
   "item.hearthandharvest.jerky": "Jerky",
   "item.hearthandharvest.batter": "Batter",
-  "item.hearthandharvest.salt": "Salt",
   "item.hearthandharvest.butter": "Butter",
   "item.hearthandharvest.raisins": "Raisins",
   "item.hearthandharvest.sunflower_seeds": "Sunflower Seeds",

@@ -41,6 +41,18 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.DIAMOND_CLEAVER.get())
                 .add(HHModItems.GOLDEN_CLEAVER.get())
                 .add(HHModItems.NETHERITE_CLEAVER.get());
+        
+        tag(ItemTags.STAIRS)
+                .add(HHModItems.SALT_STAIRS.get())
+                .add(HHModItems.POLISHED_SALT_STAIRS.get());
+
+        tag(ItemTags.SLABS)
+                .add(HHModItems.SALT_SLAB.get())
+                .add(HHModItems.POLISHED_SALT_SLAB.get());
+
+        tag(ItemTags.WALLS)
+                .add(HHModItems.SALT_WALL.get())
+                .add(HHModItems.POLISHED_SALT_WALL.get());
 
         tag(ItemTags.PIGLIN_LOVED)
                 .add(HHModItems.GOLDEN_CLEAVER.get());

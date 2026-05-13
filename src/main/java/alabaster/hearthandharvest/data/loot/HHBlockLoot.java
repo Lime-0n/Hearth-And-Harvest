@@ -98,6 +98,11 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropPottedContents(HHModBlocks.POTTED_PURPLE_MUM.get());
         dropPottedContents(HHModBlocks.POTTED_PINK_MUM.get());
         dropPottedContents(HHModBlocks.POTTED_WHITE_MUM.get());
+        dropSelf(HHModBlocks.POLISHED_SALT_BLOCK.get());
+        dropSelf(HHModBlocks.SALT_STAIRS.get());
+        dropSelf(HHModBlocks.POLISHED_SALT_STAIRS.get());
+        dropSelf(HHModBlocks.SALT_WALL.get());
+        dropSelf(HHModBlocks.POLISHED_SALT_WALL.get());
     }
 
     @Override

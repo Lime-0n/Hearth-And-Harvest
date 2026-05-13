@@ -154,7 +154,6 @@ public class HHModBlocks {
                 ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
     }
 
-
         // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
@@ -205,17 +204,6 @@ public class HHModBlocks {
             () -> new RaspberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
     public static final Supplier<Block> BLUEBERRY_BUSH = BLOCKS.register("blueberry_bush",
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
-
-    // Migration stubs — remove after one further version
-    public static final Supplier<Block> RED_GRAPE_CROP = BLOCKS.register("red_grapes",
-            () -> new MigrationBlock(TrellisPlant.RED_GRAPE));
-    public static final Supplier<Block> GREEN_GRAPE_CROP = BLOCKS.register("green_grapes",
-            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE));
-    public static final Supplier<Block> BUDDING_RED_GRAPE_CROP = BLOCKS.register("budding_red_grapes",
-            () -> new MigrationBlock(TrellisPlant.RED_GRAPE));
-    public static final Supplier<Block> BUDDING_GREEN_GRAPE_CROP = BLOCKS.register("budding_green_grapes",
-            () -> new MigrationBlock(TrellisPlant.GREEN_GRAPE));
-
     public static final Supplier<Block> PEANUT_CROP = BLOCKS.register("peanuts",
             () -> new PeanutBlock(Block.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final Supplier<Block> COTTON_CROP = BLOCKS.register("cotton",
@@ -347,4 +335,29 @@ public class HHModBlocks {
             () -> new UnripeCheeseWheelBlock(HHModBlocks.GOAT_CHEESE_WHEEL, Block.Properties.ofFullCopy(Blocks.CAKE)));
     public static final Supplier<Block> GOAT_CHEESE_WHEEL = BLOCKS.register("goat_cheese_wheel",
             () -> new CheeseWheelBlock(HHModItems.GOAT_CHEESE_SLICE, Block.Properties.ofFullCopy(Blocks.CAKE)));
+
+    // Salt Blocks
+    public static final Supplier<Block> SALT_BLOCK = BLOCKS.register("salt_block",
+            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.GRAVEL).randomTicks()));
+    public static final Supplier<Block> POLISHED_SALT_BLOCK = BLOCKS.register("polished_salt_block",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.5F, 3.0F).sound(SoundType.POLISHED_TUFF)));
+    
+    public static final Supplier<Block> SALT_STAIRS = BLOCKS.register("salt_stairs",
+            () -> new StairBlock(HHModBlocks.SALT_BLOCK.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.SALT_BLOCK.get())));
+    public static final Supplier<Block> POLISHED_SALT_STAIRS = BLOCKS.register("polished_salt_stairs",
+            () -> new StairBlock(HHModBlocks.POLISHED_SALT_BLOCK.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.POLISHED_SALT_BLOCK.get())));
+
+    public static final Supplier<Block> SALT_SLAB = BLOCKS.register("salt_slab",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.SALT_BLOCK.get())));
+    public static final Supplier<Block> POLISHED_SALT_SLAB = BLOCKS.register("polished_salt_slab",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_SALT_BLOCK.get())));
+    
+    public static final Supplier<Block> SALT_WALL = BLOCKS.register("salt_wall",
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.SALT_BLOCK.get())));
+    public static final Supplier<Block> POLISHED_SALT_WALL = BLOCKS.register("polished_salt_wall",
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_SALT_BLOCK.get())));
+
+    public static final Supplier<Block> SALT_DRIP = BLOCKS.register("salt_drip",
+            () -> new SaltDripBlock(BlockBehaviour.Properties.of()
+                    .strength(1.0f, 1.0f).sound(SoundType.GRAVEL).noOcclusion()));
 }

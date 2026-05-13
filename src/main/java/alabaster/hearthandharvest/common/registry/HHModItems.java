@@ -339,6 +339,31 @@ public class HHModItems {
     public static final Supplier<Item> STICK_BRUSH = registerWithBlockTab("stick_brush",
             () -> new FuelBlockItem(HHModBlocks.STICK_BRUSH.get(), basicItem(), 1000));
 
+    // Salt
+// Salt Blocks
+    public static final Supplier<Item> SALT_BLOCK = registerWithBlockTab("salt_block",
+            () -> new BlockItem(HHModBlocks.SALT_BLOCK.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_SALT_BLOCK = registerWithBlockTab("polished_salt_block",
+            () -> new BlockItem(HHModBlocks.POLISHED_SALT_BLOCK.get(), basicItem()));
+
+    public static final Supplier<Item> SALT_STAIRS = registerWithBlockTab("salt_stairs",
+            () -> new BlockItem(HHModBlocks.SALT_STAIRS.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_SALT_STAIRS = registerWithBlockTab("polished_salt_stairs",
+            () -> new BlockItem(HHModBlocks.POLISHED_SALT_STAIRS.get(), basicItem()));
+
+    public static final Supplier<Item> SALT_SLAB = registerWithBlockTab("salt_slab",
+            () -> new BlockItem(HHModBlocks.SALT_SLAB.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_SALT_SLAB = registerWithBlockTab("polished_salt_slab",
+            () -> new BlockItem(HHModBlocks.POLISHED_SALT_SLAB.get(), basicItem()));
+
+    public static final Supplier<Item> SALT_WALL = registerWithBlockTab("salt_wall",
+            () -> new BlockItem(HHModBlocks.SALT_WALL.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_SALT_WALL = registerWithBlockTab("polished_salt_wall",
+            () -> new BlockItem(HHModBlocks.POLISHED_SALT_WALL.get(), basicItem()));
+
+    public static final Supplier<Item> SALT_DRIP = registerWithBlockTab("salt_drip",
+            () -> new BlockItem(HHModBlocks.SALT_DRIP.get(), basicItem()));
+
     // Half-Slab Crates
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));

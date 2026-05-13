@@ -628,6 +628,62 @@ public class CraftingRecipes
                 .define('#', Items.WARPED_FUNGUS)
                 .unlockedBy("has_warped_fungus", InventoryChangeTrigger.TriggerInstance.hasItems(Items.WARPED_FUNGUS))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_BLOCK.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.SALT.get())
+                .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', HHModItems.SALT_BLOCK.get())
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_BLOCK.get()))
+                .group("stairs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_SLAB.get(), 6)
+                .pattern("###")
+                .define('#', HHModItems.SALT_BLOCK.get())
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_BLOCK.get()))
+                .group("slabs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_WALL.get(), 6)
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.SALT_BLOCK.get())
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_BLOCK.get()))
+                .group("walls")
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_SALT_BLOCK.get(), 4)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.SALT_BLOCK.get())
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.SALT_BLOCK.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_SALT_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_SALT_BLOCK.get())
+                .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
+                .group("stairs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_SALT_SLAB.get(), 6)
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_SALT_BLOCK.get())
+                .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
+                .group("slabs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_SALT_WALL.get(), 6)
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_SALT_BLOCK.get())
+                .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
+                .group("walls")
+                .save(output);
     }
 
     private static void recipesTools(RecipeOutput output) {

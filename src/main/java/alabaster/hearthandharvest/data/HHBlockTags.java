@@ -130,6 +130,21 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.STOMPING_BASIN.get()
         );
 
+        tag(BlockTags.SLABS).add(
+                HHModBlocks.SALT_SLAB.get(),
+                HHModBlocks.POLISHED_SALT_SLAB.get()
+        );
+
+        tag(BlockTags.STAIRS).add(
+                HHModBlocks.SALT_STAIRS.get(),
+                HHModBlocks.POLISHED_SALT_STAIRS.get()
+        );
+
+        tag(BlockTags.WALLS).add(
+                HHModBlocks.SALT_WALL.get(),
+                HHModBlocks.POLISHED_SALT_WALL.get()
+        );
+
     }
 
     protected void registerCommonTags() {
@@ -313,7 +328,16 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COUNTER.get(),
                 HHModBlocks.DRAWER.get(),
                 HHModBlocks.BASIN.get(),
-                HHModBlocks.CHARCOAL_BLOCK.get()
+                HHModBlocks.CHARCOAL_BLOCK.get(),
+                HHModBlocks.SALT_BLOCK.get(),
+                HHModBlocks.POLISHED_SALT_BLOCK.get(),
+                HHModBlocks.SALT_STAIRS.get(),
+                HHModBlocks.POLISHED_SALT_STAIRS.get(),
+                HHModBlocks.SALT_SLAB.get(),
+                HHModBlocks.POLISHED_SALT_SLAB.get(),
+                HHModBlocks.SALT_WALL.get(),
+                HHModBlocks.POLISHED_SALT_WALL.get(),
+                HHModBlocks.SALT_DRIP.get()
         );
 
         tag(BlockTags.MINEABLE_WITH_HOE).add(
