@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.worldgen;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
+import alabaster.hearthandharvest.common.registry.HHModFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -11,6 +12,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
@@ -22,7 +24,8 @@ public class HHConfiguredFeatures {
 
     public static final List<ResourceKey<ConfiguredFeature<?, ?>>> ALL_2COLOR_KEYS = new ArrayList<>();
 
-    // 8 colors in order
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SALT_CAVE = registerKey("salt_cave");
+
     private static final String[] COLOR_NAMES = {
             "yellow", "orange", "red", "blue",
             "light_blue", "purple", "pink", "white"
@@ -30,7 +33,11 @@ public class HHConfiguredFeatures {
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
-        // Corresponding blockstates
+        // Salt cave pocket feature
+        context.register(SALT_CAVE, new ConfiguredFeature<>(
+                HHModFeatures.SALT_CAVE.get(), NoneFeatureConfiguration.INSTANCE));
+
+        // Mum flower 2-color combinations
         List<BlockState> COLORS = List.of(
                 HHModBlocks.YELLOW_MUM.get().defaultBlockState(),
                 HHModBlocks.ORANGE_MUM.get().defaultBlockState(),
@@ -42,7 +49,6 @@ public class HHConfiguredFeatures {
                 HHModBlocks.WHITE_MUM.get().defaultBlockState()
         );
 
-        // Generate all unordered 2-color combinations (8 choose 2 = 28)
         for (int i = 0; i < COLORS.size(); i++) {
             for (int j = i + 1; j < COLORS.size(); j++) {
                 BlockState color1 = COLORS.get(i);
@@ -52,17 +58,13 @@ public class HHConfiguredFeatures {
                 ResourceKey<ConfiguredFeature<?, ?>> key = registerKey(name);
                 ALL_2COLOR_KEYS.add(key);
 
-                // Create weighted provider (equal weights)
                 SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
                 builder.add(color1, 1);
                 builder.add(color2, 1);
                 WeightedStateProvider weightedProvider = new WeightedStateProvider(builder);
 
-                // Patch config (cluster of 10–12 mums)
                 RandomPatchConfiguration config = new RandomPatchConfiguration(
-                        50, // tries per patch
-                        4,  // xz spread
-                        3,  // y spread
+                        50, 4, 3,
                         PlacementUtils.onlyWhenEmpty(
                                 Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(weightedProvider))
@@ -76,7 +78,6 @@ public class HHConfiguredFeatures {
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(
                 Registries.CONFIGURED_FEATURE,
-                ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, name)
-        );
+                ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, name));
     }
 }

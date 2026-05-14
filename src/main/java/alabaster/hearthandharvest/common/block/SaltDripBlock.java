@@ -3,11 +3,13 @@ package alabaster.hearthandharvest.common.block;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -77,6 +79,16 @@ public class SaltDripBlock extends Block implements Fallable {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TIP_DIRECTION, THICKNESS);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Direction tipDir = context.getClickedFace() == Direction.UP
+                ? Direction.UP
+                : Direction.DOWN;
+        return this.defaultBlockState()
+                .setValue(TIP_DIRECTION, tipDir)
+                .setValue(THICKNESS, SaltDripThickness.SMALL);
     }
 
     @Override
@@ -175,6 +187,32 @@ public class SaltDripBlock extends Block implements Fallable {
         return isSaltDrip(state)
                 && state.getValue(TIP_DIRECTION) == tipDir
                 && state.getValue(THICKNESS) == SaltDripThickness.LARGE;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        SaltDripThickness thickness = state.getValue(THICKNESS);
+        Direction tipDir = state.getValue(TIP_DIRECTION);
+
+        if (tipDir == Direction.DOWN && isDrippingTip(thickness) && random.nextFloat() < 0.04f) {
+            double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.15;
+            double y = pos.getY() + 0.06;
+            double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.15;
+            level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER, x, y, z, 0, 0, 0);
+        }
+
+        if (random.nextFloat() < 0.09f) {
+            double x = pos.getX() + 0.2 + random.nextDouble() * 0.6;
+            double y = pos.getY() + 0.2 + random.nextDouble() * 0.6;
+            double z = pos.getZ() + 0.2 + random.nextDouble() * 0.6;
+            level.addParticle(ParticleTypes.WHITE_ASH, x, y, z, 0, random.nextDouble() * 0.02, 0);
+        }
+    }
+
+    private static boolean isDrippingTip(SaltDripThickness t) {
+        return t == SaltDripThickness.LARGE
+                || t == SaltDripThickness.POINT
+                || t == SaltDripThickness.POINT_MERGE;
     }
 
     public enum SaltDripThickness implements StringRepresentable {

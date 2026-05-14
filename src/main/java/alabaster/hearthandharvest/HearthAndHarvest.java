@@ -80,6 +80,7 @@ public class HearthAndHarvest {
         HHModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         HHModStructurePieces.STRUCTURE_PIECES.register(modEventBus);
         HHModStructures.STRUCTURES.register(modEventBus);
+        HHModFeatures.FEATURES.register(modEventBus);
         HHModSounds.SOUNDS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(EffectEvents.class);
