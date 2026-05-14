@@ -104,6 +104,7 @@ public class HHBlockLoot extends BlockLootSubProvider {
         dropSelf(HHModBlocks.SALT_WALL.get());
         dropSelf(HHModBlocks.POLISHED_SALT_WALL.get());
         dropSelf(HHModBlocks.SALT_DRIP.get());
+        dropSelf(HHModBlocks.SALT_LAMP.get());
     }
 
     @Override

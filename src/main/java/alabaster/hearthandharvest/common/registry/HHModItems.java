@@ -364,6 +364,9 @@ public class HHModItems {
     public static final Supplier<Item> SALT_DRIP = registerWithBlockTab("salt_drip",
             () -> new BlockItem(HHModBlocks.SALT_DRIP.get(), basicItem()));
 
+    public static final Supplier<Item> SALT_LAMP = registerWithBlockTab("salt_lamp",
+            () -> new BlockItem(HHModBlocks.SALT_LAMP.get(), basicItem()));
+
     // Half-Slab Crates
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
             () -> new BlockItem(HHModBlocks.BROWN_MUSHROOM_CRATE.get(), basicItem()));

@@ -690,6 +690,16 @@ public class CraftingRecipes
                 .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
                 .group("walls")
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.SALT_LAMP.get(), 1)
+                .pattern("S")
+                .pattern("G")
+                .pattern("B")
+                .define('S', HHModItems.POLISHED_SALT_BLOCK.get())
+                .define('G', Items.GLOWSTONE)
+                .define('B', ItemTags.BUTTONS)
+                .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
+                .group("walls")
+                .save(output);
     }
 
     private static void recipesTools(RecipeOutput output) {

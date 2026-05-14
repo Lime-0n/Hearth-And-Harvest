@@ -360,4 +360,10 @@ public class HHModBlocks {
     public static final Supplier<Block> SALT_DRIP = BLOCKS.register("salt_drip",
             () -> new SaltDripBlock(BlockBehaviour.Properties.of()
                     .strength(1.0f, 1.0f).sound(SoundType.GRAVEL).noOcclusion()));
+
+    public static final Supplier<Block> SALT_LAMP = BLOCKS.register("salt_lamp",
+            () -> new SaltLampBlock(Block.Properties.of()
+                    .strength(1.5f).sound(SoundType.STONE)
+                    .lightLevel(state -> state.getValue(SaltLampBlock.LIT) ? 15 : 0)
+                    .noOcclusion()));
 }
