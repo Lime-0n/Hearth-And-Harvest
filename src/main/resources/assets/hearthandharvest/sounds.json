@@ -71,5 +71,15 @@
         "type": "event"
       }
     ]
+  },
+
+  "blocks.salt_lamp.switch": {
+    "subtitle": "hearthandharvest.subtitles.salt_lamp.switch",
+    "sounds": [
+      {
+        "name": "block.lever.click",
+        "type": "event"
+      }
+    ]
   }
 }

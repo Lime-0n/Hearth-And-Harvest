@@ -37,4 +37,8 @@ public class HHModSounds {
 
     public static final Supplier<SoundEvent> STOMPING_BASIN_STOMP = SOUNDS.register("blocks.stomping_basin.stomp",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.stomping_basin.stomp")));
+
+    // Misc
+    public static final Supplier<SoundEvent> SALT_LAMP_SWITCH = SOUNDS.register("blocks.salt_lamp.switch",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.salt_lamp.switch")));
 }

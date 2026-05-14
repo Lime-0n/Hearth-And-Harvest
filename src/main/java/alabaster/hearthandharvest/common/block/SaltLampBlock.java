@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.block;
 
+import alabaster.hearthandharvest.common.registry.HHModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,7 +46,7 @@ public class SaltLampBlock extends Block {
 
         boolean lit = !state.getValue(LIT);
         level.setBlockAndUpdate(pos, state.setValue(LIT, lit));
-        level.playSound(null, pos, lit ? SoundEvents.LEVER_CLICK : SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
+        level.playSound(null, pos, lit ? HHModSounds.SALT_LAMP_SWITCH.get() : HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
         return InteractionResult.CONSUME;
     }
 
@@ -59,6 +60,6 @@ public class SaltLampBlock extends Block {
         if (nowPowered) newState = newState.cycle(LIT);
         boolean lit = !state.getValue(LIT);
         level.setBlockAndUpdate(pos, newState);
-        level.playSound(null, pos, lit ? SoundEvents.LEVER_CLICK : SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
+        level.playSound(null, pos, lit ? HHModSounds.SALT_LAMP_SWITCH.get() : HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
     }
 }
