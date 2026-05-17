@@ -150,13 +150,13 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
 
         FluidStack tankFluid = jugBlockEntity.getFluidTank().getFluid();
 
-        // Glass bottle filling via reverse fluid registry lookup
+        // Fill a glass bottle from the jug
         if (stack.is(Items.GLASS_BOTTLE) && !tankFluid.isEmpty() && tankFluid.getAmount() >= BOTTLE_VOLUME) {
             Item bottleResult = HHModFluids.FLUIDS.getEntries().stream()
                     .map(h -> h.get())
                     .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
                     .filter(f -> f.isSame(tankFluid.getFluid()))
-                    .map(f -> ((HHFluidType) f).getBucket())
+                    .map(f -> ((HHFluidType) f).getBottle())
                     .filter(item -> item != Items.AIR && item != null)
                     .findFirst()
                     .orElse(null);
@@ -179,10 +179,9 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             }
         }
 
-        // Fill held container FROM the jug (buckets, mod containers, etc.)
+        // Fill a held container (bucket, mod container) from the jug
         FluidActionResult fillResult = FluidUtil.tryFillContainer(
                 stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
-
         if (fillResult.isSuccess()) {
             ItemStack filled = fillResult.getResult();
             stack.shrink(1);
@@ -198,10 +197,35 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             return ItemInteractionResult.CONSUME;
         }
 
-        // Empty held container INTO the jug (buckets, mod containers, etc.)
+        HHFluidType hhBottleFluid = HHModFluids.FLUIDS.getEntries().stream()
+                .map(h -> h.get())
+                .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
+                .map(f -> (HHFluidType) f)
+                .filter(f -> f.getBottle() != null && f.getBottle() != Items.AIR && stack.is(f.getBottle()))
+                .findFirst()
+                .orElse(null);
+
+        if (hhBottleFluid != null) {
+            FluidStack bottleContents = new FluidStack(hhBottleFluid, BOTTLE_VOLUME);
+            int accepted = jugBlockEntity.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.SIMULATE);
+            if (accepted == BOTTLE_VOLUME) {
+                jugBlockEntity.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.EXECUTE);
+                stack.shrink(1);
+                ItemStack glass = new ItemStack(Items.GLASS_BOTTLE);
+                if (stack.isEmpty()) {
+                    player.setItemInHand(hand, glass);
+                } else if (!player.addItem(glass)) {
+                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), glass));
+                }
+                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                blockEntity.setChanged();
+                return ItemInteractionResult.CONSUME;
+            }
+        }
+
+        // Empty a held container (bucket, mod container) into the jug
         FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
                 stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
-
         if (emptyResult.isSuccess()) {
             ItemStack emptied = emptyResult.getResult();
             stack.shrink(1);

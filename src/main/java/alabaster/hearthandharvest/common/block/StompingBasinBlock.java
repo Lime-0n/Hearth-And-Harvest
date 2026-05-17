@@ -113,7 +113,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
         int dx = pos.getX() - controllerPos.getX();
         int dz = pos.getZ() - controllerPos.getZ();
 
-        if (dx == 0 && dz == 0) return SHAPE_NW; // controller = NW
+        if (dx == 0 && dz == 0) return SHAPE_NW;
         if (dx == 1 && dz == 0) return SHAPE_NE;
         if (dx == 0 && dz == 1) return SHAPE_SW;
         if (dx == 1 && dz == 1) return SHAPE_SE;
@@ -180,6 +180,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
         ItemStack inHand = player.getItemInHand(hand);
         FluidStack tankFluid = basin.getFluidTank().getFluid();
 
+        // Fill a glass bottle from the basin
         if (inHand.is(Items.GLASS_BOTTLE) && !tankFluid.isEmpty() && tankFluid.getAmount() >= BOTTLE_VOLUME) {
             ItemStack result = null;
 
@@ -191,7 +192,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
                         .map(h -> h.get())
                         .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
                         .filter(f -> f.isSame(tankFluid.getFluid()))
-                        .map(f -> ((HHFluidType) f).getBucket())
+                        .map(f -> ((HHFluidType) f).getBottle())
                         .filter(item -> item != Items.AIR && item != null)
                         .findFirst()
                         .orElse(null);
@@ -211,6 +212,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
+        // Fill a held container (bucket, mod container) from the basin
         FluidActionResult fillResult = FluidUtil.tryFillContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (fillResult.isSuccess()) {
@@ -225,6 +227,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
             return ItemInteractionResult.CONSUME;
         }
 
+        // Pour a water bottle into the basin
         if (isWaterBottle(inHand)) {
             int accepted = basin.getFluidTank().fill(new FluidStack(Fluids.WATER, BOTTLE_VOLUME), IFluidHandler.FluidAction.SIMULATE);
             if (accepted == BOTTLE_VOLUME) {
@@ -241,6 +244,32 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
+        HHFluidType hhBottleFluid = HHModFluids.FLUIDS.getEntries().stream()
+                .map(h -> h.get())
+                .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
+                .map(f -> (HHFluidType) f)
+                .filter(f -> f.getBottle() != null && f.getBottle() != Items.AIR && inHand.is(f.getBottle()))
+                .findFirst()
+                .orElse(null);
+
+        if (hhBottleFluid != null) {
+            FluidStack bottleContents = new FluidStack(hhBottleFluid, BOTTLE_VOLUME);
+            int accepted = basin.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.SIMULATE);
+            if (accepted == BOTTLE_VOLUME) {
+                basin.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.EXECUTE);
+                inHand.shrink(1);
+                ItemStack glass = new ItemStack(Items.GLASS_BOTTLE);
+                if (inHand.isEmpty()) {
+                    player.setItemInHand(hand, glass);
+                } else if (!player.addItem(glass)) {
+                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), glass));
+                }
+                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
+                return ItemInteractionResult.CONSUME;
+            }
+        }
+
+        // Empty a held container (bucket, mod container) into the basin
         FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (emptyResult.isSuccess()) {
@@ -255,6 +284,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
             return ItemInteractionResult.CONSUME;
         }
 
+        // Insert items for stomping
         if (!inHand.isEmpty()) {
             ItemStack remainder = basin.insertItem(inHand.copy());
             if (remainder.getCount() < inHand.getCount()) {
