@@ -1,0 +1,7 @@
+{
+  "type": "hearthandharvest:salting",
+  "category": "misc",
+  "salt": {
+    "item": "hearthandharvest:salt"
+  }
+}

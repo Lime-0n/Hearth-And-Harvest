@@ -24,5 +24,7 @@ public class HHModRecipeSerializers {
     public static final Supplier<RecipeSerializer<?>> SHAPELESS_REMAINDER =
             RECIPE_SERIALIZERS.register("shapeless_remainder", ShapelessRemainderRecipe.Serializer::new);
 
+    public static final Supplier<RecipeSerializer<?>> SALTING =
+            RECIPE_SERIALIZERS.register("salting", SaltingRecipe.Serializer::new);
 
 }

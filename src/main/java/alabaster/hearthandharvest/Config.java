@@ -21,6 +21,8 @@ public class Config {
     public static ModConfigSpec.BooleanValue GENERATE_CORN_MAZES;
     public static ModConfigSpec.BooleanValue DISABLE_BOTTLE_MILKING;
     public static ModConfigSpec.BooleanValue TRELLIS_PLACEMENT_PREVIEW;
+    public static ModConfigSpec.DoubleValue SALTED_HUNGER_BONUS;
+    public static ModConfigSpec.DoubleValue SALTED_SATURATION_PENALTY;
 
     public Config() {
     }
@@ -68,6 +70,16 @@ public class Config {
         TRELLIS_PLACEMENT_PREVIEW = COMMON_BUILDER
                 .comment("Whether a ghost preview of the trellis piece is shown before placing")
                 .define("trellisPlacementPreview", true);
+
+        SALTED_HUNGER_BONUS = COMMON_BUILDER
+                .comment("Multiplier applied to a food's nutrition value to determine bonus hunger granted when eating salted food.\n" +
+                        "For example, 0.2 means a food restoring 5 hunger gets +1 bonus hunger (20% of 5, minimum 1 for foods with less than 5 hunger).")
+                .defineInRange("saltedHungerBonus", 0.2D, 0.0D, 1.0D);
+
+        SALTED_SATURATION_PENALTY = COMMON_BUILDER
+                .comment("Fraction of the saturation granted by a food that is removed when eating salted food.\n" +
+                        "For example, 0.1 means 10% of the saturation normally given is taken away.")
+                .defineInRange("saltedSaturationPenalty", 0.1D, 0.0D, 1.0D);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

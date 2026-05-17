@@ -32,6 +32,7 @@ public class HHModTags {
     public static final TagKey<Item> CROW_SHINY_ITEMS = modItemTag("crow_shiny_items");
     public static final TagKey<Block> CROW_EDIBLE_CROPS = modBlockTag("crow_edible_crops");
     public static final TagKey<Block> REPELS_CROWS = modBlockTag("repels_crows");
+    public static final TagKey<Block> SALT_BLOCKS = modBlockTag("salt_blocks");
 
     public static final TagKey<Biome> HAS_CROWS = modBiomeTag("has_crows");
 

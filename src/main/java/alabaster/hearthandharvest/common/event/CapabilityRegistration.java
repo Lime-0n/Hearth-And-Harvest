@@ -21,7 +21,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
-@EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = HearthAndHarvest.MODID)
 public class CapabilityRegistration {
 
     @SubscribeEvent
@@ -70,14 +70,13 @@ public class CapabilityRegistration {
                 HHModItems.JUG.get()
         );
 
-        // Register fluid capabilities per fluid item
         for (var fluidHolder : HHModFluids.FLUIDS.getEntries()) {
             Fluid fluid = fluidHolder.get();
             if (!(fluid instanceof HHFluidType hhFluid)) continue;
             if (!hhFluid.isSource(fluid.defaultFluidState())) continue;
 
-            Item bucketItem = hhFluid.getBucket();
-            if (bucketItem == Items.AIR || bucketItem == null) continue;
+            Item bottleItem = hhFluid.getBottle();
+            if (bottleItem == Items.AIR || bottleItem == null) continue;
 
             event.registerItem(
                     Capabilities.FluidHandler.ITEM,
@@ -113,7 +112,7 @@ public class CapabilityRegistration {
                             return new ItemStack(Items.GLASS_BOTTLE);
                         }
                     },
-                    bucketItem
+                    bottleItem
             );
         }
     }

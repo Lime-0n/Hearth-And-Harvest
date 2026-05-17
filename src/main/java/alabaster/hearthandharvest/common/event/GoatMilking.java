@@ -1,6 +1,7 @@
 package alabaster.hearthandharvest.common.event;
 
 import alabaster.hearthandharvest.Config;
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -14,7 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = HearthAndHarvest.MODID)
 public class GoatMilking {
 
     @SubscribeEvent

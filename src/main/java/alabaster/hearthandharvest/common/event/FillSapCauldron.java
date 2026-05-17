@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.SapCauldronBlock;
 import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import alabaster.hearthandharvest.common.registry.HHModItems;
@@ -16,7 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = HearthAndHarvest.MODID)
 public class FillSapCauldron {
 
     @SubscribeEvent

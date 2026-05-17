@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.Chicken;
@@ -11,7 +12,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = HearthAndHarvest.MODID)
 public class ChickenPlucking {
 
     @SubscribeEvent

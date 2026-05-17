@@ -340,7 +340,6 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.STICK_BRUSH.get(), basicItem(), 1000));
 
     // Salt
-// Salt Blocks
     public static final Supplier<Item> SALT_BLOCK = registerWithBlockTab("salt_block",
             () -> new BlockItem(HHModBlocks.SALT_BLOCK.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_BLOCK = registerWithBlockTab("polished_salt_block",

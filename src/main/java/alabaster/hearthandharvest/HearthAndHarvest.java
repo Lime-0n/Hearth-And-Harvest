@@ -36,7 +36,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
@@ -57,10 +56,13 @@ public class HearthAndHarvest {
 
         NeoForge.EVENT_BUS.register(this);
 
+        modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::flowerSetup);
+        modEventBus.addListener(this::registerAttributes);
+
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(this::registerScreens);
             modEventBus.addListener(this::registerRecipeBookCategories);
-            modEventBus.addListener(this::flowerSetup);
         }
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
@@ -99,8 +101,6 @@ public class HearthAndHarvest {
                 LOGGER.debug("Every Compat registration skipped: {}", e.getMessage());
             }
         }
-
-        modEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -109,19 +109,9 @@ public class HearthAndHarvest {
         });
     }
 
-    public void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(HHModMenuTypes.CASK_MENU.get(), CaskGUI::new);
-    }
-
-    public void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
-        RecipeCategories.init(event);
-    }
-
     private void flowerSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
-
-            // Register all 8 colored mums with the flower pot
             pot.addPlant(BuiltInRegistries.BLOCK.getKey(HHModBlocks.YELLOW_MUM.get()), HHModBlocks.POTTED_YELLOW_MUM);
             pot.addPlant(BuiltInRegistries.BLOCK.getKey(HHModBlocks.ORANGE_MUM.get()), HHModBlocks.POTTED_ORANGE_MUM);
             pot.addPlant(BuiltInRegistries.BLOCK.getKey(HHModBlocks.RED_MUM.get()), HHModBlocks.POTTED_RED_MUM);
@@ -131,6 +121,18 @@ public class HearthAndHarvest {
             pot.addPlant(BuiltInRegistries.BLOCK.getKey(HHModBlocks.PINK_MUM.get()), HHModBlocks.POTTED_PINK_MUM);
             pot.addPlant(BuiltInRegistries.BLOCK.getKey(HHModBlocks.WHITE_MUM.get()), HHModBlocks.POTTED_WHITE_MUM);
         });
+    }
+
+    private void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(HHModEntities.CROW.get(), CrowEntity.createAttributes().build());
+    }
+
+    public void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(HHModMenuTypes.CASK_MENU.get(), CaskGUI::new);
+    }
+
+    public void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
+        RecipeCategories.init(event);
     }
 
     @SubscribeEvent
@@ -147,16 +149,20 @@ public class HearthAndHarvest {
     }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
+    public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("Hearth and Harvest is starting");
     }
 
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = HearthAndHarvest.MODID)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(HHModEntities.CROW.get(), CrowRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(CrowModel.LAYER_LOCATION, CrowModel::createBodyLayer);
         }
 
         @SubscribeEvent
@@ -167,19 +173,6 @@ public class HearthAndHarvest {
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     CrowSpawnRules::canSpawnCrow,
                     RegisterSpawnPlacementsEvent.Operation.REPLACE);
-        }
-    }
-
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
-    public class ModEventBusEvents {
-        @SubscribeEvent
-        public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(CrowModel.LAYER_LOCATION, CrowModel::createBodyLayer);
-        }
-
-        @SubscribeEvent
-        public static void registerAttributes(EntityAttributeCreationEvent event) {
-            event.put(HHModEntities.CROW.get(), CrowEntity.createAttributes().build());
         }
     }
 }

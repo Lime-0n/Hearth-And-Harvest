@@ -58,6 +58,18 @@ public class HHBlockTags extends BlockTagsProvider {
                 Blocks.JACK_O_LANTERN,
                 HHModBlocks.SCARECROW.get()
         );
+
+        tag(HHModTags.SALT_BLOCKS).add(
+                HHModBlocks.SALT_BLOCK.get(),
+                HHModBlocks.POLISHED_SALT_BLOCK.get(),
+                HHModBlocks.SALT_SLAB.get(),
+                HHModBlocks.POLISHED_SALT_SLAB.get(),
+                HHModBlocks.SALT_STAIRS.get(),
+                HHModBlocks.POLISHED_SALT_STAIRS.get(),
+                HHModBlocks.SALT_WALL.get(),
+                HHModBlocks.POLISHED_SALT_WALL.get(),
+                HHModBlocks.SALT_DRIP.get()
+        );
     }
 
     protected void registerMinecraftTags() {

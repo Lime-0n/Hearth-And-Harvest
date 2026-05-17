@@ -57,6 +57,7 @@ public class JEIPlugin implements IModPlugin
                 .toList();
         registration.addRecipes(RecipeTypes.CRAFTING, craftingRecipeHolders);
 
+        registration.addIngredientInfo(new ItemStack(HHModItems.SALT.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.salt"));
         registration.addIngredientInfo(new ItemStack(HHModItems.WATERING_CAN.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.watering_can"));
         registration.addIngredientInfo(new ItemStack(HHModItems.TREE_TAPPER.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.tree_tapper"));
         registration.addIngredientInfo(new ItemStack(HHModItems.SAP_BUCKET.get()), VanillaTypes.ITEM_STACK, HHTextUtils.getTranslation("jei.info.sap_bucket"));

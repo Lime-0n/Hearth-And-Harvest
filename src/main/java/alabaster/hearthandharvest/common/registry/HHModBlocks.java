@@ -154,7 +154,7 @@ public class HHModBlocks {
                 ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
     }
 
-        // Wild Crops
+    // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
     public static final Supplier<Block> WILD_GREEN_GRAPES = BLOCKS.register("wild_green_grapes",

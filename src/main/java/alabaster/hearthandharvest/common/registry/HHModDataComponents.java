@@ -12,7 +12,6 @@ public class HHModDataComponents {
     public static final DeferredRegister.DataComponents DATA_COMPONENTS =
             DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "hearthandharvest");
 
-    // Register a component to hold the cook time (in seconds)
     public static final Supplier<DataComponentType<Integer>> COOK_TIME =
             DATA_COMPONENTS.registerComponentType("cook_time", builder ->
                     builder.persistent(Codec.INT)
@@ -29,5 +28,11 @@ public class HHModDataComponents {
             DATA_COMPONENTS.registerComponentType("bonemeal_level", builder ->
                     builder.persistent(Codec.INT)
                             .networkSynchronized(ByteBufCodecs.INT)
+            );
+
+    public static final Supplier<DataComponentType<Boolean>> SALTED =
+            DATA_COMPONENTS.registerComponentType("salted", builder ->
+                    builder.persistent(Codec.BOOL)
+                            .networkSynchronized(ByteBufCodecs.BOOL)
             );
 }

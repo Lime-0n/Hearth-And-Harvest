@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.event;
 
+import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.item.CleaverItem;
 import alabaster.hearthandharvest.common.tag.HHModTags;
 import net.minecraft.tags.ItemTags;
@@ -11,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 
-@EventBusSubscriber(modid = "hearthandharvest")
+@EventBusSubscriber(modid = HearthAndHarvest.MODID)
 public class CleaverEvents {
 
     private static final java.util.WeakHashMap<LivingEntity, Boolean> CLEAVER_KILL = new java.util.WeakHashMap<>();
