@@ -1,7 +1,6 @@
 package alabaster.hearthandharvest.common.fluid;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
@@ -11,38 +10,28 @@ import java.util.function.Supplier;
 public class HHFluidType extends BaseFlowingFluid {
     private final boolean source;
     private final Supplier<Item> bottleItem;
-    private final int amount;
 
-    public HHFluidType(BaseFlowingFluid.Properties properties, boolean source, Supplier<Item> bottleItem, int amount) {
+    public HHFluidType(BaseFlowingFluid.Properties properties, boolean source, Supplier<Item> bottleItem, int unused) {
         super(properties);
         this.source = source;
         this.bottleItem = bottleItem;
-        this.amount = amount;
     }
 
-    @Override
-    public Fluid getSource() {
+    @Override public Fluid getSource() {
         return source ? this : super.getSource();
     }
 
-    @Override
-    public Fluid getFlowing() {
+    @Override public Fluid getFlowing() {
         return source ? super.getFlowing() : this;
     }
 
-    @Override
-    public boolean isSource(FluidState fluidState) {
+    @Override public boolean isSource(FluidState fluidState) {
         return source;
     }
 
     @Override
     public int getAmount(FluidState fluidState) {
-        return source ? amount : 8;
-    }
-
-    @Override
-    public Item getBucket() {
-        return Items.AIR;
+        return source ? 8 : fluidState.getValue(LEVEL);
     }
 
     public Item getBottle() {

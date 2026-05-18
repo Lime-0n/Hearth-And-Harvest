@@ -3,10 +3,15 @@ package alabaster.hearthandharvest.common.event;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.MultiblockPart;
 import alabaster.hearthandharvest.common.block.entity.StompingBasinBlockEntity;
+import alabaster.hearthandharvest.common.fluid.HHFluidType;
 import alabaster.hearthandharvest.common.item.JugBlockItem;
 import alabaster.hearthandharvest.common.registry.HHModBlockEntities;
+import alabaster.hearthandharvest.common.registry.HHModFluids;
 import alabaster.hearthandharvest.common.registry.HHModItems;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -64,5 +69,57 @@ public class CapabilityRegistration {
                 },
                 HHModItems.JUG.get()
         );
+
+        // HH fluid bottle items — drain-only (fill returns 0).
+        // getBucket() returns Items.AIR so Create reads capacity from this capability
+        // instead of defaulting to 1000mB bucket logic, generating correct 250mB recipes.
+        // getContainer() returning a glass bottle lets Create infer the correct filling
+        // inverse: glass_bottle + 250mB → filled bottle.
+        for (var fluidHolder : HHModFluids.FLUIDS.getEntries()) {
+            Fluid fluid = fluidHolder.get();
+            if (!(fluid instanceof HHFluidType hhFluid)) continue;
+            if (!hhFluid.isSource(fluid.defaultFluidState())) continue;
+
+            Item bottleItem = hhFluid.getBottle();
+            if (bottleItem == Items.AIR || bottleItem == null) continue;
+
+            event.registerItem(
+                    Capabilities.FluidHandler.ITEM,
+                    (stack, ctx) -> new IFluidHandlerItem() {
+                        private static final int BOTTLE_VOLUME = 250;
+                        private final Fluid containedFluid = hhFluid;
+
+                        @Override public int getTanks() { return 1; }
+
+                        @Override
+                        public FluidStack getFluidInTank(int tank) {
+                            return new FluidStack(containedFluid, BOTTLE_VOLUME);
+                        }
+
+                        @Override public int getTankCapacity(int tank) { return BOTTLE_VOLUME; }
+                        @Override public boolean isFluidValid(int tank, FluidStack f) {
+                            return f.getFluid().isSame(containedFluid);
+                        }
+                        @Override public int fill(FluidStack resource, IFluidHandler.FluidAction action) { return 0; }
+
+                        @Override
+                        public FluidStack drain(FluidStack resource, IFluidHandler.FluidAction action) {
+                            if (!resource.getFluid().isSame(containedFluid)) return FluidStack.EMPTY;
+                            return drain(resource.getAmount(), action);
+                        }
+
+                        @Override
+                        public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
+                            return new FluidStack(containedFluid, Math.min(maxDrain, BOTTLE_VOLUME));
+                        }
+
+                        @Override
+                        public ItemStack getContainer() {
+                            return new ItemStack(Items.GLASS_BOTTLE);
+                        }
+                    },
+                    bottleItem
+            );
+        }
     }
 }

@@ -8,8 +8,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -22,17 +20,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -66,9 +61,9 @@ public class StompingBasinBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() { return CODEC; }
 
-    private static final VoxelShape FLOOR = box(0,  0,  0,  16, 1,  16);
-    private static final VoxelShape WEST_WALL = box(0,  1,  0,  2,  12, 16);
-    private static final VoxelShape EAST_WALL = box(14, 1,  0,  16, 12, 16);
+    private static final VoxelShape FLOOR      = box(0,  0,  0,  16, 1,  16);
+    private static final VoxelShape WEST_WALL  = box(0,  1,  0,  2,  12, 16);
+    private static final VoxelShape EAST_WALL  = box(14, 1,  0,  16, 12, 16);
     private static final VoxelShape NORTH_WALL = box(2,  1,  0,  14, 12, 2);
     private static final VoxelShape SOUTH_WALL = box(2,  1,  14, 14, 12, 16);
     public static final VoxelShape SHAPE = Shapes.or(FLOOR, WEST_WALL, EAST_WALL, NORTH_WALL, SOUTH_WALL);
@@ -212,7 +207,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
-        // Fill a held container (bucket, mod container) from the basin
+        // Fill a held container (buckets, HH bottles via capability, mod containers) from the basin
         FluidActionResult fillResult = FluidUtil.tryFillContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (fillResult.isSuccess()) {
@@ -244,32 +239,7 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
-        HHFluidType hhBottleFluid = HHModFluids.FLUIDS.getEntries().stream()
-                .map(h -> h.get())
-                .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
-                .map(f -> (HHFluidType) f)
-                .filter(f -> f.getBottle() != null && f.getBottle() != Items.AIR && inHand.is(f.getBottle()))
-                .findFirst()
-                .orElse(null);
-
-        if (hhBottleFluid != null) {
-            FluidStack bottleContents = new FluidStack(hhBottleFluid, BOTTLE_VOLUME);
-            int accepted = basin.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.SIMULATE);
-            if (accepted == BOTTLE_VOLUME) {
-                basin.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.EXECUTE);
-                inHand.shrink(1);
-                ItemStack glass = new ItemStack(Items.GLASS_BOTTLE);
-                if (inHand.isEmpty()) {
-                    player.setItemInHand(hand, glass);
-                } else if (!player.addItem(glass)) {
-                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), glass));
-                }
-                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0f, 1.0f);
-                return ItemInteractionResult.CONSUME;
-            }
-        }
-
-        // Empty a held container (bucket, mod container) into the basin
+        // Empty a held container (buckets, HH bottles via capability, mod containers) into the basin
         FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (emptyResult.isSuccess()) {

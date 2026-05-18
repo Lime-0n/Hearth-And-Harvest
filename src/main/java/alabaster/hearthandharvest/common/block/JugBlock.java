@@ -167,11 +167,8 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
                 ItemStack result = new ItemStack(bottleResult);
                 if (stack.isEmpty()) {
                     player.setItemInHand(hand, result);
-                } else {
-                    if (!player.addItem(result)) {
-                        level.addFreshEntity(new ItemEntity(
-                                level, player.getX(), player.getY(), player.getZ(), result));
-                    }
+                } else if (!player.addItem(result)) {
+                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), result));
                 }
                 level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 blockEntity.setChanged();
@@ -179,7 +176,7 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             }
         }
 
-        // Fill a held container (bucket, mod container) from the jug
+        // Fill a held container (buckets, HH bottles via capability, mod containers) from the jug
         FluidActionResult fillResult = FluidUtil.tryFillContainer(
                 stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (fillResult.isSuccess()) {
@@ -187,43 +184,15 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             stack.shrink(1);
             if (stack.isEmpty()) {
                 player.setItemInHand(hand, filled);
-            } else {
-                if (!player.addItem(filled)) {
-                    player.drop(filled, false);
-                }
+            } else if (!player.addItem(filled)) {
+                player.drop(filled, false);
             }
             level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
             blockEntity.setChanged();
             return ItemInteractionResult.CONSUME;
         }
 
-        HHFluidType hhBottleFluid = HHModFluids.FLUIDS.getEntries().stream()
-                .map(h -> h.get())
-                .filter(f -> f instanceof HHFluidType hhf && hhf.isSource(f.defaultFluidState()))
-                .map(f -> (HHFluidType) f)
-                .filter(f -> f.getBottle() != null && f.getBottle() != Items.AIR && stack.is(f.getBottle()))
-                .findFirst()
-                .orElse(null);
-
-        if (hhBottleFluid != null) {
-            FluidStack bottleContents = new FluidStack(hhBottleFluid, BOTTLE_VOLUME);
-            int accepted = jugBlockEntity.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.SIMULATE);
-            if (accepted == BOTTLE_VOLUME) {
-                jugBlockEntity.getFluidTank().fill(bottleContents, IFluidHandler.FluidAction.EXECUTE);
-                stack.shrink(1);
-                ItemStack glass = new ItemStack(Items.GLASS_BOTTLE);
-                if (stack.isEmpty()) {
-                    player.setItemInHand(hand, glass);
-                } else if (!player.addItem(glass)) {
-                    level.addFreshEntity(new ItemEntity(level, player.getX(), player.getY(), player.getZ(), glass));
-                }
-                level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-                blockEntity.setChanged();
-                return ItemInteractionResult.CONSUME;
-            }
-        }
-
-        // Empty a held container (bucket, mod container) into the jug
+        // Empty a held container (buckets, HH bottles via capability, mod containers) into the jug
         FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
                 stack, jugBlockEntity.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (emptyResult.isSuccess()) {
@@ -231,10 +200,8 @@ public class JugBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
             stack.shrink(1);
             if (stack.isEmpty()) {
                 player.setItemInHand(hand, emptied);
-            } else {
-                if (!player.addItem(emptied)) {
-                    player.drop(emptied, false);
-                }
+            } else if (!player.addItem(emptied)) {
+                player.drop(emptied, false);
             }
             level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
             blockEntity.setChanged();
