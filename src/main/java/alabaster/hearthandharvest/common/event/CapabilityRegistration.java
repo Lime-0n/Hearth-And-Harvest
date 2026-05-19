@@ -58,23 +58,41 @@ public class CapabilityRegistration {
                 (stack, ctx) -> new IFluidHandlerItem() {
                     private final FluidTank tank = JugBlockItem.readTankStatic(stack);
 
-                    @Override public int getTanks() { return 1; }
-                    @Override public FluidStack getFluidInTank(int t) { return tank.getFluid(); }
-                    @Override public int getTankCapacity(int t) { return JugBlockItem.JUG_CAPACITY; }
-                    @Override public boolean isFluidValid(int t, FluidStack f) { return true; }
-                    @Override public int fill(FluidStack r, IFluidHandler.FluidAction a) { return 0; }
-                    @Override public FluidStack drain(FluidStack r, IFluidHandler.FluidAction a) { return FluidStack.EMPTY; }
-                    @Override public FluidStack drain(int m, IFluidHandler.FluidAction a) { return FluidStack.EMPTY; }
-                    @Override public ItemStack getContainer() { return stack; }
+                    @Override public int getTanks() {
+                        return 1;
+                    }
+
+                    @Override public FluidStack getFluidInTank(int t) {
+                        return tank.getFluid();
+                    }
+
+                    @Override public int getTankCapacity(int t) {
+                        return JugBlockItem.JUG_CAPACITY;
+                    }
+
+                    @Override public boolean isFluidValid(int t, FluidStack f) {
+                        return true;
+                    }
+
+                    @Override public int fill(FluidStack r, IFluidHandler.FluidAction a) {
+                        return 0;
+                    }
+
+                    @Override public FluidStack drain(FluidStack r, IFluidHandler.FluidAction a) {
+                        return FluidStack.EMPTY;
+                    }
+
+                    @Override public FluidStack drain(int m, IFluidHandler.FluidAction a) {
+                        return FluidStack.EMPTY;
+                    }
+
+                    @Override public ItemStack getContainer() {
+                        return stack;
+                    }
                 },
                 HHModItems.JUG.get()
         );
 
-        // HH fluid bottle items — drain-only (fill returns 0).
-        // getBucket() returns Items.AIR so Create reads capacity from this capability
-        // instead of defaulting to 1000mB bucket logic, generating correct 250mB recipes.
-        // getContainer() returning a glass bottle lets Create infer the correct filling
-        // inverse: glass_bottle + 250mB → filled bottle.
         for (var fluidHolder : HHModFluids.FLUIDS.getEntries()) {
             Fluid fluid = fluidHolder.get();
             if (!(fluid instanceof HHFluidType hhFluid)) continue;
@@ -136,7 +154,8 @@ public class CapabilityRegistration {
                     public ItemStack getContainer() {
                         return container;
                     }
-                }, bottleItem
+                },
+                bottleItem
             );
         }
     }
