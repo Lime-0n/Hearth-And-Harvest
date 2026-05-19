@@ -18,17 +18,18 @@ public class CrowFleeEntityGoal extends Goal {
 
     private final CrowEntity crow;
     private final double speedModifier;
+    private final double fleeDist;
+    private final double stopDist;
 
     private LivingEntity threat;
     private Vec3 fleeTarget;
     private int scanCooldown = 0;
 
-    private static double FLEE_DISTANCE = Config.CROW_SCARE_RADIUS.get();
-    private static double STOP_DISTANCE = Config.CROW_SCARE_RADIUS.get() * 1.6;
-
     public CrowFleeEntityGoal(CrowEntity crow, double speedModifier) {
         this.crow = crow;
         this.speedModifier = speedModifier;
+        this.fleeDist = Config.CROW_SCARE_RADIUS.get();
+        this.stopDist = Config.CROW_SCARE_RADIUS.get() * 1.6;
         this.setFlags(EnumSet.of(Flag.MOVE));
     }
 
@@ -56,7 +57,7 @@ public class CrowFleeEntityGoal extends Goal {
         if (threat == null || crow.isTame())
             return false;
 
-        return crow.distanceToSqr(threat) < (STOP_DISTANCE * STOP_DISTANCE);
+        return crow.distanceToSqr(threat) < (stopDist * stopDist);
     }
 
     @Override
@@ -94,13 +95,13 @@ public class CrowFleeEntityGoal extends Goal {
 
     @Nullable
     private LivingEntity getNearestThreat() {
-        Player player = crow.level().getNearestPlayer(crow, FLEE_DISTANCE);
+        Player player = crow.level().getNearestPlayer(crow, fleeDist);
 
         if (player != null && (player.isCreative() || player.isSpectator())) {
             player = null;
         }
 
-        Villager villager = getNearestVillager(FLEE_DISTANCE);
+        Villager villager = getNearestVillager(fleeDist);
 
         if (player != null && villager != null) {
             double dp = crow.distanceToSqr(player);
