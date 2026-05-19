@@ -38,6 +38,7 @@ public class SapCauldronBlock extends AbstractCauldronBlock {
     public static final IntegerProperty SAP_LEVEL = IntegerProperty.create("sap_level", 0, 3);
     private static final VoxelShape INSIDE = box(2.0F, 4.0F, 2.0F, 14.0F, 16.0F, 14.0F);
     protected static final VoxelShape SHAPE;
+    public static final MapCodec<SapCauldronBlock> CODEC = simpleCodec(SapCauldronBlock::new);
 
     public SapCauldronBlock(Properties properties) {
         super(properties, CauldronInteraction.EMPTY);
@@ -63,7 +64,7 @@ public class SapCauldronBlock extends AbstractCauldronBlock {
 
     @Override
     protected MapCodec<? extends AbstractCauldronBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     protected double getContentHeight(BlockState state) {

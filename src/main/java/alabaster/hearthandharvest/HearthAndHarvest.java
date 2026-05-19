@@ -85,7 +85,6 @@ public class HearthAndHarvest {
         HHModFeatures.FEATURES.register(modEventBus);
         HHModSounds.SOUNDS.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(EffectEvents.class);
         NeoForge.EVENT_BUS.register(new PigLitters());
         NeoForge.EVENT_BUS.register(new RabbitLitters());
         NeoForge.EVENT_BUS.addListener(VillageCrops::addVillageCrops);

@@ -30,7 +30,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.fluids.FluidType;
 
 @SuppressWarnings("unused")
-@EventBusSubscriber(modid = HearthAndHarvest.MODID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventHandler {
     @SubscribeEvent
     public static void onRegisterColorHandlers(RegisterColorHandlersEvent.Block event) {

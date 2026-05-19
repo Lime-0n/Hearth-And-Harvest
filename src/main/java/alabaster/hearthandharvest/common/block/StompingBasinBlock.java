@@ -47,10 +47,8 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class StompingBasinBlock extends BaseEntityBlock {
 
@@ -125,8 +123,8 @@ public class StompingBasinBlock extends BaseEntityBlock {
 
     private static final float MIN_STOMP_FALL = 0.3f;
     private static final float RIM_Y = 12f / 16f;
-    private static final Set<UUID> AIRBORNE_IN_BASIN = new HashSet<>();
-    private static final java.util.Map<UUID, Double> AIRBORNE_PEAK_Y = new java.util.HashMap<>();
+    private static final Set<UUID> AIRBORNE_IN_BASIN = ConcurrentHashMap.newKeySet();
+    private static final Map<UUID, Double> AIRBORNE_PEAK_Y = new ConcurrentHashMap<>();
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {

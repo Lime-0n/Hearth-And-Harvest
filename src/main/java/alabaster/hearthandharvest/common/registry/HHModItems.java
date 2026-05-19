@@ -496,7 +496,7 @@ public class HHModItems {
     );
 
     public static final Supplier<Item> SMORE = registerWithTab("smore",
-            () -> new MarshmallowStickItem(foodItem(HHFoodValues.SMORE)));
+            () -> new ConsumableItem(foodItem(HHFoodValues.SMORE)));
 
     // Sap and Syrup
     public static final Supplier<Item> SAP_BUCKET = registerWithTab("sap_bucket",

@@ -312,11 +312,13 @@ public class StompingBasinBlockEntity extends BlockEntity  {
         this.controllerPos = null;
         this.itemSlotLimit = SOLO_ITEM_LIMIT;
 
-        ItemStack stack = itemHandler.getStackInSlot(0);
-        if (!stack.isEmpty() && stack.getCount() > SOLO_ITEM_LIMIT) {
-            ItemStack overflow = stack.copyWithCount(stack.getCount() - SOLO_ITEM_LIMIT);
-            itemHandler.setStackInSlot(0, stack.copyWithCount(SOLO_ITEM_LIMIT));
-            if (level != null) dropAtBasin(overflow);
+        for (int s = 0; s < itemHandler.getSlots(); s++) {
+            ItemStack stack = itemHandler.getStackInSlot(s);
+            if (!stack.isEmpty() && stack.getCount() > SOLO_ITEM_LIMIT) {
+                ItemStack overflow = stack.copyWithCount(stack.getCount() - SOLO_ITEM_LIMIT);
+                itemHandler.setStackInSlot(s, stack.copyWithCount(SOLO_ITEM_LIMIT));
+                if (level != null) dropAtBasin(overflow);
+            }
         }
 
         if (fluidTank.getFluidAmount() > SOLO_TANK_CAPACITY) {

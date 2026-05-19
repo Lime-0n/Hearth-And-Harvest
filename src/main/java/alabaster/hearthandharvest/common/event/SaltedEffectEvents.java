@@ -36,14 +36,14 @@ public class SaltedEffectEvents {
         player.getFoodData().setSaturation(newSaturation);
     }
 
-    @SubscribeEvent
-    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        var player = event.getEntity();
-        if (player.level().isClientSide()) return;
-        if (!player.getMainHandItem().isEmpty()) return;
-        if (!event.getLevel().getBlockState(event.getPos()).is(HHModTags.SALT_BLOCKS)) return;
-
-        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, true));
-        event.setCanceled(true);
-    }
+//    @SubscribeEvent
+//    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+//        var player = event.getEntity();
+//        if (player.level().isClientSide()) return;
+//        if (!player.getMainHandItem().isEmpty()) return;
+//        if (!event.getLevel().getBlockState(event.getPos()).is(HHModTags.SALT_BLOCKS)) return;
+//
+//        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, true));
+//        event.setCanceled(true);
+//    }
 }
