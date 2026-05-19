@@ -84,41 +84,59 @@ public class CapabilityRegistration {
             if (bottleItem == Items.AIR || bottleItem == null) continue;
 
             event.registerItem(
-                    Capabilities.FluidHandler.ITEM,
-                    (stack, ctx) -> new IFluidHandlerItem() {
-                        private static final int BOTTLE_VOLUME = 250;
-                        private final Fluid containedFluid = hhFluid;
+                Capabilities.FluidHandler.ITEM,
+                (stack, ctx) -> new IFluidHandlerItem() {
+                    private static final int BOTTLE_VOLUME = 250;
+                    private final Fluid containedFluid = hhFluid;
+                    private ItemStack container = stack.copy();
 
-                        @Override public int getTanks() { return 1; }
+                    @Override
+                    public int getTanks() {
+                        return 1;
+                    }
 
-                        @Override
-                        public FluidStack getFluidInTank(int tank) {
-                            return new FluidStack(containedFluid, BOTTLE_VOLUME);
+                    @Override
+                    public FluidStack getFluidInTank(int tank) {
+                        if (container.getItem() != bottleItem) return FluidStack.EMPTY;
+                        return new FluidStack(containedFluid, BOTTLE_VOLUME);
+                    }
+
+                    @Override
+                    public int getTankCapacity(int tank) {
+                        return BOTTLE_VOLUME;
+                    }
+
+                    @Override
+                    public boolean isFluidValid(int tank, FluidStack f) {
+                        return f.getFluid().isSame(containedFluid);
+                    }
+
+                    @Override
+                    public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
+                        return 0;
+                    }
+
+                    @Override
+                    public FluidStack drain(FluidStack resource, IFluidHandler.FluidAction action) {
+                        if (!resource.getFluid().isSame(containedFluid)) return FluidStack.EMPTY;
+                        return drain(resource.getAmount(), action);
+                    }
+
+                    @Override
+                    public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
+                        if (container.getItem() != bottleItem) return FluidStack.EMPTY;
+                        int amount = Math.min(maxDrain, BOTTLE_VOLUME);
+                        if (action.execute()) {
+                            container = new ItemStack(Items.GLASS_BOTTLE);
                         }
+                        return new FluidStack(containedFluid, amount);
+                    }
 
-                        @Override public int getTankCapacity(int tank) { return BOTTLE_VOLUME; }
-                        @Override public boolean isFluidValid(int tank, FluidStack f) {
-                            return f.getFluid().isSame(containedFluid);
-                        }
-                        @Override public int fill(FluidStack resource, IFluidHandler.FluidAction action) { return 0; }
-
-                        @Override
-                        public FluidStack drain(FluidStack resource, IFluidHandler.FluidAction action) {
-                            if (!resource.getFluid().isSame(containedFluid)) return FluidStack.EMPTY;
-                            return drain(resource.getAmount(), action);
-                        }
-
-                        @Override
-                        public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
-                            return new FluidStack(containedFluid, Math.min(maxDrain, BOTTLE_VOLUME));
-                        }
-
-                        @Override
-                        public ItemStack getContainer() {
-                            return new ItemStack(Items.GLASS_BOTTLE);
-                        }
-                    },
-                    bottleItem
+                    @Override
+                    public ItemStack getContainer() {
+                        return container;
+                    }
+                }, bottleItem
             );
         }
     }
