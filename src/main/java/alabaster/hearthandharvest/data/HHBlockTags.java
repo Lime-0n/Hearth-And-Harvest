@@ -223,6 +223,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.GOLDEN_APPLE_CRATE.get(),
                 HHModBlocks.GOLDEN_CARROT_CRATE.get(),
                 HHModBlocks.POISONOUS_POTATO_CRATE.get(),
+                HHModBlocks.ROTTEN_TOMATO_CRATE.get(),
                 HHModBlocks.GLOW_BERRY_CRATE.get(),
                 HHModBlocks.SWEET_BERRY_CRATE.get(),
                 HHModBlocks.BROWN_MUSHROOM_CRATE.get(),
@@ -238,7 +239,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.ROPE_COIL.get(),
                 HHModBlocks.CORN_HUSK_BUNDLE.get(),
                 HHModBlocks.CORN_KERNEL_BAG.get(),
-                HHModBlocks.CHARCOAL_BLOCK.get()
+                HHModBlocks.CHARCOAL_BLOCK.get(),
+                HHModBlocks.STICK_BRUSH.get()
         );
     }
 

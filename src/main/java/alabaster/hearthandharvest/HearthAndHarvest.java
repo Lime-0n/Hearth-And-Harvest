@@ -152,7 +152,7 @@ public class HearthAndHarvest {
         LOGGER.info("Hearth and Harvest is starting");
     }
 
-    @EventBusSubscriber(modid = HearthAndHarvest.MODID)
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {

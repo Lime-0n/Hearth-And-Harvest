@@ -243,15 +243,15 @@ public class HHModBlocks {
     
     // Bags
     public static final Supplier<Block> SALT_BAG = BLOCKS.register("salt_bag",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> SUGAR_BAG = BLOCKS.register("sugar_bag",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> COCOA_BEAN_BAG = BLOCKS.register("cocoa_bean_bag",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> GUNPOWDER_BAG = BLOCKS.register("gunpowder_bag",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> CORN_KERNEL_BAG = BLOCKS.register("corn_kernel_bag",
-            () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL)));
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     
     // Misc
     public static final Supplier<Block> COTTON_BALE = BLOCKS.register("cotton_bale",
@@ -338,7 +338,7 @@ public class HHModBlocks {
 
     // Salt Blocks
     public static final Supplier<Block> SALT_BLOCK = BLOCKS.register("salt_block",
-            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.GRAVEL).randomTicks()));
+            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.TUFF).randomTicks()));
     public static final Supplier<Block> POLISHED_SALT_BLOCK = BLOCKS.register("polished_salt_block",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.5F, 3.0F).sound(SoundType.POLISHED_TUFF)));
     
