@@ -4,15 +4,18 @@ import alabaster.hearthandharvest.Config;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModDataComponents;
 import alabaster.hearthandharvest.common.tag.HHModTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
 @EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class SaltedEffectEvents {
@@ -34,6 +37,28 @@ public class SaltedEffectEvents {
         float saturationGranted = food.nutrition() * food.saturation() * 2.0f;
         float newSaturation = Math.max(0f, player.getFoodData().getSaturationLevel() - saturationGranted * Config.SALTED_SATURATION_PENALTY.get().floatValue());
         player.getFoodData().setSaturation(newSaturation);
+    }
+
+    @SubscribeEvent
+    public static void onLevelTick(LevelTickEvent.Post event) {
+        if (event.getLevel().isClientSide()) return;
+        if (event.getLevel().getGameTime() % 20 != 0) return;
+
+        ServerLevel level = (ServerLevel) event.getLevel();
+
+        for (Entity entity : level.getAllEntities()) {
+            if (!(entity instanceof Slime slime)) continue;
+
+            AABB check = slime.getBoundingBox().inflate(0.001);
+            boolean touchingSalt = BlockPos.betweenClosedStream(
+                    BlockPos.containing(check.minX, check.minY, check.minZ),
+                    BlockPos.containing(check.maxX, check.maxY, check.maxZ)
+            ).anyMatch(pos -> level.getBlockState(pos).is(HHModTags.SALT_BLOCKS));
+
+            if (touchingSalt) {
+                slime.hurt(level.damageSources().magic(), 2.0f);
+            }
+        }
     }
 
 //    @SubscribeEvent
