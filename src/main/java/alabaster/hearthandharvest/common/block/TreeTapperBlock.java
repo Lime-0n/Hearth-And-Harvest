@@ -21,7 +21,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -68,6 +70,16 @@ public class TreeTapperBlock extends Block {
                         return Block.box(0.0D, 0.0D, 3.0D, 10.0D, 16.0D, 13.0D);
                 }
                 return null;
+        }
+
+        @Override
+        public BlockState rotate(BlockState state, Rotation rotation) {
+                return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+        }
+
+        @Override
+        public BlockState mirror(BlockState state, Mirror mirror) {
+                return state.rotate(mirror.getRotation(state.getValue(FACING)));
         }
 
         private boolean canAttachTo(BlockGetter level, BlockPos pos, Direction facing) {

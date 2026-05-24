@@ -20,10 +20,18 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
     private Vec3 fleeTarget;
     private int scanCooldown = 0;
 
-    private static double FLEE_DISTANCE = Config.CROW_SCARE_RADIUS.get();
-    private static double STOP_DISTANCE = Config.CROW_SCARE_RADIUS.get() * 1.6;
-    private static int SCAN_RADIUS = (int) (Config.CROW_SCARE_RADIUS.get() * 1.3);
+    private double fleeDist = -1;
+    private double stopDist = -1;
+    private int scanRadius = -1;
 
+    private void initDistances() {
+        if (fleeDist < 0) {
+            double r = Config.CROW_SCARE_RADIUS.get();
+            fleeDist = r;
+            stopDist = r * 1.6;
+            scanRadius = (int) (r * 1.3);
+        }
+    }
 
     public CrowAvoidRepellingBlocksGoal(CrowEntity crow, double speedModifier) {
         this.crow = crow;
@@ -51,8 +59,9 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
     @Override
     public boolean canContinueToUse() {
         if (repelSource == null) return false;
+        initDistances();
         double dist = crow.distanceToSqr(Vec3.atCenterOf(repelSource));
-        return dist < (STOP_DISTANCE * STOP_DISTANCE);
+        return dist < (stopDist * stopDist);
     }
 
     @Override
@@ -80,13 +89,14 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
 
     @Nullable
     private BlockPos findNearestRepellingBlock() {
+        initDistances();
         BlockPos crowPos = crow.blockPosition();
         double closestDist = Double.MAX_VALUE;
         BlockPos closest = null;
 
         for (BlockPos pos : BlockPos.betweenClosed(
-                crowPos.offset(-SCAN_RADIUS, -SCAN_RADIUS, -SCAN_RADIUS),
-                crowPos.offset(SCAN_RADIUS, SCAN_RADIUS, SCAN_RADIUS))) {
+                crowPos.offset(-scanRadius, -scanRadius, -scanRadius),
+                crowPos.offset(scanRadius, scanRadius, scanRadius))) {
 
             BlockState state = crow.level().getBlockState(pos);
             if (state.is(HHModTags.REPELS_CROWS)) {
@@ -99,7 +109,7 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
         }
 
         if (closest == null) return null;
-        if (Math.sqrt(closestDist) > FLEE_DISTANCE) return null;
+        if (Math.sqrt(closestDist) > fleeDist) return null;
         return closest;
     }
 

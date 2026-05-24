@@ -18,8 +18,9 @@ public class CrowFleeEntityGoal extends Goal {
 
     private final CrowEntity crow;
     private final double speedModifier;
-    private final double fleeDist;
-    private final double stopDist;
+    
+    private double fleeDist = -1;
+    private double stopDist = -1;
 
     private LivingEntity threat;
     private Vec3 fleeTarget;
@@ -28,9 +29,15 @@ public class CrowFleeEntityGoal extends Goal {
     public CrowFleeEntityGoal(CrowEntity crow, double speedModifier) {
         this.crow = crow;
         this.speedModifier = speedModifier;
-        this.fleeDist = Config.CROW_SCARE_RADIUS.get();
-        this.stopDist = Config.CROW_SCARE_RADIUS.get() * 1.6;
         this.setFlags(EnumSet.of(Flag.MOVE));
+    }
+
+    private void initDistances() {
+        if (fleeDist < 0) {
+            double r = Config.CROW_SCARE_RADIUS.get();
+            fleeDist = r;
+            stopDist = r * 1.6;
+        }
     }
 
     @Override
@@ -39,6 +46,7 @@ public class CrowFleeEntityGoal extends Goal {
         if (--scanCooldown > 0) return false;
         scanCooldown = 10 + crow.getRandom().nextInt(10);
 
+        initDistances();
         LivingEntity nearestThreat = getNearestThreat();
         if (nearestThreat == null)
             return false;
@@ -57,6 +65,7 @@ public class CrowFleeEntityGoal extends Goal {
         if (threat == null || crow.isTame())
             return false;
 
+        initDistances();
         return crow.distanceToSqr(threat) < (stopDist * stopDist);
     }
 
@@ -95,6 +104,7 @@ public class CrowFleeEntityGoal extends Goal {
 
     @Nullable
     private LivingEntity getNearestThreat() {
+        initDistances();
         Player player = crow.level().getNearestPlayer(crow, fleeDist);
 
         if (player != null && (player.isCreative() || player.isSpectator())) {

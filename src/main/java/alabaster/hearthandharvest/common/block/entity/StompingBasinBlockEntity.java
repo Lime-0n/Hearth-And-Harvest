@@ -212,6 +212,7 @@ public class StompingBasinBlockEntity extends BlockEntity  {
         }
 
         long now = level.getGameTime();
+        stompCooldowns.values().removeIf(lastTime -> now - lastTime >= 5);
         Long last = stompCooldowns.get(entity.getUUID());
         if (last != null && now - last < 5) return;
         stompCooldowns.put(entity.getUUID(), now);

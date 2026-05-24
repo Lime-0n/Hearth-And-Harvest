@@ -23,10 +23,7 @@ public class RoastableItem extends Item {
     private final int cookTimeToTransform;
     private final Component tooltip;
 
-    public RoastableItem(Properties properties,
-                         @Nullable Supplier<Item> cookedItem,
-                         int cookTimeToTransform,
-                         Component tooltip) {
+    public RoastableItem(Properties properties, @Nullable Supplier<Item> cookedItem, int cookTimeToTransform, Component tooltip) {
         super(properties.component(HHModDataComponents.COOK_TIME.get(), 0));
         this.cookedItem = cookedItem;
         this.cookTimeToTransform = cookTimeToTransform;
@@ -37,14 +34,13 @@ public class RoastableItem extends Item {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean isSelected) {
         if (level.isClientSide || !(entity instanceof Player player)) return;
 
+        if (level.getGameTime() % 20 != 0) return;
         if (!isPlayerNearHeatSource(player, level)) return;
-        if (level.getGameTime() % 20 != 0) return; // once per second
 
         int cookTime = stack.get(HHModDataComponents.COOK_TIME.get());
         int newCookTime = cookTime + 1;
         stack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> newCookTime);
 
-        // Only transform if cookedItem is defined
         if (cookedItem != null && newCookTime >= cookTimeToTransform) {
             ItemStack newStack = cookedItem.get().getDefaultInstance();
             newStack.update(HHModDataComponents.COOK_TIME.get(), 0, oldValue -> newCookTime);

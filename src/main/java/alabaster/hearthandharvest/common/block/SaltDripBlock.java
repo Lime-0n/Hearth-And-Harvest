@@ -1,6 +1,5 @@
 package alabaster.hearthandharvest.common.block;
 
-import alabaster.hearthandharvest.common.registry.HHModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -110,7 +109,7 @@ public class SaltDripBlock extends Block implements Fallable {
         return switch (thickness) {
             case SMALL, MEDIUM, LARGE -> {
                 BlockPos supportPos = pos.relative(tipDir.getOpposite());
-                yield level.getBlockState(supportPos).is(HHModBlocks.SALT_BLOCK.get());
+                yield level.getBlockState(supportPos).isFaceSturdy(level, supportPos, tipDir);
             }
             case POINT -> {
                 BlockPos supportPos = pos.relative(tipDir.getOpposite());

@@ -219,7 +219,7 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         int effectiveCookTime = Math.max(1, (int)(baseCookTime * effectiveMultiplier));
 
         ++ageTime;
-        ageTimeTotal = baseCookTime; // for UI/display, if needed.
+        ageTimeTotal = baseCookTime;
         if (ageTime < effectiveCookTime) {
             return false;
         }
@@ -274,11 +274,11 @@ public class CaskBlockEntity extends SyncedBlockEntity implements MenuProvider, 
 
     public List<RecipeHolder<?>> getUsedRecipesAndPopExperience(Level level, Vec3 pos) {
         List<RecipeHolder<?>> list = Lists.newArrayList();
-
+        if (!(level instanceof ServerLevel serverLevel)) return list;
         for (Object2IntMap.Entry<ResourceLocation> entry : usedRecipeTracker.object2IntEntrySet()) {
-            level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
+            serverLevel.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
-                splitAndSpawnExperience((ServerLevel) level, pos, entry.getIntValue(), ((CaskRecipe) recipe.value()).getExperience());
+                splitAndSpawnExperience(serverLevel, pos, entry.getIntValue(), ((CaskRecipe) recipe.value()).getExperience());
             });
         }
 

@@ -9,7 +9,6 @@ import alabaster.hearthandharvest.common.entity.crow.CrowSpawnRules;
 import alabaster.hearthandharvest.common.entity.goal.PungentEffectGoal;
 import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
-import alabaster.hearthandharvest.common.event.EffectEvents;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.item.CrateBlockItem;
 import alabaster.hearthandharvest.common.registry.*;
@@ -59,6 +58,7 @@ public class HearthAndHarvest {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::flowerSetup);
         modEventBus.addListener(this::registerAttributes);
+        modEventBus.addListener(HearthAndHarvest::registerSpawnPlacements);
 
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(this::registerScreens);
@@ -126,6 +126,15 @@ public class HearthAndHarvest {
         event.put(HHModEntities.CROW.get(), CrowEntity.createAttributes().build());
     }
 
+    private static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(
+                HHModEntities.CROW.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                CrowSpawnRules::canSpawnCrow,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE);
+    }
+
     public void registerScreens(RegisterMenuScreensEvent event) {
         event.register(HHModMenuTypes.CASK_MENU.get(), CaskGUI::new);
     }
@@ -138,8 +147,6 @@ public class HearthAndHarvest {
     public void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof Mob mob) {
             mob.goalSelector.addGoal(1, new PungentEffectGoal(mob, 1.0D, 1.5D, 8.0D));
-        }
-        if (event.getEntity() instanceof Mob mob) {
             mob.goalSelector.addGoal(1, new TemptingEffectGoal(mob, 1.0D, 1.25D, 8.0D));
         }
         if (event.getEntity() instanceof Chicken chicken) {
@@ -156,22 +163,14 @@ public class HearthAndHarvest {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            EntityRenderers.register(HHModEntities.CROW.get(), CrowRenderer::new);
+            event.enqueueWork(() ->
+                    EntityRenderers.register(HHModEntities.CROW.get(), CrowRenderer::new)
+            );
         }
 
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(CrowModel.LAYER_LOCATION, CrowModel::createBodyLayer);
-        }
-
-        @SubscribeEvent
-        public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-            event.register(
-                    HHModEntities.CROW.get(),
-                    SpawnPlacementTypes.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                    CrowSpawnRules::canSpawnCrow,
-                    RegisterSpawnPlacementsEvent.Operation.REPLACE);
         }
     }
 }
