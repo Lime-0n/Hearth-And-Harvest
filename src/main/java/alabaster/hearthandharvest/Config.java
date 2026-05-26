@@ -63,7 +63,7 @@ public class Config {
                 .define("generateCornMazes", true);
 
         DISABLE_BOTTLE_MILKING = COMMON_BUILDER
-                .comment("Disables milking cows and goats with glass bottels. \n" +
+                .comment("Disables milking cows and goats with glass bottles. \n" +
                         "Be aware that setting this can cause goat milk bottles to be unobtainable unless handled otherwise")
                 .define("disableBottleMilking", false);
 

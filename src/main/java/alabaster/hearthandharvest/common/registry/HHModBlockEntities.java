@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = HearthAndHarvest.MODID)
+@EventBusSubscriber(modid = HearthAndHarvest.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class HHModBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, HearthAndHarvest.MODID);
@@ -57,7 +57,6 @@ public class HHModBlockEntities {
 
     public static final Supplier<BlockEntityType<StompingBasinBlockEntity>> STOMPING_BASIN = BLOCK_ENTITY_TYPES.register("stomping_basin_tile",
             () -> BlockEntityType.Builder.of(StompingBasinBlockEntity::new, HHModBlocks.STOMPING_BASIN.get()).build(null));
-
 
     @SubscribeEvent
     public static void addCabinetsBlockEntities(BlockEntityTypeAddBlocksEvent event) {

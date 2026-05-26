@@ -2,7 +2,6 @@ package alabaster.hearthandharvest.common.block;
 
 import alabaster.hearthandharvest.common.registry.HHModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -44,9 +43,9 @@ public class SaltLampBlock extends Block {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
 
-        boolean lit = !state.getValue(LIT);
-        level.setBlockAndUpdate(pos, state.setValue(LIT, lit));
-        level.playSound(null, pos, lit ? HHModSounds.SALT_LAMP_SWITCH.get() : HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
+        boolean nowLit = !state.getValue(LIT);
+        level.setBlockAndUpdate(pos, state.setValue(LIT, nowLit));
+        level.playSound(null, pos, HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, nowLit ? 1.0f : 0.8f);
         return InteractionResult.CONSUME;
     }
 
@@ -58,8 +57,8 @@ public class SaltLampBlock extends Block {
 
         BlockState newState = state.setValue(POWERED, nowPowered);
         if (nowPowered) newState = newState.cycle(LIT);
-        boolean lit = !state.getValue(LIT);
+        boolean nowLit = newState.getValue(LIT);
         level.setBlockAndUpdate(pos, newState);
-        level.playSound(null, pos, lit ? HHModSounds.SALT_LAMP_SWITCH.get() : HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, lit ? 1.0f : 0.8f);
+        level.playSound(null, pos, HHModSounds.SALT_LAMP_SWITCH.get(), SoundSource.BLOCKS, 0.3f, nowLit ? 1.0f : 0.8f);
     }
 }

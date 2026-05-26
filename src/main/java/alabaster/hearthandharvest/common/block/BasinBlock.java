@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -79,18 +80,25 @@ public class BasinBlock extends Block {
         return INSIDE;
     }
 
-    public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    private static boolean isWaterBottle(ItemStack stack) {
+        if (!stack.is(Items.POTION)) return false;
+        PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
+        return contents != null
+                && contents.potion().isPresent()
+                && contents.potion().get().is(Potions.WATER);
+    }
 
+    public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldItem = player.getItemInHand(hand);
         int currentLevel = state.getValue(WATER_LEVEL);
         boolean changed = false;
         ItemStack waterBottle = PotionContents.createItemStack(Items.POTION, Potions.WATER);
 
-        if (heldItem.is(waterBottle.getItem())) {
+        if (isWaterBottle(heldItem)) {
             if (currentLevel < 3) {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, Math.min(currentLevel + 1, 3)), 3);
                 if (!player.getAbilities().instabuild) {
-                    player.setItemInHand(hand ,ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.GLASS_BOTTLE)));
+                    player.setItemInHand(hand, ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.GLASS_BOTTLE)));
                 }
                 level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
@@ -117,7 +125,7 @@ public class BasinBlock extends Block {
             if (currentLevel >= 3) {
                 level.setBlock(pos, state.setValue(WATER_LEVEL, currentLevel - 3), 3);
                 if (!player.getAbilities().instabuild) {
-                    player.setItemInHand(hand , ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.WATER_BUCKET)));
+                    player.setItemInHand(hand, ItemUtils.createFilledResult(heldItem, player, new ItemStack(Items.WATER_BUCKET)));
                 }
                 level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 changed = true;
@@ -126,7 +134,7 @@ public class BasinBlock extends Block {
 
         if (level.isClientSide() && changed) return ItemInteractionResult.SUCCESS;
 
-        return changed ? ItemInteractionResult.CONSUME : super.useItemOn(heldStack, state,level, pos, player, hand, hit);
+        return changed ? ItemInteractionResult.CONSUME : super.useItemOn(heldStack, state, level, pos, player, hand, hit);
     }
 
     @Override

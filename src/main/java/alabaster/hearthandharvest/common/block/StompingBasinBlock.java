@@ -71,11 +71,21 @@ public class StompingBasinBlock extends BaseEntityBlock {
 
     private static final int BOTTLE_VOLUME = 250;
 
+    private static final float MIN_STOMP_FALL = 0.3f;
+    private static final float RIM_Y = 12f / 16f;
+    private static final Set<UUID> AIRBORNE_IN_BASIN = ConcurrentHashMap.newKeySet();
+    private static final Map<UUID, Double> AIRBORNE_PEAK_Y = new ConcurrentHashMap<>();
+
     public StompingBasinBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(MULTIBLOCK_PART, MultiblockPart.NONE));
+    }
+
+    public static void clearAirborneTracking() {
+        AIRBORNE_IN_BASIN.clear();
+        AIRBORNE_PEAK_Y.clear();
     }
 
     @Override
@@ -129,11 +139,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
         };
     }
 
-    private static final float MIN_STOMP_FALL = 0.3f;
-    private static final float RIM_Y = 12f / 16f;
-    private static final Set<UUID> AIRBORNE_IN_BASIN = ConcurrentHashMap.newKeySet();
-    private static final Map<UUID, Double> AIRBORNE_PEAK_Y = new ConcurrentHashMap<>();
-
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (level.isClientSide) return;
@@ -181,7 +186,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
         ItemStack inHand = player.getItemInHand(hand);
         FluidStack tankFluid = basin.getFluidTank().getFluid();
 
-        // Fill a glass bottle from the basin
         if (inHand.is(Items.GLASS_BOTTLE) && !tankFluid.isEmpty() && tankFluid.getAmount() >= BOTTLE_VOLUME) {
             ItemStack result = null;
 
@@ -213,7 +217,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
-        // Fill a held container (buckets, HH bottles via capability, mod containers) from the basin
         FluidActionResult fillResult = FluidUtil.tryFillContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (fillResult.isSuccess()) {
@@ -228,7 +231,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
             return ItemInteractionResult.CONSUME;
         }
 
-        // Pour a water bottle into the basin
         if (isWaterBottle(inHand)) {
             int accepted = basin.getFluidTank().fill(new FluidStack(Fluids.WATER, BOTTLE_VOLUME), IFluidHandler.FluidAction.SIMULATE);
             if (accepted == BOTTLE_VOLUME) {
@@ -245,7 +247,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
             }
         }
 
-        // Empty a held container (buckets, HH bottles via capability, mod containers) into the basin
         FluidActionResult emptyResult = FluidUtil.tryEmptyContainer(
                 inHand, basin.getFluidTank(), Integer.MAX_VALUE, player, true);
         if (emptyResult.isSuccess()) {
@@ -260,7 +261,6 @@ public class StompingBasinBlock extends BaseEntityBlock {
             return ItemInteractionResult.CONSUME;
         }
 
-        // Insert items for stomping
         if (!inHand.isEmpty()) {
             ItemStack remainder = basin.insertItem(inHand.copy());
             if (remainder.getCount() < inHand.getCount()) {

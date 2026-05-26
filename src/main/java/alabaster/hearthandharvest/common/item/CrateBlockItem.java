@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -70,7 +71,7 @@ public class CrateBlockItem extends BlockItem {
                 && existing.getValue(CrateBlock.TYPE) != SlabType.DOUBLE;
 
         NonNullList<ItemStack> bottomSnapshot = null;
-        NonNullList<ItemStack> topContents    = null;
+        NonNullList<ItemStack> topContents = null;
 
         if (willBeDouble && !level.isClientSide) {
             if (level.getBlockEntity(pos) instanceof CrateBlockEntity existingCrate) {
@@ -111,17 +112,18 @@ public class CrateBlockItem extends BlockItem {
     public Component getName(ItemStack stack) {
         CustomData data = stack.get(DataComponents.BLOCK_ENTITY_DATA);
         if (data == null) return super.getName(stack);
+        if (!FMLEnvironment.dist.isClient()) return super.getName(stack);
 
         NonNullList<ItemStack> items = NonNullList.withSize(CrateBlockEntity.TOTAL_SLOTS, ItemStack.EMPTY);
 
         HolderLookup.Provider registries;
         try {
-            registries = Minecraft.getInstance().level != null
-                    ? Minecraft.getInstance().level.registryAccess() : null;
-        } catch (Throwable t) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc == null || mc.level == null) return super.getName(stack);
+            registries = mc.level.registryAccess();
+        } catch (Exception t) {
             return super.getName(stack);
         }
-        if (registries == null) return super.getName(stack);
 
         ContainerHelper.loadAllItems(data.copyTag(), items, registries);
 

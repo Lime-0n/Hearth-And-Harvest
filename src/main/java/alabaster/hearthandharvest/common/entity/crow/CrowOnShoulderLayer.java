@@ -4,7 +4,6 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.registry.HHModEntities;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -15,6 +14,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public class CrowOnShoulderLayer
         extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
@@ -65,21 +65,18 @@ public class CrowOnShoulderLayer
 
         poseStack.pushPose();
 
-        // Shoulder offsets (same as parrots)
         poseStack.translate(
                 left ? 0.4D : -0.35D,
                 player.isCrouching() ? -1.3D : -1.5D,
                 0.0D
         );
 
-        // Rotate to face forward
-        poseStack.mulPose(Axis.YP.rotationDegrees(0F));
-
         crowModel.root().getAllParts().forEach(part -> part.resetPose());
-
-        // Make head follow
-        crowModel.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        crowModel.head.xRot = headPitch * ((float) Math.PI / 180F);
+        
+        float clampedYaw = Mth.clamp(netHeadYaw, -30f, 30f);
+        float clampedPitch = Mth.clamp(headPitch, -25f, 45f);
+        crowModel.head.yRot = clampedYaw * ((float) Math.PI / 180F);
+        crowModel.head.xRot = clampedPitch * ((float) Math.PI / 180F);
 
         VertexConsumer vertexConsumer = buffer.getBuffer(crowModel.renderType(TEXTURE));
         crowModel.renderToBuffer(

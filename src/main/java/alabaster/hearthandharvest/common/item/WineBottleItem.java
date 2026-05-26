@@ -9,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -50,7 +49,7 @@ public class WineBottleItem extends Item {
 
         FoodProperties food = stack.getFoodProperties(player);
         if (food != null) {
-            if (player.canEat(food != null && food.canAlwaysEat())) {
+            if (player.canEat(food.canAlwaysEat())) {
                 player.startUsingItem(hand);
                 return InteractionResultHolder.consume(stack);
             } else {
@@ -79,22 +78,9 @@ public class WineBottleItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity consumer) {
         ItemStack containerItem = new ItemStack(Items.GLASS_BOTTLE);
-
         FoodProperties food = stack.getFoodProperties(consumer);
-        if (food != null) {
-            if (!level.isClientSide && food != null) {
-                for (FoodProperties.PossibleEffect possible : food.effects()) {
-                    if (possible.effect().getEffect().equals(HHModEffects.DRUNK)) continue;
-                    if (level.random.nextFloat() < possible.probability()) {
-                        consumer.addEffect(new MobEffectInstance(possible.effect()));
-                    }
-                }
-            }
-        }
+        Player player = consumer instanceof Player p ? p : null;
 
-        Player player = consumer instanceof Player ? (Player) consumer : null;
-
-        // Escalate Tipsy level on each drink
         if (!level.isClientSide && food != null) {
             float drunkProbability = 0.0F;
             for (FoodProperties.PossibleEffect possible : food.effects()) {
@@ -103,21 +89,12 @@ public class WineBottleItem extends Item {
                     break;
                 }
             }
-
             if (drunkProbability > 0.0F && level.random.nextFloat() < drunkProbability) {
                 int currentAmplifier = -1;
                 MobEffectInstance existing = consumer.getEffect(HHModEffects.DRUNK);
-                if (existing != null) {
-                    currentAmplifier = existing.getAmplifier();
-                }
+                if (existing != null) currentAmplifier = existing.getAmplifier();
                 int newAmplifier = Math.min(currentAmplifier + 1, 4);
-                consumer.addEffect(new MobEffectInstance(
-                        HHModEffects.DRUNK,
-                        2400,
-                        newAmplifier,
-                        false,
-                        true
-                ));
+                consumer.addEffect(new MobEffectInstance(HHModEffects.DRUNK, 2400, newAmplifier, false, true));
             }
         }
 
@@ -127,7 +104,6 @@ public class WineBottleItem extends Item {
             if (player instanceof ServerPlayer serverPlayer) {
                 CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             }
-
             if (player != null) {
                 player.awardStat(Stats.ITEM_USED.get(this));
                 if (!player.getAbilities().instabuild) {

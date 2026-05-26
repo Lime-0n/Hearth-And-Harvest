@@ -110,15 +110,15 @@ public class CrowEntity extends ShoulderRidingEntity implements FlyingAnimal {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new CrowFleeEntityGoal(this, 1.8F));
         this.goalSelector.addGoal(1, new CrowAvoidRepellingBlocksGoal(this, 1.6F));
-        this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(2, new CrowSeekShinyItemGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new CrowEatCropsGoal(this, 1.2F));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0F, 5.0F, 1.0F));
-        this.goalSelector.addGoal(3, new CrowWanderGoal(this, 1.0F));
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(3, new CrowSeekShinyItemGoal(this, 1.2D));
         this.goalSelector.addGoal(3, new CrowRetrieveItemsGoal(this, 1.2D));
-        this.goalSelector.addGoal(4, new LandOnOwnersShoulderGoal(this));
-        this.goalSelector.addGoal(4, new FollowMobGoal(this, 1.0F, 3.0F, 7.0F));
+        this.goalSelector.addGoal(4, new CrowEatCropsGoal(this, 1.2F));
+        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0F, 5.0F, 1.0F));
+        this.goalSelector.addGoal(5, new LandOnOwnersShoulderGoal(this));
+        this.goalSelector.addGoal(5, new CrowWanderGoal(this, 1.0F));
+        this.goalSelector.addGoal(6, new FollowMobGoal(this, 1.0F, 3.0F, 7.0F));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

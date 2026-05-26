@@ -27,6 +27,7 @@ public class CrowSeekShinyItemGoal extends Goal {
     private int dropTimer = 0;
     private int nestArrivalTimer = -1;
     private static final int IGNORE_RADIUS_AROUND_NEST = 1;
+    private static final BlockPos NO_NEST = new BlockPos(0, Integer.MIN_VALUE, 0);
 
     public CrowSeekShinyItemGoal(CrowEntity crow, double speed) {
         this.crow = crow;
@@ -120,17 +121,24 @@ public class CrowSeekShinyItemGoal extends Goal {
                 return;
             }
 
-            // Only scan for nest once; reuse cached nestTarget for the remainder of this goal
             if (nestTarget == null) {
-                nestTarget = findNearestNest(16);
+                BlockPos found = findNearestNest(16);
+                nestTarget = (found != null) ? found : NO_NEST;
+                if (nestTarget == NO_NEST) {
+                    dropTimer = 60;
+                }
             }
 
-            if (nestTarget == null) {
-                fallbackDropBehavior();
+            if (nestTarget == NO_NEST) {
+                if (dropTimer > 0) {
+                    dropTimer--;
+                } else {
+                    crow.spawnAtLocation(crow.getMainHandItem().copy());
+                    crow.setItemInHand(crow.getUsedItemHand(), ItemStack.EMPTY);
+                }
                 return;
             }
 
-            // Invalidate cached nest if it was broken
             BlockState nestState = crow.level().getBlockState(nestTarget);
             if (!nestState.is(HHModBlocks.NEST.get())) {
                 nestTarget = null;
@@ -168,8 +176,6 @@ public class CrowSeekShinyItemGoal extends Goal {
                     nestTarget = null;
                     nestArrivalTimer = -1;
                 }
-
-                return;
             } else {
                 nestArrivalTimer = -1;
             }
@@ -184,14 +190,11 @@ public class CrowSeekShinyItemGoal extends Goal {
             for (int dy = -3; dy <= 3; dy++) {
                 for (int dz = -radius; dz <= radius; dz++) {
                     check.set(crowPos.getX() + dx, crowPos.getY() + dy, crowPos.getZ() + dz);
-
-                    BlockState state = crow.level().getBlockState(check);
-                    if (state.is(HHModBlocks.NEST.get()))
+                    if (crow.level().getBlockState(check).is(HHModBlocks.NEST.get()))
                         return check.immutable();
                 }
             }
         }
-
         return null;
     }
 
@@ -201,9 +204,8 @@ public class CrowSeekShinyItemGoal extends Goal {
             for (int dy = -2; dy <= 2; dy++) {
                 for (int dz = -radius; dz <= radius; dz++) {
                     check.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
-                    if (crow.level().getBlockState(check).is(HHModBlocks.NEST.get())) {
+                    if (crow.level().getBlockState(check).is(HHModBlocks.NEST.get()))
                         return true;
-                    }
                 }
             }
         }
@@ -215,22 +217,9 @@ public class CrowSeekShinyItemGoal extends Goal {
             return;
 
         ItemStack stack = crow.getMainHandItem().copy();
-
-        double x = pos.getX() + 0.5;
-        double y = pos.getY() + 0.25;
-        double z = pos.getZ() + 0.5;
-
-        ItemEntity itemEntity = new ItemEntity(server, x, y, z, stack);
+        ItemEntity itemEntity = new ItemEntity(server, pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5, stack);
         itemEntity.setDefaultPickUpDelay();
         itemEntity.setDeltaMovement(0, 0, 0);
         server.addFreshEntity(itemEntity);
-    }
-
-    private void fallbackDropBehavior() {
-        dropTimer--;
-        if (dropTimer <= 0) {
-            crow.spawnAtLocation(crow.getMainHandItem().copy());
-            crow.setItemInHand(crow.getUsedItemHand(), ItemStack.EMPTY);
-        }
     }
 }

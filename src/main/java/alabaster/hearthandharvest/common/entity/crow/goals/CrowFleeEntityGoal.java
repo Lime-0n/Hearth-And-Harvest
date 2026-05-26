@@ -18,7 +18,7 @@ public class CrowFleeEntityGoal extends Goal {
 
     private final CrowEntity crow;
     private final double speedModifier;
-    
+
     private double fleeDist = -1;
     private double stopDist = -1;
 
@@ -72,12 +72,7 @@ public class CrowFleeEntityGoal extends Goal {
     @Override
     public void start() {
         if (fleeTarget != null) {
-            crow.getNavigation().moveTo(
-                    fleeTarget.x,
-                    fleeTarget.y,
-                    fleeTarget.z,
-                    speedModifier
-            );
+            crow.getNavigation().moveTo(fleeTarget.x, fleeTarget.y, fleeTarget.z, speedModifier);
         }
     }
 
@@ -92,12 +87,7 @@ public class CrowFleeEntityGoal extends Goal {
         if (threat != null && crow.getNavigation().isDone()) {
             Vec3 newTarget = getFleePos(threat);
             if (newTarget != null) {
-                crow.getNavigation().moveTo(
-                        newTarget.x,
-                        newTarget.y,
-                        newTarget.z,
-                        speedModifier
-                );
+                crow.getNavigation().moveTo(newTarget.x, newTarget.y, newTarget.z, speedModifier);
             }
         }
     }
@@ -144,11 +134,15 @@ public class CrowFleeEntityGoal extends Goal {
 
     @Nullable
     private Vec3 getFleePos(LivingEntity threat) {
-        Vec3 awayDir = new Vec3(
+        Vec3 diff = new Vec3(
                 crow.getX() - threat.getX(),
                 0.0,
                 crow.getZ() - threat.getZ()
-        ).normalize().scale(8.0D);
+        );
+
+        if (diff.lengthSqr() < 1.0E-8) return null;
+
+        Vec3 awayDir = diff.normalize().scale(8.0D);
 
         Vec3 target = new Vec3(
                 crow.getX() + awayDir.x,

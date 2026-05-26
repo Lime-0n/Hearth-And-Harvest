@@ -2,6 +2,7 @@ package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
+import alabaster.hearthandharvest.common.block.StompingBasinBlock;
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.entity.crow.CrowModel;
 import alabaster.hearthandharvest.common.entity.crow.CrowRenderer;
@@ -157,6 +158,7 @@ public class HearthAndHarvest {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("Hearth and Harvest is starting");
+        StompingBasinBlock.clearAirborneTracking();
     }
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

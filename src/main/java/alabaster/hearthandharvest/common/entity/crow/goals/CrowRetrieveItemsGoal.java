@@ -24,9 +24,8 @@ public class CrowRetrieveItemsGoal extends Goal {
     @Override
     public boolean canUse() {
         if (!crow.isTame() || crow.isOrderedToSit() || crow.getOwner() == null) return false;
-        if (!crow.getMainHandItem().isEmpty()) return true; // Already carrying an item, go deliver
+        if (!crow.getMainHandItem().isEmpty()) return true;
 
-        // Look for nearby items
         List<ItemEntity> list = crow.level().getEntitiesOfClass(ItemEntity.class,
                 crow.getBoundingBox().inflate(8.0D),
                 item -> item.isAlive() && !item.getItem().isEmpty());
@@ -54,7 +53,6 @@ public class CrowRetrieveItemsGoal extends Goal {
     @Override
     public void tick() {
         if (crow.getMainHandItem().isEmpty()) {
-            // Fly to and pick up the target item
             if (targetItem != null && targetItem.isAlive()) {
                 crow.getNavigation().moveTo(targetItem, speed);
                 double dist = crow.distanceTo(targetItem);
@@ -69,9 +67,7 @@ public class CrowRetrieveItemsGoal extends Goal {
                 }
             }
         } else {
-            // Deliver to owner
-            Player owner = (Player) crow.getOwner();
-            if (owner == null) return;
+            if (!(crow.getOwner() instanceof Player owner)) return;
 
             double dist = crow.distanceTo(owner);
             crow.getNavigation().moveTo(owner, speed);
@@ -80,13 +76,12 @@ public class CrowRetrieveItemsGoal extends Goal {
                 ItemStack held = crow.getMainHandItem();
                 boolean added = owner.getInventory().add(held.copy());
                 if (!added) {
-                    owner.drop(held.copy(), false); // Drop if inventory full
+                    owner.drop(held.copy(), false);
                 }
 
                 crow.setItemInHand(crow.getUsedItemHand(), ItemStack.EMPTY);
                 crow.level().playSound(null, owner, SoundEvents.PARROT_FLY, crow.getSoundSource(), 0.5F, 1.2F);
 
-                // Reset the goal to search for new items
                 targetItem = null;
                 crow.getNavigation().stop();
             }

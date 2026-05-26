@@ -115,11 +115,15 @@ public class CrowAvoidRepellingBlocksGoal extends Goal {
 
     @Nullable
     private Vec3 getFleePos(BlockPos blockPos) {
-        Vec3 awayDir = new Vec3(
+        Vec3 diff = new Vec3(
                 crow.getX() - blockPos.getX(),
                 0.0,
                 crow.getZ() - blockPos.getZ()
-        ).normalize().scale(8.0D);
+        );
+
+        if (diff.lengthSqr() < 1.0E-8) return null;
+
+        Vec3 awayDir = diff.normalize().scale(8.0D);
 
         Vec3 target = new Vec3(
                 crow.getX() + awayDir.x,
