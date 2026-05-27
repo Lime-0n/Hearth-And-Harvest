@@ -4,54 +4,66 @@ import net.minecraft.util.RandomSource;
 
 public class MazeGenerator {
 
-    /**
-     * Generate a solvable maze.
-     * true = wall, false = path
-     */
     public static boolean[][] generate(int w, int h, RandomSource rand) {
         boolean[][] maze = new boolean[w][h];
 
-        // Fill all with walls
         for (int x = 0; x < w; x++)
             for (int z = 0; z < h; z++)
                 maze[x][z] = true;
 
-        // Carve maze starting at (1,1)
-        carve(1, 1, maze, rand);
+        carve(1, 1, 0, 0, maze, rand);
 
-        // Ensure entrance and exit are paths
-        maze[0][h / 2] = false;         // entrance on west edge
-        maze[w - 1][h / 2] = false;     // exit on east edge
+        for (int x = 1; x < w - 1; x++) {
+            for (int z = 1; z < h - 1; z++) {
+                if (!maze[x][z]) continue;
+                int open = 0;
+                if (!maze[x - 1][z]) open++;
+                if (!maze[x + 1][z]) open++;
+                if (!maze[x][z - 1]) open++;
+                if (!maze[x][z + 1]) open++;
+                if (open >= 2 && rand.nextFloat() < 0.05f) maze[x][z] = false;
+            }
+        }
+
+        int cx = w / 2;
+        int cz = h / 2;
+        for (int dx = -1; dx <= 1; dx++)
+            for (int dz = -1; dz <= 1; dz++)
+                maze[cx + dx][cz + dz] = false;
+
+        maze[0][h / 2] = false;
+        maze[w - 1][h / 2] = false;
 
         return maze;
     }
 
-    /**
-     * Recursive DFS maze carving
-     */
-    private static void carve(int x, int z, boolean[][] maze, RandomSource rand) {
+    private static void carve(int x, int z, int lastDx, int lastDz, boolean[][] maze, RandomSource rand) {
         int w = maze.length;
         int h = maze[0].length;
-
-        int[] dirs = {0, 1, 2, 3}; // 0=E,1=W,2=S,3=N
+        int[] dirs = {0, 1, 2, 3};
         shuffle(dirs, rand);
 
-        for (int dir : dirs) {
-            int dx = 0, dz = 0;
-            switch (dir) {
-                case 0 -> dx = 2;
-                case 1 -> dx = -2;
-                case 2 -> dz = 2;
-                case 3 -> dz = -2;
+        if ((lastDx != 0 || lastDz != 0) && rand.nextFloat() < 0.5f) {
+            for (int i = 1; i < dirs.length; i++) {
+                int dx = dirs[i] == 0 ? 2 : dirs[i] == 1 ? -2 : 0;
+                int dz = dirs[i] == 2 ? 2 : dirs[i] == 3 ? -2 : 0;
+                if (dx == lastDx && dz == lastDz) {
+                    int tmp = dirs[0]; dirs[0] = dirs[i]; dirs[i] = tmp;
+                    break;
+                }
             }
+        }
 
+        for (int dir : dirs) {
+            int dx = dir == 0 ? 2 : dir == 1 ? -2 : 0;
+            int dz = dir == 2 ? 2 : dir == 3 ? -2 : 0;
             int nx = x + dx;
             int nz = z + dz;
 
             if (nx > 0 && nz > 0 && nx < w - 1 && nz < h - 1 && maze[nx][nz]) {
-                maze[nx][nz] = false;                   // carve new cell
-                maze[x + dx / 2][z + dz / 2] = false;   // carve wall between
-                carve(nx, nz, maze, rand);
+                maze[nx][nz] = false;
+                maze[x + dx / 2][z + dz / 2] = false;
+                carve(nx, nz, dx, dz, maze, rand);
             }
         }
     }
