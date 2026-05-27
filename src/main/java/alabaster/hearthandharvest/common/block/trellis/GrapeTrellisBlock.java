@@ -110,7 +110,8 @@ public class GrapeTrellisBlock extends TrellisBlock {
         if (heightFromBase < MAX_GRAPE_HEIGHT) {
             BlockPos above = pos.above();
             BlockState aboveState = level.getBlockState(above);
-            if (aboveState.getBlock() instanceof TrellisBlock tb && tb.getPlant(aboveState) == TrellisPlant.NONE) {
+            if (aboveState.getBlock() instanceof TrellisBlock tb && tb.getPlant(aboveState) == TrellisPlant.NONE
+                    && !aboveState.getValue(TrellisBlock.GROWTH_BLOCKED)) {
                 level.setBlock(above, copyStructure(aboveState, this).setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
                 return;
             }
@@ -120,7 +121,8 @@ public class GrapeTrellisBlock extends TrellisBlock {
         Direction dir = dirs[level.random.nextInt(4)];
         BlockPos side = pos.relative(dir);
         BlockState sideState = level.getBlockState(side);
-        if (sideState.getBlock() instanceof TrellisBlock tb && tb.getPlant(sideState) == TrellisPlant.NONE) {
+        if (sideState.getBlock() instanceof TrellisBlock tb && tb.getPlant(sideState) == TrellisPlant.NONE
+                && !sideState.getValue(TrellisBlock.GROWTH_BLOCKED)) {
             level.setBlock(side, copyStructure(sideState, this).setValue(PLANT, plant).setValue(AGE, 0), Block.UPDATE_ALL);
         }
     }
