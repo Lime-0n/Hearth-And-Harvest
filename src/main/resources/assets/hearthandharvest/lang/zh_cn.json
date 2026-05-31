@@ -2,7 +2,7 @@
   "itemGroup.hearthandharvest": "暖灶丰年",
   "itemGroup.hearthandharvest_blocks": "暖灶丰年方块",
 
-  "block.hearthandharvest.tree_tapper": "树叶采集器",
+  "block.hearthandharvest.tree_tapper": "树液采集器",
 
   "item.hearthandharvest.crow_spawn_egg": "乌鸦刷怪蛋",
   "entity.hearthandharvest.crow": "乌鸦",
@@ -51,7 +51,7 @@
   "block.hearthandharvest.trellis.growth_blocked": "此藤架上的植株无法生长",
   "block.hearthandharvest.trellis.growth_allowed": "此藤架上的植株可以生长",
 
-  "block.hearthandharvest.oak_half_cabinet": "橡木半厨柜",
+  "block.hearthandharvest.oak_half_cabinet": "橡木半深厨柜",
   "block.hearthandharvest.birch_half_cabinet": "白桦木半深橱柜",
   "block.hearthandharvest.spruce_half_cabinet": "云杉木半深橱柜",
   "block.hearthandharvest.jungle_half_cabinet": "丛林木半深橱柜",
@@ -59,7 +59,7 @@
   "block.hearthandharvest.dark_oak_half_cabinet": "深色橡木半深橱柜",
   "block.hearthandharvest.mangrove_half_cabinet": "红树木半深橱柜",
   "block.hearthandharvest.cherry_half_cabinet": "樱花木半深橱柜",
-  "block.hearthandharvest.bamboo_half_cabinet": "竹半深橱柜",
+  "block.hearthandharvest.bamboo_half_cabinet": "竹制半深橱柜",
   "block.hearthandharvest.crimson_half_cabinet": "绯红木半深橱柜",
   "block.hearthandharvest.warped_half_cabinet": "诡异木半深橱柜",
   "block.hearthandharvest.palm_half_cabinet": "棕榈木半深橱柜",
@@ -296,7 +296,7 @@
   "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "花生酱果酱三明治",
   "item.hearthandharvest.waffle": "华夫饼",
   "item.hearthandharvest.biscuits_and_gravy": "饼干配肉汁",
-  "item.hearthandharvest.glazed_carrots": "糖霜胡萝卜",
+  "item.hearthandharvest.glazed_carrots": "拔丝胡萝卜",
 
   "effect.hearthandharvest.pungent": "恶臭",
   "effect.hearthandharvest.pungent.0.desc": "让附近的生物因你恶心的体臭而避之不及",
@@ -367,7 +367,7 @@
   "hearthandharvest.jei.info.tree_tapper": "树液采集器可被放置于云杉树或深色橡树上，随时间推移不断收集树液。集满时可使用桶盛装。",
   "hearthandharvest.jei.info.sap_bucket": "树液桶可倒入炼药锅，将炼药锅置于火上可缓慢煮出糖浆。糖浆可使用玻璃瓶盛装。",
   "hearthandharvest.jei.info.wild_grapes": "野生葡萄生成在温暖的生物群系，例如平原和森林。",
-  "hearthandharvest.jei.info.pluck_chickens": "空手Shift右键鸡可以拔毛，但可能会伤到它们。使用剪刀可避免造成伤害。",
+  "hearthandharvest.jei.info.pluck_chickens": "空手Shift右键可以给鸡拔毛，但可能会伤到它们。使用剪刀可避免造成伤害。",
   "hearthandharvest.jei.info.nest": "鸟类生物会在巢中放置物品。乌鸦会在里面藏闪闪发光的东西，鸡会在里面下蛋。",
   "hearthandharvest.jei.info.scarecrow": "稻草人、雕刻南瓜和南瓜灯都可以驱赶乌鸦、保护庄稼。",
 
