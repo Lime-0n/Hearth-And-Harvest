@@ -260,17 +260,21 @@
 
   "tooltip.hearthandharvest.salted": "Salted",
 
-  "item.hearthandharvest.manure": "manure",
-  "block.hearthandharvest.manure_block": "Salt Block",
-  "block.hearthandharvest.manure_brick_block": "Salt Block",
-  "block.hearthandharvest.polished_salt_block": "Polished Salt Block",
-  "block.hearthandharvest.salt_slab": "Salt Slab",
-  "block.hearthandharvest.polished_salt_slab": "Polished Salt Slab",
-  "block.hearthandharvest.salt_wall": "Salt Wall",
-  "block.hearthandharvest.polished_salt_wall": "Polished Salt Wall",
-  "block.hearthandharvest.salt_stairs": "Salt Stairs",
-  "block.hearthandharvest.polished_salt_stairs": "Polished Salt Stairs",
-  "block.hearthandharvest.salt_drip": "Salt Drip",
+  "item.hearthandharvest.manure": "Manure",
+  "item.hearthandharvest.wet_manure_brick": "Wet Manure Brick",
+  "item.hearthandharvest.manure_brick": "Manure Brick",
+  "block.hearthandharvest.manure_block": "Manure Block",
+  "block.hearthandharvest.mulch": "Mulch",
+  "block.hearthandharvest.manure_bricks": "Manure Bricks",
+  "block.hearthandharvest.polished_manure_bricks": "Polished Manure",
+  "block.hearthandharvest.manure_brick_stairs": "Manure Brick Stairs",
+  "block.hearthandharvest.polished_manure_stairs": "Polished Manure Stairs",
+  "block.hearthandharvest.manure_brick_slab": "Manure Brick Slab",
+  "block.hearthandharvest.polished_manure_slab": "Polished Manure Slab",
+  "block.hearthandharvest.manure_brick_wall": "Manure Brick Wall",
+  "block.hearthandharvest.polished_manure_wall": "Polished Manure Wall",
+
+  "hearthandharvest.subtitles.entity.fart": "Animal farting",
 
   "item.hearthandharvest.cooking_oil": "Cooking Oil",
 

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "hearthandharvest:block/polished_manure_bricks",
-    "side": "hearthandharvest:block/polished_manure_bricks",
-    "top": "hearthandharvest:block/polished_manure_bricks"
-  }
-}

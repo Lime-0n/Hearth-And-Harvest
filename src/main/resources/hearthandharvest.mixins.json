@@ -6,7 +6,8 @@
   "mixins": [
     "AbstractHorseMixin",
     "WaterBottleMixin",
-    "FarmlandMulchMixin"
+    "FarmlandMulchMixin",
+    "AnimalManureMixin"
   ],
   "client": [
     "HideBreakProgressMixin"

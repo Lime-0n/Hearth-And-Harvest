@@ -6,6 +6,7 @@
       "hearthandharvest:entities/crow/crow_squawking_2"
     ]
   },
+
   "entities.crow.hurt": {
     "subtitle": "hearthandharvest.subtitles.crow.hurt",
     "sounds": [
@@ -80,6 +81,13 @@
         "name": "block.lever.click",
         "type": "event"
       }
+    ]
+  },
+
+  "entities.fart": {
+    "subtitle": "hearthandharvest.subtitles.entity.fart",
+    "sounds": [
+      "hearthandharvest:entities/fart/fart"
     ]
   }
 }

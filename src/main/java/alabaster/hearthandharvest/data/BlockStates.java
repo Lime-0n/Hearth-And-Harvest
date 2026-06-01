@@ -169,13 +169,13 @@ public class BlockStates extends BlockStateProvider {
         this.simpleBlock(HHModBlocks.MANURE_BLOCK.get());
 
         this.simpleBlock(HHModBlocks.MANURE_BRICKS.get());
-        this.simpleBlock(HHModBlocks.POLISHED_MANURE_BRICKS.get());
+        this.simpleBlock(HHModBlocks.POLISHED_MANURE.get());
         this.stairsBlock((StairBlock) HHModBlocks.MANURE_BRICK_STAIRS.get(), resourceBlock("manure_bricks"));
-        this.stairsBlock((StairBlock) HHModBlocks.POLISHED_MANURE_BRICK_STAIRS.get(), resourceBlock("polished_manure_bricks"));
+        this.stairsBlock((StairBlock) HHModBlocks.POLISHED_MANURE_STAIRS.get(), resourceBlock("polished_manure"));
         this.slabBlock((SlabBlock) HHModBlocks.MANURE_BRICK_SLAB.get(), resourceBlock("manure_bricks"), resourceBlock("manure_bricks"));
-        this.slabBlock((SlabBlock) HHModBlocks.POLISHED_MANURE_BRICK_SLAB.get(), resourceBlock("polished_manure_bricks"), resourceBlock("polished_manure_bricks"));
+        this.slabBlock((SlabBlock) HHModBlocks.POLISHED_MANURE_SLAB.get(), resourceBlock("polished_manure"), resourceBlock("polished_manure"));
         this.wallBlock((WallBlock) HHModBlocks.MANURE_BRICK_WALL.get(), resourceBlock("manure_bricks"));
-        this.wallBlock((WallBlock) HHModBlocks.POLISHED_MANURE_BRICK_WALL.get(), resourceBlock("polished_manure_bricks"));
+        this.wallBlock((WallBlock) HHModBlocks.POLISHED_MANURE_WALL.get(), resourceBlock("polished_manure"));
     }
 
     // --- Trellis ---

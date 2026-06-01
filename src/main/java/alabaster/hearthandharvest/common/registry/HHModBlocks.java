@@ -4,9 +4,7 @@ import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.block.*;
 import alabaster.hearthandharvest.common.block.trellis.GrapeTrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
-import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -352,21 +350,21 @@ public class HHModBlocks {
 
     public static final Supplier<Block> MANURE_BRICKS = BLOCKS.register("manure_bricks",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS).randomTicks()));
-    public static final Supplier<Block> POLISHED_MANURE_BRICKS = BLOCKS.register("polished_manure_bricks",
+    public static final Supplier<Block> POLISHED_MANURE = BLOCKS.register("polished_manure",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS)));
 
     public static final Supplier<Block> MANURE_BRICK_STAIRS = BLOCKS.register("manure_brick_stairs",
             () -> new StairBlock(HHModBlocks.MANURE_BRICKS.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
-    public static final Supplier<Block> POLISHED_MANURE_BRICK_STAIRS = BLOCKS.register("polished_manure_brick_stairs",
-            () -> new StairBlock(HHModBlocks.POLISHED_MANURE_BRICKS.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_STAIRS = BLOCKS.register("polished_manure_stairs",
+            () -> new StairBlock(HHModBlocks.POLISHED_MANURE.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 
     public static final Supplier<Block> MANURE_BRICK_SLAB = BLOCKS.register("manure_brick_slab",
             () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
-    public static final Supplier<Block> POLISHED_MANURE_BRICK_SLAB = BLOCKS.register("polished_manure_brick_slab",
-            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_SLAB = BLOCKS.register("polished_manure_slab",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 
     public static final Supplier<Block> MANURE_BRICK_WALL = BLOCKS.register("manure_brick_wall",
             () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
-    public static final Supplier<Block> POLISHED_MANURE_BRICK_WALL = BLOCKS.register("polished_manure_brick_wall",
-            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_WALL = BLOCKS.register("polished_manure_wall",
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 }

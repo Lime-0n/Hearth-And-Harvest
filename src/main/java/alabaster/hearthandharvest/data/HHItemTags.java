@@ -44,15 +44,21 @@ public class HHItemTags extends ItemTagsProvider {
         
         tag(ItemTags.STAIRS)
                 .add(HHModItems.SALT_STAIRS.get())
-                .add(HHModItems.POLISHED_SALT_STAIRS.get());
+                .add(HHModItems.POLISHED_SALT_STAIRS.get())
+                .add(HHModItems.MANURE_BRICK_STAIRS.get())
+                .add(HHModItems.POLISHED_MANURE_STAIRS.get());
 
         tag(ItemTags.SLABS)
                 .add(HHModItems.SALT_SLAB.get())
-                .add(HHModItems.POLISHED_SALT_SLAB.get());
+                .add(HHModItems.POLISHED_SALT_SLAB.get())
+                .add(HHModItems.MANURE_BRICK_SLAB.get())
+                .add(HHModItems.POLISHED_MANURE_SLAB.get());
 
         tag(ItemTags.WALLS)
                 .add(HHModItems.SALT_WALL.get())
-                .add(HHModItems.POLISHED_SALT_WALL.get());
+                .add(HHModItems.POLISHED_SALT_WALL.get())
+                .add(HHModItems.MANURE_BRICK_WALL.get())
+                .add(HHModItems.POLISHED_MANURE_WALL.get());
 
         tag(ItemTags.PIGLIN_LOVED)
                 .add(HHModItems.GOLDEN_CLEAVER.get());
@@ -82,7 +88,6 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(Items.VINE)
                 .add(HHModItems.RED_GRAPES.get())
                 .add(HHModItems.GREEN_GRAPES.get());
-
 
         tag(HHModTags.SHORT_BOTTLES)
                 .add(Items.GLASS_BOTTLE)

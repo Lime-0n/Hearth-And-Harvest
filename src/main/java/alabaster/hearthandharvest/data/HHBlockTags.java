@@ -144,17 +144,23 @@ public class HHBlockTags extends BlockTagsProvider {
 
         tag(BlockTags.SLABS).add(
                 HHModBlocks.SALT_SLAB.get(),
-                HHModBlocks.POLISHED_SALT_SLAB.get()
+                HHModBlocks.POLISHED_SALT_SLAB.get(),
+                HHModBlocks.MANURE_BRICK_SLAB.get(),
+                HHModBlocks.POLISHED_MANURE_SLAB.get()
         );
 
         tag(BlockTags.STAIRS).add(
                 HHModBlocks.SALT_STAIRS.get(),
-                HHModBlocks.POLISHED_SALT_STAIRS.get()
+                HHModBlocks.POLISHED_SALT_STAIRS.get(),
+                HHModBlocks.MANURE_BRICK_STAIRS.get(),
+                HHModBlocks.POLISHED_MANURE_STAIRS.get()
         );
 
         tag(BlockTags.WALLS).add(
                 HHModBlocks.SALT_WALL.get(),
-                HHModBlocks.POLISHED_SALT_WALL.get()
+                HHModBlocks.POLISHED_SALT_WALL.get(),
+                HHModBlocks.MANURE_BRICK_WALL.get(),
+                HHModBlocks.POLISHED_MANURE_WALL.get()
         );
 
     }
@@ -351,7 +357,15 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.POLISHED_SALT_SLAB.get(),
                 HHModBlocks.SALT_WALL.get(),
                 HHModBlocks.POLISHED_SALT_WALL.get(),
-                HHModBlocks.SALT_DRIP.get()
+                HHModBlocks.SALT_DRIP.get(),
+                HHModBlocks.MANURE_BRICKS.get(),
+                HHModBlocks.POLISHED_MANURE.get(),
+                HHModBlocks.MANURE_BRICK_STAIRS.get(),
+                HHModBlocks.POLISHED_MANURE_STAIRS.get(),
+                HHModBlocks.MANURE_BRICK_SLAB.get(),
+                HHModBlocks.POLISHED_MANURE.get(),
+                HHModBlocks.MANURE_BRICK_WALL.get(),
+                HHModBlocks.POLISHED_MANURE_WALL.get()
         );
 
         tag(BlockTags.MINEABLE_WITH_HOE).add(
@@ -368,6 +382,11 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.COCOA_BEAN_BAG.get(),
                 HHModBlocks.CORN_KERNEL_BAG.get(),
                 HHModBlocks.GUNPOWDER_BAG.get()
+        );
+
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
+                HHModBlocks.MULCH.get(),
+                HHModBlocks.MANURE_BLOCK.get()
         );
     }
 }

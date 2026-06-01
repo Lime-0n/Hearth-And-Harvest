@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "hearthandharvest:block/polished_manure_bricks"
+    "wall": "hearthandharvest:block/polished_manure"
   }
 }

@@ -3,13 +3,11 @@ package alabaster.hearthandharvest.common.registry;
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.common.HHFoodValues;
 import alabaster.hearthandharvest.common.block.trellis.TrellisMaterial;
-import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import alabaster.hearthandharvest.common.item.*;
 import com.google.common.collect.Sets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.ModList;
@@ -336,7 +334,7 @@ public class HHModItems {
     
     // Manure
     public static final Supplier<Item> MANURE = registerWithTab("manure",
-            () -> new Item(basicItem()));
+            () -> new ManureItem(basicItem()));
     public static final Supplier<Item> WET_MANURE_BRICK = registerWithTab("wet_manure_brick",
             () -> new Item(basicItem()));
     public static final Supplier<Item> MANURE_BRICK = registerWithTab("manure_brick",
@@ -345,20 +343,20 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.MANURE_BLOCK.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_BLOCK = registerWithBlockTab("manure_bricks",
             () -> new BlockItem(HHModBlocks.MANURE_BRICKS.get(), basicItem()));
-    public static final Supplier<Item> POLISHED_MANURE_BRICK = registerWithBlockTab("polished_manure_bricks",
-            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICKS.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE = registerWithBlockTab("polished_manure",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_STAIRS = registerWithBlockTab("manure_brick_stairs",
             () -> new BlockItem(HHModBlocks.MANURE_BRICK_STAIRS.get(), basicItem()));
-    public static final Supplier<Item> POLISHED_MANURE_BRICK_STAIRS = registerWithBlockTab("polished_manure_brick_stairs",
-            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_STAIRS.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_STAIRS = registerWithBlockTab("polished_manure_stairs",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_STAIRS.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_SLAB = registerWithBlockTab("manure_brick_slab",
             () -> new BlockItem(HHModBlocks.MANURE_BRICK_SLAB.get(), basicItem()));
-    public static final Supplier<Item> POLISHED_MANURE_BRICK_SLAB = registerWithBlockTab("polished_manure_brick_slab",
-            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_SLAB.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_SLAB = registerWithBlockTab("polished_manure_slab",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_SLAB.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_WALL = registerWithBlockTab("manure_brick_wall",
             () -> new BlockItem(HHModBlocks.MANURE_BRICK_WALL.get(), basicItem()));
-    public static final Supplier<Item> POLISHED_MANURE_BRICK_WALL = registerWithBlockTab("polished_manure_brick_wall",
-            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_WALL.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_WALL = registerWithBlockTab("polished_manure_wall",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_WALL.get(), basicItem()));
 
     // Half-Slab Crates
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
