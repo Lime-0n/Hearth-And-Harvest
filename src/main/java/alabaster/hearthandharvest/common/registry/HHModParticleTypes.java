@@ -13,4 +13,7 @@ public class HHModParticleTypes {
 
         public static final Supplier<SimpleParticleType> DRIPPING_SAP = PARTICLE_TYPES.register("dripping_sap",
                 () -> new SimpleParticleType(true));
+
+        public static final Supplier<SimpleParticleType> FLIES = PARTICLE_TYPES.register("flies",
+                () -> new SimpleParticleType(true));
 }

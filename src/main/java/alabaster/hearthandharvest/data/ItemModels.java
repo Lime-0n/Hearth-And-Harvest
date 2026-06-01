@@ -172,6 +172,11 @@ public class ItemModels extends ItemModelProvider
         wallItemModel(HHModItems.POLISHED_SALT_WALL.get(), resourceBlock("polished_salt_block"));
         items.remove(HHModItems.POLISHED_SALT_WALL.get());
 
+        wallItemModel(HHModItems.MANURE_BRICK_WALL.get(), resourceBlock("manure_bricks"));
+        items.remove(HHModItems.MANURE_BRICK_WALL.get());
+        wallItemModel(HHModItems.POLISHED_MANURE_BRICK_WALL.get(), resourceBlock("polished_manure_bricks"));
+        items.remove(HHModItems.POLISHED_MANURE_BRICK_WALL.get());
+
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
                 HHModItems.TRELLIS.get(),

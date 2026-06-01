@@ -2,6 +2,7 @@ package alabaster.hearthandharvest.client.event;
 
 import alabaster.hearthandharvest.HearthAndHarvest;
 import alabaster.hearthandharvest.client.particle.DrippingSapParticle;
+import alabaster.hearthandharvest.client.particle.FliesParticle;
 import alabaster.hearthandharvest.client.renderer.*;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
@@ -96,6 +97,10 @@ public class ClientEventHandler {
         event.registerSpriteSet(
                 HHModParticleTypes.DRIPPING_SAP.get(),
                 DrippingSapParticle.Provider::new
+        );
+        event.registerSpriteSet(
+                HHModParticleTypes.FLIES.get(),
+                FliesParticle.Provider::new
         );
     }
 

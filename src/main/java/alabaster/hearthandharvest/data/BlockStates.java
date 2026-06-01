@@ -156,17 +156,26 @@ public class BlockStates extends BlockStateProvider {
 
         this.simpleBlock(HHModBlocks.SALT_BLOCK.get());
         this.simpleBlock(HHModBlocks.POLISHED_SALT_BLOCK.get());
-
         this.stairsBlock((StairBlock) HHModBlocks.SALT_STAIRS.get(), resourceBlock("salt_block"));
         this.stairsBlock((StairBlock) HHModBlocks.POLISHED_SALT_STAIRS.get(), resourceBlock("polished_salt_block"));
-
         this.slabBlock((SlabBlock) HHModBlocks.SALT_SLAB.get(), resourceBlock("salt_block"), resourceBlock("salt_block"));
         this.slabBlock((SlabBlock) HHModBlocks.POLISHED_SALT_SLAB.get(), resourceBlock("polished_salt_block"), resourceBlock("polished_salt_block"));
-
         this.wallBlock((WallBlock) HHModBlocks.SALT_WALL.get(), resourceBlock("salt_block"));
         this.wallBlock((WallBlock) HHModBlocks.POLISHED_SALT_WALL.get(), resourceBlock("polished_salt_block"));
 
         this.saltDripBlock(HHModBlocks.SALT_DRIP.get());
+
+        this.simpleBlock(HHModBlocks.MULCH.get());
+        this.simpleBlock(HHModBlocks.MANURE_BLOCK.get());
+
+        this.simpleBlock(HHModBlocks.MANURE_BRICKS.get());
+        this.simpleBlock(HHModBlocks.POLISHED_MANURE_BRICKS.get());
+        this.stairsBlock((StairBlock) HHModBlocks.MANURE_BRICK_STAIRS.get(), resourceBlock("manure_bricks"));
+        this.stairsBlock((StairBlock) HHModBlocks.POLISHED_MANURE_BRICK_STAIRS.get(), resourceBlock("polished_manure_bricks"));
+        this.slabBlock((SlabBlock) HHModBlocks.MANURE_BRICK_SLAB.get(), resourceBlock("manure_bricks"), resourceBlock("manure_bricks"));
+        this.slabBlock((SlabBlock) HHModBlocks.POLISHED_MANURE_BRICK_SLAB.get(), resourceBlock("polished_manure_bricks"), resourceBlock("polished_manure_bricks"));
+        this.wallBlock((WallBlock) HHModBlocks.MANURE_BRICK_WALL.get(), resourceBlock("manure_bricks"));
+        this.wallBlock((WallBlock) HHModBlocks.POLISHED_MANURE_BRICK_WALL.get(), resourceBlock("polished_manure_bricks"));
     }
 
     // --- Trellis ---

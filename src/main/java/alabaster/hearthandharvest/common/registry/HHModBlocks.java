@@ -129,31 +129,6 @@ public class HHModBlocks {
             () -> new BottleRackBlock(Block.Properties.ofFullCopy(Blocks.BARREL)))
             : null;
 
-    static {
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_bottle_rack"));
-        BLOCKS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
-    }
-
     // Wild Crops
     public static final Supplier<Block> WILD_RED_GRAPES = BLOCKS.register("wild_red_grapes",
             () -> new WildCropBlock(MobEffects.MOVEMENT_SPEED, 10, Block.Properties.ofFullCopy(Blocks.TALL_GRASS)));
@@ -182,6 +157,7 @@ public class HHModBlocks {
     public static final Supplier<Block> WHITE_MUM = BLOCKS.register("white_mum",
             () -> new FlowerBlock(MobEffects.HEAL, 10, Block.Properties.ofFullCopy(Blocks.POPPY)));
 
+    // Potted Flowers
     public static final Supplier<Block> POTTED_YELLOW_MUM = BLOCKS.register("potted_yellow_mum",
             () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, () -> HHModBlocks.YELLOW_MUM.get(), Block.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
     public static final Supplier<Block> POTTED_ORANGE_MUM = BLOCKS.register("potted_orange_mum",
@@ -253,7 +229,7 @@ public class HHModBlocks {
     public static final Supplier<Block> CORN_KERNEL_BAG = BLOCKS.register("corn_kernel_bag",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     
-    // Misc
+    // Misc Storage Blocks
     public static final Supplier<Block> COTTON_BALE = BLOCKS.register("cotton_bale",
             () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
     public static final Supplier<Block> SPOOL = BLOCKS.register("spool",
@@ -266,6 +242,9 @@ public class HHModBlocks {
             () -> new Block(Block.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
     public static final Supplier<Block> STICK_BRUSH = BLOCKS.register("stick_brush",
             () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final Supplier<Block> MULCH = BLOCKS.register("mulch",
+            () -> new MulchBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(1.0F, 1.5F).sound(SoundType.WET_GRASS).randomTicks()));
+
 
     // Half-Slab Crates
     public static final Supplier<Block> BROWN_MUSHROOM_CRATE = BLOCKS.register("brown_mushroom_crate",
@@ -366,4 +345,28 @@ public class HHModBlocks {
                     .strength(1.5f).sound(SoundType.STONE)
                     .lightLevel(state -> state.getValue(SaltLampBlock.LIT) ? 15 : 0)
                     .noOcclusion()));
+
+    // Manure
+    public static final Supplier<Block> MANURE_BLOCK = BLOCKS.register("manure_block",
+            () -> new ManureBlock(Block.Properties.ofFullCopy(Blocks.MUD).strength(1.0F, 2.0F).sound(SoundType.MUD).randomTicks()));
+
+    public static final Supplier<Block> MANURE_BRICKS = BLOCKS.register("manure_bricks",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS).randomTicks()));
+    public static final Supplier<Block> POLISHED_MANURE_BRICKS = BLOCKS.register("polished_manure_bricks",
+            () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS)));
+
+    public static final Supplier<Block> MANURE_BRICK_STAIRS = BLOCKS.register("manure_brick_stairs",
+            () -> new StairBlock(HHModBlocks.MANURE_BRICKS.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_BRICK_STAIRS = BLOCKS.register("polished_manure_brick_stairs",
+            () -> new StairBlock(HHModBlocks.POLISHED_MANURE_BRICKS.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
+
+    public static final Supplier<Block> MANURE_BRICK_SLAB = BLOCKS.register("manure_brick_slab",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_BRICK_SLAB = BLOCKS.register("polished_manure_brick_slab",
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
+
+    public static final Supplier<Block> MANURE_BRICK_WALL = BLOCKS.register("manure_brick_wall",
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+    public static final Supplier<Block> POLISHED_MANURE_BRICK_WALL = BLOCKS.register("polished_manure_brick_wall",
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE_BRICKS.get())));
 }

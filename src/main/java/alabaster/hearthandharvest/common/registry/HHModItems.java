@@ -190,35 +190,6 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.PALM_BOTTLE_RACK.get(), basicItem(), 300))
             : null;
 
-    static {
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "oak_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "spruce_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "birch_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "jungle_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "acacia_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "dark_oak_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "mangrove_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "cherry_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "bamboo_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "crimson_bottle_rack"));
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_wine_rack"),
-                ResourceLocation.fromNamespaceAndPath("hearthandharvest", "warped_bottle_rack"));
-
-        // This should convert any onion soups to new onion soups. Fingers crossed!
-        ITEMS.addAlias(ResourceLocation.fromNamespaceAndPath("hearthandharvest", "onion_soup"),
-                ResourceLocation.fromNamespaceAndPath("farmersdelight", "onion_soup"));
-    }
-
     // Crops
     public static final Supplier<Item> BLUEBERRIES = ModList.get().isLoaded("berry_good")
             ? registerWithTab("blueberries", () -> new Item(foodItem(HHFoodValues.BLUEBERRIES)))
@@ -338,33 +309,56 @@ public class HHModItems {
             () -> new FuelBlockItem(HHModBlocks.CHARCOAL_BLOCK.get(), basicItem(), 16000));
     public static final Supplier<Item> STICK_BRUSH = registerWithBlockTab("stick_brush",
             () -> new FuelBlockItem(HHModBlocks.STICK_BRUSH.get(), basicItem(), 1000));
+    public static final Supplier<Item> MULCH = registerWithBlockTab("mulch",
+            () -> new FuelBlockItem(HHModBlocks.MULCH.get(), basicItem(), 1000));
 
     // Salt
     public static final Supplier<Item> SALT_BLOCK = registerWithBlockTab("salt_block",
             () -> new BlockItem(HHModBlocks.SALT_BLOCK.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_BLOCK = registerWithBlockTab("polished_salt_block",
             () -> new BlockItem(HHModBlocks.POLISHED_SALT_BLOCK.get(), basicItem()));
-
     public static final Supplier<Item> SALT_STAIRS = registerWithBlockTab("salt_stairs",
             () -> new BlockItem(HHModBlocks.SALT_STAIRS.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_STAIRS = registerWithBlockTab("polished_salt_stairs",
             () -> new BlockItem(HHModBlocks.POLISHED_SALT_STAIRS.get(), basicItem()));
-
     public static final Supplier<Item> SALT_SLAB = registerWithBlockTab("salt_slab",
             () -> new BlockItem(HHModBlocks.SALT_SLAB.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_SLAB = registerWithBlockTab("polished_salt_slab",
             () -> new BlockItem(HHModBlocks.POLISHED_SALT_SLAB.get(), basicItem()));
-
     public static final Supplier<Item> SALT_WALL = registerWithBlockTab("salt_wall",
             () -> new BlockItem(HHModBlocks.SALT_WALL.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_WALL = registerWithBlockTab("polished_salt_wall",
             () -> new BlockItem(HHModBlocks.POLISHED_SALT_WALL.get(), basicItem()));
-
     public static final Supplier<Item> SALT_DRIP = registerWithBlockTab("salt_drip",
             () -> new BlockItem(HHModBlocks.SALT_DRIP.get(), basicItem()));
-
     public static final Supplier<Item> SALT_LAMP = registerWithBlockTab("salt_lamp",
             () -> new BlockItem(HHModBlocks.SALT_LAMP.get(), basicItem()));
+    
+    // Manure
+    public static final Supplier<Item> MANURE = registerWithTab("manure",
+            () -> new Item(basicItem()));
+    public static final Supplier<Item> WET_MANURE_BRICK = registerWithTab("wet_manure_brick",
+            () -> new Item(basicItem()));
+    public static final Supplier<Item> MANURE_BRICK = registerWithTab("manure_brick",
+            () -> new Item(basicItem()));
+    public static final Supplier<Item> MANURE_BLOCK = registerWithBlockTab("manure_block",
+            () -> new BlockItem(HHModBlocks.MANURE_BLOCK.get(), basicItem()));
+    public static final Supplier<Item> MANURE_BRICK_BLOCK = registerWithBlockTab("manure_bricks",
+            () -> new BlockItem(HHModBlocks.MANURE_BRICKS.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_BRICK = registerWithBlockTab("polished_manure_bricks",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICKS.get(), basicItem()));
+    public static final Supplier<Item> MANURE_BRICK_STAIRS = registerWithBlockTab("manure_brick_stairs",
+            () -> new BlockItem(HHModBlocks.MANURE_BRICK_STAIRS.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_BRICK_STAIRS = registerWithBlockTab("polished_manure_brick_stairs",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_STAIRS.get(), basicItem()));
+    public static final Supplier<Item> MANURE_BRICK_SLAB = registerWithBlockTab("manure_brick_slab",
+            () -> new BlockItem(HHModBlocks.MANURE_BRICK_SLAB.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_BRICK_SLAB = registerWithBlockTab("polished_manure_brick_slab",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_SLAB.get(), basicItem()));
+    public static final Supplier<Item> MANURE_BRICK_WALL = registerWithBlockTab("manure_brick_wall",
+            () -> new BlockItem(HHModBlocks.MANURE_BRICK_WALL.get(), basicItem()));
+    public static final Supplier<Item> POLISHED_MANURE_BRICK_WALL = registerWithBlockTab("polished_manure_brick_wall",
+            () -> new BlockItem(HHModBlocks.POLISHED_MANURE_BRICK_WALL.get(), basicItem()));
 
     // Half-Slab Crates
     public static final Supplier<Item> BROWN_MUSHROOM_CRATE = registerWithBlockTab("brown_mushroom_crate",
