@@ -1,7 +1,9 @@
 {
   "itemGroup.hearthandharvest": "Hearth and Harvest",
   "itemGroup.hearthandharvest_blocks": "Блоки Hearth and Harvest",
+
   "block.hearthandharvest.tree_tapper": "Соківниця",
+
   "item.hearthandharvest.crow_spawn_egg": "Яйце виклику ворони",
   "entity.hearthandharvest.crow": "Ворона",
   "item.hearthandharvest.crow_feather": "Вороняче перо",
@@ -9,28 +11,36 @@
   "hearthandharvest.subtitles.crow.hurt": "Ворона поранена",
   "hearthandharvest.subtitles.crow.eat": "Ворона їсть",
   "hearthandharvest.subtitles.crow.step": "Ворона махає крилами",
+
   "block.hearthandharvest.cask": "Діжка",
   "hearthandharvest.container.cask.dim": "Темно, швидкість 2x",
   "hearthandharvest.container.cask.medium": "Добре освітлено, швидкість 1x",
   "hearthandharvest.container.cask.bright": "Яскраво, швидкість 0.5x",
   "hearthandharvest.container.cask.default": "Рівень освітлення не визначено",
   "hearthandharvest.container.recipe_book.ageable": "Рецепти витримування",
+
   "block.hearthandharvest.stomping_basin": "Чавильня",
   "hearthandharvest.subtitles.stomping_basin.stomp": "Предмети топчуть",
+
   "block.hearthandharvest.empty_jar_display": "Банки",
+
   "block.hearthandharvest.jug": "Бідон",
   "tooltip.hearthandharvest.jug.empty": "Порожній",
   "tooltip.hearthandharvest.jug.amount": "%1$d мВ",
   "tooltip.hearthandharvest.jug.full": "Бідон повний!",
   "tooltip.hearthandharvest.jug.wrong_fluid": "Рідина не підходить!",
+
   "block.hearthandharvest.counter": "Стільниця",
   "block.hearthandharvest.drawer": "Шухляда",
-  "block.hearthandharvest.basin": "Мийка",
+  "block.hearthandharvest.basin": "Раковина",
+
   "block.hearthandharvest.nest": "Гніздо",
   "block.hearthandharvest.hay_rug": "Сінний килимок",
   "block.hearthandharvest.straw_rug": "Солом'яний килимок",
+
   "item.hearthandharvest.scarecrow": "Опудало",
   "block.hearthandharvest.scarecrow": "Опудало",
+
   "item.hearthandharvest.trellis": "Шпалера",
   "block.hearthandharvest.trellis": "Шпалера",
   "item.hearthandharvest.bamboo_trellis": "Бамбукова шпалера",
@@ -40,6 +50,7 @@
   "block.hearthandharvest.trellis.remove_plant_first": "Спочатку обріжте рослину ножицями!",
   "block.hearthandharvest.trellis.growth_blocked": "Ріст на шпалері буде заблокований",
   "block.hearthandharvest.trellis.growth_allowed": "Ріст на шпалері дозволений",
+
   "block.hearthandharvest.oak_half_cabinet": "Дубова напівшафка",
   "block.hearthandharvest.birch_half_cabinet": "Березова напівшафка",
   "block.hearthandharvest.spruce_half_cabinet": "Смерекова напівшафка",
@@ -55,8 +66,10 @@
   "block.hearthandharvest.crate": "Порожній ящик",
   "block.hearthandharvest.crate.named": "Ящик %s",
   "block.hearthandharvest.crate.mixed": "Змішаний ящик",
+
   "tooltip.hearthandharvest.deprecated": "⚠ Цей предмет буде видалено в наступному оновленні.",
   "tooltip.hearthandharvest.deprecated.hint": "Перетворіть його за допомогою ящика або поверніть у пляшки, поки він не зник.",
+
   "block.hearthandharvest.oak_bottle_rack": "Дубова полиця для пляшок",
   "block.hearthandharvest.birch_bottle_rack": "Березова полиця для пляшок",
   "block.hearthandharvest.spruce_bottle_rack": "Смерекова полиця для пляшок",
@@ -69,15 +82,19 @@
   "block.hearthandharvest.crimson_bottle_rack": "Багряна полиця для пляшок",
   "block.hearthandharvest.warped_bottle_rack": "Химерна полиця для пляшок",
   "block.hearthandharvest.palm_bottle_rack": "Пальмова полиця для пляшок",
+
   "hearthandharvest.subtitles.bottle.insert": "Поставлено пляшку",
   "hearthandharvest.subtitles.bottle.remove": "Забрано пляшку",
+
   "block_type.hearthandharvest.half_cabinet": "Напівшафка %s",
   "block_type.hearthandharvest.bottle_rack": "Полиця для пляшок %s",
+
   "item.hearthandharvest.flint_cleaver": "Кремнієвий тесак",
   "item.hearthandharvest.iron_cleaver": "Залізний тесак",
   "item.hearthandharvest.golden_cleaver": "Золотий тесак",
   "item.hearthandharvest.diamond_cleaver": "Діамантовий тесак",
   "item.hearthandharvest.netherite_cleaver": "Незеритовий тесак",
+
   "item.hearthandharvest.raspberry": "Малина",
   "item.hearthandharvest.blueberries": "Чорниця",
   "item.hearthandharvest.red_grapes": "Червоний виноград",
@@ -87,13 +104,15 @@
   "item.hearthandharvest.cotton_seeds": "Насіння бавовни",
   "item.hearthandharvest.cotton": "Бавовна",
   "item.hearthandharvest.corn": "Кукурудза",
-  "item.hearthandharvest.corn_kernels": "Зерна кукурудзи",
-  "item.hearthandharvest.corn_husk": "Листя кукурудзи",
+  "item.hearthandharvest.corn_kernels": "Кукурудзяні зерна",
+  "item.hearthandharvest.corn_husk": "Кукурудзяне листя",
+
   "block.hearthandharvest.wild_red_grapes": "Дикий червоний виноград",
   "block.hearthandharvest.wild_green_grapes": "Дикий зелений виноград",
   "block.hearthandharvest.wild_cotton": "Дика бавовна",
   "block.hearthandharvest.wild_peanuts": "Дикий арахіс",
   "block.hearthandharvest.corn_stalk": "Стебло кукурудзи",
+
   "block.hearthandharvest.yellow_mum": "Жовта хризантема",
   "block.hearthandharvest.orange_mum": "Помаранчева хризантема",
   "block.hearthandharvest.red_mum": "Червона хризантема",
@@ -102,6 +121,7 @@
   "block.hearthandharvest.purple_mum": "Фіолетова хризантема",
   "block.hearthandharvest.pink_mum": "Рожева хризантема",
   "block.hearthandharvest.white_mum": "Біла хризантема",
+
   "block.hearthandharvest.potted_yellow_mum": "Горщик жовтої хризантеми",
   "block.hearthandharvest.potted_orange_mum": "Горщик помаранчевої хризантеми",
   "block.hearthandharvest.potted_red_mum": "Горщик червоної хризантеми",
@@ -110,6 +130,7 @@
   "block.hearthandharvest.potted_purple_mum": "Горщик фіолетової хризантеми",
   "block.hearthandharvest.potted_pink_mum": "Горщик рожевої хризантеми",
   "block.hearthandharvest.potted_white_mum": "Горщик білої хризантеми",
+
   "block.hearthandharvest.blueberry_crate": "Ящик чорниці",
   "block.hearthandharvest.cherry_crate": "Ящик вишні",
   "block.hearthandharvest.raspberry_crate": "Ящик малини",
@@ -124,24 +145,28 @@
   "block.hearthandharvest.rotten_tomato_crate": "Ящик гнилих помідорів",
   "block.hearthandharvest.glow_berry_crate": "Ящик сяйних ягід",
   "block.hearthandharvest.sweet_berry_crate": "Ящик солодких ягід",
+
   "block.hearthandharvest.salt_bag": "Мішок солі",
   "block.hearthandharvest.sugar_bag": "Мішок цукру",
   "block.hearthandharvest.cocoa_bean_bag": "Мішок какао-бобів",
   "block.hearthandharvest.gunpowder_bag": "Мішок пороху",
-  "block.hearthandharvest.corn_kernel_bag": "Мішок зерен кукурудзи",
+  "block.hearthandharvest.corn_kernel_bag": "Мішок кукурудзяних зерен",
   "block.hearthandharvest.cotton_bale": "Копиця бавовни",
   "block.hearthandharvest.spool": "Котушка",
   "block.hearthandharvest.rope_coil": "Моток мотузки",
-  "block.hearthandharvest.corn_husk_bundle": "Зв'язка листя кукурудзи",
+  "block.hearthandharvest.corn_husk_bundle": "Зв'язка кукурудзяного листя",
   "block.hearthandharvest.charcoal_block": "Блок деревного вугілля",
   "block.hearthandharvest.stick_brush": "Зв'язка паличок",
+
   "block.hearthandharvest.brown_mushroom_crate": "Ящик коричневих грибів",
   "block.hearthandharvest.red_mushroom_crate": "Ящик червоних грибів",
-  "block.hearthandharvest.crimson_fungus_crate": "Ящик багряного гриба",
-  "block.hearthandharvest.warped_fungus_crate": "Ящик химерного гриба",
+  "block.hearthandharvest.crimson_fungus_crate": "Ящик багряних грибів",
+  "block.hearthandharvest.warped_fungus_crate": "Ящик химерних грибів",
+
   "item.hearthandharvest.wooden_bucket": "Дерев'яне відро",
   "item.hearthandharvest.watering_can": "Лійка",
   "item.hearthandharvest.universal_feed": "Корм для тварин",
+
   "item.hearthandharvest.mead": "Медовуха",
   "item.hearthandharvest.root_beer": "Кореневе пиво",
   "item.hearthandharvest.hard_cider": "Міцний сидр",
@@ -165,7 +190,9 @@
   "item.hearthandharvest.green_grape_juice": "Сік зеленого винограду",
   "item.hearthandharvest.glow_berry_juice": "Сік сяйних ягід",
   "item.hearthandharvest.sweet_berry_juice": "Сік солодких ягід",
+
   "hearthandharvest.subtitles.wine.drink": "Випито вино",
+
   "item.hearthandharvest.jar": "Банка",
   "item.hearthandharvest.raspberry_jam": "Малинове варення",
   "item.hearthandharvest.cherry_jam": "Вишневе варення",
@@ -181,6 +208,7 @@
   "item.hearthandharvest.pickled_carrots": "Маринована морква",
   "item.hearthandharvest.pickled_onions": "Маринована цибуля",
   "item.hearthandharvest.pickled_potatoes": "Маринована картопля",
+
   "item.hearthandharvest.caramel": "Карамель",
   "item.hearthandharvest.caramel_apple": "Яблуко в карамелі",
   "item.hearthandharvest.chocolate_bar": "Шоколадний батончик",
@@ -190,6 +218,7 @@
   "item.hearthandharvest.peanut_butter_cookie": "Арахісове печиво",
   "item.hearthandharvest.trail_mix": "Похідний перекус",
   "item.hearthandharvest.roasted_peanuts": "Смажений арахіс",
+
   "item.hearthandharvest.marshmallow_stick": "Маршмелоу",
   "item.hearthandharvest.roasted_marshmallow_stick": "Смажене маршмелоу",
   "item.hearthandharvest.charred_marshmallow_stick": "Підгоріле маршмелоу",
@@ -197,6 +226,7 @@
   "item.hearthandharvest.cider_donut": "Пончик з сидром",
   "item.hearthandharvest.baked_apple": "Печене яблуко",
   "item.hearthandharvest.candy_corn": "Кукурудзяна цукерка",
+
   "block.hearthandharvest.raspberry_pie": "Малиновий пиріг",
   "item.hearthandharvest.raspberry_pie_slice": "Шматочок малинового пирога",
   "block.hearthandharvest.blueberry_pie": "Чорничний пиріг",
@@ -209,9 +239,11 @@
   "item.hearthandharvest.chicken_pot_pie_slice": "Шматочок курячого пирога",
   "block.hearthandharvest.carrot_cake": "Морквяний торт",
   "item.hearthandharvest.carrot_cake_slice": "Шматочок морквяного торта",
+
   "item.hearthandharvest.sap_bucket": "Відро деревного соку",
   "item.hearthandharvest.syrup_bottle": "Пляшка сиропу",
   "item.hearthandharvest.maple_cookie": "Кленове печиво",
+
   "item.hearthandharvest.salt": "Сіль",
   "block.hearthandharvest.salt_block": "Блок солі",
   "block.hearthandharvest.polished_salt_block": "Шліфований блок солі",
@@ -224,14 +256,34 @@
   "block.hearthandharvest.salt_drip": "Соляний шип",
   "block.hearthandharvest.salt_lamp": "Соляна лампа",
   "hearthandharvest.subtitles.salt_lamp.switch": "Соляна лампа перемикається",
+
   "tooltip.hearthandharvest.salted": "Засолено",
+
+  "item.hearthandharvest.manure": "Гній",
+  "item.hearthandharvest.wet_manure_brick": "Сира гнойова цегла",
+  "item.hearthandharvest.manure_brick": "Гнойова цегла",
+  "block.hearthandharvest.manure_block": "Блок гною",
+  "block.hearthandharvest.mulch": "Мульча",
+  "block.hearthandharvest.manure_bricks": "Гнойові цеглини",
+  "block.hearthandharvest.polished_manure_bricks": "Шліфований гній",
+  "block.hearthandharvest.manure_brick_stairs": "Сходи з гнойових цеглин",
+  "block.hearthandharvest.polished_manure_stairs": "Сходи з шліфованого гною",
+  "block.hearthandharvest.manure_brick_slab": "Плита з гнойових цеглин",
+  "block.hearthandharvest.polished_manure_slab": "Плита з шліфованого гною",
+  "block.hearthandharvest.manure_brick_wall": "Стіна з гнойових цеглин",
+  "block.hearthandharvest.polished_manure_wall": "Стіна з шліфованого гною",
+
+  "hearthandharvest.subtitles.entity.fart": "Тварина пердить",
+
   "item.hearthandharvest.cooking_oil": "Олія",
+
   "block.hearthandharvest.unripe_cheddar_cheese_wheel": "Невитриманий чеддер",
   "block.hearthandharvest.cheddar_cheese_wheel": "Чеддер",
   "item.hearthandharvest.cheddar_cheese_slice": "Скибка чеддеру",
   "block.hearthandharvest.unripe_goat_cheese_wheel": "Невитриманий козячий сир",
   "block.hearthandharvest.goat_cheese_wheel": "Козячий сир",
   "item.hearthandharvest.goat_cheese_slice": "Скибка козячого сиру",
+
   "item.hearthandharvest.raw_sausage": "Сира ковбаска",
   "item.hearthandharvest.cooked_sausage": "Смажена ковбаска",
   "item.hearthandharvest.raw_skewered_sausage": "Сира ковбаска на паличці",
@@ -250,63 +302,81 @@
   "item.hearthandharvest.elote": "Елоте",
   "item.hearthandharvest.tortilla": "Тортилья",
   "item.hearthandharvest.taco": "Тако",
-  "item.hearthandharvest.corn_meal": "Кукурудзяне борошно",
+
+  "item.hearthandharvest.corn_meal": "Кукурудзяна крупа",
   "item.hearthandharvest.flour": "Борошно",
+
   "item.hearthandharvest.macaroni_and_cheese": "Локшина з сиром",
   "item.hearthandharvest.mashed_potatoes": "Картопляне пюре",
   "item.hearthandharvest.peanut_butter_and_jelly_sandwich": "Сендвіч з арахісовою пастою та джемом",
   "item.hearthandharvest.waffle": "Вафля",
   "item.hearthandharvest.biscuits_and_gravy": "Булочки з м'ясним соусом",
   "item.hearthandharvest.glazed_carrots": "Морква в глазурі",
+
   "effect.hearthandharvest.pungent": "Сморід",
   "effect.hearthandharvest.pungent.0.desc": "Змушує мобів поруч уникати вас через неприємний запах",
+
   "item.minecraft.potion.effect.pungent_potion": "Зілля смороду",
   "item.minecraft.splash_potion.effect.pungent_potion": "Вибухове зілля смороду",
   "item.minecraft.lingering_potion.effect.pungent_potion": "Осідальне зілля смороду",
   "item.minecraft.tipped_arrow.effect.pungent_potion": "Стріла смороду",
+
   "item.minecraft.potion.effect.long_pungent_potion": "Зілля смороду",
   "item.minecraft.splash_potion.effect.long_pungent_potion": "Вибухове зілля смороду",
   "item.minecraft.lingering_potion.effect.long_pungent_potion": "Осідальне зілля смороду",
   "item.minecraft.tipped_arrow.effect.long_pungent_potion": "Стріла смороду",
+
   "item.minecraft.potion.effect.strong_pungent_potion": "Зілля смороду",
   "item.minecraft.splash_potion.effect.strong_pungent_potion": "Вибухове зілля смороду",
   "item.minecraft.lingering_potion.effect.strong_pungent_potion": "Осідальне зілля смороду",
   "item.minecraft.tipped_arrow.effect.strong_pungent_potion": "Стріла смороду",
+
   "effect.hearthandharvest.tempting": "Аромат",
   "effect.hearthandharvest.tempting.0.desc": "Приваблює тварин поруч своїм солодким ароматом",
+
   "item.minecraft.potion.effect.tempting_potion": "Зілля аромату",
   "item.minecraft.splash_potion.effect.tempting_potion": "Вибухове зілля аромату",
   "item.minecraft.lingering_potion.effect.tempting_potion": "Осідальне зілля аромату",
   "item.minecraft.tipped_arrow.effect.tempting_potion": "Стріла аромату",
+
   "item.minecraft.potion.effect.long_tempting_potion": "Зілля аромату",
   "item.minecraft.splash_potion.effect.long_tempting_potion": "Вибухове зілля аромату",
   "item.minecraft.lingering_potion.effect.long_tempting_potion": "Осідальне зілля аромату",
   "item.minecraft.tipped_arrow.effect.long_tempting_potion": "Стріла аромату",
+
   "item.minecraft.potion.effect.strong_tempting_potion": "Зілля аромату",
   "item.minecraft.splash_potion.effect.strong_tempting_potion": "Вибухове зілля аромату",
   "item.minecraft.lingering_potion.effect.strong_tempting_potion": "Осідальне зілля аромату",
   "item.minecraft.tipped_arrow.effect.strong_tempting_potion": "Стріла аромату",
+
   "item.minecraft.potion.effect.bad_omen_potion": "Зілля лихого передчуття",
   "item.minecraft.splash_potion.effect.bad_omen_potion": "Вибухове зілля лихого передчуття",
   "item.minecraft.lingering_potion.effect.bad_omen_potion": "Осідальне зілля лихого передчуття",
   "item.minecraft.tipped_arrow.effect.bad_omen_potion": "Стріла лихого передчуття",
+
   "item.minecraft.potion.effect.long_bad_omen_potion": "Зілля лихого передчуття",
   "item.minecraft.splash_potion.effect.long_bad_omen_potion": "Вибухове зілля лихого передчуття",
   "item.minecraft.lingering_potion.effect.long_bad_omen_potion": "Осідальне зілля лихого передчуття",
   "item.minecraft.tipped_arrow.effect.long_bad_omen_potion": "Стріла лихого передчуття",
+
   "item.minecraft.potion.effect.strong_bad_omen_potion": "Зілля лихого передчуття",
   "item.minecraft.splash_potion.effect.strong_bad_omen_potion": "Вибухове зілля лихого передчуття",
   "item.minecraft.lingering_potion.effect.strong_bad_omen_potion": "Осідальне зілля лихого передчуття",
   "item.minecraft.tipped_arrow.effect.strong_bad_omen_potion": "Стріла лихого передчуття",
+
   "effect.hearthandharvest.drunk": "Сп'яніння",
   "effect.hearthandharvest.drunk.0.desc": "З підвищенням рівня ефекти поступово погіршуються",
+
   "effect.hearthandharvest.clarity": "Ясність",
   "effect.hearthandharvest.clarity.0.desc": "Запобігає осліпленню та темряві",
+
   "effect.hearthandharvest.prickly": "Колючість",
   "effect.hearthandharvest.prickly.0.desc": "Завдає шкоди тим, хто торкається носія ефекту",
+
   "hearthandharvest.jei.aging": "Витримка",
   "hearthandharvest.jei.stomping": "Чавління",
   "hearthandharvest.jei.stomping.tooltip": "Стрибайте в чавильні для обробки!",
+
   "hearthandharvest.jei.info.salt": "Сіль можна додавати до будь-якої їжі, щоб збільшити кількість голоду, яку вона відновлює, зменшуючи при цьому насичення",
   "hearthandharvest.jei.info.watering_can": "Лійку можна наповнювати кістковим борошном, тримаючи його в другій руці та натиснувши, а водою — джерелом води. Лійка застосовує ефект кісткового борошна на площі 3x3. Також може гасити вогонь.",
   "hearthandharvest.jei.info.tree_tapper": "Соківниці можна розміщувати на смерекових та темно-дубових деревах для збирання деревного соку. Зберіть його відром, коли соківниця наповниться.",
@@ -339,6 +409,7 @@
   "fluid_type.hearthandharvest.sweet_berry_juice": "Сік солодких ягід",
   "fluid_type.hearthandharvest.melon_juice": "Кавуновий сік",
   "fluid_type.hearthandharvest.glow_berry_juice": "Сік сяйних ягід",
+
   "item.hearthandharvest.blueberry_pips": "Насіння чорниці",
   "item.hearthandharvest.raspberry_pips": "Насіння малини"
 }
