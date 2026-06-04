@@ -82,6 +82,8 @@ public class HHModItems {
             () -> new WateringCanItem(basicItem()));
     public static final Supplier<Item> UNIVERSAL_FEED = registerWithTab("universal_feed",
             () -> new UniversalFeedItem(basicItem()));
+    public static final Supplier<Item> SEED_POUCH = registerWithTab("seed_pouch",
+            () -> new SeedPouchItem(basicItem().stacksTo(1)));
 
     // Spawn Eggs
     public static final Supplier<Item> CROW_SPAWN_EGG = registerWithTab("crow_spawn_egg",

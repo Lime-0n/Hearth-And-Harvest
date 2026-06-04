@@ -7,8 +7,10 @@ import alabaster.hearthandharvest.client.renderer.*;
 import alabaster.hearthandharvest.common.block.trellis.TrellisBlock;
 import alabaster.hearthandharvest.common.block.trellis.TrellisPlant;
 import alabaster.hearthandharvest.common.entity.crow.CrowOnShoulderLayer;
+import alabaster.hearthandharvest.common.item.component.SeedPouchContents;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.utilities.BasinBlockColor;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -17,14 +19,12 @@ import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.FoliageColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
@@ -160,5 +160,20 @@ public class ClientEventHandler {
             @Override public ResourceLocation getStillTexture()   { return still; }
             @Override public ResourceLocation getFlowingTexture() { return flowing; }
         }, type);
+    }
+
+    public static void registerItemDecorations(RegisterItemDecorationsEvent event) {
+        event.register(HHModItems.SEED_POUCH.get(), (guiGraphics, font, stack, xOffset, yOffset) -> {
+            SeedPouchContents contents = stack.get(HHModDataComponents.SEED_POUCH_CONTENTS.get());
+            if (contents == null || contents.count() == 0) return false;
+
+            PoseStack pose = guiGraphics.pose();
+            pose.pushPose();
+            pose.translate(xOffset + 8, yOffset + 8, 200);
+            pose.scale(0.5f, 0.5f, 1.0f);
+            guiGraphics.renderItem(new ItemStack(contents.seedType()), 0, 0);
+            pose.popPose();
+            return true;
+        });
     }
 }

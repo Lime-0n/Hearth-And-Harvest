@@ -18,7 +18,7 @@ public abstract class AnimalManureMixin {
         if (animal.level().isClientSide) return;
         if (animal.isBaby()) return;
         if (animal.tickCount % 20 != 0) return;
-        if (animal.getRandom().nextInt(10) != 0) return;
+        if (animal.getRandom().nextInt(300) != 0) return;
 
         animal.spawnAtLocation(HHModItems.MANURE.get());
         animal.level().playSound(null, animal.getX(), animal.getY(), animal.getZ(),

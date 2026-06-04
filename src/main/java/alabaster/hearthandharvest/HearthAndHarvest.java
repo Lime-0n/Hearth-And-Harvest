@@ -12,6 +12,8 @@ import alabaster.hearthandharvest.common.entity.goal.SeekNestGoal;
 import alabaster.hearthandharvest.common.entity.goal.TemptingEffectGoal;
 import alabaster.hearthandharvest.common.event.RabbitLitters;
 import alabaster.hearthandharvest.common.item.CrateBlockItem;
+import alabaster.hearthandharvest.common.item.SeedPouchItem;
+import alabaster.hearthandharvest.common.item.component.SeedPouchContents;
 import alabaster.hearthandharvest.common.registry.*;
 import alabaster.hearthandharvest.common.event.PigLitters;
 import alabaster.hearthandharvest.common.worldgen.VillageCrops;
@@ -22,6 +24,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -36,9 +39,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
@@ -106,6 +107,7 @@ public class HearthAndHarvest {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             CrateBlockItem.registerDispenseBehavior(HHModItems.CRATE.get());
+            SeedPouchItem.registerDispenseBehavior();
         });
     }
 
@@ -173,6 +175,25 @@ public class HearthAndHarvest {
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(CrowModel.LAYER_LOCATION, CrowModel::createBodyLayer);
+        }
+
+        @SubscribeEvent
+        public static void registerItemDecorations(RegisterItemDecorationsEvent event) {
+            event.register(HHModItems.SEED_POUCH.get(), (guiGraphics, font, stack, xOffset, yOffset) -> {
+                SeedPouchContents contents = stack.get(HHModDataComponents.SEED_POUCH_CONTENTS.get());
+                if (contents == null || contents.count() == 0) return false;
+
+                ItemStack seedStack = new ItemStack(contents.seedType());
+                if (seedStack.isEmpty()) return false;
+
+                com.mojang.blaze3d.vertex.PoseStack pose = guiGraphics.pose();
+                pose.pushPose();
+                pose.translate(xOffset + 8, yOffset + 8, 0);
+                pose.scale(0.5f, 0.5f, 1.0f);
+                guiGraphics.renderItem(seedStack, 0, 0);
+                pose.popPose();
+                return true;
+            });
         }
     }
 }

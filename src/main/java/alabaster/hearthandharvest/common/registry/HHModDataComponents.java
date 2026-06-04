@@ -1,5 +1,6 @@
 package alabaster.hearthandharvest.common.registry;
 
+import alabaster.hearthandharvest.common.item.component.SeedPouchContents;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -34,5 +35,11 @@ public class HHModDataComponents {
             DATA_COMPONENTS.registerComponentType("salted", builder ->
                     builder.persistent(Codec.BOOL)
                             .networkSynchronized(ByteBufCodecs.BOOL)
+            );
+
+    public static final Supplier<DataComponentType<SeedPouchContents>> SEED_POUCH_CONTENTS =
+            DATA_COMPONENTS.registerComponentType("seed_pouch_contents", builder ->
+                    builder.persistent(SeedPouchContents.CODEC)
+                            .networkSynchronized(SeedPouchContents.STREAM_CODEC)
             );
 }

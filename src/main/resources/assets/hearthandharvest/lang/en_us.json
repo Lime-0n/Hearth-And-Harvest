@@ -168,6 +168,10 @@
   "item.hearthandharvest.watering_can": "Watering Can",
   "item.hearthandharvest.universal_feed": "Animal Feed",
 
+  "item.hearthandharvest.seed_pouch": "Seed Pouch",
+  "tooltip.hearthandharvest.seed_pouch.empty": "Empty",
+  "tooltip.hearthandharvest.seed_pouch.contents": "%1$s: %2$s",
+
   "item.hearthandharvest.mead": "Mead",
   "item.hearthandharvest.root_beer": "Root Beer",
   "item.hearthandharvest.hard_cider": "Hard Cider",
