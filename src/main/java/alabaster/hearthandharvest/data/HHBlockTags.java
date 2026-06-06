@@ -61,14 +61,9 @@ public class HHBlockTags extends BlockTagsProvider {
 
         tag(HHModTags.SALT_BLOCKS).add(
                 HHModBlocks.SALT_BLOCK.get(),
-                HHModBlocks.POLISHED_SALT_BLOCK.get(),
-                HHModBlocks.SALT_SLAB.get(),
-                HHModBlocks.POLISHED_SALT_SLAB.get(),
-                HHModBlocks.SALT_STAIRS.get(),
-                HHModBlocks.POLISHED_SALT_STAIRS.get(),
-                HHModBlocks.SALT_WALL.get(),
-                HHModBlocks.POLISHED_SALT_WALL.get(),
-                HHModBlocks.SALT_DRIP.get()
+                HHModBlocks.LIGHTLY_LICKED_SALT_BLOCK.get(),
+                HHModBlocks.WELL_LICKED_SALT_BLOCK.get(),
+                HHModBlocks.HEAVILY_LICKED_SALT_BLOCK.get()
         );
     }
 
@@ -350,6 +345,9 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.BASIN.get(),
                 HHModBlocks.CHARCOAL_BLOCK.get(),
                 HHModBlocks.SALT_BLOCK.get(),
+                HHModBlocks.LIGHTLY_LICKED_SALT_BLOCK.get(),
+                HHModBlocks.WELL_LICKED_SALT_BLOCK.get(),
+                HHModBlocks.HEAVILY_LICKED_SALT_BLOCK.get(),
                 HHModBlocks.POLISHED_SALT_BLOCK.get(),
                 HHModBlocks.SALT_STAIRS.get(),
                 HHModBlocks.POLISHED_SALT_STAIRS.get(),

@@ -42,6 +42,10 @@ public class HHModSounds {
     public static final Supplier<SoundEvent> FART = SOUNDS.register("entities.fart",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.fart")));
 
+    // Lick
+    public static final Supplier<SoundEvent> LICK = SOUNDS.register("entities.lick",
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "entities.lick")));
+
     // Misc
     public static final Supplier<SoundEvent> SALT_LAMP_SWITCH = SOUNDS.register("blocks.salt_lamp.switch",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "blocks.salt_lamp.switch")));

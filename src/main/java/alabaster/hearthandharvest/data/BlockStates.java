@@ -155,6 +155,9 @@ public class BlockStates extends BlockStateProvider {
         this.grapeTrellisBlock();
 
         this.simpleBlock(HHModBlocks.SALT_BLOCK.get());
+        this.simpleBlock(HHModBlocks.LIGHTLY_LICKED_SALT_BLOCK.get());
+        this.simpleBlock(HHModBlocks.WELL_LICKED_SALT_BLOCK.get());
+        this.simpleBlock(HHModBlocks.HEAVILY_LICKED_SALT_BLOCK.get());
         this.simpleBlock(HHModBlocks.POLISHED_SALT_BLOCK.get());
         this.stairsBlock((StairBlock) HHModBlocks.SALT_STAIRS.get(), resourceBlock("salt_block"));
         this.stairsBlock((StairBlock) HHModBlocks.POLISHED_SALT_STAIRS.get(), resourceBlock("polished_salt_block"));

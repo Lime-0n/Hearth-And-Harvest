@@ -314,7 +314,13 @@ public class HHModItems {
 
     // Salt
     public static final Supplier<Item> SALT_BLOCK = registerWithBlockTab("salt_block",
-            () -> new BlockItem(HHModBlocks.SALT_BLOCK.get(), basicItem()));
+            () -> new SaltBlockItem(HHModBlocks.SALT_BLOCK.get(), basicItem()));
+    public static final Supplier<Item> LIGHTLY_LICKED_SALT_BLOCK = registerWithBlockTab("lightly_licked_salt_block",
+            () -> new SaltBlockItem(HHModBlocks.LIGHTLY_LICKED_SALT_BLOCK.get(), basicItem()));
+    public static final Supplier<Item> WELL_LICKED_SALT_BLOCK = registerWithBlockTab("well_licked_salt_block",
+            () -> new SaltBlockItem(HHModBlocks.WELL_LICKED_SALT_BLOCK.get(), basicItem()));
+    public static final Supplier<Item> HEAVILY_LICKED_SALT_BLOCK = registerWithBlockTab("heavily_licked_salt_block",
+            () -> new SaltBlockItem(HHModBlocks.HEAVILY_LICKED_SALT_BLOCK.get(), basicItem()));
     public static final Supplier<Item> POLISHED_SALT_BLOCK = registerWithBlockTab("polished_salt_block",
             () -> new BlockItem(HHModBlocks.POLISHED_SALT_BLOCK.get(), basicItem()));
     public static final Supplier<Item> SALT_STAIRS = registerWithBlockTab("salt_stairs",

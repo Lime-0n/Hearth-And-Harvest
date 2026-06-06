@@ -239,9 +239,9 @@ public class HHModBlocks {
     public static final Supplier<Block> CHARCOAL_BLOCK = BLOCKS.register("charcoal_block",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
     public static final Supplier<Block> STICK_BRUSH = BLOCKS.register("stick_brush",
-            () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+            () -> new HayBlock(Block.Properties.ofFullCopy(Blocks.MANGROVE_ROOTS)));
     public static final Supplier<Block> MULCH = BLOCKS.register("mulch",
-            () -> new MulchBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(1.0F, 1.5F).sound(SoundType.WET_GRASS).randomTicks()));
+            () -> new MulchBlock(Block.Properties.ofFullCopy(Blocks.MANGROVE_ROOTS).strength(1.0F, 1.5F).sound(SoundType.WET_GRASS).randomTicks()));
 
 
     // Half-Slab Crates
@@ -316,6 +316,13 @@ public class HHModBlocks {
     // Salt Blocks
     public static final Supplier<Block> SALT_BLOCK = BLOCKS.register("salt_block",
             () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.TUFF).randomTicks()));
+    public static final Supplier<Block> LIGHTLY_LICKED_SALT_BLOCK = BLOCKS.register("lightly_licked_salt_block",
+            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.TUFF).randomTicks()));
+    public static final Supplier<Block> WELL_LICKED_SALT_BLOCK = BLOCKS.register("well_licked_salt_block",
+            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.TUFF).randomTicks()));
+    public static final Supplier<Block> HEAVILY_LICKED_SALT_BLOCK = BLOCKS.register("heavily_licked_salt_block",
+            () -> new SaltBlock(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.0F, 3.0F).sound(SoundType.TUFF).randomTicks()));
+
     public static final Supplier<Block> POLISHED_SALT_BLOCK = BLOCKS.register("polished_salt_block",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.GRAVEL).strength(2.5F, 3.0F).sound(SoundType.POLISHED_TUFF)));
     

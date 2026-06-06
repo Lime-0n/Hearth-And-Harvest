@@ -251,6 +251,13 @@
 
   "item.hearthandharvest.salt": "Salt",
   "block.hearthandharvest.salt_block": "Salt Block",
+  "block.hearthandharvest.lightly_licked_salt_block": "Lightly Licked Salt Block",
+  "block.hearthandharvest.well_licked_salt_block": "Well Licked Salt Block",
+  "block.hearthandharvest.heavily_licked_salt_block": "Heavily Licked Salt Block",
+  "block.hearthandharvest.waxed_salt_block": "Waxed Salt Block",
+  "block.hearthandharvest.waxed_lightly_licked_salt_block": "Waxed Lightly Licked Salt Block",
+  "block.hearthandharvest.waxed_well_licked_salt_block": "Waxed Well Licked Salt Block",
+  "block.hearthandharvest.waxed_heavily_licked_salt_block": "Waxed Heavily Licked Salt Block",
   "block.hearthandharvest.polished_salt_block": "Polished Salt Block",
   "block.hearthandharvest.salt_slab": "Salt Slab",
   "block.hearthandharvest.polished_salt_slab": "Polished Salt Slab",
@@ -263,6 +270,8 @@
   "hearthandharvest.subtitles.salt_lamp.switch": "Salt lamp switches",
 
   "tooltip.hearthandharvest.salted": "Salted",
+
+  "hearthandharvest.subtitles.entity.lick": "Licking",
 
   "item.hearthandharvest.manure": "Manure",
   "item.hearthandharvest.wet_manure_brick": "Wet Manure Brick",

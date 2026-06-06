@@ -23,6 +23,9 @@ public class Config {
     public static ModConfigSpec.BooleanValue TRELLIS_PLACEMENT_PREVIEW;
     public static ModConfigSpec.DoubleValue SALTED_HUNGER_BONUS;
     public static ModConfigSpec.DoubleValue SALTED_SATURATION_PENALTY;
+    public static ModConfigSpec.IntValue SALT_ANIMAL_RADIUS;
+    public static ModConfigSpec.IntValue SALT_LICK_INTERVAL;
+    public static ModConfigSpec.DoubleValue SALT_PLAYER_LICK_CHANCE;
 
     public Config() {
     }
@@ -80,6 +83,18 @@ public class Config {
                 .comment("Fraction of the saturation granted by a food that is removed when eating salted food.\n" +
                         "For example, 0.1 means 10% of the saturation normally given is taken away.")
                 .defineInRange("saltedSaturationPenalty", 0.1D, 0.0D, 1.0D);
+
+        SALT_ANIMAL_RADIUS = COMMON_BUILDER
+                .comment("Radius in blocks that animals are kept within when near a salt block.")
+                .defineInRange("saltAnimalRadius", 12, 1, 64);
+
+        SALT_LICK_INTERVAL = COMMON_BUILDER
+                .comment("Ticks between each animal licking a nearby salt block. 9600 = 8 minutes.")
+                .defineInRange("saltLickInterval", 9600, 200, 72000);
+
+        SALT_PLAYER_LICK_CHANCE = COMMON_BUILDER
+                .comment("Chance (0.0–1.0) that a player's right-click lick degrades the salt block.")
+                .defineInRange("saltPlayerLickChance", 0.05D, 0.0D, 1.0D);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

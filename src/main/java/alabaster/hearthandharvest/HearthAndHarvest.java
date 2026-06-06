@@ -2,6 +2,7 @@ package alabaster.hearthandharvest;
 
 import alabaster.hearthandharvest.client.gui.CaskGUI;
 import alabaster.hearthandharvest.client.recipebook.RecipeCategories;
+import alabaster.hearthandharvest.common.block.SaltBlock;
 import alabaster.hearthandharvest.common.block.StompingBasinBlock;
 import alabaster.hearthandharvest.common.entity.crow.CrowEntity;
 import alabaster.hearthandharvest.common.entity.crow.CrowModel;
@@ -108,6 +109,7 @@ public class HearthAndHarvest {
         event.enqueueWork(() -> {
             CrateBlockItem.registerDispenseBehavior(HHModItems.CRATE.get());
             SeedPouchItem.registerDispenseBehavior();
+            SaltBlock.registerDispenseBehavior();
         });
     }
 

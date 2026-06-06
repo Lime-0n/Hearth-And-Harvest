@@ -24,14 +24,14 @@
                   }
                 }
               ],
-              "name": "hearthandharvest:salt_block"
+              "name": "hearthandharvest:lightly_licked_salt_block"
             },
             {
               "type": "minecraft:item",
               "functions": [
                 {
                   "add": false,
-                  "count": { "type": "minecraft:uniform", "max": 4, "min": 2 },
+                  "count": { "type": "minecraft:uniform", "max": 3, "min": 1 },
                   "function": "minecraft:set_count"
                 },
                 {
@@ -42,7 +42,7 @@
                 },
                 {
                   "function": "minecraft:limit_count",
-                  "limit": { "max": 4, "min": 1 }
+                  "limit": { "max": 3, "min": 1 }
                 },
                 { "function": "minecraft:explosion_decay" }
               ],
@@ -54,5 +54,5 @@
       "rolls": 1
     }
   ],
-  "random_sequence": "minecraft:blocks/salt_block"
+  "random_sequence": "hearthandharvest:blocks/lightly_licked_salt_block"
 }
