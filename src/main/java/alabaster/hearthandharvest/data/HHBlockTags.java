@@ -181,6 +181,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 .add(HHModBlocks.COCOA_BEAN_BAG.get());
         tag(HHCommonTags.STORAGE_BLOCKS_GUNPOWDER)
                 .add(HHModBlocks.GUNPOWDER_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_MANURE)
+                .add(HHModBlocks.MANURE_BAG.get());
         tag(HHCommonTags.STORAGE_BLOCKS_STRING)
                 .add(HHModBlocks.SPOOL.get());
         tag(HHCommonTags.STORAGE_BLOCKS_BROWN_MUSHROOM)
@@ -235,6 +237,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.SALT_BAG.get(),
                 HHModBlocks.SUGAR_BAG.get(),
                 HHModBlocks.COCOA_BEAN_BAG.get(),
+                HHModBlocks.MANURE_BAG.get(),
                 HHModBlocks.COTTON_BALE.get(),
                 HHModBlocks.SPOOL.get(),
                 HHModBlocks.ROPE_COIL.get(),
@@ -356,7 +359,7 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.SALT_WALL.get(),
                 HHModBlocks.POLISHED_SALT_WALL.get(),
                 HHModBlocks.SALT_DRIP.get(),
-                HHModBlocks.MANURE_BRICKS.get(),
+                HHModBlocks.MANURE_BRICKS_BLOCK.get(),
                 HHModBlocks.POLISHED_MANURE.get(),
                 HHModBlocks.MANURE_BRICK_STAIRS.get(),
                 HHModBlocks.POLISHED_MANURE_STAIRS.get(),
@@ -379,7 +382,8 @@ public class HHBlockTags extends BlockTagsProvider {
                 HHModBlocks.SUGAR_BAG.get(),
                 HHModBlocks.COCOA_BEAN_BAG.get(),
                 HHModBlocks.CORN_KERNEL_BAG.get(),
-                HHModBlocks.GUNPOWDER_BAG.get()
+                HHModBlocks.GUNPOWDER_BAG.get(),
+                HHModBlocks.MANURE_BAG.get()
         );
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(

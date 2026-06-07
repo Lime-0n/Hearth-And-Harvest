@@ -24,6 +24,7 @@ public class SmeltingRecipes
         foodSmeltingRecipes("baked_apple", Items.APPLE, HHModItems.BAKED_APPLE.get(), 0.35F, output);
         foodSmeltingRecipes("hot_chocolate", HHModItems.CHOCOLATE_MILK_BOTTLE.get(), ModItems.HOT_COCOA.get(), 0.35F, output);
 
+
         // Items with only a campfire recipe
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(HHModItems.MARSHMALLOW_STICK.get()), RecipeCategory.FOOD,
                         HHModItems.ROASTED_MARSHMALLOW_STICK.get(), 0.35F, 200)
@@ -37,6 +38,16 @@ public class SmeltingRecipes
                         HHModItems.COOKED_CORN_ON_THE_COB.get(), 0.5F, 400)
                 .unlockedBy("has_uncooked_corn_on_the_cob", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.UNCOOKED_CORN_ON_THE_COB.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "cooked_corn_on_the_cob").toString() + "_from_campfire");
+
+        // Items with only a furnace recipe
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(HHModItems.WET_MANURE_BRICK.get()), RecipeCategory.BUILDING_BLOCKS,
+                        HHModItems.MANURE_BRICK.get(), 0.5F, 400)
+                .unlockedBy("has_wet_manure_brick", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.WET_MANURE_BRICK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "manure_brick").toString() + "_from_smelting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(HHModItems.MANURE_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS,
+                        HHModItems.POLISHED_MANURE.get(), 0.5F, 400)
+                .unlockedBy("has_manure_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE_BLOCK.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "polished_manure").toString() + "_from_smelting");
     }
 
     private static void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience, RecipeOutput output) {

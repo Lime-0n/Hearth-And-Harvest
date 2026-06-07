@@ -259,6 +259,7 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.WARPED_FUNGUS_CRATE.get())
                 .add(HHModItems.CRIMSON_FUNGUS_CRATE.get())
                 .add(HHModItems.GUNPOWDER_BAG.get())
+                .add(HHModItems.MANURE_BAG.get())
                 .add(HHModItems.SALT_BAG.get())
                 .add(HHModItems.SUGAR_BAG.get())
                 .add(HHModItems.COCOA_BEAN_BAG.get())
@@ -290,6 +291,8 @@ public class HHItemTags extends ItemTagsProvider {
                 .add(HHModItems.COCOA_BEAN_BAG.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_GUNPOWDER)
                 .add(HHModItems.GUNPOWDER_BAG.get());
+        tag(HHCommonTags.STORAGE_BLOCKS_ITEM_MANURE)
+                .add(HHModItems.MANURE_BAG.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_STRING)
                 .add(HHModItems.SPOOL.get());
         tag(HHCommonTags.STORAGE_BLOCKS_ITEM_BROWN_MUSHROOM)

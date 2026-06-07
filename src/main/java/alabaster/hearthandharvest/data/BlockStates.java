@@ -109,6 +109,7 @@ public class BlockStates extends BlockStateProvider {
         this.bagBlock(HHModBlocks.COCOA_BEAN_BAG.get(), "cocoa_bean");
         this.bagBlock(HHModBlocks.GUNPOWDER_BAG.get(), "gunpowder");
         this.bagBlock(HHModBlocks.CORN_KERNEL_BAG.get(), "corn_kernel");
+        this.bagBlock(HHModBlocks.MANURE_BAG.get(), "manure");
 
         this.simpleBlock(HHModBlocks.CHARCOAL_BLOCK.get());
 
@@ -171,7 +172,7 @@ public class BlockStates extends BlockStateProvider {
         this.simpleBlock(HHModBlocks.MULCH.get());
         this.simpleBlock(HHModBlocks.MANURE_BLOCK.get());
 
-        this.simpleBlock(HHModBlocks.MANURE_BRICKS.get());
+        this.simpleBlock(HHModBlocks.MANURE_BRICKS_BLOCK.get());
         this.simpleBlock(HHModBlocks.POLISHED_MANURE.get());
         this.stairsBlock((StairBlock) HHModBlocks.MANURE_BRICK_STAIRS.get(), resourceBlock("manure_bricks"));
         this.stairsBlock((StairBlock) HHModBlocks.POLISHED_MANURE_STAIRS.get(), resourceBlock("polished_manure"));

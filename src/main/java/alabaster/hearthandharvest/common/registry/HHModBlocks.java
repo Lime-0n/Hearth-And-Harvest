@@ -354,24 +354,26 @@ public class HHModBlocks {
     // Manure
     public static final Supplier<Block> MANURE_BLOCK = BLOCKS.register("manure_block",
             () -> new ManureBlock(Block.Properties.ofFullCopy(Blocks.MUD).strength(1.0F, 2.0F).sound(SoundType.MUD).randomTicks()));
+    public static final Supplier<Block> MANURE_BAG = BLOCKS.register("manure_bag",
+            () -> new ManureBlock(Block.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
 
-    public static final Supplier<Block> MANURE_BRICKS = BLOCKS.register("manure_bricks",
+    public static final Supplier<Block> MANURE_BRICKS_BLOCK = BLOCKS.register("manure_bricks",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS).randomTicks()));
     public static final Supplier<Block> POLISHED_MANURE = BLOCKS.register("polished_manure",
             () -> new Block(Block.Properties.ofFullCopy(Blocks.MUD_BRICKS).strength(2.5F, 3.0F).sound(SoundType.MUD_BRICKS)));
 
     public static final Supplier<Block> MANURE_BRICK_STAIRS = BLOCKS.register("manure_brick_stairs",
-            () -> new StairBlock(HHModBlocks.MANURE_BRICKS.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+            () -> new StairBlock(HHModBlocks.MANURE_BRICKS_BLOCK.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS_BLOCK.get())));
     public static final Supplier<Block> POLISHED_MANURE_STAIRS = BLOCKS.register("polished_manure_stairs",
             () -> new StairBlock(HHModBlocks.POLISHED_MANURE.get().defaultBlockState(), Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 
     public static final Supplier<Block> MANURE_BRICK_SLAB = BLOCKS.register("manure_brick_slab",
-            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+            () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS_BLOCK.get())));
     public static final Supplier<Block> POLISHED_MANURE_SLAB = BLOCKS.register("polished_manure_slab",
             () -> new SlabBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 
     public static final Supplier<Block> MANURE_BRICK_WALL = BLOCKS.register("manure_brick_wall",
-            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS.get())));
+            () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.MANURE_BRICKS_BLOCK.get())));
     public static final Supplier<Block> POLISHED_MANURE_WALL = BLOCKS.register("polished_manure_wall",
             () -> new WallBlock(Block.Properties.ofFullCopy(HHModBlocks.POLISHED_MANURE.get())));
 }

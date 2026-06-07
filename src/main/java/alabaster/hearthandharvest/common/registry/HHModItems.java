@@ -295,6 +295,8 @@ public class HHModItems {
             () -> new BlockItem(HHModBlocks.GUNPOWDER_BAG.get(), basicItem()));
     public static final Supplier<Item> CORN_KERNEL_BAG = registerWithBlockTab("corn_kernel_bag",
             () -> new BlockItem(HHModBlocks.CORN_KERNEL_BAG.get(), basicItem()));
+    public static final Supplier<Item> MANURE_BAG = registerWithBlockTab("manure_bag",
+            () -> new BlockItem(HHModBlocks.MANURE_BAG.get(), basicItem()));
     
     // Misc
     public static final Supplier<Item> COTTON_BALE = registerWithBlockTab("cotton_bale",
@@ -350,7 +352,7 @@ public class HHModItems {
     public static final Supplier<Item> MANURE_BLOCK = registerWithBlockTab("manure_block",
             () -> new BlockItem(HHModBlocks.MANURE_BLOCK.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_BLOCK = registerWithBlockTab("manure_bricks",
-            () -> new BlockItem(HHModBlocks.MANURE_BRICKS.get(), basicItem()));
+            () -> new BlockItem(HHModBlocks.MANURE_BRICKS_BLOCK.get(), basicItem()));
     public static final Supplier<Item> POLISHED_MANURE = registerWithBlockTab("polished_manure",
             () -> new BlockItem(HHModBlocks.POLISHED_MANURE.get(), basicItem()));
     public static final Supplier<Item> MANURE_BRICK_STAIRS = registerWithBlockTab("manure_brick_stairs",

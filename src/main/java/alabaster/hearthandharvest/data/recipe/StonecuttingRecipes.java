@@ -27,6 +27,20 @@ public class StonecuttingRecipes {
         stonecutting(HHModBlocks.POLISHED_SALT_BLOCK.get(), HHModBlocks.POLISHED_SALT_STAIRS.get(), 1, output);
         stonecutting(HHModBlocks.POLISHED_SALT_BLOCK.get(), HHModBlocks.POLISHED_SALT_SLAB.get(), 2, output);
         stonecutting(HHModBlocks.POLISHED_SALT_BLOCK.get(), HHModBlocks.POLISHED_SALT_WALL.get(), 1, output);
+        
+        // Manure Bricks
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.POLISHED_MANURE.get(), 1, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.MANURE_BRICK_STAIRS.get(), 1, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.MANURE_BRICK_SLAB.get(), 2, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.MANURE_BRICK_WALL.get(), 1, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.POLISHED_MANURE_STAIRS.get(), 1, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.POLISHED_MANURE_SLAB.get(), 2, output);
+        stonecutting(HHModBlocks.MANURE_BRICKS_BLOCK.get(), HHModBlocks.POLISHED_MANURE_WALL.get(), 1, output);
+
+        // Polished Salt
+        stonecutting(HHModBlocks.POLISHED_MANURE.get(), HHModBlocks.POLISHED_MANURE_STAIRS.get(), 1, output);
+        stonecutting(HHModBlocks.POLISHED_MANURE.get(), HHModBlocks.POLISHED_MANURE_SLAB.get(), 2, output);
+        stonecutting(HHModBlocks.POLISHED_MANURE.get(), HHModBlocks.POLISHED_MANURE_WALL.get(), 1, output);
     }
 
     private static void stonecutting(ItemLike ingredient, ItemLike result, int count, RecipeOutput output) {

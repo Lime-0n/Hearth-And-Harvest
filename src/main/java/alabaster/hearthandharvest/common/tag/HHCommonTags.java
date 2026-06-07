@@ -49,6 +49,9 @@ public class HHCommonTags {
     public static final TagKey<Item> STORAGE_BLOCKS_ITEM_GUNPOWDER = commonItemTag("storage_blocks/gunpowder");
     public static final TagKey<Block> STORAGE_BLOCKS_GUNPOWDER = commonBlockTag("storage_blocks/gunpowder");
 
+    public static final TagKey<Item> STORAGE_BLOCKS_ITEM_MANURE = commonItemTag("storage_blocks/manure");
+    public static final TagKey<Block> STORAGE_BLOCKS_MANURE = commonBlockTag("storage_blocks/manure");
+
     public static final TagKey<Item> STORAGE_BLOCKS_ITEM_STRING = commonItemTag("storage_blocks/string");
     public static final TagKey<Block> STORAGE_BLOCKS_STRING = commonBlockTag("storage_blocks/string");
 

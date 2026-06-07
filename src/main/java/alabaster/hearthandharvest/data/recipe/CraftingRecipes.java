@@ -16,9 +16,11 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.CommonTags;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
 public class CraftingRecipes
@@ -584,6 +586,13 @@ public class CraftingRecipes
                 .define('#', Items.GUNPOWDER)
                 .unlockedBy("has_gunpowder", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GUNPOWDER))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BAG.get(), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.MANURE.get())
+                .unlockedBy("has_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE.get()))
+                .save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.CHARCOAL_BLOCK.get(), 1)
                 .pattern("###")
                 .pattern("###")
@@ -700,6 +709,63 @@ public class CraftingRecipes
                 .unlockedBy("has_polished_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_SALT_BLOCK.get()))
                 .group("walls")
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BLOCK.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.MANURE.get())
+                .unlockedBy("has_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE.get()))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BRICK_BLOCK.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', HHModItems.MANURE_BRICK.get())
+                .unlockedBy("has_manure_brick", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE.get()))
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BRICK_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', HHModItems.MANURE_BRICK_BLOCK.get())
+                .unlockedBy("has_manure_brick_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE_BRICK_BLOCK.get()))
+                .group("stairs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BRICK_SLAB.get(), 6)
+                .pattern("###")
+                .define('#', HHModItems.MANURE_BRICK_BLOCK.get())
+                .unlockedBy("has_manure_brick_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE_BRICK_BLOCK.get()))
+                .group("slabs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.MANURE_BRICK_WALL.get(), 6)
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.MANURE_BRICK_BLOCK.get())
+                .unlockedBy("has_manure_brick_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE_BRICK_BLOCK.get()))
+                .group("walls")
+                .save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_MANURE_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_MANURE.get())
+                .unlockedBy("has_polished_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_MANURE.get()))
+                .group("stairs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_MANURE_SLAB.get(), 6)
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_MANURE.get())
+                .unlockedBy("has_polished_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_MANURE.get()))
+                .group("slabs")
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HHModItems.POLISHED_MANURE_WALL.get(), 6)
+                .pattern("###")
+                .pattern("###")
+                .define('#', HHModItems.POLISHED_MANURE.get())
+                .unlockedBy("has_polished_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.POLISHED_MANURE.get()))
+                .group("walls")
+                .save(output);
     }
 
     private static void recipesTools(RecipeOutput output) {
@@ -734,6 +800,15 @@ public class CraftingRecipes
                 .define('#', Items.DIAMOND)
                 .define('S', Items.STICK)
                 .unlockedBy("has_diamond", InventoryChangeTrigger.TriggerInstance.hasItems(Items.DIAMOND))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HHModItems.SEED_POUCH.get(), 1)
+                .pattern(" S ")
+                .pattern("CsC")
+                .pattern(" C ")
+                .define('C', ModItems.CANVAS.get())
+                .define('S', Items.STRING)
+                .define('s', Tags.Items.SEEDS)
+                .unlockedBy("has_canvas", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CANVAS.get()))
                 .save(output);
     }
 
@@ -830,6 +905,10 @@ public class CraftingRecipes
                 .requires(HHModItems.GUNPOWDER_BAG.get())
                 .unlockedBy("has_gunpowder_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.GUNPOWDER_BAG.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "gunpowder_from_bag"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HHModItems.MANURE.get(), 9)
+                .requires(HHModItems.MANURE_BAG.get())
+                .unlockedBy("has_manure_bag", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE_BAG.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "manure_from_bag"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.CHARCOAL, 9)
                 .requires(HHModItems.CHARCOAL_BLOCK.get())
                 .unlockedBy("has_charcoal_block", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHARCOAL_BLOCK.get()))
@@ -866,6 +945,12 @@ public class CraftingRecipes
                 .requires(HHModItems.CHARRED_MARSHMALLOW_STICK.get())
                 .unlockedBy("has_charred_marshmallow", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.CHARRED_MARSHMALLOW_STICK.get()))
                 .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "charcoal_from_charred_marshmallow"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, HHModItems.WET_MANURE_BRICK.get(), 2)
+                .requires(ModItems.STRAW.get())
+                .requires(HHModItems.MANURE.get())
+                .unlockedBy("has_manure", InventoryChangeTrigger.TriggerInstance.hasItems(HHModItems.MANURE.get()))
+                .save(output, ResourceLocation.fromNamespaceAndPath(HearthAndHarvest.MODID, "wet_manure_bricks_from_straw"));
     }
 
     private static void recipesFoodstuffs(RecipeOutput output) {
